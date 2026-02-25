@@ -1,0 +1,255 @@
+Title: Context Engineering | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/patterns/context_engineering
+Description: Last Updated: July 25, 2025
+
+Context Engineering | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Quantum Computing
+Agentic
+Workflows
+Building Agentic Patterns
+Context Engineering
+Deep Agents
+Deep Research
+Model Foundry
+Protocols
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+Patterns
+Context Engineering
+On this page
+Context Engineering
+Document Information
+Last Updated:
+July 25, 2025
+Owner:
+Brian Lewis
+Point of Contact:
+Ali Kharazmi
+Contributors and Reviewers:
+Archit Kaila, Haitham Maya, Malika Mahoui
+Agents need context to perform tasks. Context engineering is the art and science of filling the context window with just the right information at each step of an agent's trajectory.
+Context Engineering Overview
+​
+Core
+Isolate
+Split Across Sub-agents
+Separation of Concern
+Code Environment
+Separation
+Runtime State Object
+Compress
+Summarizing
+Recursive/Hierarchical
+Summarization
+Agent to Agent
+Summarization
+Trimming
+Remove Older Messages
+From List
+Select
+Read State Object/Scratchpad
+Selecting Memory
+Pull Narrow Sets of File
+Knowledge Graph for
+Memory Indexing
+Write
+Scratchpad
+Tool Calling
+Write to scratchpad file
+Runtime State Object
+Memory
+Self Generated Memories
+Across Sessions
+Context Engineering
+Write
+Select
+Compress
+Isolate
+Types of Context
+​
+Context engineering serves as an umbrella that applies across a few different context types:
+Instructions
+– prompts, memories, few-shot examples, tool descriptions, etc.
+Knowledge
+– facts, memories, etc.
+Tools
+– feedback from tool calls
+Context Challenges
+​
+Long-running tasks and accumulating feedback from tool calls mean that agents often utilize a large number of tokens. This can degrade performance and opens up the door for hallucinations.
+Strategies for Agent Context Engineering
+​
+These strategies can be categorized into 4 buckets:
+Write
+– Saving context outside the context window to help an agent perform tasks
+Select
+– Pulling relevant context into the context window when needed
+Compress
+– Retaining only the essential tokens required to perform tasks
+Isolate
+– Splitting context into separate components to optimize agent performance
+Write
+​
+Just as humans take notes, agents can use "scratchpads" to persist information outside the context window. This approach saves critical information that remains accessible throughout task execution.
+Implementation Methods:
+Single Session:
+File-based storage
+– A tool call that writes information to a persistent file
+Runtime state
+– A field in a state object that persists during the session
+Cross-Session:
+3.
+Long-term memory
+– Persistent storage that remembers information across multiple sessions (e.g., Windsurf, Cursor, ChatGPT)
+Select
+​
+Context selection depends on how the scratchpad is implemented. If it's a tool, agents access it via tool calls. If it's part of the agent's runtime state, developers decide which parts of the state are exposed at each step, allowing more control over what context is visible during reasoning.
+Memory Usage
+​
+When agents have memory, they must also select which memories to use:
+Episodic memories
+provide few-shot examples of prior behavior.
+Procedural memories
+store instructions to guide actions.
+Semantic memories
+store factual knowledge relevant to tasks.
+Selecting the right memory improves performance and personalization.
+Challenges and Solutions
+​
+A key challenge is ensuring relevant memories are selected:
+Many code agents use fixed files (e.g.,
+CLAUDE.md
+,
+Cursor's rules files
+) for consistent behavior.
+Agents with large memory stores (especially semantic memory) require advanced retrieval strategies.
+Embeddings and knowledge graphs help with retrieval, but issues like irrelevant memory injection can still happen. For instance,
+ChatGPT
+has mistakenly inserted private user data into responses, raising concerns over context control and trust.
+Compress
+​
+Agent interactions can span hundreds of turns with token-heavy tool calls, requiring compression strategies to manage context efficiently.
+Summarization:
+Uses LLMs to distill essential information from lengthy interactions
+Claude Code's
+"auto-compact" feature demonstrates this approach, summarizing full trajectories when context exceeds 95%
+Can employ recursive or hierarchical summarization strategies
+Useful for post-processing token-heavy tool calls (e.g., search results)
+Applied at agent-agent boundaries to reduce tokens during knowledge hand-off
+Context Trimming:
+Filters or "prunes" context using hard-coded heuristics rather than LLM processing
+Examples include removing older messages from conversation history
+More deterministic than summarization but less intelligent about content relevance
+Isolate
+​
+Context isolation splits information across separate components to optimize agent performance.
+Multi-Agent:
+Split context across sub-agents with specific tools and instructions
+OpenAI Swarm
+library enables separation of concerns for specialized sub-tasks
+Each agent maintains its own context window
+Sandboxed Environments:
+Code execution in isolated environments (e.g.,
+HuggingFace CodeAgent
+)
+Selected context from tool calls passed back to LLM
+Prevents context contamination between execution and reasoning
+State Objects:
+Runtime state schemas with selective field exposure
+Context written to specific fields, only relevant portions exposed to LLM
+Enables controlled context access without full sandboxing
+Context Engineering with LangGraph
+​
+Write Context
+​
+LangGraph
+supports short-term (thread-scoped) and long-term memory. Short-term memory uses checkpoints as a scratchpad, letting agents write and retrieve state across steps.
+Select Context
+​
+At each step, agents can:
+Access short-term state
+to retrieve intermediate data
+Query long-term memory
+using different retrieval methods
+Compress Context
+​
+LangGraph
+lets you control context by passing a
+state
+object between nodes. A common method is using a message list and periodically
+summarizing
+or
+trimming it
+with built-in tools.
+Isolate Context
+​
+LangGraph
+uses a structured
+state
+object where you define a schema. This lets you store tool outputs or other data in specific fields, keeping them isolated from the LLM until needed.
+References
+​
+Context Engineering for Agents
+- arXiv preprint. Available at:
+https://arxiv.org/pdf/2507.13334
+Context Engineering for Agents
+- LangChain Blog. Available at:
+https://blog.langchain.com/context-engineering-for-agents/
+Was this helpful?
+Edit this page
+Previous
+Building Agentic Patterns
+Next
+Deep Agents
+Context Engineering Overview
+Types of Context
+Context Challenges
+Strategies for Agent Context Engineering
+Write
+Select
+Compress
+Isolate
+Context Engineering with LangGraph
+Write Context
+Select Context
+Compress Context
+Isolate Context
+References
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

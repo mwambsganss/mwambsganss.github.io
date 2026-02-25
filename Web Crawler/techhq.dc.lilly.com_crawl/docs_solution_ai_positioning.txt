@@ -1,0 +1,92 @@
+Title: Positioning | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/positioning/
+Description: Owner: Brian Lewis
+
+Positioning | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Agentic Enterprise
+Google
+Platforms
+Prompt Management
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+Positioning
+On this page
+Positioning
+Document Information
+Last Updated:
+February 3, 2026
+Owner:
+Brian Lewis
+Point of Contact:
+Ali Kharazmi
+Contributors and Reviewers:
+Archit Kaila, Haitham Maya, Malika Mahoui
+Topics
+​
+Agentic AI
+​
+Comprehensive solution guide for building autonomous AI agents and multi-agent orchestration systems at Eli Lilly. Learn about strategic technology recommendations including Cortex Landing Zone, Copilot Studio, and Chat-In-A-Box, with guidance on enabling agent-to-agent interoperability.
+Platforms
+​
+Interactive visual presentation exploring the architecture and relationships of agentic enterprise platforms. This embedded presentation complements the strategic guidance with visual diagrams showing platform integration patterns and technology positioning.
+Agentic Enterprise
+​
+Comprehensive presentation covering Eli Lilly's transformation into an agentic enterprise, including the Learn-Architect-Build journey for implementing autonomous AI agents across Enterprise and strategic business functions.
+Google
+​
+Outlines Eli Lilly's strategic positioning regarding Google technologies and services, detailing when and how Google's
+offerings should be evaluated, adopted, and governed within our enterprise architecture.
+Prompt Management
+​
+Defines Eli Lilly's approach to prompt engineering and management, detailing the proposed platform architecture with
+frontend and backend components for effective prompt cataloging, evaluation, and execution across the enterprise.
+Was this helpful?
+Edit this page
+Previous
+Protocols
+Next
+Agentic Enterprise
+Topics
+Agentic AI
+Platforms
+Agentic Enterprise
+Google
+Prompt Management
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

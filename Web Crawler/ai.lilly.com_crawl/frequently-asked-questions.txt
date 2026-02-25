@@ -1,0 +1,384 @@
+Title: Frequently Asked Questions | ai.lilly.com
+URL: https://ai.lilly.com/frequently-asked-questions
+Description: 
+
+Frequently Asked Questions | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+Frequently Asked Questions
+Given the change-making power and quick emergence of AI, it’s no wonder that everyone has questions. Below are answers to some of the most common questions about AI products at Lilly. If you have other questions, please feel free to
+contact us
+.
+View AI Registry FAQs
+View the full FAQ PDF
+How can I access Claude at Lilly?
+expand accordion
+There are three ways to access Claude securely at Lilly, depending on your role and needs. All options are cleared for Red data and use the same underlying Claude language model.
+Chat and Build with Claude through Lilly's Chat in a Box
+- A secure, web-based option with the same Claude language model in an easy-to-use interface.
+Who can access:
+All Lilly employees and contractors (except China)
+How to access:
+Visit Chat in a Box - Claude
+Best for:
+Most Lilly users who need quick, reliable access the Claude AI model without advanced enterprise features
+Chat and Build with Claude on Microsoft Copilot
+- Access Claude through Copilot Researcher for deep research tasks or build custom agents in Copilot Studio using Claude Sonnet 4.5 or Claude Opus 4.1.
+Who can access:
+Microsoft 365 Copilot users
+How to access:
+Use Claude with Copilot Studio
+Use Claude with Researcher in M365 Copilot
+(Coming soon)
+Claude Enterprise (Desktop & Web)
+- Claude Enterprise is Anthropic's premium AI solution with advanced features including Projects for team collaboration, Skills for document creation, and Artifacts for interactive content.
+While cleared for Red data, Claude Enterprise is not clear for Orange+ SPI.
+Who can access:
+Prioritized access for Lilly Research Labs (LRL) employees; all other requests depend on license availability
+How to access:
+LRL employees:
+Request here
+Non-LRL employees:
+Request here
+Following approval, access
+via web
+or by
+downloading the Claude desktop app
+Login with SSO by using your Lilly email address
+Best for:
+Users needing deep research and analysis, large context windows, or team collaboration capabilities
+Support:
+For general Claude questions,
+visit their support pages
+For training and how-tow guides, visit
+Lilly's Enterprise Claude Training page
+For Lilly-specific Claude questions, post in the
+Claude Viva Engage community
+To report an issue, contact
+Claude@lilly.com
+Is Enterprise Claude approved for CI and PI?
+expand accordion
+Yes,
+Enterprise Claude
+is approved for Personal Information (PI) and Confidential Information (CI). If you are unsure or have questions about data use with AI systems, use the
+Privacy Help Desk Chat
+or contact the
+Digital Legal Office
+.
+Is Chat in a Box approved for CI and PI?
+expand accordion
+Yes,
+Chat in a Box
+is approved for Personal Information (PI) and Confidential Information (CI). If you are unsure or have questions about data use with AI systems, use the
+Privacy Help Desk Chat
+or contact the
+Digital Legal Office
+.
+What is the scope of the Using AI Responsibly at Lilly Procedure?
+expand accordion
+The procedure applies to any product that fits the definition of "AI" (as defined in our procedure) without exceptions. Teams do not need separate submissions for each statistical analysis run on the AI model. The use case submission should cover the general data types and purposes for using the AI model. Note: Any scope changes, including using different data sets, will require a resubmission of the procedure for review.
+What kind of impact can AI have on Team Lilly?
+expand accordion
+We are embracing AI as a transformative technology. AI will supercharge Team Lilly by allowing us to do our work better and faster. But we must all use it carefully and responsibly.
+AI tools are helping us accelerate drug discovery, speed clinical trials, and improve the patient experience by improving how we work – employing algorithms to automate mundane, repetitive, and time-intensive tasks to improve the accuracy and speed of many of our processes – creating thousands of hours of capacity for our teams to focus on value-added work.
+Many new or improved AI products will be released as part of our broader AI program. While some initiatives are specific to one group (e.g., scientists), others are for all employees. Our six-month beta release roadmap allows employees to begin trying out these AI products and provide feedback to help shape the future of technology at Lilly. Visit AI.Lilly.com to learn more.
+How is technology – including AI – helping us to manage the best pipeline in the industry?
+expand accordion
+Technology is critical to our success as a company. In the clinical space, as our pipeline grows in size, complexity and value, the number of clinical studies is increasing each year. We are exploring how to leverage intelligent automation and GenAI to streamline and increase the speed of supporting our clinical trials.
+We are leveraging a new AI-powered tool called Safety Automated Narrative Generator (SANG) to revolutionize the way Global Patient Safety (GPS) operates. SANG has the capability to automate the writing of patient safety narratives for regulatory submissions, ensuring our compliance with global regulatory agencies and that patients in need can maintain access to our medicines. When leveraged for the 250,000 narratives submitted by GPS each year, SANG can reduce the touch time for each case by up to 90%, saving more than $1 million annually and improving the consistency and accuracy of our narratives. This technology is one of our earliest applications of natural language generation and is an example of how AI is helping us work smarter and faster.
+We’re also furthering the possibilities of connected clinical trial automation by licensing Magnol.AI’s capabilities to an external partner, ProofPilot. Magnol.AI is a wearable sensor data cloud that assists researchers with collecting, visualizing, and deriving critical insights from digital biomarker data. We have previously been leveraging this tool internally as a solution for remote data collection and digital biomarker development. But now, for the first time, this product will be used as a revenue generator for Lilly by licensing it externally.
+Read more
+on LillyNow.
+With AI, we have new opportunities to harness our data on a real-time basis to improve information dissemination to HCPs (e.g., commercial and medical affairs) and help create frictionless experiences for people to start and stay on treatment.
+Does our AI adoption strategy apply to affiliates outside the U.S.?
+expand accordion
+Everyone, including our OUS affiliates, can leverage AI by following the
+Using AI Responsibly at Lilly procedure
+and utilizing these
+Guidelines for Responsible Use of Artificial Intelligence
+. In fact, AI can be beneficial in cases such as
+translating materials into local languages
+.
+What should I know about artificial intelligence (AI)?
+expand accordion
+AI is the field of computer science focused on creating intelligent machines that can perform tasks requiring human-like intelligence. Generative AI (GenAI) is the subset of AI focused on creating content as opposed to analyzing or predicting.
+We continually develop new ways to apply AI and AI automation across Lilly, including new and improved products. We are grouping our practical applications of AI into four categories, with the first three as our emphasis:
+Authoring
+: AI generates first drafts of materials and hands them off to you.
+Conversing
+: You interact with AI in real-time to ask questions.
+Copiloting:
+AI operates in real-time alongside you, offering suggestions as you work
+.
+Monitoring:
+AI runs independently and flags a human when needed.
+Before using an AI product, you must read the
+Using AI Responsibly at Lilly procedure
+and utilize these
+Guidelines for Responsible Use of Artificial Intelligence
+. Only specific public AI tools, such as Copilot with Bing, are Lilly-approved to handle Personal and Confidential Information. Do not put any Personal (PI) or Confidential Information (CI) into a public AI tool until you have confirmed that it is approved for that information.
+We are posting information and resources on
+ai.lilly.com
+and communicating through LillyNow articles, Viva Engage and email. We will continue to share information that showcases how AI can help us all work better and smarter. You can also submit a use
+case
+idea via
+this form
+.
+What are the ethical considerations of using AI in our work?
+expand accordion
+While many GenAI models are trained on data publicly available on the Internet, some of that data may be questionable. Some AI-generated content
+will
+be inaccurate, so the expectation is that you verify the results. We must be careful to protect our intellectual property in using these technologies. It is vital that we follow the Red Book to demonstrate our commitment to integrity, and we are providing guidance that aligns with those values.
+We are working to implement additional governance items that will further formalize the process to identify risks and position ourselves to continue working appropriately within our values. Continue to reference our Lilly guidance documents.
+How does AI help Lilly accelerate reach and scale?
+expand accordion
+We are scaling our digital capabilities across the enterprise and applying the newest technologies to our vast data sets and scientific expertise. Our most powerful example at Lilly is what we refer to as
+model-driven drug discovery
+, utilizing GenAI with our proprietary library of millions of molecules and public data, enabling us to dream of new molecules and evaluate their potential faster than ever – at a previously unattainable scale. This will allow us to pursue more difficult diseases and biological targets and to discover new molecules that address serious unmet medical needs.
+As we seek to accelerate reach and scale, we must launch our medicines globally – simultaneously. Traditionally, we would launch sequentially, starting in the United States, then Europe, Asia, etc. Another AI use case is using technology to evolve our intelligent content ecosystem strategy, helping us to develop and disseminate our marketing and promotional content to people faster. AI could also potentially accelerate our global claims process as well as our clinical trials.
+How reliable is the output of Bing Chat, ChatGPT or other AI tools? Can we rely on the accuracy of the information?
+expand accordion
+Just like humans commit errors, AI tools can also output erroneous information. This is a phenomenon called “hallucination” where a large language model (LLM) used to build the tool perceives patterns that are nonexistent to humans, leading the tool to create outputs that are flawed or inaccurate. While AI technology will continue to become more accurate as tools are refined, every user of AI must apply the same rigor of quality checks to the outputs from AI as we would with outputs from humans.
+You can learn more about the benefits and risks of using AI by reviewing the
+Using AI Responsibly at Lilly procedure
+and utilizing these
+Guidelines for Responsible Use of Artificial Intelligence
+.
+How should employees leverage public GenAI tools like Copilot with Bing? Am I permitted to use AI-generated images at Lilly?
+expand accordion
+Following our guidelines, you are encouraged to find opportunities to safely and responsibly integrate AI into your work. Copilot with Bing is available on Lilly-issued laptops and iPhones.
+We recently launched a beta version of a proprietary Lilly AI image generator for internal creative content. For information and guidance, refer to this
+LillyNow article
+.
+Before using an AI-generated image, verify with leadership that it is appropriate for the task and complies with Lilly’s
+Using AI Responsibly at Lilly procedure
+and these
+Guidelines for Responsible Use of Artificial Intelligence
+. Always remember that you are responsible for the final output of your work. Reach out to the
+AI Team
+if you have any questions.
+How can I determine the suitability of my use case and optimize tool usage?
+expand accordion
+Before using publicly available AI tools, please consult
+this decision tree
+to decide whether your use case is acceptable and how best to use the tool.
+Our use of AI will impact our processes and people. How will you prepare the organization to continuously adapt and change? Will you be offering AI training for employees?
+expand accordion
+We will continue to share information showcasing how AI can help us all work smarter and provide employees with tools and technology to foster adoption and support through the change. This will be gradual; it will not happen overnight.
+Training will be developed to educate and upskill Lilly employees. Tech@Lilly is also working to make sure training is part of large-scale rollouts. In the meantime, we encourage employees to try out the product available adhering to the
+Using AI Responsibly at Lilly procedure
+and utilizing these
+Guidelines for Responsible Use of Artificial Intelligence
+.
+How can leaders empower teams to get upskilled on AI tools?
+expand accordion
+We have an ambitious agenda for AI at Lilly. To help with employee awareness and adoption of AI products, Ieaders should consider the following:
+Establish the right AI culture:
+Create an environment that encourages learning and innovation around AI. This can involve fostering a growth mindset, promoting curiosity, and providing opportunities for employees to safely explore and experiment with AI technologies.
+Identify AI skill gaps:
+Analyze your team’s current skillsets and identify areas where improvement is needed in AI adoption. This can help prioritize the skills to focus on and ensure that upskilling efforts are targeted and effective.
+Educate on prompt criteria:
+Prompts are the language of AI, ensure your team has the right resources to write effective prompts to maximize their experience using AI tools.
+Recognize upskilling efforts:
+Recognize employees who actively engage in AI-related upskilling activities.
+As leadership understandably extols the significant gains made with AI, what are we doing to ensure we do not let bias and exclusion creep into our data? How are we ensuring equity and inclusion in AI-generated content?
+expand accordion
+It is important to note that every model will have some form of bias, so we will continually work to reduce it. New models that use any information about humans are evaluated as part of our AI governance process.
+We also encourage employees to thoroughly review AI output for bias and accuracy. We are early in the learning curve for the use of AI, and through your feedback, you are helping to shape the future of AI at Lilly.
+We share your desire to not have bias in our tool results, but it is recognized that AI models must be fine-tuned, as the data sources that feed tools are imperfect.
+How are we ensuring that this technology is good for business while complying with all regulatory authorities? What are the potential risks to the company that we should all be aware of?
+expand accordion
+AI has many benefits, but if misused, it can create inaccurate, biased, or harmful results. It can also put privacy and intellectual property rights at risk.
+Additionally, to ensure that the public AI we’re utilizing or the proprietary AI we’re developing is good for the business while being compliant with all regulatory and legal authorities governing our industry, we are working to create an Accountable AI policy that includes clear expectations for appropriate use of these technologies.
+For more information, refer to the
+Using AI Responsibly at Lilly procedure
+and
+Guidelines for Responsible Use of Artificial Intelligence
+.
+Where can employees find guidance on testing and verifying AI outputs?
+expand accordion
+Employees can refer to internal
+training materials
+and
+guidelines
+on AI usage, which provide specific recommendations for testing, verifying, and ensuring the reliability of AI outputs in different operational contexts.
+What are the dos and don’ts when using public AI tools?
+expand accordion
+AI presents unique risks and limitations to be used responsibly and effectively. We must protect the
+Confidential Information(CI)
+,
+Personal Information(PI)
+, intellectual property, and reputation of our Company by following these dos and don’ts:
+Do
+Do engage and ask questions when unsure of appropriate AI use.
+Do verify outputs of AI for accuracy.
+Do know the data sources, including biases and limitations.
+Do get help on AI contracts.
+Don’t
+Don’t use public AI tools outside of these guidelines to make logical decisions about low-risk use.
+Don’t put in personal or confidential information unless approved by Lilly (e.g., Copilot with Bing is approved).
+Don’t put intellectual property at risk.
+Don’t enter into paid AI license agreements for company use.
+What are the guidelines for using AI image generation at Lilly?
+expand accordion
+When using AI to generate images for your work at Lilly, you must follow guidance on how to use and label these images. Make sure to read
+Lilly Guidelines for Use of AI-Generated Media (Image, Video, Audio)
+before using AI imagery.
+How does AI affect healthcare, and what precautions should be taken?
+expand accordion
+AI holds tremendous promise for the future of healthcare. Because of the sensitive and important nature of our work, there are additional considerations to make before using AI. Learn more about how AI can impact our industry and the special precautions we must take by accessing
+this link
+.
+What are the validation requirements for AI projects?
+expand accordion
+Please access
+LQP302-30
+: Artificial Intelligence and Machine Learning (AI/ML) Computer System Validation for requirements.
+What does leadership expect from me when it comes to AI? Will AI take my job?
+expand accordion
+The most significant risk we face when it comes to AI is doing nothing at all. These tools are here to make your lives easier and free up your time to do higher-level thinking – so take advantage of them! With the world of GenAI, we no longer have to start with a blank page: have the machine generate a first draft, and you become the editor. This will require a shift in mindset and approach and will take time. The best thing you can do is explore how the tools can work for you and share learnings back with your teammates.
+How do we ensure we have the right data pipeline to build an “AI Factory” at Lilly?
+expand accordion
+The AI and Enterprise Data Teams as well as others are working closely together on the foundational set of capabilities that will begin to form the "AI Factory". The Enterprise Data Backbone (EDB) is a key component for GenAI models to execute against. Getting high-quality data into the EDB is essential. Data that are accessible and consumable via the Marketplace (data.lilly.com) helps enable AI use cases and ensures we have the "right data" for a particular use case.
+Are there scenarios where you’re considering an AI solution but haven’t fully defined the requirements?
+expand accordion
+Collaborate with your local Tech@Lilly resource to submit your idea to the
+Technical Innovation Pipeline
+.
+Does your Tech@Lilly team require access to an AI platform sandbox?
+expand accordion
+Complete and submit the
+AI Hub Sandbox Request form
+to request Azure OpenAI sandbox access.
+When should AI usage be disclosed?
+expand accordion
+In general, employees should disclose their use of AI unless it is an ancillary or productivity tool such as Copilot with Bing, Copilot for M365, or LillyTranslate. Individuals can use these tools to draft emails, translate documents, or use AI copiloting for internal documents and presentations. All other uses of AI tools should be disclosed.
+Can you provide examples of when disclosure is necessary?
+expand accordion
+Disclosing
+the use of AI
+is necessary for any AI-generated content intended for external audiences, including marketing materials, publications, and social media posts. Disclosing
+an interaction with AI
+is necessary if you are developing or deploying a chatbot, summarization and analysis tool, or other AI-enabled systems that provide output to users. This type of disclosure
+informs users
+that they are interacting with an AI system and are responsible for verifying outputs.
+What are some specific examples of when disclosure is required?
+expand accordion
+External-facing uses where AI-generated content might be employed include customer-facing communications, public presentations, and any content or tools intended for distribution outside our organization. Disclosure is also required internally if individuals use AI output to make decisions. For example, a chatbot that guides Lilly procedures requires disclosure to the end user that they are interacting with an AI chatbot and responsible for verifying outputs.
+How will we clarify when disclosure is appropriate?
+expand accordion
+When in doubt, disclose.
+Refer to the AI guidance on ai.lilly.com or contact the AI team at
+ai@lilly.com
+if you have additional questions on when disclosure is necessary.
+Why is there ambiguity in the current language about disclosure?
+expand accordion
+The ambiguity intentionally allows flexibility depending on the context of AI use. However, we acknowledge the need for clarity and will provide concrete examples to guide appropriate disclosure practices.
+What should I do if I am unsure whether disclosure is needed?
+expand accordion
+When in doubt, disclose.
+Consider whether individuals outside of our organization will see the content generated with AI tools. If yes, disclosure is likely required; if no, disclosure may not be necessary. If you are unsure or have questions, contact the
+Digital Legal Office
+.
+Where can I find more information about AI usage and disclosure?
+expand accordion
+Our internal policy documents and training materials will provide detailed guidelines and examples to ensure a consistent understanding and application of disclosure requirements.
+How will employees know when they use AI and must follow procedure requirements?
+expand accordion
+Employees should generally rely on system disclosures to identify AI usage that requires adherence to procedure requirements. Suppose the AI features are integrated into existing Lilly tools or are not overtly apparent to users (e.g., background statistical models). In that case, they are typically considered low-risk and previously approved by Lilly.
+What if an employee is unaware they are using AI due to recent tool updates or integration?
+expand accordion
+Employees are expected to follow procedure requirements for any AI integrated into enterprise-wide tools, even if unaware of its presence. Lilly ensures the system will flag any AI requiring disclosure when user awareness is necessary.
+How does Lilly determine when AI use should be disclosed to users?
+expand accordion
+AI use requiring disclosure is generally flagged by the system to ensure employees are aware. This includes scenarios where AI significantly impacts or generates content that may affect external stakeholders or compliance.
+What types of AI usage are exempt from explicit disclosure requirements?
+expand accordion
+Low-risk AI functionalities, such as background statistical models or integrated features within existing tools, are typically exempt from explicit user disclosure unless they significantly alter user interactions or outcomes.
+Where can employees find more information about AI disclosures and requirements?
+expand accordion
+Internal policy documents and training materials provide guidelines and examples regarding AI usage and disclosure requirements. Employees are encouraged to consult these resources for clarity on compliance expectations related to AI utilization.
+How much testing and verification should an employee perform before trusting the accuracy of an AI tool?
+expand accordion
+There are no strict rules, but employees should initially compare AI outputs with results obtained through their traditional methods for completing tasks without AI. They should do this multiple times to ensure consistency. Once confident in the reliability of the AI outputs, employees should continue to review results for any anomalies.
+What should employees do if AI outputs show inconsistent or outlier responses during testing?
+expand accordion
+Employees should exercise caution if AI outputs consistently differ significantly from expected results or show outlier responses. It's advisable not to rely on such outputs until consistency and accuracy can be verified through further testing or adjustments.
+Are there specific guidelines for determining when AI outputs are trustworthy?
+expand accordion
+A practical guideline is whether employees could comfortably share their methodology (prompts used to generate AI outputs) with supervisors or the public. If not, it suggests additional verification to ensure the credibility and accuracy of AI usage.
+Have an Idea?
+Integrating AI into our business is a team effort.
+All AI use cases must be registered and approved.
+Register AI Idea
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right

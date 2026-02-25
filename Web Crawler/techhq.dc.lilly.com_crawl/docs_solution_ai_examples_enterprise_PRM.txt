@@ -1,0 +1,388 @@
+Title: Press Release Miner (PRM) | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/examples/enterprise/PRM
+Description: Last Updated: July 25, 2025
+
+Press Release Miner (PRM) | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Examples
+Enterprise
+Press Release Drafter (PRD)
+Press Release Miner (PRM)
+Product Exemplars
+AMIGO
+ChatNow
+Chat in a box
+Clinical Programming Assistant
+HR Talent Acquisition Agents
+LillyNow
+PrescriberPoint Kisunla AI Pilot
+Promo Maker
+Revenue Defender
+Scientific E-Author
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+Examples
+Enterprise
+Press Release Miner (PRM)
+On this page
+Press Release Miner (PRM)
+Document Information
+Last Updated:
+July 25, 2025
+Owner:
+Brian Lewis
+Point of Contact:
+Ali Kharazmi
+Contributors and Reviewers:
+Archit Kaila, Haitham Maya, Malika Mahoui
+An Agentic AI System for Research and Content Generation
+Introduction
+​
+Press Release Miner (PRM) is an advanced LLM-powered multi-agent system designed to extract insights from scientific source documents and news journals. Its primary purpose is to answer questions and generate briefing documents for key stakeholders using standard Eli Lilly language and style. The system employs a sophisticated agentic architecture that coordinates multiple specialized AI agents working together to conduct comprehensive research and produce high-quality content.
+PRM addresses a critical need in corporate communications: conducting thorough research and generating media briefing documents for executives that ensure completeness, accuracy, and consistent messaging. By automating this process through an agentic approach, PRM significantly reduces the time and effort required while maintaining high standards of quality and consistency.
+System Architecture Overview
+​
+Tools
+Agents
+UI Components
+External Data Sources
+News Journals\n(NYT, WP, WSJ, etc.)
+Web Search\n(DDG, Bing)
+YouTube Transcriptions
+Wikipedia
+Internal Data Sources
+Lilly Press Release
+Earnings Call Transcripts
+Prior Briefing Documents
+Research Topic
+Research Factors
+Human Interaction
+Briefing Document
+Research Planner\nContextualization Agent
+Researcher\nResearch Agent (CoT / ToT)
+Synthesizer\nInterview / Q&A Agent
+Copyeditor\nFormatting Agent
+RAG
+Web Search
+YouTube
+Wikipedia
+The diagram above illustrates the architecture of the Press Release Miner system, showing how UI components, specialized agents, tools, and data sources interact to create a comprehensive research and content generation pipeline.
+The PRM Process
+​
+The Press Release Miner follows a structured six-step process to generate comprehensive briefing documents:
+Develop a research plan
+: The system begins by analyzing the research topic and developing a strategic plan for gathering information. This includes identifying key factors and questions that need to be addressed.
+Search internal press releases
+: PRM leverages Retrieval Augmented Generation (RAG) to search through Eli Lilly's internal press releases, extracting relevant information and insights.
+Search web for news sources
+: The system extends its research to external sources, searching trusted news outlets and websites for additional context and information.
+Conduct follow-up research
+: Based on initial findings, PRM performs deeper, targeted research to fill knowledge gaps and answer specific questions that arise.
+Synthesize research results
+: The system integrates information from multiple sources, removing duplicates and organizing content into a coherent structure with proper citations.
+Generate briefing document
+: Finally, PRM produces a well-formatted briefing document that adheres to Eli Lilly's language and style guidelines.
+This entire process is orchestrated through approximately 50 LLM calls, distributed across various agents and tools within the system.
+System Architecture
+​
+PRM's architecture consists of four main components: UI interfaces, specialized agents, tools, and data sources. These components work together to create a seamless research and content generation pipeline.
+UI Components
+​
+Research Topic
+: Interface for users to input the main subject for research
+Research Factors
+: Display and selection of key aspects to investigate
+Human Interaction
+: Interface for user feedback and guidance during the research process
+Briefing Document
+: Final output display with the generated content
+Agents
+​
+PRM employs four specialized agents, each with distinct responsibilities:
+Research Planner (Contextualization Agent)
+: Responsible for understanding the research topic, breaking it down into manageable components, and developing a comprehensive research strategy. This agent provides the overall direction for the research process.
+Researcher (Research Agent/CoT/ToT)
+: The primary information gathering agent that executes the research plan. It utilizes Chain-of-Thought (CoT) and Tree-of-Thought (ToT) reasoning to conduct thorough investigations across multiple sources.
+Synthesizer (Interview/Q&A Agent)
+: Processes and integrates the collected information, identifying patterns, resolving contradictions, and organizing content into a coherent narrative. This agent can also generate follow-up questions to fill information gaps.
+Copyeditor (Formatting Agent)
+: Ensures the final document adheres to Eli Lilly's style guidelines, maintains consistent formatting, and includes proper citations for all information sources.
+Tools
+​
+The agents leverage several tools to perform their tasks:
+RAG (Retrieval Augmented Generation)
+: Enables semantic search across internal documents, retrieving relevant information based on context rather than just keywords.
+Web Search
+: Interfaces with search engines (primarily Bing) to gather information from trusted external sources.
+YouTube
+: Extracts information from video content, particularly from news channels and official company presentations.
+Wikipedia
+: Provides background information and context for topics and entities mentioned in the research.
+Data Sources
+​
+PRM accesses both internal and external data sources:
+Internal Data Sources
+:
+Lilly Press Releases
+Earnings Call Transcripts
+Prior Briefing Documents
+External Data Sources
+:
+News Journals (NYT, WP, WSJ, etc.)
+Web Search Results (DDG, Bing)
+YouTube Transcriptions
+Wikipedia
+Agentic Patterns in PRM
+​
+The Press Release Miner implements several sophisticated agentic patterns that enable effective coordination, parallel processing, and specialized task execution. These patterns represent the cutting edge of multi-agent system design and contribute significantly to PRM's effectiveness.
+Multi-Agent Coordination
+​
+PRM's architecture demonstrates how multiple specialized agents can work together to accomplish complex tasks. The system implements a coordination mechanism that allows agents to:
+Share context
+: Agents pass information and context to each other, ensuring continuity throughout the research process.
+Sequential processing
+: The Research Planner sets the direction, followed by the Researcher gathering information, the Synthesizer integrating it, and finally the Copyeditor formatting the output.
+Feedback loops
+: Agents can request additional information or clarification from other agents when needed, creating a dynamic research process.
+This coordination pattern enables each agent to focus on its specialized task while contributing to the overall goal of producing a comprehensive briefing document.
+Tool Usage Patterns
+​
+PRM implements three distinct tool usage patterns across its agents:
+Tool Calling Pattern
+: The system uses a structured approach for agents to invoke tools, with clear input/output specifications. This pattern is implemented in
+tool_calling_tool.py
+, which creates a runnable agent that can use multiple tools based on a system template and human instructions.
+function tool_calling_runnable(tool_runtime):
+Initialize system template from tool_runtime
+Copy and initialize tools from tool_runtime
+For each tool:
+Add tool name and description to system template
+Create prompt template with system template, human template, and agent scratchpad
+Create tool-calling agent with LLM, tools, and prompt
+Return agent executor with configured agent and tools
+ReAct Pattern (Reasoning and Acting)
+: PRM implements the ReAct pattern in
+react_tool.py
+, allowing agents to alternate between reasoning about their next steps and taking actions. This pattern enhances the agent's ability to plan and execute complex research tasks.
+function react_agent_runnable(tool_runtime):
+Copy and initialize tools from tool_runtime
+Create prompt from react template
+Create ReAct agent with LLM, tools, and prompt
+Return agent executor with configured agent and tools
+Self-Ask Pattern
+: Implemented in
+self_ask_tool.py
+, this pattern enables agents to break down complex questions into simpler sub-questions, answer them sequentially, and then synthesize a final answer. This is particularly useful for complex research topics that require multi-step reasoning.
+function self_ask_runnable(tool_runtime):
+Copy tools from tool_runtime
+Select first tool and rename it to "Intermediate Answer"
+Create prompt from self-ask template
+Create self-ask agent with LLM, tool, and prompt
+Return agent executor with configured agent and tool
+Parallel Processing
+​
+One of PRM's most powerful features is its ability to conduct research on multiple topics or factors simultaneously. This is implemented through the
+parallelization_tool.py
+, which enables:
+Concurrent tool execution
+: Multiple tools can be executed in parallel across different research topics.
+Asynchronous processing
+: The system uses Python's asyncio to manage concurrent tasks efficiently.
+Result aggregation
+: Results from parallel processes are collected and integrated into a coherent output.
+async function async_parallel_tool_call(topics, tool_runtime, id_task, target):
+Create queue for communication
+Create empty tasks list
+For each topic:
+Create async task for processing topic and add to tasks list
+While true:
+Get item from queue
+Yield item to caller
+Mark task as done
+If all tasks are done and queue is empty:
+Break loop
+Await all tasks to complete
+This parallel processing capability significantly reduces the time required to conduct comprehensive research across multiple topics or factors.
+Agent Specialization and Collaboration
+​
+PRM demonstrates how specialized agents can collaborate effectively to produce high-quality outputs. Each agent has a specific role:
+Research Pipeline Agent
+: Orchestrates the overall research process, managing the flow of information between other agents and tools.
+class ResearchPipeline:
+function __init__(llm, bing_subscription_key, retriever, templates, etc):
+Store all parameters as instance variables
+Initialize tools array with web search, RAG, and other tools
+Create dictionary of agent runnables (simple, react, self-ask)
+Initialize tool runtime configuration
+async function research_question(target, agent_type):
+Select appropriate agent type
+For each event from parallel tool execution:
+Yield event to caller
+async function research_question_with_factors(target, topics, format_section_prompt, remove_duplicates_prompt, agent_type):
+Select appropriate agent type
+Process research results in parallel
+Format and deduplicate results
+Yield final output
+Formatting Agent
+: Specializes in ensuring consistent formatting and removing duplicates across research outputs.
+class FormatResearchAgent:
+function __init__(llm):
+Store LLM as instance variable
+async function async_format_section(research_output, format_section_prompt):
+Find reference text with maximum length
+Create formatting instruction with reference and candidate texts
+Create formatting chain with LLM
+Process each research output for uniform formatting
+Return formatted outputs
+async function async_remove_duplicates(research_output, remove_duplicates_prompt):
+Create deduplication instruction template
+Create deduplication chain with LLM
+Compare each pair of research outputs
+Remove duplicate information
+Return deduplicated outputs
+Brainstorming Agent
+: Generates research factors and questions to guide the research process.
+function brainstorming_agent(brainstorming_prompt_template, llm):
+Create prompt template with target variable and max 5 items limit
+Create LLM chain with prompt and LLM
+Return the chain for generating research factors
+This specialization allows each agent to focus on what it does best while contributing to the overall system goal.
+Technical Implementation
+​
+LLM Integration
+​
+PRM integrates with Azure OpenAI's GPT-4o model to power its agents. The system makes approximately 50 LLM calls throughout the research and content generation process, distributed across various agents and tasks. The LLM integration is managed through a custom model class that handles authentication and API interactions with Azure OpenAI services and AWS resources.
+Technologies Used
+​
+PRM leverages several key technologies:
+LangChain
+: Used extensively for agent creation, tool integration, and prompt management. LangChain provides the foundation for the agentic patterns implemented in PRM.
+FastAPI
+: Powers the backend API, providing WebSocket endpoints for real-time communication during the research process.
+FAISS
+: Implements the vector store for efficient semantic search across internal documents.
+Azure OpenAI
+: Provides the LLM capabilities that power the agents' reasoning and content generation.
+Bing Search API
+: Enables web search functionality for gathering information from external sources.
+Prompt Engineering
+​
+Prompt engineering is a critical aspect of PRM's implementation. The system uses carefully crafted prompts to guide each agent's behavior and ensure high-quality outputs. For example:
+Research Agent Prompt
+: Guides the research process with specific instructions for gathering comprehensive information:
+# The research agent prompt instructs the agent to gather detailed information with proper citations, format responses with chronological ordering and bulleted lists, and ensure all facts are properly attributed to their sources.
+Formatting Agent Prompt
+: Ensures consistent formatting and structure across research outputs:
+# The formatting agent prompt guides the agent to combine research outputs from multiple sources into a cohesive document, maintain proper citations for all facts and figures, and structure the content with appropriate headings and subheadings.
+De-duplication Prompt
+: Removes redundant information across research outputs:
+# The de-duplication prompt instructs the agent to compare reference and candidate texts, remove duplicate facts, quotes, and figures from the candidate text, and ensure the final output has no redundant information while maintaining coherent flow.
+These prompts are critical for guiding the agents' behavior and ensuring they produce outputs that meet Eli Lilly's standards for quality and consistency.
+Quality Control Mechanisms
+​
+PRM implements several quality control mechanisms to ensure the accuracy and consistency of its outputs:
+Uniform Formatting
+: The FormatResearchAgent ensures consistent formatting across all research outputs:
+async function async_format_section(research_output, format_section_prompt):
+Create async queue for communication
+Find reference topic with longest text
+Create formatting instruction template
+Create formatting chain with LLM
+For each topic and text:
+If not reference topic:
+Create task to format candidate text
+Else:
+Add to output without formatting
+Process queue until all tasks complete
+Return formatted research outputs
+De-duplication
+: Removes redundant information across research outputs:
+async function async_remove_duplicates(research_output, remove_duplicates_prompt):
+Create async queue for communication
+Create deduplication instruction template
+Create deduplication chain with LLM
+Track processed pairs to avoid duplicate work
+For each reference topic/text pair:
+For each candidate topic/text pair:
+If not same topic and not already processed:
+Create task to deduplicate candidate text
+Mark pair as processed
+Else:
+Add to output without deduplication
+Process queue until all tasks complete
+Return deduplicated research outputs
+Citation Requirements
+: Ensures all information is properly cited with source details:
+The system enforces strict citation requirements, ensuring that every fact, figure, date, and quote is properly attributed to its source with a standardized citation format that includes the source name, publication date, headline, and full web address.
+These quality control mechanisms ensure that PRM produces outputs that are accurate, well-structured, and properly cited.
+Demo Video
+​
+A demonstration video of the Press Release Miner (PRM) in action is available at the following link:
+Press Release Miner Demo Video
+Conclusion
+​
+Press Release Miner represents a significant advancement in agentic AI systems for research and content generation. By implementing sophisticated agentic patterns such as multi-agent coordination, specialized tool usage, and parallel processing, PRM demonstrates how AI can effectively automate complex knowledge work while maintaining high standards of quality.
+The system's architecture—with its specialized agents, diverse tools, and comprehensive data sources—provides a blueprint for designing effective multi-agent systems for other knowledge work applications. The implementation details, particularly around prompt engineering and quality control, offer valuable insights into ensuring AI-generated content meets professional standards.
+As agentic AI systems continue to evolve, the patterns and approaches demonstrated in PRM will likely influence the design of future systems across various domains, from research and content generation to data analysis and decision support.
+Was this helpful?
+Edit this page
+Previous
+Press Release Drafter (PRD)
+Next
+AMIGO
+Introduction
+System Architecture Overview
+The PRM Process
+System Architecture
+UI Components
+Agents
+Tools
+Data Sources
+Agentic Patterns in PRM
+Multi-Agent Coordination
+Tool Usage Patterns
+Parallel Processing
+Agent Specialization and Collaboration
+Technical Implementation
+LLM Integration
+Technologies Used
+Prompt Engineering
+Quality Control Mechanisms
+Demo Video
+Conclusion
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

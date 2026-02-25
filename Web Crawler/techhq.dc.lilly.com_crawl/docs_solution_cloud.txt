@@ -1,0 +1,51 @@
+Title: ☁️ Cloud & Infrastructure | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/cloud/
+Description: Technologies that power scalable, secure, and resilient IT environments, including cloud platforms, networking, storage,
+
+☁️ Cloud & Infrastructure | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🗄️ Cloud & Infrastructure BLT
+🧭 Cloud Architecture
+🧭 Cloud FinOps
+🧭 Container Services
+🧭 Networking Services
+🧭 Workflow & Orchestration
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+☁️ Cloud & Infrastructure
+☁️ Cloud & Infrastructure
+Technologies that power scalable, secure, and resilient IT environments, including cloud platforms, networking, storage,
+and orchestration.
+More Coming Soon!
+Have something to add? Find out how to
+Contribute
+!
+Was this helpful?
+Edit this page
+Previous
+🧭 PI & Sensitive Data Detection
+Next
+🗄️ Cloud & Infrastructure BLT
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

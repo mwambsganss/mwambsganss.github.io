@@ -1,0 +1,26 @@
+{
+  "root_url": "https://automate.lilly.com",
+  "base_domain": "automate.lilly.com",
+  "crawled_at": "2026-02-25T10:22:09.234021",
+  "summary": {
+    "total_urls": 11,
+    "pages": 11,
+    "failed": 0
+  },
+  "urls": {
+    "pages": [
+      "https://automate.lilly.com",
+      "https://automate.lilly.com/",
+      "https://automate.lilly.com/about-us",
+      "https://automate.lilly.com/marketPlace",
+      "https://automate.lilly.com/platform/content-automation",
+      "https://automate.lilly.com/platform/document-processing",
+      "https://automate.lilly.com/platform/intelligent-automation",
+      "https://automate.lilly.com/platform/process-optimization",
+      "https://automate.lilly.com/platform/test-automation",
+      "https://automate.lilly.com/submit-idea",
+      "https://automate.lilly.com/techzone"
+    ]
+  },
+  "failed": {}
+}

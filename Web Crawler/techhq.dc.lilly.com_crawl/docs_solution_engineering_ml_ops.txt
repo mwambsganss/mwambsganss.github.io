@@ -1,0 +1,110 @@
+Title: 🧭 ML Ops | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/engineering/ml_ops
+Description: Stack Overflow Article: 🧭 ML Ops
+
+🧭 ML Ops | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🗄️ Engineering Enablement BLT
+🧭 AI Code Assistants
+API Standards
+🧭 ML Ops
+🧭 Test Automation
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🛠️ Engineering Enablement
+🧭 ML Ops
+On this page
+🧭 ML Ops
+Synced daily from Stack Overflow
+Guide Status
+Lifecycle: Draft
+Last Update: 2025-10-03
+Capability Owner: Kristen Hlava
+EBA Lead: Karl Mayer
+Contributors & Reviewers: Kristen Hlava, Will Skertic, David Gayda, Rhian Taylor
+What is MLOPS?
+​
+MLOPS stands for Machine Learning Operations. It is a set of practices that aims to automate, simplify, and standardize machine learning workflows, processes, or deployments. Its goal is to decrease time-to-value, maintain and improve model performance over time, and ensure that machine learning delivers sustained business impact.
+Key Concepts
+​
+DevOps:
+MLOps builds directly on the foundational principles of DevOps. DevOps is a set of practices that unifies software development and IT operations, emphasizing automation, collaboration, and continuous integration and delivery (CI/CD) to streamline software deployment and improve reliability.
+MLOps extends these principles to the unique challenges of machine learning, adding processes for managing data, tracking experiments, and monitoring models in production. MLOps incorporates both code and data, ensuring that machine learning models are reproducible, scalable, and maintainable throughout their lifecycle.
+Infrastructure as Code:
+A foundational practice in MLOps that enables teams to automate the provisioning and management of computing resources using code, rather than manual processes. By defining infrastructure in version-controlled scripts, we can ensure that machine learning environments are consistent, reproducible, and scalable across development, testing, and production. This approach accelerates model deployment, reduces configuration errors, and optimizes resource usage—making it easier to manage complex ML workflows and adapt quickly to changing requirements.
+Artifact Storage
+​
+Artifact storage in MLOps unifies the management of code, data, and model objects, creating a reliable foundation for scalable, reproducible, and auditable machine learning operations.
+Code:
+Code artifacts encompass everything from infrastructure scripts to model training routines and pipeline definitions. Storing code in version-controlled repositories (such as Git) allows teams to track changes, collaborate effectively, and reproduce experiments. This practice ensures that the exact code used for model development and deployment is always accessible, supporting robust CI/CD workflows and minimizing configuration drift.
+Data:
+Data artifacts include raw datasets, processed features, and metadata generated throughout the ML pipeline. Centralized storage solutions—such as feature stores or cloud object stores—enable teams to manage data lineage, version datasets, and maintain high data quality. Automated pipelines facilitate the extraction, transformation, and loading (ETL/ELT) of data, while lineage tracking and metadata management provide visibility into how data evolves and is used across experiments.
+Model Objects:
+Model objects refer to the serialized representations of trained machine learning models, such as
+.pkl
+,
+.joblib
+, or framework-specific files. These artifacts are stored in model registries or cloud storage, allowing for easy retrieval, deployment, and monitoring. By cataloging and versioning model objects, teams can roll back to previous versions, audit model changes, and ensure that only validated models are promoted to production.
+Overview of Common Technologies
+​
+Many ML tools and platforms have similar functionality. Part of the consideration for these tools will be dependent on the environment you deploy your models in (AWS vs Azure vs CATS vs AWB, etc). MagTrain/Run.AI is a great environment for model training specifically. Additional consideration will be simply in terms of technologies you may already be familiar with (Kubernetes, Docker, Nextflow, etc). When going through the AI registry process, MLOps can also be discussed as part of the architecture review.
+Overview of Common Patterns
+​
+Common patterns include modular pipelines for data ingestion, feature engineering, model training, and evaluation; CI/CD workflows for automated deployment; and monitoring frameworks for drift detection and performance tracking. These patterns emphasize reproducibility, scalability, and collaboration between data science and engineering.
+How to Get Started at Lilly
+​
+As stated previously, the environment your project is in will help drive decisions on which tools to use. When filling out the AI registry for your project, be sure to ask about or include MLOps when having your architecture review discussion – the AI architects can help guide in the best solution for your specific use case.
+Further Information on Setting Up MLOps Tools
+​
+Enterprise Data Team:
+https://data.lilly.com/
+The AWB platform already has installations of Sagemaker, MLFlow, and Fabric.
+Cloud Team:
+https://cloud.lilly.com/lcs/
+For Azure, AWS, or other cloud deployment.
+CATS:
+https://cats.lilly.com/
+For deploying workflows via the CATS platform.
+MagTrain:
+https://github.com/EliLillyCo/MagTrain
+For using the MagTrain cluster to run/train models.
+Was this helpful?
+Tags:
+software-engineering
+solution-guide
+techhq
+Edit this page
+Previous
+API Standards
+Next
+🧭 Test Automation
+What is MLOPS?
+Key Concepts
+Artifact Storage
+Overview of Common Technologies
+Overview of Common Patterns
+How to Get Started at Lilly
+Further Information on Setting Up MLOps Tools
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

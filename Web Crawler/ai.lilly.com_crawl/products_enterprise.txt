@@ -1,0 +1,149 @@
+Title: Featured Enterprise-wide Products at Lilly | ai.lilly.com
+URL: https://ai.lilly.com/products/enterprise
+Description: 
+
+Featured Enterprise-wide Products at Lilly | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+Featured Enterprise-wide Products at Lilly
+Lilly continues to develop innovative AI solutions to improve workflows and drive efficiency. This page highlights featured products and is not intended to be an exhaustive list of the 400+ AI Products at Lilly.
+Please note that AI-generated content is not always accurate; verify responses with reliable evidence. Ensure all product usage follows
+Lilly’s AI Guidance
+.
+AI Change Champions
+Have questions about these products or how you can apply them to your workstream? Look no further than our
+AI Change Champions
+. They’ll help answer questions and support you as you navigate the road to adoption of AI!
+Enterprise-wide Products
+Claude: Secure Chat
+Chat with Claude using Lilly’s Chat in a Box. This method is cleared for Red CCI.
+Chat with Claude
+arrow-right
+Copilot Create
+Create AI images, full videos with voiceovers and music, and more with Copilot Create.
+Create Now
+arrow-right
+Copilot Studio
+Copilot Studio is a platform that empowers you to build intelligent agents—AI copilots that can reason over data, automate tasks, and act on your behalf across systems to drive real business outcomes.
+Build Your Agent Now
+arrow-right
+Prompt Buddy
+Prompt Buddy for Microsoft Teams streamlines collaboration by allowing users to easily share and discover AI prompts, enhancing productivity.
+Try Prompt Buddy
+arrow-right
+Lilly Code
+Access Claude Code, Cline & more. Lilly Code is your new terminal-native AI coding assistant.
+Get Started
+arrow-right
+Chat in a Box
+Chat in a Box enables you to craft customized AI chat assistants effortlessly. Simply name your assistant, invite users, and upload files.
+Try Chat in a Box
+arrow-right
+BD360
+Unlock instant insights into the business landscape with BD360. Empower your team to make informed decisions faster by leveraging a comprehensive dashboard that highlights critical features and actionable data.
+Get started
+arrow-right
+AI Research Chatbot
+AiR: The AI Research Assistant with access to a growing dataset (PubMed, OpenAlex, & more). Daily updates prioritize recent publications, helping you discover insights & stay current.
+Chat with AiR
+arrow-right
+Copilot Agents in Copilot Chat for Work
+Copilot Agents in Copilot Chat for Work lets you create customized chats to improve team collaboration and business processes.
+Try Copilot Agents in Copilot Chat
+arrow-right
+Copilot Chat for Work
+Start using this versatile AI assistant integrated with Microsoft 365 applications like Word, Excel, PowerPoint, Outlook, and Teams to boost your productivity.
+Available for Lilly employees and contingent workers (@network accounts) by approval.
+Try Copilot Chat for Work
+arrow-right
+Lilly Translate
+This tool can translate into nearly 80 languages, convert speech to text, and much more.
+Try Lilly Translate
+arrow-right
+LitLENS
+LitLENS ("Literature LENS") is a search and analytics product for public domain datasets like publications, patents, and clinical trials. It uses NLP techniques, including entity extraction, large language models, and knowledge graphs, for advanced analytical searches.
+Try LitLENS
+arrow-right
+ARTIE
+Artificial Teams for Rapid and Enhanced Insights (ARTIE) is a GenAI-powered platform for automated business analytics and insights.
+Try ARTIE
+arrow-right
+Forecasting.AI
+This product lets you easily upload your own time series data and forecast future trends using advanced statistical and machine learning methods. You can get results and plots quickly without needing coding skills, and no data is stored in the system.
+Try Forecasting.AI
+arrow-right
+Have an Idea?
+Integrating AI into our business is a team effort.
+All AI use cases must be registered and approved.
+Register AI Idea
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right

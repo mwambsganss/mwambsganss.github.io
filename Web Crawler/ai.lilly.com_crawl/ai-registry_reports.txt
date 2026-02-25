@@ -1,0 +1,97 @@
+Title: Reports | ai.lilly.com
+URL: https://ai.lilly.com/ai-registry/reports
+Description: 
+
+Reports | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+Reports
+The following AI Registry Reports are available:
+Portfolio:
+High-level listing and summaries of submitted AI Registry items. Available to everyone with Lilly credentials.
+Operational
+:
+Metrics and details intended for review teams only. Most users will not have access to these reports.
+Tech Pipeline
+:
+Detailed metrics on the number of ideas and innovations in each stage of the Tech Innovation Pipeline. Available to all users with Lilly credentials.
+For access beyond Portfolio Reports, submit a service request through the
+Advanced Intelligence (AI) Account Request
+. If approved, access will be granted within 24 hours.
+Note:
+Operational Report access is limited to designated review team members, and most requests will not be approved.
+Have an Idea?
+Integrating AI into our business is a team effort.
+All AI use cases must be registered and approved.
+Register AI Idea
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right

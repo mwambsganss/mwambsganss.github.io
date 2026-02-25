@@ -1,0 +1,22 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/solution/ai/ecosystem/experience_layer",
+  "title": "Experience Layer | Tech HQ",
+  "description": "Last Updated: July 25, 2025",
+  "h1": [
+    "Experience Layer"
+  ],
+  "h2": [
+    "Definition​",
+    "Components​",
+    "Component Details​"
+  ],
+  "h3": [
+    "Agent Catalog​",
+    "Tool Catalog​",
+    "Model Catalog​"
+  ],
+  "text_content": "Experience Layer | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🧩 Solution Overview\n🤖 AI & Intelligent Agents\nEcosystem\nExperience Layer\nAI Layer\nData Layer\nModel Layer\nPatterns\nPositioning\nExamples\nCoding Tools\nStandards\nAI Submission Guide Template\n🗄️ AI & Intelligent Agents BLT\n🤖 Agentic AI\n🧭 Conversational AI\n🧭 Knowledge Bases\n🧭 Multimodal AI\n🧭 Translation Services\n🏢 Business Enablement\n☁️ Cloud & Infrastructure\n🔐 Cybersecurity\n📊 Data & Analytics\n🛠️ Engineering Enablement\n🛰️ Observability & Reliability\n🚀 Team Productivity\n🎨 User Experience & Design\n🤖 AI & Intelligent Agents\nEcosystem\nExperience Layer\nOn this page\nExperience Layer\nDocument Information\nLast Updated:\nJuly 25, 2025\nOwner:\nBrian Lewis\nPoint of Contact:\nAli Kharazmi\nContributors and Reviewers:\nArchit Kaila, Haitham Maya, Malika Mahoui\nDefinition\n​\nConsistent human interfaces for bringing AI-enabled products to meet users and customers where they are. This layer focuses on creating intuitive and accessible user interfaces that deliver AI capabilities to end users in a seamless manner.\nComponents\n​\nComponents\nAgent Catalog\nCortex Landing Zone\nTool Catalog\nCortex Landing Zone\nModel Catalog\nLLM Gateway\nComponent Details\n​\nAgent Catalog\n​\nMarketplace of pre-built task-oriented agents built across Lilly\nPlatform\n:\nCortex Landing Zone\nTool Catalog\n​\nMarketplace of approved AI-enabled tools, APIs, and re-usable components enabling teams to discover and integrate capabilities to their agentic systems quickly\nPlatform\n:\nCortex Landing Zone\nModel Catalog\n​\nMarketplace exposing foundation and Lilly fine-tuned models with versioning, metrics, and cost data so engineers can pick the right model\nPlatform\n:\nLLm Gateway\nWas this helpful?\nEdit this page\nPrevious\nEcosystem\nNext\nAI Layer\nDefinition\nComponents\nComponent Details\nAgent Catalog\nTool Catalog\nModel Catalog\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 4,
+  "depth": 3,
+  "crawled_at": "2026-02-25T10:07:54.461262"
+}

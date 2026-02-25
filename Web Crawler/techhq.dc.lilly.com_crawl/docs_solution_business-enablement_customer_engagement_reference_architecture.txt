@@ -1,0 +1,397 @@
+Title: 🧭 Customer Engagement Reference Architecture | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/business-enablement/customer_engagement_reference_architecture
+Description: Stack Overflow Article: 🧭 Customer Engagement Reference Architecture
+
+🧭 Customer Engagement Reference Architecture | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+🗄️ Business Enablement BLT
+🧭 AE/PC Detection
+🧭 Customer Engagement Reference Architecture
+🧭 PI & Sensitive Data Detection
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🏢 Business Enablement
+🧭 Customer Engagement Reference Architecture
+On this page
+🧭 Customer Engagement Reference Architecture
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-10-14
+Capability Owner: Chad E. Stout
+EBA Lead: Chad E. Stout
+Contributors & Reviewers: Allan Kirui, Annapurna Calyam, Chad E. Stout, Cherish Joseph, Eric Wolf, Jeff Tibbitts, Mike Madison
+A guide for designing and assembling marketing technology (MarTech) capabilities to deliver best-in-class customer experiences across digital and personal channels, while enabling measurement, personalization, and compliance.
+Customer Engagement Capability Reference Model
+The visual below will be used as a reference model that will describe the business and technology capabilities in Lilly's customer engagement architecture models.
+Deliver & Activate
+​
+The technologies under deliver & activate are used to orchestrate the delivery of the best in any class experiences to our customers.
+Digital Channels
+​
+Category
+Capability
+Emerging/Standard Vendor
+Declining/Exiting Vendor
+Positioning
+Description
+Deliver & Activate
+Transactional Email
+AWS Simple Email Service
+n/a
+Standard
+A Transactional Email is an automated message sent to an individual based on specific actions or interactions they have with a business or platform. These emails are triggered by user behavior and are intended to provide essential information that the recipient needs or expects.
+Deliver & Activate
+Commercial Email
+Adobe Journey Optimizer
+Salesforce Marketing Cloud
+Specialized - Commercial Use-Cases
+A Commercial Email is a message sent electronically to promote a product, service, or brand, typically for marketing or business purposes. It often includes offers or calls to action intended to drive sales or customer engagement. In many countries, these emails must have an opt-out link.
+Deliver & Activate
+Transactional SMS / MMS
+InfoBip
+Salesforce Marketing Cloud
+Specialized - Commercial Use-Cases
+A Transactional SMS/MMS is a text or multimedia message sent to convey essential information related to a transaction or service, such as order confirmations, delivery updates, account alerts, or appointment reminders. It is not promotional in nature and is typically triggered by a user action or business process.
+Deliver & Activate
+Commercial SMS / MMS
+InfoBip
+Salesforce Marketing Cloud
+Specialized – Commercial Use-Cases
+A Commercial SMS / MMS is a text or multimedia message sent to promote a product, service, brand, or event, typically for marketing purposes. It often includes offers or calls to action intended to drive customer engagement or sales. In many countries the recipient needs to have an explicit opt-in and can opt-out through STOP commands.
+Deliver & Activate
+Omnichannel Journey Orchestration
+Adobe Journey Optimizer
+Salesforce Marketing Cloud Journey Builder
+ZAIDYN Orchestration Engine
+Specialized - Commercial Use-Cases
+An Omnichannel Journey Orchestration is a tool or platform designed to enhance customer engagement by managing and personalizing interactions across multiple channels.
+Deliver & Activate
+Customer Data Platform
+Adobe Real-Time CDP
+Salesforce Data Cloud – Specialized for Health Cloud Data Integration
+Tealium
+Specialized – Commercial Use-Cases
+A Customer Data Platform is a technology solution that centralizes and unifies customer data from various sources to create a single, comprehensive customer profile to support personalization and journey orchestration.
+Deliver & Activate
+Anonymous Web Personalization
+Adobe Target – Uses Cookies
+Adobe Edge Delivery Services Experimentation – Cookie-less
+n/a
+Specialized – Commercial Use-Cases
+Anonymous Web Personalization enables businesses to tailor website content and experiences for visitors who have not yet provided identifiable information. By leveraging real-time data on user behavior and preferences, businesses can deliver relevant content, product recommendations, and personalized messaging.
+Deliver & Activate
+Known / Profile Based Web Personalization
+Adobe Journey Optimizer
+n/a
+Specialized – Commercial Use-Cases
+Known/Profile-Based Web Personalization leverages detailed customer profiles to deliver tailored web experiences. By using data such as past interactions, preferences, and demographics, businesses can provide highly relevant content, product recommendations, and personalized messaging.
+Deliver & Activate
+Website Tag Management
+Adobe Data Collection Tags (Formerly known as Adobe Launch)
+Google Tag Manager
+Specialized – Commercial Use-Cases
+Website Tag Management involves organizing and managing tags—snippets of code embedded in a website—to collect data and facilitate third-party services. This capability ensures that tags fire correctly and collect accurate data, supporting analytics, advertising, and personalization efforts.
+Deliver & Activate
+Website Tag Monitoring
+ObservePoint
+n/a
+Standard
+Website Tag Monitoring ensures third-party tags are working correctly, collecting accurate data, and identifying unauthorized tags or cookies deployed on websites.
+Deliver & Activate
+Video Streaming Platform
+Microsoft Stream – Intended audience is internal employees / contractors / agents of Lilly
+Adobe Dynamic Media - Intended audience is customers (Consumers, Patients, Healthcare Professionals,)
+Kaltura Video Experience Cloud
+Standard
+A Video Streaming Platform enables users to watch video content over the internet in real-time or on demand, without requiring downloads.
+Deliver & Activate
+Web Content Management
+Adobe Experience Manager – Specialized for Commercial
+Contentful – Standard
+SharePoint - Standard
+n/a
+Standard - Contentful - Custom developed websites
+Standard - SharePoint – No-code websites
+Specialized – Commercial Use-Cases - Adobe Experience Manager
+A Web Content Management system allows users to create, manage, and publish digital content on websites without needing to write code. It provides tools for editing, organizing, and maintaining web pages through a user-friendly interface.
+Delivery & Activate
+URL Shortener
+Bl.ink
+Bitly
+Standard
+A URL shortener is a tool that converts long web addresses into shorter, more manageable links. It helps improve link sharing, track click data, and enhance user experience—especially on platforms with character limits or for marketing campaigns.
+Deliver & Activate
+Search Engine Marketing
+Google Search Ads 360
+Skai
+n/a
+Standard
+Search Engine Marketing is a form of digital marketing that involves promoting websites by increasing their visibility in search engine results pages (SERPs), primarily through paid advertising.
+Deliver & Activate
+Search Engine Advertising Editor
+Google Ads, Microsoft Advertising, Google Display Network, Google Ads Editor, Microsoft Ads Editor
+n/a
+Standard
+A Search Engine Advertising Editor allows marketers to efficiently build and modify search ad campaigns, including ad copy, keywords, bids, and targeting settings—often in bulk and offline—before uploading changes to the ad platform.
+Deliver & Activate
+Digital Brand Compliance & Protection
+Brand Verity – Search Ads Monitoring
+ZeroFox – Website and Social Media Monitoring
+Not Appliable
+Standard
+Digital Brand Compliance & Protection involves monitoring paid search and affiliate channels to ensure brand integrity, enforce trademark policies, and prevent unauthorized or misleading advertising.
+Deliver & Activate
+Search Engine Optimization
+Lumar, Semrush, Screaming Frog, Conductor
+n/a
+Standard
+Search Engine Optimization (SEO) is the practice of improving a website’s visibility in search engine results pages (SERPs) to attract more organic (non-paid) traffic. It involves optimizing content, technical elements, and user experience to align with search engine algorithms and user intent.
+Deliver & Activate
+Large Language Optimization
+Authoritas – Standard
+Adobe LLM Optimizer - Emerging
+n/a
+Specialized – Commercial Use-Cases
+Large Language Model Optimization is the practice of improving the content on a website to make it machine-readable, semantically rich, and contextually clear so large language models can understand and use it effectively.
+Deliver & Activate
+Social Media Engagement
+Sprinklr
+Khoros
+Standard
+Social Media Engagement platform centralizes the publishing and monitoring of social media content across the various social networks.
+Personal Channels
+​
+Category
+Capability
+Emerging/Standard Vendor
+Declining/Exiting Vendor
+Positioning
+Description
+Deliver & Activate
+Field Customer Relationship Management
+Veeva Multi-Channel CRM
+ZAIDYN Field Insights App
+n/a
+Specialized – Commercial Use-Cases
+A Field Customer Relationship Management (CRM) platform enables field personnel to manage customer interactions, track interactions, and streamline workflows. Key capabilities include contact and lead management and automation of routine tasks such as follow-ups emails.
+Deliver & Activate
+Customer Relationship Management
+Salesforce Platform – Standard
+Salesforce Health Cloud - Emerging
+n/a
+Specialized – Commercial Use-Cases
+Customer Relationship Management is a capability that helps customer support teams deliver personalized support through a unified view of each customer’s journey—customer data, communication history, and support interactions—to improve engagement, streamline case management, and enhance health outcomes.
+Deliver & Activate
+Customer Meeting Management
+Veeva Events
+Mercury - Lilly Developed Solution
+Specialized – Commercial Use-Cases
+A Customer Meeting Management solution is designed to plan, manage, and execute all types of customer-facing events—such as speaker programs, advisory boards, and virtual meetings.
+Measure & Analyze
+​
+The technologies under measure & analyze are used to uncover patterns, trends, and insights that can be used to improve the experiences of our customers.
+Category
+Capability
+Emerging/Standard Vendor
+Declining/Exiting Vendor
+Positioning
+Description
+Measure & Analyze
+Web Analytics
+Google Analytics
+n/a
+Standard
+A Web Analytics tool will collect and analyze data on website traffic and user behavior, providing insights into how users interact with a site.
+Measure & Analyze
+Customer Journey Analytics
+Adobe Customer Journey Analytics
+n/a
+Specialized – Commercial Use-Cases
+A Customer Journey Analytics is a solution that collects, integrates, and analyzes data from multiple customer touchpoints to visualize and understand the complete customer experience. It helps businesses identify patterns, optimize interactions, and improve outcomes across the customer lifecycle.
+Measure & Analyze
+Web Browsing Heatmap
+Medallia Digital Experience Analytics
+n/a
+Specialized – Commercial Use-Cases
+A Web Browsing Heatmap capability is a tool that visually represents user interactions on a webpage—such as clicks, scrolls, or mouse movements—using color-coded overlays. It helps identify which areas attract the most attention, enabling optimization of layout, content, and user experience.
+Measure & Analyze
+Customer Satisfaction Survey
+Medallia Surveys
+n/a
+Specialized – Commercial Use-Cases
+A Customer Satisfaction Survey is an online tool used to collect opinions, ratings, or suggestions from customers about their experiences with a product, service, or brand. It helps businesses understand customer satisfaction and identify areas for improvement.
+Measure & Analyze
+Social Listening
+Tubular – Video
+Meltwater – IBU Social Networks
+Quid – US Social Networks
+n/a
+Standard
+Social Listening is the process of monitoring and analyzing online conversations across social media and digital platforms to understand public sentiment, trends, and brand perception. It helps organizations gain insights into customer opinions, emerging issues, and competitive positioning.
+Measure & Analyze
+Reporting and Dashboards
+Power BI, QuickSight, Tableau
+Tableau
+Standard
+Dashboarding and reporting is method of visualizing KPIs(Key performance indicators) to monitor performance and business health. Dashboards provide high level interactive snapshots for rapid decision making.
+Measure & Analyze
+Insights Discovery
+AWB, Amazon Sagemaker studio, Jupyter Lab, RStudio, Python
+n/a
+Standard
+Insights discovery is a process of exploring and analyzing data from various sources to uncover patterns, trends, and actionable insights, often using interactive and visual tools.
+Creative & Production
+​
+The technologies under creative & production are used to ideate, design, and develop the breakthrough creative that powers our best in any class experiences.
+Category
+Capability
+Emerging/Standard Vendor
+Declining/Exiting Vendor
+Positioning
+Description
+Creative & Production
+Creative Production Tools
+Adobe Creative Cloud
+n/a
+Standard
+Creative Production Tools is a collection of tools for graphic design, video editing, photography, animation, 3D modeling, etc. that are used for creating Lilly owned content.
+Creative & Production
+Modular Content Authoring
+Adobe Experience Manager
+Docuvera (Medical)
+Jigsaw & Jarvis
+Specialized – Commercial Use-Cases
+Modular Content Authoring is a structured approach to creating reusable, adaptable content components—such as headlines, body copy, images, and calls-to-action—that can be assembled dynamically across channels and formats.
+Creative & Production
+Commercial Content Authoring Assistants
+AI Promomaker (Promotional)
+MediAuthor (Medical)
+n/a
+Specialized – Commercial Use-Cases
+Commercial Content Authoring Assistant is a category of AI enabled tools that leverage information about Lilly’s products and/or medical information to generate drafts of omnichannel content.
+Creative & Production
+Commercial Tactic Generation Tools
+Adobe GenStudio for Performance Marketing
+Slide Genie
+Jigsaw & Jarvis
+Specialized – Commercial Use-Cases
+Commercial Tactic Generation Tools is a category of AI enabled tools that leverage previously generated content, previously approved content modules, or drafts generated from Content Authoring Assistants to generate final commercial tactics (email, social posts, banners, etc).
+Creative & Production
+GenAI Asset Production Tools
+Adobe Firefly (Image & Video)
+Synthesia.io (Avatars)
+n/a
+Emerging
+GenAI Asset Production Tools are a category of AI agents that use prompts to generate multi-media assets (images, videos, avatars).
+Creative & Production
+Digital Asset Management
+Adobe Experience Manager
+n/a
+Standard
+Digital Asset Management is the practice of organizing, storing, and managing digital content - including source, b-roll, raw files - in a centralized system.
+Review & Approval
+​
+The technologies under review & approval are used to collect review, approve, track, and withdraw content created by Lilly.
+Category
+Capability
+Emerging/Standard Vendor
+Declining/Exiting Vendor
+Positioning
+Description
+Review & Approval
+Promotional Material Review and Approval
+Veeva Vault PromoMats
+n/a
+Standard
+Promotional Material Review and Approval process governs the end-to-end management of promotional materials—from initial creation and cross-functional review through approval, distribution, ongoing monitoring, and eventual withdrawal and archival.
+Review & Approval
+Medical Affairs Content Review & Approval
+Veeva Vault MedComms
+n/a
+Standard
+Medical Affairs Content Review & Approval process governs the end-to-end management of medical information through approval, distribution, ongoing monitoring and eventual withdraw and archival.
+Review & Approval
+Lilly Policy and Procedure Review & Approval
+Veeva Vault QualityDocs
+n/a
+Standard
+Lilly Policy and Procedure Review & Approval process pertains to any Lilly document management process that requires formal electronic approval, versioning, and document life-cycle management.
+Review & Approval
+Portfolio & Project Management
+Jira (Agile Teams)
+Jira Align (Agile Portfolio)
+Planisware (Enterprise Portfolio)
+Smartsheets (Low complexity)
+Workfont (Commercial Use-Cases)
+Wrike
+Standard – Jira, JiraAlign, Planisware
+Specialized – Smartsheets, Workfront
+Declining - Wrike
+Portfolio & Project Management is the centralized management of processes, methods, and technologies used to analyze and collectively manage current or proposed projects. It ensures that projects are prioritized, resourced, and executed in alignment with strategic objectives, while providing visibility into performance, risks, and value across the portfolio.
+Data Foundation
+​
+The technologies within our Data Foundation serve as the master data systems that fuel our entire commercial eco-system.
+Category
+Capability
+Emerging/Standard Vendor
+Declining/Exiting Vendor
+Positioning
+Description
+Data Foundation
+Master Data Management
+Reltio (HCP, Consumer, Material)
+n/a
+Standard
+Master Data Management is the discipline and technology-driven process of creating and maintaining a single, consistent, and authoritative source of critical business data—such as customer, product information—across an organization.
+Data Foundation
+Consent & Preference Management
+Syrenis Cassie
+n/a
+Standard
+Consent & Preference Management is a capability designed to help global enterprises like Lilly manage customer data in compliance with privacy regulations such as GDPR, CCPA, and HIPAA.
+Data Foundation
+Identity Management
+Auth0 – Specialized Commercial
+Azure – Lilly Enterprise
+Okta
+Standard
+Identity management platforms are systems that help organizations securely manage digital identities and control access to resources.
+Was this helpful?
+Tags:
+solution-guide
+business-enablement
+techhq
+Edit this page
+Previous
+🧭 AE/PC Detection
+Next
+🧭 PI & Sensitive Data Detection
+Deliver & Activate
+Measure & Analyze
+Creative & Production
+Review & Approval
+Data Foundation
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

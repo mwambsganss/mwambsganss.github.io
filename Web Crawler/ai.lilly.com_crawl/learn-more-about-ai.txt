@@ -1,0 +1,284 @@
+Title: Learn More about AI | ai.lilly.com
+URL: https://ai.lilly.com/learn-more-about-ai
+Description: 
+
+Learn More about AI | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+Learn More About AI
+Learning about any new technology can be intimidating, especially something as disruptive as AI. Rest assured, you don’t need to be an expert in AI technology to harness the power of it in your role.
+We've curated resources and learning opportunities that can help you get started. Watch videos, take courses, read articles, and more.
+AI Learning Survey
+Does your team need AI training? Please take a moment to complete
+this brief survey
+to help us understand AI training needs across Lilly and identify where support may be most helpful. Your input will guide future learning experiences that enable effective AI adoption.
+AI Change Champions
+Have questions about these products or how you can apply them to your workstream? Look no further than our
+AI Change Champions
+. They’ll help answer questions and support you as you navigate the road to adoption of AI!
+Enterprise Learning
+Beginner
+Enterprise Claude Training Resources
+Learn More
+arrow-right
+Intermediate
+Instructor-Led Microsoft Courses
+Explore Courses
+arrow-right
+Beginner
+Copilot Training Arcade
+Try out a refreshed, gamified version of Lilly's popular M365 Copilot 30 Day learning journey, now available on the Arcade learning platform!
+Play Now!
+arrow-right
+Beginner
+Use Prompt Buddy for AI prompts
+Watch Video
+arrow-right
+Back
+1
+2
+3
+Next
+Items per page
+4
+4
+8
+12
+1
+-
+4
+of
+9
+Business Area Learning
+Finance
+HR
+Marketing
+Sales
+Tech@Lilly
+Finance
+Finance
+HR
+Marketing
+Sales
+Tech@Lilly
+Beginner + Intermediate
+Leveraging Generative AI in Finance and Accounting
+0:46:57
+View Course
+arrow-right
+Finance AI Resources
+We're the Finance AI team—your partners in transforming how you work through artificial intelligence.
+Our mission is simple: make AI accessible, practical, and impactful for everyone. We take cutting-edge technology and turn it into tools you can actually use in your day-to-day work.
+Get Started
+arrow-right
+General
+AI and the Workforce: A Deep Dive with Aneesh Raman and Alex Swartsel
+1:53:28
+View Course
+arrow-right
+Intermediate
+Generative AI in HR
+0:46:10
+View Course
+arrow-right
+Beginner
+Generative AI in Learning and Development
+0:31:00
+View Course
+arrow-right
+Beginner
+Generative AI, Recruiting, and Talent Acquisition
+0:30:43
+View Course
+arrow-right
+Learn more about Marketing
+here
+General
+Generative AI for Sales and Services Professionals
+0:29:07
+View Course
+arrow-right
+Beginner
+Sales Strategy: Using AI and Automation to Sell More
+0:48:05
+View Course
+arrow-right
+General
+AI Upskilling for Tech@Lilly Leaders
+Tech@Lilly leaders in M+, P5+, and R7+ levels must complete one of the specified AI certifications.
+Learn more
+arrow-right
+General
+AI Ascend: AI upskilling for Tech@Lilly
+Get Started
+arrow-right
+Beginner
+ChatGPT Tips for the Help Desk
+1:24:21
+View Course
+arrow-right
+Advanced
+Hands-on Data Science and AI for Healthcare
+0:38:53
+View Course
+arrow-right
+Back
+1
+2
+3
+4
+Next
+Items per page
+4
+4
+8
+12
+1
+-
+4
+of
+13
+Role Specific Learning
+Professionals
+Project Manager
+Business Leaders
+Professionals
+Professionals
+Project Manager
+Business Leaders
+General
+AI Productivity Hacks to Reimagine Your Workday and Career
+0:27:58
+View Course
+arrow-right
+General
+Amplify Your Communication Skills with Generative AI
+0:48:12
+View Course
+arrow-right
+General
+Amplify Your Critical Thinking with Generative AI
+1:00:24
+View Course
+arrow-right
+General
+Building a Collaborative Team Culture with AI
+0:39:49
+View Course
+arrow-right
+Back
+1
+2
+3
+4
+Next
+Items per page
+4
+4
+8
+12
+1
+-
+4
+of
+14
+Intermediate
+Artificial Intelligence: How Project Managers Can Leverage AI
+48:15.0
+View Course
+arrow-right
+General
+Leveraging Generative AI for Project Management
+46:42.0
+View Course
+arrow-right
+General
+Thriving as a Project Manager in the Age of AI
+49:23.0
+View Course
+arrow-right
+General
+Become an AI-Powered Manager
+0:45:39
+View Course
+arrow-right
+Advanced
+Leading with a Digital Mindset in the Age of AI
+0:57:52
+View Course
+arrow-right
+Have an Idea?
+Integrating AI into our business is a team effort.
+All AI use cases must be registered and approved.
+Register AI Idea
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right

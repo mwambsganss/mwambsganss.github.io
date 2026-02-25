@@ -1,0 +1,66 @@
+Title: Enterprise Automation MarketPlace
+URL: https://automate.lilly.com/techzone
+Description: Enterprise Automation MarketPlace
+
+Enterprise Automation MarketPlace
+Menu
+List
+menu closed
+Close
+X
+Home
+Automation Platform
+CaretRight
+CaretDown
+Intelligent Automation
+Test Automation
+Document Processing
+Content Automation
+Process Optimization
+Marketplace
+TechZone
+Submit an Idea
+Welcome to Tech Zone
+Welcome to TechZone – your gateway to Enterprise automation. Dive into a world where technology comes alive through
+interactive demos and solution showcases
+Experience our Enterprise automation tools firsthand in our comprehensive hub designed for discovery and innovation.
+Our Products
+Explore Lilly’s automation products and return often to discover what’s new.
+AI-assisted Test Automation
+BETA
+An advanced AI assistant designed to simplify and accelerate automation testing. It generates test scenarios, object repositories, feature files, and step definitions with minimal manual input. Easily upload locators via CSV, customize outputs, and tailor results to your preferred framework (e.g., Playwright) and programming language (e.g., TypeScript), enabling faster and smarter test development in agile workflows
+Try Now
+ArrowRight
+Automated Access Review Tool
+BETA
+A single tool to automate and streamline the access review process. Integrated with common enterprise systems to extract access rosters and supervisor data, this tool routes reviews directly to the appropriate stakeholders and makes it easier to capture and action the results, with up to 80% reduction in manual effort and stronger compliance outcomes.
+Try Now
+ArrowRight
+Lilly ProcessBridge
+Beta
+An AI-powered tool that simplifies process mapping and identifies automation opportunities for any process, enabling teams to optimize workflows and drive efficiency. Start with a text prompt and end with insights and more.
+Try Now
+ArrowRight
+Lilly AppBridge
+An integration hub that enhances collaboration and streamlines workflows by connecting popular tools to boost efficiency through automation.
+Try Now
+ArrowRight
+Lilly SmartDocs
+Automates end to end document workflow through capture, extraction, and management of various document types.
+Try Now
+ArrowRight
+Want to start a project? Raise a new automation request here!
+Submit an Idea
+QuotesFill
+"Creating a cycle of automation innovation learning and delivery to accelerate your productivity."
+Enterprise Platform
+Connecting...
+Marketplace Chatbot
+Media
+File
+Tap microphone to speak
+Listening... Tap to end
+Cancel
+Tap to send
+Typing
+Powered by

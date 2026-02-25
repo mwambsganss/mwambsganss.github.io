@@ -1,0 +1,587 @@
+<!DOCTYPE html><html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-solution/business-enablement/customer_engagement_reference_architecture" data-has-hydrated="true" data-theme="light" data-theme-choice="light" data-rh="lang,dir,class,data-has-hydrated"><head><meta charset="UTF-8"><meta name="generator" content="Docusaurus v3.9.2"><title>🧭 Customer Engagement Reference Architecture | Tech HQ</title><meta data-rh="true" name="viewport" content="width=device-width, initial-scale=1.0"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://techhq.dc.lilly.com/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://techhq.dc.lilly.com/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://techhq.dc.lilly.com/docs/solution/business-enablement/customer_engagement_reference_architecture"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="🧭 Customer Engagement Reference Architecture | Tech HQ"><meta data-rh="true" name="description" content="Stack Overflow Article: 🧭 Customer Engagement Reference Architecture"><meta data-rh="true" property="og:description" content="Stack Overflow Article: 🧭 Customer Engagement Reference Architecture"><style type="text/css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+  --fa-font-light: normal 300 1em/1 "Font Awesome 6 Pro";
+  --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Pro";
+  --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-regular: normal 400 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-light: normal 300 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-thin: normal 100 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-regular: normal 400 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-light: normal 300 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-thin: normal 100 1em/1 "Font Awesome 6 Sharp Duotone";
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+  overflow: visible;
+  box-sizing: content-box;
+}
+
+.svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285705em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  top: 0.25em;
+}
+.svg-inline--fa.fa-fw {
+  width: var(--fa-fw-width, 1.25em);
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-counter-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: 0.625em;
+  line-height: 0.1em;
+  vertical-align: 0.225em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+  line-height: 0.0833333337em;
+  vertical-align: 0.125em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+  line-height: 0.0714285718em;
+  vertical-align: 0.0535714295em;
+}
+
+.fa-lg {
+  font-size: 1.25em;
+  line-height: 0.05em;
+  vertical-align: -0.075em;
+}
+
+.fa-xl {
+  font-size: 1.5em;
+  line-height: 0.0416666682em;
+  vertical-align: -0.125em;
+}
+
+.fa-2xl {
+  font-size: 2em;
+  line-height: 0.03125em;
+  vertical-align: -0.1875em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: var(--fa-li-margin, 2.5em);
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: calc(-1 * var(--fa-li-width, 2em));
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.08em);
+  padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+}
+
+.fa-pull-left {
+  float: left;
+  margin-right: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right {
+  float: right;
+  margin-left: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  animation-name: fa-beat;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  animation-name: fa-bounce;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  animation-name: fa-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  animation-name: fa-beat-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  animation-name: fa-flip;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  animation-name: fa-shake;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  animation-name: fa-spin;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 2s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  animation-name: fa-spin;
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+.fa-bounce,
+.fa-fade,
+.fa-beat-fade,
+.fa-flip,
+.fa-pulse,
+.fa-shake,
+.fa-spin,
+.fa-spin-pulse {
+    animation-delay: -1ms;
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+    transition-delay: 0s;
+    transition-duration: 0s;
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-shake {
+  0% {
+    transform: rotate(-15deg);
+  }
+  4% {
+    transform: rotate(15deg);
+  }
+  8%, 24% {
+    transform: rotate(-18deg);
+  }
+  12%, 28% {
+    transform: rotate(18deg);
+  }
+  16% {
+    transform: rotate(-22deg);
+  }
+  20% {
+    transform: rotate(22deg);
+  }
+  32% {
+    transform: rotate(-12deg);
+  }
+  36% {
+    transform: rotate(12deg);
+  }
+  40%, 100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  transform: rotate(var(--fa-rotate-angle, 0));
+}
+
+.fa-stack {
+  display: inline-block;
+  vertical-align: middle;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: var(--fa-stack-z-index, auto);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.sr-only,
+.fa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:not(:focus),
+.fa-sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}</style><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://techhq.dc.lilly.com/docs/solution/business-enablement/customer_engagement_reference_architecture"><link data-rh="true" rel="alternate" href="https://techhq.dc.lilly.com/docs/solution/business-enablement/customer_engagement_reference_architecture" hreflang="en"><link data-rh="true" rel="alternate" href="https://techhq.dc.lilly.com/docs/solution/business-enablement/customer_engagement_reference_architecture" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Tech HQ RSS Feed"><link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Tech HQ Atom Feed"><link rel="preconnect" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com"><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-J14K334996"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-J14K334996",{anonymize_ip:!0})</script><link rel="icon" href="/img/favicon.ico"><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#25c2a0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" href="/img/favicon.ico"><link rel="mask-icon" href="/img/logo-dark.svg" color="#25c2a0"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="msapplication-TileColor" content="#25c2a0"><link rel="stylesheet" href="/assets/css/styles.b4e04221.css"><script src="/assets/js/runtime~main.fb55c054.js" defer=""></script><script src="/assets/js/main.a9e40874.js" defer=""></script><script type="application/ld+json" data-rh="true">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"🏢 Business Enablement","item":"https://techhq.dc.lilly.com/docs/solution/business-enablement/"},{"@type":"ListItem","position":2,"name":"🧭 Customer Engagement Reference Architecture","item":"https://techhq.dc.lilly.com/docs/solution/business-enablement/customer_engagement_reference_architecture"}]}</script><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/8337dadf.481d17a3.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/524c7c85.beac870a.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/8def2dd5.af4ae0de.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/377700c7.615e85c2.js"><link rel="prefetch" href="/assets/js/1df93b7f.aa171871.js"><link rel="prefetch" href="/assets/js/a7456010.d2461d2a.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/e223a2a3.9ca81cd0.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/0843f17c.35661a3a.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/4766df6d.d26b3a73.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/060541e1.84596e91.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/5705d7e7.2e56b88d.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/def0e882.66dc7714.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/4ae14433.0b686127.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/19b4838e.88f392c3.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/ab169593.258b9817.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/f9723a44.8273970e.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/f8c25989.e96f3315.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/c0cc2634.9c6fac70.js"><link rel="prefetch" href="/assets/js/a6aa9e1f.2bdf7efd.js"><link rel="prefetch" href="/assets/js/36994c47.a641290b.js"><link rel="prefetch" href="/assets/js/814f3328.69bba93f.js"><link rel="prefetch" href="/assets/js/10e75197.da9cdbf4.js"><link rel="prefetch" href="/assets/js/74741bf4.789922d0.js"><link rel="prefetch" href="/assets/js/5d5b7b15.a71995be.js"><link rel="prefetch" href="/assets/js/0ca03195.c59285f9.js"><link rel="prefetch" href="/assets/js/c15d9823.f443d85e.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/e85271d8.5fbe28f5.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/e78c6a7c.a23a57c4.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/bc043b77.59531655.js"></head><body class="navigation-with-keyboard" data-rh="class" style="overflow: visible;"><svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_ToEg" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo-dark.svg" alt="Tech@Lilly Logo" class="themedComponent_br9s themedComponent--light_VhRU" height="50" width="100"></div><b class="navbar__title text--truncate">Tech HQ</b></a><a class="navbar__item navbar__link" href="/docs/innovate/">Innovate</a><a class="navbar__item navbar__link" href="/docs/plan/">Plan</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/solution/">Solution</a><a class="navbar__item navbar__link" href="/docs/access/">Access</a><a class="navbar__item navbar__link" href="/docs/learn/">Learn</a><a class="navbar__item navbar__link" href="/docs/contribute/">Contribute</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/blog">Updates</a><a href="https://flow.lilly.com" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link stackoverflow-link" aria-label="LillyFlow">LillyFlow<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a><div class="navbarSearchContainer_FAGn"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;"><input id="search_input_react" type="search" placeholder="Search ⌘+K" aria-label="Search" class="navbar__search-input search-bar ds-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="ds-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;"><div class="ds-dataset-1"></div></span></span></div></div><div class="toggle_h2qI colorModeToggle_TN9Z"><button class="clean-btn toggleButton_Nk0O" type="button" title="light mode" aria-label="Switch between dark and light mode (currently light mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX lightToggleIcon_KjIl"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX darkToggleIcon_fWkg"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX systemToggleIcon_Wx7I"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_gynm"><div class="docsWrapper_tLRL"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_xrlZ" type="button"></button><div class="docRoot_oqp2"><aside class="theme-doc-sidebar-container docSidebarContainer_Ze6h"><div class="sidebarViewport_dbQw"><div class="sidebar_Q15t"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_MLTQ"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/solution/"><span title="🧩 Solution Overview" class="linkLabel_bwUU">🧩 Solution Overview</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/ai/"><span title="🤖 AI &amp; Intelligent Agents" class="categoryLinkLabel_MFuf">🤖 AI &amp; Intelligent Agents</span></a><button aria-label="Expand sidebar category '🤖 AI &amp; Intelligent Agents'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist menu__link--active" href="/docs/solution/business-enablement/"><span title="🏢 Business Enablement" class="categoryLinkLabel_MFuf">🏢 Business Enablement</span></a><button aria-label="Collapse sidebar category '🏢 Business Enablement'" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list" style="display: block; overflow: visible; height: auto;"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/business-enablement/business-enablement-blt"><span title="🗄️ Business Enablement BLT" class="linkLabel_bwUU">🗄️ Business Enablement BLT</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/business-enablement/aepc_detection"><span title="🧭 AE/PC Detection" class="linkLabel_bwUU">🧭 AE/PC Detection</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/solution/business-enablement/customer_engagement_reference_architecture"><span title="🧭 Customer Engagement Reference Architecture" class="linkLabel_bwUU">🧭 Customer Engagement Reference Architecture</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/business-enablement/pi_sensitive_data_detection"><span title="🧭 PI &amp; Sensitive Data Detection" class="linkLabel_bwUU">🧭 PI &amp; Sensitive Data Detection</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/cloud/"><span title="☁️ Cloud &amp; Infrastructure" class="categoryLinkLabel_MFuf">☁️ Cloud &amp; Infrastructure</span></a><button aria-label="Expand sidebar category '☁️ Cloud &amp; Infrastructure'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/cybersecurity/"><span title="🔐 Cybersecurity" class="categoryLinkLabel_MFuf">🔐 Cybersecurity</span></a><button aria-label="Expand sidebar category '🔐 Cybersecurity'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/data/"><span title="📊 Data &amp; Analytics" class="categoryLinkLabel_MFuf">📊 Data &amp; Analytics</span></a><button aria-label="Expand sidebar category '📊 Data &amp; Analytics'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/engineering/"><span title="🛠️ Engineering Enablement" class="categoryLinkLabel_MFuf">🛠️ Engineering Enablement</span></a><button aria-label="Expand sidebar category '🛠️ Engineering Enablement'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/observability/"><span title="🛰️ Observability &amp; Reliability" class="categoryLinkLabel_MFuf">🛰️ Observability &amp; Reliability</span></a><button aria-label="Expand sidebar category '🛰️ Observability &amp; Reliability'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/productivity/"><span title="🚀 Team Productivity" class="categoryLinkLabel_MFuf">🚀 Team Productivity</span></a><button aria-label="Expand sidebar category '🚀 Team Productivity'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/ux/"><span title="🎨 User Experience &amp; Design" class="categoryLinkLabel_MFuf">🎨 User Experience &amp; Design</span></a><button aria-label="Expand sidebar category '🎨 User Experience &amp; Design'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_S1TL"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_A67S"><div class="docItemContainer_oKAG"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_sQDc" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_UUPH"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/solution/business-enablement/"><span>🏢 Business Enablement</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">🧭 Customer Engagement Reference Architecture</span></li></ul></nav><div class="tocCollapsible_MbZu theme-doc-toc-mobile tocMobile_bDI5"><button type="button" class="clean-btn tocCollapsibleButton_khAz">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>🧭 Customer Engagement Reference Architecture</h1></header>
+<span class="stackoverflow-link"><a href="https://elilillyco.stackenterprise.co/articles/4223" target="_blank" rel="noopener noreferrer" class="">Synced daily from Stack Overflow</a></span>
+<div class="theme-admonition theme-admonition-info admonition_SytF alert alert--info"><div class="admonitionHeading_c8Bz"><span class="admonitionIcon_TU1o"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>Solution Guide</div><div class="admonitionContent_mnjq"><ul>
+<li class="">Lifecycle: Draft</li>
+<li class="">Last Update: 2025-10-14</li>
+<li class="">Capability Owner: Chad E. Stout</li>
+<li class="">EBA Lead: Chad E. Stout</li>
+<li class="">Contributors &amp; Reviewers: Allan Kirui, Annapurna Calyam, Chad E. Stout, Cherish Joseph, Eric Wolf, Jeff Tibbitts, Mike Madison</li>
+</ul></div></div>
+<p>A guide for designing and assembling marketing technology (MarTech) capabilities to deliver best-in-class customer experiences across digital and personal channels, while enabling measurement, personalization, and compliance.</p>
+<h1>Customer Engagement Capability Reference Model</h1>
+<p>The visual below will be used as a reference model that will describe the business and technology capabilities in Lilly's customer engagement architecture models.</p>
+<p><a href="https://elilillyco.stackenterprise.co/images/a/REDACTED-UUID.png" target="_blank" rel="noopener noreferrer" class=""><img decoding="async" loading="lazy" src="https://elilillyco.stackenterprise.co/images/a/REDACTED-UUID.png" alt="Business Units Capability Reference Model Diagram with Consumers/Patients, Payers, Providers interacting with Planning &amp; Workflow, Review &amp; Approve, Creative &amp; Production, Deliver &amp; Activate, Measure &amp; Analyze, all on a Data Foundation and supported by Technology Enablers." class="img_1Tvj"></a></p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="deliver--activate">Deliver &amp; Activate<a href="#deliver--activate" class="hash-link" aria-label="Direct link to Deliver &amp; Activate" title="Direct link to Deliver &amp; Activate" translate="no">​</a></h3>
+<p>The technologies under deliver &amp; activate are used to orchestrate the delivery of the best in any class experiences to our customers.</p>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="digital-channels">Digital Channels<a href="#digital-channels" class="hash-link" aria-label="Direct link to Digital Channels" title="Direct link to Digital Channels" translate="no">​</a></h4>
+<table><thead><tr><th style="text-align:left">Category</th><th style="text-align:left">Capability</th><th style="text-align:left">Emerging/Standard Vendor</th><th style="text-align:left">Declining/Exiting Vendor</th><th style="text-align:left">Positioning</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Transactional Email</td><td style="text-align:left">AWS Simple Email Service</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">A Transactional Email is an automated message sent to an individual based on specific actions or interactions they have with a business or platform. These emails are triggered by user behavior and are intended to provide essential information that the recipient needs or expects.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Commercial Email</td><td style="text-align:left">Adobe Journey Optimizer</td><td style="text-align:left">Salesforce Marketing Cloud</td><td style="text-align:left">Specialized - Commercial Use-Cases</td><td style="text-align:left">A Commercial Email is a message sent electronically to promote a product, service, or brand, typically for marketing or business purposes. It often includes offers or calls to action intended to drive sales or customer engagement. In many countries, these emails must have an opt-out link.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Transactional SMS / MMS</td><td style="text-align:left">InfoBip</td><td style="text-align:left">Salesforce Marketing Cloud</td><td style="text-align:left">Specialized - Commercial Use-Cases</td><td style="text-align:left">A Transactional SMS/MMS is a text or multimedia message sent to convey essential information related to a transaction or service, such as order confirmations, delivery updates, account alerts, or appointment reminders. It is not promotional in nature and is typically triggered by a user action or business process.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Commercial SMS / MMS</td><td style="text-align:left">InfoBip</td><td style="text-align:left">Salesforce Marketing Cloud</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">A Commercial SMS / MMS is a text or multimedia message sent to promote a product, service, brand, or event, typically for marketing purposes. It often includes offers or calls to action intended to drive customer engagement or sales. In many countries the recipient needs to have an explicit opt-in and can opt-out through STOP commands.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Omnichannel Journey Orchestration</td><td style="text-align:left">Adobe Journey Optimizer</td><td style="text-align:left">Salesforce Marketing Cloud Journey Builder<br>ZAIDYN Orchestration Engine</td><td style="text-align:left">Specialized - Commercial Use-Cases</td><td style="text-align:left">An Omnichannel Journey Orchestration is a tool or platform designed to enhance customer engagement by managing and personalizing interactions across multiple channels.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Customer Data Platform</td><td style="text-align:left">Adobe Real-Time CDP<br>Salesforce Data Cloud – Specialized for Health Cloud Data Integration</td><td style="text-align:left">Tealium</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">A Customer Data Platform is a technology solution that centralizes and unifies customer data from various sources to create a single, comprehensive customer profile to support personalization and journey orchestration.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Anonymous Web Personalization</td><td style="text-align:left">Adobe Target – Uses Cookies<br>Adobe Edge Delivery Services Experimentation – Cookie-less</td><td style="text-align:left">n/a</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">Anonymous Web Personalization enables businesses to tailor website content and experiences for visitors who have not yet provided identifiable information. By leveraging real-time data on user behavior and preferences, businesses can deliver relevant content, product recommendations, and personalized messaging.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Known / Profile Based Web Personalization</td><td style="text-align:left">Adobe Journey Optimizer</td><td style="text-align:left">n/a</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">Known/Profile-Based Web Personalization leverages detailed customer profiles to deliver tailored web experiences. By using data such as past interactions, preferences, and demographics, businesses can provide highly relevant content, product recommendations, and personalized messaging.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Website Tag Management</td><td style="text-align:left">Adobe Data Collection Tags (Formerly known as Adobe Launch)</td><td style="text-align:left">Google Tag Manager</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">Website Tag Management involves organizing and managing tags—snippets of code embedded in a website—to collect data and facilitate third-party services. This capability ensures that tags fire correctly and collect accurate data, supporting analytics, advertising, and personalization efforts.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Website Tag Monitoring</td><td style="text-align:left">ObservePoint</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Website Tag Monitoring ensures third-party tags are working correctly, collecting accurate data, and identifying unauthorized tags or cookies deployed on websites.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Video Streaming Platform</td><td style="text-align:left">Microsoft Stream – Intended audience is internal employees / contractors / agents of Lilly<br>Adobe Dynamic Media - Intended audience is customers (Consumers, Patients, Healthcare Professionals,)</td><td style="text-align:left">Kaltura Video Experience Cloud</td><td style="text-align:left">Standard</td><td style="text-align:left">A Video Streaming Platform enables users to watch video content over the internet in real-time or on demand, without requiring downloads.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Web Content Management</td><td style="text-align:left">Adobe Experience Manager – Specialized for Commercial<br>Contentful – Standard<br>SharePoint - Standard</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard - Contentful - Custom developed websites<br>Standard - SharePoint – No-code websites<br>Specialized – Commercial Use-Cases - Adobe Experience Manager</td><td style="text-align:left">A Web Content Management system allows users to create, manage, and publish digital content on websites without needing to write code. It provides tools for editing, organizing, and maintaining web pages through a user-friendly interface.</td></tr><tr><td style="text-align:left">Delivery &amp; Activate</td><td style="text-align:left">URL Shortener</td><td style="text-align:left">Bl.ink</td><td style="text-align:left">Bitly</td><td style="text-align:left">Standard</td><td style="text-align:left">A URL shortener is a tool that converts long web addresses into shorter, more manageable links. It helps improve link sharing, track click data, and enhance user experience—especially on platforms with character limits or for marketing campaigns.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Search Engine Marketing</td><td style="text-align:left">Google Search Ads 360<br>Skai</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Search Engine Marketing is a form of digital marketing that involves promoting websites by increasing their visibility in search engine results pages (SERPs), primarily through paid advertising.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Search Engine Advertising Editor</td><td style="text-align:left">Google Ads, Microsoft Advertising, Google Display Network, Google Ads Editor, Microsoft Ads Editor</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">A Search Engine Advertising Editor allows marketers to efficiently build and modify search ad campaigns, including ad copy, keywords, bids, and targeting settings—often in bulk and offline—before uploading changes to the ad platform.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Digital Brand Compliance &amp; Protection</td><td style="text-align:left">Brand Verity – Search Ads Monitoring<br>ZeroFox – Website and Social Media Monitoring</td><td style="text-align:left">Not Appliable</td><td style="text-align:left">Standard</td><td style="text-align:left">Digital Brand Compliance &amp; Protection involves monitoring paid search and affiliate channels to ensure brand integrity, enforce trademark policies, and prevent unauthorized or misleading advertising.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Search Engine Optimization</td><td style="text-align:left">Lumar, Semrush, Screaming Frog, Conductor</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Search Engine Optimization (SEO) is the practice of improving a website’s visibility in search engine results pages (SERPs) to attract more organic (non-paid) traffic. It involves optimizing content, technical elements, and user experience to align with search engine algorithms and user intent.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Large Language Optimization</td><td style="text-align:left">Authoritas – Standard<br>Adobe LLM Optimizer - Emerging</td><td style="text-align:left">n/a</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">Large Language Model Optimization is the practice of improving the content on a website to make it machine-readable, semantically rich, and contextually clear so large language models can understand and use it effectively.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Social Media Engagement</td><td style="text-align:left">Sprinklr</td><td style="text-align:left">Khoros</td><td style="text-align:left">Standard</td><td style="text-align:left">Social Media Engagement platform centralizes the publishing and monitoring of social media content across the various social networks.</td></tr></tbody></table>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="personal-channels">Personal Channels<a href="#personal-channels" class="hash-link" aria-label="Direct link to Personal Channels" title="Direct link to Personal Channels" translate="no">​</a></h4>
+<table><thead><tr><th style="text-align:left">Category</th><th style="text-align:left">Capability</th><th style="text-align:left">Emerging/Standard Vendor</th><th style="text-align:left">Declining/Exiting Vendor</th><th style="text-align:left">Positioning</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Field Customer Relationship Management</td><td style="text-align:left">Veeva Multi-Channel CRM<br>ZAIDYN Field Insights App</td><td style="text-align:left">n/a</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">A Field Customer Relationship Management (CRM) platform enables field personnel to manage customer interactions, track interactions, and streamline workflows. Key capabilities include contact and lead management and automation of routine tasks such as follow-ups emails.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Customer Relationship Management</td><td style="text-align:left">Salesforce Platform – Standard<br>Salesforce Health Cloud - Emerging</td><td style="text-align:left">n/a</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">Customer Relationship Management is a capability that helps customer support teams deliver personalized support through a unified view of each customer’s journey—customer data, communication history, and support interactions—to improve engagement, streamline case management, and enhance health outcomes.</td></tr><tr><td style="text-align:left">Deliver &amp; Activate</td><td style="text-align:left">Customer Meeting Management</td><td style="text-align:left">Veeva Events</td><td style="text-align:left">Mercury - Lilly Developed Solution</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">A Customer Meeting Management solution is designed to plan, manage, and execute all types of customer-facing events—such as speaker programs, advisory boards, and virtual meetings.</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="measure--analyze">Measure &amp; Analyze<a href="#measure--analyze" class="hash-link" aria-label="Direct link to Measure &amp; Analyze" title="Direct link to Measure &amp; Analyze" translate="no">​</a></h3>
+<p>The technologies under measure &amp; analyze are used to uncover patterns, trends, and insights that can be used to improve the experiences of our customers.</p>
+<table><thead><tr><th style="text-align:left">Category</th><th style="text-align:left">Capability</th><th style="text-align:left">Emerging/Standard Vendor</th><th style="text-align:left">Declining/Exiting Vendor</th><th style="text-align:left">Positioning</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left">Measure &amp; Analyze</td><td style="text-align:left">Web Analytics</td><td style="text-align:left">Google Analytics</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">A Web Analytics tool will collect and analyze data on website traffic and user behavior, providing insights into how users interact with a site.</td></tr><tr><td style="text-align:left">Measure &amp; Analyze</td><td style="text-align:left">Customer Journey Analytics</td><td style="text-align:left">Adobe Customer Journey Analytics</td><td style="text-align:left">n/a</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">A Customer Journey Analytics is a solution that collects, integrates, and analyzes data from multiple customer touchpoints to visualize and understand the complete customer experience. It helps businesses identify patterns, optimize interactions, and improve outcomes across the customer lifecycle.</td></tr><tr><td style="text-align:left">Measure &amp; Analyze</td><td style="text-align:left">Web Browsing Heatmap</td><td style="text-align:left">Medallia Digital Experience Analytics</td><td style="text-align:left">n/a</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">A Web Browsing Heatmap capability is a tool that visually represents user interactions on a webpage—such as clicks, scrolls, or mouse movements—using color-coded overlays. It helps identify which areas attract the most attention, enabling optimization of layout, content, and user experience.</td></tr><tr><td style="text-align:left">Measure &amp; Analyze</td><td style="text-align:left">Customer Satisfaction Survey</td><td style="text-align:left">Medallia Surveys</td><td style="text-align:left">n/a</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">A Customer Satisfaction Survey is an online tool used to collect opinions, ratings, or suggestions from customers about their experiences with a product, service, or brand. It helps businesses understand customer satisfaction and identify areas for improvement.</td></tr><tr><td style="text-align:left">Measure &amp; Analyze</td><td style="text-align:left">Social Listening</td><td style="text-align:left">Tubular – Video<br>Meltwater – IBU Social Networks<br>Quid – US Social Networks</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Social Listening is the process of monitoring and analyzing online conversations across social media and digital platforms to understand public sentiment, trends, and brand perception. It helps organizations gain insights into customer opinions, emerging issues, and competitive positioning.</td></tr><tr><td style="text-align:left">Measure &amp; Analyze</td><td style="text-align:left">Reporting and Dashboards</td><td style="text-align:left">Power BI, QuickSight, Tableau</td><td style="text-align:left">Tableau</td><td style="text-align:left">Standard</td><td style="text-align:left">Dashboarding and reporting is method of visualizing KPIs(Key performance indicators) to monitor performance and business health. Dashboards provide high level interactive snapshots for rapid decision making.</td></tr><tr><td style="text-align:left">Measure &amp; Analyze</td><td style="text-align:left">Insights Discovery</td><td style="text-align:left">AWB, Amazon Sagemaker studio, Jupyter Lab, RStudio, Python</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Insights discovery is a process of exploring and analyzing data from various sources to uncover patterns, trends, and actionable insights, often using interactive and visual tools.</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="creative--production">Creative &amp; Production<a href="#creative--production" class="hash-link" aria-label="Direct link to Creative &amp; Production" title="Direct link to Creative &amp; Production" translate="no">​</a></h3>
+<p>The technologies under creative &amp; production are used to ideate, design, and develop the breakthrough creative that powers our best in any class experiences.</p>
+<table><thead><tr><th style="text-align:left">Category</th><th style="text-align:left">Capability</th><th style="text-align:left">Emerging/Standard Vendor</th><th style="text-align:left">Declining/Exiting Vendor</th><th style="text-align:left">Positioning</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left">Creative &amp; Production</td><td style="text-align:left">Creative Production Tools</td><td style="text-align:left">Adobe Creative Cloud</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Creative Production Tools is a collection of tools for graphic design, video editing, photography, animation, 3D modeling, etc. that are used for creating Lilly owned content.</td></tr><tr><td style="text-align:left">Creative &amp; Production</td><td style="text-align:left">Modular Content Authoring</td><td style="text-align:left">Adobe Experience Manager<br>Docuvera (Medical)</td><td style="text-align:left">Jigsaw &amp; Jarvis</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">Modular Content Authoring is a structured approach to creating reusable, adaptable content components—such as headlines, body copy, images, and calls-to-action—that can be assembled dynamically across channels and formats.</td></tr><tr><td style="text-align:left">Creative &amp; Production</td><td style="text-align:left">Commercial Content Authoring Assistants</td><td style="text-align:left">AI Promomaker (Promotional)<br>MediAuthor (Medical)</td><td style="text-align:left">n/a</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">Commercial Content Authoring Assistant is a category of AI enabled tools that leverage information about Lilly’s products and/or medical information to generate drafts of omnichannel content.</td></tr><tr><td style="text-align:left">Creative &amp; Production</td><td style="text-align:left">Commercial Tactic Generation Tools</td><td style="text-align:left">Adobe GenStudio for Performance Marketing<br>Slide Genie</td><td style="text-align:left">Jigsaw &amp; Jarvis</td><td style="text-align:left">Specialized – Commercial Use-Cases</td><td style="text-align:left">Commercial Tactic Generation Tools is a category of AI enabled tools that leverage previously generated content, previously approved content modules, or drafts generated from Content Authoring Assistants to generate final commercial tactics (email, social posts, banners, etc).</td></tr><tr><td style="text-align:left">Creative &amp; Production</td><td style="text-align:left">GenAI Asset Production Tools</td><td style="text-align:left">Adobe Firefly (Image &amp; Video)<br>Synthesia.io (Avatars)</td><td style="text-align:left">n/a</td><td style="text-align:left">Emerging</td><td style="text-align:left">GenAI Asset Production Tools are a category of AI agents that use prompts to generate multi-media assets (images, videos, avatars).</td></tr><tr><td style="text-align:left">Creative &amp; Production</td><td style="text-align:left">Digital Asset Management</td><td style="text-align:left">Adobe Experience Manager</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Digital Asset Management is the practice of organizing, storing, and managing digital content - including source, b-roll, raw files - in a centralized system.</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="review--approval">Review &amp; Approval<a href="#review--approval" class="hash-link" aria-label="Direct link to Review &amp; Approval" title="Direct link to Review &amp; Approval" translate="no">​</a></h3>
+<p>The technologies under review &amp; approval are used to collect review, approve, track, and withdraw content created by Lilly.</p>
+<table><thead><tr><th style="text-align:left">Category</th><th style="text-align:left">Capability</th><th style="text-align:left">Emerging/Standard Vendor</th><th style="text-align:left">Declining/Exiting Vendor</th><th style="text-align:left">Positioning</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left">Review &amp; Approval</td><td style="text-align:left">Promotional Material Review and Approval</td><td style="text-align:left">Veeva Vault PromoMats</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Promotional Material Review and Approval process governs the end-to-end management of promotional materials—from initial creation and cross-functional review through approval, distribution, ongoing monitoring, and eventual withdrawal and archival.</td></tr><tr><td style="text-align:left">Review &amp; Approval</td><td style="text-align:left">Medical Affairs Content Review &amp; Approval</td><td style="text-align:left">Veeva Vault MedComms</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Medical Affairs Content Review &amp; Approval process governs the end-to-end management of medical information through approval, distribution, ongoing monitoring and eventual withdraw and archival.</td></tr><tr><td style="text-align:left">Review &amp; Approval</td><td style="text-align:left">Lilly Policy and Procedure Review &amp; Approval</td><td style="text-align:left">Veeva Vault QualityDocs</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Lilly Policy and Procedure Review &amp; Approval process pertains to any Lilly document management process that requires formal electronic approval, versioning, and document life-cycle management.</td></tr><tr><td style="text-align:left">Review &amp; Approval</td><td style="text-align:left">Portfolio &amp; Project Management</td><td style="text-align:left">Jira (Agile Teams)<br>Jira Align (Agile Portfolio)<br>Planisware (Enterprise Portfolio)<br>Smartsheets (Low complexity)<br>Workfont (Commercial Use-Cases)</td><td style="text-align:left">Wrike</td><td style="text-align:left">Standard – Jira, JiraAlign, Planisware<br>Specialized – Smartsheets, Workfront<br>Declining - Wrike</td><td style="text-align:left">Portfolio &amp; Project Management is the centralized management of processes, methods, and technologies used to analyze and collectively manage current or proposed projects. It ensures that projects are prioritized, resourced, and executed in alignment with strategic objectives, while providing visibility into performance, risks, and value across the portfolio.</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="data-foundation">Data Foundation<a href="#data-foundation" class="hash-link" aria-label="Direct link to Data Foundation" title="Direct link to Data Foundation" translate="no">​</a></h3>
+<p>The technologies within our Data Foundation serve as the master data systems that fuel our entire commercial eco-system.</p>
+<table><thead><tr><th style="text-align:left">Category</th><th style="text-align:left">Capability</th><th style="text-align:left">Emerging/Standard Vendor</th><th style="text-align:left">Declining/Exiting Vendor</th><th style="text-align:left">Positioning</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left">Data Foundation</td><td style="text-align:left">Master Data Management</td><td style="text-align:left">Reltio (HCP, Consumer, Material)</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Master Data Management is the discipline and technology-driven process of creating and maintaining a single, consistent, and authoritative source of critical business data—such as customer, product information—across an organization.</td></tr><tr><td style="text-align:left">Data Foundation</td><td style="text-align:left">Consent &amp; Preference Management</td><td style="text-align:left">Syrenis Cassie</td><td style="text-align:left">n/a</td><td style="text-align:left">Standard</td><td style="text-align:left">Consent &amp; Preference Management is a capability designed to help global enterprises like Lilly manage customer data in compliance with privacy regulations such as GDPR, CCPA, and HIPAA.</td></tr><tr><td style="text-align:left">Data Foundation</td><td style="text-align:left">Identity Management</td><td style="text-align:left">Auth0 – Specialized Commercial<br>Azure – Lilly Enterprise</td><td style="text-align:left">Okta</td><td style="text-align:left">Standard</td><td style="text-align:left">Identity management platforms are systems that help organizations securely manage digital identities and control access to resources.</td></tr></tbody></table></div><div class="docsRating"><br><em>Was this helpful?&nbsp;</em><button type="button" title="Thumbs up"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="thumbs-up" class="svg-inline--fa fa-thumbs-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"></path></svg></button>&nbsp;<button type="button" title="Thumbs down"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="thumbs-down" class="svg-inline--fa fa-thumbs-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M313.4 479.1c26-5.2 42.9-30.5 37.7-56.5l-2.3-11.4c-5.3-26.7-15.1-52.1-28.8-75.2l144 0c26.5 0 48-21.5 48-48c0-18.5-10.5-34.6-25.9-42.6C497 236.6 504 223.1 504 208c0-23.4-16.8-42.9-38.9-47.1c4.4-7.3 6.9-15.8 6.9-24.9c0-21.3-13.9-39.4-33.1-45.6c.7-3.3 1.1-6.8 1.1-10.4c0-26.5-21.5-48-48-48l-97.5 0c-19 0-37.5 5.6-53.3 16.1L202.7 73.8C176 91.6 160 121.6 160 153.7l0 38.3 0 48 0 24.9c0 29.2 13.3 56.7 36 75l7.4 5.9c26.5 21.2 44.6 51 51.2 84.2l2.3 11.4c5.2 26 30.5 42.9 56.5 37.7zM32 384l64 0c17.7 0 32-14.3 32-32l0-224c0-17.7-14.3-32-32-32L32 96C14.3 96 0 110.3 0 128L0 352c0 17.7 14.3 32 32 32z"></path></svg></button>&nbsp;</div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-tags-row"><div class="col"><b>Tags:</b><ul class="tags_zDvH padding--none margin-left--sm"><li class="tag_DaVN"><a rel="tag" class="tag_JdGm tagRegular_Xr5d" href="/docs/tags/solution-guide">solution-guide</a></li><li class="tag_DaVN"><a rel="tag" class="tag_JdGm tagRegular_Xr5d" href="/docs/tags/business-enablement">business-enablement</a></li><li class="tag_DaVN"><a rel="tag" class="tag_JdGm tagRegular_Xr5d" href="/docs/tags/techhq">techhq</a></li></ul></div></div><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_CE8P"><a href="https://github.com/EliLillyCo/dc-techhq/tree/dev/docs/solution/business-enablement/customer_engagement_reference_architecture.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit__jv8" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_mNeN"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/solution/business-enablement/aepc_detection"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">🧭 AE/PC Detection</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/solution/business-enablement/pi_sensitive_data_detection"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">🧭 PI &amp; Sensitive Data Detection</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents__3iH thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#deliver--activate" class="table-of-contents__link toc-highlight">Deliver &amp; Activate</a></li><li><a href="#measure--analyze" class="table-of-contents__link toc-highlight">Measure &amp; Analyze</a></li><li><a href="#creative--production" class="table-of-contents__link toc-highlight">Creative &amp; Production</a></li><li><a href="#review--approval" class="table-of-contents__link toc-highlight">Review &amp; Approval</a></li><li><a href="#data-foundation" class="table-of-contents__link toc-highlight">Data Foundation</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://engage.cloud.microsoft/main/org/lilly.com/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIxNzM1MTc3MCJ9/new" target="_blank" rel="noopener noreferrer" class="footer__link-item">EBA Viva Engage<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://collab.lilly.com/sites/enterpriseitarchitecture2" target="_blank" rel="noopener noreferrer" class="footer__link-item">EBA SharePoint<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Questions?</div><ul class="footer__items clean-list"><li class="footer__item"><a href="#" class="footer__link-item">Reach us on Viva Engage!</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Eli Lilly and Company</div></div></div></footer></div></body></html>

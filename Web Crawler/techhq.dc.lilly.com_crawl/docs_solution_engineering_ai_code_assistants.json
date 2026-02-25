@@ -1,0 +1,25 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/solution/engineering/ai_code_assistants",
+  "title": "🧭 AI Code Assistants | Tech HQ",
+  "description": "Stack Overflow Article: 🧭 AI Code Assistants",
+  "h1": [
+    "🧭 AI Code Assistants"
+  ],
+  "h2": [
+    "Quick Reference​",
+    "Detailed Overview​",
+    "Enterprise Integration: Lilly Code​"
+  ],
+  "h3": [
+    "GitHub Copilot​",
+    "Cline​",
+    "Claude Code​",
+    "Amazon Q​",
+    "Access Steps​",
+    "Key Features​"
+  ],
+  "text_content": "🧭 AI Code Assistants | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🧩 Solution Overview\n🤖 AI & Intelligent Agents\n🏢 Business Enablement\n☁️ Cloud & Infrastructure\n🔐 Cybersecurity\n📊 Data & Analytics\n🛠️ Engineering Enablement\n🗄️ Engineering Enablement BLT\n🧭 AI Code Assistants\nAPI Standards\n🧭 ML Ops\n🧭 Test Automation\n🛰️ Observability & Reliability\n🚀 Team Productivity\n🎨 User Experience & Design\n🛠️ Engineering Enablement\n🧭 AI Code Assistants\nOn this page\n🧭 AI Code Assistants\nSynced daily from Stack Overflow\nSolution Guide\nLifecycle: Draft\nLast Update: 2025-10-16\nCapability Owner: Bala Devaraj\nEBA Lead: Josh Bloxsome\nContributors & Reviewers:\nA comprehensive guide to AI code assistants including GitHub Copilot, Cline, Claude Code, and Amazon Q for enhanced developer productivity.\nQuick Reference\n​\nHere's a comparison of available AI assistants:\nAI Assistant\nPositioning\nComplexity\nKey Integrations\nUsage Requirements\nGitHub Copilot\nStandard\nLow\nVS Code, GitHub, GitHub Codespaces, IDEs\nCopilot subscription (monthly basis)\nCline\nEmerging\nMedium\nVS Code, Development Tools, Lilly Code\nUse via Lilly Code (SSO integration)\nClaude Code\nEmerging\nMedium\nIDEs, Development Workflow, Lilly Code\nUse via Lilly Code (SSO integration)\nAmazon Q\nSpecialized\nMedium\nAWS Sagemaker Studio, JetBrains, Amazon Quicksight\nAWS Subscription\nDetailed Overview\n​\nGitHub Copilot\n​\nGitHub Copilot provides AI-powered code suggestions and completions directly in your IDE, helping developers write code faster with context-aware recommendations based on natural language comments and existing code patterns.\nUpcoming Feature: Copilot Coding Agent\n​\nGitHub is introducing a new\nCopilot Coding Agent\nfeature that will extend beyond simple code completion to provide more autonomous coding capabilities. This agent will be able to understand complex development tasks, make multi-file changes, and provide more comprehensive coding assistance while maintaining the seamless integration with GitHub's ecosystem.\nCline\n​\nCline offers autonomous coding capabilities with the ability to create, edit, and run files while providing step-by-step explanations. It can handle complex multi-file editing tasks and interact with terminal commands for comprehensive development workflows.\nClaude Code\n​\nClaude Code is a Terminal-native AI assistant with VS Code integration support. Perfect for command-line workflows and development environments.\nAmazon Q\n​\nAmazon Q is an AI-powered assistant designed for specialized scenarios within the AWS ecosystem. It provides intelligent assistance in environments like AWS Sagemaker Studio with JetBrains and offers data analysis capabilities within Amazon Quicksight.\nEnterprise Integration: Lilly Code\n​\nLilly Code is an enterprise tool that provides seamless authentication integration between Lilly's SSO and AI Coding tools like Claude Code and Cline, enabling secure access to AI capabilities for the AI team.\nAccess Steps\n​\nLilly Code is in process of migrating from alpha to production. To access the alpha version for evaluation purposes please reach out to the LLM Gateway team:\nhttps://gateway.llm.lilly.com\n.\nAfter go-live, Lilly Code will be available through the Developer Platform Front Door at\nhttps://dev.lilly.com\nKey Features\n​\nSSO Integration\n: Use your existing Lilly credentials\nEasy Setup\n: One-command installation with automatic configuration\nTerminal Native\n: Works directly in your command line workflow\nUnopinionated\n: General purpose, low-level model access\nVersatile\n: Fits into existing workflows and tools, including Claude Code and Cline support\nFuture-Ready\n: Models keep getting better, your setup stays the same\nWas this helpful?\nTags:\ngithub-copilot\nsoftware-engineering\nsolution-guide\ntechhq\nEdit this page\nPrevious\n🗄️ Engineering Enablement BLT\nNext\nAPI Standards\nQuick Reference\nDetailed Overview\nGitHub Copilot\nCline\nClaude Code\nAmazon Q\nEnterprise Integration: Lilly Code\nAccess Steps\nKey Features\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 8,
+  "depth": 3,
+  "crawled_at": "2026-02-25T10:09:12.610941"
+}

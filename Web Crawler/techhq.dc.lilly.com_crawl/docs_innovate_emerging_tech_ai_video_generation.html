@@ -1,0 +1,1508 @@
+<!DOCTYPE html><html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-innovate/emerging_tech/ai_video_generation" data-has-hydrated="true" data-theme="light" data-theme-choice="light" data-rh="lang,dir,class,data-has-hydrated"><head><meta charset="UTF-8"><meta name="generator" content="Docusaurus v3.9.2"><title>AI Video Generation | Tech HQ</title><meta data-rh="true" name="viewport" content="width=device-width, initial-scale=1.0"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://techhq.dc.lilly.com/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://techhq.dc.lilly.com/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://techhq.dc.lilly.com/docs/innovate/emerging_tech/ai_video_generation"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="AI Video Generation | Tech HQ"><meta data-rh="true" name="description" content="- Last Update: 2025-06-06"><meta data-rh="true" property="og:description" content="- Last Update: 2025-06-06"><style type="text/css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+  --fa-font-light: normal 300 1em/1 "Font Awesome 6 Pro";
+  --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Pro";
+  --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-regular: normal 400 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-light: normal 300 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-thin: normal 100 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-regular: normal 400 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-light: normal 300 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-thin: normal 100 1em/1 "Font Awesome 6 Sharp Duotone";
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+  overflow: visible;
+  box-sizing: content-box;
+}
+
+.svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285705em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  top: 0.25em;
+}
+.svg-inline--fa.fa-fw {
+  width: var(--fa-fw-width, 1.25em);
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-counter-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: 0.625em;
+  line-height: 0.1em;
+  vertical-align: 0.225em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+  line-height: 0.0833333337em;
+  vertical-align: 0.125em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+  line-height: 0.0714285718em;
+  vertical-align: 0.0535714295em;
+}
+
+.fa-lg {
+  font-size: 1.25em;
+  line-height: 0.05em;
+  vertical-align: -0.075em;
+}
+
+.fa-xl {
+  font-size: 1.5em;
+  line-height: 0.0416666682em;
+  vertical-align: -0.125em;
+}
+
+.fa-2xl {
+  font-size: 2em;
+  line-height: 0.03125em;
+  vertical-align: -0.1875em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: var(--fa-li-margin, 2.5em);
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: calc(-1 * var(--fa-li-width, 2em));
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.08em);
+  padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+}
+
+.fa-pull-left {
+  float: left;
+  margin-right: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right {
+  float: right;
+  margin-left: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  animation-name: fa-beat;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  animation-name: fa-bounce;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  animation-name: fa-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  animation-name: fa-beat-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  animation-name: fa-flip;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  animation-name: fa-shake;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  animation-name: fa-spin;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 2s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  animation-name: fa-spin;
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+.fa-bounce,
+.fa-fade,
+.fa-beat-fade,
+.fa-flip,
+.fa-pulse,
+.fa-shake,
+.fa-spin,
+.fa-spin-pulse {
+    animation-delay: -1ms;
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+    transition-delay: 0s;
+    transition-duration: 0s;
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-shake {
+  0% {
+    transform: rotate(-15deg);
+  }
+  4% {
+    transform: rotate(15deg);
+  }
+  8%, 24% {
+    transform: rotate(-18deg);
+  }
+  12%, 28% {
+    transform: rotate(18deg);
+  }
+  16% {
+    transform: rotate(-22deg);
+  }
+  20% {
+    transform: rotate(22deg);
+  }
+  32% {
+    transform: rotate(-12deg);
+  }
+  36% {
+    transform: rotate(12deg);
+  }
+  40%, 100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  transform: rotate(var(--fa-rotate-angle, 0));
+}
+
+.fa-stack {
+  display: inline-block;
+  vertical-align: middle;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: var(--fa-stack-z-index, auto);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.sr-only,
+.fa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:not(:focus),
+.fa-sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}</style><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://techhq.dc.lilly.com/docs/innovate/emerging_tech/ai_video_generation"><link data-rh="true" rel="alternate" href="https://techhq.dc.lilly.com/docs/innovate/emerging_tech/ai_video_generation" hreflang="en"><link data-rh="true" rel="alternate" href="https://techhq.dc.lilly.com/docs/innovate/emerging_tech/ai_video_generation" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Tech HQ RSS Feed"><link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Tech HQ Atom Feed"><link rel="preconnect" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com"><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-J14K334996"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-J14K334996",{anonymize_ip:!0})</script><link rel="icon" href="/img/favicon.ico"><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#25c2a0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" href="/img/favicon.ico"><link rel="mask-icon" href="/img/logo-dark.svg" color="#25c2a0"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="msapplication-TileColor" content="#25c2a0"><link rel="stylesheet" href="/assets/css/styles.b4e04221.css"><script src="/assets/js/runtime~main.fb55c054.js" defer=""></script><script src="/assets/js/main.a9e40874.js" defer=""></script><script type="application/ld+json" data-rh="true">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"📡 Emerging Tech","item":"https://techhq.dc.lilly.com/docs/innovate/emerging_tech/"},{"@type":"ListItem","position":2,"name":"AI Video Generation","item":"https://techhq.dc.lilly.com/docs/innovate/emerging_tech/ai_video_generation"}]}</script><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/8337dadf.481d17a3.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/bc043b77.59531655.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/3396bd18.905e90e6.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/8def2dd5.af4ae0de.js"><link rel="prefetch" href="/assets/js/1df93b7f.aa171871.js"><link rel="prefetch" href="/assets/js/a7456010.d2461d2a.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/b62bc28e.2140773f.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/d17eafb2.7e741dfe.js"><link rel="prefetch" href="/assets/js/a6aa9e1f.2bdf7efd.js"><link rel="prefetch" href="/assets/js/36994c47.a641290b.js"><link rel="prefetch" href="/assets/js/814f3328.69bba93f.js"><link rel="prefetch" href="/assets/js/10e75197.da9cdbf4.js"><link rel="prefetch" href="/assets/js/74741bf4.789922d0.js"><link rel="prefetch" href="/assets/js/5d5b7b15.a71995be.js"><link rel="prefetch" href="/assets/js/0ca03195.c59285f9.js"><link rel="prefetch" href="/assets/js/c15d9823.f443d85e.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/ab169593.258b9817.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/4766df6d.d26b3a73.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/5705d7e7.2e56b88d.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/1c6e4206.2f3ae11d.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/60faca13.861cebaa.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/e3bece51.cfb320a8.js"></head><body class="navigation-with-keyboard" data-rh="class" style="overflow: visible;"><svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_ToEg" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo-dark.svg" alt="Tech@Lilly Logo" class="themedComponent_br9s themedComponent--light_VhRU" height="50" width="100"></div><b class="navbar__title text--truncate">Tech HQ</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/innovate/">Innovate</a><a class="navbar__item navbar__link" href="/docs/plan/">Plan</a><a class="navbar__item navbar__link" href="/docs/solution/">Solution</a><a class="navbar__item navbar__link" href="/docs/access/">Access</a><a class="navbar__item navbar__link" href="/docs/learn/">Learn</a><a class="navbar__item navbar__link" href="/docs/contribute/">Contribute</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/blog">Updates</a><a href="https://flow.lilly.com" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link stackoverflow-link" aria-label="LillyFlow">LillyFlow<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a><div class="navbarSearchContainer_FAGn"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;"><input id="search_input_react" type="search" placeholder="Search ⌘+K" aria-label="Search" class="navbar__search-input search-bar ds-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="ds-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;"><div class="ds-dataset-1"></div></span></span></div></div><div class="toggle_h2qI colorModeToggle_TN9Z"><button class="clean-btn toggleButton_Nk0O" type="button" title="light mode" aria-label="Switch between dark and light mode (currently light mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX lightToggleIcon_KjIl"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX darkToggleIcon_fWkg"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX systemToggleIcon_Wx7I"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_gynm"><div class="docsWrapper_tLRL"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_xrlZ" type="button"></button><div class="docRoot_oqp2"><aside class="theme-doc-sidebar-container docSidebarContainer_Ze6h"><div class="sidebarViewport_dbQw"><div class="sidebar_Q15t"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_MLTQ"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/innovate/"><span title="💡 Tech@Lilly Innovation Pipeline" class="linkLabel_bwUU">💡 Tech@Lilly Innovation Pipeline</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/innovate/innovation_stages"><span title="🛞 Our Innovation Stages" class="linkLabel_bwUU">🛞 Our Innovation Stages</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/innovate/fast-start/"><span title="🏎️ Fast Start" class="linkLabel_bwUU">🏎️ Fast Start</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item red"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist menu__link--active" href="/docs/innovate/emerging_tech/"><span title="📡 Emerging Tech" class="categoryLinkLabel_MFuf">📡 Emerging Tech</span></a><button aria-label="Collapse sidebar category '📡 Emerging Tech'" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list" style="display: block; overflow: visible; height: auto;"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/innovate/emerging_tech/ai-avatars"><span title="AI Avatars / Digital People" class="linkLabel_bwUU">AI Avatars / Digital People</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/innovate/emerging_tech/ai_speech"><span title="AI Speech" class="linkLabel_bwUU">AI Speech</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/innovate/emerging_tech/ai_video_generation"><span title="AI Video Generation" class="linkLabel_bwUU">AI Video Generation</span></a></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_S1TL"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_A67S"><div class="docItemContainer_oKAG"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_sQDc" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_UUPH"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/innovate/emerging_tech/"><span>📡 Emerging Tech</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">AI Video Generation</span></li></ul></nav><div class="tocCollapsible_MbZu theme-doc-toc-mobile tocMobile_bDI5"><button type="button" class="clean-btn tocCollapsibleButton_khAz">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>AI Video Generation</h1></header>
+<div class="theme-admonition theme-admonition-info admonition_SytF alert alert--info"><div class="admonitionHeading_c8Bz"><span class="admonitionIcon_TU1o"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>Emerging Tech Report</div><div class="admonitionContent_mnjq"><ul>
+<li class="">Last Update: 2025-06-06</li>
+<li class=""><a href="https://techpipeline.lilly.com" target="_blank" rel="noopener noreferrer" class="">Tech Innovation Pipeline</a>, Enterprise Business Architecture, Tech@Lilly Enterprise</li>
+<li class="">Author: Doug Gorr</li>
+</ul></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="executive-summary">Executive Summary<a href="#executive-summary" class="hash-link" aria-label="Direct link to Executive Summary" title="Direct link to Executive Summary" translate="no">​</a></h2>
+<iframe src="https://collab.lilly.com/sites/enterpriseitarchitecture2/_layouts/15/embed.aspx?UniqueId=REDACTED-UUID&amp;embed=%7B%22hvm%22%3Atrue%2C%22ust%22%3Atrue%7D&amp;referrer=StreamWebApp&amp;referrerScenario=EmbedDialog.Create" width="640" height="360" frameborder="0" scrolling="no" title="EmergingTechReport_AIVideoGeneration.mp4"></iframe>
+<p>Artificial Intelligence video generation is emerging as a transformative technology that enables the automatic creation
+of video content from text prompts, images, or other inputs. Recent breakthroughs in generative AI models – especially
+diffusion and transformer-based models – have dramatically improved the realism and coherence of AI-generated video
+clips. Today’s leading AI video tools can produce short high-definition videos (typically a few seconds up to ~20
+seconds) with cinematic visuals, diverse styles, and even synchronized audio. Major AI providers
+like OpenAI, Google, Adobe, and a wave of startups are rapidly advancing this field. For tech and business leaders, AI
+video generation promises significant opportunities: dramatically lowering the cost and time required to produce
+marketing videos, training content, or promotional media; enabling mass personalization of video messages; and unlocking
+creative concepts that would be impractical with traditional filming. Early adopters in marketing (including pharma
+commercial teams) are already experimenting with AI-generated b-roll footage, product visualizations, and even
+AI-generated spokespeople. At the same time, this technology raises new challenges and risks – from output quality
+limitations (e.g. surreal physics or inconsistent characters) to ethical concerns like deepfakes and brand safety. The
+current state-of-the-art models still struggle with longer narrative coherence and some realism aspects, but progress is
+rapid. Competitors in the US and China are pushing the boundaries: for example, OpenAI’s Sora model can generate up to
+20-second 1080p videos with rich detail, while Google’s newly unveiled Veo 3 model goes further by integrating
+audio (music, sound effects, even speech) directly into generated videos. Well-funded startups like Pika Labs and
+industry players like Adobe (with Firefly) are adding features such as storyboarding tools, keyframe control, and direct
+integration into creative workflows. Lilly should pay close attention to this fast-evolving landscape – the companies,
+models, and capabilities discussed in this report – to craft strategies for adoption. In the near term, AI video
+generators can augment creative teams, accelerate content production, and enable novel marketing strategies, if
+organizations also institute proper oversight (to manage legal, ethical, and quality concerns). This report provides a
+deep dive into the technology, key players (and their relative strengths/weaknesses), feature comparisons, industry use
+cases (with a focus on marketing, training, and pharma applications), and recommendations for strategic adoption of AI
+video generation.</p>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="introduction">Introduction<a href="#introduction" class="hash-link" aria-label="Direct link to Introduction" title="Direct link to Introduction" translate="no">​</a></h2>
+<p>The ability for AI to generate video content on demand – once a futuristic concept – is now becoming reality. Over the
+past few years, generative AI has progressed from creating still images to producing short video clips. In 2022-2023,
+early text-to-video research prototypes (e.g. Meta’s Make-A-Video) showed the potential but were limited to a few
+seconds of low-resolution, often jittery footage. Fast-forward to 2024-2025, and we see the emergence of commercial AI
+video generation tools that anyone can try. These systems take a prompt (text description and optionally reference
+images or video clips) and synthesize a new video clip matching the description. Under the hood, most utilize diffusion
+models or advanced transformers that have been trained on vast amounts of video data to learn how to generate
+consecutive frames coherently. Essentially, they extend the techniques that made AI image generators (like DALL·E and
+Stable Diffusion) so successful, adding a temporal dimension to handle motion and physics.</p>
+<p>This technology arrives at an apt time: organizations are hungry for more video content than ever (for social media,
+e-learning, personalized marketing), but traditional video production is time-consuming and costly. AI video generation
+promises to democratize video creation, making it almost as easy as writing a script. A marketer could simply “tell” an
+AI, “Show a medicine droplet traveling through a bloodstream and destroying viruses, in a cinematic style,” and get a
+custom animated clip within minutes – something that would have taken a VFX studio weeks to produce. Likewise, a
+training team could generate scenario videos with different backgrounds or actors at the click of a button. The
+implications span many industries: media and entertainment (AI-assisted filmmaking and pre-visualization), advertising
+(rapid content iteration and localization), education (illustrative videos), and more. In pharma marketing specifically,
+we envision uses like mechanism-of-action animations, doctor-patient roleplay scenarios for training, or personalized
+patient education videos generated for different demographics and languages.</p>
+<p>However, it’s important to approach this innovation with open eyes. Current limitations mean AI-generated videos are not
+yet completely indistinguishable from real footage in most cases. Videos are typically short (a few seconds long) and
+may exhibit artifacts or surreal glitches, especially for complex motions or human anatomy. Ensuring a consistent
+character or narrative across a longer video remains challenging (some models allow chaining multiple short clips, but
+true long-form consistency is still an R&amp;D topic). There are also ethical considerations: generative video opens the
+door to hyper-realistic deepfakes or misleading content, which is a particular concern in regulated industries like
+pharmaceuticals. The source of content leveraged, the machine learning processes used to create these capabilities,
+remains an open legal concern. As with any new technology, Lilly must weigh the potential benefits and risks together
+when determining a strategy for use and adoption. As we delve into the technology, differences between tools, and
+strategies for adoption, we will highlight both the opportunities and risks.</p>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="ai-video-generation-technology-overview">AI Video Generation Technology Overview<a href="#ai-video-generation-technology-overview" class="hash-link" aria-label="Direct link to AI Video Generation Technology Overview" title="Direct link to AI Video Generation Technology Overview" translate="no">​</a></h2>
+<p>At its core, AI video generation extends image generation with the dimension of time. Early approaches
+involved Generative Adversarial Networks (GANs) and recurrent models, but today’s state-of-the-art largely
+uses diffusion models with transformers trained on video data. A diffusion model gradually “denoises” random noise into
+a coherent image; for video, this process is applied to a sequence of video frames (often in a latent compressed space
+to reduce computation). For example, OpenAI’s Sora model uses a latent video compressor and represents video as a series
+of “spacetime patches” that a transformer can process. The model is conditioned on a text prompt (and optionally
+starting frames or images) and learns to predict the next frames of video that match the prompt. With enough training
+(using millions of videos and images), such a model can generate remarkably diverse and complex scenes.</p>
+<p>Key architectural innovations have improved video generation quality recently. One is the use of unified training on
+images and videos – since images are essentially 1-frame videos, including large image datasets helps the model learn
+higher resolution details. Sora, for instance, is a “generalist” trained on both images and videos of variable lengths,
+which enables it to output higher fidelity and longer durations (up to ~1 minute internally). Another advance is the
+incorporation of spatial-temporal attention mechanisms (as seen in Google’s and others’ models) that help preserve
+consistency over time. Google DeepMind’s latest Veo 3 model reportedly uses 3D spatiotemporal attention and a
+specialized 3D VAE (Variational Autoencoder) to achieve cinema-quality results. In practice, many systems break the task
+into two stages: first generate a lower-resolution or lower-frame-rate video with AI, then upscale or interpolate it to
+HD and smooth frame rates (some platforms include built-in AI upscalers and frame interpolation to reach 1080p30 or
+beyond).</p>
+<p>Despite these advances, current models have constraints. Most clip lengths are short – e.g. 4–5 seconds for many public
+tools, sometimes extendable to ~20 seconds with higher tiers or chaining clips. Maintaining object permanence and
+character consistency across even those seconds is non-trivial (e.g. a person’s face might subtly change between frames
+if not controlled). Each frame must not only look plausible on its own but also flow logically from the previous,
+respecting physics and causality. This is an area where models still stumble: early-gen systems produced warping limbs
+and melting objects under motion. Newer models are improving – for example, Minimax’s video model was noted to handle
+motion physics (inertia, shadows, momentum) far more naturally than earlier models. Still, complex sequences (e.g. a
+human performing a sports move) can appear unnatural or “robotic” if the AI’s understanding of physics isn’t perfect.</p>
+<p>Resolution and frame rate are other technical factors. Producing full 1080p or 4K frames is computationally heavy, so
+many models trade off length or fidelity. Runway’s Gen-2 model, for instance, initially generated only ~480p-equivalent,
+low-framerate videos (appearing “slideshow-like”) to conserve compute. Today there are models that directly output HD –
+OpenAI’s Sora Turbo can do 1080p and Adobe’s Firefly Video generates 1080p by default – but usually for very short clips
+(~5–10 seconds). Some platforms provide flexible aspect ratios and orientations (portrait, square, etc.), recognizing
+needs for social media content.</p>
+<p>Importantly, AI video generators are increasingly handling multimodal inputs: not just plain text prompts, but
+also image inputs (for image-to-video) and initial video clips (video-to-video). Image-to-video means you can give a
+single frame or picture and have the model animate it or use it as the scene start. Many tools (Runway, Pika, Sora,
+Luma, Adobe, etc.) support this because it helps with consistency and user control – e.g. you can provide a character
+image to ensure the generated video revolves around that character’s appearance. Video-to-video allows taking an
+existing video and transforming it (changing style or continuing it beyond original length). For example, Runway Gen-1
+would take an input video and apply an AI-generated “style transfer” to turn real footage into an animated look. Several
+platforms now let you extend videos by generating new frames after the last frame (both Sora and Google’s Flow have a
+feature to “extend” or “continue” a clip seamlessly). These workflow features open the door to storyboard-driven
+generation: creators can stitch multiple AI clips into a longer sequence, maintaining some continuity by carrying over
+last frames as the next clip’s start.</p>
+<p>Another frontier is audio integration. Until recently, AI video tools have only produced silent clips – adding sound was
+a separate task. Google’s Veo 3 made headlines by generating synchronized audio along with the video. This includes
+sound effects and even rudimentary voices or music that match the scene, greatly enhancing realism and emotional impact.
+While not yet common across all platforms, this indicates a trend toward full multimedia generation (Google achieved
+this by drawing on its text-to-audio research and perhaps its new Gemini multimodal AI to understand the scene context).
+Adobe’s approach, meanwhile, integrates an AI voice model for dubbing/translation rather than generating sound effects
+for imaginary scenes– an example of focusing on practical editing needs like translating a video’s narration into
+multiple languages with matching lip sync. We anticipate more convergence of AI video + audio, enabling one-shot
+creation of a complete video with soundtrack.</p>
+<p>Finally, content moderation and safety are built into the technology stack of responsible providers. Providers like
+OpenAI and Google constrain their models to avoid disallowed content (e.g. extreme violence, pornographic or hate
+content), and they add watermarks or metadata to identify AI-generated videos. OpenAI’s Sora, for example, attaches C2PA
+metadata tags to all generated videos for transparency. Adobe trains Firefly on licensed, uncontroversial content to
+make it “commercially safe” and avoid IP violations. These safeguards are critical given how easily video can mislead;
+they are also important for adoption. For example, Lilly would have to ensure any AI-generated visuals do not
+inadvertently create off-label claims or inappropriate imagery. Additional layers of content moderation/control/filters
+will remain a Lilly-specific need.</p>
+<p>In summary, the key capabilities of AI video generation to be aware of include multiple dimensions to be evaluated as we
+approach new models and tools, including but not limited to:</p>
+<ul>
+<li class="">quality of visual output (resolution, frame rate, fidelity)</li>
+<li class="">ability to portray realistic physics and lighting</li>
+<li class="">options for camera movement/angles</li>
+<li class="">degree of control via prompts and references (storyboards, keyframes, etc.)</li>
+<li class="">support for audio output and moderation features</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="major-players-and-platforms-in-ai-video-generation">Major Players and Platforms in AI Video Generation<a href="#major-players-and-platforms-in-ai-video-generation" class="hash-link" aria-label="Direct link to Major Players and Platforms in AI Video Generation" title="Direct link to Major Players and Platforms in AI Video Generation" translate="no">​</a></h2>
+<p>The AI video generation ecosystem in 2025 spans Big Tech companies, well-funded startups, and open-source projects.
+Having surveyed these major players – OpenAI, Runway, Google, Kuaishou (Kling), Pika, MiniMax, Luma, Stability, Adobe –
+it’s evident that the field is crowded with innovation.</p>
+<p>Each brings something slightly different: OpenAI and Google push the frontier of capability, Adobe and Luma focus on
+creator workflow integration, startups like Pika and MiniMax carve out specialized strengths or faster iteration, and
+open projects like Stability ensure there’s room for custom solutions.</p>
+<p>Below we break down the notable models/tools and their current state-of-the-art capabilities, as well as how they
+differ:</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="openai-sora">OpenAI – Sora<a href="#openai-sora" class="hash-link" aria-label="Direct link to OpenAI – Sora" title="Direct link to OpenAI – Sora" translate="no">​</a></h3>
+<p>OpenAI’s Sora is a cutting-edge text-to-video model introduced in early 2024 and moved out of research preview by the
+end of last year. It is designed as a general-purpose video generator that can take text (and optionally image/video
+inputs) and produce new videos. Sora operates as a consumer product via a web interface (ChaGPT.com and Sora.com) and
+through API integration with OpenAI and the Microsoft Azure platform. The latter of which, seems to be the most likely
+avenue for Lilly’s adoption.</p>
+<p>Sora was initially capable of up to 1 minute of video in research settings, but for end-users the service currently
+allows generating clips up to 20 seconds long at up to 1080p resolution. Users can choose aspect ratios (widescreen,
+square, vertical) and even bring their own assets – e.g. provide an initial or final frame, or a short video to
+be extended or blended into new content. OpenAI has emphasized Sora’s prompt adherence and visual quality, aiming to
+closely match the input description while keeping outputs photorealistic or stylistically high-quality. The model
+leverages a diffusion transformer architecture and was trained on an extremely large dataset of image and video content,
+making it a “generalist” that can handle everything from cartoon-like clips to natural scenery.</p>
+<p>One of Sora’s distinguishing features is a built-in storyboard tool in its interface. This allows users to script out a
+sequence of scenes or specify key frames, giving more control over each moment in a longer narrative. For example, a
+user could specify that at second 0 a character is in Location A, and by second 5 the character moves to Location B, and
+Sora will try to fill in the transition. Such tools help mitigate the “consistency” problem by explicitly guiding the
+model. Sora also supports image-to-video (you can upload an image to influence the first frame or style)
+and video-to-video (upload a short clip to have Sora modify or continue it) generation, making it flexible in creative
+workflows.</p>
+<p><strong>Strengths:</strong> Sora is backed by OpenAI’s leading research, so it benefits from state-of-the-art training and
+fine-tuning. It produces impressively detailed and vivid visuals across a range of subjects – reviewers have showcased
+example prompts from cinematic city scenes to fantasy creatures, rendered with convincing lighting and depth of field.
+It can maintain coherence for longer durations than many competitors (20s or more), and prompt alignment is generally
+strong. The integration with ChatGPT means a large user base can experiment easily, and OpenAI has put in place
+robust content moderation and origin tagging (every Sora video is cryptographically tagged as AI-generated). OpenAI’s
+brand has also lead the GenAI field and continues to innovation across a variety of AI models and advanced capabilities.
+Additionally, OpenAI’s partnership with Microsoft makes it the most viable option for large enterprises, like Lilly.</p>
+<p><strong>Weaknesses:</strong> Despite its prowess, Sora (like others) still has limitations. OpenAI itself notes that the model can
+struggle with realistic physics and long complex actions – e.g. if a prompt involves a very intricate movement sequence,
+Sora often introduces artifacts or odd motion. Early testers observed that human figures from Sora could have a stiff or
+unnatural motion compared to real video. Also, because of the computational cost, generating 20 seconds of HD video
+is resource intensive. The cost structure for heavy use is thus non-trivial; Lilly may want to negotiate custom pricing.
+Another consideration is that Sora is a closed model – unlike some open-source alternatives, you cannot self-host or
+retrain it on proprietary data, so there is reliance on OpenAI’s innovation focus and reseller partner, Microsoft.</p>
+<p>Overall, Sora represents the high-quality, generalist approach to AI video: it aims to handle as many scenarios as
+possible with good quality and provide a safe, managed platform for users. It’s a bellwether for where mainstream AI
+video tech is, demonstrating realistic scene generation and moderate length, with expectation of rapid improvement as
+models scale further.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="runway-gen-2and-beyond">Runway – Gen-2 (and beyond)<a href="#runway-gen-2and-beyond" class="hash-link" aria-label="Direct link to Runway – Gen-2 (and beyond)" title="Direct link to Runway – Gen-2 (and beyond)" translate="no">​</a></h3>
+<p>Runway ML is a startup well-known among creatives for providing accessible AI tools, and they were one of the first to
+offer text-to-video generation to the public. Runway’s Gen-2 model (launched mid-2023) garnered attention as a
+commercially available text-to-video system available via a simple web interface. It followed their earlier Gen-1, which
+was limited to video stylization (applying AI-generated styles to existing videos). Gen-2 marked the ability to generate
+completely new video frames from a text prompt or an image prompt. Users could sign up on Runway’s website and generate
+short clips (initially ~4 seconds long) for free or with a subscription. This early availability made Runway Gen-2 a
+popular choice for designers and artists to experiment with AI video in 2023.</p>
+<p>Gen-2 outputs a few seconds of video at low resolution (around 720×1280 or less) and without sound. It supports text
+prompts as well as an image + text combo – for example, you can upload a reference photo and ask it to animate that
+scene with some described action. The generation process is cloud-based and quick (often under a minute to get results).
+Runway’s interface emphasizes ease of use: you enter a prompt, hit generate, and get a preview you can download as an
+MP4. Gen-2 can produce some artistic and creative results, but it has notable limitations. Reviewers found that Gen-2’s
+videos were often choppy in frame rate (almost like a fast slideshow) and grainy in appearance. This appears to have
+been a trade-off to make the service widely accessible (lowering GPU requirements by limiting quality). Gen-2 also
+struggled with complex prompts – it might latch onto one word and ignore nuance, and it failed at precise instructions
+like “a slow zoom-in” (the output didn’t execute the camera move). Consistency issues were present: objects could warp,
+and human figures often had surreal artifacts (blended limbs, etc.).</p>
+<p>Runway has been continuously improving its models. By late 2023, they were experimenting with features to increase
+coherence (some community members referred to a Gen-3 or new features like “last frame continuity” – allowing one
+generation’s last frame to carry into the next, somewhat like what others call extend or storyboard). It’s reported
+that Runway Gen-4 is on the horizon, aiming for higher quality and longer duration, but as of early 2025 the Gen-2 model
+(with incremental upgrades) is what’s publicly available. Runway’s comparative advantage is being creator-focused: their
+platform is an all-in-one creative suite, with tools for video editing, composting, and AI effects. For instance, Runway
+offers green screen background removal and image generation in the same app, so a user can mix AI video with other
+editing easily. The price of Runway is subscription-based, with a free tier that gives some generation credits and paid
+tiers for more usage.</p>
+<p>Runway shows the accessibility side of AI video. It may not have the absolute best fidelity, but it pioneered getting
+the tech into users’ hands. This has allowed a community of artists to develop around it (for example, the first AI
+music videos were often made with Runway Gen-2, accepting the rough edges as an aesthetic). Runway’s trajectory suggests
+they will continue to close the quality gap. Notably, Runway collaborated in the development of Stable Diffusion (image
+model) previously, indicating strong AI research chops. We anticipate Runway’s future models will improve frame
+smoothness and possibly length (their roadmap mentions working towards 15+ second clips). Businesses might use Runway
+currently for quick prototypes or social media content where a slightly stylized or surreal look is acceptable. However,
+for polished, photoreal marketing videos, other solutions (or further model maturity) would be needed.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="google-veo-3andflow">Google – Veo 3 and Flow<a href="#google-veo-3andflow" class="hash-link" aria-label="Direct link to Google – Veo 3 and Flow" title="Direct link to Google – Veo 3 and Flow" translate="no">​</a></h3>
+<p>Google entered the AI video arena through its DeepMind team, and in May 2025 it announced Veo 3, a next-generation video
+model, along with a tool called Flow for creators. Veo 3 represents one of the most advanced text-to-video models to
+date, notable for delivering high realism and integrated audio. In tests, Veo 3 generated videos of realistic human
+actors with synchronized sound and music, a leap in overall cinematic quality. For example, an Ars Technica report
+describes Veo 3 producing a clip of a person that was startlingly close to real footage, complete with background music
+that fit the mood. This puts Veo 3 at the cutting edge, potentially ahead of OpenAI’s and others’ models in certain
+aspects as of mid-2025.</p>
+<p>Veo 3 can generate HD video content with accompanying audio in response to a prompt. It excels at text rendering within
+video (e.g. generating legible signage or captions in the scene – something many image AIs fail at); testers found Veo 3
+more consistently renders written text correctly in frames compared to others. The audio component means if your prompt
+implies a sound (“a dog barking in a park”), the output video might have a barking sound. This dramatically increases
+the emotional impact and usefulness of the raw generations. Veo 3’s visual fidelity is extremely high: natural motion,
+better handling of complex scenes (e.g. multiple characters or dynamic camera movements) and fewer obvious glitches have
+been reported. It uses heavy-duty AI (likely an evolution of Google’s Imagen Video research combined with their Gemini
+multimodal model) and thus is computationally demanding – one test noted ~5 minutes or more to generate a clip with
+Google’s servers.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="flow">Flow<a href="#flow" class="hash-link" aria-label="Direct link to Flow" title="Direct link to Flow" translate="no">​</a></h3>
+<p>To make Veo 3 accessible, Google launched Flow, an AI filmmaking web app. Flow is essentially the user interface and
+workflow around Veo (and other models like Google’s Imagen image model). It’s available to Google’s AI Cloud subscribers
+(Pro and Ultra tiers) as a beta tool. Flow is built “with and for creatives” and introduces robust storytelling
+features: you can generate individual shots using Text to Video, Frames to Video, or Ingredients to Video. Frames to
+Video lets you specify a start and end frame (essentially keyframes) and the AI will animate the transition. Ingredients
+to Video means you can feed the AI specific elements – e.g. an image of a character or an art style – and it will ensure
+the output video includes those elements. This modular approach helps keep characters consistent and styles unified
+across scenes. Flow also has a Scene Builder: once you have a clip you like, you can add it to Scene Builder and then
+either “Extend” the scene (Flow will use the last second of frames to continue the action into a new clip) or “Jump to”
+a new scene (preserving context like the main character, but allowing a change of setting or action). This approach
+leverages Google’s powerful Gemini AI behind the scenes to maintain coherence when transitioning shots. In effect, Flow
+allows the creation of a multi-shot short film completely within the AI tool, something quite revolutionary. When
+finished, users can upscale their clips to 1080p and download them or even get GIF previews.</p>
+<p><strong>Strengths:</strong> Google’s solution is arguably the most comprehensive and advanced: highest quality visuals with audio,
+and a pro-oriented workflow that tackles many prior limitations (short length, lack of consistency, etc.). The
+integrated audio is a standout – in comparisons, testers found scenes from Veo 3 much more engaging due to background
+sounds and music, even when Kling (a competitor) had slightly better prompt accuracy in some cases. Veo 3 also shows
+strength in cinematography: it tends to choose cinematic camera angles and color grading that enhance the prompt’s mood.
+This may be due to training on film footage or specific tuning. Google’s cloud infrastructure means it can roll this out
+at scale when ready (currently it’s limited to certain users but expected to expand). Google will likely integrate these
+capabilities into Google Cloud offerings (GCP), making it easier to use via API or within Google’s productivity tools in
+the future.</p>
+<p><strong>Weaknesses:</strong> The main drawbacks are accessibility and cost. As of now, Flow (with Veo 3) is not open to everyone –
+it’s an exclusive service for paid subscribers, likely with limited invites. The compute intensity also means it’s slow
+(minutes per generation) and presumably expensive; Google’s tiered credits system in Flow indicates heavy usage could
+rack up costs (Flow has “Fast” and “Highest Quality” modes, with Highest using Veo 3 and consuming more credits). In
+testing, system congestion led to errors for Veo 3 generation, implying the service can be bottlenecked. Another
+consideration is that while Veo 3 pushes realism, it’s not infallible – some prompts found its prompt adherence weaker
+than a rival in specific aspects. For example, in a test prompt of “a woman runs away from a giant spider,” Kling’s
+model actually showed the woman running away from the spider (as instructed) while Veo 3’s output had the elements but
+not the exact action. So creative control might still need multiple attempts or careful prompt tuning. Also, if using
+Flow’s image-to-video via “Ingredients” mode, note that those videos apparently come without audio (so the audio
+generation only occurs in pure text-to-video mode, at least currently).</p>
+<p>Google’s entry with Veo 3 is a sign that AI video is reaching new heights. Lilly should watch this space because what is
+a limited release today could be a widely available tool in a year. If Google integrates Flow into its ecosystem it
+could accelerate adoption dramatically. In terms of strategy, Google’s heavy emphasis on storytelling workflow (e.g. the
+Scene Builder and keyframes) suggests that even as AI gets more powerful, human creative direction remains crucial – the
+winners will be those who combine AI capabilities with clear narrative guidance.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="kuaishou-kling">Kuaishou – Kling<a href="#kuaishou-kling" class="hash-link" aria-label="Direct link to Kuaishou – Kling" title="Direct link to Kuaishou – Kling" translate="no">​</a></h3>
+<p>Kling is an AI video generator developed by Kuaishou, a major Chinese social media and short-video company (often seen
+as a rival to ByteDance). Kuaishou launched Kling in 2024 and has rapidly iterated on it; by mid-2025 they
+released Kling 2.1, explicitly targeting the leadership in AI video generation. Kling has gained a reputation for
+producing cinema-grade short videos and is widely used in China for creating meme videos, animated satires, and more. In
+fact, Kling became popular among meme-makers to animate political satire videos of public figures (e.g. face-swapping
+famous people into movie scenes). This hints at Kling’s strengths in generating reasonably realistic human
+characters and its permissiveness (though presumably with some safeguards).</p>
+<p>Kling stands out for allowing relatively long outputs – up to 2 minutes of video in its latest version, far surpassing
+most Western counterparts currently. It also supports high resolution (1080p) generation and smooth frame rates (25+
+FPS). To handle different use cases, Kling 2.1 is offered in multiple quality tiers. According to a review, there
+are Standard, Professional, and Master modes: Standard produces 720p ~5-second clips, Pro yields 1080p with good
+quality, and Master (the most advanced) also at 1080p but with maximum fidelity and consistency. The Master tier uses
+the latest model with those 3D spatial-temporal techniques we mentioned, and it is slower and costlier (100 credits for
+5s, vs 35 credits for Pro). Notably, prompt adherence in Kling 2.1 is reported to be excellent – it captures complex
+instructions well and keeps on-script better than many models. For instance, if asked to show specific text on a robot’s
+body and a certain action, Kling usually gets the details right (especially in Master mode). It does have some
+difficulty if the text or element is not the main focus (it might drop minor details when focusing on bigger things),
+but overall its accuracy to the prompt is a selling point.</p>
+<p>Kling offers a rich set of features akin to others: text-to-video, image-to-video, video extension, camera control, even
+face and lip-sync capabilities. The platform lists tools like Motion Brush (perhaps to guide motion in a specific
+region), Start/End Frame input (like keyframes), Virtual Try-On (indicating a specialization in changing outfits on
+people in video), and Lip Sync which suggests you can input audio dialogue and have a generated character speak it. This
+aligns with Kuaishou’s needs for user-generated content (imagine an app where users can type a script and have an AI
+avatar video speak it). Kling also provides an API, meaning developers can integrate it into apps or pipelines. The
+volume of content generated is huge – by one report, Kling had already output over 10 million videos within a short time
+of launch, reflecting its popularity on a large social platform.</p>
+<p><strong>Strengths:</strong> Kling’s natural motion and authenticity have been highlighted. A Decrypt comparison noted Kling 2.1
+produces footage that looks genuinely cinematic, with characters moving naturally and complex action sequences playing
+out without obvious AI artifacts. Emotions on faces feel more authentic than prior models in some tests. Also,
+Kling’s fast pace of improvement is notable: within one year, Kuaishou jumped from version 1.0 to 2.1, each time
+tightening the gap with the cutting edge. The multi-tier offering is smart for business use – one can use cheaper modes
+for drafts and then upscale final output with Master mode. For an enterprise, Kling could be cost-effective especially
+for image-to-video tasks; in fact, tests found Kling 2.1 excels at image-to-video conversion (turning a static image
+into a moving scene) relative to peers. Its camera movements and VFX are also advanced; for example, it can handle
+dynamic shots (one test had it do a time-lapse city transformation with camera movement – challenging, but it partially
+succeeded). The presence of specialized effects (like presumably the Elements or VFX presets on their site) means it
+might offer fun creative filters natively.</p>
+<p><strong>Weaknesses:</strong> One limitation is accessibility for non-Chinese users. Kling’s official interface is primarily in
+Chinese (though Pollo AI, a third-party site, provides an English gateway to try Kling models). Payment and support
+might be geared towards Chinese market, so international enterprise adoption could be tricky at the moment. Another
+factor: while Kling leads in some metrics, Google’s Veo 3 has the edge in integrated audio and possibly in overall
+“atmosphere” (color grading, etc.). In a direct face-off, each had scenarios where it did better: Kling was better at
+strictly following the action described, whereas Veo’s clip with audio delivered a more cinematic feel even if it
+deviated slightly. Also, Kling’s Master mode, though high-quality, is compute-heavy – some users might find the wait
+times (and costs) for the highest quality prohibitive for very iterative work. Lastly, as an AI that can do
+deepfake-like outputs (given meme usage and lip-sync), one must ensure ethical use. It’s likely Kuaishou has moderation
+on their platform, but if one is using the API, compliance with any deepfake laws (like requiring disclaimers for
+AI-generated realistic people) is necessary.</p>
+<p>In summary, Kling is a powerhouse in AI video and a direct competitor to Sora and Veo. For our global company, Kling
+demonstrates that the Chinese market has an opportunity to leverage models not accessible to all geographies. Minimally,
+it’s a model to benchmark against. Lilly should keep an eye on whether Kuaishou or partners make Kling available
+globally, and on the kinds of content it enables (e.g. it’s very adept at producing short-form, eye-catching clips which
+is exactly the content driving social media engagement).</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="pika-labs-pika-video">Pika Labs – Pika Video<a href="#pika-labs-pika-video" class="hash-link" aria-label="Direct link to Pika Labs – Pika Video" title="Direct link to Pika Labs – Pika Video" translate="no">​</a></h3>
+<p>Pika Labs is a startup that has quickly risen in the AI video field. Co-founded by two PhD students in 2023, Pika Labs
+made waves by mid-2024 when it secured a US$135 million funding round, valuing the company at $470M. This substantial
+backing (notably involving investors from both the US and Asia) signals that Pika is viewed as a serious contender.
+Pika’s AI video generator – often just called Pika AI – is known for being user-friendly and creatively versatile. It’s
+offered via a web interface and API, and has even been integrated into third-party creative apps (e.g. the Captions app
+integrated Pika to allow users to generate b-roll clips from text inside a video editing workflow).</p>
+<p>Pika supports both text-to-video and image-to-video, similar to others. It can generate approximately 5-second clips by
+default, and the team has been extending that (the platform notes up to ~2 minutes by chaining or iterating, likely in
+their newer version 1.5+). The resolution it works with is around 720p (1296×720) in current versions for generation.
+Pika’s style flexibility is a strong suit – it can do “various styles, such as cinematic, animated, or cartoonish” just
+by adjusting the prompt or selecting presets. They have been updating the model rapidly (the Pollo AI interface shows
+Pika v2.2 as latest, implying several version jumps). One unique feature Pika introduced is “Pika Effects”
+(dubbed Pikaffects). These are essentially AI-driven video effects that manipulate objects in the generated scene. For
+example, users can apply effects like Inflate, Melt, Explode, Squash, Crush, or even “Cake-ify” to objects. This
+suggests if you generate a video of, say, a statue, you could then have it melt or explode in a physically plausible way
+via the AI – an exciting tool for dynamic visuals and likely very popular for fun content creation. This focus
+on object-level control is somewhat unique to Pika and caters to short-form video creativity (imagine TikTok-style
+visual gags, etc.).</p>
+<p>Pika’s interface is noted to be intuitive for newcomers. They likely have templates or guided workflows (enter your
+prompt, choose a style, etc.). Also, Pika Labs has emphasized continuity features: much like others, you can use the
+last frame of one video as the first of the next to string together longer scenes with a persistent character. A
+community of users have tested Pika’s capability on things like B-roll (it does well in generating generic footage like
+tech product pans), cartoon animation (smooth results), and abstract visuals.</p>
+<p><strong>Strengths:</strong> Pika appears to combine research-grade tech with a product mindset. Raising $135M so early means they
+have resources to push the model’s quality and scale quickly. Already by June 2024, Pika’s results were impressing many
+– it produces smooth camera movements and lighting effects, and in some comparisons was among the top for certain tests.
+For instance, a Medium reviewer noted Minimax and Pika as two standout platforms that “actually work” for creators
+needing reliable output. Pika’s multi-style capability means marketers or creators can use it for a range of content: a
+realistic stock-footage-like clip for one project, a whimsical cartoon for another. The Pikaffects give an extra
+dimension of creativity, allowing users to generate not just static scenes but scenes with an effect or
+transformation (great for grabbing viewer attention). Pika also supports API integration, which means businesses can
+build it into their own tools or pipelines (for example, an e-learning platform could call Pika’s API to generate custom
+video illustrations on the fly for course content). Finally, Pika’s background – co-founders with strong academic
+credentials (one profile mentions a co-founder, Wenjing Guo, is a Harvard CS grad lauded as a “genius girl” in China) –
+suggests a talent advantage and possibly cross-collaboration between US and Chinese AI communities.</p>
+<p><strong>Weaknesses:</strong> While Pika is promising, it’s still an upstart in a field with emerging giants. Its model may not yet
+match the absolute fidelity of OpenAI or Google’s latest – for example, resolution being 720p vs others pushing 1080p,
+and it’s unclear if Pika has audio generation (likely not at the moment; most mention is about visuals). Some features
+in Pika are marked as “v1” or “v1.5” in comparison tables, indicating they are in active development (e.g. perhaps
+motion brush or mid-frame control is not fully there yet). Also, as a smaller company, Pika might not have as extensive
+content filtering or enterprise support as OpenAI, Adobe, and Google, so Lilly would need to vet its outputs carefully
+for IP or moderation issues. The competitive landscape is another challenge – multiple competitors means Pika needs to
+differentiate; it seems to do so with effects and ease-of-use, but others can emulate those too. Pika’s strength in
+“various styles” could also mean it might not yet dominate any one style in quality (jack of all trades risk).</p>
+<p>For Lilly, Pika Labs is a startup to watch or possibly partner/invest/acquire. Its agility means new features (like
+those quirky video effects) come out quickly, which could be leveraged for marketing novelty. For instance, our creative
+teams might use Pika to generate an attention-grabbing visual clip (imagine a pill that “explodes” into confetti to
+symbolize treatment success – an effect Pika might handle well). With its sizable funding, Pika could also become a
+takeover target or major player globally. The key will be how they scale their service and continue improving model
+performance.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="minimax-hailuo-video-01">MiniMax – Hailuo Video-01<a href="#minimax-hailuo-video-01" class="hash-link" aria-label="Direct link to MiniMax – Hailuo Video-01" title="Direct link to MiniMax – Hailuo Video-01" translate="no">​</a></h3>
+<p>MiniMax is a Chinese startup (behind the model named Hailuo Video-01) that has also made a name for itself among AI
+video creators. Often just referred to as “MiniMax video generator,” it gained recognition in late 2023 for delivering
+impressively realistic motion continuity at 720p resolution. MiniMax’s approach appears to prioritize the fundamental
+challenges of video generation: physics, continuity, and camera work.</p>
+<p>Hailuo Video-01, as offered by MiniMax, generates high-definition (720p) videos at 25 fps and supports
+both text-to-video and image-to-video modes. A typical output is ~5 seconds long, but users have successfully stitched
+clips to create longer sequences (one user made a 30-second video by concatenating 5s segments, with seamless flow).
+MiniMax particularly shines with cinematic camera movements – reviewers were impressed by how well it handled complex
+pans and drone-like aerial shots while keeping the scene coherent. For example, flying over a beach then tilting toward
+a waterfall in one continuous motion was executed smoothly. The model also excelled at B-roll style footage: generating
+a professional-looking slow-motion laptop product shot with correct focus and lighting transitions. This indicates
+strong understanding of focus depth, blur, and other cinematographic details.</p>
+<p>In terms of content, MiniMax did very well with cartoon animations and abstract visuals. It produces smooth,
+high-quality cartoon motion, making it great for creators of animated shorts. And for abstract or surreal scenes, it
+maintained immersive and stunning visuals. When it comes to continuity, MiniMax has a feature where you can take the
+last frame of a clip and feed it as the first frame of the next generation – this allowed that 30-second continuous
+video with a character, where the character stayed consistent throughout. That consistency is a major plus; the user
+essentially stiched longer stories by manual continuity, and the tool worked nicely.</p>
+<p><strong>Strengths:</strong> MiniMax’s biggest strength is realistic motion physics. Movements in its videos look real and believable
+– the AI seems to have a better grasp of inertia and momentum, avoiding the jerky or floaty feel others sometimes have.
+In side-by-side tests, motions that looked robotic in Sora were more lifelike in MiniMax, suggesting their model
+architecture may explicitly model physics or was trained on plenty of real video. The continuity (the ability to chain
+clips) is another strength, enabling content creators to tell longer stories if needed. Also, MiniMax’s output quality
+for its resolution is high – 720p might sound lower than 1080p, but given many AI videos are still in that ballpark,
+MiniMax’s effective quality is top-tier within that. It is also reportedly free or low-cost to try (it was available on
+platforms like Anakin.ai for users to experiment), which has helped it gain traction among the community.</p>
+<p><strong>Weaknesses:</strong> MiniMax isn’t as globally known as some others, and documentation in English is sparse.
+Its image-to-video with humans was noted as a weak spot – when given a real human photo to animate, the results were not
+very convincing (unnatural transitions, lack of detail). It performed better with cartoonish images than real human
+photos. So for tasks like animating a real person’s photo, it may not be the best (other specialized avatar tools or
+Synthesia might do better). Also, MiniMax had difficulty with very complex movement scenarios – e.g. a football player
+kicking a ball, where precise interaction is needed, looked clunky. This suggests limits in handling intricate
+multi-object physics (ball interacting with foot etc.). Another limitation is that, at least as of late 2024, MiniMax
+outputs were capped to short durations and required manual effort to chain longer videos – it doesn’t inherently
+generate a 30s story in one go; you have to curate it scene by scene.</p>
+<p>For Lilly, MiniMax’s existence is proof that there are multiple players beyond the most hyped. If we want to focus on
+experimenting with as many options as possible, MiniMax would be a good model to assess for scenarios needing believable
+movement (say you want an AI video of a pill bottle gently rotating and tilting – physics heavy – MiniMax might nail
+that). However, since it’s less of a full product and more of a model accessible via certain interfaces or APIs
+(Segmind, Replicate, etc.), leveraging it requires engineering or technical integrations if not working with a provider
+that offers the model as part of a service. It’s one of the “behind the scenes” engines that some AI video platforms
+could incorporate for their motion strengths.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="luma-labs-dream-machine-ray-2">Luma Labs – Dream Machine (Ray 2)<a href="#luma-labs-dream-machine-ray-2" class="hash-link" aria-label="Direct link to Luma Labs – Dream Machine (Ray 2)" title="Direct link to Luma Labs – Dream Machine (Ray 2)" translate="no">​</a></h3>
+<p>Luma AI is known for its 3D scanning and NeRF (neural radiance field) technology, which allows creating 3D models from
+phone captures. In 2023, Luma expanded into generative AI with its Dream Machine app, aiming to be a “visual thought
+partner” for both images and videos. Luma’s Dream Machine is unique in that it blends 2D and 3D AI capabilities: it
+includes an image generation model (Photon) and a video model (Ray 2) working in tandem. The focus is on giving
+creators fluid control and fast iteration in making spectacular visuals without needing prompt engineering skills.</p>
+<p>Dream Machine allows you to generate both images and videos and move seamlessly between them. Notably, you can
+use natural language to not only create but also edit and refine outputs (e.g. “make it a 90s vibe” or “add a fisheye
+lens effect” to modify an image/video). For videos, Luma’s Ray 2 model is designed for fast, coherent motion and
+ultra-realistic details. Dream Machine includes robust features for controlling outputs: you can “Direct the perfect
+shot with start/end frames” – meaning keyframe control similar to Adobe’s and Google’s approach. You can also “loop” a
+video seamlessly if desired. It emphasizes ability to create unique, consistent characters from a single image – so you
+provide an image of a character and the AI can generate new scenes with that character consistently present. There’s
+also support for visual style references: you can upload or select reference images for style or specific elements,
+guiding the generation.</p>
+<p>Dream Machine’s interface touts features like Brainstorm (the AI suggests ideas or variations if you’re not sure where
+to go next), and Share &amp; Remix which encourages a community aspect (users can share their creations and even the “behind
+the scenes” prompt+refs so others can iterate on them). Under the hood, Photon (image model) helps ensure any single
+frame or detail is high-quality, while Ray 2 (video model) handles the temporal aspect – this dual approach likely
+contributes to the sharp, detailed frames and accurate text rendering that Luma claims (they specifically list “sharp
+and accurate text rendering” as a feature, implying their model can place legible text in video). They also
+highlight “accurate lighting and physics” and “clean and consistent animation style”, indicating the model was trained
+to respect physical realism and maintain a coherent style throughout a clip.</p>
+<p><strong>Strengths:</strong> Luma’s Dream Machine is praised for its polished user experience. Tom’s Guide in late 2024 called it “one
+of the best interfaces” among AI video platforms. This ease and fluidity could reduce the learning curve for non-AI
+experts. The range of control is also a key strength: Dream Machine basically offers every control feature we’ve
+discussed – keyframes, reference images, style control, camera movement, looping, region modifications – within one app.
+This is very powerful for artists or marketing teams who want to fine-tune outputs to match brand guidelines (e.g.
+ensuring a brand mascot stays on-model, or a scene has the exact color palette desired). Moreover, Ray 2 being a
+“large-scale video model” indicates it has been trained extensively, likely yielding very high success rates of usable
+generations (Luma claims Ray2 outputs are “substantially more production-ready” than prior gen video AI). Dream
+Machine’s ability to generate both images and videos means users can prototype a concept with still images (faster) and
+then seamlessly switch to video mode to animate it – this interoperability can save time and ensure consistency between
+campaign imagery and videos.</p>
+<p><strong>Weaknesses:</strong> Luma Dream Machine might be slightly under the radar in enterprise circles compared to OpenAI,
+Microsoft, Google or Adobe. It’s a newer entrant and was initially iOS-only (though now on web too). Being an app that
+targets creatives, it might not yet have the integrations into enterprise tech stacks or the compliance features
+businesses need (no mention of watermarking or governance, for instance). Also, its output length is not explicitly
+stated – likely similar short durations, possibly extendable with looping or chaining. If someone wants a 30-second
+polished piece, they may have to puzzle-piece multiple generations. Additionally, while having lots of control is great
+for power users, it could overwhelm others; Luma tries to mitigate this with the Brainstorm auto-suggestions, but using
+all features effectively might require training/experience.</p>
+<p>For Lilly, Luma could be a fantastic prototyping tool – e.g. you could create a complex scene of a molecular world or
+patient journey, iterating quickly with text prompts and tweaks until it’s right, then generate final video frames. Its
+strength in “exceptional adherence to detailed instruction” means if you have a very specific storyboard or shot list,
+Dream Machine might follow it closely. It’s also worth noting Luma’s heritage in 3D: they might eventually integrate
+true 3D scene generation or AR content, which could be useful for pharma (think interactive 3D MOA visuals). At present
+though, Dream Machine is a strong sign that user experience and granular control are becoming differentiators in AI
+video platforms.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="stability-ai-stable-video-diffusion">Stability AI – Stable Video Diffusion<a href="#stability-ai-stable-video-diffusion" class="hash-link" aria-label="Direct link to Stability AI – Stable Video Diffusion" title="Direct link to Stability AI – Stable Video Diffusion" translate="no">​</a></h3>
+<p>Stability AI, known for open-source image generator Stable Diffusion, has also ventured into video. In late 2023, they
+released Stable Video Diffusion (SVD) in research preview. This model is based on Stable Diffusion’s image generation
+but extended to produce short videos. True to Stability’s mission, the model was open-sourced (code on GitHub and
+weights on HuggingFace) for researchers and developers. This makes Stable Video Diffusion an important project for those
+who want custom or self-hosted AI video solutions.</p>
+<p>The initial release of Stable Video Diffusion can generate very short clips – specifically 14 or 25 frames of video. At
+common frame rates, that’s roughly 0.5 to 1 second of footage, so extremely brief, although one can run it sequentially
+to make a few seconds. It allows setting a frame rate between 3 and 30 fps for those frames. The focus was on proving
+the concept and providing a foundation to build on, rather than competing on length/quality with commercial models.
+Stability mentioned the model could handle different frame rates and aspect ratios in principle, and that with
+finetuning it could do tasks like multi-view (novel view) synthesis – e.g. generating different angles of a scene from
+one input image. They positioned it as a base model on top of which many specialized video models might be built,
+similar to how Stable Diffusion spawned many fine-tuned image models for various styles.</p>
+<p>Stability also launched a beta web interface (as a waitlist) for text-to-video using this model, and an API on their
+developer platform. By 2024’s end, they announced Stable Video 4D 2.0, which was geared towards “4D generation and novel
+view synthesis from a single video input”. This suggests a branch of their work focusing on turning a single video into
+a 3D scene or generating new angles (useful for AR/VR or VFX where you need more camera coverage).</p>
+<p><strong>Strengths:</strong> The big advantage of Stable Video Diffusion is openness and customizability. Researchers have full access
+to the model to fine-tune on their own data, which could be useful for a company wanting a model trained specifically
+on, say, pharmaceutical TV commercials or lab experiment videos (ensuring output is in-domain). Also, because it’s based
+on Stable Diffusion, it benefits from a huge open-source community. Already enthusiasts have built demos like
+image-to-video “animation” notebooks and integrated SVD into tools (one example: a free web tool offered
+stable-video-diffusion image-to-video with trial runs). Stability claimed that at release, their model “surpass[ed] the
+leading closed models in user preference studies” – if true, that’s a strong endorsement of quality, though it might
+refer to comparisons with earlier or simpler models. The speed is decent; Stability said it can create videos in “2
+minutes or less” for those short clips, and being lightweight means it could run on accessible hardware eventually (they
+often optimize models for consumer GPUs). For a company with skilled ML engineers and low risk tolerance, Stable Video
+Diffusion provides a platform to customize without needing to send data to third-party APIs.</p>
+<p><strong>Weaknesses:</strong> In terms of raw capability, SVD lags behind the likes of Sora, Veo, or others in this list. The
+extremely short length (1 second) and likely lower resolution (their paper suggests training at smaller resolutions)
+mean it’s not immediately useful for direct content creation yet – more of a tech demo. It doesn’t produce audio. Also,
+using it requires ML expertise; it’s not an off-the-shelf product for end-users. Stability’s emphasis on research means
+polished features like storyboards or content moderation are left to the implementer. Indeed, one has to be careful: an
+open model might produce disallowed content if fine-tuned incorrectly, and the onus is on the user to enforce moderation
+or filtering.</p>
+<p>Stable Video Diffusion is relevant if you have a strategy around open-source AI and want to possibly build in-house
+capability. A pharma company might, for example, fund a project to fine-tune SVD on their library of MOA animation
+frames to create a custom model that generates new scientific animations consistent with their style – something you
+wouldn’t want to put into a public model for IP reasons. That could be a competitive differentiator long-term. Stability
+AI also tends to improve their models iteratively, and with community contributions, so by late 2025 we might see SVD
+2.0 that can do several seconds at higher quality. It’s the “keep an eye on this if you want a differentiated AI video
+solution” contender.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="adobe-firefly-generative-video">Adobe – Firefly Generative Video<a href="#adobe-firefly-generative-video" class="hash-link" aria-label="Direct link to Adobe – Firefly Generative Video" title="Direct link to Adobe – Firefly Generative Video" translate="no">​</a></h3>
+<p>Adobe is integrating generative AI across its Creative Cloud, and for video content Adobe’s solution is the Firefly
+Video Model (often just called Generative Video in Firefly). Announced in 2024 and rolled out in beta this April (2025),
+Adobe’s tool is a bit different in focus from others: it’s designed to enhance video editing workflows (think of it as
+an assistant to Premiere Pro users) rather than to replace the video camera entirely. Adobe is leveraging its vast
+library of licensed assets (Adobe Stock) to train this model, ensuring the outputs are commercially safe for use (no
+unlicensed content).</p>
+<p>As of launch, Firefly’s generative video supports two main generation modes: Text-to-Video and Image-to-Video. Users can
+enter a descriptive prompt to get a 5-second, 1080p video clip. Crucially, Adobe’s tool allows uploading a start frame
+and end frame to guide the motion. This is essentially keyframe control: for example, you could upload a still image of
+a scene as the start and another image for the end, and the AI will animate a transition between them. Firefly also
+provides drop-down menus for camera shot size and angle, as well as presets for camera motion (e.g. pan, zoom, tilt) to
+further direct the result. This GUI approach aligns with Adobe’s pro users who may be more comfortable picking settings
+than writing long textual prompts for everything.</p>
+<p>In addition to generation, Adobe introduced Translate Video and Translate Audio features with the Firefly launch. These
+use an AI voice model to dub existing videos into different languages (with some lip-sync capability for enterprise
+users). While not generation from scratch, it’s a complementary AI feature that can be big for training or marketing –
+e.g. easily turn an English video into French, Spanish, etc., with the voice and lips aligned. It shows Adobe’s holistic
+approach: not just make new content, but modify and repurpose content efficiently.</p>
+<p>Adobe’s Firefly video is integrated in the cloud (firefly.adobe.com) as a beta, with plans to bring it into Premiere Pro
+later. It emphasizes use cases like filling gaps in footage, generating b-roll of scenery, adding atmospheric
+elements to existing shots (like generate an overlay of smoke or dust on a green screen). Indeed, the FAQ suggests top
+use cases as adding elements, animating static images (e.g. making a waterfall flow), or creating stylized graphics and
+text animations.</p>
+<p><strong>Strengths:</strong> Adobe’s key advantage is seamless integration for creatives. Editors can incorporate generative clips
+right inside their familiar tools (eventually in Premiere/AfterEffects), which lowers adoption friction. Also,
+the ethics and legal safety – every Firefly output is trained on licensed content and can be used commercially with
+confidence. This is a huge factor for enterprises worried about copyright (some companies avoid using other AI image
+generators due to unclear training data provenance; Adobe solves that). The resolution (1080p) and aspect ratio options
+(16:9 and 9:16 supported out of the gate) meet professional standards. Firefly’s camera and keyframe controls mean users
+can get precisely the shot they envision – rather than hoping a pure text prompt yields the right camera angle, you can
+explicitly say you want a “wide shot, overhead angle, slow dolly movement,” etc. This dramatically improves reliability
+for production use, because it reduces ambiguity for the AI. Additionally, Adobe’s inclusion of translation and voice
+AI in the suite is a bonus for people who want an all-in-one solution for localizing and creating content.</p>
+<p><strong>Weaknesses:</strong> Firefly’s generative video is currently limited to 5 seconds max for generation, which is shorter than
+some competitors like Sora (20s) or Kling (minutes). It is clearly meant for quick clips and fillers, not full scenes.
+If a marketing team wants to create a 30-second ad purely from AI, they’d need to string together many Firefly
+generations and likely do some manual stitching. Another limitation is that as of now it’s a separate web beta, not
+fully in Premiere – meaning an extra step to use (though this will likely change). The content domain might also be
+somewhat constrained: given Adobe’s professional focus, the model might excel at certain types of shots (e.g. landscape
+b-roll, simple subject animations) but perhaps not be as wildly imaginative or diverse in style as some others. Early
+beta users will certainly find edges to what it can do. Also, because Adobe prioritizes safe training data, the training
+set might exclude a lot of web videos – it’s likely biased towards stock footage and professionally created content.
+This means it might not have learned some of the “internet’s imagination” that open models did; whether that’s a
+downside (less breadth) or upside (more reliability) depends on use case.</p>
+<p>For Lilly, Adobe’s generative video could be immediately useful in post-production enhancement. Imagine you have a live
+action commercial but need to add an effect – say a glowing aura around a patient to symbolize improvement – Firefly
+could potentially generate that element on a transparent background to overlay. Or if you’re storyboarding a concept,
+you can quickly generate video mockups of scenes to show stakeholders, all within the Adobe ecosystem. The translation
+feature is directly relevant for global pharma marketing: you could take a video with an English voiceover and get a
+multilingual version in minutes, which is often needed for global training or promotion (with the caveat that lip-sync
+for different languages is still a work in progress). Adobe’s move also signals that AI video will be a standard tool in
+creative departments, not a niche experiment.Shape</p>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="industry-impact-and-use-cases">Industry Impact and Use Cases<a href="#industry-impact-and-use-cases" class="hash-link" aria-label="Direct link to Industry Impact and Use Cases" title="Direct link to Industry Impact and Use Cases" translate="no">​</a></h2>
+<p>The advent of AI-generated video impacts multiple sectors. Here we focus on marketing, learning &amp; development
+(L&amp;D)/training, and specifically the pharmaceutical industry context, while noting broader implications:</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="marketing-and-advertising">Marketing and Advertising<a href="#marketing-and-advertising" class="hash-link" aria-label="Direct link to Marketing and Advertising" title="Direct link to Marketing and Advertising" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="content-volume--personalization">Content Volume &amp; Personalization<a href="#content-volume--personalization" class="hash-link" aria-label="Direct link to Content Volume &amp; Personalization" title="Direct link to Content Volume &amp; Personalization" translate="no">​</a></h4>
+<p>Marketing teams are under pressure to produce more content than ever, tailored to different audiences and channels. AI
+video generation can produce quick video variants at scale. For example, a global brand campaign normally requires
+shooting different versions of an ad for each region – with generative AI, one could create localized versions by
+changing the background, actors’ apparent ethnicity, language of on-screen text, etc., without a reshoot. AI video could
+generate the same scene in different hospital settings or swap the text on a prescription bottle label to a different
+language, saving huge production costs. Personalized video ads (addressable TV or online ads) could also be
+auto-generated: an AI might create thousands of slight variations of a medical device ad, each tuned to a particular
+demographic or even individual (with appropriate compliance checks).</p>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="creative-brainstorming--prototyping">Creative Brainstorming &amp; Prototyping <a href="#creative-brainstorming--prototyping" class="hash-link" aria-label="Direct link to Creative Brainstorming &amp; Prototyping " title="Direct link to Creative Brainstorming &amp; Prototyping " translate="no">​</a></h4>
+<p>AI video is a boon to the creative process. Agencies should be saving time and passing cost savings to their customers
+with tools like Sora or Luma’s Dream Machine to storyboard concepts in motion, not just static frames. This makes it
+easier for non-technical stakeholders to grasp a concept. Pharma marketing often involves explaining abstract concepts
+(like how a drug works in the body). Instead of expensive 3D animations made after weeks of work, a team could prototype
+an MOA animation with AI in a day to visualize the idea, then refine it. It accelerates the iteration cycle on creative
+ideas. Several companies already use DALL-E or Midjourney for concept art – extending that to video is the next logical
+step. Business leaders may appreciate seeing a mock commercial or animated concept early on, which guides
+decision-making on whether to invest in a full production or adjust messaging.</p>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="cost-and-time-savings">Cost and Time Savings<a href="#cost-and-time-savings" class="hash-link" aria-label="Direct link to Cost and Time Savings" title="Direct link to Cost and Time Savings" translate="no">​</a></h4>
+<p>Particularly for B-roll and filler content, AI can reduce or eliminate the need for stock footage or shoots. Need a
+5-second establishing shot of a laboratory at sunrise? Instead of searching stock libraries or setting up a shoot, an AI
+could generate one that fits the precise vision. This is what Adobe is targeting – filling timeline gaps. Marketing
+videos often have many such moments. Over time, as reliability improves, AI might handle even primary footage for
+certain types of ads (especially animated or stylized ones). Lower production cost means marketers can do more A/B
+testing of video ads by trying multiple versions. Lilly could use AI to make rapid tweaks post-approval (e.g. if a claim
+needs a different visual emphasis, an AI could alter the scene accordingly without reshooting, if it doesn’t change the
+approved message).</p>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="challenges-for-marketing">Challenges for Marketing<a href="#challenges-for-marketing" class="hash-link" aria-label="Direct link to Challenges for Marketing" title="Direct link to Challenges for Marketing" translate="no">​</a></h4>
+<p>Creatives and brand teams must ensure brand consistency – ironically a potential issue with AI’s variability. We likely
+need to lock down style guides and possibly train custom models on brand assets to keep outputs on-brand. There’s also
+reputational risk: poorly made AI videos could reflect badly if they slip through (imagine awkward visuals or errors –
+it could appear tone-deaf or unprofessional). So likely, in near term, AI video will be used for internal drafts, social
+media (where lower fidelity is more acceptable), or supplemental content, while critical campaigns still use high-end
+production with AI augmentation. Over time, as quality stabilizes, this will shift.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="learning--development--training">Learning &amp; Development / Training<a href="#learning--development--training" class="hash-link" aria-label="Direct link to Learning &amp; Development / Training" title="Direct link to Learning &amp; Development / Training" translate="no">​</a></h3>
+<p>Scenario Simulations: In corporate or medical training, video role-plays and scenarios are common (e.g. demonstrating
+doctor-patient interactions, or proper use of a device). AI video can produce custom training scenarios on demand. For
+example, a pharma sales training could generate a video of a physician consultation scenario tailored to a specific
+specialty or objection handling – without hiring actors. Tools like Synthesia already generate talking avatar videos
+from text (not quite these full scene generators, but adjacent tech). With text-to-video, one could specify the scenario
+and have the AI create an original scene. Character consistency becomes key here; a trainer might want the same
+AI-generated actor to appear across multiple modules – technologies like DeepMotion or others could even give that AI
+actor movement. Google’s Flow enabling Jump to new shot while preserving character is highly relevant. That means you
+could maintain the same virtual “person” in different situations.</p>
+<p>Localized and Updated Content: L&amp;D often needs to deliver content in multiple languages and keep it updated regularly.
+Using generative video plus integrated voice translation (as Adobe Firefly offers), a training department can take an
+English training video and automatically generate the French, Spanish, Chinese versions with dubbed voices and adjusted
+visuals if needed. The AI can even lip-sync the translated speech to the video (Adobe is working on that for
+enterprise). Additionally, if a procedure changes or guidelines update, new training videos can be spun up quickly by
+editing the prompt or script, rather than reshooting footage. This is particularly useful in pharma where information
+changes (new study data, new regulations requiring a tweak in message, etc.).</p>
+<p>Micro-learning and Personalized Learning: With AI, it’s plausible to generate personalized training videos for employees
+or customers. Imagine an onboarding video where the scenarios depicted are customized to that employee’s role or common
+knowledge gaps. Or patient education videos that adjust explanations to the patient’s literacy level or cultural context
+– AI could alter the scenery or analogies in the video accordingly. Such on-demand generation was impossible at scale
+with traditional methods. Pharma companies doing patient support programs could benefit by tailoring educational content
+(for example, showing a patient of the same demographic in the video for relatability, which AI can swap out easily).</p>
+<p>Challenges in Training: Ensuring accuracy is paramount – any AI hallucination or incorrect depiction in a training video
+could misinform, which in pharma could have serious consequences. Thus, for factual or procedural content, AI outputs
+must be carefully reviewed, or possibly a hybrid approach used (AI generates visuals but humans script it tightly and
+verify every frame). There’s also an emotional quality aspect: human-made training videos use real actors to connect
+emotionally. AI avatars are improving, but there’s still an “uncanny valley” risk if not done well. Over time, as
+character generation improves, this will lessen. Another challenge is platform adoption: training departments will need
+new workflows to incorporate AI generation tools, and staff will require some upskilling (e.g. learning prompt-writing
+and basic editing of AI outputs).</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="commercial-and-promotional">Commercial and Promotional<a href="#commercial-and-promotional" class="hash-link" aria-label="Direct link to Commercial and Promotional" title="Direct link to Commercial and Promotional" translate="no">​</a></h3>
+<p>The pharma industry, being highly regulated, will approach AI video with both excitement and caution. Here’s how it
+specifically stands to gain or face challenges:</p>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="mechanism-of-action-moa-and-scientific-visualization">Mechanism of Action (MOA) and Scientific Visualization<a href="#mechanism-of-action-moa-and-scientific-visualization" class="hash-link" aria-label="Direct link to Mechanism of Action (MOA) and Scientific Visualization" title="Direct link to Mechanism of Action (MOA) and Scientific Visualization" translate="no">​</a></h4>
+<p>Pharma marketing relies on complex animations to show how a drug works in the body. These are expensive 3D animations
+today. In the future, a text prompt like “Show T-cells attacking a cancer cell, zoomed in at cellular level, cinematic
+lighting” could produce a decent MOA animation clip. Already, Sora’s examples (like wooly mammoths in a field, or waves
+crashing on cliffs) indicate the ability to create nature and complex textures – extending to microscopic imagery is a
+question of training data. If we can fine-tune models on biomedical imagery, we could get AI that generates
+scientifically accurate animations quickly. This would let marketing and medical teams experiment with different visual
+metaphors for MOA and pick the most effective ones. It could also be used in medical education – helping doctors
+visualize mechanisms or trial results via generated visuals.</p>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="hcp-marketing-and-peer-influence">HCP Marketing and Peer Influence<a href="#hcp-marketing-and-peer-influence" class="hash-link" aria-label="Direct link to HCP Marketing and Peer Influence" title="Direct link to HCP Marketing and Peer Influence" translate="no">​</a></h4>
+<p>Pharma often involves key opinion leaders (KOLs) giving talks or explaining data. In the near future, one can imagine
+generating avatar videos of KOLs presenting data, in multiple languages. While using a real person’s likeness has
+ethical/IP issues (would need permission and careful use), generative tech could create a convincing virtual
+spokesperson. Alternatively, completely fictional yet authoritative-looking avatars might be used to relay information.
+This could help scale expert content delivery (though likely for internal training or markets where the actual speaker
+cannot be present – regulations on promotional use of an AI “doctor” would be tricky).</p>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="patient-engagement">Patient Engagement<a href="#patient-engagement" class="hash-link" aria-label="Direct link to Patient Engagement" title="Direct link to Patient Engagement" translate="no">​</a></h4>
+<p>Using AI, we could create more engaging patient resources – e.g. an AI-generated explainer cartoon for kids about how to
+use an inhaler, or a reassuring scenario video for patients starting a new therapy showing what to expect. Emotional
+expressiveness is something some models like Sora and Veo are working on. If an AI can portray empathy or excitement
+through a character’s face and voice, patient communication could benefit. However, Lilly should remember to be
+transparent if an avatar or voice bot is being leveraged to maintain trust.</p>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="compliance-and-moderation">Compliance and Moderation<a href="#compliance-and-moderation" class="hash-link" aria-label="Direct link to Compliance and Moderation" title="Direct link to Compliance and Moderation" translate="no">​</a></h4>
+<p>Every promo or medical video in pharma must go through approval for claims, safety info, etc. AI introduces a new
+variable – the visuals might inadvertently introduce something non-compliant (e.g. showing a use of a drug that’s
+off-label). Content moderation tools will need to extend to video. We may need to adopt a practice of frame-by-frame
+review of AI outputs just like they review every word of a brochure. This slows things, but some AI tools might allow
+locking certain parameters to ensure compliance (for instance, an AI could be instructed not to show the pill being
+taken with any other medication or not to depict certain patient populations if not approved). As OpenAI noted with
+Sora, their deployed model is limited in what it can show realistically (some complex or sensitive scenarios are
+filtered). Lilly will need even tighter guardrails when using AI video generation.</p>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="summary">Summary<a href="#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary" translate="no">​</a></h4>
+<p>If harnessed well, Lilly could significantly increase engagement with both physicians and patients. Video content that
+was once too costly to produce for smaller audiences (like a rare disease community) could be made cost-effectively with
+AI, making communications more visual and relatable. It also opens up possibility for interactive content – e.g. a
+voicebot experience where a patient’s questions trigger dynamically generated video answers (a far future concept, but
+not impossible as tech converges). Another area is internal communications: using AI to generate internal announcement
+videos or CEO messages (with consent of course) to add a personal touch without pulling executives into studio every
+time.</p>
+<p>The biggest risks are legal (IP considerations), regulatory, and inaction. Pharma is already under scrutiny for how it
+markets – if it came out that an AI generated video inadvertently created a misleading impression (even subtly, via
+imagery), or leveraged an a tool associated with copyright infringement, it could result in legal penalties or public
+trust issues.</p>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="strategies-for-adoption">Strategies for Adoption<a href="#strategies-for-adoption" class="hash-link" aria-label="Direct link to Strategies for Adoption" title="Direct link to Strategies for Adoption" translate="no">​</a></h2>
+<p>For anyone planning to leverage AI video generation, here are strategic considerations and steps:</p>
+<ol>
+<li class="">
+<p>Watch and Experiment (Now): It’s important to stay informed on this fast-moving field (as this report has shown,
+updates in 2024-2025 were frequent). Assign a team or innovation leader to experiment with various tools – e.g. a
+creative or technology team who can consistently assess models and output across a wide range of features and
+capabilities – leveraging the same prompts or end goal in mind. Encourage sharing of results and set up brainstorming
+sessions on “What could we do with this in our business?”</p>
+</li>
+<li class="">
+<p>Determine High-Impact Use Cases (Now): Not every video needs to be AI-generated. Look for pain points or
+opportunities in your current content pipeline: Is it hard to get budget for certain types of videos (maybe training
+scenarios or international market content)? Those are prime targets to try AI. For Lilly, maybe start with non-public
+content (internal training, mechanism explainer for reps) to avoid regulatory risk while the tech is still new.
+Another ideal use case is social media: social teams always need fresh short videos – AI can help create those
+quickly and the lower stakes environment (a playful Twitter video) can tolerate slightly less polish.</p>
+</li>
+<li class="">
+<p>Draft Policy and Guidelines (Now): Just as there are guidelines for using stock images or social media conduct,
+create guidelines for AI-generated content. This includes: what types of content are allowed (e.g. perhaps no AI
+generation of real person likenesses without permission to avoid deepfake issues, or avoid certain sensitive health
+scenarios to be safe); requirement that every AI video is reviewed by a subject matter expert for accuracy; and
+guidelines for disclosure (if needed). For external content, consider transparency – for example, some companies
+might add a line in the video description that it contains AI-generated imagery, especially if regulations or brand
+trust demands it. Given OpenAI’s Sora tags metadata, if an image verification tool sees it’s AI, we don’t want the
+company to look like it was hiding that fact.</p>
+</li>
+<li class="">
+<p>Give creatives opportunities to Upskill: AI tools require new skills – prompt writing, iterative refinement, and
+basic video editing to polish AI outputs. Invest in developing and onboarding tools so teams can begin learning how
+to effectively harness this technology.  </p>
+</li>
+<li class="">
+<p>Alpha Projects: Choose a few of low-risk Alpha products to pursue. For example, create an internal training video
+series using AI avatars, or generate supplemental social media content for a product campaign. Monitor how long it
+takes, the quality feedback from viewers, and iterate. Use these pilots to build a case study: did it save money? Did
+it engage better (or worse)? What were the unforeseen hiccups? This builds institutional knowledge and also helps
+justify further investment to higher management.</p>
+</li>
+<li class="">
+<p>Ethics and Authenticity: Review/revise our policy and approach to ethical AI use (if needed). For pharma especially,
+patient trust is key – avoid anything that could be seen as deceptive. If you use an AI avatar of a “doctor” in a
+patient video, maybe have a disclaimer like “Visuals are computer generated for illustration” if required. Also avoid
+sensitive contexts – e.g. generating a video of a real patient story would be unethical unless clearly fictionalized.
+Keep humans in the loop for empathetic or sensitive communications (AI can generate the draft, but let a human review
+the tone).</p>
+</li>
+<li class="">
+<p>Monitor Regulatory and Legal Developments: Regulations around AI-generated content (so-called deepfake laws or
+required disclosures) are evolving globally. The EU, China, some US states have begun requiring disclosures for
+certain AI-generated media. Ensure your compliance team keeps abreast of these so your use of AI video doesn’t run
+afoul of any new rule. For instance, if a law says “AI-generated realistic videos of humans must be labeled”, you’d
+incorporate that into your practice. Also, look to ongoing legal conflicts related to AI image generation to
+anticipate future issues with video generation.</p>
+</li>
+<li class="">
+<p>Consider a Long-term Strategy: Think how AI video fits into our digital transformation. This will not replace
+everything but could augment many processes. Consider organizing a center of excellence for generative media, pooling
+expertise from IT, creative, legal. Long-term, also consider investing in custom model development for commercial
+needs – e.g. partner with a vendor to fine-tune a model on Lilly video content (especially relevant for pharma with
+lots of scientific visuals). Owning or heavily customizing a model could give competitive edge, if it could generate
+content that is unique to Lilly IP and brand style, which others using generic models cannot.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="challenges-and-risks">Challenges and Risks<a href="#challenges-and-risks" class="hash-link" aria-label="Direct link to Challenges and Risks" title="Direct link to Challenges and Risks" translate="no">​</a></h2>
+<p>We’ve touched on several challenges in context, but let’s consolidate the major risks and challenges of AI video
+generation adoption:</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="quality-and-consistency">Quality and Consistency<a href="#quality-and-consistency" class="hash-link" aria-label="Direct link to Quality and Consistency" title="Direct link to Quality and Consistency" translate="no">​</a></h3>
+<p>While rapidly improving, AI-generated video can sometimes produce glitches – a person’s face warping for a frame, odd
+background artifacts, inconsistent lighting continuity, etc. In a professional setting, these can be jarring. Ensuring
+every frame is clean might require frame-by-frame editing or re-generation cycles. There’s also the continuity over time
+issue – making sure the AI doesn’t “forget” what it was showing. Until models are truly robust, teams must budget time
+for QC and maybe manually fixing AI output (via editing or inpainting tools).</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="misrepresentation-and-deepfakes">Misrepresentation and Deepfakes<a href="#misrepresentation-and-deepfakes" class="hash-link" aria-label="Direct link to Misrepresentation and Deepfakes" title="Direct link to Misrepresentation and Deepfakes" translate="no">​</a></h3>
+<p>AI can create very realistic fake people or events. In pharma, imagine an AI video of a “patient” giving a testimonial –
+if it’s not clearly fictional, that’s ethically problematic (real patient testimonials require consent and actual
+patient stories). Deepfakes of public figures endorsing a drug (even if done jokingly) would be bad. Lilly should set
+strict lines: e.g. never impersonate real individuals or fabricate quotes without prior consent and compensation. The
+threat of malicious deepfakes (outside actors using AI to create fake news about a company or fake exec statements) is
+also real – another reason transparency and detection are important. On the flip side, we do not want Lilly to
+accidentally be accused of using a deepfake without disclosure.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="regulatory-compliance">Regulatory Compliance<a href="#regulatory-compliance" class="hash-link" aria-label="Direct link to Regulatory Compliance" title="Direct link to Regulatory Compliance" translate="no">​</a></h3>
+<p>For pharma, any promotional content must comply with FDA (or EMA, etc.) regulations. AI doesn’t change the requirement,
+but it adds complexity to verification. If an AI video shows a patient using a drug, the visual could inadvertently
+become a “claim”. For example, if it shows the patient doing something that implies a benefit not on label, that’s a
+compliance issue. Or if the AI inadvertently generates a medically inaccurate portrayal (like pills of wrong color or a
+device used incorrectly), that’s problematic. Thus, a deep integration of regulatory review is still needed – possibly
+even training the AI on what not to show. Regulators themselves may start scrutinizing AI-generated content differently;
+companies might need to provide more substantiation that the content is accurate and not misleading. There might even be
+future guidance specific to AI in pharma advertising.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="intellectual-property-and-training-data">Intellectual Property and Training Data<a href="#intellectual-property-and-training-data" class="hash-link" aria-label="Direct link to Intellectual Property and Training Data" title="Direct link to Intellectual Property and Training Data" translate="no">​</a></h3>
+<p>A lingering question: if an AI video model was trained on, say, thousands of movie clips or YouTube videos without
+permission, is its output legally safe to use? The model developers claim yes, it’s transformative. But cases are in
+courts (for images, Getty vs. Stability for e.g.). Using output commercially could pose IP risks if the output
+unintentionally replicates a copyrighted scene or character. While Adobe avoids this by training only on licensed data,
+others might not. So one risk is the potential for a third-party claim: e.g. a background in an AI video looks too
+similar to a scene from a known film. The best mitigation is using providers who have clear training sources or
+indemnification. Or limiting use of AI for things where this risk is minimal (unique scenarios rather than known
+characters).</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="ethical-considerations">Ethical Considerations<a href="#ethical-considerations" class="hash-link" aria-label="Direct link to Ethical Considerations" title="Direct link to Ethical Considerations" translate="no">​</a></h3>
+<p>Beyond legal compliance, ethical use concerns include: not reinforcing biases (if models were trained on biased content,
+they might output stereotypes – careful prompting or model choice is needed to avoid, say, always depicting doctors as
+one gender or certain roles in subservient ways, etc., which could slip into outputs unconsciously). Also, there’s
+a human element – if marketing and comms become too AI-heavy, does it lose authenticity? We will have to find the right
+balance between automation and human touch. And internally, treating employees openly about use of AI, offering
+re-skilling, etc., is important to maintain morale.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="technical-dependency-and-evolution">Technical Dependency and Evolution<a href="#technical-dependency-and-evolution" class="hash-link" aria-label="Direct link to Technical Dependency and Evolution" title="Direct link to Technical Dependency and Evolution" translate="no">​</a></h3>
+<p>If a business builds processes around a third-party AI tool, they have to manage dependency risk. What if that service
+changes pricing significantly, or a policy shift (e.g. an AI model decides to disallow certain medical content
+generation)? Executing a strategy that involves multiple options or maintaining the ability to switch models quickly is
+highly advised. Also, file formats and integration: ensuring these AI outputs can integrate into existing video editing
+workflows smoothly (most give MP4 outputs which is fine, but if you want something like masking info for overlays, not
+all provide that yet – Adobe likely will for theirs).</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="security-and-privacy">Security and Privacy<a href="#security-and-privacy" class="hash-link" aria-label="Direct link to Security and Privacy" title="Direct link to Security and Privacy" translate="no">​</a></h3>
+<p>Prompts and any input data sent to AI cloud services could contain sensitive info (especially if you’re generating
+something based on confidential product data or an unreleased device design). There’s the usual cloud risk – ensure the
+vendor has enterprise agreements if needed. Alternatively, do sensitive work on-prem with open models and sticking to
+green data for experimentation.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="public-perception">Public Perception<a href="#public-perception" class="hash-link" aria-label="Direct link to Public Perception" title="Direct link to Public Perception" translate="no">​</a></h3>
+<p>As AI-generated content becomes more common, there may be public skepticism (“Is this video real or AI?”). If misused by
+bad actors, there could be a consumer backlash or calls for regulation. If we begin using it in consumer-facing ways
+should be prepared to address questions about authenticity. Being on the honest, transparent side will guard brand
+reputation. For instance, if an AI is used to simulate a patient story, one might label it as a “dramatization” which is
+a term already used in ads for reenactments. It’s about not breaking trust.</p>
+<p>In summary, the opportunities and challenges are significant. They manageable with a proactive approach. The key is
+to not treat AI video as magic; it’s a powerful new tool that augments human creativity but still needs human oversight
+and strategic implementation.</p>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="future-outlook">Future Outlook<a href="#future-outlook" class="hash-link" aria-label="Direct link to Future Outlook" title="Direct link to Future Outlook" translate="no">​</a></h2>
+<p>The trajectory of AI video generation suggests that what is cutting-edge today could become commonplace and vastly more
+capable in the next 2–3 years. Lilly should anticipate and prepare for the following likely developments:</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="longer--real-time-generation">Longer &amp; Real-Time Generation<a href="#longer--real-time-generation" class="hash-link" aria-label="Direct link to Longer &amp; Real-Time Generation" title="Direct link to Longer &amp; Real-Time Generation" translate="no">​</a></h3>
+<p>Models will continue scaling (OpenAI hinted that bigger models = longer videos). We can expect by mid-2026 some AI
+systems will routinely generate a few minutes of video with coherent storylines. There is even the possibility
+of real-time or streaming generation – imagine AI creating video on the fly as you watch (some research is headed there
+for live avatar conversations, etc.). This could revolutionize live customer service (AI video agent responding in real
+time) or live training sessions with dynamic visuals. While true real-time high-res generation might be a bit farther,
+real-time at lower res may come sooner.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="improved-fidelity">Improved Fidelity <a href="#improved-fidelity" class="hash-link" aria-label="Direct link to Improved Fidelity " title="Direct link to Improved Fidelity " translate="no">​</a></h3>
+<p>Already Veo 3’s people are highly realistic; with more specialized training (and perhaps hybrid approaches like grafting
+AI-generated elements into real video backgrounds), AI videos will reach the point where an average viewer can’t tell AI
+vs real footage, at least for short sequences. This will blur the line of what content is “shot” vs “generated”. For
+creators, that means tremendous creative freedom (any idea can be visualized without practical constraints) but also
+greater need for ethical guidelines to maintain trust.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="interactive-video--multimodality">Interactive Video &amp; Multimodality<a href="#interactive-video--multimodality" class="hash-link" aria-label="Direct link to Interactive Video &amp; Multimodality" title="Direct link to Interactive Video &amp; Multimodality" translate="no">​</a></h3>
+<p>Combining video generation with interactivity (powered by LLMs like GPT-4/5) could yield interactive media. For example,
+a user could talk to an AI character who responds with generated video and audio. This could be a new form of engaging
+content or education tool. In pharma, a patient could ask an AI “What will the surgery be like?” and get a custom visual
+explanation video. We’re moving toward AI that can understand scene context deeply (Gemini is multimodal – it might
+align narrative with visuals tightly). The merging of text, images, audio, and video AI means future tools will handle
+whole multimedia generation. Google’s Flow already hints at that synergy (Gemini assisting with consistency across
+shots).</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="industry-specific-marketing-modelstools">Industry-Specific Marketing Models/Tools<a href="#industry-specific-marketing-modelstools" class="hash-link" aria-label="Direct link to Industry-Specific Marketing Models/Tools" title="Direct link to Industry-Specific Marketing Models/Tools" translate="no">​</a></h3>
+<p>We will likely see models fine-tuned for specific domains: e.g. a Medical VideoGen that knows how to accurately depict
+anatomy, or an Architectural VideoGen for real estate walkthroughs. These specialized models could be offered by
+vertical SaaS companies or open communities. For pharma, a model trained on, say, all publicly available MOA animations
+and medical footage could become the go-to for generating regulatory-compliant medical visuals (with knowledge of what
+not to show because of how the body actually works).</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="regulatory-frameworks">Regulatory Frameworks<a href="#regulatory-frameworks" class="hash-link" aria-label="Direct link to Regulatory Frameworks" title="Direct link to Regulatory Frameworks" translate="no">​</a></h3>
+<p>Governments and industry bodies will establish more formal guidelines. We might see something like an “AI Content
+Certification” where companies can submit AI-generated ads for a special review or to get a certification mark that it’s
+been vetted for accuracy. There’s also likely to be technology solutions for provenance: cryptographic signing of AI
+content so that it can be traced. OpenAI and Adobe already tag content; this could become standardized so that any
+screen can potentially alert viewers “This video is AI-generated.” Lilly should anticipate that transparency may become
+not just best practice but mandated.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="talent-and-workflow-shifts">Talent and Workflow Shifts<a href="#talent-and-workflow-shifts" class="hash-link" aria-label="Direct link to Talent and Workflow Shifts" title="Direct link to Talent and Workflow Shifts" translate="no">​</a></h3>
+<p>Roles will shift – we might see “AI video prompt scriptwriters”, “AI ethics reviewers”, and “content curators” as common
+jobs. Teams might reorganize such that an AI tool is part of every content meeting (e.g. brainstorm sessions always
+involve someone quickly prototyping ideas with AI to show the room). The speed of execution will increase, meaning
+competition in marketing might revolve around who can ideate and deploy creative concepts fastest (with AI doing the
+heavy lifting). The flip side is potential content glut – so focusing on strategy and creativity (the human part)
+remains vital to stand out.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="competitive-landscape">Competitive Landscape<a href="#competitive-landscape" class="hash-link" aria-label="Direct link to Competitive Landscape" title="Direct link to Competitive Landscape" translate="no">​</a></h3>
+<p>It’s possible that only a few foundation models end up dominating (like we see in LLMs, a handful of leaders). But many
+companies might build on those via fine-tuning. We may see consolidation where big players acquire some startups
+(perhaps OpenAI buys a Pika, or Adobe buys an Runway, purely speculative). Or big tech might all have their offerings
+and split the market (like cloud providers). Keeping flexibility is wise –let’s not get too locked into since another
+will likely surpass it. It could be analogous to the early days of web browsers or mobile OS – eventually a stable set
+of widely used platforms emerged. Likely a mix of open (Stability) and closed (OpenAI, Google) will persist, each with
+pros and cons.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="new-content-formats">New Content Formats<a href="#new-content-formats" class="hash-link" aria-label="Direct link to New Content Formats" title="Direct link to New Content Formats" translate="no">​</a></h3>
+<p>As AI lowers production costs, we might see entirely new forms of media. For instance, personalized short films as a
+service (you input some info and get a short film about you). Or dynamic video content on websites that adjusts to
+viewer profile. In pharma, maybe dynamic visual aids for reps that change based on the doctor they’re speaking to (if
+the doctor is more visual, the AI generates more mechanism animation; if they care about data, it shows charts, etc.,
+all in real time). The boundaries between video, animation, and software could blur.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="conclusion">Conclusion<a href="#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion" translate="no">​</a></h3>
+<p>In conclusion, AI video generation is poised to become a standard tool in the content creation toolbox – much like
+desktop publishing in the 80s or digital video editing in the 2000s. It will not outright replace humans, but those
+who harness it effectively will outpace those who don’t, by producing more tailored and creative content with less
+effort. For the pharmaceutical industry and similar fields, the key will be to integrate these capabilities in a way
+that enhances communication and understanding (of complex science, of patient stories) while maintaining the rigorous
+standards of accuracy and ethics that the industry demands. </p>
+<p>Lilly should take a proactive but careful approach: embrace the innovation, experiment with it, and begin with low-risk
+use cases with some oversight eyeing the entire spectrum of use cases. By doing so, we can significantly boost its
+content innovation capacity and be ready for the future where AI-driven media is ubiquitous. The companies that succeed
+will likely be those that combine the creative imagination of their teams with the generative power of AI, in a governed
+and purposeful manner – turning what used to be costly visual dreams into vivid (and responsible) reality.</p>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="sources">Sources<a href="#sources" class="hash-link" aria-label="Direct link to Sources" title="Direct link to Sources" translate="no">​</a></h2>
+<p>Video generation models as world simulators | OpenAI<br>
+<a href="https://openai.com/index/video-generation-models-as-world-simulators/" target="_blank" rel="noopener noreferrer" class="">https://openai.com/index/video-generation-models-as-world-simulators/</a> ￼</p>
+<p>Sora is here | OpenAI]<br>
+<a href="https://openai.com/index/sora-is-here/" target="_blank" rel="noopener noreferrer" class="">https://openai.com/index/sora-is-here/</a> ￼</p>
+<p>Runway's Gen-2 shows the limitations of today's text-to-video tech | TechCrunch<br>
+<a href="https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/" target="_blank" rel="noopener noreferrer" class="">https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/</a></p>
+<p>Best Short-Form AI Video Generator? Kling 2.1 vs Google Veo 3 - Decrypt<br>
+<a href="https://decrypt.co/323056/best-short-form-ai-video-generator-kling-google-veo" target="_blank" rel="noopener noreferrer" class="">https://decrypt.co/323056/best-short-form-ai-video-generator-kling-google-veo</a></p>
+<p>Generative Video. Now in Adobe Firefly. : r/premiere<br>
+<a href="https://www.reddit.com/r/premiere/comments/1inrroo/generative_video_now_in_adobe_firefly/" target="_blank" rel="noopener noreferrer" class="">https://www.reddit.com/r/premiere/comments/1inrroo/generative_video_now_in_adobe_firefly/</a></p>
+<p>Flow<br>
+<a href="https://labs.google/fx/tools/flow/faq" target="_blank" rel="noopener noreferrer" class="">https://labs.google/fx/tools/flow/faq</a></p>
+<p>Video generation models as world simulators | OpenAI<br>
+<a href="https://openai.com/index/video-generation-models-as-world-simulators/" target="_blank" rel="noopener noreferrer" class="">https://openai.com/index/video-generation-models-as-world-simulators/</a></p>
+<p>Runway's Gen-2 Text-to-Video Tool Now Available to Everyone for Free | Tom's Hardware<br>
+<a href="https://www.tomshardware.com/news/runway-gen-2-text-to-video-available-to-all" target="_blank" rel="noopener noreferrer" class="">https://www.tomshardware.com/news/runway-gen-2-text-to-video-available-to-all</a></p>
+<p>Runway's Gen-2 shows the limitations of today's text-to-video tech | TechCrunch<br>
+<a href="https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/" target="_blank" rel="noopener noreferrer" class="">https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/</a></p>
+<p>I Tried Minimax AI Video Generator to Generate These Insane Videos: Here is My Honest Review | by Amdad H | Towards AGI
+| Medium<br>
+<a href="https://medium.com/towards-agi/i-tried-minimax-ai-video-generator-to-generate-these-insane-videos-here-is-my-honest-review-832f5a6e8b7c" target="_blank" rel="noopener noreferrer" class="">https://medium.com/towards-agi/i-tried-minimax-ai-video-generator-to-generate-these-insane-videos-here-is-my-honest-review-832f5a6e8b7c</a></p>
+<p>Runway's Gen-2 shows the limitations of today's text-to-video tech | TechCrunch<br>
+<a href="https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/" target="_blank" rel="noopener noreferrer" class="">https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/</a></p>
+<p>Luma Dream Machine: New Freedoms of Imagination | Luma AI<br>
+<a href="https://lumalabs.ai/dream-machine" target="_blank" rel="noopener noreferrer" class="">https://lumalabs.ai/dream-machine</a></p>
+<p>Generative Video. Now in Adobe Firefly. : r/premiere<br>
+<a href="https://www.reddit.com/r/premiere/comments/1inrroo/generative_video_now_in_adobe_firefly/" target="_blank" rel="noopener noreferrer" class="">https://www.reddit.com/r/premiere/comments/1inrroo/generative_video_now_in_adobe_firefly/</a></p>
+<p>Bringing generative AI to video with Adobe Firefly Video Model | Adobe Blog<br>
+<a href="https://blog.adobe.com/en/publish/2024/09/11/bringing-gen-ai-to-video-adobe-firefly-video-model-coming-soon" target="_blank" rel="noopener noreferrer" class="">https://blog.adobe.com/en/publish/2024/09/11/bringing-gen-ai-to-video-adobe-firefly-video-model-coming-soon</a></p>
+<p>Video generation models as world simulators | OpenAI<br>
+<a href="https://openai.com/index/video-generation-models-as-world-simulators/" target="_blank" rel="noopener noreferrer" class="">https://openai.com/index/video-generation-models-as-world-simulators/</a></p>
+<p>Runway's Gen-2 shows the limitations of today's text-to-video tech | TechCrunch<br>
+<a href="https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/" target="_blank" rel="noopener noreferrer" class="">https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/</a></p>
+<p>Runway's Gen-2 shows the limitations of today's text-to-video tech | TechCrunch<br>
+<a href="https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/" target="_blank" rel="noopener noreferrer" class="">https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/</a></p>
+<p>Google launches Veo 3, an AI video generator that incorporates audio<br>
+<a href="https://www.cnbc.com/2025/05/20/google-ai-video-generator-audio-veo-3.html" target="_blank" rel="noopener noreferrer" class="">https://www.cnbc.com/2025/05/20/google-ai-video-generator-audio-veo-3.html</a></p>
+<p>AI video just took a startling leap in realism. Are we doomed?<br>
+<a href="https://arstechnica.com/ai/2025/05/ai-video-just-took-a-startling-leap-in-realism-are-we-doomed/" target="_blank" rel="noopener noreferrer" class="">https://arstechnica.com/ai/2025/05/ai-video-just-took-a-startling-leap-in-realism-are-we-doomed/</a></p>
+<p>Video generation API - MiniMax<br>
+<a href="https://www.minimaxi.com/en/news/video-generation-api" target="_blank" rel="noopener noreferrer" class="">https://www.minimaxi.com/en/news/video-generation-api</a></p>
+<p>Generate videos with Minimax's Hailuo video-01 model - Replicate<br>
+<a href="https://replicate.com/minimax/video-01" target="_blank" rel="noopener noreferrer" class="">https://replicate.com/minimax/video-01</a></p>
+<p>Kling AI Free: Try This AI Video Generator Now! | Pollo AI<br>
+<a href="https://pollo.ai/m/kling-ai" target="_blank" rel="noopener noreferrer" class="">https://pollo.ai/m/kling-ai</a></p>
+<p>Pika AI (Pika Art) free: Try Pika Labs AI Video Generator Now | Pollo AI<br>
+<a href="https://pollo.ai/m/pika-ai" target="_blank" rel="noopener noreferrer" class="">https://pollo.ai/m/pika-ai</a></p>
+<p>Profile | China ‘genius girl’ Guo Wenjing, Harvard graduate, co-founder of tech firm backed by US$135 million funding |
+South China Morning Post<br>
+<a href="https://www.scmp.com/news/people-culture/china-personalities/article/3268811/china-genius-girl-guo-wenjing-harvard-graduate-co-founder-tech-firm-backed-us135-million-funding" target="_blank" rel="noopener noreferrer" class="">https://www.scmp.com/news/people-culture/china-personalities/article/3268811/china-genius-girl-guo-wenjing-harvard-graduate-co-founder-tech-firm-backed-us135-million-funding</a></p>
+<p>Pika AI Video Generator: Create B-Roll From Text - Captions<br>
+<a href="https://www.captions.ai/features/pika-ai-video-generator" target="_blank" rel="noopener noreferrer" class="">https://www.captions.ai/features/pika-ai-video-generator</a></p>
+<p>Best AI Video Generator - Comparison • Quality &amp; Price Comparison<br>
+<a href="https://aianimation.com/best-ai-video-generation-platforms/" target="_blank" rel="noopener noreferrer" class="">https://aianimation.com/best-ai-video-generation-platforms/</a></p>
+<p>Pika AI (Pika Art) free: Try Pika Labs AI Video Generator Now | Pollo AI<br>
+<a href="https://pollo.ai/m/pika-ai" target="_blank" rel="noopener noreferrer" class="">https://pollo.ai/m/pika-ai</a></p>
+<p>The Ultimate Guide to MiniMax Hailuo AI Video Models - Getimg.ai<br>
+<a href="https://getimg.ai/blog/the-ultimate-guide-to-minimax-hailuo-ai-video-models" target="_blank" rel="noopener noreferrer" class="">https://getimg.ai/blog/the-ultimate-guide-to-minimax-hailuo-ai-video-models</a></p>
+<p>Pika AI (Pika Art) free: Try Pika Labs AI Video Generator Now | Pollo AI<br>
+<a href="https://pollo.ai/m/pika-ai" target="_blank" rel="noopener noreferrer" class="">https://pollo.ai/m/pika-ai</a></p>
+<p>Best AI Video Generator - Comparison • Quality &amp; Price Comparison<br>
+<a href="https://aianimation.com/best-ai-video-generation-platforms/" target="_blank" rel="noopener noreferrer" class="">https://aianimation.com/best-ai-video-generation-platforms/</a></p>
+<p>Stable Video Diffusion is awesome! : r/StableDiffusion - Reddit<br>
+<a href="https://www.reddit.com/r/StableDiffusion/comments/183ync6/stable_video_diffusion_is_awesome/" target="_blank" rel="noopener noreferrer" class="">https://www.reddit.com/r/StableDiffusion/comments/183ync6/stable_video_diffusion_is_awesome/</a></p>
+<p>Stable diffusion video tutorial — generate AI video for free - Medium<br>
+<a href="https://medium.com/@codeandbird/stable-diffusion-video-tutorial-generate-ai-video-for-free-29538ca45ef5" target="_blank" rel="noopener noreferrer" class="">https://medium.com/@codeandbird/stable-diffusion-video-tutorial-generate-ai-video-for-free-29538ca45ef5</a></p>
+<p>Bringing generative AI to video with Adobe Firefly Video Model | Adobe Blog\
+<a href="https://blog.adobe.com/en/publish/2024/09/11/bringing-gen-ai-to-video-adobe-firefly-video-model-coming-soon" target="_blank" rel="noopener noreferrer" class="">https://blog.adobe.com/en/publish/2024/09/11/bringing-gen-ai-to-video-adobe-firefly-video-model-coming-soon</a></p>
+<p>Generative Video. Now in Adobe Firefly. : r/premiere<br>
+<a href="https://www.reddit.com/r/premiere/comments/1inrroo/generative_video_now_in_adobe_firefly/" target="_blank" rel="noopener noreferrer" class="">https://www.reddit.com/r/premiere/comments/1inrroo/generative_video_now_in_adobe_firefly/</a></p>
+<p>Runway's Gen-2 shows the limitations of today's text-to-video tech | TechCrunch<br>
+<a href="https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/" target="_blank" rel="noopener noreferrer" class="">https://techcrunch.com/2023/06/09/runways-gen-2-shows-the-limitations-of-todays-text-to-video-tech/</a></p>
+<p>Bringing generative AI to video with Adobe Firefly Video Model | Adobe Blog<br>
+<a href="https://blog.adobe.com/en/publish/2024/09/11/bringing-gen-ai-to-video-adobe-firefly-video-model-coming-soon" target="_blank" rel="noopener noreferrer" class="">https://blog.adobe.com/en/publish/2024/09/11/bringing-gen-ai-to-video-adobe-firefly-video-model-coming-soon</a></p></div><div class="docsRating"><br><em>Was this helpful?&nbsp;</em><button type="button" title="Thumbs up"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="thumbs-up" class="svg-inline--fa fa-thumbs-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"></path></svg></button>&nbsp;<button type="button" title="Thumbs down"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="thumbs-down" class="svg-inline--fa fa-thumbs-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M313.4 479.1c26-5.2 42.9-30.5 37.7-56.5l-2.3-11.4c-5.3-26.7-15.1-52.1-28.8-75.2l144 0c26.5 0 48-21.5 48-48c0-18.5-10.5-34.6-25.9-42.6C497 236.6 504 223.1 504 208c0-23.4-16.8-42.9-38.9-47.1c4.4-7.3 6.9-15.8 6.9-24.9c0-21.3-13.9-39.4-33.1-45.6c.7-3.3 1.1-6.8 1.1-10.4c0-26.5-21.5-48-48-48l-97.5 0c-19 0-37.5 5.6-53.3 16.1L202.7 73.8C176 91.6 160 121.6 160 153.7l0 38.3 0 48 0 24.9c0 29.2 13.3 56.7 36 75l7.4 5.9c26.5 21.2 44.6 51 51.2 84.2l2.3 11.4c5.2 26 30.5 42.9 56.5 37.7zM32 384l64 0c17.7 0 32-14.3 32-32l0-224c0-17.7-14.3-32-32-32L32 96C14.3 96 0 110.3 0 128L0 352c0 17.7 14.3 32 32 32z"></path></svg></button>&nbsp;</div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-tags-row"><div class="col"><b>Tags:</b><ul class="tags_zDvH padding--none margin-left--sm"><li class="tag_DaVN"><a rel="tag" class="tag_JdGm tagRegular_Xr5d" href="/docs/tags/innovation">innovation</a></li></ul></div></div><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_CE8P"><a href="https://github.com/EliLillyCo/dc-techhq/tree/dev/docs/innovate/emerging_tech/ai_video_generation.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit__jv8" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_mNeN"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/innovate/emerging_tech/ai_speech"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">AI Speech</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents__3iH thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#executive-summary" class="table-of-contents__link toc-highlight">Executive Summary</a></li><li><a href="#introduction" class="table-of-contents__link toc-highlight">Introduction</a></li><li><a href="#ai-video-generation-technology-overview" class="table-of-contents__link toc-highlight">AI Video Generation Technology Overview</a></li><li><a href="#major-players-and-platforms-in-ai-video-generation" class="table-of-contents__link toc-highlight">Major Players and Platforms in AI Video Generation</a><ul><li><a href="#openai-sora" class="table-of-contents__link toc-highlight">OpenAI – Sora</a></li><li><a href="#runway-gen-2and-beyond" class="table-of-contents__link toc-highlight">Runway – Gen-2 (and beyond)</a></li><li><a href="#google-veo-3andflow" class="table-of-contents__link toc-highlight">Google – Veo 3 and Flow</a></li><li><a href="#flow" class="table-of-contents__link toc-highlight">Flow</a></li><li><a href="#kuaishou-kling" class="table-of-contents__link toc-highlight">Kuaishou – Kling</a></li><li><a href="#pika-labs-pika-video" class="table-of-contents__link toc-highlight">Pika Labs – Pika Video</a></li><li><a href="#minimax-hailuo-video-01" class="table-of-contents__link toc-highlight">MiniMax – Hailuo Video-01</a></li><li><a href="#luma-labs-dream-machine-ray-2" class="table-of-contents__link toc-highlight">Luma Labs – Dream Machine (Ray 2)</a></li><li><a href="#stability-ai-stable-video-diffusion" class="table-of-contents__link toc-highlight">Stability AI – Stable Video Diffusion</a></li><li><a href="#adobe-firefly-generative-video" class="table-of-contents__link toc-highlight">Adobe – Firefly Generative Video</a></li></ul></li><li><a href="#industry-impact-and-use-cases" class="table-of-contents__link toc-highlight">Industry Impact and Use Cases</a><ul><li><a href="#marketing-and-advertising" class="table-of-contents__link toc-highlight">Marketing and Advertising</a></li><li><a href="#learning--development--training" class="table-of-contents__link toc-highlight">Learning &amp; Development / Training</a></li><li><a href="#commercial-and-promotional" class="table-of-contents__link toc-highlight">Commercial and Promotional</a></li></ul></li><li><a href="#strategies-for-adoption" class="table-of-contents__link toc-highlight">Strategies for Adoption</a></li><li><a href="#challenges-and-risks" class="table-of-contents__link toc-highlight">Challenges and Risks</a><ul><li><a href="#quality-and-consistency" class="table-of-contents__link toc-highlight">Quality and Consistency</a></li><li><a href="#misrepresentation-and-deepfakes" class="table-of-contents__link toc-highlight">Misrepresentation and Deepfakes</a></li><li><a href="#regulatory-compliance" class="table-of-contents__link toc-highlight">Regulatory Compliance</a></li><li><a href="#intellectual-property-and-training-data" class="table-of-contents__link toc-highlight">Intellectual Property and Training Data</a></li><li><a href="#ethical-considerations" class="table-of-contents__link toc-highlight">Ethical Considerations</a></li><li><a href="#technical-dependency-and-evolution" class="table-of-contents__link toc-highlight">Technical Dependency and Evolution</a></li><li><a href="#security-and-privacy" class="table-of-contents__link toc-highlight">Security and Privacy</a></li><li><a href="#public-perception" class="table-of-contents__link toc-highlight">Public Perception</a></li></ul></li><li><a href="#future-outlook" class="table-of-contents__link toc-highlight">Future Outlook</a><ul><li><a href="#longer--real-time-generation" class="table-of-contents__link toc-highlight">Longer &amp; Real-Time Generation</a></li><li><a href="#improved-fidelity" class="table-of-contents__link toc-highlight">Improved Fidelity</a></li><li><a href="#interactive-video--multimodality" class="table-of-contents__link toc-highlight">Interactive Video &amp; Multimodality</a></li><li><a href="#industry-specific-marketing-modelstools" class="table-of-contents__link toc-highlight">Industry-Specific Marketing Models/Tools</a></li><li><a href="#regulatory-frameworks" class="table-of-contents__link toc-highlight">Regulatory Frameworks</a></li><li><a href="#talent-and-workflow-shifts" class="table-of-contents__link toc-highlight">Talent and Workflow Shifts</a></li><li><a href="#competitive-landscape" class="table-of-contents__link toc-highlight">Competitive Landscape</a></li><li><a href="#new-content-formats" class="table-of-contents__link toc-highlight">New Content Formats</a></li><li><a href="#conclusion" class="table-of-contents__link toc-highlight">Conclusion</a></li></ul></li><li><a href="#sources" class="table-of-contents__link toc-highlight">Sources</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://engage.cloud.microsoft/main/org/lilly.com/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIxNzM1MTc3MCJ9/new" target="_blank" rel="noopener noreferrer" class="footer__link-item">EBA Viva Engage<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://collab.lilly.com/sites/enterpriseitarchitecture2" target="_blank" rel="noopener noreferrer" class="footer__link-item">EBA SharePoint<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Questions?</div><ul class="footer__items clean-list"><li class="footer__item"><a href="#" class="footer__link-item">Reach us on Viva Engage!</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Eli Lilly and Company</div></div></div></footer></div></body></html>

@@ -1,0 +1,106 @@
+Title: Experience Layer | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/ecosystem/experience_layer
+Description: Last Updated: July 25, 2025
+
+Experience Layer | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Experience Layer
+AI Layer
+Data Layer
+Model Layer
+Patterns
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+Ecosystem
+Experience Layer
+On this page
+Experience Layer
+Document Information
+Last Updated:
+July 25, 2025
+Owner:
+Brian Lewis
+Point of Contact:
+Ali Kharazmi
+Contributors and Reviewers:
+Archit Kaila, Haitham Maya, Malika Mahoui
+Definition
+​
+Consistent human interfaces for bringing AI-enabled products to meet users and customers where they are. This layer focuses on creating intuitive and accessible user interfaces that deliver AI capabilities to end users in a seamless manner.
+Components
+​
+Components
+Agent Catalog
+Cortex Landing Zone
+Tool Catalog
+Cortex Landing Zone
+Model Catalog
+LLM Gateway
+Component Details
+​
+Agent Catalog
+​
+Marketplace of pre-built task-oriented agents built across Lilly
+Platform
+:
+Cortex Landing Zone
+Tool Catalog
+​
+Marketplace of approved AI-enabled tools, APIs, and re-usable components enabling teams to discover and integrate capabilities to their agentic systems quickly
+Platform
+:
+Cortex Landing Zone
+Model Catalog
+​
+Marketplace exposing foundation and Lilly fine-tuned models with versioning, metrics, and cost data so engineers can pick the right model
+Platform
+:
+LLm Gateway
+Was this helpful?
+Edit this page
+Previous
+Ecosystem
+Next
+AI Layer
+Definition
+Components
+Component Details
+Agent Catalog
+Tool Catalog
+Model Catalog
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

@@ -1,0 +1,17 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/plan/lifecycle-management",
+  "title": "♻️ Lifecycle Management | Tech HQ",
+  "description": "The LCM process, owned by EBA, is core to managing our declining and exiting technologies across our technical ecosystem. It is essential that we plan and manage with the following characteristics:​",
+  "h1": [
+    "♻️ Lifecycle Management (LCM)"
+  ],
+  "h2": [
+    "2025 LCM​",
+    "Footnotes​"
+  ],
+  "h3": [],
+  "text_content": "♻️ Lifecycle Management | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n📅 Plan Overview\n♻️ Lifecycle Management\n♻️ Lifecycle Management\nOn this page\n♻️ Lifecycle Management (LCM)\nThe LCM process, owned by EBA, is core to managing our declining and exiting technologies across our technical ecosystem. It is essential that we plan and manage with the following characteristics:​\nAppropriate Technical Leadership (EBA)​\nCross-Functional Engagement​\nAccountable Leaderships​\nVisible Outcomes​\nProactive Planning​\nFor questions about LCM or technologies on the LCM roadmap, use the\nLifecycle Management\nMicrosoft Teams channel.\n2025 LCM\n​\nFor specifics refer the\nApproved 2025 LCM Roadmap\ndeck, including impacted business areas, remediation steps, and funding requirements.\nOrg\nQ1 2025\nQ2 2025\nQ3 2025\nQ4 2025\nCybersecurity\n•\nLegacy Protocol Burndown – Wave 2\n•\nGlobal Network Visibility and Protection (GNVP) – Proxy Replacement\n•\nCybersecurity Technology Update – ​Crowdstrike\nLegacy Protocol Burndown – Wave 2.5\nCloud\n•\nUbuntu 20 LCM (Apr-30)\n•\nRed Hat 7 LCM\nCollaboration\nKaltura (InVision) (Dec-31)\nMobility\n•\nWindows 11 Feature update\n•\nMicrosoft Edge/Google Chrome Unload event deprecation (Feb-28)\n1\n•\nAdobe Acrobat and Reader upgrade\n•\nSemiannual Java upgrade\nMicrosoft Project and Visio upgrade\nSemiannual Java upgrade\nEnterprise Data\nInformatica PowerCenter 10.4.1 Extended Support (Mar-30)\n2\nSpotfire 12 (Jun-30)\nAxway API Management SaaS (Sep-1)\n•\nOracle (Dec-31)\n3\n•\nInformatica PowerCenter (Dec-31)\n•\nInformatica Intelligence Cloud Services (IICS) (Dec-31)\n•\nBusiness Object v4.3\n•\nLayer 7 API (SOA) Gateway\nFootnotes\n​\nhttps://developer.chrome.com/docs/web-platform/deprecating-unload\n↩\nhttps://www.informatica.com/blogs/powercenter-customer-alert-migrate-now-informatica-powercenter-104-support-ends-on-march-31.html\n↩\nhttps://collab.lilly.com/sites/Oracleenterprisefootprintreduction\n↩\nWas this helpful?\nEdit this page\nPrevious\n📅 Plan Overview\n2025 LCM\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 0,
+  "depth": 2,
+  "crawled_at": "2026-02-25T10:06:31.544424"
+}

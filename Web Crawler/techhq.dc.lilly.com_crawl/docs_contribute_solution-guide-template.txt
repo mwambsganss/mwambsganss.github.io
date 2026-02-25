@@ -1,0 +1,79 @@
+Title: 🧭 Solution Guide Template | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/contribute/solution-guide-template
+Description: INFO Solution Guide
+
+🧭 Solution Guide Template | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🤲 TechHQ Contributions
+📝 Markdown Extensions
+🧭 Solution Guide Template
+📅 Solution Guide Timeline
+🧭 Solution Guide Template
+On this page
+🧭 Solution Guide Template
+INFO Solution Guide
+Lifecycle: Draft
+Last Update: yyyy-mm-dd
+Capability Owner: [Name]
+EBA Lead: [Name]
+Contributors & Reviewers: [List of names]
+A guide for brief description of the solution guide, and the use cases, technologies and capabilities it supports. This
+is also an example of how to format a solution guide for Stack Overflow that will be synchronized to TechHQ. To support
+Docusaurus admonitions
+, blockquotes are used instead.
+TIP
+You can use the
+TechHQ Solution Guide Drafter
+to draft these!
+Use Case/Scenario
+Tech Recommendation
+Positioning
+Complexity
+Key Integrations
+Owning Org/Team
+Next Step
+[Use_Case_A]
+[Technology 1]
+[Strategic/Standard/Specialized/Emerging/Declining]
+Low/Medium/High
+[Key Integrations]
+[Org/Team Name]
+[Next Steps]
+[Use_Case_B]
+[Technology 2]
+[Strategic/Standard/Specialized/Emerging]
+Low/Medium/High
+[Key Integrations]
+[Org/Team Name]
+[Next Steps]
+WARNING
+[Any cautionary guidance or anti-patterns.]
+[Technology 1]
+​
+Important information to know about Technology 1.
+[Technology 2]
+​
+Important information to know about Technology 2.
+Was this helpful?
+Edit this page
+Previous
+📝 Markdown Extensions
+Next
+📅 Solution Guide Timeline
+[Technology 1]
+[Technology 2]
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

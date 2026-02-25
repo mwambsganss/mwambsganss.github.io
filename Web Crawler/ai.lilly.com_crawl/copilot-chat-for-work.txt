@@ -1,0 +1,154 @@
+Title: Copilot Chat for Work | ai.lilly.com
+URL: https://ai.lilly.com/copilot-chat-for-work
+Description: 
+
+Copilot Chat for Work | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+What is Copilot Chat for Work?
+Copilot Chat for Work
+is a versatile product that integrates seamlessly with a wide range of Microsoft 365 applications, including Word, Excel, PowerPoint, Outlook, Teams, among others. It serves as a valuable assistant, offering suggestions, corrections, and completions to enhance your productivity. Copilot can also generate fresh content tailored to your input. Copilot is your AI assistant
+.
+How do I get started with Copilot Chat for Work?
+Discover Copilot Everywhere:
+Access Copilot in
+Outlook
+,
+Teams
+,
+Word
+,
+PowerPoint
+,
+Excel
+, and more by clicking the Copilot logo.
+Explore the Capabilities:
+Learn about Copilot’s capabilities on the
+Microsoft Copilot Community resource site
+.
+Engage and Learn:
+Join the
+Microsoft Copilot Community on Viva Engage
+to participate in the conversation, read testimonials from Lilly employees, and discover helpful tips.
+Why use Copilot Chat for Work?
+Unleash Creativity:
+Copilot is your tool for effortless generation of content, ideas, and insights. Whether you’re drafting documents, creating presentations, or composing emails, Copilot streamlines the process, letting your creativity flourish.
+Unlock Productivity:
+Bid farewell to routine tasks! Copilot is your time-saver, taking care of the heavy lifting. It’s akin to having a dependable AI aid that boosts your productivity, allowing you to concentrate on what’s important.
+Uplevel Skills:
+Seamlessly integrated into your everyday apps, Copilot promotes collaboration and aids in skill enhancement. With its responsible and secure AI, Copilot transforms your work approach, making every task more efficient and enjoyable.
+What can I do with Copilot Chat for Work?
+Copilot in Outlook:
+Efficient Email Composition:
+Copilot assists in drafting emails, suggesting revisions, translating messages, and providing direct coaching to improve emails before sending.
+Summarized Emails:
+Quickly understand the context of messages, clear and concise summaries of long discussions, and grasp the main point without reading the entire email conversation.
+Copilot in Teams:
+Real-time Assistance:
+Copilot Chat uses your available Lilly Microsoft 365 content to answer questions, suggest ideas, summarize your workday, generate new content, summarize documents, and compare multiple documents quickly.
+Meeting Insights:
+During meetings, Copilot can generate summaries of topics, decisions, and action items, as well as help those who miss all or part of a meeting stay informed.
+Copilot in Word and PowerPoint:
+Enhance Writing:
+Copilot assists you in drafting documents and presentations. It suggests relevant content, refines language, and even generates creative ideas.
+Automate Formatting:
+Copilot streamlines formatting tasks, ensuring consistent styles, headings, and layouts.
+Copilot in Excel:
+Data Analysis:
+Copilot helps you analyze data, create formulas, and generate charts. It simplifies complex calculations and provides insights.
+Assisted Data Organization:
+Copilot can automate repetitive tasks, such as data cleaning, sorting, and pivot table creation.
+Frequently Asked Questions
+How does Copilot Chat for Work protect Lilly’s data?
+expand accordion
+Lilly’s user's and business data in Copilot Chat for Work is protected and will not leak outside Lilly. Microsoft does not save the chat data and Microsoft has no eyes or access to Lilly's data. Lilly's chat data is also not used to train the underlying models.
+Where can I learn more about responsible use of AI?
+expand accordion
+Refer to the
+Guidelines for Responsible use of AI
+and more. You can also find information about Microsoft’s approach to responsible AI on the
+Microsoft AI website
+.
+What is the difference between Copilot Chat for Web and Copilot Chat for Work?
+expand accordion
+Copilot Chat for Web searches the web to provide answers from anywhere. Copilot Chat for Work is integrated into your M365 to assist you with your internal work.
+Where can I access additional FAQs on Copilot Chat for Work?
+expand accordion
+Additional Frequently Asked Questions on Copilot Chat for Work can be accessed
+here
+.
+Have an Idea?
+Integrating AI into our business is a team effort.
+All AI use cases must be registered and approved.
+Register AI Idea
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right

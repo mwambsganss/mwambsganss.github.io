@@ -1,0 +1,139 @@
+Title: 🧭 AI Code Assistants | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/engineering/ai_code_assistants
+Description: Stack Overflow Article: 🧭 AI Code Assistants
+
+🧭 AI Code Assistants | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🗄️ Engineering Enablement BLT
+🧭 AI Code Assistants
+API Standards
+🧭 ML Ops
+🧭 Test Automation
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🛠️ Engineering Enablement
+🧭 AI Code Assistants
+On this page
+🧭 AI Code Assistants
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-10-16
+Capability Owner: Bala Devaraj
+EBA Lead: Josh Bloxsome
+Contributors & Reviewers:
+A comprehensive guide to AI code assistants including GitHub Copilot, Cline, Claude Code, and Amazon Q for enhanced developer productivity.
+Quick Reference
+​
+Here's a comparison of available AI assistants:
+AI Assistant
+Positioning
+Complexity
+Key Integrations
+Usage Requirements
+GitHub Copilot
+Standard
+Low
+VS Code, GitHub, GitHub Codespaces, IDEs
+Copilot subscription (monthly basis)
+Cline
+Emerging
+Medium
+VS Code, Development Tools, Lilly Code
+Use via Lilly Code (SSO integration)
+Claude Code
+Emerging
+Medium
+IDEs, Development Workflow, Lilly Code
+Use via Lilly Code (SSO integration)
+Amazon Q
+Specialized
+Medium
+AWS Sagemaker Studio, JetBrains, Amazon Quicksight
+AWS Subscription
+Detailed Overview
+​
+GitHub Copilot
+​
+GitHub Copilot provides AI-powered code suggestions and completions directly in your IDE, helping developers write code faster with context-aware recommendations based on natural language comments and existing code patterns.
+Upcoming Feature: Copilot Coding Agent
+​
+GitHub is introducing a new
+Copilot Coding Agent
+feature that will extend beyond simple code completion to provide more autonomous coding capabilities. This agent will be able to understand complex development tasks, make multi-file changes, and provide more comprehensive coding assistance while maintaining the seamless integration with GitHub's ecosystem.
+Cline
+​
+Cline offers autonomous coding capabilities with the ability to create, edit, and run files while providing step-by-step explanations. It can handle complex multi-file editing tasks and interact with terminal commands for comprehensive development workflows.
+Claude Code
+​
+Claude Code is a Terminal-native AI assistant with VS Code integration support. Perfect for command-line workflows and development environments.
+Amazon Q
+​
+Amazon Q is an AI-powered assistant designed for specialized scenarios within the AWS ecosystem. It provides intelligent assistance in environments like AWS Sagemaker Studio with JetBrains and offers data analysis capabilities within Amazon Quicksight.
+Enterprise Integration: Lilly Code
+​
+Lilly Code is an enterprise tool that provides seamless authentication integration between Lilly's SSO and AI Coding tools like Claude Code and Cline, enabling secure access to AI capabilities for the AI team.
+Access Steps
+​
+Lilly Code is in process of migrating from alpha to production. To access the alpha version for evaluation purposes please reach out to the LLM Gateway team:
+https://gateway.llm.lilly.com
+.
+After go-live, Lilly Code will be available through the Developer Platform Front Door at
+https://dev.lilly.com
+Key Features
+​
+SSO Integration
+: Use your existing Lilly credentials
+Easy Setup
+: One-command installation with automatic configuration
+Terminal Native
+: Works directly in your command line workflow
+Unopinionated
+: General purpose, low-level model access
+Versatile
+: Fits into existing workflows and tools, including Claude Code and Cline support
+Future-Ready
+: Models keep getting better, your setup stays the same
+Was this helpful?
+Tags:
+github-copilot
+software-engineering
+solution-guide
+techhq
+Edit this page
+Previous
+🗄️ Engineering Enablement BLT
+Next
+API Standards
+Quick Reference
+Detailed Overview
+GitHub Copilot
+Cline
+Claude Code
+Amazon Q
+Enterprise Integration: Lilly Code
+Access Steps
+Key Features
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

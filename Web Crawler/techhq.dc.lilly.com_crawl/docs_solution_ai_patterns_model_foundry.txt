@@ -1,0 +1,234 @@
+Title: Model Foundry | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/patterns/model_foundry
+Description: Last Updated: July 25, 2025
+
+Model Foundry | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Quantum Computing
+Agentic
+Workflows
+Building Agentic Patterns
+Context Engineering
+Deep Agents
+Deep Research
+Model Foundry
+Protocols
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+Patterns
+Model Foundry
+On this page
+Model Foundry
+Document Information
+Last Updated:
+July 25, 2025
+Owner:
+Brian Lewis
+Point of Contact:
+Ali Kharazmi
+Contributors and Reviewers:
+Archit Kaila, Haitham Maya, Malika Mahoui
+Bringing Model Development to Production
+​
+Hypervisor for AI teams to leverage advanced compute for model training, serving, and advanced AI workloads
+Accelerate time-to-value for ML investments by reducing infrastructure and engineering load on ML teams
+Enhanced visibility, collaboration, and reproducibility across model development lifecycle
+Increase advanced compute utilization rates through optimized resource management
+Train & Deploy
+Consume Models
+Use Resources
+Orchestrates
+Magtrain Infrastructure
+Magtrain Compute
+Training & Inference
+Object Storage
+Models & Artifacts
+AI Practitioners
+Data Scientists & ML
+Engineers
+Applications
+AI-Powered Services
+Model Foundry
+Platform
+Current State Initiative
+​
+The current implementation uses Magtrain with Slurm:
+Centralized job scheduling: Resource allocation, job scheduling, and distribution of workloads
+Queue-based management: Structured queue system that tracks pending, running, and completed tasks
+Command Line Interface (CLI): Interaction through standardized CLI commands (i.e., sbatch, squeue, scancel) for job submission and monitoring
+Storage access: Direct integration with shared storage systems
+Current State SLURM Architecture
+​
+Data Scientists & ML
+Engineers
+Job submission &
+monitoring
+Command Line Interface
+sbatch, squeue, scancel
+SLURM Controller
+Job scheduling & resource
+allocation
+Job Queue
+Pending, running,
+completed jobs
+Magtrain GPU Cluster
+GPU compute nodes
+Shared Storage
+Data & model artifacts
+Current Migration Underway
+​
+Migration from Slurm to Run.ai, which provides more robust GPU orchestration and resource management capabilities.
+Next Steps
+​
+Evaluate MLflow or Weights & Biases for model training and serving capabilities, leveraging learnings from LRL's model gateway implementation.
+Platform Resources:
+MLflow:
+https://mlflow.org/
+Weights & Biases:
+https://wandb.ai/site
+Evaluation Focus Areas:
+The assessment will cover ML lifecycle management, experiment tracking, model deployment, and visualization capabilities. Key considerations include:
+Comparative analysis of platform capabilities and limitations
+Compatibility and integration potential between the two platforms
+Feature mapping for core ML operations (tracking, registry, deployment)
+Data scientist user experience and workflow optimization
+Alignment with existing infrastructure and team requirements
+MLflow vs Weights & Biases: Feature Comparison
+​
+Feature Category
+MLflow
+Weights & Biases
+Overview
+Open-source, vendor-neutral platform from Databricks. Emphasizes flexibility and on-premise deployment
+Commercial cloud-based platform. Emphasizes ease-of-use, collaboration, and rich hosted interface
+Experiment Tracking
+Simple API with basic UI. Supports autologging for major frameworks. Requires server setup for teams
+Polished web UI with real-time sync. Plug-and-play setup with rich media support and live updates
+Model Registry & Artifacts
+Built-in registry with lifecycle management (staging, production). Works with any storage backend
+Integrated registry with versioned artifacts. Tightly coupled with tracking and includes collaborative dashboards
+Hyperparameter Tuning
+No built-in HPO. Integrates with external tools (Optuna, Ray Tune, HyperOpt)
+First-class Sweeps feature with grid, random, and Bayesian optimization. Automated visualization of results
+Visualization & Reporting
+Basic web UI with simple charts and run comparisons. Limited visualization capabilities
+Rich interactive platform with custom charts, embedding projector, and shareable Reports for storytelling
+Deployment & Serving
+Built-in model serving as REST APIs. Supports local, cloud, and edge deployments
+No native serving capabilities. Focuses on handoff to external deployment infrastructure
+Pipeline Orchestration
+Not an orchestration framework. Requires external tools (Airflow, Kubeflow) for pipelines
+Not a pipeline engine. Uses external tools for workflow orchestration beyond HPO sweeps
+Ecosystem & Integrations
+Extensive framework support (TensorFlow, PyTorch, XGBoost, etc.). Language-agnostic with REST API
+Broad SDK support with official integrations. Includes MLflow importer for migration compatibility
+Collaboration & Team Features
+Basic collaboration via shared server. No built-in user management or access controls
+Team-centric design with RBAC, SSO, audit logs, and real-time collaboration features
+Pricing & Licensing
+Completely free and open-source. No licensing costs
+Tiered SaaS model: Free tier available, Pro (~$50/mo), Enterprise (custom pricing)
+Data Scientist Workflow
+DIY approach requiring manual setup. Straightforward but needs infrastructure management
+Plug-and-play experience with instant web interface. More visual and collaborative workflow
+Key Takeaways
+​
+MLflow
+excels for organizations wanting vendor-neutral, self-hosted solutions with full control over infrastructure
+Weights & Biases
+excels for teams prioritizing collaboration, rich visualization, and managed cloud experience
+Both platforms are
+compatible
+- W&B can import MLflow experiments, and MLflow can sync with W&B sweeps
+Choice depends on priorities:
+openness vs convenience
+,
+required features
+, and
+budget constraints
+comprehenxive list of citations"
+​
+📚 Citations
+​
+MLflow Official Documentation
+Covers all components of MLflow: Tracking, Projects, Models, and Registry.
+MLflow GitHub Repository
+Open-source repository for the MLflow project including examples and issues.
+W&B Official Website
+Overview of Weights & Biases features, pricing, and platform capabilities.
+W&B Importers Documentation
+Instructions for importing MLflow runs and artifacts into W&B.
+W&B Sweeps Documentation
+Guide to W&B's hyperparameter tuning and optimization tool.
+MLflow Autologging Guide
+Details supported libraries and how autologging works.
+MLflow Model Registry Guide
+Explanation of versioning, model stages, and approvals.
+Weights & Biases Model Registry
+Describes model versioning, tracking lineage, and deployment handoff.
+W&B Reports
+How to build and share collaborative dashboards using W&B Reports.
+W&B Launch
+Run training jobs on cloud infrastructure like SageMaker, GCP, etc.
+W&B SDK Integrations
+Covers TensorFlow, PyTorch, scikit-learn, Hugging Face, and more.
+ZenML Comparison: MLflow vs W&B
+Side-by-side breakdown of features and limitations.
+Weights & Biases Pricing
+Details on Free, Pro, and Enterprise tiers and their capabilities.
+W&B Artifacts Guide
+Versioning and managing datasets, model weights, and results.
+Databricks MLflow Overview
+Managed MLflow on Databricks including deployment and monitoring features.
+Was this helpful?
+Edit this page
+Previous
+Deep Research
+Next
+Protocols
+Bringing Model Development to Production
+Current State Initiative
+Current State SLURM Architecture
+Current Migration Underway
+Next Steps
+MLflow vs Weights & Biases: Feature Comparison
+Key Takeaways
+comprehenxive list of citations"
+📚 Citations
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

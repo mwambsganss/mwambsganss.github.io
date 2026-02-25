@@ -1,0 +1,271 @@
+Title: AI Registry Frequently Asked Questions | ai.lilly.com
+URL: https://ai.lilly.com/ai-registry/faq
+Description: 
+
+AI Registry Frequently Asked Questions | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+AI Registry Frequently Asked Questions
+Why do we need an AI Registry?
+expand accordion
+The AI Registry is a centralized database that captures risk assessment information about all Lilly AI systems.  It enhances transparency, accountability, and compliance with regulatory requirements. It also helps manage risk and ensures that AI projects align with Lilly’s goals and ethical standards.
+What types of AI projects should be included in the registry?
+expand accordion
+See the
+AI Registry Submission Decision Tree
+Who is responsible for maintaining the AI Registry?
+expand accordion
+The Advanced Intelligence team and stakeholders from Architecture, Legal, Cybersecurity, Privacy, and Quality are responsible for maintaining the registry. They ensure that the registry is up-to-date and that all AI projects are adequately documented.
+Who can access the AI Registry?
+expand accordion
+Submitters or Custodians can see their use cases by going to the
+Lilly Employee Center Portal
+and choosing More > My AI Systems Submitted for Review in the top right.
+All use cases can be viewed by stakeholders and risk assessors (Prioritization teams, Functional group members, AI Technical Reviewers, Cybersecurity, Legal, Privacy, and Quality).
+AI Use Case Reports
+Portfolio
+:
+High-level listing and summaries, and submitted AI Registry items
+Operational
+:
+Metrics for review teams
+If you need access to additional reports, please send an email to
+ai_program_operations_team@lists.lilly.com
+.
+When should I submit a use case?
+expand accordion
+The AI Policy applies to any existing AI use case not yet reviewed per the
+Using AI Responsibly at Lilly procedure
+and the
+AI Registry Decision Tree
+.
+For AI products, chatbots, or tools in use, check the AI Registry
+portfolio reports
+to confirm your use case is properly logged to meet legal and compliance requirements.
+See the
+AI Registry Submission Decision Tree
+If you are working with a vendor who is using AI and all of these are true, then no AI Registry use case is required (globally, except China):
+The AI does not process Lilly data or provide deliverables or services to Lilly (except for business productivity tools*)
+No model training on behalf of or at the direction of Lilly
+No integration with Lilly systems
+No Lilly employees interacting with the system
+MSA / contract contains AI terms (either updated MPT with AI terms or full AI Standard)
+*Business productivity tools
+include general-purpose AI assistants like Microsoft Copilot, Grammarly, or similar commercially available tools that vendors may choose to use in their own business operations to improve efficiency, draft communications, or perform routine tasks. Vendors may use these tools at their discretion provided they do not input any Lilly confidential information, proprietary data, or information subject to Lilly's data protection requirements into these systems.
+Should I answer AI Registry questions based on the current state or the intended final use of the solution?
+expand accordion
+Reminder:  Use cases are expected to be submitted to the AI Registry multiple times as the use case proceeds through the
+Innovation Stages
+.
+Fill out the registry with (1) the intended purpose of the system (e.g., this system will be used for clinical trial matching and will consume X data at launch) and (2) the current stage of development (e.g., we are operating in a dev environment with dummy (green) data).
+Stage = Alpha
+Data Classification = Green
+Data Processed = None of the above
+Audience = Lilly Employees
+Then when the solution is fully defined and ready for development for production use,
+a scope change to your original submission
+must be submitted
+for review with updated information.  (See “How do I resubmit a use case?” below)
+Stage = Beta
+Data Classification = Red
+Data Processed = Personal Information (PI), Confidential Information (CI)
+Audience = Patients (Commercial)
+Do you have any guidance or examples of "good" AI use case submissions?
+expand accordion
+Check out these suggestions:
+AI Submission Guide | Tech HQ
+When should I resubmit a use case?
+expand accordion
+The AI product has changed scope from the original use case (e.g., If you have a new intended outcome, data collection, increased data classification, expanded the audience, added geographies, or technology changes such as a different vendor, model, or platform)
+You did not receive guidance from legal.
+The AI product is advancing Innovation Stage from Pre-Alpha or Alpha to Beta, Early Release, or General Release. Please see
+Our Innovation Stages | Tech HQ
+for definitions.
+How do I resubmit a use case?
+expand accordion
+Either the submitter or custodian should go to
+Intake Form | ai.lilly.com
+and click the Register AI Idea button towards the bottom of that page to get the Intake Form.
+Then on the first question, choose the scope change option and select the system from the drop-down menu. Include as many details as possible about what has changed from the previous submission. Reviewers will focus on what has changed since the previous review.
+What reviews are included when I submit my use case?
+expand accordion
+See the
+Process page
+for a description of the Reviews.
+Who do I contact for each review?
+expand accordion
+Local Functional Assessments based on supporting organization,
+click here to view contacts
+.
+For Specialized AI Risk Assessments, see below.
+AI Tech Review: Contact Malika Mahoui
+Legal Review: Contact Emma LeMasters
+Quality Review: Contact Rebecca Kitts
+How long will it take for my use case to be reviewed?
+expand accordion
+The review timeline depends on several factors, including:
+The maturity and completeness of the use case submission
+The complexity of the AI system
+Whether a new vendor or model is involved
+The intended users of the AI system (who and where they are)
+The input data sources
+How the AI output will be used
+You can track the status of each review in your AI Registry submission record
+or in the
+Lilly AI-Registry Portfolio
+report listing
+, which shows which reviews are complete and which are in progress.
+Please note that while you may begin vendor contracting during the review process, your use case is not considered fully approved until all required reviewers have provided their sign-off. Reviews are prioritized first by any approved expedited requests, then by the Prioritization field.
+We continue to improve the
+AI Registry process
+to make reviews as efficient as possible.
+How do I cancel or modify an AI use case?
+expand accordion
+Use the
+Submit Requests and Report Issues
+link at the bottom of ai.lilly.com to request modification or cancellation of an AI use case. Include the AIR number, title of the use case, and the submitter’s name.
+How do I see the status of my AI use case?
+expand accordion
+To see the status of your submission, access the
+Lilly Employee Center Portal
+, select More in the top right corner, and then select My AI Systems Submitted for Review.
+You can also search the listing available in the
+Portfolio
+.
+How do I see the status of a use case where I am not the submitter?
+expand accordion
+Search the listing available in the
+Portfolio Reports
+.
+Do I need to register a chat assistant created with Chat in a Box, an Agent created with Copilot studio, or something created with Claude to the AI Registry?
+expand accordion
+Claude solutions, Chat in a Box, and Copilot Studio Agents are GenAI productivity tools for Lilly employees that typically
+do not
+need to be submitted to the AI Registry process. However, specific uses may require registration and review to ensure compliance with legal and information handling requirements.
+✓
+See the
+AI Registry Submission Decision Tree
+✓ Submit to the AI Registry
+if your AI Assistant will be used for sensitive decisions (e.g., HR recruitment, drug discovery, patient support, regulatory compliance).
+✓ Only share with authorized users
+- Grant access only to users who already have permission to access the underlying data sources. Do not share with unauthorized
+users.
+Why are we managing AI risk differently than other System Risks?
+expand accordion
+Many factors contribute to the heightened concern over AI risks compared to other computer systems. AI has immense potential benefits, but so are the challenges and risks, making it crucial to approach AI development and deployment with caution and robust governance.
+Autonomy and Decision-Making
+: AI systems can make autonomous decisions without human intervention. This can lead to unintended consequences, especially if the AI’s decision-making process is not fully understood or transparent.
+Complexity and Opacity:
+AI models, particularly deep learning systems, are often complex and operate as “black boxes.” This lack of transparency makes it difficult to understand how they arrive at specific decisions, increasing the risk of errors and biases.
+Rapid Self-Improvement
+: Advanced AI systems have the potential to improve themselves rapidly. This could lead to scenarios where AI systems surpass human intelligence and control, posing significant risks if not properly managed.
+Bias and Discrimination
+: AI systems can perpetuate and even amplify existing biases in the data they are trained on. This can result in unfair and discriminatory outcomes, affecting various aspects of society.
+Security and Privacy
+: AI systems can be exploited for malicious purposes, such as spreading misinformation, facilitating cyberattacks, or invading privacy. Their ability to process and analyze vast amounts of data makes them powerful tools that can be misused.
+Can I work in QA and PROD environments after completing the AI Tech review?
+expand accordion
+No, before going to QA or Production or processing data through a vendor tool, applicable processes must be complete. This includes all AI Registry reviews and any other company processes that should be undertaken, such as a
+Quality Risk Assessment
+, a
+Cybersecurity review
+, a
+Privacy review
+, and
+WwTP
+. Vendor contracts should include standard AI wording.
+What can I do in DEV after completing the AI Tech review for my use case?
+expand accordion
+Once the AI Tech review is complete, you may begin development work using only green (non-sensitive, non-production) data in the DEV environment.
+What happens if my use case was rejected?
+expand accordion
+Review the guidance provided by the assessor who rejected the use case.  If you are the submitter or custodian for the use case, you can make updates to the use case by clicking on the Intake form (go to
+AI | ai.lilly.com
+and click on the red “Register AI Idea” button at the top right of the page and choose Intake and click the Register AI Idea button towards the bottom of that page to get the Intake Form). Then on the first question, choose the option describing re-reviewing for a scope change and select your use case. Include as many details as possible about what has changed from the previous submission. Reviewers will focus on what has changed since the previous review.
+In addition, submissions that have been Rejected or Deferred will be reviewed by the Tech Innovation Pipeline team for Innovation Potential.
+Where should I go to submit a new tech innovation idea?
+expand accordion
+The
+Tech Innovation Pipeline (TIP)
+and
+AI Registry (AIR)
+are now combined into one streamlined
+Tech@Lilly Innovation Portfolio
+. You can explore insights in the
+unified dashboard
+.
+Have an Idea?
+Integrating AI into our business is a team effort.
+All AI use cases must be registered and approved.
+Register AI Idea
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right

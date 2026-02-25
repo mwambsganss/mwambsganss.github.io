@@ -1,0 +1,149 @@
+Title: AI Stack | ai.lilly.com
+URL: https://ai.lilly.com/ai-stack
+Description: 
+
+AI Stack | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+AI Stack at Lilly
+The AI Stack at Lilly simplifies AI development with reusable, modular artificial intelligence (AI) components that can be easily integrated into various applications.
+By leveraging reusable AI components, developers can save time and resources, ensuring consistency and reliability across projects. This approach accelerates innovation, as it allows teams to build complex AI systems efficiently without starting from scratch for each new project.
+AI-generated content is not always accurate.
+Please verify all responses with the evidence. Usage of these product must adhere to the
+Guidelines for Responsible Use of AI
+.
+AI Features
+Search
+Search by component name
+Clear search term
+Suggestions will update as you type
+Submit search
+Filter
+Filter by feature
+Select any value
+Select any value
+AI Platform
+Automation Platform
+Data Platform
+Model Platform
+Filter by integration method
+Select any value
+Select any value
+Azure
+CATS
+Cortex
+Github
+PDF Citation Highlighter
+AI Platform
+This component highlights chunks of text cited by RAG-based LLMs for transparency and clarity within PDF files.
+Learn more
+arrow-right
+Table Generator
+AI Platform
+Table Generator uses LLMs to convert unstructured text or data (CSV/Excel) into editable tables, enabling complex tasks through natural language. It includes intent recognition, guardrails, and API access for seamless usability and security.
+Learn more
+arrow-right
+Text Comparator
+AI Platform
+Text Comparator is a versatile component that compares two input texts. It supports user-defined instructions, additional prompts, and various models, including GPT-4 and other large language models (LLMs).
+Learn more
+arrow-right
+Metadata Extractor
+AI Platform
+The Metadata Extraction module extracts structured information from text or PDF documents. Users can provide their own schema or have one generated automatically. The extracted metadata can be used independently or for downstream tasks (e.g., RAG).
+Learn more
+arrow-right
+Back
+1
+2
+3
+4
+5
+6
+Next
+Items per page
+4
+4
+8
+12
+1
+-
+4
+of
+21
+Have an Idea?
+Integrating AI into our business is a team effort.
+All AI use cases must be registered and approved.
+Register AI Idea
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right
+Digital Core

@@ -1,0 +1,157 @@
+Title: 🧭 PI & Sensitive Data Detection | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/business-enablement/pi_sensitive_data_detection
+Description: Stack Overflow Article: 🧭 PI & Sensitive Data Detection
+
+🧭 PI & Sensitive Data Detection | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+🗄️ Business Enablement BLT
+🧭 AE/PC Detection
+🧭 Customer Engagement Reference Architecture
+🧭 PI & Sensitive Data Detection
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🏢 Business Enablement
+🧭 PI & Sensitive Data Detection
+On this page
+🧭 PI and Sensitive Data Detection Using AWS Services
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-10-10
+Capability Owner: Annapurna Calyam
+EBA Lead: Annapurna Calyam
+Contributors & Reviewers: Annapurna Calyam, EDB - Confluence contributors
+A guide for detecting, classifying, and protecting personally identifiable information (PII) and sensitive data using AWS-native services such as Macie, Glue, and Comprehend.
+Use Case(s)
+Tech Recommendation
+Positioning
+Complexity
+Key Integrations
+Owning Org/Team
+Next Step
+Automated PI data detection in S3 buckets
+AWS Macie
+Strategic Core
+Low
+S3, CloudTrail, IAM
+Cloud/Data Engineering
+Enable Macie in AWS Console
+Data masking during ETL workflows
+AWS Glue Data Quality
+Standard
+Medium
+S3, Lambda, ETL pipeline RDS, Redshift
+Data Engineering
+Build Glue workflows with masking
+Real-time sensitive data classification
+AWS Kinesis + Lambda
+Specialized
+High
+Kinesis Firehose, Lambda, Macie
+Data engineering
+Create Lambda triggers for alerts
+context-aware text analysis
+Amazon Comprehend
+Standard
+Medium
+ETL pipeline, S3, lambda, RDS Redshift
+Data Engineering
+Build Glue workflows with context aware analysis and masking
+warning
+Avoid storing unencrypted sensitive data in S3 buckets or transmitting PI without TLS encryption. Always apply IAM policies and KMS encryption.
+AWS Macie
+​
+Macie is a fully managed data security and privacy service that uses machine learning to discover and protect sensitive data in AWS. It automatically scans S3 buckets for PI keywords such as names, addresses, credit card numbers, and social security numbers. Macie integrates with CloudTrail for audit logging and IAM for access control.
+Use Cases
+: S3 bucket scanning, compliance audits, alerting on sensitive data exposure.
+Key Features
+: ML-based classification, customizable detection rules, automated remediation workflows. Allows to detect a large and growing list of sensitive data types for many countries and Regions, including multiple types of financial data, personal health information (PHI), and personally identifiable information (PII), as well as custom types.
+AWS Glue Data Quality
+​
+Glue DQ
+can measure and monitor the data quality of Amazon S3 based data lakes, data warehouses, and other data repositories. It automatically computes statistics, recommends quality rules, and can monitor and alert you when it detects PI key words, missing, stale, or bad data. You can access it in the AWS Glue Data Catalog and in AWS Glue Data Catalog ETL jobs.
+Use Cases
+: ETL pipelines with embedded PI detection, data masking before analytics.
+Key Features
+: Detect PII transform, regex-based masking, column-level sensitivity scanning.
+AWS Kinesis + Lambda
+​
+For real-time data streams, AWS Kinesis can ingest data while Lambda functions inspect and classify sensitive content on the fly. This is ideal for use cases like chatbots, IoT telemetry, or transactional logs.
+Use Cases
+: Streaming PII detection, real-time alerts, dynamic masking.
+Key Features
+: Event-driven architecture, scalable processing, integration with Macie.
+AWS Comprehend
+​
+AWS Comprehend is service that can be applied to various use cases, including PI data detection, customer feedback analysis, content categorization, and sentiment analysis. By leveraging this service, businesses can gain deeper insights into their data, identify and dedact PI data, improve decision-making, and enhance customer experience.
+AWS Comprehend is typically integrated into ETL pipelines to
+enrich data
+before loading it into analytics platforms or data lakes.
+Use Cases
+: Natural language processing (NLP) based PI detection, real-time and batch data processing
+Key Features
+: country specific PI entity types, Redact PI entities, Locate PI entities
+List of 18 PHI identifiers
+​
+Names
+Geographic data
+All elements of dates directly related to an Individual, including birth date, admission date, discharge date, date of death, all ages overs 89 and dates indicative of such age and ages aggregated into single category of age 90 or older.
+Telephone numbers
+Fax Numbers
+Electronic Mail addresses
+social security numbers
+medical record numbers
+Health plan beneficiary numbers
+Account numbers
+certificate/license numbers
+vehicle identifiers and serial numbers, including license plate numbers
+device identifiers and serial numbers
+web universal resource locators (Web URLs)
+Internet Protocol (IP) address numbers
+Biometric identifiers, including finger and voice prints
+Full face photographic images and any comparable images
+any other unique identifying number, characteristic,
+Guidance on Methods for de-identification of PHI ->
+https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html
+Cost comparison Enterprise Data Guidance page
+​
+https://lilly-confluence.atlassian.net/wiki/spaces/EDB/pages/1744175392/AWS+PII+Detection+Capabilities
+Was this helpful?
+Tags:
+solution-guide
+business-enablement
+techhq
+Edit this page
+Previous
+🧭 Customer Engagement Reference Architecture
+Next
+☁️ Cloud & Infrastructure
+AWS Macie
+AWS Glue Data Quality
+AWS Kinesis + Lambda
+AWS Comprehend
+List of 18 PHI identifiers
+Cost comparison Enterprise Data Guidance page
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

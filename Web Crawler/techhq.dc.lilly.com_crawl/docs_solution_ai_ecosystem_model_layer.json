@@ -1,0 +1,32 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/solution/ai/ecosystem/model_layer",
+  "title": "Model Layer | Tech HQ",
+  "description": "Last Updated: July 25, 2025",
+  "h1": [
+    "Model Layer"
+  ],
+  "h2": [
+    "Definition​",
+    "Components​",
+    "Model​",
+    "Infrastructure Components​",
+    "Operation Component​"
+  ],
+  "h3": [
+    "LLM Gateway​",
+    "Model Training​",
+    "Model Gateway​",
+    "Model Lab​",
+    "CATS​",
+    "Kubed​",
+    "MagTrain​",
+    "Model Eval​",
+    "Live Guardrails​",
+    "Red Teaming​",
+    "Detection Guardrails​"
+  ],
+  "text_content": "Model Layer | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🧩 Solution Overview\n🤖 AI & Intelligent Agents\nEcosystem\nExperience Layer\nAI Layer\nData Layer\nModel Layer\nPatterns\nPositioning\nExamples\nCoding Tools\nStandards\nAI Submission Guide Template\n🗄️ AI & Intelligent Agents BLT\n🤖 Agentic AI\n🧭 Conversational AI\n🧭 Knowledge Bases\n🧭 Multimodal AI\n🧭 Translation Services\n🏢 Business Enablement\n☁️ Cloud & Infrastructure\n🔐 Cybersecurity\n📊 Data & Analytics\n🛠️ Engineering Enablement\n🛰️ Observability & Reliability\n🚀 Team Productivity\n🎨 User Experience & Design\n🤖 AI & Intelligent Agents\nEcosystem\nModel Layer\nOn this page\nModel Layer\nDocument Information\nLast Updated:\nJuly 25, 2025\nOwner:\nBrian Lewis\nPoint of Contact:\nAli Kharazmi\nContributors and Reviewers:\nArchit Kaila, Haitham Maya, Malika Mahoui\nDefinition\n​\nLeading commercial and strategic capabilities for probabilistic approaches, providing common controls, MLOps, and LLMOps features, underpinning AI-enabled products; reserved for domain experts. This layer manages the lifecycle of machine learning and large language models with specialized tools and governance for expert users.\nComponents\n​\nModel Eval\nAI\nLive Guardrails\nSPE\nRed Teaming\nScale AI\nDetection Guardrails\nScale AI\nCATS\nKubernetes\nKubed\nKubernetes\nMagTrain\nMagTrain\nLLM Gateway\nLiteLLM\nModel Hub\nModel hub\nModel Training\nAWB\nModel Lab\nAWB\nModel Gateway\nModel\nInfrastructure\nOperations\nModel\n​\nLLM Gateway\nLiteLLM\nModel Hub\nModel hub\nModel Training\nAWB\nModel Lab\nAWB\nModel Gateway\nLLM Gateway\n​\nUnified SDK raw model access to foundational LLMs with load balancing, guardrail checks, and usage monitoring\nPlatform\n:\nLLM Gateway\nModel Training\n​\nScalable service leveraging distributed compute & accelerators, with hyperparameter tracking and tuning functionality for training large AI models\nPlatform\n:\nModel Training\nModel Gateway\n​\nInference serving layer for any Lilly fine-tuned ML model, giving standardized endpoints, authentication, and blue/green deployment support\nPlatform\n:\nModel Gateway\nModel Lab\n​\nSandbox, Air-Gapped, governed workspace (notebooks + managed compute) where data scientists explore data, fine-tune models, and run experiments\nInfrastructure Components\n​\nCATS\n​\nCloud infrastructure to deploy Lilly internal applications\nPlatform\n:\nCATS\nKubed\n​\nCloud infrastructure to deploy Lilly external applications\nPlatform\n:\nKubed\nMagTrain\n​\nDedicated GPU/HPC cluster with secure data enclaves and ML-optimized storage, orchestrated for heavy model-training jobs\nOperation Component\n​\nModel Eval\n​\nContinuous evaluation and benchmarking of models against curated pharma tasks & public datasets, tracking drift, bias, and performance regressions over versions\nLive Guardrails\n​\nCortex-Guard: In-line governance hooks that intercept prompts, responses, and data flows to enforce policy checks, PII masking, and security controls before content reaches end users\nRed Teaming\n​\nStructured adversarial testing that bombards models and agents with malicious or edge-case inputs to surface vulnerabilities and measure robustness\nDetection Guardrails\n​\nBatch service that scans data for AE/PC, toxicity, bias, or policy violations, issuing explainable reports and remediation guidance\nWas this helpful?\nEdit this page\nPrevious\nData Layer\nNext\nPatterns\nDefinition\nComponents\nModel\nLLM Gateway\nModel Training\nModel Gateway\nModel Lab\nInfrastructure Components\nCATS\nKubed\nMagTrain\nOperation Component\nModel Eval\nLive Guardrails\nRed Teaming\nDetection Guardrails\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 2,
+  "depth": 3,
+  "crawled_at": "2026-02-25T10:07:58.871850"
+}

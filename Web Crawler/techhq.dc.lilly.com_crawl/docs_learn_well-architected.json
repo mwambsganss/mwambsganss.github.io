@@ -1,0 +1,23 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/learn/well-architected",
+  "title": "📐 Tech@Lilly Well-architected | Tech HQ",
+  "description": "Blueprints for Success",
+  "h1": [
+    "📐 Tech@Lilly Well-architected"
+  ],
+  "h2": [
+    "Blueprints for Success​",
+    "Well-Architected Pillars​",
+    "Industry-leading Frameworks​"
+  ],
+  "h3": [
+    "AWS Well-Architected​",
+    "Azure Well-Architected Framework​",
+    "Google Cloud Architecture Framework​",
+    "Salesforce Well-architected​"
+  ],
+  "text_content": "📐 Tech@Lilly Well-architected | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n📚 Learn\n🛤️ EBA Guiding Principles\n📐 Tech@Lilly Well-architected\n📐 Tech@Lilly Well-architected\nOn this page\n📐 Tech@Lilly Well-architected\nBlueprints for Success\n​\nIn today's tech landscape, elevating our systems is crucial to achieve scale, speed, and innovation. A well-architected\nframework helps us design, deploy, and manage our digital workloads effectively, ensuring reliability, security, and\ncost-efficiency. Start evaluating digital architecture against best practices to unlock greater value for our business\nand customers today!\nWell-Architected Pillars\n​\nOur architecture leverages well-architected frameworks from Microsoft, AWS, and Google. These frameworks share common\npillars that help us design, deploy, and manage systems effectively, whether they are cloud-based, on-premises, hybrid,\nor SaaS. By following these pillars, we ensure our systems are robust, secure, and efficient.\nOperational Excellence\nRun and monitor systems to deliver business value and continuously improve processes. Automate changes, respond to\nevents, and define standards for daily operations.\nSecurity, Privacy & Compliance\nProtect information, systems, and assets. Implement strong identity and access management, safeguard data, maintain\ndata integrity, and establish controls to detect security and compliance events.\nReliability\nEnsure workloads perform their intended functions correctly and consistently. Design systems to recover from\nfailures, meet customer demands, and mitigate disruptions.\nPerformance Efficiency\nOptimize the use of IT and computing resources to maintain performance. Select the right resource types and sizes,\nmonitor performance, and make informed decisions to maintain efficiency as business needs evolve.\nCost Optimization\nManage costs to maximize value delivery. Understand and control spending, select cost-effective resources, and\nscale to meet business needs without overspending.\nSustainability\n(\nan emerging pillar, especially for computationally-intensive AI workloads\n)\nMinimize the environmental impact of cloud workloads. Design and operate systems to reduce energy consumption and\nimprove efficiency, supporting long-term sustainability goals.\nIndustry-leading Frameworks\n​\nTo evaluate and improve your system's architecture, start with\none\nof these frameworks. Since AWS, Azure, and Google's\nwell-architected frameworks are so similar, select one based on team comfort and interest. If this is your first time,\nwe recommend starting with the\nAWS Well-architected Tool\n, which will\nask you specific questions and record your decisions for future reference.\nAWS Well-Architected\n​\nAzure Well-Architected Framework\n​\nGoogle Cloud Architecture Framework\n​\nSalesforce Well-architected\n​\nWas this helpful?\nEdit this page\nPrevious\n🛤️ EBA Guiding Principles\nBlueprints for Success\nWell-Architected Pillars\nIndustry-leading Frameworks\nAWS Well-Architected\nAzure Well-Architected Framework\nGoogle Cloud Architecture Framework\nSalesforce Well-architected\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 0,
+  "depth": 2,
+  "crawled_at": "2026-02-25T10:06:58.908479"
+}

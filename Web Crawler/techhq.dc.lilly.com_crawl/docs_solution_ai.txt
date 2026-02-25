@@ -1,0 +1,154 @@
+Title: 🤖 AI & Intelligent Agents | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/
+Description: _The AI Section of TechHQ is the primary tool for making AI technology decisions at Lilly. It defines the layers (the
+
+🤖 AI & Intelligent Agents | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+On this page
+🤖 AI & Intelligent Agents
+AI Architecture Framework
+The AI Section of TechHQ is the primary tool for making AI technology decisions at Lilly. It defines the layers (the
+stack), capabilities, and platforms that are approved for use.
+Owner:
+Brian Lewis
+Point of Contact:
+Ali Kharazmi
+Contributors and Reviewers:
+Archit Kaila, Haitham Maya, Malika Mahoui
+Tools and platforms that leverage AI for automation, decision-making, and natural interactions.
+This area provides comprehensive documentation on Lilly's AI architecture,
+patterns, and implementation examples. Use the diagram below to navigate to specific topics of interest.
+🏗️ AI Architecture Ecosystem
+​
+📄️
+🧑‍💻 Experience Layer
+📄️
+🧰 AI Layer
+📄️
+📦 Model Layer
+📄️
+📊 Data Layer
+🎯 AI Design Patterns
+​
+📄️
+🧠 Agentic Patterns
+📄️
+⚙️ Agents and Workflows
+📄️
+🧩 Context Engineering
+📄️
+📡 Protocols
+📄️
+🏭 Model Foundry
+📄️
+☁️ Lilly Cloud MCP
+📍 Strategic Positioning
+​
+📄️
+📊 Google Positioning
+📄️
+📝 Prompt Management
+💼 Implementation Examples
+​
+📄️
+💼 Press Release Drafter
+📄️
+💼 Press Release Miner
+AI Architecture Ecosystem
+​
+The AI Architecture Ecosystem defines the layers, capabilities, and platforms approved for use at Lilly. It consists of
+six interconnected layers:
+Experience Layer
+: Consistent human interfaces for AI-enabled products
+AI Layer
+: Reusable capabilities merging deterministic and probabilistic approaches
+Model Layer
+: Commercial capabilities for ML/LLM with MLOps features
+Data Layer
+: AI-enabled data capabilities like vector databases and semantic layers
+Infrastructure Layer
+: Secure compute and storage foundations for regulated environments
+Responsible AI Layer
+: Guardrails for ethical, regulatory, and security standards
+AI Design Patterns
+​
+AI Design Patterns provide proven approaches to designing and implementing AI solutions:
+Agentic Patterns
+: Architectural approaches for AI agents (Single Agent, ReAct, Plan-and-Execute, etc.)
+Workflows
+: Distinctions between agents and workflows, with patterns like Prompt Chaining and Routing
+Context Engineering
+: Strategies for optimizing context windows through Write, Select, Compress, and Isolate techniques
+Protocols
+: Communication standards for agent-to-agent (A2A) and agent-tool (MCP) interactions
+Lilly Cloud MCP
+: Implementation of Model Context Protocol servers for Lilly systems
+AI Positioning
+​
+AI Positioning defines the strategic approach to AI technologies at Lilly:
+Google Positioning
+: Strategic approach to Google's AI technologies and services
+Implementation Examples
+​
+Practical examples of AI implementations across different use cases:
+Press Release Drafter (PRD)
+: Agentic AI system for automating press release generation from clinical trial results
+with multi-agent reasoning and MLR compliance
+Press Release Miner (PRM)
+: Multi-agent research system for extracting insights from documents and generating
+briefing materials using ReAct and parallel processing patterns
+Was this helpful?
+Tags:
+ai
+Edit this page
+Previous
+🧩 Solution Overview
+Next
+Ecosystem
+🏗️ AI Architecture Ecosystem
+🎯 AI Design Patterns
+📍 Strategic Positioning
+💼 Implementation Examples
+AI Architecture Ecosystem
+AI Design Patterns
+AI Positioning
+Implementation Examples
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

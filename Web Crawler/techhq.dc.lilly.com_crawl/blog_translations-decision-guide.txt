@@ -1,0 +1,55 @@
+Title: Translations Solution Guide | Tech HQ
+URL: https://techhq.dc.lilly.com/blog/translations-decision-guide
+Description: Our third solution guide, Translation technologies, is now available in Draft status. In addition, we've revised the guides to include:
+
+Translations Solution Guide | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+Recent posts
+2025
+Summer 2025 We've expanded our [Solution Guide Library](/docs/solution/ai/) with new guides including Knowledge Sharing,pdates
+February Updates Roll-up
+2024
+Translations Solution Guide
+Welcome!
+Translations Solution Guide
+December 16, 2024
+·
+One min read
+Karl Mayer
+Digital Core Lead Architect
+Our third solution guide,
+Translation technologies
+, is now available in Draft status. In addition, we've revised the guides to include:
+lifecycle status
+(
+Draft
+,
+Request For Comment
+, or
+Living Document
+)
+capability owner, who is also the respective solution guide owner
+EBA lead team representative
+solution guide contributors & reviewers, i.e. the technology working group
+Tags:
+Tech HQ
+Edit this page
+Newer post
+February Updates Roll-up
+Older post
+Welcome!
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

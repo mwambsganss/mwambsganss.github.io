@@ -1,0 +1,75 @@
+Title: February Updates Roll-up | Tech HQ
+URL: https://techhq.dc.lilly.com/blog/feb-updates-rollup
+Description: Our priorities for TechHQ are currently decision guidance and user experience. 5 guides are in progress, and more are queued.
+
+February Updates Roll-up | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+Recent posts
+2025
+Summer 2025 We've expanded our [Solution Guide Library](/docs/solution/ai/) with new guides including Knowledge Sharing,pdates
+February Updates Roll-up
+2024
+Translations Solution Guide
+Welcome!
+February Updates Roll-up
+February 19, 2025
+·
+2 min read
+Karl Mayer
+Digital Core Lead Architect
+Our priorities for TechHQ are currently decision guidance and user experience. 5 guides are in progress, and more are queued.
+Work items, including solution guides, are now tracked in a
+Jira project
+open to read to all Jira users.
+Our
+Translation tech solution guide
+transitions from Request For Comment to Living Document.
+TechHQ dev
+receives a
+Contribute
+menu item, describing how to make TechHQ contributions. In the future, this may be available in TechHQ prod.
+Other TechHQ changes include:
+Draft & unlisted
+documents are shown in
+TechHQ dev
+and hidden in TechHQ prod
+A
+solution guide timeline
+and
+solution guide template
+Markdown examples
+page to demo document features, e.g.
+Mermaid diagrams
+and
+Markmap mind maps
+Accessibility and aethestic improvements
+TechHQ passes all
+axe DevTools
+accessibility checks
+'Took the red out' of TechHQ's theme
+Per document feedback (👍 👎) added and Microsoft Forms linkage to capture detailed feedback
+Google Analytics integration for usage metrics
+ESLint
+code quality checks
+Tags:
+Tech HQ
+Edit this page
+Newer post
+Summer 2025 We've expanded our [Solution Guide Library](/docs/solution/ai/) with new guides including Knowledge Sharing,pdates
+Older post
+Translations Solution Guide
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

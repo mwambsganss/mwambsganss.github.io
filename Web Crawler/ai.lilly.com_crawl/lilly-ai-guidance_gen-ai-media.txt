@@ -1,0 +1,152 @@
+Title: Guidelines for Use of AI-Generated Media (Images, Video, Audio) | ai.lilly.com
+URL: https://ai.lilly.com/lilly-ai-guidance/gen-ai-media
+Description: 
+
+Guidelines for Use of AI-Generated Media (Images, Video, Audio) | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+Guidelines for Use of AI-Generated Media (Images, Video, Audio)
+Confirm Suitability
+Ensure that use of AI-generated media (e.g., images, video, or audio) is appropriate for your task, and that such use complies with Lilly’s guidelines on Artificial Intelligence.
+AI Tool Registry Requirements
+AI-generated media created with approved media generation products (e.g., Lilly Image Generator, Copilot, Adobe) does not need to go through the AI registry.
+Any AI tools that have not been previously approved must complete the AI registry process before use.
+Don’t Input Personal or Confidential Information​
+Limit inputs to “green” information. Neither Personal Information (such as patient identifying information) nor Confidential Information (such as Lilly business information or trade secrets) should be used as part of any AI input without express approval from the AI Team, except when using Enterprise Lilly AI tools that have been specifically vetted and authorized for handling such data. Using Personal or Confidential information in AI prompts exposes the company to the risk that such information is shared or mistakenly depicted in outputs. See footnotes below for more examples of Personal and Confidential Information.
+Personal Information is any information that, when used alone or in combination with other information, identifies a person (such as a consumer, patient, job applicant, employee, health care professional, or trial participant). Examples of Personal Information include but are not limited to: names, dates of birth, identifying characteristics (gender, race, marital status), SSN or other government identifiers, biometric identifiers, consuming/ purchasing information, education, criminal records, employment details, financial information, medical/health information, location data, contact information, and protected characteristics. See
+Personal Information Classification Chart
+.
+Confidential Information is any information not in the public domain, such as information relating to the Company’s products, business, or activities, including but not limited to: trade secrets, product research and development, client lists, unpublished patent applications, existing and future product designs and schematics, pre-launch medical device drawings and models, unpublished financial statements and earnings release statements and related work papers, pricing strategies, manufacturing strategy information, policies and local SOPs and processes, user IDs, and organizational charts. See
+Protecting Confidential Information Global Procedure
+.
+Consult Third Party Agreements for AI Inputs
+Agreements to which Lilly is a party may restrict the use of certain information in AI inputs, particularly where AI is being used to modify existing media licensed from another company. If you believe your use case may be subject to a third-party agreement (including, but not limited to, patient consent forms, model releases, or terms of service for use of third tools), consult the applicable agreement and the AI Legal Team for guidance.
+Be Aware of IP Implications
+Consult the AI Team before using AI media generation tools to generate output that Lilly may wish to protect with intellectual property (IP) protections, such as copyright, trademark, or patent. Likewise, do not use inputs that Lilly may wish to protect with IP, or that are already IP-protected, without express written authorization from the AI Legal Team. Additionally, ensure that the inputs used to generate media do not direct the media generation technology to copy existing work or generate outputs in the "style" of others. For example, users should not ask for images of a "dog" in the style of "Snoopy."
+Provide Transparent AI Media Notices
+When using AI to generate media for your work at Lilly, whether internal or external, please follow these instructions on the identification and labeling of AI-generated media. Remember that the general Lilly Guidelines for Use of AI-Generated Media apply to all AI-generated media.
+When AI Disclaimers Are REQUIRED
+AI disclaimers are required when AI-generated content could mislead viewers about
+what they're seeing, such as realistic patient depictions, treatment outcomes, or other content that viewers might reasonably mistake for real people or real results.
+The key question when determining if an AI disclaimer is required is whether a reasonable consumer would be misled by the AI-generated portion of the content absent a disclaimer.
+AI disclaimers
+may be required
+when:
+AI-generated media depicts humans (real or synthetic) including AI-generated synthetic performers in advertisements, identifiable landmarks, patients, or healthcare settings where viewers might reasonably believe the content is real
+Content could be mistaken for authentic images, video, or audio recordings
+AI has been used to materially modify media in ways that could mislead viewers, or where human modifications to AI-generated media could be mistaken for actual changes in a person’s condition (e.g., using AI to remove visible skin conditions or symptoms from a real patient's photo to depict treatment effectiveness)
+When AI Disclaimers Are NOT Required
+All disclaimers are
+NOT required
+for:
+Decorative backgrounds, abstract patterns, or generic settings
+Cosmetic edits to actors that viewers understand are not real patients
+Stock imagery-style content unrelated to product claims
+Content where AI use is obvious or doesn't impact product representations
+Base media containing humans or identifiable landmarks (e.g., the Empire State Building) that are not AI-generated and where the AI content is not used to modify the human or landmark (a notice may be placed at the bottom of the page or tactic instead)
+Standard Disclaimer Language
+For unmodified AI-generated content:
+"AI Generated”
+Or "AI Generated [Image/Video/Voice/Audio]" (for images, videos or audio content)
+For human-modified AI content:
+"Some Content Generated by AI"
+Or "Some Media Generated by AI"
+Disclaimer Format Requirements
+The notice should be:
+Prominent and legible
+for the intended audience
+In clear and readable text and format
+(not black text on dark background)
+Included on the media itself wherever possible or immediately adjacent
+For videos: overlay text, watermarks, or credits
+For audio: verbal disclaimers at beginning/end, or visual notices when presented with visual materials
+Multiple AI-Generated Materials on One Page:
+For pages with
+multiple AI-generated materials,
+use of a
+page-level disclaimer may be appropriate (e.g., "This Material Contains AI-Generated Images/Videos/Audio Content").
+Content Identifiers
+Built-in AI content identifiers (e.g., Adobe Content Credentials, Meta AI Info labels, Google watermarking) should be utilized when available but
+do not replace required visible disclaimers
+, as these metadata tags and watermarks are typically invisible to users in normal viewing circumstances and only accessible through active investigation such as checking image properties or using specialized detection tools.
+Review Output
+Remember that you are responsible for the final output you use in your work. Before using any AI-generated media or content, review the output to ensure that it is accurate, conveys your intended message(s), and is not false, misleading, or unduly risky to the company. Using AI-generated media that resembles identifiable individuals, mimics the style of an artist or creator, or involves the depiction of children carries a higher risk to the company than other outputs. If your AI-generated media will be used externally, conduct a quick Google search to see if anything similar is found. If so, consult with the AI Office.
+Remember Our Reputation
+Evaluate outputs from an outsider’s perspective and consider how both inputs and the media they generate may reflect Lilly’s reputation. AI-generated media and content should not be utilized if their use could negatively impact Lilly’s reputation.
+Comply with Other Applicable Policies/Procedures
+Remember to consult any Lilly policies that may apply to the AI-generated content and your intended use, and ensure that AI-generated media goes through the normal approval processes (e.g., Lilly brand guidelines, medical/legal/regulatory review).
+Re-Evaluate Future Use
+AI media and content generation technology may produce varied results even when the same input is used repeatedly. Thus, each output should be evaluated in accordance with the guidance provided above, even if the input has produced policy-compliant results in the past.
+Raise Questions
+If you have questions regarding this set of guidelines or your use of AI to generate media, or if you become aware or suspect that media or content generated by AI and utilized in Lilly work product does not comply with Lilly’s or third-party providers’ (e.g., Stability AI) policies, immediately reach out to the AI Office.
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right

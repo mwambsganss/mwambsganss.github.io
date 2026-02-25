@@ -1,0 +1,146 @@
+Title: 🧭 Container Services | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/cloud/container_services
+Description: Stack Overflow Article: 🧭 Container Services
+
+🧭 Container Services | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🗄️ Cloud & Infrastructure BLT
+🧭 Cloud Architecture
+🧭 Cloud FinOps
+🧭 Container Services
+🧭 Networking Services
+🧭 Workflow & Orchestration
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+☁️ Cloud & Infrastructure
+🧭 Container Services
+Container Services
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2024-12-16
+Capability Owner: Josh Bloxsome
+EBA Lead: Karl Mayer
+Contributors & Reviewers: Josh Bloxsome, Chris Tornatta, Ross Grinvalds, Todd Walters, Sonia Gurdian, Karl Mayer
+A guide for common containerization and container orchestration use cases.
+Local Containerization Options
+For local workstation and container development options, see
+What is our position on using Docker Desktop?
+Use Case(s)
+Tech Recommendation
+Positioning
+Complexity
+Key Integrations
+Owning Org/Team
+Next Step
+Internal apps & APIs; containerized 'high compute' workloads
+CATS
+(backed by
+AWS EKS
+)
+Strategic Core
+Low
+AWS
+1
+; cloud resources; HTTPS connectivity to on-prem resources
+SPE
+CATS
+self-service guide;
+for tech questions
+Public-facing apps/APIs; multi-region deployment
+Kubed
+(backed by
+AWS ROSA
+)
+Strategic Core
+Low
+AWS
+SPE
+Kubed
+self-service guide;
+for tech questions
+App/API/workloads needing full on-prem connectivity
+OpenShift
+Standard
+Medium
+on-prem & cloud resources
+SPE
+fully-managed container orchestration with serverless execution
+AWS ECS Fargate + AWS ECR
+Specialized
+High
+AWS
+Cloud
+CAST architecture review
+Your own Kubernetes cluster with serverless execution
+AWS EKS Fargate + AWS ECR
+Specialized
+High
+AWS
+Cloud
+CAST architecture review
+Lambda functions packaged as container images (serverless workloads with custom runtimes)
+AWS Lambda + AWS SAM
+Specialized
+Medium
+AWS
+Cloud
+OpenShift container workloads in Azure
+Azure Red Hat OpenShift
+Emerging
+High
+Azure
+2
+TBD
+SPE
+Other containerization in Azure
+Azure Container Services
+Emerging
+High
+Azure TBD
+SPE & Cloud
+warning
+Unless vendor-specified, container workloads on self-managed, VM-based Docker or Kubernetes is not recommended.
+Footnotes
+​
+Manage access to AWS resources with
+AWS IAM
+.
+↩
+Manage access to Azure resources with
+Azure Entra ID
+.
+↩
+Was this helpful?
+Tags:
+cloud
+solution-guide
+techhq
+Edit this page
+Previous
+🧭 Cloud FinOps
+Next
+🧭 Networking Services
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

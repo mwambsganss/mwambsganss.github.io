@@ -1,0 +1,922 @@
+Title: 🗄️ Team Productivity BLT | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/productivity/productivity-blt
+Description: The Team Productivity Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+
+🗄️ Team Productivity BLT | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🗄️ Team Productivity BLT
+🧭 Diagramming
+🎨 User Experience & Design
+🚀 Team Productivity
+🗄️ Team Productivity BLT
+On this page
+🗄️ Team Productivity BLT
+The Team Productivity Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+Can't find a technology?
+Use TechHQ's search feature to look across all technology documentation. For questions or to suggest additions to this list, contact the
+Enterprise Business Architecture team
+.
+Browsers
+​
+Position
+Standard
+Tags
+app-delivery-platforms
+Information Sensitivity
+Red
+Architect
+Angela Lacy
+Contact(s)
+Angela Lacy
+Preferred for modern web applications
+Use Cases
+​
+web applications, progressive web apps
+Notes
+​
+The use of Java or other client frameworks and plugins should be avoided for new applications
+Centralized Apps
+​
+Position
+Standard
+Tags
+app-delivery-platforms
+Information Sensitivity
+Red
+Architect
+Angela Lacy
+Contact(s)
+Damien Mills
+Preferred for virtualization
+Use Cases
+​
+Intermittent access to a single or a group of application when the users does not have access to a Lilly desktop
+Notes
+​
+Modern applications can be deployed without leveraging virtualization either via the end point browser (web application) or a native installation. XenApp Virtual application or Hosted Shared Desktops are the preferred virtualization solutions
+See Also
+​
+https://virtual.lilly.com
+Everbridge
+​
+Position
+Specialized
+Tags
+event-broadcasting
+Information Sensitivity
+Orange
+Contact(s)
+Hayley Edmondson
+CMDB CI
+CI00000000002758
+Everbridge is Lilly’s Emergency Mass Notification System (Primary Use Case) – Also used as a notification system for ServiceNow across many teams including EDAT.
+Use Cases
+​
+HR
+Incident Notifications
+GoTo Meeting
+​
+Position
+Specialized
+Tags
+event-broadcasting
+Information Sensitivity
+Red
+Architect
+Mary Codrington
+Contact(s)
+Ray Gonzales
+Highly collaborative online meetings. Maximum of 250 attendees. Participants can be internal and external.
+Use Cases
+​
+Nearly all meeting situations should be met by Teams Meetings today. GoToMeeting should only be necessary if a very specific requirement can&%2339;t be met by a Teams meeting.
+A meeting or event where you want all participants to be able to participate as presenters / speakers.
+Notes
+​
+See the Modern Meetings Matrix for more information:
+https://collab.lilly.com/:p:/r/sites/mm/Shared%20Documents/Meeting-Services-Matrix_33590.pptx?d=w4645bb9e47c24b2fbb6bedca4bcccb68&csf=1&web=1&e=DqnYqX
+See Also
+​
+/:w:/r/sites/mm/_layouts/15/Doc.aspx?sourcedoc=%7BFF92910C-DFEA-4AFD-832B-1CB35BF59A7F%7D&file=GoToMeeting%20Best%20Practices%20from%20Home.docx&action=default&mobileredirect=true&cid=f8a59235-9e7f-44a3-9fed-b3eddff85466
+GoToTraining
+​
+Position
+Specialized
+Tags
+event-broadcasting
+Information Sensitivity
+Red
+Architect
+Mary Codrington
+Contact(s)
+Ray Gonzales
+User-led online meetings, designed to create a virtual classroom environment. Participants can be internal and external.
+Use Cases
+​
+Training / classroom style meeting.
+Notes
+​
+See the Modern Meetings Matrix for more information:
+https://collab.lilly.com/:p:/r/sites/mm/Shared%20Documents/Meeting-Services-Matrix_33590.pptx?d=w4645bb9e47c24b2fbb6bedca4bcccb68&csf=1&web=1&e=DqnYqX
+See Also
+​
+/:w:/r/sites/mm/_layouts/15/Doc.aspx?sourcedoc=%7BFF92910C-DFEA-4AFD-832B-1CB35BF59A7F%7D&file=GoToMeeting%20Best%20Practices%20from%20Home.docx&action=default&mobileredirect=true&cid=f8a59235-9e7f-44a3-9fed-b3eddff85466
+GoToWebinar
+​
+Position
+Specialized
+Tags
+event-broadcasting
+Information Sensitivity
+Red
+Architect
+Mary Codrington
+Contact(s)
+Ray Gonzales
+User-led broadcasts in a one-to-many environment. Supports large audiences (licensing available for up to 3,000) for internal and external participants.
+Use Cases
+​
+Self-produced large audience events engaging a targeted audience where an external participant is attending or presenting. If internal only participants and attendees, either a Teams or Yammer Live Event should meet this need instead.
+Notes
+​
+See the Modern Meetings Matrix for more information:
+https://collab.lilly.com/:p:/r/sites/mm/Shared%20Documents/Meeting-Services-Matrix_33590.pptx?d=w4645bb9e47c24b2fbb6bedca4bcccb68&csf=1&web=1&e=DqnYqX
+See Also
+​
+/:w:/r/sites/mm/_layouts/15/Doc.aspx?sourcedoc=%7BFF92910C-DFEA-4AFD-832B-1CB35BF59A7F%7D&file=GoToMeeting%20Best%20Practices%20from%20Home.docx&action=default&mobileredirect=true&cid=f8a59235-9e7f-44a3-9fed-b3eddff85466
+Hosted Shared Desktops (XenApp)
+​
+Position
+Standard
+Tags
+app-delivery-platforms
+Information Sensitivity
+Red
+Architect
+Angela Lacy
+Contact(s)
+Damien Mills
+Preferred Desktop Virtualization solution
+Use Cases
+​
+Large number of users consuming a standard list of applications (e.g. Third party support organizations such as TCS, Infosys, etc)
+Notes
+​
+Tthe use of Java or other client frameworks and plugins should be avoided for new applications. Existing application can be provisioned without virtualization as long as they can sustain frequent client OS and plugin updatesModern applications can be deployed without leveraging virtualization either via the end point browser (web application) or a native installation
+See Also
+​
+https://virtual.lilly.com
+iObeya
+​
+Position
+Specialized
+Tags
+collaboration-tools
+Information Sensitivity
+Orange
+Architect
+Rajesh Singh
+Contact(s)
+Nick Miller
+Use in complex persistent whiteboarding collaborations
+Use Cases
+​
+Multi-room whiteboarding, Integration with Jira, Rich functionality, Support for Lean concepts
+Notes
+​
+Individual licencing by business area. Consult for iObeya external collaboration. This positioning statements refers to the private cloud implementation of iObeya which is used primarily by MQ and the IBU. Medicines Development uses the public cloud option for iObeya.  The custodian is Chris DePoy
+See Also
+​
+https://lillymqit.iobeya.com
+Microsoft Forms
+​
+Position
+Standard
+Tags
+low-code-platforms
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Steve Scott
+Use for simple forms/surveys/polls directed at internal & external (use caution) users
+Use Cases
+​
+Develop a basic form/surveys, Develop a basic survey/poll for internal audiences, Develop a form that can be used on mobile devices
+See Also
+​
+https://collab.lilly.com/sites/msformscommunity
+Microsoft Power Apps
+​
+Position
+Standard
+Tags
+low-code-platforms
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Steve Scott
+CMDB CI
+CI00000000396107
+Use to rapidly build apps using low-code, drag-and-drop tools such as pre-built data connectors and templates.
+Use Cases
+​
+Power Apps can be used to build apps ranging from a basic, single-screen data entry application to more complex solutions that require the use of professional developer skills and tooling.
+Notes
+​
+Support for any applications built using Power Apps are the responsibility of the app maker. Use cases that require access to data outside of Office 365 will require additional premium (paid) licensing. Please consult with functional Tech@Lilly and\or Quality resources for questions about whether or not Power Apps is suitable for your use case.
+See Also
+​
+https://collab.lilly.com/sites/powerappsandflowcommunity
+Microsoft Power Automate
+​
+Position
+Standard
+Tags
+enterprise-automation
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Steve Scott
+CMDB CI
+CI00000000396107
+Use to rapidly build automated processes using low-code, drag-and-drop tools such as pre-built data connectors and templates.
+Use Cases
+​
+Develop a basic workflow to augment the capabilities of a PowerApp developmentCommon use cases would include automation of repetitive processes such as document routing\approval, management of files\folders in cloud storage such as SharePoint, OneDrive or Teams, or building integrations between disparate systems.
+Notes
+​
+Support for any cloud flows built using Power Automate are the responsibility of the app maker. Use cases that require access to data outside of Office 365 will require additional premium (paid) licensing. Please consult with functional Tech@Lilly and\or Quality resources for questions about whether or not Power Automate is suitable for your use case.
+See Also
+​
+https://collab.lilly.com/sites/powerappsandflowcommunity
+Microsoft Power BI
+​
+Position
+Standard
+Tags
+business-intelligence
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Srihari S.
+Recommended tool  to create Dashboards, Visualization artifacts supported with Augmented Analytics and tight O365 integration. Suitable when you require various ways to manipulate data
+Use Cases
+​
+Create visualization dashboards using different chart options. Compelling story-telling using data from different data stores. Create dashboard and collaborate with others using Microsoft teams and SharePoint online. Use this tool for data analytics and modeling. Use this tool if you want to perform AUTO ML tasks without data science skills
+Notes
+​
+Cost effective enterprise tool to create visualizations. Desktop is free. Create reports, dashboards and visualizations by connecting to data from various data sources. Use this tool if you have a requirements to share the dashboards through SharePoint Online, Teams and integration with Microsoft PowerApps
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Microsoft Teams
+​
+Position
+Standard
+Tags
+collaboration-tools
+Information Sensitivity
+Red
+Architect
+Bryce Williams
+Contact(s)
+Kala Cherney
+Preferred for small and private unstructured collaboration, including document sharing. Use for real-time and persistent chat between individuals or small groups, link sharing to content, and conducting online 1:1/Small group meetings
+​
+Highly collaborative online meetings. Maximum of 1,000 attendees. Participants can be internal and external.
+Use Cases
+​
+Collaborate with a project/team
+Collaborate on documents
+Closed group discussion
+Text based chat
+Meeting/call
+Persistent async chat
+Send communication to individuals/small groups
+Work out loud
+Create/access shared knowledge
+Share rich media
+Notes
+​
+See the Modern Meetings Matrix for more information:
+https://collab.lilly.com/:p:/r/sites/mm/Shared%20Documents/Meeting-Services-Matrix_33590.pptx?d=w4645bb9e47c24b2fbb6bedca4bcccb68&csf=1&web=1&e=DqnYqX
+See Also
+​
+https://collab.lilly.com/sites/microsoftteams
+Microsoft Viva Engage (Yammer)
+​
+Position
+Standard
+Tags
+collaboration-tools
+Information Sensitivity
+Yellow
+Architect
+Bryce Williams
+Contact(s)
+Bryce Williams
+Preferred online community engagement solution
+Use Cases
+​
+Work out loud
+Create/access shared knowledge
+Create broad awareness on a topic
+Create a virtual community around a specific topic/subject
+Develop a place for OCM and communcation on a specific subject
+Create a communcation space for events (RSVP)
+Create a local function/business unit communcation site / portal
+Provide online customer support
+Share rich media
+Ability to augment the interactive capabilities of O365/SP Communcation Sites
+Notes
+​
+Ability to augment the interactive capabilities of O365/SP Communcation Sites
+See Also
+​
+https://collab.lilly.com/sites/yammerpocsupportcommunity
+Microsoft Whiteboard
+​
+Position
+Standard
+Tags
+collaboration-tools
+Information Sensitivity
+Red
+Architect
+Mary Codrington
+Contact(s)
+Mike Cooper
+Preferred whiteboarding for meetings/working sessions
+Use Cases
+​
+Integration with Surface Hub, capturing notes and drawings from on-line meetings, Integration with Microsoft Team / O365
+Use with external meeting attendees works during a Teams Meeting only, on a Whiteboard initiated during that meeting. It does NOT currently work outside of a Teams meeting with third parties, nor on Whiteboard files created prior to a meeting starting. That is on a future roadmap for a more complete external user sharing & co-collaboration use pattern.
+Notes
+​
+Licenced as part of the Microsoft EA. Jira integration in the roadmap for Q4-2021
+See Also
+​
+https://collab.lilly.com/sites/DiscoverIT/SitePages/Microsoft-Whiteboard.aspx
+Native Installation
+​
+Position
+Standard
+Tags
+app-delivery-platforms
+Information Sensitivity
+Red
+Architect
+Angela Lacy
+Contact(s)
+Angela Lacy
+Preferred solution for modern native applications
+Use Cases
+​
+User have access to a Lilly device
+Notes
+​
+Modern applications can be deployed without leveraging virtualization via a native installation
+On24
+​
+Position
+Specialized
+Tags
+event-broadcasting
+Information Sensitivity
+Red
+Architect
+Jim Spilman
+Contact(s)
+Jim Spilman
+Professionally produced broadcast services that support large audiences with internal and external participants.
+Use Cases
+​
+Professional quality all employee broadcasts or large organization town halls.
+Notes
+​
+Please contact Jim B Spilman and Brian Albertsen for more information
+See Also
+​
+/:p:/r/sites/mm/Shared%20Documents/Meeting-Services-Matrix_33590.pptx?d=w4645bb9e47c24b2fbb6bedca4bcccb68&csf=1&web=1&e=DqnYqX
+Outlook / Exchange
+​
+Position
+Standard
+Tags
+collaboration-tools
+Information Sensitivity
+Yellow
+Architect
+Eric Toetz
+Contact(s)
+Eric Toetz
+Use for simple written async communications between parties, broad push of communications, notification of important information, link sharing to content
+Use Cases
+​
+Send communication to individuals/small groupsPush a communication to a broad audience
+See Also
+​
+https://collab.lilly.com/sites/globalmessaging
+PDF
+​
+Position
+Specialized
+Tags
+low-code-platforms
+Information Sensitivity
+Red
+Architect
+Kevin Shingleton
+Use only for quick simple forms that require online and offline use.
+Use Cases
+​
+Develop a basic form, Develop a form that can be used Offline, Export form (questions and answers) to a PDF document for archiving
+ServiceNow Surveys
+​
+Position
+Specialized
+Tags
+low-code-platforms
+Information Sensitivity
+Orange
+Architect
+Karl Mayer
+Contact(s)
+Camille Taylor
+Use for Service Management related surveys in the context of a ServiceNow process/workflow.
+Use Cases
+​
+Schedule/Trigger/Create/Send a customer satisfaction survey from the Service Desk or a Specialized Support Team for a service management process or request fulfillment, Enable better reporting, analytics and improvements to service management processes and request fulfillment through better availability of survey data within the Service Desk platform
+See Also
+​
+https://docs.servicenow.com/bundle/london-servicenow-platform/page/administer/survey-administration/reference/r_SurveyManagementLandingPage.html
+SharePoint Communication Sites
+​
+Position
+Standard
+Tags
+collaboration-tools
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Steve Scott
+Use for structured, custom and organized portal spaces targeting internal audiences
+Use Cases
+​
+Create broad awareness on a topic
+Create a virtual community around a specific topic/subject
+Develop a place for OCM and communcation on a specific subject
+Create a communcation space for events (RSVP)
+Create a local function/business unit communcation site (portal)
+Notes
+​
+Provides a broad set of capabilities when used in integration with other Office 365 suite components
+Primary content search engine
+See Also
+​
+https://collab.lilly.com/sites/sharepointcommunity
+SharePoint Team Sites
+​
+Position
+Standard
+Tags
+collaboration-tools
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Steve Scott
+All-round collaboration with formal structure, content presentation and advanced access control. Use also for controlled non-regulated transitory and non-transitory content. Preferred option for external collaboration with third-parties along with Teams.
+Use Cases
+​
+Collaborate with a project/team
+Collaborate on documents
+Collaborate on or share content with external partners
+Manage controlled
+non-regulated
+transitory and non-transitory content
+Manage content that supports a local
+non-regulated
+business process
+Notes
+​
+All-round collaboration with formal structure, content presentation and advanced access control. Use also for controlled
+non-regulated
+transitory and non-transitory content in the context of a team/project collaboration. Note that all business records must be manager per global records-keeping and records-retention processes (see
+https://now.lilly.com/landingoverview/global-global-records-and-information-management/global-grrs
+).
+For regulated content review the Content Management positioning document
+See Also
+​
+https://collab.lilly.com/sites/sharepointcommunity
+Teams Live Events
+​
+Position
+Standard
+Tags
+event-broadcasting
+Information Sensitivity
+Red
+Architect
+Bryce Williams
+Contact(s)
+Ray Gonzales
+User-led broadcasts in a one-to-many style  (up to 10k attendees). Supports large audiences (targeted audience distribution) for internal participants.
+Use Cases
+​
+Self-produced large audience events engaging a targeted audience
+External use is limited to supporting External Presenters. External attendees is only possible in very limited, specialized scenarios.
+Notes
+​
+See the Modern Meetings Matrix for more information
+https://collab.lilly.com/:p:/r/sites/mm/Shared%20Documents/Meeting-Services-Matrix_33590.pptx?d=w4645bb9e47c24b2fbb6bedca4bcccb68&csf=1&web=1&e=DqnYqX
+See Also
+​
+https://collab.lilly.com/sites/ITPortal/SitePages/Live-Events-in-Teams-and-Yammer.aspx
+Virtual Desktop (XenDesktop)
+​
+Position
+Specialized
+Tags
+app-delivery-platforms
+Information Sensitivity
+Red
+Architect
+Angela Lacy
+Contact(s)
+Damien Mills
+Persistent Desktops - by exception only
+Use Cases
+​
+Any use cases where Hosted Shared Desktops do not meet the business needs (e.g. a custom list of applications is required)
+Notes
+​
+XenDesktop Virtual Desktop always require an exception. Non-persistent desktops are default. Persistent desktops only by additional exception
+See Also
+​
+https://virtual.lilly.com
+WalkMe
+​
+Position
+Specialized
+Tags
+enterprise-automation
+Information Sensitivity
+Under Review
+Architect
+Greg Graf
+Contact(s)
+Jon Thomas
+Use to guide users thru the steps of a process / workflow
+Use Cases
+​
+provide assistance/guidance and  navigate users thru a process/workflow build on a web, html, css/javascript application
+Notes
+​
+Consult for external use cases. Support will transition from GS IT to GIS/Automation Enablement
+Yammer Live Events
+​
+Position
+Standard
+Tags
+event-broadcasting
+Information Sensitivity
+Yellow
+Architect
+Bryce Williams
+Contact(s)
+Ray Gonzales
+User-led broadcasts in a one-to-many style (up to 10k attendees). Supports large audiences (open Yammer Community) and active engagement for internal Lilly åttendees. Recordings are published into Stream for SharePoint for playback and accessibility benefits.
+Use Cases
+​
+Self-produced large audience events engaging an open community
+Notes
+​
+See the Modern Meetings Matrix for more information:
+https://collab.lilly.com/:p:/r/sites/mm/Shared%20Documents/Meeting-Services-Matrix_33590.pptx?d=w4645bb9e47c24b2fbb6bedca4bcccb68&csf=1&web=1&e=DqnYqX
+See Also
+​
+https://collab.lilly.com/sites/ITPortal/SitePages/Live-Events-in-Teams-and-Yammer.aspx
+Declining → Retired
+​
+Box (QuickCollab)
+​
+Position
+Retired 2020-12-31
+Tags
+collaboration-tools
+Information Sensitivity
+Red
+Architect
+Bryce Williams
+Contact(s)
+Bryce Williams
+Use when external document sharing is the predominant requirement. Exit by 31/DEC/2020
+Notes
+​
+O365 alternatives available from July 2020. Existing QuickCollabs will either retire or migrate. Exit by 31/DEC/2020
+Documentum
+​
+Position
+Retired 2023-06-30
+Tags
+content-management
+Information Sensitivity
+Red
+Architect
+Jannell Gunn
+Contact(s)
+Jannell Gunn
+Documentum is declining with a predicted exit date of end of 2023 (TBC). No new projects/repositories. Alternatives: Veeva quality docs, SharePoint. Some content may be archived long term during migration. The Documentum team will contact business areas to discuss the individual migration plans. Previous positioning: Preferred solution for long-term in-use content management with advanced document management needs. Each business area in Documentum is completing an assessment of the correct location for the migration of their content.
+Use Cases
+​
+Long-term in-use and complex document management. Controlled and/or regulated documents. Drug development & marketing content, including regulatory content. Training content and material. Collaborate on team/project content. Manage content that supports a local business processShare content within a community. Manage enterprise content.
+Form Assembly
+​
+Position
+Retired 2021-12-31
+Tags
+low-code-platforms
+Information Sensitivity
+Orange
+Architect
+Jon Thomas
+Contact(s)
+Jon Thomas
+Form Assembly was specialized for forms that require Force.com integration and was retired Q4 2021.
+Use Cases
+​
+Develop a basic form or advanced form when Force.com integration is required
+Notes
+​
+Beginning 01-JAN-2020 No new forms on Form Assembly without an EA exception (known exception: Force.com integration)
+Forms Builder (Force)
+​
+Position
+Retired 2019-03-31
+Tags
+low-code-platforms
+Information Sensitivity
+Red
+Architect
+Jon Thomas
+Contact(s)
+Jon Thomas
+Information Sensitivity
+Red
+Architect
+Jon Thomas
+Contact(s)
+Jon Thomas
+Home Drives on LAN
+​
+Position
+Retiring
+Tags
+collaboration-tools
+Information Sensitivity
+Red
+Architect
+Jarret DiPace
+Contact(s)
+Mehri Fox
+Legacy ICS Solution. Use OneDrive as the preferred solution for ICS
+Notes
+​
+For retirement plans and alternatives contact Mehri Fox
+Infopath
+​
+Position
+Retired 2022-12-31
+Tags
+low-code-platforms
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Steve Scott
+LAN Drives - Collaboration & Content Management
+​
+Position
+Declining 2021-04-01
+Tags
+collaboration-tools, content-management
+Information Sensitivity
+Orange
+Architect
+Scott Kuckuck
+Contact(s)
+Scott Kuckuck
+LAN Shares must not be used for data or applications without an EA Exception.
+"Sites/Affiliates having low network bandwidth" is Specialized
+"Long-term storage of inactive files or business records" is Exiting
+"All other collaboration & content management" is Declining
+Notes
+​
+If there is a need to use LAN drives to start content subject to long term retention and regulation an exception should raised with Enterprise Architecture. For retirement plans and alternatives, contact Scott Kuckuck
+Loop (Group / Space)
+​
+Position
+Retired 2019-07-31
+Tags
+collaboration-tools
+Information Sensitivity
+Orange
+Architect
+Bryce Williams
+Contact(s)
+Bryce Williams
+Microsoft SharePoint Team Sites (on-prem)
+​
+Position
+Retired 2020-03-31
+Tags
+collaboration-tools
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Steve Scott
+Retire by Q1-2020
+Notes
+​
+Remove sites or transition to O365 SharePoint or Teams. Complex SharePoint Application must move out of SharePoint
+MySite (SharePoint)
+​
+Position
+Retired 2019-12-31
+Tags
+collaboration-tools
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Steve Scott
+Salesforce BP&A
+​
+Position
+Retired 2021-05-24
+Tags
+enterprise-automation
+Information Sensitivity
+Red
+Architect
+Rob Blackketter
+Contact(s)
+Rob Blackketter
+SharePoint Portal Site (on-prem)
+​
+Position
+Retired 2020-12-31
+Tags
+collaboration-tools
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Steve Scott
+Sharepoint Workflows
+​
+Position
+Retired 2020-03-31
+Tags
+enterprise-automation
+Information Sensitivity
+Red
+Skype for Business
+​
+Position
+Retired 2022-03-31
+Tags
+collaboration-tools
+Information Sensitivity
+Yellow
+Architect
+Steve Scott
+Contact(s)
+Steve Scott
+Use for 1:1/Small Group chat and online meetings. Declining. Exit by 31/DEC/2021
+Use Cases
+​
+Text based chatMeetings/calls
+VMWare Virtual Desktops
+​
+Position
+Retired 2020-12-31
+Tags
+app-delivery-platforms
+Document generated from Stack Overflow Enterprise articles (prioritized) and ea_tech.csv (fallback)
+Windows Home Drives (H: Drive)
+​
+Position
+Retiring
+Tags
+collaboration-tools
+Information Sensitivity
+Orange
+Architect
+Jarret DiPace
+Contact(s)
+Jarret DiPace
+Retire Windows Home Drives. The target is to migrate data to Microsoft O365 (OneDrive). 414TB of Home drives across 48,977 named users.
+Use Cases
+​
+Individual Content Storage of User Files
+Notes
+​
+Enable usage of O365 security, privacy, retention/records mgmt, and assessment tools.
+Move to single location for Windows Home Drives.
+Avoid Capital lifecycle purchases in late 2023.
+Migration: Migrate or retire 48,977(414TB) Home Drives totaling 740TB of on premises storage.
+See Also
+​
+https://wip.am.lilly.com/(S(1qyafr5ron2ygq5f1bjm3ni1))/WIP1_Work_Request_Registration.aspx?WIP=53199
+Document generated from Stack Overflow Enterprise articles (prioritized) and ea_tech.csv (fallback)
+Was this helpful?
+Edit this page
+Previous
+🚀 Team Productivity
+Next
+🧭 Diagramming
+Browsers
+Centralized Apps
+Everbridge
+GoTo Meeting
+GoToTraining
+GoToWebinar
+Hosted Shared Desktops (XenApp)
+iObeya
+Microsoft Forms
+Microsoft Power Apps
+Microsoft Power Automate
+Microsoft Power BI
+Microsoft Teams
+Microsoft Viva Engage (Yammer)
+Microsoft Whiteboard
+Native Installation
+On24
+Outlook / Exchange
+PDF
+ServiceNow Surveys
+SharePoint Communication Sites
+SharePoint Team Sites
+Teams Live Events
+Virtual Desktop (XenDesktop)
+WalkMe
+Yammer Live Events
+Declining → Retired
+Box (QuickCollab)
+Documentum
+Form Assembly
+Forms Builder (Force)
+Home Drives on LAN
+Infopath
+LAN Drives - Collaboration & Content Management
+Loop (Group / Space)
+Microsoft SharePoint Team Sites (on-prem)
+MySite (SharePoint)
+Salesforce BP&A
+SharePoint Portal Site (on-prem)
+Sharepoint Workflows
+Skype for Business
+VMWare Virtual Desktops
+Windows Home Drives (H: Drive)
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

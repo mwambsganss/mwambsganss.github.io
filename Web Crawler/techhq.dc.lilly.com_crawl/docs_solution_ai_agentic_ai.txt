@@ -1,0 +1,166 @@
+Title: 🤖 Agentic AI | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/agentic_ai
+Description: Solution Guide: 🤖 Agentic AI
+
+🤖 Agentic AI | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+🤖 Agentic AI
+Agentic AI
+Solution Guide
+Lifecycle: Draft
+Last Update: 2026-02-03
+Capability Owner: Brian Lewis
+EBA Lead: Brian Lewis
+Contributors & Reviewers: Ali Kharazmi, Archit Kaila, Haitham Maya, Malika Mahoui
+A solution guide for autonomous AI agents and multi-agent orchestration systems at Eli Lilly.
+Important Strategic Guidance
+Microsoft Foundry should NOT be used.
+All agentic orchestration should happen in
+Copilot Studio
+(low-code) or
+Cortex Landing Zone
+(pro-code). Agent interoperability happens in Landing Zone with registration of Copilot Studio agents (if desired).
+Use Case/Scenario
+Tech Recommendation
+Code Level
+Category
+Positioning
+Notable Integration/Interop
+Owning Org/Team
+Guidance
+Agentic orchestration & multi-agent systems
+Cortex Landing Zone
+Pro-Code
+Platform
+Strategic Core
+API endpoints; A2A protocol; Copilot Studio agent registration
+AI & SPE
+Consult AI Architecture
+AI agents & agentic workflows
+Microsoft Copilot Studio
+Low-Code
+Hyperscaler
+Strategic Core
+Microsoft Teams; SharePoint; APIs; Azure AI Services; Landing Zone interop
+Collaboration Svcs
+Use
+AI chat agents
+Chat-In-A-Box
+No-Code
+Platform
+Strategic Core
+AI & SPE
+Use
+AI product solutions
+Pharm(ai)
+No-Code
+Platform
+Strategic Core
+AI & SPE
+Use
+Agent-to-agent interoperability
+Cortex Landing Zone
+Pro-Code
+Platform
+Strategic Core
+A2A protocol; Copilot Studio registration; multi-platform agent orchestration
+AI & SPE
+Consult AI Architecture
+Agent orchestration
+Microsoft Azure AI Agent Service
+Low-Code
+Hyperscaler
+Controlled
+Azure ecosystem
+Collaboration Svcs
+Consult AI Architecture
+Agent orchestration
+Amazon Bedrock Agents
+Pro-Code
+Hyperscaler
+Controlled
+AWS ecosystem
+Cloud Platform
+Consult AI Architecture
+Google agent platform
+Google Agentspace
+Pro-Code
+Hyperscaler
+Specialized
+Vertex AI; Gemini models (requires governance approval)
+N/A
+Contact Enterprise Architecture
+Service management agents
+ServiceNow
+Low-Code
+Vendor
+Contained
+Microsoft Teams; OpenAI; enterprise integrations
+Automation
+Consult Automation
+RPA and workflow automation
+Automation Anywhere
+Low-Code
+Vendor
+Contained
+Business process integrations
+Automation
+Consult Automation
+Dialog flows and decision trees
+Kore.AI
+Low-Code
+Vendor
+Declining
+Microsoft Teams; OpenAI; ServiceNow
+Automation
+Consult Automation
+Was this helpful?
+Tags:
+ai
+solution-guide
+agentic
+techhq
+Edit this page
+Previous
+🗄️ AI & Intelligent Agents BLT
+Next
+🧭 Conversational AI
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

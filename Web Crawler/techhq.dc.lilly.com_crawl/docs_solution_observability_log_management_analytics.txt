@@ -1,0 +1,123 @@
+Title: Log Management & Analytics | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/observability/log_management_analytics
+Description: Stack Overflow Article: Log Management & Analytics
+
+Log Management & Analytics | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🗄️ Observability & Reliability BLT
+Infrastructure Performance Monitoring
+Log Management & Analytics
+Network Monitoring
+🧭 Resiliency & Disaster Recovery
+🚀 Team Productivity
+🎨 User Experience & Design
+🛰️ Observability & Reliability
+Log Management & Analytics
+Log Management & Analytics
+# 🧭 Log Management & Analytics
+<ExternalLink>[Synced daily from Stack Overflow](https://elilillyco.stackenterprise.co/articles/4205)</ExternalLink>
+:::info[Solution Guide]
+- Lifecycle: Draft
+- Last Update: 2025-10-10
+- Capability Owner: David Fleming
+- EBA Lead: David Fleming
+- Contributors & Reviewers:
+:::
+your text`
+A guide for designing and implementing log management and analytics platforms that support real-time diagnostics, business intelligence, and AI-ready observability.
+:::tip
+You can use the <ExternalLink>[TechHQ Solution Guide Drafter](http://link-to-drafter.com)</ExternalLink>.
+:::
+Use Case/ScenarioTech RecommendationPositioningComplexityKey IntegrationsOwning Org/TeamNext StepReal-time diagnostics & RCASplunk Enterprise + DSPStrategic CoreHighUnified Agent, CMDB, ITSI, ServiceNowObservability & AI OpsRequest onboarding via ITSI| Security & Compliance Auditing    | Splunk SIEM, Elastic Security     | Standard          | Medium     | Syslog, Auditd, Windows Event Logs                    | Cybersecurity Operations | Submit request to Security Ops     |
+| Business Activity Monitoring (BAM)| Fluentd + Databricks              | Specialized       | Medium     | Kafka, REST APIs, Cloud Storage                       | Data Engineering         | Deploy pipeline via Terraform      |
+| AIOps Pattern Detection           | Splunk ITSI + Unified Agent       | Strategic Core    | High       | Metrics, Logs, Traces, CMDB                           | Observability & AI Ops   | Enable correlation in ITSI         |
+| Cost-Optimized Log Retention      | Amazon S3 + Athena                | Specialized       | Low        | Fluent Bit, CloudTrail, Lambda                        | Cloud Platform Team      | Configure lifecycle policies       |
+| Developer Debugging & QA          | ELK Stack (Elasticsearch, Logstash, Kibana) | Standard          | Medium     | Jenkins, GitHub, App Logs                             | DevOps Engineering        | Provision ELK via Helm             |
+:::warning
+Avoid ingesting unfiltered, unstructured logs into your analytics platform. This leads to high costs, poor performance, and unusable data for AI models.
+:::
+---
+## Why This Matters: From Dumb Storage to Smart Context
+Traditional log management focused on storing raw text for compliance. Today, logs must be structured, correlated, and enriched to support real-time diagnostics, RCA, and predictive analytics. A modern log strategy transforms high-volume, unstructured data into low-latency, high-value insights.
+---
+## The Three Imperatives for AI-Ready Logs
+### 1. Structured Ingestion (The "Parser")
+:::info[Structured Logging]
+- Enforce JSON or key-value format at the source (e.g., Log4j, SLF4J)
+- Mandate NTP synchronization across all hosts
+- Use ISO 8601 timestamps with timezone offsets
+:::
+### 2. Intelligent Routing & Filtering (The "Pipeline")
+:::info[Smart Pipelines]
+- Filter debug/heartbeat logs at the edge using DSP or Fluent Bit
+- Route high-value logs (e.g., security events) to long-term indexes
+- Use short-term, low-cost storage for transient logs
+:::
+### 3. Cross-Domain Correlation (The "Link")
+:::info[Unified Correlation]
+- Tag all logs with host_id, service_name, and trace_id
+- Enrich logs with CMDB metadata (e.g., environment, owner, tier)
+- Enable one-click pivot between metrics and logs in observability platforms
+:::
+---
+## Architectural Decision: The Log Pipeline Strategy
+ComponentFunctionBest-Fit TechnologiesCollector/ForwarderGathers logs from servers, containers, endpointsUnified Agents (Splunk, Dynatrace), Fluentd| Processor/Router    | Filters, structures, enriches, and routes data       | Splunk DSP, Logstash, Fluent Bit                 |
+| Analytical Store    | Indexes structured data for search and ML            | Splunk, Elasticsearch, Databricks, Athena        |
+:::tip[Process Near the Source]
+Place filtering and structuring logic in the collector or forwarder to reduce bandwidth and indexing load.
+:::
+---
+## Technology Details
+### Splunk Enterprise + DSP
+Strategic platform for enterprise-wide log analytics. DSP enables edge filtering, enrichment, and routing. Deep integration with ITSI and CMDB supports RCA and AIOps.
+### Splunk SIEM
+Standard platform for security log analytics. Supports long-term retention, forensic investigation, and compliance reporting. Integrates with syslog, Windows Event Logs, and audit frameworks.
+### Fluentd + Databricks
+Specialized solution for business activity monitoring. Fluentd collects structured logs; Databricks transforms them into metrics for dashboarding and analysis.
+### ELK Stack
+Standard open-source stack for developer debugging and QA. Elasticsearch indexes logs; Logstash parses and routes; Kibana visualizes. Ideal for CI/CD pipelines.
+### Amazon S3 + Athena
+Cost-effective solution for long-term log retention. Fluent Bit routes logs to S3; Athena enables SQL-based querying. Best for low-frequency access and compliance storage.
+---
+## Real-World Use Cases
+ScenarioGoal & Business ValueTechnology FocusSecurity & Compliance AuditingMeet SOC 2/PCI requirements, enable forensic investigationSplunk SIEM, Elastic Security| Business Activity Monitoring    | Track user sign-ups, order volume, feature usage                   | Fluentd, Databricks                                   |
+| Advanced AIOps Pattern Detection| Detect event sequences that precede failures                       | Splunk ITSI, Unified Agent                            |
+| Troubleshooting (RCA)          | Jump from metric anomaly to root cause log                         | Splunk ITSI, ELK Stack                                |
+---
+### Recommendations to Improve Guide Usability
+1. **Add Architecture Diagrams** showing the log pipeline from source to analytics platform.
+2. **Include Deployment Playbooks** for agent rollout, DSP configuration, and index setup.
+3. **Link to Governance Policies** for log retention, security, and compliance.
+Was this helpful?
+Tags:
+observability
+solution-guide
+techhq
+Edit this page
+Previous
+Infrastructure Performance Monitoring
+Next
+Network Monitoring
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

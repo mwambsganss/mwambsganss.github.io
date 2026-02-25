@@ -1,0 +1,153 @@
+Title: 🧭 Diagramming | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/productivity/diagramming
+Description: Stack Overflow Article: 🧭 Diagramming
+
+🧭 Diagramming | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🗄️ Team Productivity BLT
+🧭 Diagramming
+🎨 User Experience & Design
+🚀 Team Productivity
+🧭 Diagramming
+On this page
+Diagramming
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-03-28
+Capability Owner: Sanish Haridas
+EBA Lead: Kapil Kamat
+Contributors & Reviewers:
+This guide provides recommendations for diagramming tools and frameworks.
+Use Case/Scenario
+Tech Recommendation
+Positioning
+Complexity
+Notable Integration/Interop
+Owning Org/Team
+Next Step
+Collaborative product and architecture diagrams
+Lucidchart
+Strategic Core
+Low
+Web-based
+SPE EDAT
+Automated Lucidsuite license
+Quick visualizations and non-technical presentations
+PowerPoint
+Strategic Core
+Low
+Digital Core Collaboration
+Use
+App & web wireframing, collaborative whiteboarding
+Figma
+Strategic Core
+Low
+Web-based
+Digital Office UX
+Login using Lilly email
+Collaborative Whiteboarding
+Microsoft Whiteboard
+Standard
+Low
+Microsoft Teams, web, or iPad
+Digital Core Collaboration
+Use
+Detailed technical diagrams and network diagrams
+Microsoft Visio
+Declining
+Low
+Windows only
+Digital Core Collaboration
+Order Visio or use Visio Viewer
+Markdown-based diagramming and charting
+C4 Model
+Standard
+Low
+Digital Core EBA
+Use
+Programmatic flowchart and diagram creation
+Mermaid
+Emerging
+Medium
+Digital Core EBA
+Use
+Use Cases
+​
+Quick visualizations and non-technical presentations
+​
+Focuses on visual communication of complex software architecture to stakeholders who may not have a technical
+background. These visualizations help to simplify intricate concepts, making them more accessible and easier to
+understand.
+Detailed technical diagrams and network diagrams
+​
+Technical and network diagrams are vital for technical teams, offering a detailed blueprint of software architecture.
+They illustrate system components, data flows, and interactions, helping developers and IT professionals understand
+complex interdependencies. Network diagrams show the physical and logical layout of network infrastructure, essential
+for troubleshooting, performance optimization, and ensuring scalability and security.
+Collaborative projects and cloud architecture diagrams
+​
+Collaborative projects and cloud architecture diagrams are key in modern software development. They enable teams to work
+together smoothly, regardless of location. These diagrams map out cloud infrastructure, showing how services integrate
+and interact. They are vital for planning, deploying, and managing scalable, resilient, and secure cloud applications.
+Collaboration allows for continuous feedback and improvement, resulting in more robust cloud solutions.
+Visualizing and communicating software architecture to technical teams
+​
+Visualizing and communicating software architecture to technical teams involves creating representations that capture
+the system's complexity while ensuring clarity and comprehensibility. This process includes developing detailed
+flowcharts, UML diagrams, and architectural blueprints that delineate modules, dependencies, and data flow. These visual
+aids not only facilitate better understanding among team members but also serve as a reference during development,
+troubleshooting, and scaling phases.
+Tech Recommendations
+​
+PowerPoint
+: Use for quick visualizations, presentations to non-technical audiences, and adding diagrams to slides.
+Microsoft Visio
+: Use for detailed technical diagrams, network diagrams, and complex process flows.
+Lucidchart
+: Use for collaborative projects, cloud architecture diagrams, and integrating with web-based tools.
+C4 Model
+: Use for visualizing and communicating software architecture to technical teams.
+Mermaid
+: Use for creating diagrams and visualizations using text-based descriptions, ideal for technical
+documentation, integrating with Markdown, and embedding in web applications.
+Was this helpful?
+Tags:
+solution-guide
+productivity
+techhq
+Edit this page
+Previous
+🗄️ Team Productivity BLT
+Next
+🎨 User Experience & Design
+Use Cases
+Quick visualizations and non-technical presentations
+Detailed technical diagrams and network diagrams
+Collaborative projects and cloud architecture diagrams
+Visualizing and communicating software architecture to technical teams
+Tech Recommendations
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

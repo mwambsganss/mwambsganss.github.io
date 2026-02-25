@@ -1,0 +1,16 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/solution/cloud/container_services",
+  "title": "🧭 Container Services | Tech HQ",
+  "description": "Stack Overflow Article: 🧭 Container Services",
+  "h1": [
+    "Container Services"
+  ],
+  "h2": [
+    "Footnotes​"
+  ],
+  "h3": [],
+  "text_content": "🧭 Container Services | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🧩 Solution Overview\n🤖 AI & Intelligent Agents\n🏢 Business Enablement\n☁️ Cloud & Infrastructure\n🗄️ Cloud & Infrastructure BLT\n🧭 Cloud Architecture\n🧭 Cloud FinOps\n🧭 Container Services\n🧭 Networking Services\n🧭 Workflow & Orchestration\n🔐 Cybersecurity\n📊 Data & Analytics\n🛠️ Engineering Enablement\n🛰️ Observability & Reliability\n🚀 Team Productivity\n🎨 User Experience & Design\n☁️ Cloud & Infrastructure\n🧭 Container Services\nContainer Services\nSynced daily from Stack Overflow\nSolution Guide\nLifecycle: Draft\nLast Update: 2024-12-16\nCapability Owner: Josh Bloxsome\nEBA Lead: Karl Mayer\nContributors & Reviewers: Josh Bloxsome, Chris Tornatta, Ross Grinvalds, Todd Walters, Sonia Gurdian, Karl Mayer\nA guide for common containerization and container orchestration use cases.\nLocal Containerization Options\nFor local workstation and container development options, see\nWhat is our position on using Docker Desktop?\nUse Case(s)\nTech Recommendation\nPositioning\nComplexity\nKey Integrations\nOwning Org/Team\nNext Step\nInternal apps & APIs; containerized 'high compute' workloads\nCATS\n(backed by\nAWS EKS\n)\nStrategic Core\nLow\nAWS\n1\n; cloud resources; HTTPS connectivity to on-prem resources\nSPE\nCATS\nself-service guide;\nfor tech questions\nPublic-facing apps/APIs; multi-region deployment\nKubed\n(backed by\nAWS ROSA\n)\nStrategic Core\nLow\nAWS\nSPE\nKubed\nself-service guide;\nfor tech questions\nApp/API/workloads needing full on-prem connectivity\nOpenShift\nStandard\nMedium\non-prem & cloud resources\nSPE\nfully-managed container orchestration with serverless execution\nAWS ECS Fargate + AWS ECR\nSpecialized\nHigh\nAWS\nCloud\nCAST architecture review\nYour own Kubernetes cluster with serverless execution\nAWS EKS Fargate + AWS ECR\nSpecialized\nHigh\nAWS\nCloud\nCAST architecture review\nLambda functions packaged as container images (serverless workloads with custom runtimes)\nAWS Lambda + AWS SAM\nSpecialized\nMedium\nAWS\nCloud\nOpenShift container workloads in Azure\nAzure Red Hat OpenShift\nEmerging\nHigh\nAzure\n2\nTBD\nSPE\nOther containerization in Azure\nAzure Container Services\nEmerging\nHigh\nAzure TBD\nSPE & Cloud\nwarning\nUnless vendor-specified, container workloads on self-managed, VM-based Docker or Kubernetes is not recommended.\nFootnotes\n​\nManage access to AWS resources with\nAWS IAM\n.\n↩\nManage access to Azure resources with\nAzure Entra ID\n.\n↩\nWas this helpful?\nTags:\ncloud\nsolution-guide\ntechhq\nEdit this page\nPrevious\n🧭 Cloud FinOps\nNext\n🧭 Networking Services\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 6,
+  "depth": 3,
+  "crawled_at": "2026-02-25T10:08:49.026331"
+}

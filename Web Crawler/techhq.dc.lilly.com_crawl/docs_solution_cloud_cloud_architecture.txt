@@ -1,0 +1,285 @@
+Title: 🧭 Cloud Architecture | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/cloud/cloud_architecture
+Description: Stack Overflow Article: 🧭 Cloud Architecture
+
+🧭 Cloud Architecture | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🗄️ Cloud & Infrastructure BLT
+🧭 Cloud Architecture
+🧭 Cloud FinOps
+🧭 Container Services
+🧭 Networking Services
+🧭 Workflow & Orchestration
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+☁️ Cloud & Infrastructure
+🧭 Cloud Architecture
+On this page
+Cloud Architecture
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-09-30
+Capability Owner: Todd Walters
+EBA Lead: Todd Walters
+Contributors & Reviewers: Amrit Anand, Richard Schmidt, Abhimanyu Rawat, Todd Walters, Karl Mayer
+TechHQ cloud articles provide summary-level solution guides to help teams quickly understand architectural patterns, governance models, and deployment strategies.
+Cloud Architecture & Engineering Deeper Dives...
+For deeper technical documentation, platform-specific guidance, and access to tooling resources, Lilly’s centralized
+Cloud Library
+at
+https://cloud.lilly.com
+is the authoritative source. It includes detailed information on AWS, Azure, and GCP platforms, FinOps practices, developer tooling, AI offerings, and enterprise cloud strategy. Use it as your starting point for cloud enablement across the organization.
+Terminology in Lilly Cloud Architecture
+​
+DX
+– Data center connected environments without Internet-facing endpoints
+NoDX
+– Internet-facing environments without data center connectivity
+Private Cloud
+– Lilly data center workloads
+for a more complete explaination of DX vs NoDX Terminology reference the following Lilly Flow Article:
+AWS Security Guardrails and Restrictions
+AWS
+​
+Landscape
+​
+Available Regions
+Primary region
+:
+us-east-2
+— closest to Indianapolis
+Other approved regions
+:
+us-east-1
+(N. Virginia),
+us-west-1
+(N. California),
+us-west-2
+(Oregon),
+ap-northeast-1
+(Tokyo),
+eu-west-2
+(London)
+Important DX accounts
+:
+EDB
+– Enterprise Data Backbone for development, QA, and production
+SAP
+- Hosts critical SAP ERP infrastructure.
+InfoHub
+– Hosts critical infrastructure like regmol-redqa-db and livedesignwk
+Hanger (CATS)
+– Modular content and API gateway deployments
+Bioinformatics DX
+– Genomics workflows with S3, Batch, Parallel Cluster, and ECR
+Important NoDX accounts
+:
+GS
+– LillyNow
+GS
+- iTravel
+Digital Core
+- TPET
+MQ
+- One QMS
+Important Constraints
+​
+Service Control & Boundary Policies
+DX accounts governed by stricter boundary policies
+NoDX accounts require additional governance for public internet exposure
+Fully Denied Services
+App Runner
+(apprunner:*)
+Amazon Chime
+(chime:*)
+Amazon Cloud Directory
+(clouddirectory:*)
+AWS CloudHSM
+(cloudhsm:*)
+Amazon GameLift
+(gamelift:*)
+AWS IQ
+(iq:*)
+Amazon Mechanical Turk
+(mechanicalturk:*)
+AWS Outposts
+(outposts:*)
+Amazon SimpleDB
+(sdb:*)
+Amazon Simple Workflow Service (SWF)
+(swf:*)
+Amazon WorkDocs
+(workdocs:*)
+AWS WAM (Workspaces Application Manager)
+(wam:*)
+Amazon WorkMail
+(workmail:*)
+Amazon Workspaces
+workspaces:*)
+Partially Denied Services
+Lambda
+Create and Update FunctionUrlConfig API calls are blocked
+RolesAnywhere
+Create, Update and Delete of Trust Anchor API calls are blocked
+Kendra
+Create Experience API call is blocked
+AWS Public Marketplace
+Accept, Cancel, Complete, Create, Put, Reject, Start, Subscribe, Unsubscribe, Update API calls are blocked
+EC2
+All Network/VPC related create, update, delete API calls are blocked
+Use of Public AMI's are denied
+Deployment of non-encrypted EC2 instance volumes are denied
+Bedrock
+API only allowed in AI Use Case Approved AWS Accounts
+API calls allowed to only approved foundational models
+S3
+Deny S3 Bucket Policy Create, Update, Delete API calls are blocked
+IAM
+Creation of IAM Users is denied
+Creation of SAML and OpenID Connect Providers is denied
+PassRole to Federated Roles is denied
+Deployment Patterns
+​
+Hanger/CATS
+– Orchestrates DX deployments
+Cloud Central Vending Machine
+– Provisions S3 buckets, databases
+Infrastructure as Code
+– GitHub Actions + CloudFormation
+Azure
+​
+Landscape
+​
+Azure follows the
+Cloud Adaption Framework
+(CAF) of Microsoft and applies the Enterprise Scale
+Landing Zone
+architecture.
+Available Regions
+Primary region
+:
+Central US
+— closest to Indianapolis
+Other approved regions
+:
+North Central US
+UK South
+/
+UK West
+JP East
+/
+JP West
+For Special Use-cases
+East US
+/
+East US 2
+/
+West US
+Important DX subscriptions
+:
+Azure VMWare
+Citrix
+Data Protect
+Cloud DR
+APIM
+Connectivity
+IAM
+MQ Science Engine
+MQ GMDF
+MQ IoT
+MQ Labvantage
+MQ Qrius
+MQ Mulesoft
+LillyNowKB
+ED SQL DB
+ED SSIS
+SPE Cortex
+Important NoDX subscriptions
+:
+(To be defined)
+ChatNow
+Important Constraints
+​
+DX subscriptions bypass Bastion host requirements
+NoDX subscriptions require Bastion hosts and DNS policy exemptions
+Both Environments are governed through
+Enterprise Policy as Code
+(EPAC)
+Access to Subscriptions is granted through membership of explicit Access Packages via
+Microsoft My Access
+All deployments need to happen through a pipeline executing Infrastructure as Code, leverage linting and coding best practices.
+! MESSAGING - "To be discussed" since Email services are supposed to be used either by AWS Service or M365 Graph access
+Deployment Patterns
+​
+Cloud Central Vending
+Provision individual subscriptions (SBX / DEV / QA / PROD)
+Azure One-Click with DEV/QA/PROD Subscriptions tied to a single GitHub Repo with OIDC connected Service Principal for CI/CD.
+Provision Databases & Analytics Services
+Provision NetApp Storage
+Provision Compute - Windows & soon RHEL
+Hangar -
+Containerized Solutions in Azure RedHat OpenShift
+Infrastructure as Code
+GitHub Actions
+Bicep -> Curated
+Bicep Module Repository
+based on
+Azure-Verified-Modules (AVM)
+Google Cloud Platform (GCP)
+​
+Important Constraints
+​
+See the Google Article on TechHQ for GCP Positioning:
+https://techhq.dc.lilly.com/docs/solution/ai/positioning/google_positioning
+Governance and Decision Frameworks
+​
+CAST
+– Cloud Architecture Standards Team
+SAE
+– Secure Architecture & Engineering
+Was this helpful?
+Tags:
+cloud
+solution-guide
+techhq
+Edit this page
+Previous
+🗄️ Cloud & Infrastructure BLT
+Next
+🧭 Cloud FinOps
+Terminology in Lilly Cloud Architecture
+AWS
+Landscape
+Important Constraints
+Deployment Patterns
+Azure
+Landscape
+Important Constraints
+Deployment Patterns
+Google Cloud Platform (GCP)
+Important Constraints
+Governance and Decision Frameworks
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

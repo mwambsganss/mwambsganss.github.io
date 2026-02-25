@@ -1,0 +1,115 @@
+Title: Lilly's AI Guidance | ai.lilly.com
+URL: https://ai.lilly.com/lilly-ai-guidance
+Description: 
+
+Lilly's AI Guidance | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+Lilly's AI Guidance
+L
+illy is dedicated to using AI responsibly and ethically. Before using AI in your work, please review Lilly’s AI guidance.
+Using AI Responsibly at Lilly
+As with all breakthrough technologies, there are risks and benefits to using AI. When used incorrectly, AI can produce biased or incorrect results.
+Before using AI products, you must
+read the procedure
+and utilize the
+guidelines
+.
+Read Procedure
+Decision Tree for Submitting a Use Case to the AI Registry
+Before using a new AI tool, please consult this decision tree to determine whether your use case requires a submission to the AI registry.
+Try the Decision Tree
+Guidelines for Use of AI-Generated Media (Images, Video, Audio)
+When using AI to generate media (e.g., images, video, or audio) for your work at Lilly, you must follow guidance on the use and labeling of media. Make sure to read the guidance thoroughly before using AI-generated media.
+Read the Guidance
+Do
+Do engage and ask questions when unsure of appropriate AI use.
+Do verify outputs of AI for accuracy
+Do know the data sources, including biases and limitations.
+Do get help on AI contracts.
+Don't
+Don't use public AI tools outside of these guidelines to make logical decisions about low-risk use.
+Don’t put in personal or confidential information unless approved by Lilly (e.g., Copilot with Bing is approved).
+Don’t put intellectual property at risk.
+Don’t enter into paid AI license agreements for company use.
+Dos and Don’ts of Public AI Tools
+AI presents unique risks and limitations to be used responsibly and effectively. We must protect the
+Confidential Information
+,
+Personal Information
+, intellectual property, and reputation of our Company.
+Have an Idea?
+Integrating AI into our business is a team effort.
+All AI use cases must be registered and approved.
+Register AI Idea
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right

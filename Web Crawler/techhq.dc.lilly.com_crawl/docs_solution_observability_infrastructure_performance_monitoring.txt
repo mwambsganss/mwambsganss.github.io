@@ -1,0 +1,126 @@
+Title: Infrastructure Performance Monitoring | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/observability/infrastructure_performance_monitoring
+Description: Stack Overflow Article: Infrastructure Performance Monitoring
+
+Infrastructure Performance Monitoring | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🗄️ Observability & Reliability BLT
+Infrastructure Performance Monitoring
+Log Management & Analytics
+Network Monitoring
+🧭 Resiliency & Disaster Recovery
+🚀 Team Productivity
+🎨 User Experience & Design
+🛰️ Observability & Reliability
+Infrastructure Performance Monitoring
+Infrastructure Performance Monitoring
+# 🧭 Infrastructure Performance Monitoring (IPM): AI-Ready Observability Strategy
+<ExternalLink>[Synced daily from Stack Overflow](https://elilillyco.stackenterprise.co/articles/4204)</ExternalLink>
+:::info[Solution Guide]
+- Lifecycle: Draft
+- Last Update: 2025-10-10
+- Capability Owner: David Fleming
+- EBA Lead: [TBD]
+:::
+A guide for designing and implementing infrastructure performance monitoring solutions that support AIOps, automation, and predictive intelligence across enterprise environments.
+:::tip
+You can use the <ExternalLink>[TechHQ Solution Guide Drafter](http://link-to-drafter.com)</ExternalLink>.
+:::
+Use Case/ScenarioTech RecommendationPositioningComplexityKey IntegrationsOwning Org/TeamNext StepFull-stack infrastructure observabilityAppDynamicsStrategic CoreMediumServiceNow, VMware, Cisco, OasisEnterprise MonitoringRequest access via IT ServiceNowContainer and cloud-native monitoringPrometheus + GrafanaSpecializedMediumKubernetes, Docker, Azure MonitorCloud Platform TeamDeploy via Helm charts| AI-driven anomaly detection   | Dynatrace               | Emerging          | High       | Azure, AWS, VMware, OpenTelemetry                     | Observability & AI Ops   | Initiate pilot with AI Ops team    |
+| Legacy server performance tracking | Nagios                  | Declining         | Medium     | SNMP, Windows/Linux agents                            | Infrastructure Ops       | Review migration strategy          |
+| Multi-cloud infrastructure monitoring | Datadog                 | Standard          | Medium     | AWS, Azure, GCP, Kubernetes, Docker                   | Cloud Engineering        | Submit onboarding request          |
+| Real-time network performance monitoring | SolarWinds NPM          | Specialized       | Medium     | Cisco, F5, SNMP                                       | Network Services         | Contact Network Ops for setup      |
+:::warning
+Avoid deploying multiple overlapping monitoring tools without a clear integration strategy. Redundant tooling increases cost, complexity, and data fragmentation.
+:::
+## Why This Matters: Shifting from Health Checks to Proactive Intelligence
+Infrastructure Performance Monitoring (IPM) is no longer a passive check of CPU and RAM. For technical leaders and architects, IPM is the foundational data layer that feeds all AIOps, capacity planning, and automation initiatives. A poor IPM strategy creates blind spots, leads to reactive firefighting, and prevents successful deployment of advanced automation.
+### The Goal
+Move from simply knowing that a server is down (reactivity) to understanding why a specific component is degrading a critical business service and predicting the failure before it happens (proactivity).
+---
+## 📊 Architecture Diagram
+!<ExternalLink>[Infrastructure Performance Monitoring Stack Architecture](https://us-prod.asyncgw.teams.microsoft.com/v1/objects/0-cus-d5-7afe023df1b166e88371e957f94c9307/viewsModern Infrastructure Monitoring
+Architects must ensure the IPM solution collects the right types of data, with sufficient context, to be considered "AI-Ready."
+### 1. High-Cardinality Metrics (The "What")</ExternalLink>
+:::info[High-Cardinality Metrics]
+- Use unified agents (e.g., Splunk Observability Agents, Prometheus exporters)
+- Store raw metrics in a TSDB (e.g., Splunk Metrics, Thanos)
+- Retain data for 12–18 months for capacity planning and anomaly detection
+:::
+### 2. Centralized, Structured Logging (The "Why")
+:::info[Structured Logging]
+- Enforce JSON format at the source using Fluentd or Logstash
+- Ensure logs are tagged with host metadata for correlation
+- Link logs to topology maps in AIOps platforms (e.g., ITSI)
+:::
+### 3. Topology & Dependency Mapping (The "Where")
+:::info[Dependency Mapping]
+- Build service models using CMDB and NetBrain
+- Use automated discovery tools to avoid manual mapping
+- Feed topology into AIOps for impact analysis and prioritization
+:::
+---
+## Architectural Decision: The Unified Agent Strategy
+ApproachPros for AIOpsCons for AIOpsUnified Agent (Recommended)Deep context, high-cardinality metrics, logs/traces, automation-readyRequires standardization and operational discipline| Legacy Agentless (SNMP/WMI) | No install required                                                   | Shallow metrics, slow polling, not AI-ready         |
+:::tip[Agent Deployment Insight]
+- Use Sidecar pattern for Kubernetes
+- Use Golden Image for VMs
+- Avoid manual agent installs
+:::
+---
+## Real-World Use Cases: Best-Fit Technology
+ScenarioGoal & Business ValueTechnology FocusCapacity Planning & Cost OptimizationPrevent resource exhaustion, justify cloud rightsizing (Cost Savings)TSDB, Splunk/Grafana dashboards, long-term metrics| Proactive Bottleneck Detection | Predict degradation before impact (Improved MTTR)                  | AIOps Platform (ITSI), adaptive thresholds            |
+| Host-Level Self-Healing        | Auto-resolve low-risk issues (Reduced Toil)                        | ITSI + Automation Engine (Ansible)                    |
+| Rapid Root Cause Analysis (RCA) | Accelerate diagnosis (Reduced MTTR)                                | Unified Agent, single-pane correlation                |
+---
+## Technology Details
+### AppDynamics
+Strategic platform for full-stack observability. Deep integration with ServiceNow and Oasis. Supports automated RCA and incident response.
+### Prometheus + Grafana
+Open-source stack for cloud-native environments. Ideal for Kubernetes and Docker. Supports high-cardinality metrics and custom dashboards.
+### Dynatrace
+AI-powered monitoring with automatic anomaly detection. Supports OpenTelemetry and dynamic environments. Emerging within enterprise AIOps.
+### Nagios
+Legacy tool for basic server and network monitoring. Limited cloud-native support. Consider migration to modern platforms.
+### Datadog
+Standard tool for multi-cloud observability. Unified dashboards and alerting. Supports OpenTelemetry and hybrid environments.
+### SolarWinds NPM
+Specialized for network performance. SNMP-based telemetry. Ideal for real-time traffic and latency monitoring.
+---
+### Recommendations to Improve Guide Usability
+1. **Add Decision Trees** to help architects choose technologies based on environment type (cloud-native, legacy, hybrid).
+2. **Embed Deployment Playbooks** for agent rollout, TSDB setup, and logging standardization.
+3. **Include Governance Notes** to clarify approval and onboarding processes for each tool.
+Was this helpful?
+Tags:
+observability
+solution-guide
+techhq
+Edit this page
+Previous
+🗄️ Observability & Reliability BLT
+Next
+Log Management & Analytics
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

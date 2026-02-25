@@ -1,0 +1,3315 @@
+Title: 🗄️ Cloud & Infrastructure BLT | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/cloud/cloud-blt
+Description: The Cloud & Infrastructure Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+
+🗄️ Cloud & Infrastructure BLT | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🗄️ Cloud & Infrastructure BLT
+🧭 Cloud Architecture
+🧭 Cloud FinOps
+🧭 Container Services
+🧭 Networking Services
+🧭 Workflow & Orchestration
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+☁️ Cloud & Infrastructure
+🗄️ Cloud & Infrastructure BLT
+On this page
+🗄️ Cloud & Infrastructure BLT
+The Cloud & Infrastructure Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+Can't find a technology?
+Use TechHQ's search feature to look across all technology documentation. For questions or to suggest additions to this list, contact the
+Enterprise Business Architecture team
+.
+Amazon API Gateway
+​
+Position
+Standard
+Tags
+aws, integration-platforms
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Security enforcement and Life Cycle Management for serverless (AWS lambda) APIs, within the constraints of
+LCS-517 Appropriate Use of Lilly Public Cloud Environments
+.  Specifically: APIs whose backend lambdas run within a DX VPC must be
+private
+.
+Use Cases
+​
+APIs built on serverless (lambda) technology with a single consistent authentication pattern.  Requires AWS technical and lambda coding expertise.
+Project teams are responsible for all support; no enterprise service provided.
+Teams can ask questions on Lilly Flow.
+Notes
+​
+Authentication must be enforced, even for private APIs.  The strength of the authentication should be commiserate with the sensitivity of the data/functionality provided by the API.  When in doubt, consult with your
+Business Information Security Officer (BISO)
+See Also
+​
+Amazon CloudWatch RUM
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Currently that service has not been Enterprise Reviewed and is only approved for Local Use Only.  The MD IDS Architect associated with the project which brought this request forward is Andrew Povinellli.
+See Also
+​
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM.html
+Amazon Detective
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Information Sensitivity
+Red
+Architect
+Ciaran Carragher
+Contact(s)
+Ash Edmondson
+Security
+Use Cases
+​
+Security
+Notes
+​
+Security
+See Also
+​
+https://aws.amazon.com/detective/faqs/
+Amazon Elastic File System (EFS)
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Information Sensitivity
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Amazon Guard Duty
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Ash Edmonson
+Contact(s)
+Ciaran Carragher
+Information Sensitivity
+Architect
+Ash Edmonson
+Contact(s)
+Ciaran Carragher
+Amazon Location Services (ALS)
+​
+Position
+Specialized
+Tags
+aws
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Use Cases
+​
+CAST Review for LillyAccess Use Case
+(contact Yun Heai Mun for details)
+Amazon MQ (Message Queue)
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+See Also
+​
+https://aws.amazon.com/amazon-mq/faqs/
+Amazon OpenSearch
+​
+Position
+Standard
+Tags
+aws, search-platforms
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Somya Gupta
+CMDB CI
+CI00000000428364
+AWS Paas solution to index and search large amount of data. Use for pinpoint search cases rather than data exploration and analytics.
+Use Cases
+​
+This is used for log management; kibana dashboard is integrated with this service used for monitoring and visualization. keyword-based search with synonyms/hierarchy for multiple data sources (SP, Regulus, DCTM) with custom UI or Kibanakeyword-based search on a custom-built Heroku app with a Contentful backendSearch Business Specific Content without giving access to the data (Cue)General purpose searchUnstructured search
+Notes
+​
+ElasticSearch is the core search technology underpinning Anzo and Watson explorer.  When there is no need for semantics or analytics stand-alone ElasticSearch is a more managable and small footprint approach.Available in multiple platforms and implementation patterns Very customizable search experience based on the app contentBased on an open API - consumable from any API-centric data sourceCaution: Can require some complex configuration. Â We do not have dedicated vendor for integrations
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Amazon Route 53
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Amazon Simple Notification Service (SNS)
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Amazon Simple Queue Service (SQS)
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Amazon Simple Storage Service (S3)
+​
+Position
+Standard
+Tags
+aws, aws-s3, cloud-computing
+Information Sensitivity
+Red
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Preferred for storage of documents, files, static assets for an applications
+Use Cases
+​
+Manage (external facing) websites, Manage content in a structured way (including documents and files), Consume/deliver static and dynamic content, Manage mobile application content, Share content across different areas, Consume/deliver Rich Media/VideoStore documents and files supporting an applications (Raw Storage)
+Amazon Translate
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Malika Mahoui
+Contact(s)
+Malika Mahoui
+Information Sensitivity
+Architect
+Malika Mahoui
+Contact(s)
+Malika Mahoui
+Ansible Automation Platform (AAP)
+​
+Tags
+automation, ansible, aap
+Position
+Standard
+Information Sensitivity
+Yellow
+Architect
+Jarret DiPace
+Contact(s)
+Jarret DiPace, Adam Esslinger
+CMDB CI
+CI00000084632853
+Infrastructure Automation, Configuration-As-Code, and Full-stack application automation
+Notes
+​
+Ansible Automation Platform should not be used in-place of cloud native IAC solutions such as Cloud-Formation, Bicep, or Terraform.
+See Also
+​
+AAP Foundational Strategy
+AAP Shared Responsibility Model
+Apache Airflow
+​
+Position
+Emerging
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+Use for orchestrating complex workflows and data processing piplines in the cloud
+Use Cases
+​
+Create Directed Acyclic Graphs (DAGs) python code to configure complex workflows and data pipelines in the cloud
+Notes
+​
+Apache Airflow is open-source. Caution use with handling Red CI
+App Connect Enterprise (ACE)
+​
+Position
+Standard
+Tags
+enterprise-automation
+Architect
+Abhijeet Sutrave
+Contact(s)
+Abhijeet Sutrave
+App Connect Enterprise (ACE) is a powerful integration solution designed to facilitate the seamless connection of applications and data across various environments, enabling organizations to automate workflows and streamline business processes. ACE supports deployment both on-premises and in the cloud, offering robust capabilities for integration and API management.
+Use Cases
+​
+Here are some common use cases for App Connect Enterprise:
+Enterprise Integration:
+Automating end-to-end business processes involving multiple systems and data sources, such as ERP integration, CRM synchronization, and supply chain automation.
+API Management:
+Creating, publishing, and managing APIs to enable seamless interaction between applications and services.
+Event-Driven Architecture:
+Implementing real-time data processing and event-driven workflows for instant response and action.
+Hybrid Cloud Integration:
+Facilitating integration between on-premises systems and cloud applications to leverage the benefits of hybrid cloud environments.
+Data Transformation:
+Converting data formats and protocols to ensure compatibility and interoperability across different systems.
+Notes
+​
+While integration solutions can vary, here are scenarios where IBM App Connect Enterprise stands out:
+Complex Integration Needs:
+Projects requiring integration across diverse systems with high complexity and scalability requirements.
+Hybrid Integration:
+Managing integrations that span across on-premises and cloud environments, supporting hybrid cloud strategies.
+Large User Base:
+Serving a significant number of users with robust task management and workflow automation capabilities.
+Enterprise Licensing Model:
+Offering flexible licensing options suitable for enterprise deployment and scalability.
+Development Environment:
+Providing a familiar development environment with support for JavaScript-like scripting for customization a...
+Read full article
+Aspera
+​
+Position
+Specialized
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Andrew Mulder
+Use for big file movmenet solution for transfers between Lilly and external partners. Enterprise environment is restricted use and requires management approval.
+Use Cases
+​
+Transfer large amounts of data between Lilly and external partner, Transfer data regularly between Lilly and external partner, Allow a non-onboarded individual manually transfer data with Lilly
+AWS AMI provisioning via Lambda
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+Information Sensitivity
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+AWS App Runner
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Todd Walters
+Based on inability to put effective compliance controls around the service via Cloud Custodian or AWS Config, this service is being fully blocked in DX based AWS accounts, and in order to use this service in a NoDX account the AWS account needs to be added to the service allow list.  In order to be added to the Lilly AWS Organization Service Allow List a CAST review and approval is required.
+Use Cases
+​
+Deploying from source code or a container image directly to a scalable and secure web application in the AWS Cloud.
+AWS AppFlow
+​
+Position
+Emerging
+Tags
+aws, integration-platforms
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Fully managed integration service to securely transfer data between Software-as-a-Service (SaaS) applications like Salesforce and AWS S3 or Redshift, using configuration instead of code.
+AWS Application Migration Services
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Lucinda Brewer
+Currently being evaluated by Digital Core
+Use Cases
+​
+Migration of existing on-premises applications into AWS
+AWS AppSync
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Athena
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Malika Mahoui
+Contact(s)
+Mumtaz
+Information Sensitivity
+Architect
+Malika Mahoui
+Contact(s)
+Mumtaz
+AWS Aurora PostgreSQL
+​
+Position
+Standard
+Tags
+aws, database-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Craig Welch
+Primary preferred relational database if availability and performance requirements are critical. Compliant with the Enterprise Data Backbone architecture.
+Use Cases
+​
+Relational OLTP workloads
+Referential integrity
+ACID transactions
+Notes
+​
+Best AWS alternative for Oracle RDBMS
+Fully managed database
+Distributed, fault-tolerant, and self-healing
+See Also
+​
+https://lilly.service-now.com/kb_view.do?sys_kb_id=1028758f1333d7880961bbc76144b0c8
+AWS Auto Scaling
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Backup Elastic Block Store (EBS)
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Jarret DiPace
+Contact(s)
+Jovin Jose
+Information Sensitivity
+Architect
+Jarret DiPace
+Contact(s)
+Jovin Jose
+AWS Batch
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Use Cases
+​
+AWS Batch helps you to run batch computing workloads on the AWS Cloud. Batch computing is a common way for developers, scientists, and engineers to access large amounts of compute resources. AWS Batch removes the undifferentiated heavy lifting of configuring and managing the required infrastructure, similar to traditional batch computing software. This service can efficiently provision resources in response to jobs submitted in order to eliminate capacity constraints, reduce compute costs, and deliver results quickly.
+AWS Budgets
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Anjali Oleksy
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Anjali Oleksy
+AWS Certificate Manager
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Cloud Directory
+​
+Position
+Prohibited
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Cloud Map
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Cloud WAN
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Doug Aleksa
+AWS CloudFormation
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS CloudHSM
+​
+Position
+Prohibited
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS CloudShell
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS CloudTrail
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS CloudWatch
+​
+Position
+Standard
+Tags
+aws, dev-tools
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Todd Walters
+Preferred Monitoring Tool for Applications using AWS.
+Use Cases
+​
+In your application you would use CloudWatch to write logs to monitor your application.
+Notes
+​
+Great tool when interrgrating with other public cloud services like AWS SNS
+AWS CodeArtifact
+​
+Position
+Specialized
+Tags
+aws, dev-tools
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Some teams are using it within AWS to store & retrieve artefacts
+Use Cases
+​
+AWS Binaries needing to be pulled into apps during build time.
+Notes
+​
+Upand coming. Not many teams using it now, but some teams are as it keeps everything within the Public Cloud space.
+AWS CodeBuild
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Cognito
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Comprehend
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Comprehend Medical
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Config
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Cost Explorer
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Anjali Oleksy
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Anjali Oleksy
+Notes
+​
+Access granted to financial analysts and Lilly employees via self-service through
+https://cloud.lilly.com
+AWS Data Exchange
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+AWS Data Pipeline
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+AWS Data Transfer
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Database Migration Service (DMS)
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Manuela Elena Garcia
+Contact(s)
+Avishek Mukherjee
+Information Sensitivity
+Architect
+Manuela Elena Garcia
+Contact(s)
+Avishek Mukherjee
+AWS DataSync
+​
+Position
+Standard
+Tags
+aws, integration-platforms
+Information Sensitivity
+Under Review
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+Use for large bulk file transfers between on-premise network storage and AWS
+Use Cases
+​
+Quickly migrate large amounts of data from on-premise into AWS S3
+AWS Direct Connect
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Doug Aleksa
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Doug Aleksa
+AWS Directory Service
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS DocumentDB (with MongoDB compatibility)
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS DynamoDB
+​
+Position
+Standard
+Tags
+aws, database-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Manuela Elena Garcia
+Preferred solution for Key-value / Document / NoSQL database use cases
+Use Cases
+​
+Non-relational OLTP workloads; High throughput-low latency
+Shopping Cart
+Product Catalog
+Mobile
+Notes
+​
+Key-value and Document typeEndless scaleServerless
+See Also
+​
+https://lillydev.com/backing%20services/aws%20dynamodb
+AWS EBS w/EC2
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Sriojeet Mukherjee
+Contact(s)
+Jovin Jose
+Information Sensitivity
+Architect
+Sriojeet Mukherjee
+Contact(s)
+Jovin Jose
+AWS EC2
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Information Sensitivity
+Red
+Architect
+Jarret DiPace
+Contact(s)
+Jovin Jose
+Preferred for COTS installations on Servers
+Use Cases
+​
+Hosting COTS
+Notes
+​
+Full scale availability for RHEL and Amazon Linux. Small scale for Windows and UbuntuNOTE: Up the stack options should be preferred to Server based solution
+AWS EC2 Amazon Linux
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+Information Sensitivity
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+AWS EC2 Linux DMZ AMI
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+Information Sensitivity
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+AWS EC2 RHEL
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+Information Sensitivity
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+AWS EC2 Ubuntu DMZ AMI
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+Information Sensitivity
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+AWS EC2 Ubuntu Linux
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+Information Sensitivity
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+AWS EC2 Ubuntu Version 18.04 AMI
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+Information Sensitivity
+Architect
+Jarret DiPace
+Contact(s)
+Shakya RadhaKrishna
+AWS EC2 Windows
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Jarret DiPace
+Contact(s)
+Jovin Jose
+Information Sensitivity
+Architect
+Jarret DiPace
+Contact(s)
+Jovin Jose
+AWS ECR (Container Registry)
+​
+Position
+Standard
+Tags
+aws, dev-tools
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Todd Walters
+Preferred Tool for applications needing to storing containers within AWS; to be used across the broader AWS ecosystem
+Use Cases
+​
+Storing containers within AWS. Teams are able to get Scanning of containers easily with Amazon ECR.
+Notes
+​
+Becoming on the most popular container registry tools at Lilly. Quite a bit behind Artifactory but up and coming.
+AWS ECS / Fargate
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Josh Bloxsome
+AWS EKS / Fargate
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Josh Bloxsome
+AWS Elastic Disaster Recovery
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Approved for Specialized, Local Use Only use case, specifically for the SAP team to be used in the creation of an AWS DR capability for their on-premises SAP systems.  Additionally, the SAP team will use this service in the future for Cloud DR of their AWS deployment in us-east-2 into us-east-1.
+Lead Architect from Lilly SAP team is Brett Saksa.
+See Also
+​
+https://aws.amazon.com/disaster-recovery/
+AWS ElastiCache Redis
+​
+Position
+Standard
+Tags
+aws, database-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Craig Welch
+CMDB CI
+CI00000000420438
+Preferred solution for in-memory key value NoSQL workloads
+Use Cases
+​
+High performance/low latency cache
+Real-time transactions & leaderboards
+Internet Applications & Gaming, Ad-Tech
+IoT Applications
+Geospatial
+Machine Learning
+chat
+Notes
+​
+Fully Managed
+Serverless
+Scale out through shard replicas
+See Also
+​
+https://lillydev.com/aws/aws%20services%23aws-services-database-services-amazon-elasticache
+AWS ELB
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS EMR
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Larry Zetzl
+Contact(s)
+Doug Marshall
+Information Sensitivity
+Architect
+Larry Zetzl
+Contact(s)
+Doug Marshall
+AWS EventBridge
+​
+Position
+Standard
+Tags
+aws, integration-platforms
+Architect
+Larry Zetzl
+Contact(s)
+Andrew Mulder
+Mechanism for event-driven application
+Use Cases
+​
+Serverless, scalable ability to create, ingest, filter, transform and deliver events without custom coding.  Supports events for 60+ AWS services and other SaaS applications.  Permits up to 5 targets per rule.
+Compare this capability with AWS SNS to select the best option.
+EventBridge is approved for use, but teams must consult with their InfoSec and Quality reps for approved use
+Notes
+​
+Consulting-only service available from EIP. Security-reviewed CloudFormation scripts available for use.
+AWS Firewall Manager
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Architect
+Ash Edmonson
+Contact(s)
+Ciaran Carragher
+Information Sensitivity
+Architect
+Ash Edmonson
+Contact(s)
+Ciaran Carragher
+AWS FSx
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Sriojeet Mukherjee
+Contact(s)
+Subhankar Biswal, Sriojeet Mukherjee
+Information Sensitivity
+Architect
+Sriojeet Mukherjee
+Contact(s)
+Subhankar Biswal, Sriojeet Mukherjee
+Use Cases
+​
+AWS FSx for NetApp ONTAP is a fully managed service that provides highly reliable, scalable, high-performing, and feature-rich file storage built on NetApp's ONTAP file system.
+FSx for ONTAP also provides highly available and durable storage with fully managed backups and support for cross-Region disaster recovery. FSx for ONTAP is an ideal solution to migrate, back up, or burst your file-based applications from on-premises to AWS without the need to change your application code or how you manage your data.
+It supports SMB based access, NFS access as well as dual-protocol access.
+Notes
+​
+This is a Lilly HCS supported service and is fully managed by the HCS Storage team.
+See Also
+​
+https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html
+https://aws.amazon.com/fsx/netapp-ontap/
+AWS GameLift
+​
+Position
+Prohibited
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Glacier
+​
+Position
+Standard
+Tags
+aws, content-management
+Information Sensitivity
+Orange
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Standard for low cost storage of active systems. Must not be used for long term archival of records subject to regulatory retention or legal hold for retired systems.
+Use Cases
+​
+low cost storage of active systems
+Notes
+​
+Glacier is not an e-archive solution. For long term archival of business records subject to regulatory and/or legal hold use the eArchive service at
+https://collab.lilly.com/sites/earchiveservice566
+See Also
+​
+https://lillydev.com/developer%20guidance/security%20principles%23security-principles-cloud-service-hardening-aws-glacier
+AWS Global Accelerator
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Doug Aleksa
+AWS Glue (Catalog)
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+Information Sensitivity
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+AWS Glue Crawler
+​
+Position
+Standard
+Tags
+aws, integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+Index data in AWS for additional analytics
+Use Cases
+​
+Scan data in AWS and store metadata in Glue Data Catalog for querying, data transformation and analytics
+Notes
+​
+Consulting-only service. Security-reviewed CloudFormation scripts available for use.
+AWS Glue DataBrew
+​
+Position
+Emerging
+Tags
+aws, data-science-tools
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Andrea Price
+Provides visual, code free transformation and profiling of data for power users, and APIs for developers to integrate with other AWS services for more complex data pipelines. AWS – native data preparation  option for the Enterprise Data Backbone (EDB)’s Data Wrangling capability.
+Use Cases
+​
+Data exploration; creation of cleansed, transformed and normalized data assets and data products for analytics and machine learning; and creation of data quality applications
+Notes
+​
+No license required; usage charges based on AWS utilization.
+EIP -provided support for EDB users.
+Consulting-only or EDB-like support services available for other AWS accounts
+AWS Glue ETL
+​
+Position
+Standard
+Tags
+aws, integration-platforms
+Information Sensitivity
+Green
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+Use for ETL integrations  inside AWS
+Use Cases
+​
+Configure Glue job to perform data movement / tranformation / integration within AWS
+Notes
+​
+Consulting-only service. Security-reviewed CloudFormation scripts available for use.
+AWS Glue Studio
+​
+Position
+Standard
+Tags
+aws, integration-platforms
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+Visual interface for AWS Glue that makes it easy for extract-transform-and-load developers to author, run, and monitor AWS Glue ETL jobs.
+AWS IaaS - DLAB
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+James Rimell
+Contact(s)
+James Rimell
+Information Sensitivity
+Architect
+James Rimell
+Contact(s)
+James Rimell
+AWS IAM
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Luis Espinoza
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Luis Espinoza
+AWS Inspector
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Ash Edmonson
+Contact(s)
+Ciaran Carragher
+Information Sensitivity
+Architect
+Ash Edmonson
+Contact(s)
+Ciaran Carragher
+AWS IoT
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS IoT Core
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS IoT Device Manager
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS IoT Events
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS IoT Greengrass
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS IoT SiteWise
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS IoT TwinMaker
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Kendra
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Key Management Service (KMS)
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Kinesis Data Streaming
+​
+Position
+Emerging
+Tags
+aws, integration-platforms
+Information Sensitivity
+Green
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+Use for high-throughput data streaming to AWS services
+Use Cases
+​
+Capture, transform and load high-throughput raw streaming data into AWS target services in near real time
+Notes
+​
+Consulting-only service. Security-reviewed CloudFormation scripts available for use.
+AWS Kinesis Firehose
+​
+Position
+Emerging
+Tags
+aws, integration-platforms
+Information Sensitivity
+Green
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+Use for data streaming to AWS services
+Use Cases
+​
+Capture, transform and load raw streaming data into AWS target services in near real time
+Notes
+​
+Consulting-only service. Security-reviewed CloudFormation scripts available for use.
+AWS Kinesis Video Streams
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Lake Formation
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+AWS Lambda
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Todd Walters
+Preferred for Event Driven (FaaS, Serverless) use cases
+Use Cases
+​
+Hosting Serverless / FaaS
+Notes
+​
+Not enterprise service support provided
+AWS License Manager
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Lightsail
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Lookout for Metrics
+​
+Position
+Emerging
+Tags
+aws, observability
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Notes
+​
+CAST review on 02-May-2024. Jarrett Meyer was approved to move forward with a request to Enterprise Data for a POC of this with one of his applications.  This service is not centrally managed or supported.  Teams wishing to use the service within their AWS account should ensure that they do not grant access to lookout objects those who they wouldn't grant access to the underlying sources being analyzed.  Additionally, if you wish to export the lookout objects anywhere engage your BISO so that a Cyber Cloud Security Architecture and Engineering assessment can done prior to enabling the export.
+See Also
+​
+https://aws.amazon.com/lookout-for-metrics/faqs/
+AWS Managed Streaming for Apache Kafka
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Mechanical Turk
+​
+Position
+Prohibited
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Migration Hub Refactor Spaces
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Neptune
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Polly
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Private Marketplace
+​
+Position
+Specialized
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS RoboMaker
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS S3 & CloudFront for SPAs
+​
+Position
+Standard
+Tags
+aws, content-management, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Todd Walters
+Preferred for single page applications or progressive web apps on AWS
+Notes
+​
+No enterprise service support provided
+See Also
+​
+No additional guidance has been published
+AWS SageMaker
+​
+Position
+Standard
+Tags
+aws, data-science-tools
+Information Sensitivity
+Red
+Architect
+Rubin Wei
+Contact(s)
+Somya Gupta
+CMDB CI
+CI00000000409558
+Use to prepare, build , train and deploy machine learning models on AWS
+Use Cases
+​
+Developing and hosting a custom ML model
+Exploring foundation models provided through
+JumpStart
+Running managed training jobs
+Access to a varitey of compute options (GPU, large memory, etc)
+Notes
+​
+Pay for what you use, no license cost.  Two common access patterns available:
+Access SageMaker AI through the
+Analytics Workbench
+(AWB), an integral part of the Enterprise Data Program. Self-service access to SageMaker AI services, within minutes on
+data.lilly.com
+. Runs in a production account that allows for experimentation with all data classifications.
+Request help
+setting up a qualified deployment in your own AWS account. Enterprise Data (formerly EIP) offers SageMaker AI as a qualified platorm, where core resources (domains, keys, etc.) can be deployed and managed by them into your own environment.
+See Also
+​
+https://aws.amazon.com/sagemaker-ai/
+AWS Secrets Manager
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Security Hub
+​
+Position
+Standard
+Tags
+aws, cybersecurity
+Information Sensitivity
+Orange
+Architect
+Ash Edmonson
+Contact(s)
+Ciaran Carragher
+Utilized for retrieving details about security events and findings within AWS.
+Use Cases
+​
+Aggregate repository to review findings, alerts, and non-compliant configurations.
+AWS Service Catalog
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS SES (Simple Email Service)
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Notes
+​
+There is an Amazon SES Enterprise offering now available for general use:
+https://collab.lilly.com/sites/GlobalMessaging/SitePages/Amazon-SES.aspx
+. This offering is a managed service offering by the Global Messaging team. Uses cases that are not compliant with the pattern in this article might be candidates for the Enterprise solution.
+AWS Shield
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Architect
+Ash Edmonson
+Contact(s)
+Ciaran Carragher
+Information Sensitivity
+Architect
+Ash Edmonson
+Contact(s)
+Ciaran Carragher
+AWS SimbleDB
+​
+Position
+Prohibited
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Simple Workflow Service
+​
+Position
+Prohibited
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Snowball
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Step Functions
+​
+Position
+Standard
+Tags
+aws, integration-platforms
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Serverless orchestrator to sequence Lambda and other multiple AWS services.  You can create event-driven workflows that maintain the application state and handling failures and retries
+AWS Storage Gateway
+​
+Position
+Emerging
+Tags
+aws, integration-platforms
+Information Sensitivity
+Under Review
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+Use for real-time replication between on-premise network storage and AWS
+Use Cases
+​
+Cloud-enable an on-premise application by replicating storage from on-premise into AWS S3
+Notes
+​
+In Pilot - not currently an enterprise service.
+AWS Systems Manager
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS Transfer for FTPS
+​
+Position
+Emerging
+Tags
+aws, integration-platforms
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+Use to transfer files into and out of AWS S3 buckets via FTPS
+Use Cases
+​
+On-prem project teams or external third party partners upload and download files into AWS S3 buckets via FTPS
+Notes
+​
+In Pilot - not currently an enterprise service.
+AWS Transfer for SFTP
+​
+Position
+Standard
+Tags
+aws, integration-platforms
+Information Sensitivity
+Orange
+Architect
+Larry Zetzl
+Contact(s)
+Andy Mulder
+Use to transfer files into and out of AWS S3 buckets via SFTP
+Use Cases
+​
+On-prem project tams or external third party partners upload and download files into AWS S3 buckets
+Notes
+​
+Not suiteable for Red CI at this time - single factor authetication only supported. Investigating  IP Address restrictions to AWS SFTP enviornment for future fulfillment of MFA.
+AWS VPC
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS WAF
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Ash Edmonson
+Contact(s)
+Ciaran Carragher
+Information Sensitivity
+Architect
+Ash Edmonson
+Contact(s)
+Ciaran Carragher
+AWS X-Ray
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Axway - eCommerce
+​
+Position
+Standard
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Andrew Mulder
+Use for automated file movement between Lilly and external partners using a veriety of file transfer protocols.
+Use Cases
+​
+Transfer data regularly between Lilly and external partner, Allow a non-onboarded individual manually transfer data with Lilly. Can be used to transfer data from Lilly on prem to Lilly cloud
+Azure AI Services
+​
+Position
+Emerging
+Tags
+cloud-computing, azure-ai, ai-platforms
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure AKS
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure API Management
+​
+Position
+Standard
+Tags
+azure, integration-platforms
+Information Sensitivity
+Red
+Architect
+Matthew Van Auwelaer
+Contact(s)
+Matthew Van Auwelaer, Abhishek Bose
+CMDB CI
+CI00000036223661
+Standard service offering from
+Enterprise Data
+Use Cases
+​
+API Security (Authentication, Authorization, Threat Protection) for Lilly private and cloud-hosted APIs
+See Also
+​
+https://collab.lilly.com/sites/ApiManagement
+Azure App Service
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure AVS
+​
+Position
+Specialized
+Tags
+azure, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Azure Bastion
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Batch
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Blob / CDN
+​
+Position
+Emerging
+Tags
+azure, content-management, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Blog Storage
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Red
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Information Sensitivity
+Red
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Azure Bot Services
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Greg Graf
+Contact(s)
+Jason Yazell
+Information Sensitivity
+Under Review
+Architect
+Greg Graf
+Contact(s)
+Jason Yazell
+Azure Cognitive Search
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Container Apps
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Container Registry
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Containers
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Digital Twin
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure File Storage
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Red
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Information Sensitivity
+Red
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Azure Functions
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Key Vault
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Logic Apps
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Machine Learning
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Malika Mahoui
+Contact(s)
+Surya Prakash Rawat
+Information Sensitivity
+Under Review
+Architect
+Malika Mahoui
+Contact(s)
+Surya Prakash Rawat
+Azure Machine Learning Studio
+​
+Position
+Emerging
+Tags
+azure, data-science-tools
+Architect
+Malika Mahoui
+Contact(s)
+Surya Prakash Rawat
+Web portal in Azure Machine learning used to create end-to-end machine learning projects. It supports low-code and code-first experiences
+Notes
+​
+Azure ML workspace needs to be created for launching the Studio.
+Azure Maps
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Monitor
+​
+Position
+Emerging
+Tags
+azure, dev-tools
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Emerging within Azure Public Cloud for Monitoring Azure Resources.
+Use Cases
+​
+You would use Azure Monitor to print logs and create monitor metrics of your application.
+Azure NetApp File Storage
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Information Sensitivity
+Under Review
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Azure Purview
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Queue Storage
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Information Sensitivity
+Under Review
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Azure Redis Cache
+​
+Position
+Standard
+Tags
+azure, database-platforms
+Architect
+Malika Mahoui
+Contact(s)
+Manuela Elena Garcia
+Preferred solution for in-memory key value NoSQL workloads
+Use Cases
+​
+High performance low latency cache
+Real-time transactions
+Azure Service Fabric
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Virtual Machines
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Contentful
+​
+Position
+Standard
+Tags
+content-management
+Information Sensitivity
+Orange
+Architect
+Josh Bloxsome
+Contact(s)
+Martin Clarke
+Preferred for dynamic content delivery
+Use Cases
+​
+Manage content in a structured way (including documents and files), WYSIWYG Authoring, Consume/deliver static content, Consume/deliver dynamic content, Manage mobile application content, Share content across different areas, Store documents and files supporting an applications (Raw Storage)
+See Also
+​
+https://lillydev.com/backing%20services/contentful
+Dell/EMC Isilon Smartlock (eArchive Service)
+​
+Position
+Standard
+Tags
+content-management
+Information Sensitivity
+Red
+Architect
+Scott Kuckuck
+Contact(s)
+Scott Kuckuck
+Isilon with smartlock is the core solution for long-term immutable archiving, replacing Centera/Disk Extender CAS
+Use Cases
+​
+Content archival (immutable), Archiving of unstructured data only (structured data must be converted to file-based formats - .csv, .xml, etc.)
+See Also
+​
+https://collab.lilly.com/sites/earchiveservice566
+Heroku
+​
+Position
+Specialized
+Tags
+cloud-computing
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Peter Burke
+Targeted for applications that require server-side compute with light weight integrations (DB, Caching, etc.) or a Salesforce connection requirement using the API.
+Use Cases
+​
+EWI sites, applications that require server-side compute with light weight integrations (DB, Caching, etc.), a Salesforce connection requirement using the Salesforce API.
+Heroku - NewRelic
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Yellow
+Architect
+Josh Bloxsome
+Contact(s)
+Peter Burke
+Monitoring add-on with Heroku. Helps teams monitor performance of an application within Heroku.
+Use Cases
+​
+Only allowed to be used for applications within the Heroku Ecosystem.
+Heroku - PaperTrail
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Yellow
+Architect
+Josh Bloxsome
+Contact(s)
+Peter Burke
+Monitoring add-on with Heroku. Helps teams see logs of what an application is doing.
+Use Cases
+​
+Only allowed to be used for applications within the Heroku Ecosystem.
+Informatica Axon / EDC
+​
+Position
+Specialized
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Vishwesh Deshpande
+CMDB CI
+CI00000000422336
+Use for data governance and metadata management for extracting, indexing and cataloging
+Use Cases
+​
+Understand data dictionary, impact analysis on potential change, data lineage and discovery, Map out business definitions and ingest application's metadata repository to integrate to the Enterprise Catalog
+LAN Drives - Application Storage & File-based System Integration
+​
+Position
+Specialized
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Jarret Dipace
+Contact(s)
+Jarret Dipace
+Refer to LillyNow guidance:
+https://now.lilly.com/landingoverview/global-approved-tools-and-services-option-v2/global-approved-tools-and-services-store
+Evaluate the applicability of potentially better options, such as Cloud Object Storage (AWS S3 & Azure Blob Storage), Cloud Network-attached Storage (AWS EFS), Managed File Transfer Services, and eArchive
+Use Cases
+​
+LAN/SAN storage used directly by applications, instruments, databases, etc. 2) File transfer interfaces supporting the movement of data between systems 3) System-based publication/consumption of files to/from users
+Notes
+​
+Additional cloud network-attached storage options are available, including Azure Files and Azure NetApp Files
+See Also
+​
+https://now.lilly.com/landingoverview/global-approved-tools-and-services-option-v2/global-approved-tools-and-services-store
+Oauth (AzureAD)
+​
+Position
+Standard
+Tags
+azure, cybersecurity
+Information Sensitivity
+Red
+Architect
+Brian Wacker
+Contact(s)
+John Dahler
+An alternative option to OIDC for federated identity.
+Use Cases
+​
+Perform authentication with an application
+OpenIDConnect (OIDC) (AzureAD)
+​
+Position
+Standard
+Tags
+azure, cybersecurity
+Information Sensitivity
+Red
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+Use as the preferred option for all authentication
+Use Cases
+​
+Perform authentication with an application
+Openshift (onPrem)
+​
+Position
+Specialized
+Tags
+cloud-computing
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Chris Tornatta
+Preferred for OnPrem Kubernetes and Container use cases and for use cases where Low Latency/High Volume on Prem Data is required
+Use Cases
+​
+COTS applications that have OpenShift (Kubernetes) as a requirement
+IBM Products (if VMs aren't an option or High Availability/Fault Tolerance is required)
+Level 3 manufacturing workloads
+Zone-3 China (DMZ and Internal)
+Red Hat JBoss workloads
+Use only if Low Latency/High Volume on Prem Data is required
+Notes
+​
+Container Strategy:
+https://collab.lilly.com/sites/ContainerStrategy
+See Also
+​
+https://lillydev.com/platforms/openshift/
+Salesforce
+​
+Position
+Specialized
+Tags
+cloud-computing
+Information Sensitivity
+Red
+Architect
+Sivaraman K
+Contact(s)
+Sivaraman K
+Targeted for applications that require CRM capabilities without targeting the whole enterprise.
+Use Cases
+​
+Veeva, Other CRM solutions
+Notes
+​
+Contact EDAT if your application have a high consumption of SF licenses
+Declining → Retired
+​
+.NET Classic & WHO IIS Hosting
+​
+Position
+Declining 2019-12-31
+Tags
+cloud-computing
+Information Sensitivity
+Red
+Architect
+Karl Mayer
+Contact(s)
+Martin Clarke
+All .NET and Java apps on Web Hosting Operations (WHO) need retirement or migration plans. WHO service retirement has been extended from 31-DEC-2022 to 01-OCT-2024. Exceptions (including business justification and remediation plan) are recommended for apps that need to exist beyond 31-Dec-2022.
+Notes
+​
+See your Lead Architect for questions, or to initiate an exception
+AWS CodeCommit
+​
+Position
+Declining
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Discuss with Todd Walters before using within the Lilly AWS Organization
+Notes
+​
+GitHub should be used rather than AWS Code Commit
+AWS CodePipeline
+​
+Position
+Declining
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+AWS IaaS - Anzo V4
+​
+Position
+Declining
+Tags
+aws, cloud-computing
+Position
+Declining
+Information Sensitivity
+Architect
+Contact(s)
+AWS Pipeline v2 (Code Pipeline/Build/Deploy)
+​
+Position
+Retired 2023-04-30
+Tags
+aws, dev-tools
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Chris Johnson
+Legacy Tool for Deploying Cloud Native Resources into AWS. Any Continuous Delivery (CD) should occur via AWS Code Pipeline/Build/Deploy.
+Notes
+​
+Positioned for CD and less CI as apart of CI/CD.
+See Also
+​
+https://developer.lilly.com/aws/ci%20cd
+AWS Squid
+​
+Position
+Declining
+Tags
+aws, cloud-computing
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Azure Pipelines
+​
+Position
+Declining
+Tags
+azure, dev-tools
+Architect
+Todd Walters
+Contact(s)
+Amrit Anand
+Emerging Tool within the Azure Cloud Service that teams will be using to deploy Azure resources.
+Use Cases
+​
+Azure Custom Developed Applications.
+Notes
+​
+Emerging, right now no offical offering, expect more in the coming months.
+CAS (Centera/Disk Extender)
+​
+Position
+Retiring
+Tags
+content-management
+Information Sensitivity
+Red
+Architect
+Scott Kuckuck
+Contact(s)
+Scott Kuckuck
+Retired. Use Isilon with smartlock.
+Use Cases
+​
+Content archival (immutable)
+Notes
+​
+Use for content archival. Centera will go out of support  in March 2023 and Disk Extender in December 2020. A replacement project is underway with Isilon Smartlock as the core alternative solution. Archive owners will be contacted to schedule their migration. The target retirement date for CAS (Centera/Disk Extender) is currently June 2021
+Crownpeak
+​
+Position
+Retired 2020-12-31
+Tags
+content-management
+Information Sensitivity
+Orange
+Fuse
+​
+Position
+Declining 2021-04-01
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Andrew Mulder
+For MDU's TRANCIT project exclusively. A model that uses multiple technologies to construct and control communication between disparate systems.
+Use Cases
+​
+Transfer large amounts of data between databases / data warehousesTransfer files between internal Lilly systemsTransfer messages between internal Lilly systemsCreate an Enterprise Service BusControl subscriptions to data using API's
+Notes
+​
+No support is provided by GIS/EIP
+Informatica Intelligent Cloud Services
+​
+Position
+Declining 2023-05-15
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Vishwesh Deshpande
+Preferred solution for GUI-based ETL integrations solutions with data transformation requirements
+Use Cases
+​
+Setup an ETL Interface, Transform the data as it's transferred, Use ETL to create a DataMart from a data warehouse, Integrate cloud (Salesforce or Veeva) data with an on-premise Lilly system or another cloud environment, Transfer data between databases and validate that source and target are identical
+Informatica MDM / BDM
+​
+Position
+Retiring
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Vishwesh Deshpande
+Use for Master Data Management and Big Data Management - ETL integrations with data transformation requirements
+Use Cases
+​
+onPrem management of Master Data (reference data commonly used across the enterprise) and Big Data ingestion, integration, aggregation and transformation by leveraging Hadoop cluster
+Informatica PowerCenter
+​
+Position
+Retiring
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Vishwesh Deshpande
+CMDB CI
+CI00000000048775
+Preferred legacy solution for ETL integrations with data transformation requirements on-premise
+Use Cases
+​
+Setup an ETL InterfaceTransform the data as it's transferred, Use ETL to create a DataMart from a data warehouse, Integrate cloud (Salesforce or Veeva) data with an on-premise Lilly system or another cloud environment, Transfer data between databases and validate that source and target are identical
+Notes
+​
+The vendor is focusing R&D effort on IICS and not on power center
+JBoss
+​
+Position
+Declining 2019-12-31
+Tags
+cloud-computing
+Information Sensitivity
+Red
+Architect
+Jon Thomas
+Contact(s)
+Martin Clarke
+All JBoss apps should look to be migrated or retired by 31-Dec-2022. Web Hosting support will end on that date. Exceptions (including business justification and remediation plan) are required for apps that need to exist beyond 31-Dec-2022
+Notes
+​
+See your Lead Architect for questions, or to initiate an exception
+Layer7 API (SOA) Gateway
+​
+Position
+Retiring
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Matt Van Auwelaer
+CMDB CI
+CI00000000046371
+Deprecated platform retiring 1-Dec-2025. Replaced by
+Azure API Management
+Use Cases
+​
+Do not use
+See Also
+​
+Openshift on AWS
+​
+Position
+Retired 2020-05-08
+Tags
+aws, cloud-computing
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Position
+Exited 2020-05-08
+Information Sensitivity
+Red
+Architect
+Todd Walters
+Contact(s)
+Tomcat
+​
+Position
+Declining 2019-12-31
+Tags
+cloud-computing
+Information Sensitivity
+Red
+Architect
+Jon Thomas
+Contact(s)
+Martin Clarke
+All Tomact apps should look to be migrated or retired by 31-Dec-2022. Web Hosting support will end on that date. Exceptions (including business justification and remediation plan) are required for apps that need to exist beyond 31-Dec-2022
+Notes
+​
+See your Lead Architect for questions, or to initiate an exception
+VMware Servers (OnPrem)
+​
+Position
+Declining 2021-03-11
+Tags
+cloud-computing
+Information Sensitivity
+Red
+Architect
+Jarret Dipace
+Contact(s)
+Adam Esslinger
+Use only for approved exceptions to the Cloud based servers
+Use Cases
+​
+Approved exceptions: Manufacturing, DMZ, MetroHA, Zone 1 Oracle VMWare clusters
+Notes
+​
+OnPrem Virtual Server built on VMWare, formerly known as GCRS. Access via the Lilly Cloud Portal. For RED CCI use cases follow up with the security liaison for your business
+See Also
+​
+https://lillycloud.global.lilly.com/gcrs/home.php
+WebSphere MQ
+​
+Position
+Declining 2023-05-01
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Murali Pitti
+CMDB CI
+CI00000000036866
+Use for file or message-based transfers between on-prem Lilly servers when API not available.
+Use Cases
+​
+Transfer large amounts of data between databases / data warehouses, Transfer files between internal on-prem Lilly systems, Transfer messages between internal Lilly systems, Transfer files internally adhering to First in First out (FIFO)
+Document generated from Stack Overflow Enterprise articles (prioritized) and ea_tech.csv (fallback)
+Was this helpful?
+Edit this page
+Previous
+☁️ Cloud & Infrastructure
+Next
+🧭 Cloud Architecture
+Amazon API Gateway
+Amazon CloudWatch RUM
+Amazon Detective
+Amazon Elastic File System (EFS)
+Amazon Guard Duty
+Amazon Location Services (ALS)
+Amazon MQ (Message Queue)
+Amazon OpenSearch
+Amazon Route 53
+Amazon Simple Notification Service (SNS)
+Amazon Simple Queue Service (SQS)
+Amazon Simple Storage Service (S3)
+Amazon Translate
+Ansible Automation Platform (AAP)
+Apache Airflow
+App Connect Enterprise (ACE)
+Aspera
+AWS AMI provisioning via Lambda
+AWS App Runner
+AWS AppFlow
+AWS Application Migration Services
+AWS AppSync
+AWS Athena
+AWS Aurora PostgreSQL
+AWS Auto Scaling
+AWS Backup Elastic Block Store (EBS)
+AWS Batch
+AWS Budgets
+AWS Certificate Manager
+AWS Cloud Directory
+AWS Cloud Map
+AWS Cloud WAN
+AWS CloudFormation
+AWS CloudHSM
+AWS CloudShell
+AWS CloudTrail
+AWS CloudWatch
+AWS CodeArtifact
+AWS CodeBuild
+AWS Cognito
+AWS Comprehend
+AWS Comprehend Medical
+AWS Config
+AWS Cost Explorer
+AWS Data Exchange
+AWS Data Pipeline
+AWS Data Transfer
+AWS Database Migration Service (DMS)
+AWS DataSync
+AWS Direct Connect
+AWS Directory Service
+AWS DocumentDB (with MongoDB compatibility)
+AWS DynamoDB
+AWS EBS w/EC2
+AWS EC2
+AWS EC2 Amazon Linux
+AWS EC2 Linux DMZ AMI
+AWS EC2 RHEL
+AWS EC2 Ubuntu DMZ AMI
+AWS EC2 Ubuntu Linux
+AWS EC2 Ubuntu Version 18.04 AMI
+AWS EC2 Windows
+AWS ECR (Container Registry)
+AWS ECS / Fargate
+AWS EKS / Fargate
+AWS Elastic Disaster Recovery
+AWS ElastiCache Redis
+AWS ELB
+AWS EMR
+AWS EventBridge
+AWS Firewall Manager
+AWS FSx
+AWS GameLift
+AWS Glacier
+AWS Global Accelerator
+AWS Glue (Catalog)
+AWS Glue Crawler
+AWS Glue DataBrew
+AWS Glue ETL
+AWS Glue Studio
+AWS IaaS - DLAB
+AWS IAM
+AWS Inspector
+AWS IoT
+AWS IoT Core
+AWS IoT Device Manager
+AWS IoT Events
+AWS IoT Greengrass
+AWS IoT SiteWise
+AWS IoT TwinMaker
+AWS Kendra
+AWS Key Management Service (KMS)
+AWS Kinesis Data Streaming
+AWS Kinesis Firehose
+AWS Kinesis Video Streams
+AWS Lake Formation
+AWS Lambda
+AWS License Manager
+AWS Lightsail
+AWS Lookout for Metrics
+AWS Managed Streaming for Apache Kafka
+AWS Mechanical Turk
+AWS Migration Hub Refactor Spaces
+AWS Neptune
+AWS Polly
+AWS Private Marketplace
+AWS RoboMaker
+AWS S3 & CloudFront for SPAs
+AWS SageMaker
+AWS Secrets Manager
+AWS Security Hub
+AWS Service Catalog
+AWS SES (Simple Email Service)
+AWS Shield
+AWS SimbleDB
+AWS Simple Workflow Service
+AWS Snowball
+AWS Step Functions
+AWS Storage Gateway
+AWS Systems Manager
+AWS Transfer for FTPS
+AWS Transfer for SFTP
+AWS VPC
+AWS WAF
+AWS X-Ray
+Axway - eCommerce
+Azure AI Services
+Azure AKS
+Azure API Management
+Azure App Service
+Azure AVS
+Azure Bastion
+Azure Batch
+Azure Blob / CDN
+Azure Blog Storage
+Azure Bot Services
+Azure Cognitive Search
+Azure Container Apps
+Azure Container Registry
+Azure Containers
+Azure Digital Twin
+Azure File Storage
+Azure Functions
+Azure Key Vault
+Azure Logic Apps
+Azure Machine Learning
+Azure Machine Learning Studio
+Azure Maps
+Azure Monitor
+Azure NetApp File Storage
+Azure Purview
+Azure Queue Storage
+Azure Redis Cache
+Azure Service Fabric
+Azure Virtual Machines
+Contentful
+Dell/EMC Isilon Smartlock (eArchive Service)
+Heroku
+Heroku - NewRelic
+Heroku - PaperTrail
+Informatica Axon / EDC
+LAN Drives - Application Storage & File-based System Integration
+Oauth (AzureAD)
+OpenIDConnect (OIDC) (AzureAD)
+Openshift (onPrem)
+Salesforce
+Declining → Retired
+.NET Classic & WHO IIS Hosting
+AWS CodeCommit
+AWS CodePipeline
+AWS IaaS - Anzo V4
+AWS Pipeline v2 (Code Pipeline/Build/Deploy)
+AWS Squid
+Azure Pipelines
+CAS (Centera/Disk Extender)
+Crownpeak
+Fuse
+Informatica Intelligent Cloud Services
+Informatica MDM / BDM
+Informatica PowerCenter
+JBoss
+Layer7 API (SOA) Gateway
+Openshift on AWS
+Tomcat
+VMware Servers (OnPrem)
+WebSphere MQ
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

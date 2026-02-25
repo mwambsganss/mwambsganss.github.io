@@ -1,0 +1,162 @@
+Title: 🧭 Cloud FinOps | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/cloud/cloud_finops
+Description: Stack Overflow Article: 🧭 Cloud FinOps
+
+🧭 Cloud FinOps | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🗄️ Cloud & Infrastructure BLT
+🧭 Cloud Architecture
+🧭 Cloud FinOps
+🧭 Container Services
+🧭 Networking Services
+🧭 Workflow & Orchestration
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+☁️ Cloud & Infrastructure
+🧭 Cloud FinOps
+On this page
+🧭 Cloud FinOps
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-09-25
+Capability Owner: Anjali Oleksy
+EBA Lead: Todd Walters
+Contributors & Reviewers: Anjali Oleksy
+A guide for implementing cost transparency and optimization dashboards across AWS and Azure using enterprise-grade tools aligned to cloud Finance and DevOps practices.
+Note: Refer to
+the landing page for access to all dashboard links
+Use Case
+Tech Recommendation
+Positioning
+Complexity
+Data Ingestion
+Owning Org/Team
+Next Step
+Role-Based Cloud Spend Visibility in Native Consoles
+AWS & Azure Cost Management
+Strategic
+Low
+IAM roles, Cost Explorer (AWS), Azure Cost Analysis, APIs, Power BI/Fabric, Power BI Workspace access
+Cloud
+Granular AWS Cost Analysis by Service, Account, Cost Center
+AWS QuickSight
+Specialized
+Medium
+AWS Cost Explorer, Athena, Glue, FOCUS 1.0, Cloud Intelligence Dashboard, Fabric Data Gen2 Flow, Pipeline, Notebook
+Cloud
+1) Connect QuickSight to AWS CUR via Glue/Athena 2) Connect Power BI to Transformed AWS Data Product in EDB from Redshift Database 3)Schedule refreshes
+Azure High-Level Spend Visibility for Cost Center Owners
+Power BI
+Standard
+Low
+Azure Cost Management exports, FinOps Toolkit, Power BI Service, Fabric Lakehouse
+Cloud
+Use FinOps Toolkit templates in Power BI to construct the Azure detailed dashboards
+AWS Unit Economics Dashboard
+Power BI
+Strategic
+High
+CUR + business unit tagging
+Cloud
+Refine tagging strategy and validate cost drivers - use the
+Power BI Dashboard
+AWS Anomaly Dashboard
+AWS QuickSight
+Specialized
+High
+Anamoly API export from AWS + anomaly detection logic
+Cloud
+Set Threshold, alerting rules and alerts - use the
+AWS Dashboard
+Executive view of AWS Savings Plan
+Power BI
+Strategic
+Medium
+CUR, Savings Plans usage data, Savings plan coverage data, Unit Cost data
+Cloud
+Review SP coverage and optimize purchase strategy - use the
+Power BI Dashboard
+S3 Storage Lens Dashboard
+Power BI
+Specialized
+Medium
+S3 Storage Lens metrics API
+Cloud
+Review bucket-level insights and apply lifecycle policies - use the
+Power BI Dashboard
+Azure Department-Level Cost Accountability
+Power BI
+Strategic
+Medium
+Cloud
+Automate dashboard completely by refining allocation logic - use the
+Power BI Dashboard
+Azure Unit Economics Dashboard
+Power BI
+Strategic
+High
+Azure cost management exports
+Cloud
+Refine tagging strategy and validate cost drivers - use the
+Power BI Dashboard
+AWS
+​
+See the LillyFlow article
+AWS Cost & Usage Visibility
+Microsoft Azure
+​
+"
+I want to get granular and scoped access (all the subscriptions, resources groups, etc. I can Read) AND I am able to use the Azure portal to access Azure Cost Management at the scope of my desired cost visibility."
+Login to
+Azure porta
+l.
+Navigate to the Cost Analysis service and filter/slice as desired.
+"I want cost at a chargeback, cost center level granularity."
+Az
+ure PBI Chargeback Dashboard
+- This dashboard gives Cost Center level granularity.
+Google Cloud
+​
+Reach out to
+Cloud_FinOps_Help@lists.lilly.com
+to get cost visibility.
+For more information about cost data visibility options in progress or submit a feature request or problem statement for the Cloud FinOps team, contact
+Cloud_FinOps_Help@lists.lilly.com
+.
+Was this helpful?
+Tags:
+cloud
+solution-guide
+techhq
+Edit this page
+Previous
+🧭 Cloud Architecture
+Next
+🧭 Container Services
+AWS
+Microsoft Azure
+Google Cloud
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

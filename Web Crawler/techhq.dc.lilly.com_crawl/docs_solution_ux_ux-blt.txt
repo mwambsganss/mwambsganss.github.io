@@ -1,0 +1,356 @@
+Title: 🗄️ User Experience & Design BLT | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ux/ux-blt
+Description: The User Experience & Design Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+
+🗄️ User Experience & Design BLT | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🗄️ User Experience & Design BLT
+🧭 Accessibility Enablement
+🎨 User Experience & Design
+🗄️ User Experience & Design BLT
+On this page
+🗄️ User Experience & Design BLT
+The User Experience & Design Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+Can't find a technology?
+Use TechHQ's search feature to look across all technology documentation. For questions or to suggest additions to this list, contact the
+Enterprise Business Architecture team
+.
+Adobe XD
+​
+Position
+Standard
+Tags
+ux
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards/Sarah Hemaida
+Advanced interface and prototyping app that lets you design websites, mobile apps, and more. Get feedback, collaborate, and iterate on your experiences for any screen.
+Use Cases
+​
+UI design
+See Also
+​
+https://www.adobe.com/products/xd.html
+Deque axe Tools
+​
+Position
+Specialized
+Tags
+ux
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards
+Digital accessibility toolkit. Robust, efficient and accurate accessibility testing for all.
+Use Cases
+​
+Accessibility Evaluations
+See Also
+​
+https://www.deque.com/
+Figma
+​
+Position
+Standard
+Tags
+ux
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards/Logan Weilenman
+A collaborative web application for interface design
+Use Cases
+​
+UI design, UX design, design evaluations, inclusive design
+See Also
+​
+https://www.figma.com/
+Google Analytics 4
+​
+Position
+Standard
+Tags
+ux
+Information Sensitivity
+Yellow
+Architect
+Karl Mayer
+Contact(s)
+Michele Johnson
+CMDB CI
+CI00000000260611
+Industry-standard tool for website/webapp traffic tracking and reporting.
+Google Analytics 4
+has replaced
+Google Universal Analytics
+, which you may also see referred to as
+Google Analytics 360
+. Google Universal Analytics has been retired.
+Use Cases
+​
+Clickstream Analysis, A/B Testing, Web Usability Benchmarking
+See Also
+​
+ServiceNow Request:
+Manage Google Analytics 4 360 Property
+Illustrator
+​
+Position
+Standard
+Tags
+ux
+Information Sensitivity
+Yellow
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards/Sarah Hemaida
+Advanced graphic design app that lets you create illustrations, logos, and more. Use precise tools to make vector artwork that can scale to any size.
+Use Cases
+​
+Visual design
+See Also
+​
+https://www.adobe.com/products/illustrator.html
+InDesign
+​
+Position
+Standard
+Tags
+ux
+Information Sensitivity
+Yellow
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards/Sarah Hemaida
+Advanced page design and layout app that lets you create and publish print and digital documents. Make posters, books, digital magazines, e-books, interactive PDFs, and more.
+Use Cases
+​
+Visual design
+See Also
+​
+https://www.adobe.com/products/indesign.html
+JAWS
+​
+Position
+Standard
+Tags
+ux
+Information Sensitivity
+Green
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards
+A screen reader that will assist users who are blind or low-vision to use a Windows computer. JAWS has a variety of features, including Braille support, multi-lingual speech synthesis, and multi-screen support.
+Use Cases
+​
+Accessibility evaluations
+Notes
+​
+For Microsoft Windows browsers only
+See Also
+​
+https://www.freedomscientific.com/products/software/jaws/
+Photoshop
+​
+Position
+Standard
+Tags
+ux
+Information Sensitivity
+Yellow
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards/Sarah Hemaida
+Advanced image editing app that lets you transform photos, graphics, and illustrations. Edit and create with layers, brushes, AI tools, and more.
+Use Cases
+​
+Visual design, design evaluations, accessibility evaluations, inclusive design
+See Also
+​
+https://www.adobe.com/products/photoshop.html
+The Lilly Design System (LDS)
+​
+Position
+Standard
+Tags
+ux, lilly-design-system
+Information Sensitivity
+Yellow
+A library of robust, accessible, and reusable UI components with easily consumable documentation
+Use Cases
+​
+Responsive Design System for any web-based application or website.
+Partnerships
+​
+Lilly Brand Office
+Accessibility Team
+Regulatory
+UserZoom
+​
+Position
+Specialized
+Tags
+ux
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards/Sarah Hemaida
+A solution designed to help product developers and digital teams gain actionable insights into customer behavior to enhance digital experiences with brands.
+Use Cases
+​
+Attitudinal, behavioral, quantitative, and qualitative research
+See Also
+​
+https://www.userzoom.com/
+Declining → Retired
+​
+Axure
+​
+Position
+Retired 2020-12-31
+Tags
+ux
+Information Sensitivity
+Under Review
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards
+High-fidelity prototyping application primarily for complex interactions, UIs and pseudo-code
+Use Cases
+​
+Remote Visual Design Flow, Complex Prototype Building, Remote Prototype Sharing
+Notes
+​
+UCD Phase 2: Define, UCD Phase 3: Ideate, UCD Phase 4: Prototype, UCD Phase 5: Test
+Miro
+​
+Position
+Retired 2020-12-31
+Tags
+ux
+Information Sensitivity
+Under Review
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards
+Online collaborative whiteboard platform to bring remote teams together from anywhere.
+Use Cases
+​
+Remote Synthesis / Affinity / Brainstorming, Remote Visual Design Flow, Remote Journey and Empathy Map Builder
+Notes
+​
+UCD Phase 2: Define, UCD Phase 3: Ideate
+Optimal Workshop
+​
+Position
+Retired 2021-11-17
+Tags
+ux
+Information Sensitivity
+Under Review
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards
+Online collaborative research tool suite enabling remote user research
+Use Cases
+​
+Remote Card Sorting, Remote Moderated and Unmoderated Usability Testing, Remote Note Taking, Remote User Surveys, Desirability Studies, Research Participant Panel Management, Remote Tree Testing, Click Testing (Remote 5s and 1 click)
+Notes
+​
+UCD Phase 1: Empathy Research, UCD Phase 5: Test
+Sketch
+​
+Position
+Declining 2023-06-30
+Tags
+ux
+Information Sensitivity
+Yellow
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards/Sarah Hemaida
+All-in-one platform for digital design with collaborative design tools, prototyping and developer handoff
+Use Cases
+​
+UI design, UX design, design evaluations, inclusive design
+Notes
+​
+Only available for macOS
+See Also
+​
+https://www.sketch.com/
+Tobii
+​
+Position
+Retired 2021-07-01
+Tags
+ux
+Information Sensitivity
+Under Review
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards
+Information Sensitivity
+Under Review
+Architect
+Libby Edwards
+Contact(s)
+Libby Edwards
+Document generated from Stack Overflow Enterprise articles (prioritized) and ea_tech.csv (fallback)
+Was this helpful?
+Edit this page
+Previous
+🎨 User Experience & Design
+Next
+🧭 Accessibility Enablement
+Adobe XD
+Deque axe Tools
+Figma
+Google Analytics 4
+Illustrator
+InDesign
+JAWS
+Photoshop
+The Lilly Design System (LDS)
+UserZoom
+Declining → Retired
+Axure
+Miro
+Optimal Workshop
+Sketch
+Tobii
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

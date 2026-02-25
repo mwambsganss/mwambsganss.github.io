@@ -1,0 +1,67 @@
+Title: Summer 2025 We've expanded our [Solution Guide Library](/docs/solution/ai/) with new guides including Knowledge Sharing,pdates | Tech HQ
+URL: https://techhq.dc.lilly.com/blog/2025/06/25/summer-updates
+Description: It’s been an eventful few months since our February updates roll-up! The TechHQ platform has evolved significantly with
+
+Summer 2025 We've expanded our [Solution Guide Library](/docs/solution/ai/) with new guides including Knowledge Sharing,pdates | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+Recent posts
+2025
+Summer 2025 We've expanded our [Solution Guide Library](/docs/solution/ai/) with new guides including Knowledge Sharing,pdates
+February Updates Roll-up
+2024
+Translations Solution Guide
+Welcome!
+Summer 2025 We've expanded our [Solution Guide Library](/docs/solution/ai/) with new guides including Knowledge Sharing,pdates
+June 25, 2025
+·
+2 min read
+Karl Mayer
+Digital Core Lead Architect
+It’s been an eventful few months since our February updates roll-up! The TechHQ platform has evolved significantly with
+major additions to our AI architecture ecosystem, enhanced innovation pipeline framework, and expanded solution guide
+library. Here's what's new this summer:
+The highlight is the launch of our
+AI Architecture Ecosystem
+, authored by the EBA AI Architecture
+team. This framework introduces a four-layer stack—Experience, AI, Model, and Data—along with reusable agentic AI
+patterns and memory architectures. We’ve also clarified our strategic AI platform positioning, with Cortex as our
+primary GenAI platform.
+The
+Innovation Pipeline
+is now easier to navigate thanks to a new Innovation Stage
+Assessment Table, helping teams define and assess the maturity of their work—from Pre-Alpha to General Release. Several
+capabilities are currently in Pre-Alpha, including AI chatbot testing, automated test script generation, and mobile and
+A/V testing frameworks. We’ve also published our first Emerging Technologies write-up on AI video generation, comparing
+platforms and outlining pharma-specific use cases.
+We’ve expanded our
+Solution Guide Library
+with new guides including Knowledge Sharing,
+Data Visualization, and Document Processing. Each guide reflects our AI-first approach, with integrated recommendations
+for tools like Microsoft Copilot, AI-powered test automation, and enhanced translation services. We’ve also improved
+lifecycle management
+.
+To make all of this easier to explore, we’ve also made improvements to homepage navigation—so you can find what you need
+faster. We’d love to hear what you think and what you'd like to see next.
+Your contributions
+and feedback help shape the
+future of TechHQ.
+Tags:
+Tech HQ
+Edit this page
+Older post
+February Updates Roll-up
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

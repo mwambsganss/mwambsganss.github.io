@@ -1,0 +1,28 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/contribute/markdown_examples",
+  "title": "📝 Markdown Extensions | Tech HQ",
+  "description": "This page lists examples of extensions to Markdown that TechHQ supports.",
+  "h1": [
+    "📝 Markdown Extensions"
+  ],
+  "h2": [
+    "Mermaid​",
+    "Markmap​",
+    "Font Awesome icons​",
+    "External link highlights​",
+    "Additional admonitions​",
+    "Columns and cards​"
+  ],
+  "h3": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum"
+  ],
+  "text_content": "📝 Markdown Extensions | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🤲 TechHQ Contributions\n📝 Markdown Extensions\n🧭 Solution Guide Template\n📅 Solution Guide Timeline\n📝 Markdown Extensions\nOn this page\n📝 Markdown Extensions\nThis page lists examples of extensions to Markdown that TechHQ supports.\nnote\nThe page will generate a known error when run in dev mode!\nMermaid\n​\nMermaid diagramming & charting\nTechHQ\nDocusaurus\nserver\npod\nGitHub\nTechHQ\ncodebase\nGitHub\nActions\nDocker\nimage\nCATS\nArgo\nCD\nUser\nvisits\nTechHQ\nwebsite\nLilly\nAWS\nCATS\nEKS\ncluster\nTechHQ_Prod\nnamespace\nMarkmap\n​\nMarkmap mindmaps\nKnown Markmap Bug\nMarkmap generates a known exception on live\npage reload in dev environments:\nFailed to read the 'value' property from 'SVGLength': Could not resolve relative\nlength.\nThis bug is not present in prod.\nClick anywhere in this box interact with the mindmap\nDeliver a Digital Core Marketplace with self-service products, reusable components, and cutting-edge platforms to\nimprove cycle time and value\nObjective\n% of Digital Core services covered\nUsed by % of new product initiatives\nInternal NPS\nUsed for % of Digital Core engagements\nLeading indicators & Measures\n40% of Marketplace users report 2 months saved each time they use a Marketplace product, component, or platform\nEnhance partner understanding of available capabilities and tech investments\nPlanned Outcomes\nTechHQ\nGet IT Help on LillyNow\nDiscovering Tech@Lilly\nServiceNow Catalog\nServiceNow Knowledge Base\nChatNow\nEcosystem\nQ1 '25 Priorities - TechHQ Decision Guidance - Digital Core Quarterly Roadmaps & Milestones\nDigital Core Marketplace\nmarkmap\nFont Awesome icons\n​\nExample FA GitHub icon\nExternal link highlights\n​\nGitHub\nLillyFlow\nTech@Lilly on Viva Engage\nAdditional admonitions\n​\nIn addition to Docusaurus' built-in\nadmonitions\n,\ncommunity extensions\nare also\nincluded.\nnote\nBeta is the stage where the innovation\nis ready to be used for its primary intended purpose.\nWarning!\nThis is a security warning\ncaution\nCaution Caution!\nColumns and cards\n​\nLorem Ipsum\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.\nSee All\nLorem Ipsum\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.\nSee All\nLorem Ipsum\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.\nSee All\nLorem Ipsum\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.\nSee All\nLorem Ipsum\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.\nSee All\nLorem Ipsum\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.\nSee All\nWas this helpful?\nEdit this page\nPrevious\n🤲 TechHQ Contributions\nNext\n🧭 Solution Guide Template\nMermaid\nMarkmap\nFont Awesome icons\nExternal link highlights\nAdditional admonitions\nColumns and cards\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 3,
+  "depth": 2,
+  "crawled_at": "2026-02-25T10:07:01.292042"
+}

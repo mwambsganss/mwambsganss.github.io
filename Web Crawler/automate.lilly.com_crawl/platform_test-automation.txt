@@ -1,0 +1,48 @@
+Title: Enterprise Automation MarketPlace
+URL: https://automate.lilly.com/platform/test-automation
+Description: Enterprise Automation MarketPlace
+
+Enterprise Automation MarketPlace
+Menu
+List
+menu closed
+Close
+X
+Home
+Automation Platform
+CaretRight
+CaretDown
+Intelligent Automation
+Test Automation
+Document Processing
+Content Automation
+Process Optimization
+Marketplace
+TechZone
+Submit an Idea
+Test Automation
+Test Automation
+is the use of software to perform tests on other software, checking for errors automatically. It’s fast, repeatable, and helps ensure software quality without manual testing. Enterprise Automation offers several frameworks and tools to help your teams get started with test automation.
+System Testing/Functional Testing
+Accessibility Testing
+API/Integration/E2E Testing
+Cross Browser Testing/Compatibility Testing
+Regression Testing
+Visual Regression Testing
+Performance Testing/Load Testing/Stress Testing
+Our Enterprise Automation is happy to consult with you about your testing needs. Consider engaging in our
+community of practice
+, a hub of innovation and expertise across Lilly.
+QuotesFill
+"Creating a cycle of automation innovation learning and delivery to accelerate your productivity."
+Enterprise Platform
+Connecting...
+Marketplace Chatbot
+Media
+File
+Tap microphone to speak
+Listening... Tap to end
+Cancel
+Tap to send
+Typing
+Powered by

@@ -1,0 +1,87 @@
+Title: 🧭 Data Catalogs and Access | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/data/data_catalogs_and_access
+Description: Stack Overflow Article: 🧭 Data Catalogs and Access
+
+🧭 Data Catalogs and Access | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🗄️ Data & Analytics BLT
+🧭 Data Catalogs and Access
+🧭 Data Visualization
+🧭 Integration Middleware
+🧭 Specialized Databases
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+📊 Data & Analytics
+🧭 Data Catalogs and Access
+On this page
+Data Catalogs and Access
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-10-02
+Capability Owner: Will Sherman
+EBA Lead: Christopher Blessing
+Contributors & Reviewers: Will Sherman
+A data catalog acts like a library index for all enterprise data assets—datasets, tables, files, and databases—across cloud, on-prem, and hybrid environments. It enables users to:
+Quickly locate and understand data through metadata, lineage, and quality scores.
+Avoid duplication and reduce time spent searching for data.
+Support self-service analytics by empowering non-technical users to find and use data confidently.
+Lilly creates two things: Medicine and Data. A LOT of data. Data catalogs help Lilly manage that data to help us ensure we know where the data is, who owns it, how sensitive it is, and describes that data. Quality descriptions of data help teams identify if the data is good for their use case, enables AI to use the data effectively, and define what the data can, or cannot, be used for.
+Lilly is a global company and so has challenges due to the different types of data collected, the technologies it is stored in, and the many different global governance rules that dictate what the data can be used for. Enterprise Data is helping Lilly meet those challenges by building a robust catalog solution that serves as single source of truth for metadata describing our data, access to that data, and a doorway to view observability facets of that data. A single solution for Lilly to describe and manage Lilly data.
+The solution is provided through two applications found at
+data.lilly.com
+Metadata Manager to manage catalog records
+Marketplace to manage access to data
+Metadata Manager
+​
+Metadata Manager
+enables consistent metadata collection, classification, and governance across enterprise inventories. It supports:
+Metadata harvesting from structured and unstructured sources
+Integration with external data catalogs and APIs
+Tagging, lineage tracking, policy management, API Usage Reporting, CI/PI/SPI classifications
+Lilly governance built into the user experience, helping team members not miss crucial Lilly governance requirements
+Full integration to the ServiceNow Privacy Module, automating the privacy assessment process (Q1 2026)
+Marketplace
+​
+Marketplace
+automates access provisioning through a self-service workflows and policy-driven approvals. It supports:
+Complete Automation for access to low sensitivity data for AD Groups, AWS Database Groups, ABAC user attributes and groups, IAM Roles (Q4 2025), and Entra Id (Q4 2025)
+Automate provisioning after approval to AD Groups, AWS Database Groups, ABAC user attributes and groups, IAM Roles (Q4 2025), and Entra Id (Q4 2025)
+Centralized Access Management governance for policies, approvers, and provisioning for both the producers and the consumers of data
+Roster Management assistance for a single solution to view all roster details for data (Q1 2026)
+Audit logging and compliance tracking meeting GMP requirements for access management
+Was this helpful?
+Tags:
+data
+solution-guide
+techhq
+Edit this page
+Previous
+🗄️ Data & Analytics BLT
+Next
+🧭 Data Visualization
+Metadata Manager
+Marketplace
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

@@ -1,0 +1,21 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/solution/ai/ecosystem/data_layer",
+  "title": "Data Layer | Tech HQ",
+  "description": "Last Updated: July 25, 2025",
+  "h1": [
+    "Data Layer"
+  ],
+  "h2": [
+    "Definition​",
+    "Components​",
+    "Component Details​"
+  ],
+  "h3": [
+    "Structured Knowledgebases​",
+    "Un-Structured Knowledgebases​"
+  ],
+  "text_content": "Data Layer | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🧩 Solution Overview\n🤖 AI & Intelligent Agents\nEcosystem\nExperience Layer\nAI Layer\nData Layer\nModel Layer\nPatterns\nPositioning\nExamples\nCoding Tools\nStandards\nAI Submission Guide Template\n🗄️ AI & Intelligent Agents BLT\n🤖 Agentic AI\n🧭 Conversational AI\n🧭 Knowledge Bases\n🧭 Multimodal AI\n🧭 Translation Services\n🏢 Business Enablement\n☁️ Cloud & Infrastructure\n🔐 Cybersecurity\n📊 Data & Analytics\n🛠️ Engineering Enablement\n🛰️ Observability & Reliability\n🚀 Team Productivity\n🎨 User Experience & Design\n🤖 AI & Intelligent Agents\nEcosystem\nData Layer\nOn this page\nData Layer\nDocument Information\nLast Updated:\nJuly 25, 2025\nOwner:\nBrian Lewis\nPoint of Contact:\nAli Kharazmi\nContributors and Reviewers:\nArchit Kaila, Haitham Maya, Malika Mahoui\nDefinition\n​\nAI-enabled and enabling capabilities, such as data products, vector databases, semantic layers, and synthetic data. This layer provides the structured and unstructured data resources necessary for AI systems, including specialized storage and processing technologies optimized for AI workloads.\nComponents\n​\nComponents\nStructured Knowledgebases\nData Marketplace\nUn-Structured Knowledgebases\nData Marketplace\nComponent Details\n​\nStructured Knowledgebases\n​\nCurated data products with schemas, ontologies, and versioning optimized for structured query, reasoning, and compliance traceability\nPlatform\n:\nData Marketplace\nUn-Structured Knowledgebases\n​\nIndexed documents, images, and media enriched with embeddings and metadata to enable semantic & vector search across Lilly knowledge\nPlatform\n:\nData Marketplace\nWas this helpful?\nEdit this page\nPrevious\nAI Layer\nNext\nModel Layer\nDefinition\nComponents\nComponent Details\nStructured Knowledgebases\nUn-Structured Knowledgebases\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 0,
+  "depth": 3,
+  "crawled_at": "2026-02-25T10:08:01.114276"
+}

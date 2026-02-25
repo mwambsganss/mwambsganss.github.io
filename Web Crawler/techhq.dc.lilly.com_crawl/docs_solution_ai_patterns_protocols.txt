@@ -1,0 +1,560 @@
+Title: Protocols | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/patterns/protocols
+Description: Last Updated: July 25, 2025
+
+Protocols | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Quantum Computing
+Agentic
+Workflows
+Building Agentic Patterns
+Context Engineering
+Deep Agents
+Deep Research
+Model Foundry
+Protocols
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+Patterns
+Protocols
+On this page
+Protocols
+Document Information
+Last Updated:
+July 25, 2025
+Owner:
+Brian Lewis
+Point of Contact:
+Ali Kharazmi
+Contributors and Reviewers:
+Archit Kaila, Haitham Maya, Malika Mahoui
+This section outlines key communication protocols used for agent-to-agent and agent-tool interactions, highlighting
+current practices and emerging trends in AI system design.
+Industry Standard Protocols
+​
+Industry-standard communication protocols for distributed systems include a mix of synchronous APIs and asynchronous
+messaging:
+REST/HTTP (JSON)
+– Simple, stateless, and widely supported. REST uses URIs and JSON over HTTP, making it ideal for
+interoperability but less suited for streaming or large payload efficiency.
+gRPC / Protocol Buffers
+– A fast, strongly-typed RPC system using HTTP/2 and binary Protobuf. Supports bidirectional
+streaming and outperforms REST in high-throughput scenarios with auto-generated code across languages.
+GraphQL
+– A flexible query API that allows clients to request only needed data via a single endpoint. Best for
+complex, nested data models and diverse client needs.
+WebSockets / SSE
+– Real-time communication protocols. WebSockets enable two-way persistent connections, while SSE
+supports one-way server-to-client streams. Useful for interactive or live-update applications.
+Message Queues / Event Streams
+– Enable decoupled, asynchronous communication. MQTT is lightweight for IoT, while
+Kafka and RabbitMQ support scalable, reliable pub/sub messaging across services.
+MainCategories
+AgentProtocols
+Model Context Protocol
+Agent-tool standard
+Tool discovery
+Standardized interfaces
+Agent2Agent Protocol
+Agent-agent communication
+Agent discovery
+Task coordination
+AsyncProtocols
+WebSockets
+Bi-directional streams
+Persistent connection
+Real-time updates
+Message Queues
+Decoupled processing
+Asynchronous processing
+High scalability
+Server-Sent Events
+Server push updates
+SyncProtocols
+REST/HTTP
+Simple, ubiquitous
+Stateless
+Human-readable
+gRPC
+High-performance, streaming
+Binary encoding
+Code generation
+Streaming support
+GraphQL
+Flexible queries
+Precise queries
+Single endpoint
+Communication Protocols
+Synchronous Protocols
+Asynchronous Protocols
+Agent-Specific Protocols
+Emerging Standards
+​
+The W3C is actively developing two critical community groups focused on agent standardization:
+The
+Autonomous Agents on the Web (WebAgents) Community Group
+focuses on hypermedia Multi-Agent Systems that
+leverage Semantic Web standards.
+The
+AI Agent Protocol Community Group
+is standardizing inter-agent communication protocols with PKI-based identity
+frameworks and cross-origin security mechanisms.
+The IETF has introduced groundbreaking standards including:
+The
+agent:// URI Protocol
+provides a layered architecture supporting minimal to full-featured agent
+implementations with the format:
+agent:[+<protocol>]://<authority>/<path>[?<query>][#<fragment>]
+The
+Agent Name Service (ANS)
+specification introduces DNS-inspired hierarchical agent addressing with PKI-based
+trust.
+Modern AI applications often mix these protocols. For example, many cloud AI tool APIs are offered as HTTPS/JSON
+services (REST) for ease of integration, while high-performance backends might expose gRPC. In addition, AI-specific
+standards are emerging: Anthropic's
+Model Context Protocol (MCP)
+and Google's
+Agent2Agent (A2A)
+aim to
+standardize agent–tool and agent–agent interfaces.
+Agent to Tool Communication
+Model Context Protocol (MCP)
+​
+Overview and Purpose
+​
+The Model Context Protocol (MCP), developed by Anthropic, is a standardized JSON-based protocol that creates a universal
+interface between AI models and tools. Acting as a "USB-C port for AI," MCP enables any LLM to connect to any compliant
+tool or data source in a consistent way.
+MCP defines:
+How tools describe their capabilities (functions, arguments, schemas)
+How AI agents discover and invoke those functions
+How responses (synchronous or streaming) are handled and returned
+This standardization creates true interoperability between tools and models across vendors, allowing AI systems to query
+databases, call APIs, manipulate files, and access various services through a unified protocol.
+External Tool (MCP Server)
+AI Agent (MCP Client)
+App or Orchestrator
+External Tool (MCP Server)
+AI Agent (MCP Client)
+App or Orchestrator
+Instruction (e.g., "Check calendar")
+JSON Request via MCP
+Result or Event Stream
+Final Output
+Architecture and Components
+​
+MCP follows a client-host-server architecture with clearly defined roles:
+MCP Hosts
+: Applications like Claude Desktop, IDEs, or custom applications that initiate interactions
+MCP Clients
+: Protocol clients (typically AI models) that maintain connections with servers
+MCP Servers
+: Lightweight programs exposing specific capabilities through the standardized protocol
+Data Sources
+: Local files/databases or remote services that MCP servers can securely access
+This separation of concerns creates modular, composable systems where each server can focus on a specific domain (like
+file access, web search, or database operations).
+Internet
+Your Computer
+MCP Protocol
+MCP Protocol
+MCP Protocol
+Web APIs
+Host with MCP Client
+(Claude, IDEs, Tools)
+MCP Server A
+MCP Server B
+MCP Server C
+Local
+Data Source A
+Local
+Data Source B
+Remote
+Service C
+Core Primitives
+​
+MCP defines three fundamental primitives that servers can implement:
+Tools
+: Model-controlled functions that LLMs can invoke (like API calls, computations)
+Example: A calculator tool that performs mathematical operations
+Implementation: Functions with defined input/output schemas
+Resources
+: Application-controlled data that provides context (like file contents, database records)
+Example: A document resource that provides access to text files
+Implementation: URI-addressable data sources with content types
+Prompts
+: User-controlled templates for LLM interactions
+Example: A summarization prompt template with configurable parameters
+Implementation: Parameterized prompt structures with variables
+For most developers, tools are the most immediately useful primitive, allowing LLMs to perform actions programmatically.
+Transport Mechanisms
+​
+MCP supports two main transport mechanisms:
+Stdio (Standard IO)
+:
+Communication over standard input/output streams
+Best for local integrations on the same machine
+Simple setup with no network configuration
+Ideal for development and single-application integrations
+SSE (Server-Sent Events)
+:
+HTTP for client-to-server, SSE for server-to-client
+Suitable for remote connections across networks
+Enables distributed architectures
+Required for remote accessibility
+Remote Deployment
+SSE Transport
+HTTP POST
+(client to server)
+SSE
+(server to client)
+MCP Client
+MCP Server
+Local Deployment
+Stdio Transport
+stdin/stdout
+(bidirectional)
+MCP Client
+MCP Server
+Developers familiar with FastAPI will find implementing MCP servers with SSE transport straightforward, as both use HTTP
+endpoints for receiving requests and support streaming responses using Server-Sent Events.
+Benefits and Ecosystem
+​
+The true power of MCP lies in standardization rather than introducing new capabilities:
+Reusability
+: Build a server once, use it with any MCP-compatible client
+Composability
+: Combine multiple servers to create complex capabilities
+Ecosystem growth
+: Leverage servers created by others
+MCP has rapidly become the standard for LLM tool access with 150+ community servers and multi-language SDK support.
+Implementations use JSON-RPC or RESTful payloads with OAuth authentication, enabling diverse tool providers to connect
+to any MCP-compatible agent. For available servers, see the
+MCP GitHub repository
+.
+Protocol Comparison for Agent-Tool Communication
+​
+Different protocols offer different trade-offs:
+Protocol
+Pros
+Cons
+Use Cases
+When to Choose
+REST/HTTP
+Simple, ubiquitous
+Stateless, no streaming
+General tool calls
+For broad compatibility and simple integrations
+gRPC
+Binary, efficient, supports streaming
+Requires stub generation
+High-performance backends
+For performance-critical pipelines
+WebSockets
+Bi-directional, persistent connections
+Harder to scale
+Live tool monitoring
+When real-time updates are needed
+GraphQL
+Flexible queries, single endpoint
+Schema complexity
+Dynamic data needs
+When clients need precise control over data fetching
+MCP
+Standardized for agents, tool introspection
+Early adoption
+Agent–tool abstraction layers
+For standardized agent-tool workflows
+When comparing these, one key factor is state and streaming. gRPC and WebSockets allow keeping the "conversation" alive,
+which can reduce overhead for multiple back-and-forth messages. REST and GraphQL are inherently stateless (each call
+stands alone). Another factor is typing and validation: gRPC and GraphQL have strict schemas, whereas REST relies on
+ad-hoc schemas that must be documented separately.
+Uses
+Uses
+Uses
+Uses
+Agent
+REST/HTTP
+Simple, ubiquitous
+gRPC
+High-performance
+WebSocket
+Bi-directional
+MCP
+Standardized
+MCP Roadmap at Lilly
+​
+With MCP as the foundation connecting development resources to agent tools and external systems for enterprise-wide AI
+integration, organizations can streamline workflows, accelerate innovation, and ensure scalable, secure deployment
+across their digital ecosystem.
+GitHub Template
+• Reference implementation
+• Protocol adapters
+• Documentation
+Backstage
+• Developer portal
+• API documentation
+• Service catalog
+Tool Deployment
+• CATS, Kubed, and other
+• nodx -> dx support
+• URI-based access
+Model Context Protocol
+• Industry standards
+• Built-in Lilly auth
+• Multi-modal support
+Cortex Toolkit
+• Unified SDK
+• Multiple protocol support
+• Developer resources
+Cortex Agents
+• Tool integration
+• Agent orchestration
+• Observability and eval
+Discovery
+• Tool exploration
+• Marketplace for discovery
+and configuration
+External Agents
+• Third-party integration
+• Cross-platform support
+• Standardized messaging
+System to System
+Compatibility
+• Cross-platform communication
+• Agent discovery
+• Capability negotiation
+Agent to Agent Communication
+Agent2Agent (A2A) Protocol
+​
+The Agent2Agent (A2A) protocol, developed by Google with over 50 industry partners, addresses a critical challenge in
+the AI landscape: enabling AI agents built on diverse frameworks by different companies to communicate and collaborate
+effectively. A2A provides a common language for agents, fostering a more interconnected AI ecosystem.
+Key Components of an A2A Protocol
+​
+Message Format
+: The structure of requests and responses. For example, each agent might produce or consume JSON
+that follows a particular schema (such as an "intents" field, a "metadata" field, etc.).
+Transport Mechanism
+: How messages travel between agents. This could be over standard web protocols (HTTP/HTTPS) or
+specialized messaging buses (like gRPC or MQTT).
+Discovery
+: How an agent finds other agents. This might be analogous to DNS in the internet world or a registry
+service in the microservices world.
+Security and Authentication
+: Ensuring that only authorized agents can talk to each other, or that sensitive data
+is encrypted.
+Key Features and Capabilities
+​
+A2A enables agents to:
+Discover capabilities
+: Agents can advertise their skills and find other agents with complementary abilities.
+Negotiate interaction modalities
+: Support for text, structured data, and media exchanges.
+Collaborate on tasks
+: Manage stateful, potentially long-running collaborative tasks.
+Maintain opacity
+: Agents can collaborate without exposing their internal state, memory, or proprietary tools.
+A2A is built on established standards:
+JSON-RPC 2.0 over HTTP(S)
+for standardized communication
+Agent Cards
+for capability discovery and connection information
+Flexible interaction modes
+including synchronous request/response, streaming (SSE), and asynchronous notifications
+A2A and MCP: Complementary Protocols
+​
+A2A and MCP serve different but complementary roles in the agentic ecosystem:
+MCP (Model Context Protocol)
+: Connects agents to tools, APIs, and resources with structured inputs/outputs. It's
+how agents access their capabilities.
+A2A (Agent2Agent Protocol)
+: Facilitates dynamic communication between different agents as peers. It's how agents
+collaborate, delegate, and manage shared tasks.
+A2A Protocol
+MCP Protocol
+MCP Protocol
+User
+Agent A
+Agent B
+Tool 1
+Tool 2
+How A2A Works
+​
+A2A facilitates communication between a "client" agent and a "remote" agent through several key mechanisms:
+Capability Discovery
+: Agents advertise their capabilities using "Agent Cards" in JSON format, allowing client
+agents to identify the best agent for a task.
+Task Management
+: Communication is oriented around task completion. The task object has a defined lifecycle and
+can be completed immediately or monitored over time for long-running operations.
+User Experience Negotiation
+: Messages include "parts" with specified content types, allowing agents to negotiate
+the correct format and explicitly include UI capabilities like iframes, video, or web forms.
+Secure Collaboration
+: A2A is designed with enterprise-grade authentication and authorization, supporting various
+authentication schemes.
+Agent Cards
+​
+Agent Cards are JSON documents that serve as digital "business cards" for A2A Servers (remote agents). They are crucial
+for discovery and initiating interaction, containing:
+Identity
+: Name, description, and provider information
+Service Endpoint
+: URL where the A2A service can be reached
+A2A Capabilities
+: Supported protocol features like streaming or push notifications
+Authentication
+: Required authentication schemes (e.g., "Bearer", "OAuth2")
+Skills
+: List of specific tasks the agent can perform, including input/output modes and examples
+Client agents parse these cards to determine if a remote agent is suitable for a task, how to structure requests, and
+how to communicate securely.
+Security Considerations
+​
+Agent Cards may contain sensitive information that should be protected:
+Internal service URLs
+Authentication details (though storing actual secrets is discouraged)
+Descriptions of sensitive skills
+Protection mechanisms include access control on endpoints, mutual TLS, network restrictions, and authentication
+requirements. Agent registries can implement selective disclosure, providing different levels of detail based on the
+client's identity and permissions.
+The Challenges of Agent Communication
+​
+Without standardized protocols like A2A, organizations face several challenges:
+Redundant Work
+: Every time you add a new AI agent, you need to figure out how it speaks to the rest of your
+ecosystem, leading to redundant or "copy-paste" integration code.
+Compatibility Headaches
+: Suppose your NLP model runs on Python, and your knowledge graph is hosted in a Java-based
+microservice. Each might pass around data differently, making it hard for them to play nicely together.
+Scaling Bottlenecks
+: As you incorporate more specialized agents (e.g., image recognition, forecasting, robotics),
+the complexity explodes. Non-standardized communication turns into a big tangly mess, harming your ability to innovate
+quickly.
+Benefits of A2A
+​
+Breaking Down Silos
+: Connect agents across different ecosystems and frameworks.
+Complex Workflows
+: Enable agents to delegate sub-tasks, exchange information, and coordinate actions.
+Interoperability
+: Agents built on different platforms (LangGraph, CrewAI, Semantic Kernel, custom solutions) can
+work together.
+Modality Agnostic
+: Support for various communication modalities beyond text, including audio and video.
+A2A Design Principles
+​
+A2A follows five key design principles:
+Embrace agentic capabilities
+: Focus on enabling collaboration between agents without requiring shared memory,
+tools, or context.
+Build on existing standards
+: Leverage HTTP, SSE, and JSON-RPC for easier integration with existing IT
+infrastructure.
+Secure by default
+: Support enterprise-grade authentication and authorization.
+Support long-running tasks
+: Flexible design for quick tasks and deep research that may take hours or days.
+Modality agnostic
+: Support various communication modalities beyond text.
+Agent2Agent Roadmap at Lilly
+​
+coming soon!
+The Future of Agent Interoperability
+​
+A2A has the potential to unlock a new era of agent interoperability, fostering innovation and creating more versatile
+agentic systems. The protocol is being developed collaboratively as open source, with industry partners working toward a
+production-ready version later this year.
+What's Next: Protocol Roadmap
+​
+A2A Protocol Roadmap
+Agent Discovery
+Authorization schemes and
+credentials in AgentCard
+Agent Collaboration
+QuerySkill method for
+dynamic capability checking
+Task Lifecycle & UX
+Dynamic UX negotiation
+with mid-task media support
+Client Methods & Transport
+Client-initiated methods and
+improved streaming reliability
+References
+gRPC vs. REST | Postman Blog
+Essential Communication Protocols for Modern Software Architecture: REST, GraphQL, SOAP and More | Medium
+A2A and MCP: Start of the AI Agent Protocol Wars? - Koyeb
+Model Context Protocol (MCP) - Anthropic
+MCP connector - Anthropic
+Announcing the Agent2Agent Protocol (A2A) - Google Developers Blog
+SmythOS - Agent Communication Protocols: An Overview
+W3C Autonomous Agents on the Web Community Group
+IETF Agent URI Protocol Draft
+NIST Special Publication 800-207: Zero Trust Architecture
+Agent2Agent Protocol Documentation
+Was this helpful?
+Edit this page
+Previous
+Model Foundry
+Next
+Positioning
+Industry Standard Protocols
+Emerging Standards
+Model Context Protocol (MCP)
+Overview and Purpose
+Architecture and Components
+Core Primitives
+Transport Mechanisms
+Benefits and Ecosystem
+Protocol Comparison for Agent-Tool Communication
+MCP Roadmap at Lilly
+Agent2Agent (A2A) Protocol
+Key Components of an A2A Protocol
+Key Features and Capabilities
+A2A and MCP: Complementary Protocols
+How A2A Works
+Agent Cards
+The Challenges of Agent Communication
+Benefits of A2A
+A2A Design Principles
+Agent2Agent Roadmap at Lilly
+The Future of Agent Interoperability
+What's Next: Protocol Roadmap
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

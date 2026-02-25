@@ -1,0 +1,194 @@
+Title: 🧭 Knowledge Bases | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/knowledge_bases
+Description: Stack Overflow Article: 🧭 Knowledge Bases
+
+🧭 Knowledge Bases | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+🧭 Knowledge Bases
+On this page
+Knowledge Bases
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-06-22
+Capability Owner: Karl Mayer
+EBA Lead: Karl Mayer
+Contributors & Reviewers:
+A guide for technical knowledge bases and knowledge sharing. This guide aims to provide technical teams with the best practices and
+tools for managing and sharing technical knowledge effectively.
+Use Case/Scenario
+Tech Recommendation
+Positioning
+Complexity
+Key Integrations
+Owning Org/Team
+Next Step
+Canonical, trusted information on Tech@Lilly systems for IT Service Desk and end users
+ServiceNow Knowledge Base
+Strategic
+Low
+ChatNow
+Digital Core Workforce Productivity
+ServiceNow Knowledge: How Tos and FAQs
+Tech@Lilly-community-driven Q&A and articles for devs, tech leads, & architects
+Stack Overflow Enterprise
+Strategic
+Low
+Microsoft Teams, Slack
+Digital Core Enterprise Business Architecture
+Visit flow.lilly.com
+Collaboration and co-authoring for business and technical teams
+Microsoft Teams
+Strategic
+Low
+Microsoft Copilot
+Digital Core Collaboration
+Microsoft Teams Help & Learning
+Structured, permission-controlled document management, team collaboration, and integration with Microsoft 365 tools
+Microsoft SharePoint
+Strategic
+Low
+Microsoft Copilot
+Digital Core Collaboration
+Microsoft SharePoint Help & Learning
+Video content, such as screen recordings, training sessions, or meeting recaps
+Microsoft Stream in SharePoint
+Standard
+Low
+Microsoft Copilot
+Digital Core Collaboration
+Microsoft Stream FAQ
+Product/project team wikis with Jira issue integration
+Atlassian Confluence
+Standard
+Low
+Jira, Microsoft Copilot
+SPE EDAT
+Confluence Access
+Version-controlled files and wikis for dev teams
+GitHub
+Standard
+Low
+Microsoft Copilot
+SPE EDAT
+GitHub Access
+Highly-customized, knowledge-focused websites, e.g. Cortex, CATS, Cloud, TechHQ
+Facebook Docusaurus
+Specialized
+High
+locally supported
+Consult your area architect
+ServiceNow Knowledge Base
+​
+ServiceNow’s Knowledge Base enables organizations to capture, structure, and reuse knowledge efficiently. It supports
+the creation of how-to articles, FAQs, and troubleshooting guides, helping users solve problems independently and
+reducing the burden on IT support teams. The platform promotes continuous improvement through feedback and article
+linking, making it a dynamic and evolving knowledge
+repository.
+https://www.servicenow.com/now-platform/knowledge-management.html
+https://www.servicenow.com/community/knowledge-management-articles/knowledge-management-and-document-management/ta-p/2961096
+Stack Overflow Enterprise
+​
+Stack Overflow Enterprise enhances internal collaboration by allowing developers and technical teams to ask questions,
+share answers, and document solutions in a structured, searchable format. It reduces duplicated efforts, accelerates
+onboarding, and integrates with tools like Slack and Teams to bring knowledge into the flow of
+work.
+https://stackoverflow.com/?products/enterprise
+Microsoft Teams
+​
+Microsoft Teams serves as a central hub for teamwork, combining chat, meetings, file sharing, and app integration. It
+facilitates real-time collaboration and knowledge sharing across departments, enabling users to co-author documents and
+access shared knowledge seamlessly. Teams also integrates with Microsoft Search and Copilot to surface relevant
+information contextually.
+https://techcommunity.microsoft.com/blog/microsoft_365blog/collaboration-communication-and-knowledge-sharing-with-microsoft-teams-sharepoin/1696335
+Microsoft SharePoint
+​
+SharePoint provides a structured platform for managing and sharing content, knowledge, and applications. It supports
+document libraries, metadata tagging, and version control, making it ideal for building intranet portals and knowledge
+bases. SharePoint’s integration with Microsoft 365 ensures that knowledge is accessible and governed across the
+organization).
+https://learn.microsoft.com/en-us/office365/servicedescriptions/sharepoint-online-service-description/sharepoint-online-service-description
+Microsoft Stream in SharePoint
+​
+Microsoft Stream (on SharePoint) transforms video into a first-class knowledge asset. It allows users to record, upload,
+and share videos like training sessions and meeting recaps, with features like transcripts, chapters, and AI-powered
+search. This makes video content as accessible and manageable as documents, enhancing visual knowledge
+sharing.
+https://learn.microsoft.com/en-us/stream/streamnew/overview
+Atlassian Confluence
+​
+Confluence is a collaborative workspace that enables teams to create, organize, and share knowledge through
+open-by-default pages and spaces. It supports real-time editing, integrates with Jira, and fosters a culture of
+transparency and continuous improvement. Confluence is especially effective for project documentation and
+cross-functional collaboration.
+https://www.atlassian.com/software/confluence/resources/guides/best-practices/knowledge-management
+GitHub
+​
+GitHub supports knowledge sharing through version-controlled repositories, wikis, and pull requests. It enables
+developers to document code, share best practices, and collaborate on projects transparently. Pull requests facilitate
+peer review and iterative improvement, embedding knowledge sharing directly into the development workflow.
+https://github.com/orgs/community/discussions/64860
+Facebook Docusaurus
+​
+Docusaurus is a static site generator tailored for technical documentation. It allows teams to build fast, customizable,
+and versioned documentation websites using Markdown and React. Ideal for developer portals and product docs, Docusaurus
+supports multilingual content, search, and integration with CI/CD pipelines, making it a powerful tool for structured
+knowledge dissemination.
+https://docusaurus.io/community/resources
+Was this helpful?
+Tags:
+ai
+techhq
+solution-guide
+Edit this page
+Previous
+🧭 Conversational AI
+Next
+🧭 Multimodal AI
+ServiceNow Knowledge Base
+Stack Overflow Enterprise
+Microsoft Teams
+Microsoft SharePoint
+Microsoft Stream in SharePoint
+Atlassian Confluence
+GitHub
+Facebook Docusaurus
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

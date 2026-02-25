@@ -1,0 +1,22 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/solution/ai/patterns/lilly_cloud_mcp",
+  "title": "Lilly MCP Servers | Tech HQ",
+  "description": "Last Updated: July 25, 2025",
+  "h1": [
+    "Lilly MCP Servers"
+  ],
+  "h2": [
+    "Overview​",
+    "MCP Servers​",
+    "Ecosystem Diagram​",
+    "Implementation Considerations​",
+    "Next Steps​"
+  ],
+  "h3": [
+    "Lilly Cloud MCP and Agentic AI Registry​"
+  ],
+  "text_content": "Lilly MCP Servers | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🧩 Solution Overview\n🤖 AI & Intelligent Agents\nEcosystem\nPatterns\nQuantum Computing\nAgentic\nWorkflows\nBuilding Agentic Patterns\nContext Engineering\nDeep Agents\nDeep Research\nLilly MCP Servers\nModel Foundry\nProtocols\nPositioning\nExamples\nCoding Tools\nStandards\nAI Submission Guide Template\n🗄️ AI & Intelligent Agents BLT\n🤖 Agentic AI\n🧭 Conversational AI\n🧭 Knowledge Bases\n🧭 Multimodal AI\n🧭 Translation Services\n🏢 Business Enablement\n☁️ Cloud & Infrastructure\n🔐 Cybersecurity\n📊 Data & Analytics\n🛠️ Engineering Enablement\n🛰️ Observability & Reliability\n🚀 Team Productivity\n🎨 User Experience & Design\nUnlisted page\nThis page is unlisted. Search engines will not index it, and only users having a direct link can access it.\n🤖 AI & Intelligent Agents\nPatterns\nLilly MCP Servers\nOn this page\nLilly MCP Servers\nDocument Information\nLast Updated:\nJuly 25, 2025\nOwner:\nBrian Lewis\nPoint of Contact:\nAli Kharazmi\nContributors and Reviewers:\nArchit Kaila, Haitham Maya, Malika Mahoui\nOverview\n​\nThis document outlines the Model Context Protocol (MCP) servers planned for Lilly systems. These MCP servers will enable AI agents to access various Lilly tools and resources, with a particular focus on resource provisioning capabilities. The Lilly Cloud MCP server specifically could be used in the Agentic AI registry project to help provision resources.\nMCP Servers\n​\nThe following MCP servers are planned or under consideration:\nLilly Cloud MCP\n: Resource provisioning for cloud infrastructure\nCortex Docs MCP\n: Access to Cortex documentation\nCATS MCP\n: Internal application deployment (built)\nGitHub MCP\n: Code repository access\nLilly Flow MCP\n: Workflow automation\nLilly Kubed MCP\n: External application deployment (hanger- built)\nLDS MCP\n: Data services access\nDiagram MCP\nSlides MCP\nResearch MCP\nLLM gateway MCP\nArchitecture builder MCP\nModel Gateway MCP\nEcosystem Diagram\n​\nLilly Cloud MCP\nResource provisioning\nCortex Docs MCP\nDocumentation access\nStack Overflow MCP\nKnowledge base\nCATS MCP\nInternal app deployment\nGitHub MCP\nCode repository access\nLilly Flow MCP\nWorkflow automation\nLilly Kubed MCP\nExternal app deployment\nLDS MCP\nData services\nLilly Cloud MCP and Agentic AI Registry\n​\nThe Lilly Cloud MCP server could be utilized within the Agentic AI registry project specifically for resource provisioning capabilities.\nImplementation Considerations\n​\nReusable Components\n: Identify common authentication, logging, and monitoring components that can be shared across MCP servers\nBuild vs. Configure\n: Determine which components need custom development versus configuration of existing tools\nIntegration Points\n: Define how these MCP servers will connect with various Lilly systems\nNext Steps\n​\nCreate detailed specifications for each MCP server\nPrioritize development based on business impact\nDevelop a phased implementation plan\nEstablish governance and security standards\nWas this helpful?\nEdit this page\nOverview\nMCP Servers\nEcosystem Diagram\nLilly Cloud MCP and Agentic AI Registry\nImplementation Considerations\nNext Steps\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 4,
+  "depth": 3,
+  "crawled_at": "2026-02-25T10:08:14.996154"
+}

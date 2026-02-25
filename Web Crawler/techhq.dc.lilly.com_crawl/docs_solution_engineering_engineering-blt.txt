@@ -1,0 +1,872 @@
+Title: 🗄️ Engineering Enablement BLT | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/engineering/engineering-blt
+Description: The Engineering Enablement Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+
+🗄️ Engineering Enablement BLT | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🗄️ Engineering Enablement BLT
+🧭 AI Code Assistants
+API Standards
+🧭 ML Ops
+🧭 Test Automation
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🛠️ Engineering Enablement
+🗄️ Engineering Enablement BLT
+On this page
+🗄️ Engineering Enablement BLT
+The Engineering Enablement Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+Can't find a technology?
+Use TechHQ's search feature to look across all technology documentation. For questions or to suggest additions to this list, contact the
+Enterprise Business Architecture team
+.
+Acunetix 360
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Under Review
+Architect
+Joshua Day
+Contact(s)
+Joshua Day
+Preferred Dynamic Application Security Test (DAST) for External & Red CI Applications.
+Use Cases
+​
+Any external facing Red CI application needing a DAST Scan.
+Notes
+​
+Right now only Red CI applications which are externally facing can use this application
+ALM
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Josh Bloxsome
+Contact(s)
+Pallavi Bora
+CMDB CI
+CI00000015858471
+Jira is the preferred test management tool over ALM. Test management tool to manage various application lifecycle stages from requirements gathering and testing to defect management.
+Use Cases
+​
+Provide highly regulated teams (especially for GXP or GMP applications) a way to formally track requirements, test artifacts and defects.
+Notes
+​
+Jira, along with testing capabilities provided through Xray, should be considered as an alternative when possible.
+See Also
+​
+https://collab.lilly.com/sites/EISQualityCenterService/SitePages/Home.aspx
+AppliTools
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+CMDB CI
+CI00000000443330
+Artifactory
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Josh Bloxsome
+Contact(s)
+Chris Tornatta
+Preferred Artefact Storage Tool.
+Use Cases
+​
+Docker, PyPi, NPM, Binary, Docker, CoCoPods hosting.
+See Also
+​
+https://developer.lilly.com/tools/artifactory%23artifactory-access-management
+Artifactory X-Ray
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Josh Bloxsome
+Contact(s)
+Chris Tornatta
+Specialized Container Image Scanning tool for containers stored within Artifactory.
+Use Cases
+​
+Used for scanning packages in Artifactory.
+Notes
+​
+Is a really manual tool to set up, this will soon be replaced by Prisma
+Atlassian Confluence
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Josh Bloxsome
+Contact(s)
+Ashley Jenkins
+Preferred tool for Software Product Documentation and Collaboration
+Use Cases
+​
+Agile Projects needing a place to collaborate on documentation and post stand up notes, etc.
+See Also
+​
+https://developer.lilly.com/tools/confluence%23confluence-access-management
+Atlassian Jira
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Josh Bloxsome
+Contact(s)
+Ashley Jenkins
+Preferred tool for Agile based development lifecycle management
+Use Cases
+​
+Agile Projects needing a place to store progress of works and track completion deadlines.
+Notes
+​
+Project happening right now to try and get GXP + GMP Projects using Jira instead of needing to use ALM (or using them both together in an auotmated way)
+See Also
+​
+https://developer.lilly.com/tools/jira%23jira-service-catalog-management
+AutonomIQ
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+CMDB CI
+CI00000041565559
+Enterprise owned and supported.
+Use Cases
+​
+Low-code UI testing tool owned by and integrated with Sauce Labs.
+Where low-code tools make sense over traditional test automation.
+CARD
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Mike McCoy
+Contact(s)
+Mike McCoy
+Specialized for IT/IDS financial planning and analysis.
+Notes
+​
+SAP is source finanical system.  CARD uploads plan to SAP for IDS function globally and tracks actuals to projects and sub functions within IDS.
+Cypress
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+Enterprise owned and supported.
+An enterprise preferred test automation framework.
+Use Cases
+​
+Chromium Based Browser Testing for Modern Web UI Applications.
+Any modern application with a UI (SPA)
+GHAS - Code Scanning
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Amruta Tanksale
+Preferred Static Application Security Testing (SAST) Tool for Modern Software Applications.
+Use Cases
+​
+Applications needing a SAST Scan. Specific Languages can be found
+Notes
+​
+Release in Q1 2021, will be used by most of the enterprise by end of Q2 2021.
+See Also
+​
+https://developer.lilly.com/tools/github%20advanced%20security
+GHAS - Secret Scanning
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Amruta Tanksale
+Preferred Secret Scanning Tool. Positioned for helping teams find leaked secrets and vulnerabilities.
+Use Cases
+​
+Any team using GitHub Repos.
+See Also
+​
+https://developer.lilly.com/tools/github%20advanced%20security
+GitHub
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Amruta Tanksale
+Preferred Tool for storing Source Code.
+Use Cases
+​
+Building Software / Storing Code
+Notes
+​
+A lot of focus from an enterprise perspective is going on GitHub. The more your developers live in GitHub, the more it's aligning to enterprise direction.
+See Also
+​
+https://dev.lilly.com/docs/platforms-and-tools/github/
+Github - Dependabot
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Amruta Tanksale
+Open Source Analysis (OSA) Tool for Modern Software Applications. Only used when Snyk is not an option.
+Use Cases
+​
+Low Risk use cases not needing to run OSA as part of a CI/CD process.
+Notes
+​
+Will soon become the enterprise tool to replace Snyk once better support comes in.
+See Also
+​
+https://developer.lilly.com/tools/github%20advanced%20security
+GitHub Actions
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Chris Johnson
+Preferred Tool for Orchestrating automated tests and checks on an application, as well as deployment if required.
+Use Cases
+​
+Every GitHub Repo looking to drive any sort of automation
+See Also
+​
+https://lillydev.com/tools/github%20actions#github-actions-introduction
+GitHub Codespaces
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Chris Johnson
+A SaaS IDE offered by GitHub that provides temporary compute resources that allow a developer to develop directly in the browser versus consuming a thick client locally on their computer. This solution also allows for .dev containers that provide developer parity between developers virtual IDEs. GitHub CodeSpaces increases Lilly security posture by removing development from Lilly endpoints.
+Use Cases
+​
+SaaS Developer IDE
+Online IDE for Software Engineering/Development
+Allows for executing Container images
+See Also
+​
+https://docs.github.com/en/codespaces
+GitHub Container Registry (GCR)
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Amruta Tanksale
+Emerging Storage Mechanism for Containers
+Use Cases
+​
+Storing containers within GitHub
+Notes
+​
+I can see in 1/2 years GitHub Container Registry (Alongside GitHubPackages) will replace Artifactory.
+GitHub Packages
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Amruta Tanksale
+Emerging Use Case for Application Packages (Npm, PyPi, etc.)
+Use Cases
+​
+Package Hosting
+Notes
+​
+Specalized use case for handling packages in Github
+Loader.IO
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+Lucid
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Yellow
+Architect
+Josh Bloxsome
+Contact(s)
+Pallavi Bora
+CMDB CI
+CI00000000408911
+Specialized for modern software teams needing to build architecture diagrams of their product.
+Use Cases
+​
+Architects needing a place to visualize how an application is going to look.
+See Also
+​
+https://developer.lilly.com/tools/lucidchart%23lucidchart-access-and-authentication
+Microsoft Project
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Preferred for basic (waterfall) project management development lifecycle management
+Use Cases
+​
+Teams running projects without a professional project manager
+Notes
+​
+Must have a Microsoft license
+NewMan
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+CMDB CI
+CI00000062946598
+PlayWright
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+CMDB CI
+CI00000018681883
+PostMan
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+CMDB CI
+CI00000062946598
+Prisma
+​
+Position
+Emerging
+Tags
+dev-tools
+Architect
+Joe Varga
+Contact(s)
+Joshua Day
+Specialized Container Image Scanning tool for containers globally. Right now in Emerging in POC, but will expand in coming quarters.
+Use Cases
+​
+Limited Scope right now, only in POC, waiting for finding.
+Notes
+​
+Currently not approved, but is looking for funding in 2021 for a rollout later this year or 2022
+Prochain
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Red
+Architect
+Anthony M Soller
+Contact(s)
+Hal Levine
+CMDB CI
+CI00000000216001
+Preferred for critical chain project management development lifecycle management
+Use Cases
+​
+Teams running projects with the leadership of a critical chain trained project manager
+Notes
+​
+Must have a ProChain license and be trained by the Project Management Office
+RoadMunk
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Yellow
+Architect
+Josh Bloxsome
+Contact(s)
+Pallavi Bora
+CMDB CI
+CI00000000403942
+Roadmap Diagram Tool
+Use Cases
+​
+Project Managers or leaders needing a place to show higher leadership overview roadmaps.
+Notes
+​
+Lucidchart or Jira Align can be used in place of Roadmunk.
+See Also
+​
+https://developer.lilly.com/tools/roadmunk%23roadmunk-access-and-authentication
+Saucelabs
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+CMDB CI
+CI00000000388043
+Enterprise owned and supported.
+Use Cases
+​
+Cross browser, device, and OS functional testing.
+Notes
+​
+Right now doesn't work with our AWS Enviroment within Lilly. This is a problem due to authentication
+See Also
+​
+https://developer.lilly.com/tools/sauce%20labs
+Slack
+​
+Position
+Specialized
+Tags
+collaboration-tools
+Information Sensitivity
+Yellow
+Architect
+Josh Bloxsome
+Contact(s)
+Peter Burke
+CMDB CI
+CI00000000315410
+Slack is a collaboration tool that can be used in the context of DevOps application development projects only. For general collaboration use one of the Enterprise/Full Scale alternatives
+WIP/STaRT
+​
+Position
+Standard
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Michelle Schnabel
+Contact(s)
+Michelle Schnabel
+Preferred for IDS Project Portfolio Management
+Use Cases
+​
+Source of truth for approved IDS project investments. Facilitates investment decisions, business case details, resource demand, and provides communication and reporting on the health of IDS programs and projects.  Primary source for IDS leadership project portfolio reporting.
+Notes
+​
+Evaluating replacement options for WIP/STaRT.  In-depth requirements assessment in process. Current architecture being sured up appropriately for remainder of life.
+Wrike
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Under Review
+Architect
+Chad Stout
+Contact(s)
+Chad Stout
+Content & Project Management Tools within the Business Units. Specifically BUIDS.
+Use Cases
+​
+Right now only positioned to be used within BU. Greater comparisons between current tools would need to be done to expand.
+Declining → Retired
+​
+AppDynamics
+​
+Position
+Retired 2021-04-01
+Tags
+dev-tools
+Appium
+​
+Position
+Declining 2023-01-01
+Tags
+dev-tools
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+CMDB CI
+CI00000054241386
+Enterprise replaced with PlayWright
+Use Cases
+​
+Apple or Android (Windows & Mac) Automated Testing
+Notes
+​
+Not the easiest tool to use - should only be used by teams that are experinced developers.
+See Also
+​
+https://developer.lilly.com/tools/test%20automation
+Crucible-Fisheye
+​
+Position
+Retired 2020-12-31
+Tags
+dev-tools
+Managed Jenkins (EDAT)
+​
+Position
+Retired 2022-03-31
+Tags
+dev-tools
+Information Sensitivity
+Red
+Architect
+Josh Bloxsome
+Contact(s)
+Amruta Tanksale
+No new pipelines or Jenkins Masters should be created unless an exception is granted by EDAT
+Use Cases
+​
+Running CI for applications on Heroku, Artifactory, OpenShift, etc.
+Notes
+​
+Enterprise Managed Jenkins is now retired.
+See Also
+​
+https://developer.lilly.com/tools/cloudbees%20jenkins%20enterprise
+Microfocus LoadRunner
+​
+Position
+Declining 2023-11-29
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+CMDB CI
+CI00000000004044
+Enterprise owned but declining.
+Use Cases
+​
+API or SPA or Monolithic Load Testing.
+See Also
+​
+https://developer.lilly.com/tools/test%20automation%23test-automation-available-tools-loadrunner
+Microfocus Mobile Center
+​
+Position
+Declining 2022-01-02
+Tags
+dev-tools
+Architect
+Rob Blacketter
+Contact(s)
+Andrew Marshall
+Declining Tool for Carrying out Mobile Tests.
+Use Cases
+​
+Apple or Android Automated Testing
+Notes
+​
+Teams should be using Appium or other services avaiable.
+See Also
+​
+https://developer.lilly.com/tools/test%20automation
+Microfocus UFT
+​
+Position
+Declining 2023-11-29
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+CMDB CI
+CI00000000361960
+Enterprise owned but declining.
+Use Cases
+​
+desktop functional testing tool.
+See Also
+​
+https://developer.lilly.com/tools/test%20automation
+Mission Control (MICO)
+​
+Position
+Retired 2022-03-31
+Tags
+dev-tools
+Information Sensitivity
+Red
+Architect
+Rob Blacketter
+Contact(s)
+Rob Blacketter
+Declining Salesforce Change Control Tool.
+Use Cases
+​
+Teams building on Salesforce kneeing change control.
+Notes
+​
+Teams will be hearing more from EDAT in the coming months about this. I think this has a retiremtn date of June.
+See Also
+​
+https://developer.lilly.com/tools/mission%20control%23mico-access-management
+Oasis
+​
+Position
+Retired 2023-04-01
+Tags
+dev-tools
+Architect
+Zach Siebers
+Retirement positioning guidance to be updated mid-March
+Notes
+​
+Positioned for applications on-premise needing performance monitoring
+See Also
+​
+https://lilly.service-now.com/kb_view.do?sysparm_article=KB0093077
+Selenium
+​
+Position
+Declining 2023-01-01
+Tags
+dev-tools
+Architect
+Yu Zhang
+Contact(s)
+Matt Wambsganss
+Enterprise replaced with Cypress and PlayWright
+Use Cases
+​
+SPA or Monolithic Web Application Automated Testing
+Notes
+​
+Not the easiest tool to use - should only be used by teams that are experinced developers.
+See Also
+​
+https://developer.lilly.com/tools/test%20automation%20self%20service%23test-automation-self-service-available-tools
+Snyk
+​
+Position
+Retiring
+Tags
+dev-tools
+Information Sensitivity
+Orange
+Architect
+Josh Bloxsome
+Contact(s)
+Christopher Tornatta
+Preferred Open Source Analysis (OSA) Tool for Modern Software Applications.
+Use Cases
+​
+Software pulling in third party dependencies.
+Notes
+​
+Will soon only be used for specilised use cases where Dependabot support isn't avaiable.
+See Also
+​
+https://developer.lilly.com/backing%20services/snyk
+Document generated from Stack Overflow Enterprise articles (prioritized) and ea_tech.csv (fallback)
+Was this helpful?
+Edit this page
+Previous
+🛠️ Engineering Enablement
+Next
+🧭 AI Code Assistants
+Acunetix 360
+ALM
+AppliTools
+Artifactory
+Artifactory X-Ray
+Atlassian Confluence
+Atlassian Jira
+AutonomIQ
+CARD
+Cypress
+GHAS - Code Scanning
+GHAS - Secret Scanning
+GitHub
+Github - Dependabot
+GitHub Actions
+GitHub Codespaces
+GitHub Container Registry (GCR)
+GitHub Packages
+Loader.IO
+Lucid
+Microsoft Project
+NewMan
+PlayWright
+PostMan
+Prisma
+Prochain
+RoadMunk
+Saucelabs
+Slack
+WIP/STaRT
+Wrike
+Declining → Retired
+AppDynamics
+Appium
+Crucible-Fisheye
+Managed Jenkins (EDAT)
+Microfocus LoadRunner
+Microfocus Mobile Center
+Microfocus UFT
+Mission Control (MICO)
+Oasis
+Selenium
+Snyk
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

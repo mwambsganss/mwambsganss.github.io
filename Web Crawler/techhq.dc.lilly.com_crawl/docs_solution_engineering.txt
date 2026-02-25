@@ -1,0 +1,49 @@
+Title: 🛠️ Engineering Enablement | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/engineering/
+Description: Developer-focused tools and practices that accelerate software delivery, including DevOps, CI/CD, automation, and MLOps.
+
+🛠️ Engineering Enablement | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🗄️ Engineering Enablement BLT
+🧭 AI Code Assistants
+API Standards
+🧭 ML Ops
+🧭 Test Automation
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🛠️ Engineering Enablement
+🛠️ Engineering Enablement
+Developer-focused tools and practices that accelerate software delivery, including DevOps, CI/CD, automation, and MLOps.
+Coming Soon!
+Our software engineering guides are in progress. Have something to add? Find out how to
+Contribute
+!
+Was this helpful?
+Edit this page
+Previous
+🧭 Specialized Databases
+Next
+🗄️ Engineering Enablement BLT
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

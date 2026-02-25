@@ -1,0 +1,26 @@
+Web Crawl Report
+================================================================================
+
+Root URL: https://automate.lilly.com
+Base Domain: automate.lilly.com
+Crawled: 2026-02-25 10:22:09
+
+Summary
+--------------------------------------------------------------------------------
+Total URLs: 11
+Pages: 11
+Failed: 0
+
+Pages
+--------------------------------------------------------------------------------
+https://automate.lilly.com
+https://automate.lilly.com/
+https://automate.lilly.com/about-us
+https://automate.lilly.com/marketPlace
+https://automate.lilly.com/platform/content-automation
+https://automate.lilly.com/platform/document-processing
+https://automate.lilly.com/platform/intelligent-automation
+https://automate.lilly.com/platform/process-optimization
+https://automate.lilly.com/platform/test-automation
+https://automate.lilly.com/submit-idea
+https://automate.lilly.com/techzone

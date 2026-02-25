@@ -1,0 +1,126 @@
+Title: Network Monitoring | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/observability/network_monitoring
+Description: Stack Overflow Article: Network Monitoring
+
+Network Monitoring | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🗄️ Observability & Reliability BLT
+Infrastructure Performance Monitoring
+Log Management & Analytics
+Network Monitoring
+🧭 Resiliency & Disaster Recovery
+🚀 Team Productivity
+🎨 User Experience & Design
+🛰️ Observability & Reliability
+Network Monitoring
+Network Monitoring
+Synced daily from Stack Overflow
+Network Monitoring Strategy: From Connectivity Checks to Observability
+Why This Matters: The Network is the True Service Backbone
+For architects, the network is the hidden dependency where root causes often reside, yet it is frequently the most opaque domain. Traditional network monitoring (SNMP, basic ping) only confirms connectivity; it does not reveal performance bottlenecks, security lateral movement, or application transaction latency caused by the network itself. An AI-ready strategy treats the network as a high-fidelity sensor for application behavior and security.
+The Goal: Move beyond monitoring device health to understanding network behavior and traffic flow, ensuring low-latency delivery of critical business services and providing rich security context.
+The Three Imperatives for AI-Ready Network Data
+To unlock advanced use cases like network-based anomaly detection and security investigation, architects must prioritize the collection of high-context, rich network data.
+Network Flow Data (NetFlow, IPFIX, V-Flow)
+Flow data reveals who is talking to whom, how much, and for how long. This is crucial for capacity planning, cost allocation, and identifying unexpected traffic patterns.
+Requirement
+Why it Matters
+Actionable Guidance
+Comprehensive Coverage
+Flow data must be collected across the entire enterprise (data center, cloud VPCs, and endpoints) to avoid blind spots in east-west traffic.
+Mandate flow logging in all cloud environments (VPC Flow Logs) and ensure on-prem network devices (routers/switches) are configured to export NetFlow/IPFIX to a central collector.
+Consistent Aggregation
+Over-aggregating flow data loses granularity needed for forensic analysis and machine learning pattern detection.
+Set flow export timers appropriately (e.g., 60 seconds or less). Use flow analysis tools that retain detailed, unsummarized flow records for at least 30 days.
+High-Fidelity Packet Data (The "Deep Dive")
+Packet data (or deep packet inspection/DPI) provides the unfiltered, raw ground truth necessary for troubleshooting complex, intermittent latency issues or validating application protocol behavior.
+Requirement
+Why it Matters
+Actionable Guidance
+Intelligent Capture and Storage
+Storing all packets is prohibitively expensive. Only metadata and suspicious packets should be retained long-term.
+Deploy network agents/probes that perform Deep Packet Inspection (DPI) to extract application-level metadata (e.g., HTTP response codes, database queries) and only capture/store full packets when triggered by a flow anomaly or security alert.
+Decrypted Insight
+Encrypted traffic prevents analysis. The monitoring solution must be able to view traffic after decryption.
+Implement monitoring points behind load balancers/proxies where TLS decryption has already occurred, or integrate with decryption technologies (e.g., in a cloud environment or using security tools).
+Network Metadata & Health (The "Context")
+This category includes SNMP data, device configuration, and synthetic health checks that provide context about the network's state.
+Requirement
+Why it Matters
+Actionable Guidance
+Service Dependency Mapping
+Network components (firewalls, load balancers) are critical service dependencies and must be mapped to the business service model.
+Integrate network discovery tools (e.g., NetBrain, network configuration management systems) with your AIOps Service Model to automatically update component relationships.
+Agentless vs. Agent-Based
+Using the right tool for the job. SNMP is great for device health; agents are great for endpoint performance.
+Use SNMP for core router/switch health (CPU, interface stats). Use lightweight agents on servers for local network latency and throughput tests (synthetic checks).
+Architectural Decision: The Network Data Collector Strategy
+Network data collection demands specialized collectors due to high volume (flows) and processing power requirements (packets). Architects must choose the right collector placement and type.
+Component
+Function
+Strategic Placement
+Why it Matters
+Dedicated Flow Collector
+Ingests, normalizes, and indexes high-volume NetFlow/IPFIX records.
+Centralized Logging/Analytics Zone
+Decouples flow ingestion from performance of core routing infrastructure.
+DPI/Packet Probe
+Performs Deep Packet Inspection and extracts application metadata.
+Behind Load Balancers or Critical Network Taps
+Requires high-performance hardware/VMs; placement must be strategic to capture relevant application traffic.
+Cloud VPC Flow Logs
+Captures all internal (east-west) traffic within the cloud boundary.
+Integrated via Native Cloud Services (e.g., AWS S3, Azure Blob)
+Ensures visibility into internal microservice communication, which is often a blind spot.
+The "Single Pane of Network Truth" Insight
+Avoid maintaining separate tools for flow, packet, and SNMP data. Architect for a single observability platform that can ingest all three data types and use a common correlation key (IP, port, hostname) to link them instantly.
+Real-World Use Cases: Best-Fit Technology
+Integrating comprehensive network data enables advanced analysis far beyond simple network performance monitoring.
+Scenario
+Goal & Business Value
+Technology Focus
+Troubleshooting Intermittent Latency
+Goal: Prove or disprove that a performance issue is network-related (Faster RCA).
+Focus: Cross-correlation between APM trace data and high-fidelity Packet/DPI metadata to pinpoint the exact hop or network segment introducing delay.
+Shadow IT & Security Audit
+Goal: Detect unauthorized internal communication, data exfiltration, or new unknown services (Reduced Security Risk).
+Focus: Machine learning on Flow Data to baseline normal traffic volumes and ports, alerting on sudden spikes or unusual protocol usage (Network Behavioral Analysis).
+Bandwidth Hog Identification
+Goal: Proactively manage and allocate network capacity across different business units (Cost Optimization).
+Focus: Analyzing Flow Data aggregated by user, application, or geography to identify top bandwidth consumers and plan network upgrades or traffic shaping.
+VPN/Remote Access Monitoring
+Goal: Ensure a quality experience for remote workers and identify regional ISP or last-mile issues (Improved End-User Experience).
+Focus: Synthetic agents on remote user endpoints performing continuous Network Latency Checks and reporting back to the central monitoring platform.
+Was this helpful?
+Tags:
+observability
+solution-guide
+techhq
+Edit this page
+Previous
+Log Management & Analytics
+Next
+🧭 Resiliency & Disaster Recovery
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

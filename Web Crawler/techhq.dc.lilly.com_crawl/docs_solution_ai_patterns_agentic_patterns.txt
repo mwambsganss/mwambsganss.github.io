@@ -1,0 +1,673 @@
+Title: Agentic | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/patterns/agentic_patterns
+Description: Last Updated: July 25, 2025
+
+Agentic | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Quantum Computing
+Agentic
+Workflows
+Building Agentic Patterns
+Context Engineering
+Deep Agents
+Deep Research
+Model Foundry
+Protocols
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+Patterns
+Agentic
+On this page
+Agentic
+Document Information
+Last Updated:
+July 25, 2025
+Owner:
+Brian Lewis
+Point of Contact:
+Ali Kharazmi
+Contributors and Reviewers:
+Archit Kaila, Haitham Maya, Malika Mahoui
+Agent Pattern Frameworks: Strategic Overview
+​
+Agent patterns represent architectural approaches to AI problem-solving, each with distinct strengths for specific use
+cases. These patterns form a spectrum from simple single-agent systems to complex multi-agent collaborations, providing
+solutions for various complexity levels and task types.
+Foundation Patterns
+​
+Single Agent, ReAct, and Plan-and-Execute patterns form the foundation, handling tasks ranging from straightforward
+conversational assistance to complex multi-step problems requiring systematic reasoning and structured execution.
+Foundation Patterns
+Adds Observation Feedback
+Adds Upfront Planning
+Core capability: Basic Input → Output
+Core capability: Adaptive Feedback
+Core capability: Structured Approach
+Single Agent Pattern
+ReAct Pattern
+Plan & Execute Pattern
+Knowledge + Tool Use
+Iterative Improvement
+Strategy Before Action
+Advanced Cognitive Patterns
+​
+Self-Critique, Tree of Thought, and Graph of Thought patterns enhance reasoning quality through metacognitive
+evaluation, path exploration, and complex concept mapping, particularly valuable for quality-critical tasks and complex
+problem spaces.
+Cognitive Patterns
+Generate Single Path
+Generate Multiple Paths
+Evaluate Paths
+Generate Concept Network
+Navigate Connections
+Generate Draft
+Evaluate & Refine
+Input Problem
+Chain of Thought
+Tree of Thought
+Select Best Path
+Graph of Thought
+Synthesize Solution
+Self-Critique
+Improved Output
+Collaboration Patterns
+​
+Supervisor-Worker, Peer Network, Parallel Collaboration, and System-to-System patterns enable multi-agent cooperation
+with different coordination models—from hierarchical oversight to decentralized peer networks and external system
+integration.
+Collaboration Patterns
+Communication Patterns
+Coordination Models
+Control Type
+Control Type
+Control Type
+Control Type
+Communication
+Communication
+Communication
+Communication
+Centralized Communication
+Problem Input
+Supervisor-Worker
+Peer Network
+Parallel Collaboration
+System-to-System
+Hierarchical Control
+Semi-Autonomous Agents
+Fully Autonomous Agents
+Direct Peer Communication
+Independent Processing
+Memory Architecture
+​
+Effective agents require complementary memory systems: Working Memory for session context, Episodic Memory for
+conversation history, Semantic Memory for persistent facts, Long-Term Memory for archived information, and Procedural
+Memory for learned strategies.
+Memory Systems
+Long-Term
+Medium-Term
+Short-Term
+Purpose
+Lifecycle
+Purpose
+Purpose
+Lifecycle
+Lifecycle
+Purpose
+Purpose
+Storage
+Storage
+Feeds
+Archives to
+Consolidates in
+Informs
+Long-Term Memory
+Working Memory
+Active Session Context
+Resets Between Sessions
+Episodic Memory
+Conversation Continuity
+Semantic Memory
+Factual Knowledge Base
+Persists Across Multiple Sessions
+Persists Across Multiple Users
+Historical Context Archive
+Procedural Memory
+Learned Strategies
+Vector Databases & Structured Tables
+Pattern Recognition
+Evaluation Framework
+​
+Comprehensive assessment requires multi-dimensional evaluation across tool usage, planning quality, core skills, memory
+effectiveness, self-reflection capabilities, system performance, safety constraints, and behavioral consistency.
+Evaluation Framework
+Informs
+Enables
+Impacts
+Outcome Evaluation
+Assesses
+Assesses
+Assesses
+Performance Evaluation
+Task Completion, Efficiency, Resource Usage
+Safety Evaluation
+Boundary Handling, Error Recovery, Security Awareness
+Behavior Evaluation
+Consistency, Adaptability, Initiative
+Process Evaluation
+Assesses
+Assesses
+Assesses
+Tool Use Evaluation
+Selection Accuracy, Parameter Precision, Result Interpretation
+Planning Evaluation
+Step Decomposition, Contingency Planning, Progress Monitoring
+Reasoning Evaluation
+Domain Accuracy, Logical Soundness, Output Quality
+State Management
+Assesses
+Assesses
+Memory Evaluation
+Context Retention, State Consistency, Information Retrieval
+Reflection Evaluation
+Error Recognition, Self-Correction, Strategy Adaptation
+Pattern Integration
+​
+The most powerful agent systems often combine multiple patterns, memory types, and evaluation approaches to create
+specialized solutions for complex tasks. Understanding these building blocks enables architects to design systems that
+leverage the strengths of each pattern while addressing their individual limitations.
+Comprehensive Agent Patterns Ecosystem
+​
+Foundational Patterns
+Building blocks for
+agent interactions
+and decision-making
+Cognitive Patterns
+Advanced reasoning,
+self-assessment, and
+exploratory thinking
+Collaborative Patterns
+Multi-agent coordination,
+specialized roles, and
+collective intelligence
+Single Agent
+Core input-output capability
+ReAct Pattern
+Reasoning + action feedback loop
+Plan & Execute
+Strategic planning before action
+Chain of Thought
+Step-by-step reasoning
+Self-Critique
+Output quality assessment
+Tree of Thought
+Multiple solution path exploration
+Graph of Thought
+Non-linear concept relationships
+Supervisor-Worker
+Hierarchical task delegation
+Peer Network
+Direct agent communication
+Parallel Collaboration
+Independent parallel processing
+System-to-System
+Cross-ecosystem integration
+Model Context Protocol
+Tool access & context expansion
+Agent-to-Agent Protocol
+Standardized communication
+Patterns
+Single Agent
+​
+Retrieves Information
+Executes Functions
+Generates
+User Query/Task
+Agent/LLM
+Knowledge Base
+Tool Set
+Response to User
+Reasoning
+Memory
+Tool Selection
+Function
+: Agent processes user input, retrieves information from knowledge sources when needed, and executes tools
+to perform actions beyond text generation
+When to Use
+: Foundational pattern for most agent applications; suitable for general task handling where a single
+agent can process inputs and generate appropriate outputs
+Key Advantage
+: Provides a complete input-to-output workflow with both informational and functional capabilities in
+a simple, extensible architecture
+Best For
+: Conversational assistants, task automation, knowledge work, and any application where an intelligent
+agent needs to both access information and take actions
+Commonly known as
+: Basic Agent, Standalone Agent, Monolithic Agent.
+Supervisor-Worker Agent
+​
+Submitted to
+Delegates Subtask 1
+Delegates Subtask 2
+Delegates Subtask 3
+Returns Results
+Returns Results
+Returns Results
+Synthesizes
+Task Input
+Supervisor Agent
+Worker Agent 1
+Worker Agent 2
+Worker Agent 3
+Final Output
+Function
+: Supervisor breaks down tasks, workers complete specialized subtasks, supervisor synthesizes results
+When to Use
+: Complex problems requiring specialized expertise, parallel processing, or multiple perspectives
+Key Advantage
+: Hierarchical oversight enables quality control and resolution of conflicting outputs
+Best For
+: Content creation, research synthesis, strategic analysis, and creative problem solving
+Commonly known as
+: Manager-Worker Pattern, Hierarchical Agent Architecture, Controller-Executor Pattern
+ReAct (Reasoning and Action)
+​
+Initiates
+Determines
+Produces
+Informs
+If Goal Achieved
+Loop Until Task Complete
+Task Input
+Reasoning Process
+Take Action
+Observe Results
+Final Output
+Function
+: Agent thinks, acts, observes results, then thinks again in continuous loop until goal is achieved
+When to Use
+: Tasks requiring systematic reasoning, tool use, and ability to adapt based on feedback
+Key Advantage
+: Creates transparent decision trail while enabling course correction from observations
+Best For
+: Information retrieval, multi-step problem solving, data analysis, and systematic troubleshooting
+Commonly known as
+: Think-Act-Observe Loop, Reasoning-Action Cycle, Observe-Think-Act Pattern
+Plan and Execute
+​
+Initiates
+Creates
+Guides
+Implements
+Encounters Problem
+Updates
+Completes All Steps
+Task Input
+Planning Phase
+Detailed Plan
+Execution Phase
+Step 1, Step 2, Step 3...
+Plan Revision
+Final Output
+Function
+: First creates comprehensive plan with steps and contingencies, then systematically executes while
+monitoring progress
+When to Use
+: Complex tasks with clear structure, predictable workflows, or situations where thorough planning
+reduces risks
+Key Advantage
+: Separates strategic thinking from tactical execution, enabling careful consideration before
+commitment to action
+Best For
+: Software development, project management, complex workflows, document creation, and process automation
+Commonly known as
+:Deliberate-Act
+Pattern, Strategic Execution Pattern
+Self Critique
+​
+Initiates
+Undergoes
+Identifies
+Informs
+If Needed
+When Satisfactory
+Iteration Loop
+Task Input
+Initial Solution
+Critical Evaluation
+Weaknesses & Issues
+Solution Revision
+Final Output
+Function
+: Agent creates solution, critically evaluates it against multiple criteria, identifies weaknesses, and
+iteratively refines until quality threshold is met
+When to Use
+: Tasks where quality matters more than speed, complex problems with multiple valid approaches, or
+high-stakes outputs requiring error minimization
+Key Advantage
+: Improves output quality through metacognitive evaluation, reducing errors and blind spots inherent
+in single-pass generation
+Best For
+: Content creation, decision analysis, code generation, strategy development, and any task requiring
+rigorous quality control
+Commonly known as
+: Deep Research, Reflection Pattern, Self-Evaluation Loop, Metacognitive Pattern
+Peer Network Collaboration
+​
+Initial Distribution
+Routes to
+Routes to
+Routes to
+Collaborate Directly
+Collaborate Directly
+Collaborate Directly
+Contributes
+Contributes
+Contributes
+Task Input
+Routing Logic
+Expert Agent A
+Expert Agent B
+Expert Agent C
+Final Output
+Function
+: Specialized agents communicate directly with each other as peers, dynamically routing tasks and
+information based on expertise needs without centralized control
+When to Use
+: Complex problems with fuzzy domain boundaries, collaborative tasks requiring rich inter-agent
+communication, or situations where flexibility trumps structured hierarchy
+Key Advantage
+: Enables emergent problem solving as agents freely exchange information, negotiate responsibilities,
+and adapt the workflow based on discoveries during the process
+Best For
+: Creative collaboration, complex research, interdisciplinary analysis, dynamic problem spaces, and
+simulating human team interactions
+Commonly known as
+Agent Mesh, Collaborative Agent Network, Decentralized Agent System, Multi-Agent Cooperative
+System
+Parallel Collaboration
+​
+Decomposed by
+Subtask A
+Subtask B
+Subtask C
+Result A
+Result B
+Result C
+Combines
+Task Input
+Task Decomposer
+Agent A
+Agent B
+Agent C
+Result Aggregator
+Final Output
+Function
+: Task is decomposed into independent subtasks, multiple agents work simultaneously without direct
+communication, results are combined afterward
+When to Use
+: Tasks with naturally parallel components, situations requiring maximum throughput, or problems where
+subtask independence can be maintained
+Key Advantage
+: Maximum efficiency through true parallelism with minimal coordination overhead or communication
+bottlenecks
+Best For
+: Batch processing, independent analyses of different datasets, distributed searching, content generation
+across distinct domains, and massively parallelizable computations
+Commonly known as
+: Map-Reduce Agent Pattern ,Distributed Task Processing, Divide and Conquer Agents
+Chain of Thought
+​
+Initiates
+Leads to
+Leads to
+Leads to
+Leads to
+Produces
+Problem Input
+Reasoning Step 1
+Reasoning Step 2
+Reasoning Step 3
+Reasoning Step 4
+Reasoning Step 5
+Final Solution
+Function
+: Agent breaks down complex reasoning into explicit sequential steps, articulating each logical connection
+from problem statement to conclusion
+When to Use
+: Problems requiring transparent reasoning, tasks where step-by-step logic improves accuracy, or
+situations where the reasoning process itself needs evaluation
+Key Advantage
+: Improves reasoning quality by forcing explicit articulation of intermediate steps, reducing logical
+leaps and enabling targeted refinement
+Best For
+: Mathematical problem solving, logical deductions, complex analyses, and any task where showing the work
+is as important as the final answer
+Commonly known as
+: Step-by-Step Reasoning, Explicit Reasoning Chain, Verbalized Thinking Process
+Tree of Thought
+​
+Generates
+Option A
+Option B
+Option C
+Evaluate
+Evaluate
+Evaluate
+Evaluate
+Promising
+Rejected
+Rejected
+Rejected
+Rejected
+Produces
+Problem Input
+Initial State
+Reasoning Branch A
+Reasoning Branch B
+Reasoning Branch C
+Sub-branch A1
+Sub-branch A2
+Sub-branch B1
+Sub-branch B2
+Selected Path
+Discarded
+Discarded
+Discarded
+Discarded
+Final Solution
+Function
+: Agent explores multiple potential reasoning pathways simultaneously, evaluating each branch's promise,
+pruning unproductive paths, and ultimately selecting the most viable solution
+When to Use
+: Complex problems with multiple potential approaches, situations with high uncertainty, strategic
+decision-making, or any scenario where exploring alternative hypotheses improves outcomes
+Key Advantage
+: Reduces risk of getting stuck in suboptimal solution paths by systematically exploring and
+evaluating multiple possibilities before committing to one
+Best For
+: Creative problem-solving, strategic planning, game-playing agents, complex decision analysis, and
+situations where the optimal solution path isn't immediately obvious
+Graph of Thought
+​
+Initiates
+Initiates
+Relates to
+Connects with
+Influences
+Connects with
+Builds on
+Combines with
+Relates to
+Contradicts
+Necessitates
+Alternative path
+Produces
+Problem Input
+Thought Node 1
+Thought Node 2
+Thought Node 3
+Thought Node 4
+Thought Node 5
+Thought Node 6
+Thought Node 7
+Final Solution
+Function
+: Agent builds a complex network of interconnected thoughts with non-hierarchical relationships, allowing
+ideas to reference, contradict, support, or build upon each other in multidimensional ways
+When to Use
+: Problems requiring complex system thinking, scenarios with multiple interdependent variables, or
+situations where relationships between concepts are cyclical or non-linear
+Key Advantage
+: Enables representation of rich conceptual relationships that can't be captured in linear chains or
+hierarchical trees, allowing for more nuanced exploration of complex problem spaces
+Best For
+: System design, complex causal analysis, interdisciplinary reasoning, knowledge mapping, multi-constraint
+problems, and modeling complex relationships between concepts
+System to System
+​
+API Call/Response
+API Call/Response
+API Call/Response
+User Query/Task
+Primary Agent
+Final Response
+External Agent A
+External Agent B
+External Agent C
+Function
+: Primary agent orchestrates interactions with independent third-party agent systems, translating requests
+and synthesizing responses across different APIs
+When to Use
+: Tasks requiring specialized capabilities from multiple external systems or situations needing
+composite intelligence from diverse agent ecosystems
+Key Advantage
+: Leverages specialized capabilities from different providers while maintaining a unified experience
+for the user
+Best For
+: Complex workflows requiring diverse expertise, cross-platform automation, and tasks requiring
+capabilities beyond a single agent system
+Memory
+Active Session Data
+Conversation History
+Facts & Knowledge
+Retrieved Context
+Action Patterns
+Archives to
+Consolidates in
+Informs
+Fetches from
+Provides to
+Agent/LLM
+Response to User
+User Query
+Working Memory
+Episodic Memory
+Semantic Memory
+Long-Term Memory
+Procedural Memory
+Retrieval System
+Working Memory
+: Temporary session data that resets between interactions
+Episodic Memory
+: Conversation history across multiple sessions
+Semantic Memory
+: Persistent facts about users and domains
+Long-Term Memory
+: Retrievable historical context in vector stores or databases
+Procedural Memory
+: Learned effective strategies and tool usage patterns
+Evaluation
+Feedback
+Task Input
+Reasoning
+Planning
+Action
+Observation
+Result Synthesis
+Output
+Skill
+Memory
+Behavior
+Planning
+Safety
+Tool Use
+Performance
+Reflection
+Tool Calling & Selection
+: Assesses appropriate tool usage
+Planning & Strategy
+: Evaluates task decomposition efficiency
+Skill-Based
+: Tests core capability performance
+Memory & State Management
+: Measures context retention effectiveness
+Reflection & Self-Evaluation
+: Assesses error recognition capability
+End-to-End System
+: Evaluates overall task completion
+Safety & Reliability
+: Tests boundary condition handling
+Behavioral Testing
+: Measures response consistency patterns
+Was this helpful?
+Edit this page
+Previous
+Quantum Computing
+Next
+Workflows
+Agent Pattern Frameworks: Strategic Overview
+Foundation Patterns
+Advanced Cognitive Patterns
+Collaboration Patterns
+Memory Architecture
+Evaluation Framework
+Pattern Integration
+Comprehensive Agent Patterns Ecosystem
+Single Agent
+Supervisor-Worker Agent
+ReAct (Reasoning and Action)
+Plan and Execute
+Self Critique
+Peer Network Collaboration
+Parallel Collaboration
+Chain of Thought
+Tree of Thought
+Graph of Thought
+System to System
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

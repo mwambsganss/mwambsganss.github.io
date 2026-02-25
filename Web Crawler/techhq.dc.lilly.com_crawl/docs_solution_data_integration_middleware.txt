@@ -1,0 +1,135 @@
+Title: 🧭 Integration Middleware | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/data/integration_middleware
+Description: Stack Overflow Article: 🧭 Integration Middleware
+
+🧭 Integration Middleware | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🗄️ Data & Analytics BLT
+🧭 Data Catalogs and Access
+🧭 Data Visualization
+🧭 Integration Middleware
+🧭 Specialized Databases
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+📊 Data & Analytics
+🧭 Integration Middleware
+On this page
+🧭 Integration Middleware
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Published
+Last Update: 2025-10-03
+Capability Owner: Chris Blessing
+EBA Lead: Larry Zetzl
+Contributors & Reviewers: Larry Zetzl, Andy Mulder, Matt Van Auwelaer, Jacob Bishop
+A guide for designing secure, performant, and scalable integration architectures across AWS, Azure, and on-prem systems for real-time analytics and notifications.
+Use Case/Scenario
+Positioning
+Complexity
+Tech Recommendation
+Integrations & Interoperability
+Owning Org/Team
+Next Step
+Information exchange between applications, microservices, and analytics solutions
+Standard
+Medium
+Find APIs in Backstage - use FastAPI accelerator to create new APIs and/or use code generation to invoke APIs
+Easiest method to securely connect among cloud, on-prem and 3rd parties
+Enterprise Data
+View the
+Backstage Entity Catalog
+Use
+Backstage API Code Generator
+Data ingest into EDB ecosystem
+Standard
+Low
+Re-use one of the 16 configurable methods that are approved for all data classifications
+Includes API, Database, Streaming, and File exchange templates
+Enterprise Data
+Review the ingest reusable components in this
+LillyFlow article
+Transform cloud data for consumption
+Standard
+Medium
+Use pre-built data pipelines, Configure reusable code
+For more complex scenarios write Python or Spark code
+Data transformation is executed in a compute platform (AWS, Azure, Databricks)
+Enterprise Data
+Check if any of these configurable
+reusable code would work
+Write Cloud Native ETL (AWS Glue, Azure ADF)
+Transform on-prem data for consumption
+Specialized
+Medium
+Use existing ETL on-prem tooling (Informatica and Mulesoft) running on containers
+connects systems at S95 L3 network
+Enterprise Data
+Limited to existing M&Q integrations
+Orchestrate multiple services for data pipeline processing
+Standard
+Medium
+Use Airflow
+Connects both cloud and on-prem services
+Enterprise Data
+Review Airflow Standards and Best Practice
+Guide
+Note:
+All direct database connections are required to have an abstration layer and appropriate network controls.  See guidance
+here
+AWS Glue
+​
+AWS Glue is a serverless data integration service ideal for ETL workloads. It supports real-time and batch processing, integrates natively with AWS services, and can be orchestrated via Airflow or Lambda. It’s well-suited for preparing data for analytics and machine learning.  Glue, Glue Studio and Glue Catalogs are used extensively in Enterprise Data.
+Azure Data Factory
+​
+ADF is Azure’s ETL and data movement tool. It supports hybrid data integration and can connect to AWS S3, on-prem databases, and third-party services. It is used for orchestrating data flows across environments with built-in monitoring and retry capabilities.
+Mulesoft
+​
+Mulesoft provides a robust integration platform for connecting cloud and on-prem systems. It supports API-led connectivity, reusable connectors, and policy enforcement. It’s particularly valuable for legacy system integration and enterprise service bus (ESB) patterns. At Lilly, Mulesoft is classified as specialized and used only in Digital Health and Manufacturing.  Open Source stacks like Backstage and FastAPI are cheaper options and avoid vendor lock-in.
+Apache Airflow
+​
+Airflow is a workflow orchestration tool used to schedule and monitor complex data pipelines. It integrates with AWS Glue, Azure ADF, and other analytics platforms. It’s useful for managing dependencies and ensuring reliable execution of analytics workflows.  Airflow is used extensively in Enterprise Data.
+Informatica
+​
+Informatica offers enterprise-grade data integration, governance, and quality tools. It supports hybrid cloud deployments and is often used for regulated environments requiring lineage and auditability. It integrates with AWS, Azure, and Splunk for end-to-end data management.  At Lilly, Informatica is classified as specialized and is used for on-prem Manufacturing worksloads, particularly with systems residing behind S95 Level-3 network frewalls.
+Splunk
+​
+Splunk is a real-time analytics and observability platform. It ingests logs, metrics, and events from cloud and on-prem systems. It’s used for security monitoring, alerting, and dashboarding. Integration with API Gateway and Glue enables real-time notifications and insights.
+Was this helpful?
+Tags:
+data
+solution-guide
+techhq
+Edit this page
+Previous
+🧭 Data Visualization
+Next
+🧭 Specialized Databases
+AWS Glue
+Azure Data Factory
+Mulesoft
+Apache Airflow
+Informatica
+Splunk
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

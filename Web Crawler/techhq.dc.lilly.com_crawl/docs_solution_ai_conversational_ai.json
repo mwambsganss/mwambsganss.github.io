@@ -1,0 +1,14 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/solution/ai/conversational_ai",
+  "title": "🧭 Conversational AI | Tech HQ",
+  "description": "Stack Overflow Article: 🧭 Conversational AI",
+  "h1": [
+    "Conversational AI"
+  ],
+  "h2": [],
+  "h3": [],
+  "text_content": "🧭 Conversational AI | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🧩 Solution Overview\n🤖 AI & Intelligent Agents\nEcosystem\nPatterns\nPositioning\nExamples\nCoding Tools\nStandards\nAI Submission Guide Template\n🗄️ AI & Intelligent Agents BLT\n🤖 Agentic AI\n🧭 Conversational AI\n🧭 Knowledge Bases\n🧭 Multimodal AI\n🧭 Translation Services\n🏢 Business Enablement\n☁️ Cloud & Infrastructure\n🔐 Cybersecurity\n📊 Data & Analytics\n🛠️ Engineering Enablement\n🛰️ Observability & Reliability\n🚀 Team Productivity\n🎨 User Experience & Design\n🤖 AI & Intelligent Agents\n🧭 Conversational AI\nConversational AI\nSynced daily from Stack Overflow\nSolution Guide\nLifecycle: Draft\nLast Update: 2025-02-14\nCapability Owner: JR Burch\nEBA Lead: Brian Lewis\n-Contributors & Reviewers: J.R. Burch, Marc Jones, Haitham Maya, Andrew Povenilli, Emily Bartman, Jason Yazell, Steve Scott, Brian Lewis, Karl Mayer\nA solution guide for human natural language interaction, including text chat and speech.\nUse Case/Scenario\nTech Recommendation\nPositioning\nComplexity\nNotable Integration/Interop\nOwning Org/Team\nNext Step\nGeneral AI chat & content generation\nMicrosoft Copilot\nStrategic Core\nReady-to-use\nMicrosoft 365\nCollaboration Svcs\nUse\nExpert chat\nChat-in-a-box\nStrategic Core\nReady-to-use\nAI & SPE\nUse\nCustom agentic & RAG (retrieval-augmented generation) chat\nCortex\nStrategic Core\nMedium\nAPI endpoints\nAI & SPE\nConsult AI Architecture\nCustom low-code AI assistants and virtual agents\nCopilot Agents\nEmerging\nLow\nMicrosoft 365\nCollaboration Svcs\nUse\nChat in SharePoint\nCopilot SharePoint Agents\nEmerging\nReady-to-use\nSharePoint\nCollaboration Svcs\nUse\nAgents for specific tasks & workflows\nMicrosoft Copilot Studio\nEmerging\nMedium\nMicrosoft Teams; SharePoint; APIs; Azure AI Services\nCollaboration Svcs\nUse\nDeterministic dialog flow, e.g. decision trees\nKore.AI\nDeclining\nHigh\nAutomation\nConsult Automation\nService desk transactions with human escalation\nKore.AI\nSpecialized\nHigh\nMicrosoft Teams; OpenAI; ServiceNow;\nother prebuilt integrations\nAutomation\nConsult Automation\nScientific chat\nMicrosoft Science Engine\nSpecialized\nHigh\nAI & SPE\nConsult AI Architecture\nWas this helpful?\nTags:\nai\nsolution-guide\ntechhq\nEdit this page\nPrevious\n🤖 Agentic AI\nNext\n🧭 Knowledge Bases\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 6,
+  "depth": 3,
+  "crawled_at": "2026-02-25T10:07:47.700283"
+}

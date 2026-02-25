@@ -1,0 +1,109 @@
+Title: 🧭 Workflow & Orchestration | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/cloud/workflow_orchestration
+Description: Stack Overflow Article: 🧭 Workflow & Orchestration
+
+🧭 Workflow & Orchestration | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🗄️ Cloud & Infrastructure BLT
+🧭 Cloud Architecture
+🧭 Cloud FinOps
+🧭 Container Services
+🧭 Networking Services
+🧭 Workflow & Orchestration
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+☁️ Cloud & Infrastructure
+🧭 Workflow & Orchestration
+On this page
+Workflow and Orchestration
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Living Document
+Last Update: 2025-09-08
+Capability Owner: Greg Graf
+EBA Lead: Sumit Bhardwaj
+Contributors & Reviewers: Sumit Bhardwaj, Alex Wasik
+A guide with common automation use cases for Workflow and Orchestration, using services that can handle up to Red Lilly information. Workflow and orchestration technologies enable automation of business processes, system integrations, and task management across the enterprise. Our approach aligns technologies to specific use cases based on complexity, scale, and requirements.
+Key Areas
+​
+Task Automation: Focuses on automating discrete, repeatable tasks to improve efficiency and reduce manual effort
+Business Process Automation (BPA): Coordinates multiple tasks into complete business processes with defined workflows
+System Orchestration: Manages interactions between multiple systems and services in a cohesive flow
+Use Case/Scenario
+Tech Recommendation
+Positioning
+Complexity
+Key Integrations
+Owning Org/Team
+Next Step
+Task Based / Orchestration / Business Process Automation, Low Complexity
+PowerAutomate
+Strategic Core
+Low
+Pre-made built-in connectors
+Enterprise Automation
+Submit Request
+Orchestration/Choreography, Low Complexity
+Automation Anywhere
+Standard
+Medium
+Generic platform-provided connectors
+Enterprise Automation
+Submit Request
+RPA, Business Process Automation, Any Complexity
+AWS Lambda & StepFunctions
+Specialized
+Medium
+Self-provided connectors
+Enterprise Automation
+Submit Request
+Pro Code Business Process Orchestration, High Complexity
+Temporal
+Specialized
+High
+Generic platform-provided connectors
+Enterprise Automation
+Submit Request
+Task Based / Orchestration / Business Process Automation, High Complexity
+IBM BAW
+Standard
+High
+Self-provided connectors; legacy system integrations available
+Enterprise Automation
+Submit Request
+Low Complexity Automation
+For simple task automation and low-code/no-code solutions, PowerAutomate provides the fastest time-to-value with built-in connectors for most common enterprise systems.
+Was this helpful?
+Tags:
+cloud
+solution-guide
+techhq
+Edit this page
+Previous
+🧭 Networking Services
+Next
+🔐 Cybersecurity
+Key Areas
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

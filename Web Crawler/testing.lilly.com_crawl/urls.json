@@ -1,0 +1,21 @@
+{
+  "root_url": "https://testing.lilly.com",
+  "base_domain": "testing.lilly.com",
+  "crawled_at": "2026-02-25T10:28:13.081677",
+  "summary": {
+    "total_urls": 6,
+    "pages": 6,
+    "failed": 0
+  },
+  "urls": {
+    "pages": [
+      "https://testing.lilly.com",
+      "https://testing.lilly.com/sites/AutomationEnablementTeam/SitePages/Automation-Intake-Form.aspx",
+      "https://testing.lilly.com/sites/EnterpriseAutomationTestSite/Shared Documents?viewid=97fb5262-0ccb-4c49-b252-697385bd3a45",
+      "https://testing.lilly.com/sites/EnterpriseAutomationTestSite/SitePages/Landing-Page.aspx",
+      "https://testing.lilly.com/sites/EnterpriseAutomationTestSite/SitePages/Success%20Stories.aspx",
+      "https://testing.lilly.com/sites/EnterpriseAutomationTestSite/SitePages/Type-of-Testing.aspx"
+    ]
+  },
+  "failed": {}
+}

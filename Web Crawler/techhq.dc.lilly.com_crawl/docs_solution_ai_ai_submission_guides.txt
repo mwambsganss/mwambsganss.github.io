@@ -1,0 +1,721 @@
+Title: AI Submission Guide Template | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/ai_submission_guides/
+Description: Product Definition
+
+AI Submission Guide Template | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+AI Submission Guide Template
+On this page
+AI Submission Guide Template
+Product Definition
+​
+Description for Product Definition.
+What is this?
+Brief description of the AI solution and its purpose
+Who are the users?
+Target audience and user personas
+What functions are using this?
+Business units, departments, or systems
+What are they using this for?
+Use cases and business outcomes
+Architecture Diagram C0: Tech Stack
+​
+Purpose:
+High-level view of the technology stack organized into four layers: Experience, AI, Model, and Data.
+Layer Guidelines:
+Experience
+: User interfaces (web apps, mobile, APIs)
+AI
+: Orchestration frameworks (LangChain, LangGraph, CrewAI, Cortex)
+Model
+: LLM/ML services (AWS Bedrock, LLM Gateway, Sagemaker)
+Data
+: Data sources and storage (S3, EDB, data lakes)
+Template
+​
+Layers
+Data
+AWS S3
+Azure Data Lake
+EDB
+Research Data
+Edge Device Data
+External Resources
+CLUWE
+RIM
+Model
+Cortex
+LLM Gateway
+AWS Bedrock
+MagTrain
+AWS Sagemaker
+CATS
+AI
+Cortex
+LangGraph
+LangChain
+CrewAI
+SwarmAI
+Experience
+Next.js
+LDS 2.0
+Streamlit
+Experience
+AI
+Model
+Data
+Instructions:
+Replace the example technologies with your actual stack. Remove layers that don't apply.
+Architecture Diagram C1: High-Level Architecture
+​
+Purpose:
+Show how your tech stack components (from C0) connect together at a high level. Think of this as a "zoomed-in" view of your C0 diagram showing
+which components talk to which components
+and how they integrate.
+What to show:
+Components from your C0 diagram (e.g., Streamlit, LangGraph, Bedrock, S3)
+How Experience layer connects to AI layer
+How AI layer connects to Model layer
+How components access Data layer
+External integrations and APIs
+Keep it component-level (no infrastructure details like Lambda/ECS - save that for C2)
+📋 Requirements Checklist & Color Guide
+Checklist:
+Use component names from your C0 (Streamlit, LangGraph, AWS Bedrock, etc.)
+Show connections between layers (Experience → AI → Model → Data)
+Label connection types (REST API, SDK, HTTP, etc.)
+Include caching or state management if applicable
+Show external system integrations
+Keep it high-level - no AWS service details yet
+Standard Colors (map to C0 layers):
+Blue
+#2196F3
+- Experience layer components (Streamlit, Next.js, API Gateway)
+Green
+#4CAF50
+- AI layer components (LangGraph, LangChain, CrewAI, Cortex)
+Purple
+#9C27B0
+- Model layer components (Bedrock, LLM Gateway, Sagemaker)
+Orange
+#FF9800
+- Data layer components (S3, EDB, Pinecone, RDS)
+Gray
+#607D8B
+- External systems
+Template
+​
+HTTPS
+REST
+Check cache
+Cache miss
+Vector search
+Fetch docs
+Query metadata
+Route request
+Response
+Store
+API call
+Streamlit App
+API Gateway
+LangGraph
+Redis Cache
+LLM Gateway
+AWS Bedrock
+Pinecone
+AWS S3
+RDS PostgreSQL
+Enterprise System
+EDB or External API
+See real examples:
+Clinical Programming Assistant
+·
+HR Talent Acquisition
+Architecture Diagram C2: Detailed Component Architecture
+​
+Purpose:
+Zoom into each component from C1 and show
+how it's implemented
+with specific AWS/Azure services, infrastructure, and networking details.
+What to show:
+Specific cloud services (AWS Lambda, Azure Functions, ECS, etc.)
+How each C1 component is deployed (Lambda for agents, ECS for orchestrator, etc.)
+Network architecture (VPCs, subnets, security groups)
+Service-level capabilities (3-5 bullet points each)
+Decision nodes for routing logic
+Monitoring and observability integration
+📋 Requirements Checklist & Color Guide
+Checklist:
+Show all architectural layers (UI, Orchestration, Model, Data)
+Use nested subgraphs for related services
+Specify exact service names (AWS Lambda, Azure Functions, etc.)
+Include 3-5 bullet points per service
+Show network boundaries (VPCs, accounts) if applicable
+Indicate data flow directions
+Show integration with external systems
+Standard Layer Colors:
+Blue
+#2196F3
+- UI Layer
+Green
+#4CAF50
+- Orchestration/AI Layer
+Purple
+#9C27B0
+- Model/LLM Layer
+Orange
+#FF9800
+- Data Layer
+Purple dashed
+- External Services
+Red-orange
+#FF5722
+- Decision Nodes
+Template
+​
+💾 Data Layer
+🤖 Model Layer
+⚙️ Orchestration Layer
+🖥️ User Interface Layer
+AI Models
+Agents/Services
+Frontend Application
+• Feature 1
+• Feature 2
+• Feature 3
+Orchestration Service
+• Workflow Management
+• State Management
+• Error Handling
+Service 1
+Service 2
+LLM Gateway
+• Load Balancing
+• Rate Limiting
+Model Name 1
+Model Name 2
+Storage Service
+• Data Type
+• Retention Policy
+Database Service
+• Data Model
+• Access Pattern
+External API
+• Service Description
+See real examples:
+Clinical Programming Assistant
+·
+AMIGO
+Data Flow Diagram
+​
+Purpose:
+Show different scenarios of how data and requests flow through your system. For GenAI solutions, this tells the story of
+what happens when users interact with the system
+- which agents, LLM chains, knowledge bases, and tools connect together to serve specific inputs/outputs.
+When to include:
+User interaction scenarios
+(chat query, document upload, API request)
+Data pipeline scenarios
+(ETL, batch processing, real-time streams)
+Complex workflows
+with multiple paths or decision points
+Choose the style that best fits your scenario:
+Sequence diagram
+for temporal/step-by-step flows (best for user interactions)
+Graph diagram
+for spatial/branching flows (best for showing multiple paths)
+For GenAI/Agentic solutions:
+See
+GenAI Workflow Diagram
+subsection below for specialized agent interaction patterns.
+📋 Requirements Checklist & Color Guide
+Checklist:
+Choose 1-3 key scenarios to document (e.g., "User asks a question", "Batch data ingestion")
+Show which components from C1 are involved
+For GenAI: show which agents, LLMs, KBs, and tools are used
+Label decision points (routing logic, validation gates)
+Include data formats at key stages
+Show error/exception paths
+Add timing or volume annotations where relevant
+Standard Colors:
+Blue
+#2196F3
+- Data Sources / User Input
+Green
+#4CAF50
+- Processing / Agents
+Orange
+#FF9800
+- Validation / Decision Points
+Purple
+#9C27B0
+- Storage / Knowledge Bases
+Gray
+#607D8B
+- External Systems
+Teal
+#009688
+- Outputs / Results
+Template Option 1: Sequence Diagram (Best for User Interactions)
+​
+Response
+Claude 3.5
+Pinecone KB
+Research Agent
+LangGraph
+Streamlit UI
+👤 User
+Response
+Claude 3.5
+Pinecone KB
+Research Agent
+LangGraph
+Streamlit UI
+👤 User
+Scenario: User asks a question
+alt
+[Needs context]
+[Simple query]
+Total time: 2-3 seconds
+Submit query
+Route query
+Parse intent
+Invoke research agent
+Vector search
+Top 5 chunks
+Query with context
+Direct query
+Generated response
+Format response
+Display answer
+Template Option 2: Graph Diagram (Best for Multiple Paths/Scenarios)
+​
+Simple
+Needs context
+Code request
+User Query
+Natural language
+Intent Classifier
+Categorize query type
+Simple Q&A Agent
+Direct GPT-4 call
+RAG Agent
+Retrieve + Generate
+Code Agent
+Generate & validate code
+Vector DB
+Pinecone
+10K docs
+Code Repository
+GitHub examples
+GPT-4o
+Fast responses
+Claude 3.5
+Long context
+Final Response
+Formatted answer
+See real examples:
+AMIGO Data Pipeline
+·
+Clinical Programming Assistant
+GenAI Workflow Diagram (for Agentic Solutions)
+​
+Purpose:
+For solutions using agentic frameworks (LangGraph, CrewAI, AutoGen, Cortex), show how agents collaborate, which tools they use, and how they orchestrate LLM calls. This is a specialized view that goes deeper than general data flows. To learn more about agentic patterns and architectural approaches, see
+Agentic Patterns
+.
+When to include:
+Solutions with
+multiple specialized agents
+working together
+Tool-using agents
+that call external APIs, databases, or code interpreters
+Multi-step reasoning workflows
+with agent handoffs
+Hierarchical agent architectures
+(supervisor → worker agents)
+What to show:
+Each agent's name, role, and responsibilities
+Tools available to each agent (search, calculator, SQL, API calls)
+Which LLM(s) each agent uses
+Communication patterns (sequential, parallel, hierarchical, collaborative)
+State management and memory (conversation history, shared state)
+Decision points (routing logic, delegation, escalation)
+📋 Requirements Checklist & Color Guide
+Checklist:
+Show all agents with clear roles (e.g., "Research Agent", "Code Agent", "Validator")
+List tools each agent can use (e.g., "Vector Search", "SQL Query", "Web Search")
+Indicate which LLM(s) each agent uses (GPT-4o, Claude 3.5, etc.)
+Show agent interaction patterns (who talks to whom)
+Include supervisor/orchestrator if present
+Show state/memory management approach
+Label handoff conditions (when does one agent call another?)
+Indicate parallel vs sequential execution
+Standard Colors:
+Purple
+#9C27B0
+- Supervisor/Orchestrator Agent
+Blue
+#2196F3
+- Research/Retrieval Agents
+Green
+#4CAF50
+- Processing/Analysis Agents
+Orange
+#FF9800
+- Code/Tool-Execution Agents
+Teal
+#009688
+- Validation/QA Agents
+Gray
+#607D8B
+- External Tools/APIs
+Red-orange
+#FF5722
+- Decision/Routing Nodes
+Template Option 1: Hierarchical Agent System (Supervisor Pattern)
+​
+Needs research
+Needs code
+Needs analysis
+Final answer
+User Query
+Supervisor Agent
+LLM: GPT-4o
+Role: Route & orchestrate
+Route Query
+Research Agent
+LLM: Claude 3.5
+Tools: Vector Search, Web Search
+Code Agent
+LLM: GPT-4o
+Tools: Python REPL, GitHub Search
+Analyst Agent
+LLM: Claude 3.5
+Tools: SQL Query, Data Viz
+Pinecone
+Vector Search
+Tavily
+Web Search
+Python REPL
+Code Execution
+PostgreSQL
+SQL Queries
+GPT-4o
+Fast reasoning
+Claude 3.5
+Long context
+Shared State
+Conversation history
+Agent outputs
+Agent can call
+other agents
+Template Option 2: Collaborative Agent System (Peer-to-Peer)
+​
+Create plan
+Use tools
+Add findings
+Draft output
+Feedback
+Needs revision
+Needs more info
+Approved
+User Query
+Agent 1: Planner
+LLM: GPT-4o
+Breaks down task
+Agent 2: Researcher
+LLM: Claude 3.5
+Gathers information
+Agent 3: Writer
+LLM: Claude 3.5
+Creates output
+Agent 4: Critic
+LLM: GPT-4o
+Validates quality
+Available Tools:
+• Vector Search
+• Web Search
+• Code REPL
+• SQL Query
+Shared Memory
+Task plan
+Research findings
+Draft outputs
+Feedback
+Template Option 3: Sequential Agent Pipeline
+​
+External Tools
+Validator Agent
+(GPT-4o)
+Generator Agent
+(Claude 3.5)
+Pinecone
+Retrieval Agent
+(Claude 3.5)
+Router Agent
+(GPT-4o)
+User
+External Tools
+Validator Agent
+(GPT-4o)
+Generator Agent
+(Claude 3.5)
+Pinecone
+Retrieval Agent
+(Claude 3.5)
+Router Agent
+(GPT-4o)
+User
+Agentic RAG Workflow
+alt
+[Simple query]
+[Complex query]
+opt
+[Needs external data]
+alt
+[Validation fails]
+[Validation passes]
+Total: 3-5 seconds
+3-4 LLM calls
+Submit query
+Classify intent
+Select strategy
+Direct generation
+Invoke retrieval
+Vector search
+Top 5 chunks
+Rerank results
+Context + query
+Generate response
+API call / Web search
+External data
+Validate response
+Check citations
+Verify accuracy
+Safety check
+Request revision
+Revised response
+Final response
+Key Documentation Points:
+Agent Roles & Responsibilities:
+Agent 1 (Supervisor): Routes queries, orchestrates workflow, decides which agents to invoke
+Agent 2 (Researcher): Performs vector search, web search, returns relevant context
+Agent 3 (Analyst): Analyzes data, generates insights, creates visualizations
+LLM Selection Rationale:
+GPT-4o for fast routing and classification (low latency)
+Claude 3.5 for long-context research and generation (200K window)
+Tool Usage:
+Vector Search (Pinecone): Semantic search over knowledge base
+Python REPL: Execute code for calculations, data transformations
+SQL Query: Structured data retrieval from PostgreSQL
+State Management:
+Shared state stores conversation history and intermediate outputs
+Agents read/write to shared state for coordination
+State persisted in Redis for session continuity
+Handoff Logic:
+Supervisor evaluates query complexity → routes to appropriate agent
+Agents can invoke other agents when needed (e.g., Researcher → Analyst)
+Maximum 3 agent hops to prevent infinite loops
+See real examples:
+Clinical Programming Assistant Agents
+·
+HR Talent Acquisition Workflow
+LLM/ML Model Details
+​
+Description for LLM/ML Model Details.
+Document the AI/ML models and how they're used in your solution:
+Topic
+What to Document
+Example
+Models Used
+Name, version, provider, use case, context window
+GPT-4o via Azure OpenAI for Q&A (128K tokens, 2.5s avg)
+Prompting Strategy
+System prompts, few-shot examples, chain-of-thought, structured outputs
+"You are a clinical analyst..." with 3 examples, JSON schema output
+Orchestration Logic
+Single vs multi-model, routing logic, fallback strategy
+Route complex queries to Claude, simple to GPT-3.5
+Agentic Framework
+Master agent, sub-agents, tools, LLMs used, interaction patterns
+Supervisor orchestrates 3 agents (Researcher, Analyst, Writer)
+AI Logic
+How AI components meet requirements
+RAG retrieves top-5 chunks → Claude generates → Validator checks citations
+📋 Detailed Guidance
+Models Used - Include:
+Model name/version (GPT-4o, Claude 3.5 Sonnet, Llama 3.1 70B, custom models)
+Provider/platform (Azure OpenAI, AWS Bedrock, Cortex, Sagemaker)
+Specific use case (Q&A, code generation, classification, reasoning)
+Context window size (128K, 200K tokens)
+Performance metrics (latency, throughput, cost per request)
+Agentic Framework (if applicable):
+Master/Supervisor agent role and responsibilities
+Sub-agents: name, role, tools available, LLM used
+Interaction pattern (sequential, parallel, hierarchical)
+State management approach
+AI Logic & Requirements Mapping:
+Show how AI capabilities deliver business value:
+Requirement: "Provide accurate, cited answers to regulatory questions"
+Implementation: Vector DB → Claude 200K → Citation validator → User feedback loop
+See real examples:
+Clinical Programming Assistant
+·
+HR Talent Acquisition
+Data Governance & Privacy
+​
+Description for Data Governance & Privacy.
+Document data handling, privacy, and compliance:
+Category
+What to Document
+Data Description
+Type collected, classification (CI/PI), sources, volume, sensitivity (PII/PHI)
+Storage & Architecture
+Primary location (S3/Azure/EDB), region, encryption (at rest/in transit), backup strategy, network security
+Data Ownership
+Who owns data (for vendor solutions), license terms, data residency, subprocessors
+Training Data Governance
+Used for training? RAG? Fine-tuning? How is Lilly data handled? Anonymization approach
+Interaction Data
+Are prompts/responses stored? Where? For how long? Sent to LLM providers? Zero-retention agreements?
+Retention & Deletion
+Policy by data type (raw: 30d, processed: 90d, outputs: 2y, logs: 7y), deletion process, archival strategy
+Compliance
+Frameworks (GDPR, HIPAA, SOC 2, GxP), security controls (Auth, monitoring, DLP, scanning), assessments completed
+Vendor Due Diligence
+Certifications (SOC 2, ISO 27001), DPA/BAA in place, audit rights, incident response SLA
+📋 Critical Questions for AI Solutions
+Training Data:
+Is Lilly data used for model training? If yes: What data? How anonymized? Who has access?
+Is Lilly data used for RAG/retrieval? If yes: How chunked/embedded? Access controls?
+Are models fine-tuned on Lilly data? If yes: Where hosted? Who can access?
+Prompts & Responses:
+Are user prompts stored? If yes: Where? How long? Who accesses?
+Are AI responses stored? If yes: Retention policy?
+Are prompts/responses sent to third-party LLM providers? Zero-retention agreements?
+How long is conversation history maintained? Where is state stored?
+Compliance (for regulated data or external exposure):
+Which frameworks apply? (GDPR, HIPAA, SOC 2, GxP, 21 CFR Part 11)
+What security controls are in place? (Azure AD, MFA, RBAC, monitoring, DLP)
+Has a cyber risk assessment been completed?
+Has legal counsel reviewed data practices?
+Evaluation & Validation
+​
+Description for Evaluation & Validation.
+Document performance measurement and output validation:
+Category
+What to Document
+Ground Truth
+How created (human annotation, expert review, gold standard comparison), who creates it, sample size, maintenance
+Accuracy Metrics
+Classification: precision/recall/F1. Generation: BLEU/ROUGE. RAG: context relevance/faithfulness. Domain-specific metrics
+Performance Metrics
+Response time (p50/p95/p99), throughput (req/sec), availability (SLA), cost efficiency
+User Experience
+Satisfaction (ratings/NPS), task completion rate, engagement, error rate
+Baseline Comparison
+Current state without AI, manual process time, existing system performance
+Human-in-the-Loop
+Who validates (experts, users)? When (100%, sample %, confidence-triggered)? Review workflow? Feedback capture?
+Automated Validation
+Confidence scoring, semantic validation (second LLM), rule-based checks (format, logic, safety), test suites
+Feedback Loops
+Collection (thumbs up/down, corrections, flags), processing (aggregation, labeling), model improvement (prompt refinement, fine-tuning, RAG optimization)
+Monitoring
+Real-time dashboards, drift detection, alerting rules (error spikes, latency increases), incident response
+Validation Frequency
+Pre-deployment testing, continuous production monitoring, periodic reviews (monthly/quarterly), post-change regression tests
+📋 ML Optimization Strategies
+Feedback Collection:
+User feedback: Thumbs up/down, star ratings, corrections, flags
+Implicit feedback: Click-through rates, time spent, task completion
+System logs: Error logs, performance metrics, usage patterns
+Model Improvement:
+Prompt refinement: A/B test different prompts based on feedback
+Fine-tuning: How often? (weekly/monthly/quarterly) What's the pipeline?
+RAG optimization: Improve chunking, embedding model, ranking algorithms
+Agent optimization: Adjust responsibilities, retrain routing, update tool usage
+Monitoring & Alerting:
+Real-time dashboards for key metrics
+Drift detection for data/model degradation
+Alert triggers: Error rate spike, latency increase, quality drop
+Incident response process when quality degrades
+Usage Tips
+​
+Start minimal
+- Copy starter templates and fill in your specifics
+Reference exemplars
+- See complete examples in the exemplar files
+Remove what doesn't apply
+- Not every solution needs all sections
+Keep it current
+- Update as architecture evolves
+Use tables
+- For requirements and checklists (more scannable)
+Link to detailed docs
+- Don't overload this template, reference separate docs
+Questions or Feedback?
+​
+Reach out to the TechHQ team or submit feedback through standard channels.
+Was this helpful?
+Edit this page
+Previous
+Knowledge Base Standards
+Next
+🗄️ AI & Intelligent Agents BLT
+Product Definition
+Architecture Diagram C0: Tech Stack
+Template
+Architecture Diagram C1: High-Level Architecture
+Template
+Architecture Diagram C2: Detailed Component Architecture
+Template
+Data Flow Diagram
+Template Option 1: Sequence Diagram (Best for User Interactions)
+Template Option 2: Graph Diagram (Best for Multiple Paths/Scenarios)
+GenAI Workflow Diagram (for Agentic Solutions)
+LLM/ML Model Details
+Data Governance & Privacy
+Evaluation & Validation
+Usage Tips
+Questions or Feedback?
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

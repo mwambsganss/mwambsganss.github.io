@@ -1,0 +1,176 @@
+Title: 🧭 Multimodal AI | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/multimodal_ai
+Description: Stack Overflow Article: 🧭 Multimodal AI
+
+🧭 Multimodal AI | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+🧭 Multimodal AI
+On this page
+🧭 Multimodal AI
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Rapidly Evolving
+Last Update: 2025-09-26
+EBA Lead: Doug Gorr
+Contributors & Reviewers: Doug Gorr
+A guide for selecting and integrating generative AI technologies to accelerate the creation of marketing visuals, training content, and cinematic-quality media across the enterprise.
+🎬 Video Generation
+​
+Use Case/Scenario
+Tech Recommendation
+Positioning
+Complexity
+Key Integrations
+Owning Org/Team
+Next Step
+Video, Images
+Adobe Firefly
+Standard
+Low
+Adobe Creative Cloud
+CTI / BU Global
+Evaluate Firefly via Adobe Creative Cloud, Adobe Express or Photoshop; Get a licence and use it.
+Video, Images
+Sora (OpenAI)
+Standard
+Low to High
+Azure API, MS Copilot
+Digital Core Cloud Team
+Generate static images via MS Copilot. Video: Test in Azure AI Foundry Video Playground, if adequate, build something and integrate via Azure OpenAI Services.
+Video with Audio, Images
+Veo3 (Google DeepMind)
+Emerging
+High
+GCP API, Google Gemini
+Digital Core Cloud Team
+Request access via Google Cloud to evaluate for your needs.
+Video
+Nova Reel (AWS)
+Standard
+Medium to High
+AWS Bedrock API
+Digital Core Cloud Team
+Test your prompt in the AWS Bedrock Playground, if adequate, build something and integrate via AWS Bedrock.
+warning
+Generative video models are evolving rapidly.
+🧑‍🎤 AI Avatars (Lip Sync Videos)
+​
+Use Case/Scenario
+Tech Recommendation
+Positioning
+Complexity
+Key Integrations
+Owning Org/Team
+Next Step
+Interactive avatars
+Azure AI Avatars
+Standard
+High
+Azure Speech Studio, Azure API
+Digital Core Cloud Team
+Test in Azure Speech Studio, if adequate, build and integrate.
+Avatar videos
+Synthesia
+Standard
+High, Low
+Synthesia API, SaaS
+CTI / BU Global
+Green & Yellow data use cases.
+Avatar videos, Interactive
+HeyGen
+Emerging
+High, Med, Low
+HeyGen API, Interactive Avatar SDK, SaaS
+CTI / BU Global
+Wait! Contracting In Progress.
+warning
+Generative video models are evolving rapidly.
+🗣️ AI‑Generated Speech
+​
+Use Case/Scenario
+Tech Recommendation
+Positioning
+Complexity
+Key Integrations
+Owning Org/Team
+Next Step
+Real‑time voice agents / voice bots / digital people; ultra‑low latency speech‑to‑speech
+Azure OpenAI Realtime (Speech‑to‑Speech) API
+Emerging
+High (Streaming API uses websockets - not REST)
+WebRTC session mgmt via Azure API, Web/Mobile front‑ends
+Digital Core Cloud Team
+Build something and compare to your TTS alternatives. Confirm langugage needs will be met.
+Customized voice pronunciations TTS for apps, recored voice, video voiceover, avatar voices.
+Azure Speech Studio & API
+Standard
+Med, Low
+Azure API, Azure Speech Studio
+Digital Core Cloud Team
+Use Azure Speech Studio to test voices and scripts. Customize pronunciations if needed, then export the audio file for use or integrate your voice via Azure API.
+Speech-to-text, Text-to-Speech, Translation
+Lilly Translate app
+Standard
+Low
+Full featured Lilly product
+Digital Core
+Use it.
+Speech‑to‑text
+Azure OpenAI Whisper (STT)
+Standard
+Med
+Azure API
+Digital Core Cloud Team
+Implement Whisper as STT default for new pipelines.
+Was this helpful?
+Tags:
+ai
+solution-guide
+techhq
+Edit this page
+Previous
+🧭 Knowledge Bases
+Next
+🧭 Translation Services
+🎬 Video Generation
+🧑‍🎤 AI Avatars (Lip Sync Videos)
+🗣️ AI‑Generated Speech
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

@@ -1,0 +1,139 @@
+Title: 🧭 Specialized Databases | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/data/specialized_databases
+Description: Stack Overflow Article: 🧭 Specialized Databases
+
+🧭 Specialized Databases | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🗄️ Data & Analytics BLT
+🧭 Data Catalogs and Access
+🧭 Data Visualization
+🧭 Integration Middleware
+🧭 Specialized Databases
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+📊 Data & Analytics
+🧭 Specialized Databases
+On this page
+🧭 Specialized Databases
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-10-02
+Capability Owner: Manuela Elena García Conde
+EBA Lead: Chris Blessing
+Contributors & Reviewers: TBD
+A guide for selecting and applying specialized NoSQL, graph, in-memory, search, and analytical databases optimized for high-performance, low-latency, and scalable workloads across AWS and Azure platforms.
+Avoid using these technologies for traditional OLTP workloads requiring strict ACID compliance across multiple tables.
+Use Case/Scenario
+Tech Recommendation
+Positioning
+Complexity
+Key Integrations
+Owning Org/Team
+Next Step
+Key-value and document store for serverless apps
+AWS DynamoDB
+Standard
+Medium
+AWS Lambda, API Gateway, IAM, CloudWatch, DAX
+Enterprise Data
+https://collab.lilly.com/sites/CloudPaaSDatabases
+Cloud data warehouse for analytics
+Amazon Redshift
+Standard
+High
+AWS Glue, QuickSight, S3, Redshift Spectrum, IAM
+Enterprise Data
+https://collab.lilly.com/sites/CloudPaaSDatabases
+Globally distributed multi-model database
+Azure Cosmos DB (SQL)
+Standard
+Medium
+Azure Functions, Azure Synapse, Azure Monitor, Azure Private Link
+Enterprise Data
+https://collab.lilly.com/sites/CloudPaaSDatabases
+Graph-based querying and relationship modeling
+Azure Cosmos DB (Gremlin)
+Standard
+High
+Gremlin API, Azure Monitor, Azure Synapse, Azure Functions
+Enterprise Data
+https://collab.lilly.com/sites/CloudPaaSDatabases
+Graph-based relationship querying
+AWS Neptune
+Standard
+High
+Gremlin, SPARQL, Amazon SageMaker, AWS Glue, IAM
+Enterprise Data
+https://collab.lilly.com/sites/CloudPaaSDatabases
+Real-time caching for AWS apps
+AWS ElastiCache for Redis
+Standard
+Medium
+Amazon EC2, Lambda, RDS, CloudWatch, VPC
+Enterprise Data
+https://collab.lilly.com/sites/CloudPaaSDatabases
+Real-time caching for Azure apps
+Azure Cache for Redis
+Standard
+Medium
+Azure App Service, Azure Kubernetes Service, Azure Monitor, VNet
+Enterprise Data
+https://collab.lilly.com/sites/CloudPaaSDatabases
+AWS DynamoDB
+​
+Amazon DynamoDB is a fully managed NoSQL database service designed for key-value and document data models. It offers single-digit millisecond performance at any scale and is ideal for serverless applications, IoT, gaming, and mobile backends. It integrates tightly with AWS Lambda, API Gateway, and IAM for secure, scalable architectures.
+Amazon Redshift
+​
+Amazon Redshift is a fully managed, petabyte-scale data warehouse service. It supports complex analytical queries across structured and semi-structured data. Redshift integrates with AWS Glue, S3, and QuickSight for end-to-end analytics pipelines.
+Azure Cosmos DB (SQL and Gremlin)
+​
+Azure Cosmos DB is a globally distributed, multi-model database service. The SQL API supports document-based workloads with rich querying, while the Gremlin API enables graph-based querying for complex relationships. Cosmos DB offers multi-region writes, low-latency reads, and five consistency models.
+AWS Neptune
+​
+Amazon Neptune is a purpose-built graph database optimized for storing and querying highly connected data. It supports both property graph (Gremlin) and RDF (SPARQL) models. Neptune is ideal for knowledge graphs, fraud detection, and recommendation engines.
+AWS ElastiCache for Redis
+​
+AWS ElastiCache for Redis is a fully managed in-memory data store and cache service. It supports sub-millisecond latency and is commonly used for session storage, real-time analytics, and pub/sub messaging.
+Azure Cache for Redis
+​
+Azure Cache for Redis is a fully managed, in-memory cache that enables high-throughput and low-latency data access. It supports Redis data structures and is ideal for caching, session state, and real-time analytics in Azure-hosted applications.
+Was this helpful?
+Tags:
+data
+solution-guide
+techhq
+Edit this page
+Previous
+🧭 Integration Middleware
+Next
+🛠️ Engineering Enablement
+AWS DynamoDB
+Amazon Redshift
+Azure Cosmos DB (SQL and Gremlin)
+AWS Neptune
+AWS ElastiCache for Redis
+Azure Cache for Redis
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

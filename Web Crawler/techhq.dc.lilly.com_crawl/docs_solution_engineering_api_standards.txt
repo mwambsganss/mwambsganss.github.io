@@ -1,0 +1,182 @@
+Title: API Standards | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/engineering/api_standards
+Description: Stack Overflow Article: API Standards
+
+API Standards | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🗄️ Engineering Enablement BLT
+🧭 AI Code Assistants
+API Standards
+🧭 ML Ops
+🧭 Test Automation
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🛠️ Engineering Enablement
+API Standards
+On this page
+🧭 API Standards
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Published
+Last Update: 2025-10-02
+Capability Owner: Christopher P Blessing
+EBA Lead: Larry Zetzl
+Contributors & Reviewers: Jacob Bishop, Matt Van Auwelaer, Vinoth Vijayakumar, Larry Zetzl
+A guide for standardizing API development, management, and lifecycle practices across the enterprise using modern platforms and frameworks.
+Use Case/Scenario
+Positioning
+Complexity
+Tech Recommendation
+Integrations & Interoperability
+Owning Org/Team
+Next Step
+Looking for re-usable APIs from other teams
+Standard
+None
+Backstage
+Web
+Enterprise Data
+View the
+Backstage Entity Catalog
+Starting a new API project
+Standard
+Low
+Backstage
+Web
+Enterprise Data
+Use
+Backstage Accelerators
+Deploying APIs
+Standard
+Medium
+CATS
+,
+Lilly Kubed
+Web, GitHub, AWS
+Software Product Engineering (SPE)
+Visit the
+CATS
+,
+Lilly Kubed
+documentation websites
+Securing APIs
+Standard
+Medium
+Azure API Management (APIM)
+HTTPS
+Enterprise Data
+Getting Started
+Backstage
+​
+Backstage
+is a developer portal that centralizes software components, APIs, and documentation. It enhances discoverability and governance by providing a catalog of reusable Lilly APIs and services.
+Check out Backstage documentation at the links below:
+📚
+Entity Catalog
+: Search for reusable APIs, Components, and Resources enterprise-wide before trying to rebuild one from scratch.
+🚀
+Accelerators
+: Jumpstart development for a new API, Website, and more using templated code with Lilly best practices built-in.
+📚
+TechDocs
+: Write some markdown and let Backstage host your docs website and integrate it with search on your behalf using the mkdocs framework.
+🔍
+Search
+: All reusable assets added to Lilly Backstage and the matching items from LillyFlow can be found using the Search feature in the sidebar.
+📂
+Client Code Generation
+: Found an API to reuse? Let Backstage generate client side code efficiently with built-in best practices to consume faster.
+📊
+Platform Insights
+: See our estimations for how much time Backstage has saved Lilly developers so far!
+‼️ Does your team own some re-usable software? You can add it to the Entity Catalog with our
+Catalog Integration Tutorial
+in just 3 easy steps!
+Azure API Management
+​
+Enterprise Data provides Azure API Management (APIM) as a global API Gateway service.  Delegate authentication, authorization, and threat protection to APIM so you can focus on your API's functionality and business value.
+Check out APIM documentation at the links below:
+📚
+Platform Overview
+: Learn more about the platform and how it fits in solution architectures.
+🚀
+Getting Started
+: Get your APIs published in / secured by Azure APIM.
+FastAPI Framework for Building REST APIs
+​
+FastAPI is a modern Python framework for building high-performance APIs with automatic OpenAPI documentation. It is ideal for lightweight services and microservices.
+Features:
+Automatic OpenAPI and JSON Schema generation
+for documentation and validation
+Asynchronous support
+using Python’s async/await for high-performance APIs
+Type hinting and data validation
+with Pydantic for cleaner, safer code
+Fast development cycles
+with minimal boilerplate and intuitive syntax
+Backstage Accelerators
+has a FastAPI Template to help you get started with this framework.
+Strawberry Framework for Building GraphQL APIs
+​
+Strawberry is a Python library for building GraphQL APIs using modern Python features like type hints and dataclasses. It simplifies GraphQL schema creation and integrates well with Python-based services. Strawberry is ideal for teams looking to expose flexible, queryable APIs and works seamlessly with Hangar CI/CD and Azure API Management for deployment and monitoring.
+Features:
+Native support
+for Python type hints and dataclasses
+Automatic GraphQL schema generation
+for documentation and validation
+Easy integration
+with ASGI frameworks like FastAPI
+Backstage Accelerators
+has a GraphQL Template to help you get started with this framework.
+Deploying APIs at Lilly
+​
+Our team highly recommmends using the Kubernetes clusters by the
+CATS
+and
+Kubed
+teams at Lilly for containerized deployments. These platforms provide enterprise support and have several features making your deployment experience easier and more reliable.
+For more information on containerized deployments, see
+Container Services
+.
+COMING SOON: CATS and Lilly Kubed are merging into one platform called
+Hangar
+.
+Was this helpful?
+Tags:
+api
+software-engineering
+solution-guide
+techhq
+Edit this page
+Previous
+🧭 AI Code Assistants
+Next
+🧭 ML Ops
+Backstage
+Azure API Management
+FastAPI Framework for Building REST APIs
+Strawberry Framework for Building GraphQL APIs
+Deploying APIs at Lilly
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

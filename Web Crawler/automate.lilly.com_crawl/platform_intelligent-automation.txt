@@ -1,0 +1,51 @@
+Title: Enterprise Automation MarketPlace
+URL: https://automate.lilly.com/platform/intelligent-automation
+Description: Enterprise Automation MarketPlace
+
+Enterprise Automation MarketPlace
+Menu
+List
+menu closed
+Close
+X
+Home
+Automation Platform
+CaretRight
+CaretDown
+Intelligent Automation
+Test Automation
+Document Processing
+Content Automation
+Process Optimization
+Marketplace
+TechZone
+Submit an Idea
+Intelligent Automation
+Intelligent Automation
+powers organizations with AI-driven technologies for smarter, faster decision-making. Our Intelligent Automation (IA) capability combines AI and process automation to enhance efficiency at scale.
+Decision Automation
+Empower your team with automated decision-making, ensuring consistent results and allowing your team to focus on strategic tasks.
+Business Rules System: Seamlessly document, implement, and manage the decisions driving your business.
+Data-Driven Insights: Leverage real-time data to tailor decisions that resonate with your business needs.
+Orchestration & Workflow
+The automated execution of tasks in a specific sequence, while orchestration manages these tasks across various systems to enhance business efficiency and streamline operations.
+Conversational AI with Virtual Assistant
+Unleash the potential of large language models (LLMs) & Generative AI with our intuitive low code/no-code platform. Create, train, and deploy conversational chatbots effortlessly to transform your user experience.
+Drag-and-Drop Simplicity: Build with ease using our bot builder and pre-designed templates.
+Integrated Empowerment: Conversationally complete tasks and hand-off requests to service agents.
+Smart Dialog Management: Ensure relevant conversations with contextual understanding.
+Omnichannel Reach: Connect with customers on web, mobile, and voice platforms seamlessly.
+LLM Orchestration: Coordinate large language models for unparalleled automation performance.
+QuotesFill
+"Creating a cycle of automation innovation learning and delivery to accelerate your productivity."
+Enterprise Platform
+Connecting...
+Marketplace Chatbot
+Media
+File
+Tap microphone to speak
+Listening... Tap to end
+Cancel
+Tap to send
+Typing
+Powered by

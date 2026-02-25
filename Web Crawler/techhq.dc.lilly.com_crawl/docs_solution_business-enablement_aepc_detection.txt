@@ -1,0 +1,118 @@
+Title: 🧭 AE/PC Detection | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/business-enablement/aepc_detection
+Description: Stack Overflow Article: 🧭 AE/PC Detection
+
+🧭 AE/PC Detection | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+🗄️ Business Enablement BLT
+🧭 AE/PC Detection
+🧭 Customer Engagement Reference Architecture
+🧭 PI & Sensitive Data Detection
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🏢 Business Enablement
+🧭 AE/PC Detection
+On this page
+🧭 Adverse Event and Product Complaint Detection
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-10-05
+Capability Owner: Eric A. Wolf
+EBA Lead: Eric A. Wolf
+Contributors & Reviewers: n/a
+Summary:
+Accurate and timely reporting of safety events disclosed in digital consumer channels is critical for patient safety and to comply with global regulations.  While there are no generally-available enterprise solutions to automate adverse event/product complaint detection or routing yet, significant progress is underway.
+Digital consumer channels which require AE/PC detection include incoming email, chatbots, voicebots, survey free-text, and web/mobile application free-text.  Projects needing this capability should connect with the individual(s) mentioned above and teams referenced below.
+Use Case/Scenario
+Tech Recommendation
+Current Positiong
+Future Direction
+Adverse event/product complaint detection in US drug product chatbots and TLAC voicebot conversations
+Use Authenticx 3rd Party AE/PC Detection Service
+Specialized for US product chatbots US TLAC customer voicebot channels only
+Will migrate to using the emerging AI-based detection service capability in 2026
+Adverse event/product complaint detection in all other chatbot/voicebot conversations or survey/application free-text
+n/a – Use 100% human analysis of all consumer communications to identify safety events
+Declining
+Plan to use emerging AI-based detection service capability planned for 1H 2026
+Safety event routing for Authenticx AE/PC service to Lilly safety case management systems (AE and PC)
+Leverage DHISP MuleSoft workflow to route to GCC for agent processing and downstream transmission to the Lilly Safety System and Veeva QMS.
+Specialized for Authenticx and legacy applications
+Will migrate to the forthcoming LRL ClearPath safety event routing service in 2026
+Safety event routing to Lilly safety case management systems (AE and PC)
+Per-product direct system integration with the Lilly Safety System (adverse events) and/or Veeva QMS (product complaints) platforms, as needed.
+Declining
+Use the forthcoming LRL ClearPath safety event routing service as the single enterprise endpoint for AE/PC submission coming 2H 2026
+Use Cases – Adverse Event/Product Complaint Detection
+Detection requires the analysis of consumer communications (e.g. chatbot text, voicebot transcript, etc.) to identify potential safety events.  Currently, that requires human agents to manually scan all communications and report events.  This is labor intensive, not a good use of human talent, and not easily scalable.  This problem requires automation but goes well beyond just simple keyword scanning.
+The Lilly Advanced Intelligence (AI) group is currently developing artificial intelligence models to detect these events.  The Customer Engagement group in Software Product Engineering (SPE) will be building a service layer to invoke these models and develop the infrastructure necessary to provide logging, monitoring, and risk-based human review.
+This advanced detection enterprise service offering is expected 1H 2026.
+Current Approach
+Owning Org/Team
+Manual human review of all patient communications and manual identification of potential safety events using standard Lilly and industry criteria.
+n/a
+Emerging Approach
+Owning Org/Team
+A new enterprise Lilly AE/PC detection service (API) which leverages AI models to detect safety events in the provided communication stream.  The solution will also employ named entity recognition to use AI to also detect and extract key elements of the safety event, itself (e.g. reporter contact information, suspect product name, reported batch #, etc.).
+Lilly Advanced Intelligence (AI), Software Product Engineering (SPE)
+AE/PC Routing
+​
+Use Case – Adverse Event/Product Complaint Routing
+Once a potential adverse event and/or product complaint has been identified, it must be routed to the appropriate Lilly safety case management platform for processing and reporting.  Currently, the Lilly Safety System (LSS) is the platform for adverse events and Veeva QMS is the platform for product complaints.  Today, this requires separate integrations between different products and these platforms.
+This creates multiple, redundant interfaces; risk in processing events differently across these interfaces; and it creates unnecessary burden to maintain and support multiple integrations providing the same function.
+The LRL Software Engineering Hub is working to develop an single, enterprise routing service to replace all of these separate integrations.
+This enterprise service offering is expected for general use starting 2H 2026.
+Current Approach
+Separate, per-system integration to Mosaic/Lilly Safety System (adverse events) and to Veeva QMS (product complaints).
+n/a – each team develops their own
+Emerging Approach
+Single, enterprise AE/PC ingest API endpoint which manages appropriate routing to downstream case management platforms.
+LRL Software Engineering Hub (SEH)
+Additional Considerations
+​
+Rationale
+Just as Lilly requires its employees to report cases of adverse events (AEs), product complaints (PCs), suspect products, and tampering(1), Lilly also requires that any mention of the same in a Lilly-provided digital channel also be reported.  This means that any externally-facing digital product which enables communications from consumers (e.g. Lilly chatbots, voicebots, online surveys with free-text fields, web/mobile applications with free-text fields, etc) needs to also identify and route potential safety events.
+(1) Lilly's Ethics and Compliance Procedure (US & PR), Section 4.3.
+https://now.lilly.com/page/global-ethics-and-compliance-requirements
+https://collab.lilly.com/sites/GSLD_TrainingMaterialsActive/EC/Policies_Procedures/Procedure_Training_Resource/Batch_1_2024/Reporting_AE_and_PC/EN_PCoE_PTR_Reporting_AE_PC.pdf
+https://lilly.service-now.com/ec?id=kb_article_view&sys_kb_id=f69fac9a873eea149c2e0d4c8bbb3559
+“Real-Time” vs. “Best Quality” Detection
+The best AE/PC detection approach likely requires analyzing the entire communication dialog, potentially leveraging multiple AI models, and might even require escalation to a human expert.  This can take significantly longer time but provides fewer false negatives.  This is preferred from a patient safety and compliance perspective.
+However, some situations are different and may require a different approach.  If one wants to detect safety events in the midst of a live, two-way conversation (for example, to redirect the user to a more appropriate tool), it warrants more rapid analysis but runs the risk of missing things (higher false negatives).  In fact, an overly aggressive detection approach in live conversations could be perceived as “nagging” and could impact the end user experience.
+A combination of approaches may be warranted to provide the best user experience and achieve the best detection for patient safety.
+Was this helpful?
+Tags:
+solution-guide
+business-enablement
+techhq
+Edit this page
+Previous
+🗄️ Business Enablement BLT
+Next
+🧭 Customer Engagement Reference Architecture
+AE/PC Routing
+Additional Considerations
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

@@ -1,0 +1,101 @@
+Title: ♻️ Lifecycle Management | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/plan/lifecycle-management
+Description: The LCM process, owned by EBA, is core to managing our declining and exiting technologies across our technical ecosystem. It is essential that we plan and manage with the following characteristics:​
+
+♻️ Lifecycle Management | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+📅 Plan Overview
+♻️ Lifecycle Management
+♻️ Lifecycle Management
+On this page
+♻️ Lifecycle Management (LCM)
+The LCM process, owned by EBA, is core to managing our declining and exiting technologies across our technical ecosystem. It is essential that we plan and manage with the following characteristics:​
+Appropriate Technical Leadership (EBA)​
+Cross-Functional Engagement​
+Accountable Leaderships​
+Visible Outcomes​
+Proactive Planning​
+For questions about LCM or technologies on the LCM roadmap, use the
+Lifecycle Management
+Microsoft Teams channel.
+2025 LCM
+​
+For specifics refer the
+Approved 2025 LCM Roadmap
+deck, including impacted business areas, remediation steps, and funding requirements.
+Org
+Q1 2025
+Q2 2025
+Q3 2025
+Q4 2025
+Cybersecurity
+•
+Legacy Protocol Burndown – Wave 2
+•
+Global Network Visibility and Protection (GNVP) – Proxy Replacement
+•
+Cybersecurity Technology Update – ​Crowdstrike
+Legacy Protocol Burndown – Wave 2.5
+Cloud
+•
+Ubuntu 20 LCM (Apr-30)
+•
+Red Hat 7 LCM
+Collaboration
+Kaltura (InVision) (Dec-31)
+Mobility
+•
+Windows 11 Feature update
+•
+Microsoft Edge/Google Chrome Unload event deprecation (Feb-28)
+1
+•
+Adobe Acrobat and Reader upgrade
+•
+Semiannual Java upgrade
+Microsoft Project and Visio upgrade
+Semiannual Java upgrade
+Enterprise Data
+Informatica PowerCenter 10.4.1 Extended Support (Mar-30)
+2
+Spotfire 12 (Jun-30)
+Axway API Management SaaS (Sep-1)
+•
+Oracle (Dec-31)
+3
+•
+Informatica PowerCenter (Dec-31)
+•
+Informatica Intelligence Cloud Services (IICS) (Dec-31)
+•
+Business Object v4.3
+•
+Layer 7 API (SOA) Gateway
+Footnotes
+​
+https://developer.chrome.com/docs/web-platform/deprecating-unload
+↩
+https://www.informatica.com/blogs/powercenter-customer-alert-migrate-now-informatica-powercenter-104-support-ends-on-march-31.html
+↩
+https://collab.lilly.com/sites/Oracleenterprisefootprintreduction
+↩
+Was this helpful?
+Edit this page
+Previous
+📅 Plan Overview
+2025 LCM
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

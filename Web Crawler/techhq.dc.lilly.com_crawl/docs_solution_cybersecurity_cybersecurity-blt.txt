@@ -1,0 +1,339 @@
+Title: 🗄️ Cybersecurity BLT | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/cybersecurity/cybersecurity-blt
+Description: The Cybersecurity Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+
+🗄️ Cybersecurity BLT | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+🗄️ Cybersecurity BLT
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🔐 Cybersecurity
+🗄️ Cybersecurity BLT
+On this page
+🗄️ Cybersecurity BLT
+The Cybersecurity Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+Can't find a technology?
+Use TechHQ's search feature to look across all technology documentation. For questions or to suggest additions to this list, contact the
+Enterprise Business Architecture team
+.
+Checkmarx
+​
+Position
+Specialized
+Tags
+dev-tools
+Information Sensitivity
+Under Review
+Architect
+Joshua Day
+Contact(s)
+Joshua Day
+Specialized  Static Application Security Testing (SAST) Tool for Mobile & R Software Applications.
+Use Cases
+​
+Mobile + R SAS Scans. E.G any language that GHAS doesn't support
+Notes
+​
+Currently going through contract renegotiations
+See Also
+​
+https://developer.lilly.com/tools/checkmarx%23checkmarx-about-checkmarx
+Cloud Custodian
+​
+Position
+Standard
+Tags
+cybersecurity
+Information Sensitivity
+Orange
+Architect
+Ryan Elkins
+Contact(s)
+Phil Bristow
+Kerberos (via AD)
+​
+Position
+Specialized
+Tags
+cybersecurity
+Information Sensitivity
+Orange
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+Microsoft 365 Defender
+​
+Position
+Standard
+Tags
+cybersecurity
+Information Sensitivity
+Orange
+Architect
+Ryan Elkins
+Contact(s)
+JD Guckenberger
+Palo Alto Prisma
+​
+Position
+Emerging
+Tags
+cybersecurity
+Information Sensitivity
+Orange
+Architect
+Josh Bloxsome
+Contact(s)
+Joshua R Day
+Palo Alto Prisma is the Container Security tool provided by Lilly. This tool is currently being stood up in partnership between Enterprise DevOps, Automation and Tools and Information Security. It will allow for runtime integration, image scanning and integration into the CI/CD pipelines.
+Use Cases
+​
+Image Scanning
+Runtime Integration
+CI/CD Integration
+Prisma Cloud (Palo Alto)
+​
+Position
+Specialized
+Tags
+cybersecurity
+Information Sensitivity
+Red
+Architect
+Doug Gorr
+Contact(s)
+Doug Gorr
+Used in Digital Health - Contact Doug Gorr. Will likely expand coverage across enterprise.
+Use Cases
+​
+Provide container security, governance, and runtime analysis.
+Restricted VPN Thick Client (Cisco VPN)
+​
+Position
+Specialized
+Tags
+cybersecurity
+Information Sensitivity
+Red
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+This method should only be used if a non-Lilly managed endpoint requires access to a system on the internal Lilly network and cannot leverage another method.
+Use Cases
+​
+Non-Lilly managed endpoint
+SAML 2.0
+​
+Position
+Standard
+Tags
+cybersecurity
+Information Sensitivity
+Red
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+Use as a secondary preferred option for application authentication.
+Use Cases
+​
+Perform authentication with an application
+Secure LDAP: Active Directory
+​
+Position
+Specialized
+Tags
+cybersecurity
+Information Sensitivity
+Red
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+Secure LDAP: Virtual Directory (RadiantLogic)
+​
+Position
+Standard
+Tags
+cybersecurity
+Information Sensitivity
+Orange
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+Virtual directory services through RadiantLogic is provided for when secure LDAP is needed. DMZ usage will require risk analysis and acceptance
+Use Cases
+​
+Perform authentication with an application
+See Also
+​
+https://collab.lilly.com/sites/IdM/Web%20Part%20Pages/VDS.aspx
+SSL VPN (LillyConnect - QuickConnect F5)
+​
+Position
+Specialized
+Tags
+cybersecurity
+VPN Tunnel (Cisco VPN)
+​
+Position
+Standard
+Tags
+cybersecurity
+Information Sensitivity
+Red
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+Use by Lilly Employees and External Workers that are on boarded with Lilly credentials when using a Lilly managed business computer
+Use Cases
+​
+Lilly Business ComputerOnBoarded users with Lilly Credentials
+Web Application Proxy
+​
+Position
+Standard
+Tags
+cybersecurity
+Information Sensitivity
+Red
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+Use for remote access to virtual applications and desktops. Access to a Virtual Desktop should only be used when a user has a business justification to participate on the network as if they were onsite with a Lilly managed endpoint.
+Use Cases
+​
+Virtual desktop and applications accessible from Lilly and non-Lilly managed computers.
+Notes
+​
+Citrix/XenApp
+See Also
+​
+https://virtual.lilly.com/
+Declining → Retired
+​
+B2B VPN Connections
+​
+Position
+Retired 2021-02-22
+Tags
+cybersecurity
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+This service is exiting (dates TBD). Existing uses of the service should remediate to an alternative solution.
+Notes
+​
+Certain cases of System to System access may require a B2B VPN with inbound access to the Lilly network. This service is exiting and existing uses of the service should remediate to an alternative solution.
+EDS
+​
+Position
+Retired 2019-03-31
+Tags
+cybersecurity
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+LSSO
+​
+Position
+Retired 2018-12-31
+Tags
+cybersecurity
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+NTLM
+​
+Position
+Declining 2019-01-01
+Tags
+cybersecurity
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+Unencrypted LDAP (AD)
+​
+Position
+Retiring
+Tags
+cybersecurity
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+VPN on Demand (MobileIron)
+​
+Position
+Retired 2020-12-31
+Tags
+cybersecurity
+Information Sensitivity
+Red
+Architect
+Ryan Elkins
+Contact(s)
+Ryan Elkins
+Limited Availability service that should only be used if the application is not able to surface data through the API gateway
+Notes
+​
+VPN on Demand is a service for Lilly managed mobile devices that allows for the launch of a restricted VPN tunnel (Production Profile) when the user is accessing specified internal web applications such as LillyNet.  This VPN tunnel will trigger 'On Demand' by automatically launching when a user attempts to browse to one of the specified URLs. VPN on Demand is a Limited Availability service that should only be used if the application is not able to surface data through the API gateway.
+Document generated from Stack Overflow Enterprise articles (prioritized) and ea_tech.csv (fallback)
+Was this helpful?
+Edit this page
+Previous
+🔐 Cybersecurity
+Next
+📊 Data & Analytics
+Checkmarx
+Cloud Custodian
+Kerberos (via AD)
+Microsoft 365 Defender
+Palo Alto Prisma
+Prisma Cloud (Palo Alto)
+Restricted VPN Thick Client (Cisco VPN)
+SAML 2.0
+Secure LDAP: Active Directory
+Secure LDAP: Virtual Directory (RadiantLogic)
+SSL VPN (LillyConnect - QuickConnect F5)
+VPN Tunnel (Cisco VPN)
+Web Application Proxy
+Declining → Retired
+B2B VPN Connections
+EDS
+LSSO
+NTLM
+Unencrypted LDAP (AD)
+VPN on Demand (MobileIron)
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

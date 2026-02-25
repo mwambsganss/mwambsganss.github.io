@@ -1,0 +1,181 @@
+Title: Enterprise Automation MarketPlace
+URL: https://automate.lilly.com/
+Description: Enterprise Automation MarketPlace
+
+Enterprise Automation MarketPlace
+Menu
+List
+menu closed
+Close
+X
+Home
+Automation Platform
+CaretRight
+CaretDown
+Intelligent Automation
+Test Automation
+Document Processing
+Content Automation
+Process Optimization
+Marketplace
+TechZone
+Submit an Idea
+Enterprise Automation
+The Enterprise Automation Team is responsible for designing, developing, and implementing automated systems and processes.
+Our goal is to eliminate, simplify, and automate your work allowing Lilly to scale efficiently.
+Get Started
+Automation Tech for Tech
+CSA Launch Pad
+All Tech@Lilly teams are expected to leverage CSA Launchpad to initiate new validation documents.
+Get Started
+ArrowRight
+Test Automation
+All Tech@Lilly teams are expected to automate 100% of viable testing.
+Get Started
+ArrowRight
+Become An Automation Autonaut
+Automation + Astronaut = Autonaut
+Have a passion for automation? Your adventure starts here!
+Get Started
+ArrowRight
+The Lilly Automation Platform
+We provide automation products, workshops, and consulting services to solve a variety of business challenges. Our solutions leverage our
+Lilly Automation Platform
+that includes the following capability pillars and technologies:
+Intelligent Automation
+Where artificial intelligence (AI) and machine learning (ML) meet automation.
+Virtual Assistant
+Orchestration & Workflow
+Decisions
+Read
+ArrowRight
+Test Automation
+Enhances software quality, accelerates release cycles, and efficiently validates software functionality.
+User Interface
+Web and Mobile
+API
+Load/Performance
+Read
+ArrowRight
+Document Processing
+Automates end to end document workflow through capture, extraction, and management of various document types.
+Digitize
+Data Extraction
+Transformation
+Redaction
+Read
+ArrowRight
+Content Automation
+Automates the transfer of content between documents and systems.
+Workflows
+Reviews
+Approvals
+Integrations
+Read
+ArrowRight
+Process Optimization
+Analyzes and uncovers opportunities to streamline your business processes.
+Process Modeling
+Process Mining
+Digital Twin
+Self-Correction
+Read
+ArrowRight
+To learn more about Lilly's Automation Platform, visit our hub for
+more detailed information
+.
+Success Stories
+RPA
+Automation Anywhere
+Nitrosamine Acceptable Intake Prediction
+Star
+Lab testing carcinogenicity driven by automated calculations to...
+Tech Stack:
+Read More
+ArrowRight
+RPA
+Automation Anywhere
+Legal Automate Intake
+Star
+Automated the process of legal document management: bot to export emails and IMS for legal hold from SEA server, saving time and cost. The bot processed 19,000 jobs in one year, surpassing the manual process by a large margin. The phase two release improved the bot architecture and efficiency. The automation will help Lilly comply with legal hold obligations and reduce the risk of over retention of data. The bot will also facilitate the migration of the e-mail archive...
+Tech Stack:
+Read More
+ArrowRight
+ChatBot
+KoreAI
+Conversational AI
+Star
+Streamlined answers on Quality and Support through chatbot...
+Tech Stack:
+Read More
+ArrowRight
+Custom dev
+Vue
+React
+Node
+Express
+Postgres
+AWS
+MyAccess Unplugged Access Reconciliation
+Star
+MUAR users are shown access discrepancies, provided a mechanism for taking action and can sign-off on their reconciliation decisions - creating a record of completed reconciliation activities...
+Tech Stack:
+Read More
+ArrowRight
+Frequently Asked Questions
+Why work with Enterprise Automation?
+Tech@Lilly has skilled and talented developers and architects across the enterprise. Those IT teams and their business partners can benefit significantly from engaging with our specialized enterprise automation team. We offer:
+Expertise in Automation
+: Our team possesses a deep understanding of automation and automated solutions. We don’t just automate tasks; we innovate processes to enhance efficiency and productivity.
+Strategic Tool Positioning
+: With access to a suite of advanced tools and capabilities, we excel at positioning them to best serve your organization’s unique needs, ensuring you get the most out of your technology investments.
+Comprehensive Solution Awareness
+: We are well-versed in the vast array of automation solutions available in the market. Our commitment is to avoid reinventing the wheel. By promoting reuse and adaptation across the enterprise, we tackle common problems more efficiently and swiftly.
+Choose to collaborate with us, and let’s transform your business.
+What kind of opportunities does the Enterprise Automation team take on?
+Our Enterprise Automation team is at the forefront of transforming business processes through automation. Here are several key characteristics that highlight great opportunities for automation:
+Repetitiveness
+: The process should involve tasks that are performed frequently and are routine in nature.
+High Volume
+: It should be a process that handles a large number of transactions or operations.
+Rule-Based
+: The tasks within the process should be governed by clear, definable rules that can be documented to create the automation.
+High Error Rate
+: Processes that are prone to human error can benefit significantly from automation.
+Time-Consuming
+: If the process takes up a considerable amount of time that could be better spent on higher-value tasks, it’s a good candidate for automation.
+Click the Submit an Idea button above for consulting help from our subject matter experts
+How do I work with the Enterprise Automation team?
+At the heart of our mission lies a commitment to make automation not just a tool, but a catalyst for enterprise transformation. We strive to deliver self-service and federated services that empower teams to implement solutions for their most pressing needs at their desired pace.
+With our Off-the-Shelf or Self-Service platforms, we provide tools where non-technical users can easily automate tasks, reducing the need for custom project work.
+Our Automation Service APIs allow Tech@Lilly teams to connect their tools to our automation platforms to leverage enterprise solutions and accelerate their work.
+With Federated Development, we decentralize automation and allow different groups across Lilly to manage their own solutions while maintaining enterprise-wide coherence.
+Your team may not have the resources or technical expertise to deliver the right automation solution for your use case. In those situations, it may be most appropriate to partner with the Enterprise Automation team on a managed delivery engagement where we may completely development a solution for you or perhaps accelerate your project work until your team is ready to take over. Additionally, major transformational initiatives may require a long-term program of process discovery and evaluation; solutioning workshops; and the delivery of a series of technical solutions. We’ll be with you for the duration.
+Our team provides multiple paths to help you complete your automation projects and achieve your goals. Please
+reach out to our team
+with your use case, and we’ll help you find the best path forward. Whether you leverage our federated services to complete your automation opportunity or engage in managed delivery with the help of our team, we are here for you.
+Can you help me identify and value potential automation opportunities?
+Yes
+– our standard engagement process includes consultation with our business relationship managers to begin developing a value story around potential use cases by identifying problem areas with your process. From there, we can lead your team in Ideation Workshops and architectural evaluations to determine the best fit in automation design, technologies, and resourcing strategies.
+Click the Submit an Idea button above for consulting help from our subject matter experts
+I have heard that ideas need to be large transformational automations to get help. Is this true?
+In the past, Enterprise Automation emphasized managed delivery and custom solution development. Such projects are resource intensive, and as such, we had to prioritize the largest, most valuable projects over smaller ones. Just as our technology stack has matured, Lilly’s Enterprise Automation team has expanded to include self-service, exposed service (API), and federated service offerings.
+Our emphasis on capability advancement means that your use cases, no matter how large or small, can come into our demand intake process and be placed in the backlogs of our capability platform teams. We’ll still prioritize the solutions that we believe to be most valuable to Lilly, but by building on the work we’ve already done, we believe we will be in a much better position to address or accelerate the solutions needed for even small pain points.
+I have a Tech@Lilly partner, can’t they help me?
+We absolutely want you to work with your Tech@Lilly partners! They are the team most closely connected to your unique use cases, business problems, and process expertise. That said, if you reach out to Enterprise Automation, we will ensure your Tech@Lilly partners are informed and aligned with any proposed solutions and changes. Our team will leverage its automation expertise to reach across functional silos to leverage the best ideas and solutions from across Tech@Lilly to help drive your use case to successful completion.
+QuotesFill
+"Creating a cycle of automation innovation learning and delivery to accelerate your productivity."
+Enterprise Platform
+Want to learn more about our team? Visit our About Us page
+About Us
+ArrowRight
+Connecting...
+Marketplace Chatbot
+Media
+File
+Tap microphone to speak
+Listening... Tap to end
+Cancel
+Tap to send
+Typing
+Powered by

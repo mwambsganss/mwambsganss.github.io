@@ -1,0 +1,148 @@
+Title: 🤲 TechHQ Contributions | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/contribute
+Description: Thank you for your interest in contributing to Tech@Lilly’s technical guidance and AI knowledge base — your input is
+
+🤲 TechHQ Contributions | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🤲 TechHQ Contributions
+📝 Markdown Extensions
+🧭 Solution Guide Template
+📅 Solution Guide Timeline
+🤲 TechHQ Contributions
+On this page
+🤲 TechHQ Contributions
+Thank you for your interest in contributing to Tech@Lilly’s technical guidance and AI knowledge base — your input is
+truly appreciated!
+TechHQ embraces a collaborative model inspired by wikis and open source communities. In our case, we follow an
+inner source
+approach, where everyone is
+encouraged to share, improve, and build together across teams.
+What should you put on TechHQ?
+Technical guidance on TechHQ should be sufficiently complete to aid architects and detailed enough for AI usage. To keep
+our technical knowledge DRY (Don't Repeat Yourself), avoid repeating content already published elsewhere; instead, link
+to important external resources.
+Solution Guide Contributions
+​
+Solution guides are now synced daily from Stack Overflow articles.
+To contribute:
+Sign up to own a guide in our
+TechHQ Solution Guides spreadsheet
+, which is on our
+TechHQ Teams site
+.
+Use the
+TechHQ Solution Guide Drafter
+(Copilot AI) to start your first draft.
+Most TechHQ Solution Guides have a Use Case / Technology table;
+Container Services
+is a good example. Other guides are
+simply a high-level overview of what architects should know, such as
+Resiliency & Disaster Recovery​
+.
+Copy the draft markdown into a
+new Stack Overflow article
+.
+For consistency, prefix the guide name with 🧭, and be sure to use the INFO block at the top, as seen in the
+Solution Guide Template
+.
+Add three tags to the article:
+techhq
+,
+solution-guide
+, and one the following:
+ai
+- Guidance for generative AI
+and LLMs
+business-enablement
+-
+Guidance for our line-of-business platforms and capabilities, e.g. clinical operations, regulatory, manufacturing,
+supply chain, commercial
+cloud
+- Guidance for cloud
+(public, private, IaaS, PaaS, & SaaS)
+cybersecurity
+- Guidance for
+cybersecurity, information security, and security best practices
+data
+- Guidance for data to
+insights guides, analytics, databases, and data science
+software-engineering
+-
+Guidance for CI/CD, automation, infrastructure as code, and deployment practices
+observability
+-
+Guidance for monitoring, logging, tracing, and application performance management
+productivity
+-
+Guidance for tools and practices that enhance individual and team efficiency
+ux
+- Guidance for user
+experience design, usability, accessibility, and interface best practices
+Your solution guide article will be automatically be organized into TechHQ.
+Source Code Contributions
+​
+Minor, individual file edits
+can be made directly to the dev branch. These edits will be automatically deployed to
+https://techhq-d.dc.lilly.com
+.
+All edits
+will be reviewed prior to prod deployments. Reviewers will vary based on
+the change. Commit messages must capture the change rationale.
+For new docs drafts and multi-doc edits
+, create a branch with the prefix
+draft/
+. Open a PR to dev when ready.
+For new site features
+, create a branch with the prefix
+features/
+. Open a PR to dev when ready.
+Neither draft/ nor feature/ branches are automatically deployed. 'Automatically delete head branches' is not enabled;
+delete your branch if it is complete or inactive.
+Running TechHQ Locally
+​
+Prerequisites
+​
+Node.js
+pnpm
+Development Builds
+​
+The dev server automatically reflects most changes without restart.
+# build & run dev
+pnpm install
+pnpm dev
+# refresh content from Stack Overflow
+pnpm stackoverflow-sync
+# lint & typecheck your code!
+pnpm eslint
+pnpm tsc
+Production Testing
+​
+The prod server has indexed search and caching for performance.
+pnpm install
+pnpm build
+pnpm serve
+Was this helpful?
+Edit this page
+Next
+📝 Markdown Extensions
+Solution Guide Contributions
+Source Code Contributions
+Running TechHQ Locally
+Prerequisites
+Development Builds
+Production Testing
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

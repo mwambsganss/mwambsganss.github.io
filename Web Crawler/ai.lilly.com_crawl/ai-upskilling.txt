@@ -1,0 +1,196 @@
+Title: AI Upskilling for Tech@Lilly Leaders | ai.lilly.com
+URL: https://ai.lilly.com/ai-upskilling
+Description: 
+
+AI Upskilling for Tech@Lilly Leaders | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+2025 AI UPSKILLING FOR TECH@LILLY LEADERS
+GOAL: DEVELOP CORE SKILLS IN AI, ML, AND GENERATIVE AI TO STRENGTHEN TECHNICAL LEADERSHIP AND ACCELERATE THE DEVELOPMENT OF INNOVATIVE AI-DRIVEN SOLUTIONS, ULTIMATELY ADVANCING GROWTH AND IMPROVING PATIENT OUTCOMES.
+Tech@Lilly leaders (M+, P5+, R7+) must complete the Tech@Lilly AI Certification Learning Journey Program for Leaders in SuccessFactors by
+August 31, 2025
+.
+STEP 1: PREPARE
+Here are recommended resources from AWS and Azure, including courses, studying materials, and practice exams to help you with certification.
+Most learners need 1-3 months to prepare
+. Certification is required on only one platform (AWS or Azure). The choice is yours.
+AIF-C01: AWS Certified AI Practitioner
+This link includes courses, a practice exam, and other prep resources available in Percipio.
+AWS Certified AI Practitioner
+This link offers an exam guide, official practice questions, free training, and more.
+AWS Skills Builder
+This link offers free resources, just use SSO and your Lilly credentials.
+AWS Bootcamp Recording
+Miss the April 2 AWS Bootcamp by Skillsoft? No problem—you can now watch it on demand to support your exam prep.
+AIF-C01 Cert Prep
+Prepare for the AIF-C01 exam with this LinkedIn Learning course.
+AI-900: Azure AI Fundamentals
+This link includes courses, a practice exam, and other prep resources available in Percipio.
+Microsoft Certified: Azure AI Fundamentals
+This link on Microsoft Learn offers skill details, self-paced content, free practice assessments, and more.
+Study Guide
+You can refer to the Microsoft study for exam AI-900.
+Enterprise Skills Initiative portal (ESI)
+This link provides digital learning, instructor-led courses, and practice exams. Log in with your Lilly credentials and search for AI-900 to find classes in your preferred language and time zone.
+Guide to Prepare for the AI-900 Exam
+Prepare for the Azure AI Fundamentals certification examination with this book.
+There are three options for AI certification in Cybersecurity:
+AWS Certified AI Practitioner (AF-C01)
+AI-900: Azure AI Fundamentals
+Certified AI Security Fundamentals (CAISF)
+It's a 2-day course covering AI security basics and how to identify and mitigate AI-related risks. It includes lectures, discussions, hands-on workshops, and project-based learning for both theoretical and practical insights.
+Tonex website
+This site provides enrollment details, including schedules, fees, and registration.
+STEP 2: PRACTICE
+Consistent practice helps you identify and improve weak areas. To ensure thorough preparation, many practice resources are available for AWS and Azure certifications.
+AWS
+AWS Certified AI Practitioner Exam Prep
+AWS Certified AI Practitioner Bootcamp
+AZURE
+AI-900: Microsoft Azure AI Fundamentals Practice Test
+Microsoft Azure Fundamentals Bootcamp
+STEP 3: TAKE
+Choose the
+Microsoft Azure AI Fundamentals
+or the
+AWS Certified AI Practitioner
+exam. Exam funding is local.
+STEP 4: UPLOAD
+Once certified, upload your certification to
+Workday
+to showcase your achievement and inspire others to do the same.
+STEP 5: SHARE
+Share your certification in the
+Tech@Lilly Leadership Community
+on Viva Engage. Inspire others and highlight the possibilities of continuous learning.
+Frequently Asked Questions
+What is the AI Ascend program?
+expand accordion
+The AI Ascend program is designed to enhance knowledge and capabilities across the organization. In 2025, it will focus on AI upskilling within Tech@Lilly.
+What is the purpose of the AI certification for leaders?
+expand accordion
+The AI certification for leaders aims to strengthen technical leadership and accelerate the development of innovative AI-driven solutions, ultimately advancing growth and improving patient outcomes.
+Who is required to complete the AI certification?
+expand accordion
+Leaders at M+, P5+, and R7+ levels must complete one of the specified AI certifications by July 30, 2025.
+What are the available AI certifications for leaders?
+expand accordion
+Leaders can choose between the
+Microsoft Azure AI Fundamentals (AI-900)
+or the
+AWS Certified AI Practitioner (AF-C01)
+certifications, with the exception of cybersecurity leaders, who can choose between the
+Microsoft Azure AI Fundamentals (AI-900)
+, the
+AWS Certified AI Practitioner (AF-C01)
+certifications, or the
+Certified AI Security Fundamentals (CAISF)
+.
+When is the deadline for completing the AI certification?
+expand accordion
+The deadline for Tech@Lilly leaders to complete the AI certification is August 31, 2025. This deadline is earlier than last year’s Cloud Fundamentals Certification deadline. Completion of the certification will be reviewed during August Performance Management check-ins.
+When will the AI certification completion be reviewed?
+expand accordion
+The completion of the AI certification will be reviewed during the August 2025 Performance Management check-ins.
+What happens when a new hire joins Tech@Lilly between now and August 31?
+expand accordion
+If a new Tech@Lilly employee is onboarded who meets the assignment criteria, they will get the AI Certification assigned to their training plan. They will have 158 days from their hire/start date to complete the certification.
+How do we pay for the certification exam?
+expand accordion
+You should use your Lilly corporate credit card to pay for the exam and submit for reimbursement.
+Can anyone in Tech@Lilly take the AI Certification, or is it only reimbursable for leaders?
+expand accordion
+Anyone in Tech@Lilly can take the AI Certification with management approval.
+Should I get the Microsoft Cloud certification before working on Microsoft AI?
+expand accordion
+Cloud certification isn’t required, but it can help familiarize you with Azure services.
+Is it better to stick with the same cloud platform for AI certification as the foundational certification?
+expand accordion
+It’s not necessary to stick with the same cloud platform for AI certification. While staying with one platform can deepen your expertise, switching platforms can expand your knowledge, especially for multi-cloud environments. Choose the platform most relevant to your business area.
+How long is my AI certification valid?
+expand accordion
+The
+AWS Certified AI Practitioner (AF-C01)
+is valid for
+3 years
+.
+The
+Microsoft Azure AI Fundamentals (AI-900)
+certification
+does not expire
+.
+Tip:
+Add your certification to
+Percipio
+to get automatic renewal reminders.
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right

@@ -1,0 +1,77 @@
+Title: Welcome to the Enterprise Test Automation Front Door
+URL: https://testing.lilly.com/sites/EnterpriseAutomationTestSite/SitePages/Landing-Page.aspx
+Description: 
+
+Welcome to the Enterprise Test Automation Front Door
+Skip to main content
+SharePoint
+
+
+Matt Wambsganss
+MW
+Sign in
+SharePoint start page
+My sites
+My news
+My files
+My lists
+Connections
+Create
+Enterprise Automation
+Our Process
+Start a Project
+Marketplace
+Internal Sprint Reports
+Home
+Get Started
+
+Get Help
+
+Edit
+Green (Public)
+
+
+New
+
+
+Page details
+Preview
+
+Immersive reader
+
+Analytics
+Draft saved 2/25/2026
+
+Share
+
+
+Edit
+
+Republish
+
+Welcome to the Enterprise Test Automation Front Door
+Contact Us For A New Project Consultation
+Learn what types of testing can be automated
+Success Stories and Testimonials
+For most use cases, 80 plus percent of the development work has been done. All that is needed is to configure the ASO's templates to your systems and write test scripts. And with our new low-code tools, you don't even need to write scripts! By following your actions in your system, test scripts can be automatically generated
+without the need for any code at all
+.
+Documents
+Documents
+See all
+New
+All Documents
+Name
+Modified
+Modified By
+Cypress Writeup.pptx
+June 28, 2024
+Tristan Englert
+Tech@Lilly_Enterprise_Test_Automation_CoE_v1.mp4
+June 19, 2024
+Tristan Englert
+...
+More
+You have reached the maximal height of 320 pixels.
+Draft saved 2/25/2026
+This will check in your changes so that everyone who has access to your page will be able to see them.

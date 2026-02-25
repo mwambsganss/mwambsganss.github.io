@@ -1,0 +1,21 @@
+Web Crawl Report
+================================================================================
+
+Root URL: https://testing.lilly.com
+Base Domain: testing.lilly.com
+Crawled: 2026-02-25 10:28:13
+
+Summary
+--------------------------------------------------------------------------------
+Total URLs: 6
+Pages: 6
+Failed: 0
+
+Pages
+--------------------------------------------------------------------------------
+https://testing.lilly.com
+https://testing.lilly.com/sites/AutomationEnablementTeam/SitePages/Automation-Intake-Form.aspx
+https://testing.lilly.com/sites/EnterpriseAutomationTestSite/Shared Documents?viewid=97fb5262-0ccb-4c49-b252-697385bd3a45
+https://testing.lilly.com/sites/EnterpriseAutomationTestSite/SitePages/Landing-Page.aspx
+https://testing.lilly.com/sites/EnterpriseAutomationTestSite/SitePages/Success%20Stories.aspx
+https://testing.lilly.com/sites/EnterpriseAutomationTestSite/SitePages/Type-of-Testing.aspx

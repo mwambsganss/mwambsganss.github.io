@@ -1,0 +1,264 @@
+Title: 🧩 Solution Overview | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution
+Description: Welcome to Solution — your space for designing, assembling, and delivering technology solutions that drive
+
+🧩 Solution Overview | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🧩 Solution Overview
+On this page
+🧩 Solution Overview
+Welcome to
+Solution
+— your space for designing, assembling, and delivering technology solutions that drive
+innovation and business success.
+Purpose
+​
+Use this space to:
+Design solutions composed of capabilities, technologies, and components
+Assemble and integrate technology to deliver value and enable innovation
+Leverage solution guides to accelerate decision-making, increase enterprise scale, and enhance value
+Need Help or Want to Contribute?
+If you're looking for a guide that isn't currently available, please contact Karl Mayer.
+We also need your contributions - please see our
+Contribute page
+Our Reference Architecture
+​
+In today’s complex solutioning landscape, teams face a wide spectrum of needs—from ambiguous problem statements to
+highly specialized technical implementations. Our Reference Architecture exists to bring clarity, consistency, and
+alignment across that spectrum.
+It’s more than a technical blueprint—it’s a thinking model that helps teams:
+Understand where they are in the solutioning journey
+Align on the right architectural patterns
+Navigate toward the appropriate solution categories
+This architecture is modular, scalable, and built to evolve—just like the problems we’re solving.
+Use Cases In Action
+​
+Problem Exploration
+​
+"I'm not sure what my problem is."
+"I know my problem and need to express it."
+These are early-stage innovation needs. The architecture supports teams with tools for problem framing and collaborative
+design. These often lead into categories like
+AI & Intelligent Agents
+or
+Business Enablement
+, where intelligent
+search, automation, or knowledge systems help shape the solution.
+SaaS Integration
+​
+"I've purchased a SaaS solution I want to implement."
+This is a clear implementation scenario. The architecture provides identity, data integration, and orchestration
+platforms to ensure secure and scalable onboarding. These needs typically align with
+Cloud & Infrastructure
+,
+Cybersecurity
+, and
+Engineering Enablement
+.
+Analytics & Compute
+​
+"I need high-performance analytics without specialized infrastructure."
+"I need high-performance analytics with custom infrastructure."
+The architecture supports both managed and custom compute paths:
+For managed needs, analytics-as-a-service platforms offer speed and scale.
+For custom needs, utility architecture enables tailored infrastructure design.
+These use cases align with
+Data & Analytics
+and
+Cloud & Infrastructure
+.
+Custom AI & Web Tools
+​
+"I want to implement a specialized AI solution in a custom web tool."
+This blends innovation with delivery. The architecture supports this through a Dev Factory model with AI and web
+development specialties, and close collaboration with UX and business design. These efforts span
+AI & Intelligent
+Agents
+,
+User Experience & Design
+, and
+Engineering Enablement
+.
+Internal Custom Development
+​
+"I want to build a custom solution with my dev team."
+This is a full-stack build scenario. The architecture provides DevX services, platforms, and API enablement to empower
+internal teams. These efforts typically draw from
+Engineering Enablement
+,
+Cloud & Infrastructure
+, and
+Observability & Reliability
+.
+Third-Party Integration
+​
+"A partner needs to use our identity, AE checking, and consent models."
+This is a governance-heavy integration. The architecture supports it through secure APIs, workflow orchestration, and
+business services. These needs intersect with
+Cybersecurity
+,
+Cloud & Infrastructure
+, and
+Business
+Enablement
+—ensuring compliance, control, and auditability.
+Tech Positioning
+​
+Tech positioning is the strategic process of aligning technology (including IaaS, PaaS, SaaS, tools, accelerators,
+components, and features) with Lilly’s goals and business needs. This ensures that every technology investment supports
+broader objectives, such as enhancing customer experience, improving operational efficiency, and driving innovation.
+Technology Classifications
+We use the following
+technology classifications
+to describe the maturity, adoption, and strategic relevance of
+technologies in Tech@Lilly:
+Emerging
+– Technologies or capabilities in the early stages of exploration and experimentation. These are
+typically undergoing
+proof-of-value
+,
+pilot programs
+, or
+viability testing
+to assess potential business impact
+and feasibility.
+Specialized
+– Solutions that are
+tailored to specific use cases
+, departments, or business units. They are
+not
+broadly adopted
+across the enterprise but deliver high value in their niche applications.
+Standard
+– Technologies or capabilities that are
+approved for enterprise-wide use
+. They are
+well-supported,
+stable, and scalable
+, with established governance, documentation, and integration patterns.
+Strategic
+– Foundational technologies or platforms that are
+critical to the enterprise’s long-term strategy
+and operations
+. These receive
+ongoing investment
+, are
+deeply embedded
+in business processes, and are
+central to
+innovation, scalability, and resilience
+.
+Declining
+– Technologies or capabilities that are
+no longer aligned with strategic direction
+. Investment is
+being reduced, and a
+retirement or replacement plan
+is being developed or considered.
+Retiring
+– Solutions that are in the
+active process of being phased out
+. Replacement technologies have been
+identified, and
+migration or decommissioning efforts
+are underway.
+Exited
+– Technologies or capabilities that have been
+fully retired
+. They are
+no longer supported, approved, or
+in use
+within the enterprise environment.
+Prohibited
+– Technologies or practices that are
+explicitly blocked or restricted
+due to
+substantial risk
+,
+compliance issues
+, or a
+formal enterprise architecture decision
+. Use is not permitted under any circumstances.
+Tech positioning plays a key role in optimizing our technology landscape, mitigate risks, and minimizing the cost of
+change. It is designed for architects and technical leaders responsible for delivering products and solutions and for
+aligning technology with strategic business goals.
+You can search and browse tech positioning records on
+LillyFlow
+using the
+tech-positioning
+tag, which are maintained by EBA as articles. To browse records for a specific capability
+or category, use the following links:
+Ask your tech positioning questions on LillyFlow
+for
+others to reuse the answers. Use the
+tech-positioning
+tag and, if applicable, include links to the related articles in
+your question. :::
+Capability
+Tag
+AI
+ai-platforms
+Automation
+enterprise-automation
+Cloud
+aiops
+cloud-computing
+content-management
+observability
+Collaboration
+collaboration-tools
+event-broadcasting
+low-code-platforms
+Cybersecurity
+cybersecurity
+Data
+business-intelligence
+data-science-tools
+database-platforms
+integration-platforms
+search-platforms
+Mobility
+app-delivery-platforms
+Software Development
+dev-tools
+UX
+ux-tools
+Was this helpful?
+Edit this page
+Next
+🤖 AI & Intelligent Agents
+Purpose
+Our Reference Architecture
+Use Cases In Action
+Problem Exploration
+SaaS Integration
+Analytics & Compute
+Custom AI & Web Tools
+Internal Custom Development
+Third-Party Integration
+Tech Positioning
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

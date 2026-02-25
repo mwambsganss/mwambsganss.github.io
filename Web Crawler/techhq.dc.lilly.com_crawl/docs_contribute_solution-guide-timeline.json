@@ -1,0 +1,20 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/contribute/solution-guide-timeline",
+  "title": "📅 Solution Guide Timeline | Tech HQ",
+  "description": "Our goal is to deliver each solution guide in less than 8 weeks, i.e. roughly 4 sprints. We'll use a",
+  "h1": [
+    "📅 Solution Guide Timeline"
+  ],
+  "h2": [
+    "Working Group​",
+    "First Draft​",
+    "Public Draft Refinement​",
+    "Request For Comment​",
+    "Living Document​"
+  ],
+  "h3": [],
+  "text_content": "📅 Solution Guide Timeline | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🤲 TechHQ Contributions\n📝 Markdown Extensions\n🧭 Solution Guide Template\n📅 Solution Guide Timeline\n📅 Solution Guide Timeline\nOn this page\n📅 Solution Guide Timeline\nOur goal is to deliver each solution guide in less than 8 weeks, i.e. roughly 4 sprints. We'll use a\nJira TECHHQ project\nto track\npriorities and progress.\n0w   -   1w\nAssemble   Working\nGroup\nTeam   Mobilized\n1w   -   2w\nFirst   Draft\nOutline   Use   Cases,\nTech,   &   Structure\nPublish   to\ntechhq-d.dc.lilly.com\n2w   -   4w\nPublic   Draft\nRefinement\nSME   Input   &\nIteration\nPromote   to\ntechhq.dc.lilly.com\n4w   -   6w\nRequest   For\nComment\nFeedback   Collection\n6w   -   ongoing\nLiving   Document\nPeriodic   Updates\nSolution Guide Delivery Lifecycle\nWorking Group\n​\nThe 'Directly Responsible' solution guide owner assembles the team to kickstart the creation of the solution guide. This\nstage involves gathering the necessary experts and stakeholders to ensure a comprehensive and well-rounded guide. We\nrecommend scheduling a standing meeting cadence for the drafting process.\nFirst Draft\n​\nThe team outlines the use cases and technologies relevant to the solution guide. This stage involves initial research\nand documentation to create a foundational draft. The first draft should be checked in and published to the TechHQ\nnon-prod environment.\nPublic Draft Refinement\n​\nSubject matter experts (SMEs) provide input and iterate on the draft. This stage focuses on refining the content to\nensure accuracy and relevance. The Public Draft should be promoted to TechHQ Prod by removing the\ndraft:\ntrue\nor\nunlisted: true\nmetadata.\nRequest For Comment\n​\nCrucial feedback is gathered from stakeholders and other relevant parties. This stage involves collecting and\nincorporating feedback to enhance the guide's comprehensiveness and usability.\nLiving Document\n​\nOnce all feedback has been incorporated and the guide is finalized, it becomes a Living Document. This status indicates\nthat the guide will be continuously updated and revised as needed to remain current and relevant.\nWas this helpful?\nEdit this page\nPrevious\n🧭 Solution Guide Template\nWorking Group\nFirst Draft\nPublic Draft Refinement\nRequest For Comment\nLiving Document\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 0,
+  "depth": 2,
+  "crawled_at": "2026-02-25T10:07:05.662339"
+}

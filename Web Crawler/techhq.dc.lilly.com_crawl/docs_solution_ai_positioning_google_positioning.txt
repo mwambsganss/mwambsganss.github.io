@@ -1,0 +1,261 @@
+Title: Google | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/positioning/google_positioning
+Description: Last Updated: July 25, 2025
+
+Google | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Agentic Enterprise
+Google
+Platforms
+Prompt Management
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+Positioning
+Google
+On this page
+Google
+Document Information
+Last Updated:
+July 25, 2025
+Owner:
+Brian Lewis
+Point of Contact:
+Ali Kharazmi
+Contributors and Reviewers:
+Archit Kaila, Haitham Maya, Malika Mahoui
+Executive Summary
+​
+This document outlines Eli Lilly's strategic positioning regarding Google technologies, services, and platforms. While
+maintaining our dual-cloud strategy with Azure and AWS as primary platforms, we recognize Google's specialized
+capabilities in advanced AI and other unique business solutions. This document provides guidance on when and how Google
+technologies should be evaluated, adopted, and governed within our enterprise architecture.
+Strategic Positioning
+​
+AI Platform
+​
+We are taking a cloud-agnostic approach to AI at Lilly, with Cortex as our main platform. For a complete view of our AI
+platform positioning, refer our AI Positioning document. Approved platforms, such as Cortex, should be explored before
+considering Google AI capabilities.
+Model Approval Process
+: All AI models must be approved for specific use cases by the Advanced Intelligence team. Models are not blanket approved but rather evaluated and approved based on their technical suitability for individual business requirements and use cases.
+Please feel free to reach out to your local area architect, the Enterprise AI Architecture team or the Cortex Product team for consult on best path for your solution.
+Requesting New Model Evaluation
+: If there is a Google model that you would like to explore further that is not available in Cortex or LLM Gateway, please reach out to the Advanced Intelligence team to help you evaluate the model for your specific solution and use case.
+Dual-Cloud Foundation
+​
+Lilly maintains a dual-cloud strategy with Azure and AWS as our primary platforms. Google Cloud Platform (GCP) is
+positioned as a specialized solution for specific use cases rather than a third general-purpose hyperscaler.
+Primary Platforms
+:
+Azure
+and
+AWS
+remain our primary focus for cloud and AI solutions
+Evaluation Process
+:
+Azure
+and
+AWS
+solutions must be evaluated first before considering Google capabilities
+Google's Role
+: Specialized provider for
+unique
+business capabilities.
+Key Google Proprietary Services
+​
+Lilly has identified several proprietary Google services that offer unique capabilities aligned with our strategic
+needs. These services are evaluated and adopted based on their ability to deliver specialized functionality that
+complements our existing technology stack.
+info
+For each of these solutions, the business area team/leader will be responsible for local contracting,
+direct billing, driving appropriate design approvals (e.g. EBA, Cyber, Legal, Privacy, Quality), and ongoing support
+model. Teams should expect slower process for these initiatives given the custom nature of the solution and lack of
+enterprise approved patterns.
+Vertex AI
+​
+Vertex AI is Google Cloud's unified machine learning platform that enables the training and deployment of ML models and
+AI applications at scale.
+Key Features
+: AutoML capabilities, custom model training, MLOps tooling, and model monitoring
+Strategic Value
+: Provides advanced ML capabilities with simplified workflows for data scientists and ML engineers
+Use Cases
+: Predictive analytics, computer vision applications, and specialized ML model deployment
+Lilly Strategy Today
+: Not approved for separate implementation. Only can be used as part of an Agentspace
+containerized solution with governance approval. (See Agentspace below)
+Gemini Models
+​
+Gemini represents Google's most advanced multimodal AI models, capable of understanding and generating content across
+text, code, audio, image, and video.
+Key Features
+: Multimodal capabilities, advanced reasoning, and state-of-the-art performance
+Strategic Value
+: Enables sophisticated AI applications that can process and generate multiple types of content
+Use Cases
+: Complex content generation, multimodal analysis, and advanced reasoning tasks
+Lilly Strategy Today
+: Gemini models are available through Cortex with use case limitations. Please contact the
+Cortex team to discuss use case specifics. Alternatively, you could leverage the LLM Recommender for available models
+with strengths comparable with Gemini models:
+https://llm-recommender.apps-d.lrl.lilly.com
+AgentSpace
+​
+AgentSpace is Google's platform for building, deploying, and managing AI agents that can perform complex tasks through
+reasoning and tool use.
+Key Features
+: Agent development framework, built-in reasoning capabilities, and tool integration
+Strategic Value
+: Enables the creation of specialized AI agents tailored to specific business processes
+Use Cases
+: Automated workflows, intelligent assistants, and process automation
+Lilly Strategy Today
+: AgentSpace is not established as a foundational enterprise service at this time as feature
+sets are similar (and in some cases less mature) than corresponding features in Azure and AWS. For approved business
+use cases, a containerized deployment of AgentSpace with custom UI is appropriate to enable usage of the broader
+Google AI platform capabilities.
+A2A Protocol Positioning
+​
+Lilly Strategy Today
+: Lilly is committed to advancing industry standard agent communication protocols and to the
+potential for A2A to be a leading standard for our adoption. Since we are still early days with this standard, we should
+be cautious in assuming it will address full interoperability in the longer term. Our approach at this time is to
+establish defined standards within Lilly that leverage A2A as input but also keep us independent.
+Agent-to-Agent (A2A) Protocol Overview
+​
+A2A is an open protocol developed by Google that enables AI agents built on different platforms to communicate and
+collaborate effectively.
+Key Features
+: Standardized communication format, capability discovery, and task management
+Strategic Value
+: Facilitates interoperability between agents in a heterogeneous AI ecosystem
+Use Cases
+: Complex workflows requiring multiple specialized agents, cross-platform agent collaboration
+Additional Information
+: Please see our
+protocols documentation
+for more detailed
+information and connect with the AI Architecture team with any urgent considerations for your projects.
+Google Technology Adoption Framework
+​
+Advanced Cloud and AI Offerings
+​
+We have established a Google Cloud Platform Landing Zone to ensure we have capabilities available to support priority
+use cases. This is not setup for general use and we are not planning on qualifying any additional Google services until
+we have determined the value/cost benefits to broadening our Cloud and AI footprint.
+Google Agents and A2A Protocol
+​
+Lilly will strategically leverage Google Agents within our environment where they align with business requirements.
+Agent Integration
+: A2A registered agents will be integrated as qualified agents where applicable
+Protocol Standards
+: Lilly is committed to advancing industry standard agent communication protocols
+A2A Approach
+: While recognizing A2A's potential as a leading standard, we maintain a cautious approach
+Internal Standards
+: We will establish defined standards within Lilly that leverage A2A as input while maintaining
+independence
+Containerized Business Services
+​
+The architecture pattern established with tech transfer will serve as our model for other prioritized business value
+initiatives.
+Architecture Pattern
+: AgentSpace backend with custom UI, building agents using ADK for Agent Engine
+Implementation Approach
+: Creation of bespoke agents tailored to specific business needs
+Governance Requirements
+: All new use cases require approval through Google governance managed through Enterprise
+Business Architecture. Submit AIR request to initiate process.
+Business Responsibility
+: Business area teams are responsible for:
+Local contracting
+Direct billing
+Driving appropriate design approvals (EBA, Cyber, Legal, Privacy, Quality)
+Ongoing support model
+Managing potentially slower processes due to custom solution requirements
+Governance Framework
+​
+A centralized governance model will oversee all technology initiatives involving Google services.
+Governance Structure
+​
+Ownership
+: Enterprise Business Architecture (EBA) team will own the governance model
+Project Transparency
+: All initiatives will be submitted to the AI registry
+Investment Decisions
+: Information Officers (IOs) will own decisions to invest in local business solutions
+Architectural Compliance
+: Local area lead architects are responsible for ensuring solutions adhere to positioning
+guidelines
+AI Capability Decision Authority
+: Enterprise AI Architect and AI Architecture and Operations (AIAO) will own
+decisions for:
+Addition of new AI services
+A2A framework implementation
+AI Model Decision Authority
+: Advanced Intelligence will own decisions for:
+Evaluation and approval of models not currently available through Cortex
+Use case-specific model approval and technical recommendations
+Cloud Capabilities Decision Authority
+: Enterprise Cloud Architect and Cloud Architecture and Strategy Team (CAST)
+will own decisions for:
+Addition of any new foundational cloud services
+Was this helpful?
+Edit this page
+Previous
+Agentic Enterprise
+Next
+Platforms
+Executive Summary
+Strategic Positioning
+AI Platform
+Dual-Cloud Foundation
+Key Google Proprietary Services
+Vertex AI
+Gemini Models
+AgentSpace
+A2A Protocol Positioning
+Agent-to-Agent (A2A) Protocol Overview
+Google Technology Adoption Framework
+Advanced Cloud and AI Offerings
+Google Agents and A2A Protocol
+Containerized Business Services
+Governance Framework
+Governance Structure
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

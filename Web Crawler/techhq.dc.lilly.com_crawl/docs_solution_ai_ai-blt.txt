@@ -1,0 +1,448 @@
+Title: 🗄️ AI & Intelligent Agents BLT | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/ai-blt
+Description: The AI & Intelligent Agents Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+
+🗄️ AI & Intelligent Agents BLT | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+🗄️ AI & Intelligent Agents BLT
+On this page
+🗄️ AI & Intelligent Agents BLT
+The AI & Intelligent Agents Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+Can't find a technology?
+Use TechHQ's search feature to look across all technology documentation. For questions or to suggest additions to this list, contact the
+Enterprise Business Architecture team
+.
+AWS Textract
+​
+Position
+Emerging
+Tags
+aws, cloud-computing
+Information Sensitivity
+Architect
+Todd Walters
+Contact(s)
+Dustin Jefford
+Use Cases
+​
+Ethics & Compliance Expense Analysis
+​
+AADS is using Textract Expense Analysis to pull text from receipts and invoices submitted to Concur Expense Reporting. The complete stack is as follows:
+Source receipt images in S3.
+Lambda function to start expense analysis.
+Textract sends notification to SNS Topic when job completes.
+Message from SNS Topic is written to SQS.
+Lambda function listens to SNS Topic. Writes completed analysis output to S3 as a JSON document.
+DynamoDB is used to sync source, Textract job ID, and target.
+Azure Bot Composer
+​
+Position
+Emerging
+Tags
+enterprise-automation, azure
+Architect
+Greg Graf
+Contact(s)
+Jason Yazell
+Preferred for internal chatbots
+Use Cases
+​
+Bot services composer to integrate with other chatbots
+Notes
+​
+Framework for other teams to have locally developed chatbots integrated wtih. Enterprise teams (automation) own user "front door", local / domain specific chatbots will be owned and stewarded by local teams, with integration help provided by enterprise team.
+Azure OpenAI Services
+​
+Position
+Emerging
+Tags
+azure-ai, openai, ai-platforms
+Information Sensitivity
+Red
+Architect
+Rubin Wei
+Contact(s)
+Andrew R Povinelli, Liping Cai, Malika Mahoui
+OpenAI based Large Language Model services for content generation, summarization, semantic search, image creation, and natural language to code translation. Please refer to the entry on Azure AI (Cognitive) Services to understand other components within Azure AI (Cognitive) Services.
+Use Cases
+​
+Pro-code developed solutions for content generation, summarization, semantic search, image creation, and natural language to code translation.
+Notes
+​
+Green data for sandbox environment. Red data for Production environment.
+See Also
+​
+https://collab.lilly.com/sites/GenerativeAI/
+Tech Position: Azure AI Services
+IBM Watson Discovery
+​
+Position
+Emerging
+Tags
+data-science-tools
+Information Sensitivity
+Green
+Architect
+Malika Mahoui
+Contact(s)
+Surya Prakash Rawat
+NLP AI powered cognitive search engine, text mining and topic modeling  tools using unstructured data
+Use Cases
+​
+Use this tool to perform cognitive search  from various unstructured data sources, Extract entities from unstructured data without writing a code, This tool is not suitable if you have only structured data
+Notes
+​
+Extract data from websites and other data sources and allow users to search the content using web interface. It includes Natural Language Understanding capabilities. Cloud Subscription based and charges based on number of documents.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+IBM Watson Knowledge Studio
+​
+Position
+Emerging
+Tags
+data-science-tools
+Information Sensitivity
+Green
+Architect
+Malika Mahoui
+Contact(s)
+Surya Prakash Rawat
+Use to create and train ML models for Watson Explorer, Watson Discovery and Watson NLU
+Use Cases
+​
+Create ML models to deploy it in Watson Discovery and Watson NLU, This is not suitable to develop, train and deploy model in non-Watson services
+Notes
+​
+Cloud Subscription based and charges based on number of users.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+IBM Watson Language Translator
+​
+Position
+Emerging
+Tags
+data-science-tools
+Information Sensitivity
+Yellow
+Architect
+Malika Mahoui
+Contact(s)
+Surya Prakash Rawat
+Use to translate text from one language to another and supports customization to create language models
+Use Cases
+​
+Use this tool if you want to language translations and create domain model to improve translation accuracy.
+Notes
+​
+it is a on-prem API based service. All operations such as translation, model creation, etc. are done through API calls.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+IBM Watson NLU
+​
+Position
+Emerging
+Tags
+data-science-tools
+Information Sensitivity
+Green
+Architect
+Malika Mahoui
+Contact(s)
+Surya Prakash Rawat
+Use to extract keywords, concepts, Semantics and emotions from unstructured  data (Text Analytics)
+Use Cases
+​
+Use this tool if you want to extract entities, sentiments from unstructured data using NLP algorithms using no code
+Notes
+​
+Exact keyworks from pdf, text files and other sources contained human readable data. Use Machine learning model created using Watson Knowledge studio to extract custom information.  Cloud Subscription based and charges based on use.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+IBM Watson Speech to Text
+​
+Position
+Emerging
+Tags
+data-science-tools
+Architect
+Malika Mahoui
+Contact(s)
+Surya Prakash Rawat
+Convert speeches/audio data to text
+Use Cases
+​
+Use this tool when we have have audio files/data need to be converted into text, this support language and acoustic models to improve the accuracy of output.
+Notes
+​
+it's a on-prem API based service. All operations such as audio transcribe, model (Language, Acoustic) creation and training are done through API calls.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Jupyter
+​
+Position
+Standard
+Tags
+data-science-tools
+Architect
+Rubin Wei
+Contact(s)
+Jeff Kriske
+Recommended interactive computing environment for Python programmers especially for data science/machine learning/visualization projects.
+Notes
+​
+Jupyter Notebook is a web-based interactive computational environment for creating notebook documents for programming languages including Julia, Python and R. JupyterLab is a newer user interface for Project Jupyter and offers the building blocks of the classic Jupyter Notebook in a flexible user interface. Both Jupyter Notebook and JupyterLab are free and open source. You can install Jupyter Notebook or JupyterLab on your local Windows or Mac computer or access JupyterHub (
+https://hpc.am.lilly.com/index.php/JupyterHub
+) hosted on Lilly High Performance Computing (
+https://hpc.am.lilly.com/index.php/Main_Page
+).  There is no technical support for installation on your Windows or Mac computer.
+See Also
+​
+https://hpc.am.lilly.com/index.php/JupyterHub
+Kore.ai
+​
+Position
+Emerging
+Tags
+enterprise-automation, ai-platforms, chatbots
+Information Sensitivity
+Red
+Architect
+Jason Yazell
+Contact(s)
+Jason Yazell
+CMDB CI
+CI00000053183649
+Kore.ai XO Platform is a conversational Ai platform that allows developers build chatbots that use Ai to create intelligent conversations with users and integrate with other systems to perform actions for the user.
+Use Cases
+​
+Intelligent Virtual Assistants, Human Agent Assistant, Service Desk Automation, Conversational AI, Chatbots
+Notes
+​
+Able to integrate with other internal services such as Lilly Translate, ServiceNow, etc., allowing automation of user/agent manual tasks.
+See Also
+​
+kore.ai
+Conversational AI in Enterprise Automation
+Lilly Enterprise NLP Solutions (LENS)
+​
+Position
+Emerging
+Tags
+data-science-tools
+Information Sensitivity
+Green
+Architect
+Rubin Wei
+Contact(s)
+Todd Sanger
+Use to ingest, transform and analyze structured, semi structured and unstructured data using NLP ML models
+Use Cases
+​
+Use this tool to process unstructured data using NLP models ( Entities extraction, Sentiment Analysis, Feedback management etc.)
+Notes
+​
+This is Lilly developed NLP framework  using Ontology/NLP based ML models. Capabilities include protocol extraction, ReQuest and Toxicology Report Search. License is not required.
+See Also
+​
+https://collab.lilly.com/sites/AADSEnterprise/SitePages/NLP.aspx
+Lilly Translate
+​
+Position
+Specialized
+Tags
+data-science-tools
+Information Sensitivity
+Red
+Architect
+Rubin Wei
+Contact(s)
+Malika Mahoui
+Translation unstructured data in human language form from one language to other language
+Use Cases
+​
+Use this tool if you have a requirements to translate human  content in text format  from one language to another language using low cost APIs
+Notes
+​
+License is not required.
+See Also
+​
+https://translate.lilly.com
+Microsoft Copilot Studio
+​
+Position
+Standard
+Tags
+ai-platforms, virtual-agents, copilot-studio
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Steve Scott
+Copilot Studio, a component of the Power Platform, is a low-code platform that enables users to create, manage, and deploy AI agents. It offers intuitive tools and seamless integration with Microsoft 365 to enhance customer interactions and streamline business processes.
+Use Cases
+​
+Create custom AI agents grounded in Microsoft 365 data using low code
+Create custom AI agents that can leverage actions and connectors from the Power Platform
+Notes
+​
+Be sure to follow all
+guidelines for using AI responsibly at Lilly
+as well as guidance at
+ai.lilly.com
+. And always be sure to
+Protect Lilly data
+.
+See Also
+​
+https://learn.microsoft.com/en-us/microsoft-copilot-studio/
+https://learn.microsoft.com/en-us/training/modules/power-virtual-agents-bots/
+Tamr
+​
+Position
+Specialized
+Tags
+data-science-tools
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Andrea Price
+Use to prepare , cleanse and qualify data to produce consumable data products.  Its unique feature is to map data fields using  inbuild ML models. It works with structured and semi-structed data.
+Use Cases
+​
+Use to prepare, transform and map data to fields using inbuilt ML algorithms and consume it through various dashboard and analytics tools, this is not suitable if you are already using data transformation capabilities within analytics tools and you don’t have requirements to share transformed data
+Notes
+​
+Extract data from EDB data sources (S3, Postgres and Redshift) , cleanse, map to the target field  and then publish cleansed data to the target data sources for consumption. This tool is licensed based specific use case requirements. License is required.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Yseop
+​
+Position
+Specialized
+Tags
+data-science-tools
+Information Sensitivity
+Red
+Architect
+Rubin Wei
+Contact(s)
+Nethra Nandakumar
+Template-driven Natural Language Generation (NLG) platform positioned for enterprise use in targeted functions. As of December 2022, documents in the Clinical and Finance functions (see use cases section) are available, with additional functions (e.g. Science, Marketing, etc.) to be built into the platform over the next 3 years of collaboration (through 2025). Extension to other areas requires development and prioritization. Yseop is not currently positioned for ML/model-driven NLG scenarios. If you have any NLG request, please email the Architect & Contact. They will help you determine the appropriate technology (template-driven vs ML/model-driven), resources and priority.
+Use Cases
+​
+Clinical (Patient Narratives, Clinical Study Reports, Summary of Clinical Safety) and Finance (Monthly Reports)
+Notes
+​
+Yseop is a no code intelligent report automation platform using NLG. The platform is provided as SaaS hosted in AWS and can be integrated with other solutions via existing API's. A Java-based SDK exists for platform extensibility.
+See Also
+​
+https://collab.lilly.com/sites/GenerativeAI
+Document generated from Stack Overflow Enterprise articles (prioritized) and ea_tech.csv (fallback)
+Declining → Retired
+​
+Azure LUIS
+​
+Position
+Retired 2024
+Tags
+enterprise-automation, azure
+Architect
+Greg Graf
+Contact(s)
+Jason Yazell
+Preferred chatbot framework for inferring intent from user inputs where context could steer user to different answers
+Use Cases
+​
+AI chatbot service for more complex, intent-driven interactions and solutions
+Notes
+​
+Advanced chatbot solution that uses AI to derive user intent and determine actions; uses AI to ensure that the right answer / solution is provided based on intent and context.
+Azure QnA Maker
+​
+Position
+Retired 2025
+Tags
+enterprise-automation, azure
+Architect
+Greg Graf
+Contact(s)
+Jason Yazell
+Preferred for simple chatbots using content from Sharepoint sites, knowledge base articlets, etc.
+Use Cases
+​
+Simple chatbot used against known article / content. No need for AI to infer user intent.
+Notes
+​
+Chatbots to help users self-serve against a known set of data or article(s). Best used when data or content is changing frequently and to reduce calls / engagements with various business partners.
+Was this helpful?
+Edit this page
+Previous
+AI Submission Guide Template
+Next
+🤖 Agentic AI
+AWS Textract
+Azure Bot Composer
+Azure OpenAI Services
+IBM Watson Discovery
+IBM Watson Knowledge Studio
+IBM Watson Language Translator
+IBM Watson NLU
+IBM Watson Speech to Text
+Jupyter
+Kore.ai
+Lilly Enterprise NLP Solutions (LENS)
+Lilly Translate
+Microsoft Copilot Studio
+Tamr
+Yseop
+Declining → Retired
+Azure LUIS
+Azure QnA Maker
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

@@ -1,0 +1,601 @@
+<!DOCTYPE html><html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-solution/ai/coding-tools/index" data-has-hydrated="true" data-theme="light" data-theme-choice="light" data-rh="lang,dir,class,data-has-hydrated"><head><meta charset="UTF-8"><meta name="generator" content="Docusaurus v3.9.2"><title>AI Coding Tools | Tech HQ</title><meta data-rh="true" name="viewport" content="width=device-width, initial-scale=1.0"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://techhq.dc.lilly.com/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://techhq.dc.lilly.com/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://techhq.dc.lilly.com/docs/solution/ai/coding-tools/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="AI Coding Tools | Tech HQ"><meta data-rh="true" name="description" content="Last Updated: November 7, 2025"><meta data-rh="true" property="og:description" content="Last Updated: November 7, 2025"><style type="text/css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+  --fa-font-light: normal 300 1em/1 "Font Awesome 6 Pro";
+  --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Pro";
+  --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-regular: normal 400 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-light: normal 300 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-thin: normal 100 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-regular: normal 400 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-light: normal 300 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-thin: normal 100 1em/1 "Font Awesome 6 Sharp Duotone";
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+  overflow: visible;
+  box-sizing: content-box;
+}
+
+.svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285705em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  top: 0.25em;
+}
+.svg-inline--fa.fa-fw {
+  width: var(--fa-fw-width, 1.25em);
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-counter-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: 0.625em;
+  line-height: 0.1em;
+  vertical-align: 0.225em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+  line-height: 0.0833333337em;
+  vertical-align: 0.125em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+  line-height: 0.0714285718em;
+  vertical-align: 0.0535714295em;
+}
+
+.fa-lg {
+  font-size: 1.25em;
+  line-height: 0.05em;
+  vertical-align: -0.075em;
+}
+
+.fa-xl {
+  font-size: 1.5em;
+  line-height: 0.0416666682em;
+  vertical-align: -0.125em;
+}
+
+.fa-2xl {
+  font-size: 2em;
+  line-height: 0.03125em;
+  vertical-align: -0.1875em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: var(--fa-li-margin, 2.5em);
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: calc(-1 * var(--fa-li-width, 2em));
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.08em);
+  padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+}
+
+.fa-pull-left {
+  float: left;
+  margin-right: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right {
+  float: right;
+  margin-left: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  animation-name: fa-beat;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  animation-name: fa-bounce;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  animation-name: fa-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  animation-name: fa-beat-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  animation-name: fa-flip;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  animation-name: fa-shake;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  animation-name: fa-spin;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 2s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  animation-name: fa-spin;
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+.fa-bounce,
+.fa-fade,
+.fa-beat-fade,
+.fa-flip,
+.fa-pulse,
+.fa-shake,
+.fa-spin,
+.fa-spin-pulse {
+    animation-delay: -1ms;
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+    transition-delay: 0s;
+    transition-duration: 0s;
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-shake {
+  0% {
+    transform: rotate(-15deg);
+  }
+  4% {
+    transform: rotate(15deg);
+  }
+  8%, 24% {
+    transform: rotate(-18deg);
+  }
+  12%, 28% {
+    transform: rotate(18deg);
+  }
+  16% {
+    transform: rotate(-22deg);
+  }
+  20% {
+    transform: rotate(22deg);
+  }
+  32% {
+    transform: rotate(-12deg);
+  }
+  36% {
+    transform: rotate(12deg);
+  }
+  40%, 100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  transform: rotate(var(--fa-rotate-angle, 0));
+}
+
+.fa-stack {
+  display: inline-block;
+  vertical-align: middle;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: var(--fa-stack-z-index, auto);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.sr-only,
+.fa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:not(:focus),
+.fa-sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}</style><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://techhq.dc.lilly.com/docs/solution/ai/coding-tools/"><link data-rh="true" rel="alternate" href="https://techhq.dc.lilly.com/docs/solution/ai/coding-tools/" hreflang="en"><link data-rh="true" rel="alternate" href="https://techhq.dc.lilly.com/docs/solution/ai/coding-tools/" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Tech HQ RSS Feed"><link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Tech HQ Atom Feed"><link rel="preconnect" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com"><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-J14K334996"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-J14K334996",{anonymize_ip:!0})</script><link rel="icon" href="/img/favicon.ico"><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#25c2a0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" href="/img/favicon.ico"><link rel="mask-icon" href="/img/logo-dark.svg" color="#25c2a0"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="msapplication-TileColor" content="#25c2a0"><link rel="stylesheet" href="/assets/css/styles.b4e04221.css"><script src="/assets/js/runtime~main.fb55c054.js" defer=""></script><script src="/assets/js/main.a9e40874.js" defer=""></script><script type="application/ld+json" data-rh="true">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"🤖 AI & Intelligent Agents","item":"https://techhq.dc.lilly.com/docs/solution/ai/"},{"@type":"ListItem","position":2,"name":"Coding Tools","item":"https://techhq.dc.lilly.com/docs/solution/ai/coding-tools/"}]}</script><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/377700c7.615e85c2.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/ab169593.258b9817.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/f83e91a9.fb7efdbf.js"><link rel="prefetch" href="/assets/js/1df93b7f.aa171871.js"><link rel="prefetch" href="/assets/js/a7456010.d2461d2a.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/8337dadf.481d17a3.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/4766df6d.d26b3a73.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/355b7243.7ac8774f.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/060541e1.84596e91.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/ec9d463c.5f0d73ab.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/bc043b77.59531655.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/3e09d93c.c5c4f527.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/6edbee48.596a2d5b.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/407bcc04.08937140.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/9e87a62c.a3cfcfab.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/5705d7e7.2e56b88d.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/c0cc2634.9c6fac70.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/3fbfc416.99d78523.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/d4650589.07f9b35b.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/2a3200c3.1941bf4b.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/8def2dd5.af4ae0de.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/def0e882.66dc7714.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/2b407232.76712fb7.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/f44310c7.086c516c.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/9ac3e011.5c64d3bb.js"><link rel="prefetch" href="/assets/js/a6aa9e1f.2bdf7efd.js"><link rel="prefetch" href="/assets/js/36994c47.a641290b.js"><link rel="prefetch" href="/assets/js/814f3328.69bba93f.js"><link rel="prefetch" href="/assets/js/10e75197.da9cdbf4.js"><link rel="prefetch" href="/assets/js/74741bf4.789922d0.js"><link rel="prefetch" href="/assets/js/5d5b7b15.a71995be.js"><link rel="prefetch" href="/assets/js/0ca03195.c59285f9.js"><link rel="prefetch" href="/assets/js/c15d9823.f443d85e.js"></head><body class="navigation-with-keyboard" data-rh="class" style="overflow: visible;"><svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_ToEg" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo-dark.svg" alt="Tech@Lilly Logo" class="themedComponent_br9s themedComponent--light_VhRU" height="50" width="100"></div><b class="navbar__title text--truncate">Tech HQ</b></a><a class="navbar__item navbar__link" href="/docs/innovate/">Innovate</a><a class="navbar__item navbar__link" href="/docs/plan/">Plan</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/solution/">Solution</a><a class="navbar__item navbar__link" href="/docs/access/">Access</a><a class="navbar__item navbar__link" href="/docs/learn/">Learn</a><a class="navbar__item navbar__link" href="/docs/contribute/">Contribute</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/blog">Updates</a><a href="https://flow.lilly.com" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link stackoverflow-link" aria-label="LillyFlow">LillyFlow<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a><div class="navbarSearchContainer_FAGn"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;"><input id="search_input_react" type="search" placeholder="Search ⌘+K" aria-label="Search" class="navbar__search-input search-bar ds-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="ds-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;"><div class="ds-dataset-1"></div></span></span></div></div><div class="toggle_h2qI colorModeToggle_TN9Z"><button class="clean-btn toggleButton_Nk0O" type="button" title="light mode" aria-label="Switch between dark and light mode (currently light mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX lightToggleIcon_KjIl"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX darkToggleIcon_fWkg"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX systemToggleIcon_Wx7I"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_gynm"><div class="docsWrapper_tLRL"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_xrlZ" type="button"></button><div class="docRoot_oqp2"><aside class="theme-doc-sidebar-container docSidebarContainer_Ze6h"><div class="sidebarViewport_dbQw"><div class="sidebar_Q15t"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_MLTQ"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/solution/"><span title="🧩 Solution Overview" class="linkLabel_bwUU">🧩 Solution Overview</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist menu__link--active" href="/docs/solution/ai/"><span title="🤖 AI &amp; Intelligent Agents" class="categoryLinkLabel_MFuf">🤖 AI &amp; Intelligent Agents</span></a><button aria-label="Collapse sidebar category '🤖 AI &amp; Intelligent Agents'" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list" style="display: block; overflow: visible; height: auto;"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" tabindex="0" href="/docs/solution/ai/ecosystem/"><span title="Ecosystem" class="categoryLinkLabel_MFuf">Ecosystem</span></a><button aria-label="Expand sidebar category 'Ecosystem'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" tabindex="0" href="/docs/solution/ai/patterns/"><span title="Patterns" class="categoryLinkLabel_MFuf">Patterns</span></a><button aria-label="Expand sidebar category 'Patterns'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" tabindex="0" href="/docs/solution/ai/positioning/"><span title="Positioning" class="categoryLinkLabel_MFuf">Positioning</span></a><button aria-label="Expand sidebar category 'Positioning'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" tabindex="0" href="/docs/solution/ai/examples/"><span title="Examples" class="categoryLinkLabel_MFuf">Examples</span></a><button aria-label="Expand sidebar category 'Examples'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible menu__list-item-collapsible--active"><a class="categoryLink_O72p menu__link menu__link--sublist menu__link--active" aria-current="page" tabindex="0" href="/docs/solution/ai/coding-tools/"><span title="Coding Tools" class="categoryLinkLabel_MFuf">Coding Tools</span></a><button aria-label="Collapse sidebar category 'Coding Tools'" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list" style="display: block; overflow: visible; height: auto;"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/coding-tools/lilly-code"><span title="Lilly Code" class="linkLabel_bwUU">Lilly Code</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a href="#" class="categoryLink_O72p menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0"><span title="Standards" class="categoryLinkLabel_MFuf">Standards</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/ai_submission_guides/"><span title="AI Submission Guide Template" class="linkLabel_bwUU">AI Submission Guide Template</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/ai-blt"><span title="🗄️ AI &amp; Intelligent Agents BLT" class="linkLabel_bwUU">🗄️ AI &amp; Intelligent Agents BLT</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/agentic_ai"><span title="🤖 Agentic AI" class="linkLabel_bwUU">🤖 Agentic AI</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/conversational_ai"><span title="🧭 Conversational AI" class="linkLabel_bwUU">🧭 Conversational AI</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/knowledge_bases"><span title="🧭 Knowledge Bases" class="linkLabel_bwUU">🧭 Knowledge Bases</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/multimodal_ai"><span title="🧭 Multimodal AI" class="linkLabel_bwUU">🧭 Multimodal AI</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/translation_services"><span title="🧭 Translation Services" class="linkLabel_bwUU">🧭 Translation Services</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/business-enablement/"><span title="🏢 Business Enablement" class="categoryLinkLabel_MFuf">🏢 Business Enablement</span></a><button aria-label="Expand sidebar category '🏢 Business Enablement'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/cloud/"><span title="☁️ Cloud &amp; Infrastructure" class="categoryLinkLabel_MFuf">☁️ Cloud &amp; Infrastructure</span></a><button aria-label="Expand sidebar category '☁️ Cloud &amp; Infrastructure'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/cybersecurity/"><span title="🔐 Cybersecurity" class="categoryLinkLabel_MFuf">🔐 Cybersecurity</span></a><button aria-label="Expand sidebar category '🔐 Cybersecurity'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/data/"><span title="📊 Data &amp; Analytics" class="categoryLinkLabel_MFuf">📊 Data &amp; Analytics</span></a><button aria-label="Expand sidebar category '📊 Data &amp; Analytics'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/engineering/"><span title="🛠️ Engineering Enablement" class="categoryLinkLabel_MFuf">🛠️ Engineering Enablement</span></a><button aria-label="Expand sidebar category '🛠️ Engineering Enablement'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/observability/"><span title="🛰️ Observability &amp; Reliability" class="categoryLinkLabel_MFuf">🛰️ Observability &amp; Reliability</span></a><button aria-label="Expand sidebar category '🛰️ Observability &amp; Reliability'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/productivity/"><span title="🚀 Team Productivity" class="categoryLinkLabel_MFuf">🚀 Team Productivity</span></a><button aria-label="Expand sidebar category '🚀 Team Productivity'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/ux/"><span title="🎨 User Experience &amp; Design" class="categoryLinkLabel_MFuf">🎨 User Experience &amp; Design</span></a><button aria-label="Expand sidebar category '🎨 User Experience &amp; Design'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_S1TL"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_A67S"><div class="docItemContainer_oKAG"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_sQDc" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_UUPH"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/solution/ai/"><span>🤖 AI &amp; Intelligent Agents</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Coding Tools</span></li></ul></nav><div class="tocCollapsible_MbZu theme-doc-toc-mobile tocMobile_bDI5"><button type="button" class="clean-btn tocCollapsibleButton_khAz">On this page</button></div><div class="theme-doc-markdown markdown"><div class="theme-admonition theme-admonition-info admonition_SytF alert alert--info"><div class="admonitionHeading_c8Bz"><span class="admonitionIcon_TU1o"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>Document Information</div><div class="admonitionContent_mnjq"><p><strong>Last Updated:</strong> November 7, 2025<br>
+<strong>Owner:</strong> Josh Bloxsome<br>
+<strong>Point of Contact:</strong> Haitham Maya<br>
+<strong>Contributors and Reviewers:</strong> Josh Bloxsome, Brian Lewis, Haitham Maya</p></div></div>
+<!-- -->
+<header><h1>AI Coding Tools</h1></header>
+<p>AI-powered coding tools are transforming how developers work at Lilly, providing intelligent assistance for code
+generation, debugging, testing, and documentation. This section covers Lilly's strategic approach to AI coding tools,
+including enterprise solutions and vendor options.</p>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="strategic-architecture">Strategic Architecture<a href="#strategic-architecture" class="hash-link" aria-label="Direct link to Strategic Architecture" title="Direct link to Strategic Architecture" translate="no">​</a></h2>
+<p>The AI coding tools landscape consists of four key layers, each representing a different level of the technology stack:</p>
+<!-- --><div class="docusaurus-mermaid-container container_gBxT"><svg id="mermaid-svg-751899" width="100%" xmlns="http://www.w3.org/2000/svg" class="flowchart" style="max-width: 656px;" viewBox="0 0 656 952" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#mermaid-svg-751899{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-svg-751899 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-svg-751899 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-svg-751899 .error-icon{fill:#552222;}#mermaid-svg-751899 .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-751899 .edge-thickness-normal{stroke-width:1px;}#mermaid-svg-751899 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-751899 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-751899 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-svg-751899 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-751899 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-751899 .marker{fill:#d83b01;stroke:#d83b01;}#mermaid-svg-751899 .marker.cross{stroke:#d83b01;}#mermaid-svg-751899 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-751899 p{margin:0;}#mermaid-svg-751899 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#mermaid-svg-751899 .cluster-label text{fill:#333;}#mermaid-svg-751899 .cluster-label span{color:#333;}#mermaid-svg-751899 .cluster-label span p{background-color:transparent;}#mermaid-svg-751899 .label text,#mermaid-svg-751899 span{fill:#000000;color:#000000;}#mermaid-svg-751899 .node rect,#mermaid-svg-751899 .node circle,#mermaid-svg-751899 .node ellipse,#mermaid-svg-751899 .node polygon,#mermaid-svg-751899 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-svg-751899 .rough-node .label text,#mermaid-svg-751899 .node .label text,#mermaid-svg-751899 .image-shape .label,#mermaid-svg-751899 .icon-shape .label{text-anchor:middle;}#mermaid-svg-751899 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-svg-751899 .rough-node .label,#mermaid-svg-751899 .node .label,#mermaid-svg-751899 .image-shape .label,#mermaid-svg-751899 .icon-shape .label{text-align:center;}#mermaid-svg-751899 .node.clickable{cursor:pointer;}#mermaid-svg-751899 .root .anchor path{fill:#d83b01!important;stroke-width:0;stroke:#d83b01;}#mermaid-svg-751899 .arrowheadPath{fill:#333333;}#mermaid-svg-751899 .edgePath .path{stroke:#d83b01;stroke-width:2.0px;}#mermaid-svg-751899 .flowchart-link{stroke:#d83b01;fill:none;}#mermaid-svg-751899 .edgeLabel{background-color:white;text-align:center;}#mermaid-svg-751899 .edgeLabel p{background-color:white;}#mermaid-svg-751899 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-svg-751899 .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-svg-751899 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-svg-751899 .cluster text{fill:#333;}#mermaid-svg-751899 .cluster span{color:#333;}#mermaid-svg-751899 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:#1a1a1a;border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-svg-751899 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-svg-751899 rect.text{fill:none;stroke-width:0;}#mermaid-svg-751899 .icon-shape,#mermaid-svg-751899 .image-shape{background-color:white;text-align:center;}#mermaid-svg-751899 .icon-shape p,#mermaid-svg-751899 .image-shape p{background-color:white;padding:2px;}#mermaid-svg-751899 .icon-shape rect,#mermaid-svg-751899 .image-shape rect{opacity:0.5;background-color:white;fill:white;}#mermaid-svg-751899 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#mermaid-svg-751899 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#mermaid-svg-751899 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-751899 .lillyControlled&gt;*{fill:#1a1a1a!important;stroke:#ff4b1f!important;color:white!important;stroke-width:3px!important;}#mermaid-svg-751899 .lillyControlled span{fill:#1a1a1a!important;stroke:#ff4b1f!important;color:white!important;stroke-width:3px!important;}#mermaid-svg-751899 .lillyControlled tspan{fill:white!important;}#mermaid-svg-751899 .vendorLockIn&gt;*{fill:#1a1a1a!important;stroke:#00b4d8!important;color:white!important;stroke-width:3px!important;}#mermaid-svg-751899 .vendorLockIn span{fill:#1a1a1a!important;stroke:#00b4d8!important;color:white!important;stroke-width:3px!important;}#mermaid-svg-751899 .vendorLockIn tspan{fill:white!important;}#mermaid-svg-751899 .header&gt;*{fill:#2d2d2d!important;stroke:#666!important;color:white!important;stroke-width:2px!important;}#mermaid-svg-751899 .header span{fill:#2d2d2d!important;stroke:#666!important;color:white!important;stroke-width:2px!important;}#mermaid-svg-751899 .header tspan{fill:white!important;}</style><g><marker id="mermaid-svg-751899_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-svg-751899_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-svg-751899_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-svg-751899_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-svg-751899_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-svg-751899_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"><g class="cluster" id="Compute" data-look="classic"><rect style="fill:#0d0d0d !important;stroke:#666 !important;stroke-width:2px !important" x="8.6171875" y="768" width="608.78125" height="176"></rect><g class="cluster-label" transform="translate(279.5546875, 768)"><foreignObject width="66.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:white !important"><p><b>Compute</b></p></span></div></foreignObject></g></g><g class="cluster" id="CostOpt" data-look="classic"><rect style="fill:#0d0d0d !important;stroke:#666 !important;stroke-width:2px !important" x="8" y="566" width="640" height="152"></rect><g class="cluster-label" transform="translate(253.0859375, 566)"><foreignObject width="149.828125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:white !important"><p><b>Cost &amp; Optimization</b></p></span></div></foreignObject></g></g><g class="cluster" id="Models" data-look="classic"><rect style="fill:#0d0d0d !important;stroke:#666 !important;stroke-width:2px !important" x="46.234375" y="364" width="554.0703125" height="152"></rect><g class="cluster-label" transform="translate(297.73046875, 364)"><foreignObject width="51.078125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:white !important"><p><b>Models</b></p></span></div></foreignObject></g></g><g class="cluster" id="Tools" data-look="classic"><rect style="fill:#0d0d0d !important;stroke:#666 !important;stroke-width:2px !important" x="27.3515625" y="162" width="565.5" height="152"></rect><g class="cluster-label" transform="translate(254.21875, 162)"><foreignObject width="111.765625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:white !important"><p><b>AI Coding Tools</b></p></span></div></foreignObject></g></g><g class="cluster" id="Headers" data-look="classic"><rect style="fill:none !important;stroke:none !important" x="71.125" y="8" width="542.546875" height="104"></rect><g class="cluster-label" transform="translate(342.3984375, 8)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"></span></div></foreignObject></g></g></g><g class="edgePaths"><path d="M173,87L173,91.167C173,95.333,173,103.667,173,112C173,120.333,173,128.667,173,137C173,145.333,173,153.667,173,161.333C173,169,173,176,173,179.5L173,183" id="L_H1_LC1_0" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_H1_LC1_0" data-points="W3sieCI6MTczLCJ5Ijo4N30seyJ4IjoxNzMsInkiOjExMn0seyJ4IjoxNzMsInkiOjEzN30seyJ4IjoxNzMsInkiOjE2Mn0seyJ4IjoxNzMsInkiOjE4N31d" marker-end="url(#mermaid-svg-751899_flowchart-v2-pointEnd)"></path><path d="M483,87L483,91.167C483,95.333,483,103.667,483,112C483,120.333,483,128.667,483,137C483,145.333,483,153.667,483,165.333C483,177,483,192,483,199.5L483,207" id="L_H2_CS1_0" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_H2_CS1_0" data-points="W3sieCI6NDgzLCJ5Ijo4N30seyJ4Ijo0ODMsInkiOjExMn0seyJ4Ijo0ODMsInkiOjEzN30seyJ4Ijo0ODMsInkiOjE2Mn0seyJ4Ijo0ODMsInkiOjIxMX1d" marker-end="url(#mermaid-svg-751899_flowchart-v2-pointEnd)"></path><path d="M173,289L173,293.167C173,297.333,173,305.667,173,314C173,322.333,173,330.667,173,339C173,347.333,173,355.667,173,363.333C173,371,173,378,173,381.5L173,385" id="L_LC1_LC2_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_LC1_LC2_0" data-points="W3sieCI6MTczLCJ5IjoyODl9LHsieCI6MTczLCJ5IjozMTR9LHsieCI6MTczLCJ5IjozMzl9LHsieCI6MTczLCJ5IjozNjR9LHsieCI6MTczLCJ5IjozODl9XQ==" marker-end="url(#mermaid-svg-751899_flowchart-v2-pointEnd)"></path><path d="M173,491L173,495.167C173,499.333,173,507.667,173,516C173,524.333,173,532.667,173,541C173,549.333,173,557.667,173,565.333C173,573,173,580,173,583.5L173,587" id="L_LC2_LC3_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_LC2_LC3_0" data-points="W3sieCI6MTczLCJ5Ijo0OTF9LHsieCI6MTczLCJ5Ijo1MTZ9LHsieCI6MTczLCJ5Ijo1NDF9LHsieCI6MTczLCJ5Ijo1NjZ9LHsieCI6MTczLCJ5Ijo1OTF9XQ==" marker-end="url(#mermaid-svg-751899_flowchart-v2-pointEnd)"></path><path d="M173,693L173,697.167C173,701.333,173,709.667,173,718C173,726.333,173,734.667,173,743C173,751.333,173,759.667,173,767.333C173,775,173,782,173,785.5L173,789" id="L_LC3_LC4_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_LC3_LC4_0" data-points="W3sieCI6MTczLCJ5Ijo2OTN9LHsieCI6MTczLCJ5Ijo3MTh9LHsieCI6MTczLCJ5Ijo3NDN9LHsieCI6MTczLCJ5Ijo3Njh9LHsieCI6MTczLCJ5Ijo3OTN9XQ==" marker-end="url(#mermaid-svg-751899_flowchart-v2-pointEnd)"></path><path d="M483,265L483,273.167C483,281.333,483,297.667,483,310C483,322.333,483,330.667,483,339C483,347.333,483,355.667,483,367.333C483,379,483,394,483,401.5L483,409" id="L_CS1_CS2_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_CS1_CS2_0" data-points="W3sieCI6NDgzLCJ5IjoyNjV9LHsieCI6NDgzLCJ5IjozMTR9LHsieCI6NDgzLCJ5IjozMzl9LHsieCI6NDgzLCJ5IjozNjR9LHsieCI6NDgzLCJ5Ijo0MTN9XQ==" marker-end="url(#mermaid-svg-751899_flowchart-v2-pointEnd)"></path><path d="M483,467L483,475.167C483,483.333,483,499.667,483,512C483,524.333,483,532.667,483,541C483,549.333,483,557.667,483,565.333C483,573,483,580,483,583.5L483,587" id="L_CS2_CS3_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_CS2_CS3_0" data-points="W3sieCI6NDgzLCJ5Ijo0Njd9LHsieCI6NDgzLCJ5Ijo1MTZ9LHsieCI6NDgzLCJ5Ijo1NDF9LHsieCI6NDgzLCJ5Ijo1NjZ9LHsieCI6NDgzLCJ5Ijo1OTF9XQ==" marker-end="url(#mermaid-svg-751899_flowchart-v2-pointEnd)"></path><path d="M483,693L483,697.167C483,701.333,483,709.667,483,718C483,726.333,483,734.667,483,743C483,751.333,483,759.667,483,773.333C483,787,483,806,483,815.5L483,825" id="L_CS3_CS4_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_CS3_CS4_0" data-points="W3sieCI6NDgzLCJ5Ijo2OTN9LHsieCI6NDgzLCJ5Ijo3MTh9LHsieCI6NDgzLCJ5Ijo3NDN9LHsieCI6NDgzLCJ5Ijo3Njh9LHsieCI6NDgzLCJ5Ijo4Mjl9XQ==" marker-end="url(#mermaid-svg-751899_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_H1_LC1_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_H2_CS1_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_LC1_LC2_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_LC2_LC3_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_LC3_LC4_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_CS1_CS2_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_CS2_CS3_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_CS3_CS4_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default header" id="flowchart-H1-0" transform="translate(173, 60)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#666 !important;stroke-width:2px !important" x="-66.875" y="-27" width="133.75" height="54"></rect><g class="label" style="color:white !important" transform="translate(-36.875, -12)"><rect></rect><foreignObject width="73.75" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p><b>Lilly Code</b></p></span></div></foreignObject></g></g><g class="node default header" id="flowchart-H2-1" transform="translate(483, 60)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#666 !important;stroke-width:2px !important" x="-95.671875" y="-27" width="191.34375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-65.671875, -12)"><rect></rect><foreignObject width="131.34375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p><b>Claude Code SaaS</b></p></span></div></foreignObject></g></g><g class="node default lillyControlled" id="flowchart-LC1-2" transform="translate(173, 238)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#ff4b1f !important;stroke-width:3px !important" x="-110.6484375" y="-51" width="221.296875" height="102"></rect><g class="label" style="color:white !important" transform="translate(-80.6484375, -36)"><rect></rect><foreignObject width="161.296875" height="72"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Tool agnostic:<br>Claude Code, Cline,<br>Gemini CLI, OpenCode</p></span></div></foreignObject></g></g><g class="node default lillyControlled" id="flowchart-CS1-3" transform="translate(483, 238)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#ff4b1f !important;stroke-width:3px !important" x="-74.8515625" y="-27" width="149.703125" height="54"></rect><g class="label" style="color:white !important" transform="translate(-44.8515625, -12)"><rect></rect><foreignObject width="89.703125" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Claude Code</p></span></div></foreignObject></g></g><g class="node default lillyControlled" id="flowchart-LC2-4" transform="translate(173, 440)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#ff4b1f !important;stroke-width:3px !important" x="-91.765625" y="-51" width="183.53125" height="102"></rect><g class="label" style="color:white !important" transform="translate(-61.765625, -36)"><rect></rect><foreignObject width="123.53125" height="72"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Model agnostic:<br>Claude, Gemini,<br>GPT, open source</p></span></div></foreignObject></g></g><g class="node default vendorLockIn" id="flowchart-CS2-5" transform="translate(483, 440)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#00b4d8 !important;stroke-width:3px !important" x="-82.3046875" y="-27" width="164.609375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-52.3046875, -12)"><rect></rect><foreignObject width="104.609375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Claude models</p></span></div></foreignObject></g></g><g class="node default lillyControlled" id="flowchart-LC3-6" transform="translate(173, 642)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#ff4b1f !important;stroke-width:3px !important" x="-130" y="-51" width="260" height="102"></rect><g class="label" style="color:white !important" transform="translate(-100, -36)"><rect></rect><foreignObject width="200" height="72"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Pay for model use,<br>custom Lilly user limits and cost optimization</p></span></div></foreignObject></g></g><g class="node default vendorLockIn" id="flowchart-CS3-7" transform="translate(483, 642)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#00b4d8 !important;stroke-width:3px !important" x="-130" y="-51" width="260" height="102"></rect><g class="label" style="color:white !important" transform="translate(-100, -36)"><rect></rect><foreignObject width="200" height="72"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Fixed price per user,<br>Anthropic controlled rate limiting</p></span></div></foreignObject></g></g><g class="node default lillyControlled" id="flowchart-LC4-8" transform="translate(173, 856)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#ff4b1f !important;stroke-width:3px !important" x="-129.3828125" y="-63" width="258.765625" height="126"></rect><g class="label" style="color:white !important" transform="translate(-99.3828125, -48)"><rect></rect><foreignObject width="198.765625" height="96"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Lilly infrastructure:<br>Multi-cloud, HPC, Magtrain,<br>provisioned throughput,<br>pay as you go</p></span></div></foreignObject></g></g><g class="node default vendorLockIn" id="flowchart-CS4-9" transform="translate(483, 856)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#00b4d8 !important;stroke-width:3px !important" x="-99.3984375" y="-27" width="198.796875" height="54"></rect><g class="label" style="color:white !important" transform="translate(-69.3984375, -12)"><rect></rect><foreignObject width="138.796875" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Anthropic managed</p></span></div></foreignObject></g></g></g></g></g></svg></div>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="architecture-comparison">Architecture Comparison<a href="#architecture-comparison" class="hash-link" aria-label="Direct link to Architecture Comparison" title="Direct link to Architecture Comparison" translate="no">​</a></h3>
+<table><thead><tr><th>Layer</th><th>Lilly Code</th><th>Claude Code SaaS</th></tr></thead><tbody><tr><td><strong>AI Coding Tools</strong></td><td>🔴 Lilly-controlled interface</td><td>🔴 Lilly-controlled interface</td></tr><tr><td><strong>Models</strong></td><td>🔴 Lilly LLM Gateway routing</td><td>🔵 Anthropic-managed models</td></tr><tr><td><strong>Optimization</strong></td><td>🔴 Lilly-controlled optimization</td><td>🔵 Anthropic-managed optimization</td></tr><tr><td><strong>Compute</strong></td><td>🔴 Lilly infrastructure (HPC/cloud)</td><td>🔵 Anthropic cloud infrastructure</td></tr></tbody></table>
+<p><strong>Key Benefits of Lilly Code:</strong></p>
+<ul>
+<li class=""><strong>Full Stack Control</strong>: Manage models, optimization, and compute infrastructure</li>
+<li class=""><strong>Data Sovereignty</strong>: All processing stays within Lilly infrastructure</li>
+<li class=""><strong>Cost Optimization</strong>: Direct control over compute resources and model routing</li>
+<li class=""><strong>Customization</strong>: Ability to fine-tune models and optimization strategies</li>
+<li class=""><strong>Integration</strong>: Seamless integration with Lilly's existing HPC and cloud resources</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="available-solutions">Available Solutions<a href="#available-solutions" class="hash-link" aria-label="Direct link to Available Solutions" title="Direct link to Available Solutions" translate="no">​</a></h2>
+<section class="row"><article class="docCardListItem__N3U col col--6"><a class="card padding--lg cardContainer_j7Ta" href="/docs/solution/ai/coding-tools/lilly-code"><h2 class="text--truncate cardTitle_KTtw" title="Lilly Code">📄️<!-- --> <!-- -->Lilly Code</h2><p class="text--truncate cardDescription_YGu8" title="Last Updated: December 2, 2025">Last Updated: December 2, 2025</p></a></article></section>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="getting-started">Getting Started<a href="#getting-started" class="hash-link" aria-label="Direct link to Getting Started" title="Direct link to Getting Started" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="for-developers">For Developers<a href="#for-developers" class="hash-link" aria-label="Direct link to For Developers" title="Direct link to For Developers" translate="no">​</a></h3>
+<ol>
+<li class=""><strong>Choose your tool</strong>: Select an AI coding assistant based on your workflow</li>
+<li class=""><strong>Authentication</strong>: Use Lilly Code for enterprise authentication and access</li>
+<li class=""><strong>Integration</strong>: Connect your tool to Lilly's LLM Gateway</li>
+<li class=""><strong>Best Practices</strong>: Follow Lilly's AI coding standards and guidelines</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="for-teams">For Teams<a href="#for-teams" class="hash-link" aria-label="Direct link to For Teams" title="Direct link to For Teams" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Pilot Programs</strong>: Start with small team pilots before broad adoption</li>
+<li class=""><strong>Training</strong>: Provide team training on effective AI-assisted coding</li>
+<li class=""><strong>Governance</strong>: Establish code review processes for AI-generated code</li>
+<li class=""><strong>Monitoring</strong>: Track usage, costs, and effectiveness metrics</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="related-resources">Related Resources<a href="#related-resources" class="hash-link" aria-label="Direct link to Related Resources" title="Direct link to Related Resources" translate="no">​</a></h2>
+<ul>
+<li class=""><a class="" href="/docs/solution/ai/patterns/">AI Patterns</a> - Design patterns for AI systems</li>
+<li class=""><a class="" href="/docs/solution/ai/patterns/protocols#model-context-protocol-mcp">Model Context Protocol</a> - MCP standard for tool
+integration</li>
+</ul></div><div class="docsRating"><br><em>Was this helpful?&nbsp;</em><button type="button" title="Thumbs up"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="thumbs-up" class="svg-inline--fa fa-thumbs-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"></path></svg></button>&nbsp;<button type="button" title="Thumbs down"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="thumbs-down" class="svg-inline--fa fa-thumbs-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M313.4 479.1c26-5.2 42.9-30.5 37.7-56.5l-2.3-11.4c-5.3-26.7-15.1-52.1-28.8-75.2l144 0c26.5 0 48-21.5 48-48c0-18.5-10.5-34.6-25.9-42.6C497 236.6 504 223.1 504 208c0-23.4-16.8-42.9-38.9-47.1c4.4-7.3 6.9-15.8 6.9-24.9c0-21.3-13.9-39.4-33.1-45.6c.7-3.3 1.1-6.8 1.1-10.4c0-26.5-21.5-48-48-48l-97.5 0c-19 0-37.5 5.6-53.3 16.1L202.7 73.8C176 91.6 160 121.6 160 153.7l0 38.3 0 48 0 24.9c0 29.2 13.3 56.7 36 75l7.4 5.9c26.5 21.2 44.6 51 51.2 84.2l2.3 11.4c5.2 26 30.5 42.9 56.5 37.7zM32 384l64 0c17.7 0 32-14.3 32-32l0-224c0-17.7-14.3-32-32-32L32 96C14.3 96 0 110.3 0 128L0 352c0 17.7 14.3 32 32 32z"></path></svg></button>&nbsp;</div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-tags-row"><div class="col"><b>Tags:</b><ul class="tags_zDvH padding--none margin-left--sm"><li class="tag_DaVN"><a rel="tag" class="tag_JdGm tagRegular_Xr5d" href="/docs/tags/ai">ai</a></li><li class="tag_DaVN"><a rel="tag" class="tag_JdGm tagRegular_Xr5d" href="/docs/tags/coding-tools">coding-tools</a></li><li class="tag_DaVN"><a rel="tag" class="tag_JdGm tagRegular_Xr5d" href="/docs/tags/developer-experience">developer-experience</a></li><li class="tag_DaVN"><a rel="tag" class="tag_JdGm tagRegular_Xr5d" href="/docs/tags/claude-code">claude-code</a></li><li class="tag_DaVN"><a rel="tag" class="tag_JdGm tagRegular_Xr5d" href="/docs/tags/lilly-code">lilly-code</a></li></ul></div></div><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_CE8P"><a href="https://github.com/EliLillyCo/dc-techhq/tree/dev/docs/solution/ai/coding-tools/index.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit__jv8" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_mNeN"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/solution/ai/examples/productexemplar/sc_e_author"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Scientific E-Author</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/solution/ai/coding-tools/lilly-code"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Lilly Code</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents__3iH thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#strategic-architecture" class="table-of-contents__link toc-highlight">Strategic Architecture</a><ul><li><a href="#architecture-comparison" class="table-of-contents__link toc-highlight">Architecture Comparison</a></li></ul></li><li><a href="#available-solutions" class="table-of-contents__link toc-highlight">Available Solutions</a></li><li><a href="#getting-started" class="table-of-contents__link toc-highlight">Getting Started</a><ul><li><a href="#for-developers" class="table-of-contents__link toc-highlight">For Developers</a></li><li><a href="#for-teams" class="table-of-contents__link toc-highlight">For Teams</a></li></ul></li><li><a href="#related-resources" class="table-of-contents__link toc-highlight">Related Resources</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://engage.cloud.microsoft/main/org/lilly.com/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIxNzM1MTc3MCJ9/new" target="_blank" rel="noopener noreferrer" class="footer__link-item">EBA Viva Engage<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://collab.lilly.com/sites/enterpriseitarchitecture2" target="_blank" rel="noopener noreferrer" class="footer__link-item">EBA SharePoint<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Questions?</div><ul class="footer__items clean-list"><li class="footer__item"><a href="#" class="footer__link-item">Reach us on Viva Engage!</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Eli Lilly and Company</div></div></div></footer></div><div class="mermaidTooltip" style="opacity: 0;"></div></body></html>

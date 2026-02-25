@@ -1,0 +1,24 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/solution/ai/coding-tools/",
+  "title": "AI Coding Tools | Tech HQ",
+  "description": "Last Updated: November 7, 2025",
+  "h1": [
+    "AI Coding Tools"
+  ],
+  "h2": [
+    "Strategic Architecture​",
+    "Available Solutions​",
+    "📄️Lilly Code",
+    "Getting Started​",
+    "Related Resources​"
+  ],
+  "h3": [
+    "Architecture Comparison​",
+    "For Developers​",
+    "For Teams​"
+  ],
+  "text_content": "AI Coding Tools | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🧩 Solution Overview\n🤖 AI & Intelligent Agents\nEcosystem\nPatterns\nPositioning\nExamples\nCoding Tools\nLilly Code\nStandards\nAI Submission Guide Template\n🗄️ AI & Intelligent Agents BLT\n🤖 Agentic AI\n🧭 Conversational AI\n🧭 Knowledge Bases\n🧭 Multimodal AI\n🧭 Translation Services\n🏢 Business Enablement\n☁️ Cloud & Infrastructure\n🔐 Cybersecurity\n📊 Data & Analytics\n🛠️ Engineering Enablement\n🛰️ Observability & Reliability\n🚀 Team Productivity\n🎨 User Experience & Design\n🤖 AI & Intelligent Agents\nCoding Tools\nOn this page\nDocument Information\nLast Updated:\nNovember 7, 2025\nOwner:\nJosh Bloxsome\nPoint of Contact:\nHaitham Maya\nContributors and Reviewers:\nJosh Bloxsome, Brian Lewis, Haitham Maya\nAI Coding Tools\nAI-powered coding tools are transforming how developers work at Lilly, providing intelligent assistance for code\ngeneration, debugging, testing, and documentation. This section covers Lilly's strategic approach to AI coding tools,\nincluding enterprise solutions and vendor options.\nStrategic Architecture\n​\nThe AI coding tools landscape consists of four key layers, each representing a different level of the technology stack:\nCompute\nCost & Optimization\nModels\nAI Coding Tools\nLilly Code\nClaude Code SaaS\nTool agnostic:\nClaude Code, Cline,\nGemini CLI, OpenCode\nClaude Code\nModel agnostic:\nClaude, Gemini,\nGPT, open source\nClaude models\nPay for model use,\ncustom Lilly user limits and cost optimization\nFixed price per user,\nAnthropic controlled rate limiting\nLilly infrastructure:\nMulti-cloud, HPC, Magtrain,\nprovisioned throughput,\npay as you go\nAnthropic managed\nArchitecture Comparison\n​\nLayer\nLilly Code\nClaude Code SaaS\nAI Coding Tools\n🔴 Lilly-controlled interface\n🔴 Lilly-controlled interface\nModels\n🔴 Lilly LLM Gateway routing\n🔵 Anthropic-managed models\nOptimization\n🔴 Lilly-controlled optimization\n🔵 Anthropic-managed optimization\nCompute\n🔴 Lilly infrastructure (HPC/cloud)\n🔵 Anthropic cloud infrastructure\nKey Benefits of Lilly Code:\nFull Stack Control\n: Manage models, optimization, and compute infrastructure\nData Sovereignty\n: All processing stays within Lilly infrastructure\nCost Optimization\n: Direct control over compute resources and model routing\nCustomization\n: Ability to fine-tune models and optimization strategies\nIntegration\n: Seamless integration with Lilly's existing HPC and cloud resources\nAvailable Solutions\n​\n📄️\nLilly Code\nLast Updated: December 2, 2025\nGetting Started\n​\nFor Developers\n​\nChoose your tool\n: Select an AI coding assistant based on your workflow\nAuthentication\n: Use Lilly Code for enterprise authentication and access\nIntegration\n: Connect your tool to Lilly's LLM Gateway\nBest Practices\n: Follow Lilly's AI coding standards and guidelines\nFor Teams\n​\nPilot Programs\n: Start with small team pilots before broad adoption\nTraining\n: Provide team training on effective AI-assisted coding\nGovernance\n: Establish code review processes for AI-generated code\nMonitoring\n: Track usage, costs, and effectiveness metrics\nRelated Resources\n​\nAI Patterns\n- Design patterns for AI systems\nModel Context Protocol\n- MCP standard for tool\nintegration\nWas this helpful?\nTags:\nai\ncoding-tools\ndeveloper-experience\nclaude-code\nlilly-code\nEdit this page\nPrevious\nScientific E-Author\nNext\nLilly Code\nStrategic Architecture\nArchitecture Comparison\nAvailable Solutions\nGetting Started\nFor Developers\nFor Teams\nRelated Resources\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 16,
+  "depth": 3,
+  "crawled_at": "2026-02-25T10:07:37.917444"
+}

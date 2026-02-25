@@ -1,0 +1,22 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/solution/ai/patterns/",
+  "title": "Patterns | Tech HQ",
+  "description": "Last Updated: July 25, 2025",
+  "h1": [
+    "Patterns"
+  ],
+  "h2": [
+    "Topics​"
+  ],
+  "h3": [
+    "Workflows​",
+    "Agentic​",
+    "Context Engineering​",
+    "Protocols​",
+    "Model Foundry​"
+  ],
+  "text_content": "Patterns | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🧩 Solution Overview\n🤖 AI & Intelligent Agents\nEcosystem\nPatterns\nQuantum Computing\nAgentic\nWorkflows\nBuilding Agentic Patterns\nContext Engineering\nDeep Agents\nDeep Research\nModel Foundry\nProtocols\nPositioning\nExamples\nCoding Tools\nStandards\nAI Submission Guide Template\n🗄️ AI & Intelligent Agents BLT\n🤖 Agentic AI\n🧭 Conversational AI\n🧭 Knowledge Bases\n🧭 Multimodal AI\n🧭 Translation Services\n🏢 Business Enablement\n☁️ Cloud & Infrastructure\n🔐 Cybersecurity\n📊 Data & Analytics\n🛠️ Engineering Enablement\n🛰️ Observability & Reliability\n🚀 Team Productivity\n🎨 User Experience & Design\n🤖 AI & Intelligent Agents\nPatterns\nOn this page\nPatterns\nDocument Information\nLast Updated:\nJuly 25, 2025\nOwner:\nBrian Lewis\nPoint of Contact:\nAli Kharazmi\nContributors and Reviewers:\nArchit Kaila, Haitham Maya, Malika Mahoui\nWelcome to the AI Patterns section. Here you'll find comprehensive information about architectural patterns, workflows,\nand communication protocols for building effective AI systems. These patterns represent proven approaches to designing\nand implementing AI solutions, with a focus on agent-based architectures and their interactions.\nWorkflows\nAgentic Patterns\nContext Engineering\nProtocols\nModel Foundry\nLilly MCP Servers\nTopics\n​\nWorkflows\n​\nLearn about the distinction between agents and workflows, tool calling mechanisms, and how to choose the right approach\nfor your use case. This section covers workflow patterns like Prompt Chaining, Routing, Parallelization,\nOrchestrator-Workers, and Evaluator-Optimizer.\nAgentic\n​\nExplore various agent architectural patterns including Single Agent, ReAct, Plan-and-Execute, Self-Critique, Tree of\nThought, and more. This section provides detailed diagrams and explanations of when to use each pattern and their key\nadvantages.\nContext Engineering\n​\nMaster the art and science of filling the context window with just the right information at each step of an agent's trajectory. Learn about the four core strategies: Write (saving context outside the context window), Select (pulling relevant context when needed), Compress (retaining only essential tokens), and Isolate (splitting context into separate components). This section covers practical implementation methods including scratchpads, memory systems, summarization techniques, and multi-agent architectures.\nProtocols\n​\nUnderstand the communication protocols used for agent-to-agent and agent-tool interactions, including industry standards\nlike REST/HTTP, gRPC, and emerging AI-specific protocols like Model Context Protocol (MCP) and Agent2Agent (A2A).\nLilly MCP Servers\n​\nExplore planned Model Context Protocol (MCP) servers for Lilly systems, focusing on resource provisioning capabilities and integration with Lilly's infrastructure. This section outlines various MCP servers under consideration, implementation considerations, and next steps.\nModel Foundry\n​\nDiscover the Model Foundry platform architecture for bringing model development to production. This section covers the current implementation  and evaluation of MLflow vs Weights & Biases for ML lifecycle management, experiment tracking, and model deployment.\nWas this helpful?\nEdit this page\nPrevious\nModel Layer\nNext\nQuantum Computing\nTopics\nWorkflows\nAgentic\nContext Engineering\nProtocols\nModel Foundry\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 26,
+  "depth": 3,
+  "crawled_at": "2026-02-25T10:07:29.833432"
+}

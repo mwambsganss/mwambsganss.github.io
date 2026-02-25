@@ -1,0 +1,180 @@
+Title: 🧭 Test Automation | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/engineering/test_automation
+Description: Stack Overflow Article: 🧭 Test Automation
+
+🧭 Test Automation | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🗄️ Engineering Enablement BLT
+🧭 AI Code Assistants
+API Standards
+🧭 ML Ops
+🧭 Test Automation
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🛠️ Engineering Enablement
+🧭 Test Automation
+🧭 Test Automation
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Living Document
+Last Update: 2025-03-24
+Capability Owner: Matt Wambsganss
+EBA Leads: Greg Graf
+Contributors & Reviewers: Matt Wambsganss, Yu Zhang, Suparna Kumari
+A solution guide for common test automation use cases, using services that can handle up to Orange Lilly information.
+For more information on Enterprise Test Automation capabilities., visit
+Testing.Lilly.com
+.
+Stay up to date on new capabilities and announcements at
+Test Automation CoE Viva Engage
+.
+Start a new project or get a consultation at
+Enterprise Automation Intake Form
+.
+Use Case/Scenario
+Complexity
+1
+Tech Recommendation
+Integrations & Interop
+2
+Owning Org/Team
+Next Step
+No-code web UI testing
+1
+Mabl
+demo
+Web, Jira
+Enterprise Automation
+Request "Mabl Editor" Access
+No-code desktop UI testing
+1
+TestComplete
+demo
+Windows, web, ALM
+Enterprise Automation
+Request "TestComplete User" Access
+AI chatbot testing
+0
+Pre-alpha stage UI app
+Any chatbot with an API endpoint
+Enterprise Automation
+Watch
+Test Automation CoE Viva Engage
+for announcements
+AI automated test script generation
+0
+Pre-alpha stage UI app
+Any web UI
+Enterprise Automation
+Watch
+Test Automation CoE Viva Engage
+for announcements
+Coded web UI testing
+3
+PlayWright
+,
+Cypress
+BDD Cucumber, Jira, AppliTools, SauceLabs
+Enterprise Automation
+More information and links to GitHub repos
+API testing
+Mabl-2, PlayWright / Cypress-3
+Mabl
+,
+PlayWright
+,
+Cypress
+APIs, Jira
+Enterprise Automation
+Enterprise Automation Intake Form
+Accessibility testing
+Mabl-1, Deque with Cypress or PlayWright-3
+Mabl
+,
+Deque
+Web, Jira
+Enterprise Automation
+, Digital Office
+Enterprise Automation Intake Form
+Performance testing
+K6-3, Mabl-1
+K6
+,
+Mabl
+Web, APIs
+Enterprise Automation
+Enterprise Automation Intake Form
+ETL testing
+3
+ETL Testing Framework
+AWS
+Enterprise Automation
+Enterprise Automation Intake Form
+Visual regression testing
+AppliTools-3, Mabl-1
+AppliTools
+,
+Mabl
+Enterprise Automation
+Enterprise Automation Intake Form
+Cross-platform testing
+3
+SauceLabs
+PlayWright, Cypress
+Enterprise Automation
+Enterprise Automation Intake Form
+Mobile app testing
+3
+Pre-alpha stage Appium framework
+Android, IOS, Jira
+Enterprise Automation
+Watch
+Test Automation CoE Viva Engage
+for announcements
+Audio/Visual testing
+3
+Pre-alpha stage TestRTC framework
+Web
+Enterprise Automation
+Watch
+Test Automation CoE Viva Engage
+for announcements
+Footnotes
+​
+(0) Ready-to-use, (1) Configurable, (2) Customizable, (3) Requires integration, (4) High-complexity
+↩
+Only the most significant integrations & interoperability are listed.
+↩
+Was this helpful?
+Tags:
+software-engineering
+solution-guide
+techhq
+Edit this page
+Previous
+🧭 ML Ops
+Next
+🛰️ Observability & Reliability
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

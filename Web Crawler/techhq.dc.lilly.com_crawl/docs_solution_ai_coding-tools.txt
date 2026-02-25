@@ -1,0 +1,168 @@
+Title: AI Coding Tools | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/coding-tools/
+Description: Last Updated: November 7, 2025
+
+AI Coding Tools | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Examples
+Coding Tools
+Lilly Code
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+Coding Tools
+On this page
+Document Information
+Last Updated:
+November 7, 2025
+Owner:
+Josh Bloxsome
+Point of Contact:
+Haitham Maya
+Contributors and Reviewers:
+Josh Bloxsome, Brian Lewis, Haitham Maya
+AI Coding Tools
+AI-powered coding tools are transforming how developers work at Lilly, providing intelligent assistance for code
+generation, debugging, testing, and documentation. This section covers Lilly's strategic approach to AI coding tools,
+including enterprise solutions and vendor options.
+Strategic Architecture
+​
+The AI coding tools landscape consists of four key layers, each representing a different level of the technology stack:
+Compute
+Cost & Optimization
+Models
+AI Coding Tools
+Lilly Code
+Claude Code SaaS
+Tool agnostic:
+Claude Code, Cline,
+Gemini CLI, OpenCode
+Claude Code
+Model agnostic:
+Claude, Gemini,
+GPT, open source
+Claude models
+Pay for model use,
+custom Lilly user limits and cost optimization
+Fixed price per user,
+Anthropic controlled rate limiting
+Lilly infrastructure:
+Multi-cloud, HPC, Magtrain,
+provisioned throughput,
+pay as you go
+Anthropic managed
+Architecture Comparison
+​
+Layer
+Lilly Code
+Claude Code SaaS
+AI Coding Tools
+🔴 Lilly-controlled interface
+🔴 Lilly-controlled interface
+Models
+🔴 Lilly LLM Gateway routing
+🔵 Anthropic-managed models
+Optimization
+🔴 Lilly-controlled optimization
+🔵 Anthropic-managed optimization
+Compute
+🔴 Lilly infrastructure (HPC/cloud)
+🔵 Anthropic cloud infrastructure
+Key Benefits of Lilly Code:
+Full Stack Control
+: Manage models, optimization, and compute infrastructure
+Data Sovereignty
+: All processing stays within Lilly infrastructure
+Cost Optimization
+: Direct control over compute resources and model routing
+Customization
+: Ability to fine-tune models and optimization strategies
+Integration
+: Seamless integration with Lilly's existing HPC and cloud resources
+Available Solutions
+​
+📄️
+Lilly Code
+Last Updated: December 2, 2025
+Getting Started
+​
+For Developers
+​
+Choose your tool
+: Select an AI coding assistant based on your workflow
+Authentication
+: Use Lilly Code for enterprise authentication and access
+Integration
+: Connect your tool to Lilly's LLM Gateway
+Best Practices
+: Follow Lilly's AI coding standards and guidelines
+For Teams
+​
+Pilot Programs
+: Start with small team pilots before broad adoption
+Training
+: Provide team training on effective AI-assisted coding
+Governance
+: Establish code review processes for AI-generated code
+Monitoring
+: Track usage, costs, and effectiveness metrics
+Related Resources
+​
+AI Patterns
+- Design patterns for AI systems
+Model Context Protocol
+- MCP standard for tool
+integration
+Was this helpful?
+Tags:
+ai
+coding-tools
+developer-experience
+claude-code
+lilly-code
+Edit this page
+Previous
+Scientific E-Author
+Next
+Lilly Code
+Strategic Architecture
+Architecture Comparison
+Available Solutions
+Getting Started
+For Developers
+For Teams
+Related Resources
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

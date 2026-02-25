@@ -1,0 +1,54 @@
+Title: Enterprise Automation MarketPlace
+URL: https://automate.lilly.com/submit-idea
+Description: Enterprise Automation MarketPlace
+
+Enterprise Automation MarketPlace
+Menu
+List
+menu closed
+Close
+X
+Home
+Automation Platform
+CaretRight
+CaretDown
+Intelligent Automation
+Test Automation
+Document Processing
+Content Automation
+Process Optimization
+Marketplace
+TechZone
+Submit an Idea
+InfoFill
+Submission Template
+Copy the template below and paste it into the TIP 'Provide an overview of the solution' section
+Files
+Copy and paste this template into the TIP 'Provide an overview of the solution' section
+Capability: Automation (breakout Trad vs AI?)
+Category: Consultation, New idea, Enhancement
+T@L engaged & sponsoring as a priority? Y/N
+If Y, list strategic initiative:
+Related to Optimus? Y/N
+Are there regulatory, security, or 
+vendor lock-in risks tied to this work?
+Are there dependencies with other teams?
+Is this scalable to orgs across lilly?
+lilly risks if this isn't completed?
+Any value known yet?
+LockKeyFill
+Read Only
+FloppyDiskFill
+Copy template to your clipboard
+ArrowSquareOut
+Go to Tech Innovation Pipeline
+Connecting...
+Marketplace Chatbot
+Media
+File
+Tap microphone to speak
+Listening... Tap to end
+Cancel
+Tap to send
+Typing
+Powered by

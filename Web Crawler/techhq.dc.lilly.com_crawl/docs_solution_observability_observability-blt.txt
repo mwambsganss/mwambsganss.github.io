@@ -1,0 +1,70 @@
+Title: 🗄️ Observability & Reliability BLT | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/observability/observability-blt
+Description: The Observability & Reliability Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+
+🗄️ Observability & Reliability BLT | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🗄️ Observability & Reliability BLT
+Infrastructure Performance Monitoring
+Log Management & Analytics
+Network Monitoring
+🧭 Resiliency & Disaster Recovery
+🚀 Team Productivity
+🎨 User Experience & Design
+🛰️ Observability & Reliability
+🗄️ Observability & Reliability BLT
+On this page
+🗄️ Observability & Reliability BLT
+The Observability & Reliability Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+Can't find a technology?
+Use TechHQ's search feature to look across all technology documentation. For questions or to suggest additions to this list, contact the
+Enterprise Business Architecture team
+.
+Splunk Observability
+​
+Position
+Standard
+Tags
+observability
+Information Sensitivity
+Yellow
+Architect
+Jarret DiPace
+Contact(s)
+Ketan Pradeep Dessai
+Standard.  Replaced Oasis
+Use Cases
+​
+Server Incident Monitoring
+Server Performance Monitoring
+Document generated from Stack Overflow Enterprise articles (prioritized) and ea_tech.csv (fallback)
+Was this helpful?
+Edit this page
+Previous
+🛰️ Observability & Reliability
+Next
+Infrastructure Performance Monitoring
+Splunk Observability
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

@@ -1,0 +1,42 @@
+Title: Enterprise Automation MarketPlace
+URL: https://automate.lilly.com/platform/content-automation
+Description: Enterprise Automation MarketPlace
+
+Enterprise Automation MarketPlace
+Menu
+List
+menu closed
+Close
+X
+Home
+Automation Platform
+CaretRight
+CaretDown
+Intelligent Automation
+Test Automation
+Document Processing
+Content Automation
+Process Optimization
+Marketplace
+TechZone
+Submit an Idea
+Content Automation
+Content Automation
+allows separate applications to communicate and share information seamlessly, often in real-time, streamlining processes, improving data quality, and enhancing overall efficiency.
+Pre-built templates and flows: Rapidly assemble common integration patterns and API designs.
+Intuitive Design Interface: Simplifies the creation and management of APIs.
+Automated Tools: For tasks like data mapping and transformation, which reduce manual coding effort.
+Connectivity to a wide range of applications: Both on-premise and in the cloud, facilitating easier integrations across different environments.
+QuotesFill
+"Creating a cycle of automation innovation learning and delivery to accelerate your productivity."
+Enterprise Platform
+Connecting...
+Marketplace Chatbot
+Media
+File
+Tap microphone to speak
+Listening... Tap to end
+Cancel
+Tap to send
+Typing
+Powered by

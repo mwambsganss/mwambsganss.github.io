@@ -1,0 +1,35 @@
+Web Crawl Report
+================================================================================
+
+Root URL: https://ai.lilly.com
+Base Domain: ai.lilly.com
+Crawled: 2026-02-25 10:13:14
+
+Summary
+--------------------------------------------------------------------------------
+Total URLs: 20
+Pages: 20
+Failed: 0
+
+Pages
+--------------------------------------------------------------------------------
+https://ai.lilly.com
+https://ai.lilly.com/
+https://ai.lilly.com/ai-registry/faq
+https://ai.lilly.com/ai-registry/reports
+https://ai.lilly.com/ai-registry/review-process
+https://ai.lilly.com/ai-stack
+https://ai.lilly.com/ai-upskilling
+https://ai.lilly.com/assets/pdfs/AI_FAQs.pdf
+https://ai.lilly.com/assets/pdfs/AI_Registry_Submission_Decision_Tree.pdf
+https://ai.lilly.com/assets/pdfs/AI_and_Healthcare.pdf
+https://ai.lilly.com/assets/pdfs/Decision_Tree_for_Public_AI_Tools.pdf
+https://ai.lilly.com/assets/pdfs/Guidelines_for_Responsible_Use_of_AI.pdf
+https://ai.lilly.com/copilot-chat-for-work
+https://ai.lilly.com/frequently-asked-questions
+https://ai.lilly.com/intake-form
+https://ai.lilly.com/learn-more-about-ai
+https://ai.lilly.com/lilly-ai-guidance
+https://ai.lilly.com/lilly-ai-guidance/gen-ai-media
+https://ai.lilly.com/products/enterprise
+https://ai.lilly.com/products/limited-groups

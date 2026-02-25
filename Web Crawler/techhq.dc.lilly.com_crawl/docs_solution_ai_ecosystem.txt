@@ -1,0 +1,127 @@
+Title: Ecosystem | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/ecosystem/
+Description: Last Updated: Feb 12, 2025
+
+Ecosystem | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Experience Layer
+AI Layer
+Data Layer
+Model Layer
+Patterns
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+Ecosystem
+On this page
+Ecosystem
+Document Information
+Last Updated:
+Feb 12, 2025
+Owner:
+Brian Lewis
+Point of Contact:
+Ali Kharazmi
+Contributors and Reviewers:
+Archit Kaila, Haitham Maya, Malika Mahoui
+Overview
+​
+The AI Architecture Ecosystem is the primary tool for making AI technology decisions at Lilly. It defines the layers
+(the stack), capabilities, and platforms that are approved for use.
+The ecosystem, and supporting documentation, is created and maintained by ML/AI experts. The framework represents a
+comprehensive reconciliation of existing Lilly AI services, external AI benchmarking, and emerging AI technologies
+appropriate for applying in the pharmaceutical industry. As new capabilities and features are identified, the framework
+is updated accordingly.
+AI Architecture Layers
+The AI Architecture Ecosystem consists of the following layers:
+AI Architecture Layers
+Experience Layer
+Human interfaces for AI-enabled products where users are
+↑
+AI Layer
+Re-usable deterministic and probabilistic AI capabilities
+↑
+Model Layer
+Commercial ML capabilities with common controls and MLOps
+↑
+Data Layer
+Vector databases, semantic layers, and synthetic data
+Experience Layer
+- Consistent human interfaces for bringing AI-enabled products to meet
+users and customers where they are.
+AI Layer
+- Re-usable capabilities merging deterministic and probabilistic AI approaches; accessible
+to local engineers.
+Model Layer
+- Leading commercial and strategic capabilities for probabilistic approaches,
+providing common controls, MLOps, and LLMOps features.
+Data Layer
+- AI-enabled and enabling capabilities, such as data products, vector databases,
+semantic layers, and synthetic data.
+Each layer is detailed in its own document, accessible via the links above.
+AI Ecosystem diagram
+​
+Ecosystem
+Layer 1
+Components
+Component 1
+Component 2
+Platforms
+Platform 1
+Platform 2
+Layer 2
+Components
+Component 1
+Component 2
+Component 3
+Platforms
+Platform 1
+Platform 2
+Platform 3
+Reference
+​
+OpenAI Frontier
+Was this helpful?
+Edit this page
+Previous
+🤖 AI & Intelligent Agents
+Next
+Experience Layer
+Overview
+AI Ecosystem diagram
+Reference
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

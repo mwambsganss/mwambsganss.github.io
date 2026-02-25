@@ -1,0 +1,298 @@
+Title: 🗄️ Business Enablement BLT | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/business-enablement/business-enablement-blt
+Description: The Business Enablement Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+
+🗄️ Business Enablement BLT | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+🗄️ Business Enablement BLT
+🧭 AE/PC Detection
+🧭 Customer Engagement Reference Architecture
+🧭 PI & Sensitive Data Detection
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🏢 Business Enablement
+🗄️ Business Enablement BLT
+On this page
+🗄️ Business Enablement BLT
+The Business Enablement Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+Can't find a technology?
+Use TechHQ's search feature to look across all technology documentation. For questions or to suggest additions to this list, contact the
+Enterprise Business Architecture team
+.
+Adobe Experience Manager Assets
+​
+Position
+Specialized
+Tags
+content-management, adobe, adobe-aem
+Information Sensitivity
+Orange
+Architect
+Chad Stout
+Contact(s)
+Jared Vanderford
+Specialized for managing digital assets and content fragments that will be incorporated into experiences created using AEM Sites. Scope BU IDS Only
+Use Cases
+​
+Storing digital assets, videos, re-usable content modules.
+Notes
+​
+Veeva Vault PromoMats is still the source of truth for what is released to the FDA as output of internal promo materials reviews.
+See Also
+​
+https://www.content.lilly.com/
+Adobe Experience Manager Sites
+​
+Position
+Specialized
+Tags
+content-management, adobe, adobe-aem
+Information Sensitivity
+Orange
+Architect
+Chad Stout
+Contact(s)
+Jared Vanderford
+Specialized for omni-channel modular content authoring and assembly. Scope BU IDS Only
+Use Cases
+​
+Authoring and Publishing digital content such as Email, Banner, Interactive Visual Aids and distribution to 3rd party clinical education platforms
+Notes
+​
+2021 focus will be on omni-channel content authoring for HQ Email, Field Channels, and 3rd Party Sources of Authoriting.  Pilots for the web will begin in 2022.
+See Also
+​
+https://www.content.lilly.com/
+Adobe Sign
+​
+Position
+Standard
+Tags
+content-management
+Information Sensitivity
+Red
+Architect
+Rob Lehman
+Contact(s)
+Ron Blankenship
+CMDB CI
+CI00000000426918
+Preferred for e-signature
+Use Cases
+​
+Preferred for all e-signature use cases: Under certain cases Docusign may be a better alteernative
+Notes
+​
+Local business area accountable for decision to migrate from Docusign to Adobe Sign
+Avoka Transact
+​
+Position
+Specialized
+Tags
+low-code-platforms
+Information Sensitivity
+Red
+Architect
+Bryan Marks
+Contact(s)
+Bryan Marks
+Mobile forms for field personnel
+Use Cases
+​
+Basic and Advanced formsOffline usageDevelop forms for mobile devicesExternal use cases
+Business Process Workflow Automation
+​
+Position
+Standard
+Tags
+enterprise-automation, baw, bpm
+Information Sensitivity
+Red
+Architect
+Sumit Bhardwaj
+Contact(s)
+Sumit Bhardwaj, Alex Wasik
+CMDB CI
+CI00000000209419
+Business Process Workflow Automation unites information, processes, and users to help you automate digital workflows on-premises or on a cloud. Recommended tool for Automating end to end Business Processes/Workflows that increase productivity, improve collaboration between teams, and gain new insight to resolve cases and drive better business outcomes.
+Use Cases
+​
+Non-streamlined Manual Business Process with bottlenecks and In-efficiencies:
+Scenarios involving automation of end-to-end business processes where multiple people or departments are working together to achieve a goal. Example: Screen fail process in clinical trials, Material tracking in manufacturing and quality departments etc.
+Processes involving reviews and approvals by multiple people
+before finalizing a result. Example: A process where documents are produced by one set of people and reviewed and enhanced by another set of people i.e. Translation and Transcription of files.
+Use case has a well-defined start, end and in-between steps
+to be performed to achieve a specific result.
+Use cases which are identified as business processes, and the automation
+go-to-market time is of utmost importance.
+Example: Product launch processes
+Notifications and Task routing required
+to achieve
+SLA goals.
+Example: Complaints and customer claims settlement, Government regulations implementation tracking etc.
+Notes
+​
+While business process automations can be done using multiple tools, platforms and even by developing custom applications, here are some of the scenarios where IBM BAW can be the best choice:
+Workflows with potential to grow medium to large in size with high level of complexity.
+Hybrid types of integration needs, integration heavy projects.
+Large user base to be served by the solution
+Task management features required (Flexible Task Routing, Task Segregation, Task focused custom interfaces, Granular Team Filtering & Assignment)...
+Read full article
+Decipher (a.k.a. Beacon)
+​
+Position
+Specialized
+Tags
+low-code-platforms
+Information Sensitivity
+Green
+Architect
+Chad Stout
+Contact(s)
+Cortney Klimkowski
+Specialized for use-cases requesting non-personally identifiable information from EXTERNAL audiences, e.g. Market Research surveys.
+Use Cases
+​
+Surveys to external respondents that are classified as touchpoint / satisfaction surveys or formal external Market Research conducted via Lilly Market Research departments.
+Notes
+​
+It is prohibited to collect any type of personal identifiable information within Decipher (Name, Email, Address, etc.) from external respondents.
+See Also
+​
+https://collab.lilly.com/sites/Decipher/SitePages/Welcome-To-The-Decipher-Landing-Page.aspx
+Docusign
+​
+Position
+Specialized
+Tags
+content-management
+When Adobe sign cannot be used (see use cases)
+Use Cases
+​
+Application has an integration with DocuSign and not Adobe Sign. There is a need to build a native app in iOS or Android, DocuSign has mobile SDKs. Documents over 500 pages.
+Notes
+​
+No central support. Local business area is accountable for licensing, compliance, and governance.
+IBM Blueworks
+​
+Position
+Standard
+Tags
+enterprise-automation
+Information Sensitivity
+Orange
+Architect
+Greg Graf
+Preferred for Business Process Modelling
+Use Cases
+​
+Analyze and improve business operations, Capture process and decision knowledge, Collaborating / communicating on business process model development across teams
+Notes
+​
+IBM Software as a service (SaaS) cloud-based process with a decision modeling environment, Used by the business - everything stored in a repository, Provides capabilities to capture business processes and decisions, User Experience similar to Visio
+See Also
+​
+https://collab.lilly.com/sites/AutomationLilly2/SitePages/Blueworks-Live.aspx
+Declining → Retired
+​
+Automation Anywhere
+​
+Position
+Declining 2023-06-01
+Tags
+enterprise-automation
+Information Sensitivity
+Red
+Architect
+Greg Graf
+Contact(s)
+Kevin Gingerich
+Preferred for Robotic Process Automation (RPA) when RPA is the only way to accomplish the automation need. However, RPA should not be used for general workflow/orchestration, decision automation, document processing, etc.. Other automation technologies are available for non-RPA automation needs.
+Use Cases
+​
+Automation of common tasks in graphical user interfaces in line of business systems. Deterministic, rules-based automation (current)
+Notes
+​
+BOT development and support by RPA COE (with chargebacks) or preferred vendors
+Business Objects
+​
+Position
+Declining 2023-05-15
+Tags
+business-intelligence
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Srihari S
+Use for adhoc report creation. Tight integration with SAP data sources. Not recommended for new use cases
+Use Cases
+​
+Create adhoc tabular column report which span across multiple pages with different charts on the side, Create a highly formatted reports with customheader/footer. Example financial summary reports, Use this tool if you have a requirement to create reports by connecting to SAP HANA database, This tool is not suitable to create visualizations and story telling
+Notes
+​
+This tool is available only for existing BO users. New users should consider using Power BI.As Microsoft is incorporating lot of SSRS reporting capabilities into Power BI, Power BI should be considered for any new  reporting requirements
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Celonis
+​
+Position
+Retired 2024
+Tags
+enterprise-automation
+Information Sensitivity
+Orange
+Architect
+Greg Graf
+Contact(s)
+Jon Thomas
+Preferred for process mining
+Use Cases
+​
+Analyze processes to identify optimization opportunities, improve process performance, reduce process variability, improve process cycle times
+Notes
+​
+3 years agreement begun on 12/2020. Business area will be charged after year 1
+Was this helpful?
+Edit this page
+Previous
+🏢 Business Enablement
+Next
+🧭 AE/PC Detection
+Adobe Experience Manager Assets
+Adobe Experience Manager Sites
+Adobe Sign
+Avoka Transact
+Business Process Workflow Automation
+Decipher (a.k.a. Beacon)
+Docusign
+IBM Blueworks
+Declining → Retired
+Automation Anywhere
+Business Objects
+Celonis
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

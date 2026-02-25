@@ -1,0 +1,37 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/solution/ai/",
+  "title": "🤖 AI & Intelligent Agents | Tech HQ",
+  "description": "_The AI Section of TechHQ is the primary tool for making AI technology decisions at Lilly. It defines the layers (the",
+  "h1": [
+    "🤖 AI & Intelligent Agents"
+  ],
+  "h2": [
+    "🏗️ AI Architecture Ecosystem​",
+    "📄️🧑‍💻 Experience Layer",
+    "📄️🧰 AI Layer",
+    "📄️📦 Model Layer",
+    "📄️📊 Data Layer",
+    "🎯 AI Design Patterns​",
+    "📄️🧠 Agentic Patterns",
+    "📄️⚙️ Agents and Workflows",
+    "📄️🧩 Context Engineering",
+    "📄️📡 Protocols",
+    "📄️🏭 Model Foundry",
+    "📄️☁️ Lilly Cloud MCP",
+    "📍 Strategic Positioning​",
+    "📄️📊 Google Positioning",
+    "📄️📝 Prompt Management",
+    "💼 Implementation Examples​",
+    "📄️💼 Press Release Drafter",
+    "📄️💼 Press Release Miner",
+    "AI Architecture Ecosystem​",
+    "AI Design Patterns​",
+    "AI Positioning​",
+    "Implementation Examples​"
+  ],
+  "h3": [],
+  "text_content": "🤖 AI & Intelligent Agents | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🧩 Solution Overview\n🤖 AI & Intelligent Agents\nEcosystem\nPatterns\nPositioning\nExamples\nCoding Tools\nStandards\nAI Submission Guide Template\n🗄️ AI & Intelligent Agents BLT\n🤖 Agentic AI\n🧭 Conversational AI\n🧭 Knowledge Bases\n🧭 Multimodal AI\n🧭 Translation Services\n🏢 Business Enablement\n☁️ Cloud & Infrastructure\n🔐 Cybersecurity\n📊 Data & Analytics\n🛠️ Engineering Enablement\n🛰️ Observability & Reliability\n🚀 Team Productivity\n🎨 User Experience & Design\n🤖 AI & Intelligent Agents\nOn this page\n🤖 AI & Intelligent Agents\nAI Architecture Framework\nThe AI Section of TechHQ is the primary tool for making AI technology decisions at Lilly. It defines the layers (the\nstack), capabilities, and platforms that are approved for use.\nOwner:\nBrian Lewis\nPoint of Contact:\nAli Kharazmi\nContributors and Reviewers:\nArchit Kaila, Haitham Maya, Malika Mahoui\nTools and platforms that leverage AI for automation, decision-making, and natural interactions.\nThis area provides comprehensive documentation on Lilly's AI architecture,\npatterns, and implementation examples. Use the diagram below to navigate to specific topics of interest.\n🏗️ AI Architecture Ecosystem\n​\n📄️\n🧑‍💻 Experience Layer\n📄️\n🧰 AI Layer\n📄️\n📦 Model Layer\n📄️\n📊 Data Layer\n🎯 AI Design Patterns\n​\n📄️\n🧠 Agentic Patterns\n📄️\n⚙️ Agents and Workflows\n📄️\n🧩 Context Engineering\n📄️\n📡 Protocols\n📄️\n🏭 Model Foundry\n📄️\n☁️ Lilly Cloud MCP\n📍 Strategic Positioning\n​\n📄️\n📊 Google Positioning\n📄️\n📝 Prompt Management\n💼 Implementation Examples\n​\n📄️\n💼 Press Release Drafter\n📄️\n💼 Press Release Miner\nAI Architecture Ecosystem\n​\nThe AI Architecture Ecosystem defines the layers, capabilities, and platforms approved for use at Lilly. It consists of\nsix interconnected layers:\nExperience Layer\n: Consistent human interfaces for AI-enabled products\nAI Layer\n: Reusable capabilities merging deterministic and probabilistic approaches\nModel Layer\n: Commercial capabilities for ML/LLM with MLOps features\nData Layer\n: AI-enabled data capabilities like vector databases and semantic layers\nInfrastructure Layer\n: Secure compute and storage foundations for regulated environments\nResponsible AI Layer\n: Guardrails for ethical, regulatory, and security standards\nAI Design Patterns\n​\nAI Design Patterns provide proven approaches to designing and implementing AI solutions:\nAgentic Patterns\n: Architectural approaches for AI agents (Single Agent, ReAct, Plan-and-Execute, etc.)\nWorkflows\n: Distinctions between agents and workflows, with patterns like Prompt Chaining and Routing\nContext Engineering\n: Strategies for optimizing context windows through Write, Select, Compress, and Isolate techniques\nProtocols\n: Communication standards for agent-to-agent (A2A) and agent-tool (MCP) interactions\nLilly Cloud MCP\n: Implementation of Model Context Protocol servers for Lilly systems\nAI Positioning\n​\nAI Positioning defines the strategic approach to AI technologies at Lilly:\nGoogle Positioning\n: Strategic approach to Google's AI technologies and services\nImplementation Examples\n​\nPractical examples of AI implementations across different use cases:\nPress Release Drafter (PRD)\n: Agentic AI system for automating press release generation from clinical trial results\nwith multi-agent reasoning and MLR compliance\nPress Release Miner (PRM)\n: Multi-agent research system for extracting insights from documents and generating\nbriefing materials using ReAct and parallel processing patterns\nWas this helpful?\nTags:\nai\nEdit this page\nPrevious\n🧩 Solution Overview\nNext\nEcosystem\n🏗️ AI Architecture Ecosystem\n🎯 AI Design Patterns\n📍 Strategic Positioning\n💼 Implementation Examples\nAI Architecture Ecosystem\nAI Design Patterns\nAI Positioning\nImplementation Examples\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 36,
+  "depth": 2,
+  "crawled_at": "2026-02-25T10:06:34.680969"
+}

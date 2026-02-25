@@ -1,0 +1,48 @@
+Title: Enterprise Automation MarketPlace
+URL: https://automate.lilly.com/platform/document-processing
+Description: Enterprise Automation MarketPlace
+
+Enterprise Automation MarketPlace
+Menu
+List
+menu closed
+Close
+X
+Home
+Automation Platform
+CaretRight
+CaretDown
+Intelligent Automation
+Test Automation
+Document Processing
+Content Automation
+Process Optimization
+Marketplace
+TechZone
+Submit an Idea
+Document Processing
+Document Processing
+automates data extraction and organization of documents, including redaction, classification, and sentiment analysis. This eliminates manual processes, accelerates document workflows, provides valuable data insights, and minimizes errors.
+Redaction
+Redact keywords and phrases to protect privacy while making the document consumable by others.
+Text Extracting
+Retrieve data from hard copy documents, pictures, or files effortlessly and with a high level of accuracy.
+Key Phrase Extraction
+Identify and generate a list of core topics and phrases within your data or build an index of frequently used text.
+Classification
+Classify the text into categories for better understanding to facilitate storage, management, and analysis of documents.
+Sentiment Analysis
+Analyze documents to understand how your content will be perceived and tailor it effectively to achieve your communication goals.
+QuotesFill
+"Creating a cycle of automation innovation learning and delivery to accelerate your productivity."
+Enterprise Platform
+Connecting...
+Marketplace Chatbot
+Media
+File
+Tap microphone to speak
+Listening... Tap to end
+Cancel
+Tap to send
+Typing
+Powered by

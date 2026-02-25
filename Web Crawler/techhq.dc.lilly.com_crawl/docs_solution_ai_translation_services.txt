@@ -1,0 +1,178 @@
+Title: 🧭 Translation Services | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/translation_services
+Description: Stack Overflow Article: 🧭 Translation Services
+
+🧭 Translation Services | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Examples
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+🧭 Translation Services
+On this page
+Translation Services
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Living Document
+Last Update: 2025-04-28
+Capability Owner: Ryan W Miller
+EBA Lead: Chris Blessing
+Contributors & Reviewers: Ryan W Miller, Rafael Garcia, Neal Chen, Emily Bartman
+A solution guide for common language translations use cases, using services that can handle all Lilly information
+classifications.
+To plan for upcoming Lilly Translation features, please see the
+Lilly Translate roadmap
+.
+Discover announcements and ask questions at
+Lilly Translate on Viva Engage
+,
+our Tech@Lilly community for machine translation, speech, and language needs.
+Use Case/Scenario
+Tech Recommendation
+Positioning
+Complexity
+Notable Integration/Interop
+Owning Org/Team
+Next Step
+Ad hoc plain text translation
+Lilly Translate (UI)
+Strategic Core
+Low
+Enterprise Data
+Use
+Ad hoc document-to-document translation
+Lilly Translate (UI)
+Strategic Core
+Low
+Word, Excel, PowerPoint, PDF, TXT, CSV, Markdown, HTML, or XLIFF
+Enterprise Data
+Use
+Programmatic translation
+Lilly Translate (API)
+1
+Strategic Core
+Low
+APIs, includes document support
+Enterprise Data
+Request API access
+(see Lilly Translate page footer)
+Translation using custom dictionaries/terminology
+Lilly Translate (UI & API)
+1
+Standard
+Low
+APIs
+Enterprise Data
+Engage with Enterprise Data
+Translation model trained on custom user/domain data
+Lilly Translate (UI & API)
+1
+Standard
+Low
+APIs
+Enterprise Data
+Engage with Enterprise Data
+Prioritizing natural-sounding translation, with public domain knowledge
+LLMs, such as
+Azure OpenAI
+Emerging
+Medium
+APIs
+AI
+Register AI Idea
+Post-editing UI for model refinement
+TransPerfect GlobalLink
+Specialized
+Medium
+Enterprise Data & LRL
+Contact
+Lilly Translate for onboarding
+Translation workflow management
+TransPerfect GlobalLink
+Specialized
+Medium
+Enterprise Data & LRL
+Contact
+Lilly Translate for onboarding
+Certified translations
+Various, including
+TransPerfect
+option
+Specialized
+Medium
+Various
+Contact your Area Architect & Procurement
+Direct Veeva integration
+TransPerfect GlobalLink
+Specialized
+High
+Veeva
+Enterprise Data & LRL
+Contact
+Lilly Translate for onboarding
+Performance of LLMs and NMT
+​
+Both Large Language Models (LLMs) and neural machine translation (NMT) have strengths and are available at Lilly in
+various tools above. It is hard to quantify performance in a way that applies to a wide variety of use cases. Metrics
+for performance do exist, such as
+BLEU scores
+, but
+care must be taken to understand the context of the measure. Microsoft has a useful article on AI and LLMs for
+translation, and compares the
+general
+strengths and weaknesses of the 2.
+Using artificial intelligence and large language models for translation on Microsoft.com
+Footnotes
+​
+See the guide in Lilly Translate's left sidebar on training custom models, using dictionaries, and API integrations
+↩
+↩
+2
+↩
+3
+Was this helpful?
+Tags:
+ai
+solution-guide
+techhq
+Edit this page
+Previous
+🧭 Multimodal AI
+Next
+🏢 Business Enablement
+Performance of LLMs and NMT
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

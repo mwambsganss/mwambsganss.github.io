@@ -1,0 +1,50 @@
+Title: 📊 Data & Analytics | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/data/
+Description: Platforms and tools for managing, analyzing, and visualizing data to generate insights, support decision-making, and
+
+📊 Data & Analytics | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🗄️ Data & Analytics BLT
+🧭 Data Catalogs and Access
+🧭 Data Visualization
+🧭 Integration Middleware
+🧭 Specialized Databases
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+📊 Data & Analytics
+📊 Data & Analytics
+Platforms and tools for managing, analyzing, and visualizing data to generate insights, support decision-making, and
+enable advanced analytics.
+Coming Soon!
+Our data & analytics guides are in progress. Have something to add? Find out how to
+Contribute
+!
+Was this helpful?
+Edit this page
+Previous
+🗄️ Cybersecurity BLT
+Next
+🗄️ Data & Analytics BLT
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

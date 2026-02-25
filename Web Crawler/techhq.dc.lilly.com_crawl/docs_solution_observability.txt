@@ -1,0 +1,51 @@
+Title: 🛰️ Observability & Reliability | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/observability/
+Description: Practices and platforms that ensure system health and resilience, including telemetry (logs, metrics, traces),
+
+🛰️ Observability & Reliability | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🗄️ Observability & Reliability BLT
+Infrastructure Performance Monitoring
+Log Management & Analytics
+Network Monitoring
+🧭 Resiliency & Disaster Recovery
+🚀 Team Productivity
+🎨 User Experience & Design
+🛰️ Observability & Reliability
+🛰️ Observability & Reliability
+Practices and platforms that ensure system health and resilience, including telemetry (logs, metrics, traces),
+SLO-driven reliability engineering, resiliency patterns (HA/DR), and AIOps for automated incident detection and
+response.
+More Coming Soon!
+Have something to add? Find out how to
+Contribute
+!
+Was this helpful?
+Edit this page
+Previous
+🧭 Test Automation
+Next
+🗄️ Observability & Reliability BLT
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

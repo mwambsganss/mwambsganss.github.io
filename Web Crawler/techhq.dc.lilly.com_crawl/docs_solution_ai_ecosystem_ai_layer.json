@@ -1,0 +1,21 @@
+{
+  "url": "https://techhq.dc.lilly.com/docs/solution/ai/ecosystem/ai_layer",
+  "title": "AI Layer | Tech HQ",
+  "description": "Last Updated: July 25, 2025",
+  "h1": [
+    "AI Layer"
+  ],
+  "h2": [
+    "Definition​",
+    "Components​",
+    "Component Details​"
+  ],
+  "h3": [
+    "GenAI​",
+    "AgenticAI​"
+  ],
+  "text_content": "AI Layer | Tech HQ\nSkip to main content\nTech HQ\nInnovate\nPlan\nSolution\nAccess\nLearn\nContribute\nUpdates\nLillyFlow\n🧩 Solution Overview\n🤖 AI & Intelligent Agents\nEcosystem\nExperience Layer\nAI Layer\nData Layer\nModel Layer\nPatterns\nPositioning\nExamples\nCoding Tools\nStandards\nAI Submission Guide Template\n🗄️ AI & Intelligent Agents BLT\n🤖 Agentic AI\n🧭 Conversational AI\n🧭 Knowledge Bases\n🧭 Multimodal AI\n🧭 Translation Services\n🏢 Business Enablement\n☁️ Cloud & Infrastructure\n🔐 Cybersecurity\n📊 Data & Analytics\n🛠️ Engineering Enablement\n🛰️ Observability & Reliability\n🚀 Team Productivity\n🎨 User Experience & Design\n🤖 AI & Intelligent Agents\nEcosystem\nAI Layer\nOn this page\nAI Layer\nDocument Information\nLast Updated:\nJuly 25, 2025\nOwner:\nBrian Lewis\nPoint of Contact:\nAli Kharazmi\nContributors and Reviewers:\nArchit Kaila, Haitham Maya, Malika Mahoui\nDefinition\n​\nRe-usable capabilities merging deterministic and probabilistic AI approaches; accessible to local engineers. This layer provides modular AI components that combine rule-based (deterministic) and statistical (probabilistic) methods that can be leveraged by developers within the organization.\nComponents\n​\nComponents\nprimary\nChina\nprimary\nChina\nGenAI\nCortex\nCAFe\nAgentic AI\nCortex\nCAFe\nComponent Details\n​\nGenAI\n​\nCortex is our primary and built GenAI Platform that offers a Low-Pro Code environment for software engineers to build secure GenAI solutions with Guardrails. Our secondary platform is Scale AI, and for China we have CAFe.\nPlatforms\n:\nCortex\n,\nCAFe\nAgenticAI\n​\nCortex is our primary and built GenAI Platform that supports building multi agent, tool-calling systems that can reason over knowledgebases, execute plans, and persist context with memory. Our secondary platform is Scale AI, and for China we have CAFe.\nPlatforms\n:\nCortex\n,\nCAFe\nWas this helpful?\nEdit this page\nPrevious\nExperience Layer\nNext\nData Layer\nDefinition\nComponents\nComponent Details\nGenAI\nAgenticAI\nCommunity\nEBA Viva Engage\nEBA SharePoint\nQuestions?\nReach us on Viva Engage!\nCopyright © 2026 Eli Lilly and Company",
+  "links_found": 3,
+  "depth": 3,
+  "crawled_at": "2026-02-25T10:07:56.648108"
+}

@@ -1,0 +1,145 @@
+Title: 📝 Markdown Extensions | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/contribute/markdown_examples
+Description: This page lists examples of extensions to Markdown that TechHQ supports.
+
+📝 Markdown Extensions | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🤲 TechHQ Contributions
+📝 Markdown Extensions
+🧭 Solution Guide Template
+📅 Solution Guide Timeline
+📝 Markdown Extensions
+On this page
+📝 Markdown Extensions
+This page lists examples of extensions to Markdown that TechHQ supports.
+note
+The page will generate a known error when run in dev mode!
+Mermaid
+​
+Mermaid diagramming & charting
+TechHQ
+Docusaurus
+server
+pod
+GitHub
+TechHQ
+codebase
+GitHub
+Actions
+Docker
+image
+CATS
+Argo
+CD
+User
+visits
+TechHQ
+website
+Lilly
+AWS
+CATS
+EKS
+cluster
+TechHQ_Prod
+namespace
+Markmap
+​
+Markmap mindmaps
+Known Markmap Bug
+Markmap generates a known exception on live
+page reload in dev environments:
+Failed to read the 'value' property from 'SVGLength': Could not resolve relative
+length.
+This bug is not present in prod.
+Click anywhere in this box interact with the mindmap
+Deliver a Digital Core Marketplace with self-service products, reusable components, and cutting-edge platforms to
+improve cycle time and value
+Objective
+% of Digital Core services covered
+Used by % of new product initiatives
+Internal NPS
+Used for % of Digital Core engagements
+Leading indicators & Measures
+40% of Marketplace users report 2 months saved each time they use a Marketplace product, component, or platform
+Enhance partner understanding of available capabilities and tech investments
+Planned Outcomes
+TechHQ
+Get IT Help on LillyNow
+Discovering Tech@Lilly
+ServiceNow Catalog
+ServiceNow Knowledge Base
+ChatNow
+Ecosystem
+Q1 '25 Priorities - TechHQ Decision Guidance - Digital Core Quarterly Roadmaps & Milestones
+Digital Core Marketplace
+markmap
+Font Awesome icons
+​
+Example FA GitHub icon
+External link highlights
+​
+GitHub
+LillyFlow
+Tech@Lilly on Viva Engage
+Additional admonitions
+​
+In addition to Docusaurus' built-in
+admonitions
+,
+community extensions
+are also
+included.
+note
+Beta is the stage where the innovation
+is ready to be used for its primary intended purpose.
+Warning!
+This is a security warning
+caution
+Caution Caution!
+Columns and cards
+​
+Lorem Ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+See All
+Lorem Ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+See All
+Lorem Ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+See All
+Lorem Ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+See All
+Lorem Ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+See All
+Lorem Ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+See All
+Was this helpful?
+Edit this page
+Previous
+🤲 TechHQ Contributions
+Next
+🧭 Solution Guide Template
+Mermaid
+Markmap
+Font Awesome icons
+External link highlights
+Additional admonitions
+Columns and cards
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

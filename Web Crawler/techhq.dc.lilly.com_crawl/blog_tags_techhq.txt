@@ -1,0 +1,98 @@
+Title: 4 posts tagged with "Tech HQ" | Tech HQ
+URL: https://techhq.dc.lilly.com/blog/tags/techhq
+Description: Tech HQ significant updates
+
+4 posts tagged with "Tech HQ" | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+Recent posts
+2025
+Summer 2025 We've expanded our [Solution Guide Library](/docs/solution/ai/) with new guides including Knowledge Sharing,pdates
+February Updates Roll-up
+2024
+Translations Solution Guide
+Welcome!
+4 posts tagged with "Tech HQ"
+Tech HQ significant updates
+View All Tags
+Summer 2025 We've expanded our [Solution Guide Library](/docs/solution/ai/) with new guides including Knowledge Sharing,pdates
+June 25, 2025
+·
+2 min read
+Karl Mayer
+Digital Core Lead Architect
+It’s been an eventful few months since our February updates roll-up! The TechHQ platform has evolved significantly with
+major additions to our AI architecture ecosystem, enhanced innovation pipeline framework, and expanded solution guide
+library. Here's what's new this summer:
+Tags:
+Tech HQ
+Read more
+February Updates Roll-up
+February 19, 2025
+·
+2 min read
+Karl Mayer
+Digital Core Lead Architect
+Our priorities for TechHQ are currently decision guidance and user experience. 5 guides are in progress, and more are queued.
+Work items, including solution guides, are now tracked in a
+Jira project
+open to read to all Jira users.
+Our
+Translation tech solution guide
+transitions from Request For Comment to Living Document.
+TechHQ dev
+receives a
+Contribute
+menu item, describing how to make TechHQ contributions. In the future, this may be available in TechHQ prod.
+Other TechHQ changes include:
+Tags:
+Tech HQ
+Read more
+Translations Solution Guide
+December 16, 2024
+·
+One min read
+Karl Mayer
+Digital Core Lead Architect
+Our third solution guide,
+Translation technologies
+, is now available in Draft status. In addition, we've revised the guides to include:
+lifecycle status
+(
+Draft
+,
+Request For Comment
+, or
+Living Document
+)
+capability owner, who is also the respective solution guide owner
+EBA lead team representative
+solution guide contributors & reviewers, i.e. the technology working group
+Tags:
+Tech HQ
+Read more
+Welcome!
+October 7, 2024
+·
+One min read
+Karl Mayer
+Digital Core Lead Architect
+It’s time to cut the ribbon, and throw open the doors to Tech HQ.
+Welcome to a new headquarters for architects and technologists in Tech@Lilly. This site is your starting point for finding the guidance, tools, and practices you need to excel.
+Tags:
+Tech HQ
+Read more
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

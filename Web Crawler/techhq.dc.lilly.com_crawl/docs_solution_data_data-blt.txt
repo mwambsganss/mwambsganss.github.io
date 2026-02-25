@@ -1,0 +1,1309 @@
+Title: 🗄️ Data & Analytics BLT | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/data/data-blt
+Description: The Data & Analytics Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+
+🗄️ Data & Analytics BLT | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🗄️ Data & Analytics BLT
+🧭 Data Catalogs and Access
+🧭 Data Visualization
+🧭 Integration Middleware
+🧭 Specialized Databases
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+📊 Data & Analytics
+🗄️ Data & Analytics BLT
+On this page
+🗄️ Data & Analytics BLT
+The Data & Analytics Big List of Technology (BLT) is maintained using data from the Enterprise Architecture Tech Positioning Database and LillyFlow, with AI-assisted updates. While we aim for accuracy, please verify critical information and contact the EBA team with questions or corrections.
+Can't find a technology?
+Use TechHQ's search feature to look across all technology documentation. For questions or to suggest additions to this list, contact the
+Enterprise Business Architecture team
+.
+AWS QuickSight
+​
+Position
+Standard
+Tags
+business-intelligence, aws
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Mumtaz.
+Use if cost, data on AWS, simple visualizations and tight integration with AWS services are main considerations.
+Use Cases
+​
+Create visualization dashboards  using different chart options, Compelling story telling using data from different AWS data stores, Use this tool if simple visualization is main objective, This tool is not suitable if you have requirements to do complex calculations by merging data from different data sources and data modeling, This tool is not suitable if you have a requirements to collaborate using Microsoft Teams
+Notes
+​
+Cost effective tool to create visualizations if you have data on AWS.  If complex calculations and more visualizations features required, consider Power BI or Tableau. This is a great  tool to visualize large dataset in AWS.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+AWS RDS Oracle
+​
+Position
+Specialized
+Tags
+aws, database-platforms
+Architect
+Larry Zetzl
+Contact(s)
+Craig Welch
+Used when application is only supporting Oracle
+Use Cases
+​
+HIPAA applications / data
+Notes
+​
+Only for:
+Standard Edition 2 (SE2)
+License Included
+AWS RDS PostgreSQL
+​
+Position
+Standard
+Tags
+aws, database-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Dayanand Sagar
+Seconday preferred RDS choice for OLTP workloads, rapid provisioning and high scalability use cases
+Use Cases
+​
+Transactional OLTP workloads
+Storing small to medium volume of structured data that can be consumed by standards SQL tools/APIs
+HIPAA applications / data
+GxP Applications
+Connectivity between on-prem apps and AWS RDS Postgres instances
+Notes
+​
+The most Oracle-compatible open-source database. Use of SQL significantly reduces learning curve. Secure, compliant, controlled platform. Encryption at rest & in transit. Service primary available in Ohio(US) Region. Read-Replica as an HA solution is available.
+https;//
+www.lillydev.com/patterns/database%20patterns
+See Also
+​
+https://lilly.service-now.com/$knowledge.do?query=AWS%20RDS&sysparm_order=view_count
+AWS RDS SQL Server
+​
+Position
+Standard
+Tags
+aws, database-platforms
+Architect
+Larry Zetzl
+Contact(s)
+Manuela Elena Garcia
+Used when application is not supporting open source DBMS in AWS
+Use Cases
+​
+Relational OLTP workloads
+Referential integrity
+ACID transactions
+Lift & shift
+AWS Redshift
+​
+Position
+Standard
+Tags
+aws, database-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Prem Kishore
+Preferred analytical database for OLAP workloads and data warehouse. Compliant with the Enterprise Data Backbone architecture.
+Use Cases
+​
+Data warehouse
+Analytical workloads
+Cloud Alternative to Netezza/PDA
+Notes
+​
+Explore S3 data through Spectrum connector Compute scales to handle high concurrency Not for OLTP workloads. Cost of this service is a consideration.
+See Also
+​
+https://lilly.service-now.com/$knowledge.do?query=AWS%20Redshift&sysparm_order=view_count
+AWS Redshift Spectrum
+​
+Position
+Standard
+Tags
+aws, cloud-computing
+Architect
+Manuela Elena Garcia
+Contact(s)
+Arvind Sharma
+Information Sensitivity
+Architect
+Manuela Elena Garcia
+Contact(s)
+Arvind Sharma
+Azure CosmosDB
+​
+Position
+Standard
+Tags
+azure, database-platforms
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Manuela Elena Garcia
+Azure preferred solution for Key-value / Document / column family / Graph database use cases
+Use Cases
+​
+High throughput-low latency,IoT data, multi-model, multi- API database service
+Notes
+​
+Azure Cosmos DB natively supports multiple data models. The core type system of Azure Cosmos DB’s database engine is atom-record-sequence (ARS) based.
+Azure Data Explorer
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure Data Factory
+​
+Position
+Standard
+Tags
+azure, integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Prem Kishore Dandamudi
+Cloud-based data integration service used to create data-driven workflows in the cloud for orchestrating and automating data movement and data transformation.
+Azure Data Lake Storage
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Information Sensitivity
+Under Review
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Azure Data Share
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Information Sensitivity
+Under Review
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Azure Database Migration Service
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Malika Mahoui
+Contact(s)
+Manuela Elena Garcia
+Information Sensitivity
+Under Review
+Architect
+Malika Mahoui
+Contact(s)
+Manuela Elena Garcia
+Azure DataBricks
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Information Sensitivity
+Under Review
+Architect
+Todd Walters
+Contact(s)
+Richard Schmidt
+Azure PostgreSQL
+​
+Position
+Standard
+Tags
+azure, database-platforms
+Architect
+Malika Mahoui
+Contact(s)
+Manuela Elena Garcia
+Preferred relational database in Azure environment
+Use Cases
+​
+Relational Transactional OLTP workloads; Referential integrity; ACID transactions; HIPAA applications / data; GxP Applications; Lift & shift
+Azure SQL
+​
+Position
+Standard
+Tags
+azure, database-platforms
+Architect
+Malika Mahoui
+Contact(s)
+Manuela Elena Garcia
+Accepted relational database for applications requiring Microsoft SQL
+Use Cases
+​
+Relational Transactional OLTP workloads; Referential integrity; ACID transactions; HIPAA applications / data; GxP Applications; Lift & shift
+Azure SQL Managed Instance
+​
+Position
+Emerging
+Tags
+azure, database-platforms
+Information Sensitivity
+Under Review
+Architect
+Malika Mahoui
+Contact(s)
+Manuela Elena Garcia
+Information Sensitivity
+Under Review
+Architect
+Malika Mahoui
+Contact(s)
+Manuela Elena Garcia
+Azure Stream Analytics
+​
+Position
+Emerging
+Tags
+azure, data-science-tools
+Architect
+Malika Mahoui
+Contact(s)
+Srihari S.
+Real-time analytics service that provides a simple way to stream data, designed to analyze and process high volumes of fast streaming data from multiple input sources simultaneously
+Use Cases
+​
+Use stream analytics if want to filter and analyze real-time telemetry streams from multiple sources like IoT Hub, Event hubs, ADLS gen2, Azure blob storage and store the data in your output storage like ADLS gen 2.
+Azure Synapse Analytics
+​
+Position
+Emerging
+Tags
+azure, data-science-tools
+Architect
+Malika Mahoui
+Contact(s)
+Srihari S.
+Mainly used for data integration, data warehousing, and big data analytics
+Use Cases
+​
+Azure Synapse Analytics is a limitless analytics service that brings together data integration, enterprise data warehousing and big data analytics. It gives you the freedom to query data on your terms, using either serverless or dedicated options—at scale. Azure Synapse brings these worlds together with a unified experience to ingest, explore, prepare, transform, manage and serve data for immediate BI and machine learning needs.
+Notes
+​
+Azure Synapse is an enterprise analytics service that accelerates time to insight across data warehouses and big data systems. Azure Synapse brings together the best of SQL technologies used in enterprise data warehousing, Spark technologies used for big data, Data Explorer for log and time series analytics, Pipelines for data integration and ETL/ELT, and deep integration with other Azure services such as Power BI, CosmosDB, and AzureML.
+Azure Table Storage
+​
+Position
+Emerging
+Tags
+azure, cloud-computing
+Information Sensitivity
+Under Review
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Information Sensitivity
+Under Review
+Architect
+Jarret DiPace
+Contact(s)
+Sriojeet Mukherjee
+Denodo
+​
+Position
+Standard
+Tags
+integration-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Torsten Eid
+CMDB CI
+CI00000000047612
+Use for real-time or cached access to heterogeneous and distributed data sources without moving the data (data virtualization)
+Use Cases
+​
+Setup an ETL Interface, Setup an API Transform the data as it's transferred, Create an API that references data on multiple repositories, Access distributed data in multiple formats real-time or cached, Integrate cloud (Salesforce or Veeva) data with an on-premise Lilly system or another cloud environment, Facilitate brokered authentication between one cloud environment and another
+Heroku Databases
+​
+Position
+Specialized
+Tags
+database-platforms
+Architect
+Rob Blacketter
+Contact(s)
+Rob Blackketter
+IBM Watson Explorer
+​
+Position
+Standard
+Tags
+search-platforms
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Surya Prakash Rawat, Rubin Wei
+Use for searching multiple content repositories/databases (taxonomy). Use for search engines uses cases ( Google like search ) and content analytics to identify various insights from unstructured data.
+Use Cases
+​
+General purpose searchStructured and unstructured searchKeyword-based search (with synonyms/hierarchy for multiple data sources with OOB AppBuilder UI or custom UI)Ability to leverage Cognitive Cloud APIs in the search pipeline (e.g. Natural Language Understanding, Knowledge Studio, Discovery Service, Text Speech)Search Business Specific Content with security control on the data (Scout). Use this tool if you want to have 360 degree search application by indexing data from various structured and unstructured data sources, Use this tool if you want to extract entities in structured format to consume it using  data analytics tools such as power bi and tableau.
+Notes
+​
+Watson Cognitive cloud services not included, but can add more capabilitiesDevelopment skillset requiredTerm hirarchy and synonym driven indexing over data and contentGoogle like search box or user centric UI development environmentIntegration potential with some IBM Watson offeringsDesigned as an enterprise search tool for knowledge discoveryWEX has standard connectors for websites.  Ability to identity KOL (SEID)
+Connect to different unstructured data sources ( web sites, pdf files, document repository etc.) to search for key contents. You can create custom ML models using Watson Knowledge studio and deploy it in Watson Explorer. License is required.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+InVision (Kaltura)
+​
+Position
+Standard
+Tags
+content-management
+Information Sensitivity
+Orange
+Architect
+Mary Codrington
+Contact(s)
+Shannon Britt
+Secure enterprisewide video platform for Lilly internal videos.
+Use Cases
+​
+Broad video sharing and distribution for internal videos.
+Notes
+​
+Can be used for hosting videos intended for external audience; the video owner needs to take the video through local content review and approval process. Specific video links can be shared externally, but external users are not able to access the full inVision site.
+JMP
+​
+Position
+Standard
+Tags
+data-science-tools
+Information Sensitivity
+Red
+Architect
+Rubin Wei
+Contact(s)
+Steven D Randolph
+Primarily for users who prefer point and click expereince to perform Statistical analysis and visualization
+Use Cases
+​
+Use to perform desktop statistical analysis and create visualizations
+Notes
+​
+JMP is a desktop application with a wizard-based user interface for statistical analysis, visaulziaton, machine learning, six sigma, quality control, design of experiments and R&D. It is developed by the JMP business unit of SAS Institute. JMP, JMP Pro, JMP Clinical and JMP Genomics are available at Lilly. You can install JMP from Workspace ONE or request JMP Pro, JMP Genomics and JMP Clinical through EIP team.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Knime
+​
+Position
+Specialized
+Tags
+data-science-tools
+Architect
+Rubin Wei
+Contact(s)
+Neeraj Wadhwa or
+knime_admin@lists.lilly.com
+CMDB CI
+CI00000000003244
+KNIME is a user-friendly graphical workbench for the entire analysis process: data access, data transformation, exploratory data analysis/visualization, machine learning, predictive analytics, and reporting. It’s primarily designed for data analyst and citizen data scientists who lacks programming experiences or prefers workflow/pipeline/node-based analytics platform for analytics. Python and R programmers might find it helpful to facilitate their daily work.
+You are free to use KNIME Desktop (KNIME Analytics Platform) for your Lilly project. If you have a workflow that you want to publish to KNIME server (to be replaced by KNIME Hub in 2025), so it can run automatically on a schedule or someone can collaborate on the project, please note the following. As of February 2025, the KNIME server is funded and supported by LRL Tech at Lilly. Use cases within LRL will be fully supported. Any use cases outside of LRL will be supported on a best effort basis. If you have any question regarding the positioning and you are part of LRL, please reach out to the support team (
+knime_admin@lists.lilly.com
+). If you have any question regarding the positioning and you are part of BU/IBU, please reach out to Koen Petit (for IBU) or Annapurna Calyam (for BU). Otherwise feel free to reach out to Rubin Wei. As of February 2025, there is no plan to exit KNIME for LRL users.
+Use Cases
+​
+Workflow-based data analytics
+Notes
+​
+KNIME Desktop (KNIME Analytics Platform) can be installed following the instruction: 1) Request “All KNIME users group” entitlement in MyAccess (
+https://myaccess.lilly.com/
+)  2) Navigate to any of the following shares in order to get the latest KNIME desktop available (currently 4.5 as of August 2023): US (Z1) share: \styx.am.lilly.com\KNIME\KNIME-INSTALLER-45-PRD   UK (Z2) share: \yo2cifs01.ema.lilly.com\KNIME\KNIME-INSTALLER-45-PRD ES (Z2) share: \ys2discsvr01.ema.lilly.com\KNIME\KNIME-INSTALLER-45-PRD (access to those shares is governe...
+Read full article
+Microsoft Search
+​
+Position
+Emerging
+Tags
+search-platforms
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Aditya Jichakar
+Modern search capabilty under evaluation
+Use Cases
+​
+Graph and Azure Services (AI and Cognitive Services) powered, personalized search for O365 and LillyNow contentPeople search defaults to profile card resultPromoted results (best bets) become Bookmarks, with additional functionality
+Notes
+​
+Microsoft vision for all search experiences.  Microsoft Search is the next generation of Modern Search. Result verticals include conversation search (Teams and Yammer). Exists currently only in Bing for Business in Public Preview status, and search box display exists in O365 homepage. No ability to customize UI or relevancy yet. Bing for Business includes federated results list from Bing content (separated from tenant results)
+Microsoft SQL Server on-prem
+​
+Position
+Standard
+Tags
+database-platforms
+Information Sensitivity
+Red
+Architect
+Larry Zetzl
+Contact(s)
+Manuela Elena Garcia
+Use for on-prem RDBMS use cases that cannot move to the cloud
+Use Cases
+​
+RDBMS supporting Transactional/OLTP
+OLAP workloads with Concurrent Users
+Storing small to Large volume of structured data that can be consumed by standard SQL tools  & API
+Ease for project/application team to use and develop with easiest integration with MS Stack/ application and toolset
+Can hosts GxP Applications Data
+Service available in On-premise environment across Lilly.
+Notes
+​
+Lower cost than alternatives; free Express edition.Widely used in Lilly for hosting application database. Rapidly Provisioned using Chef and automated patching using DSSP for faster delivery/patching. Integrated with Analytical Services ( SSAS) & Reporting Services ( SSRS). Always on Solution/setup for Database layer HA
+See Also
+​
+https://lilly.service-now.com/nav_to.do?uri=%2Fkb_view.do%3Fsys_kb_id%3Dcb0f706b0f4fb90028ed6509b1050ed6
+Microsoft Stream
+​
+Position
+Standard
+Tags
+content-management
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Shannon Britt
+CMDB CI
+CI00000042101769
+Microsoft Stream is only to be used in support of Yammer and Teams Live events or Teams meeting recordings.
+Use Cases
+​
+Capture and re-watch of meeting / event recordings produced as a result of using Teams or Yammer for a recorded meeting or live event.
+Notes
+​
+The inVision platform should continue to be used for all other video needs.
+See Also
+​
+https://www.microsoft365.com/launch/stream?auth=2
+OneDrive for Business
+​
+Position
+Standard
+Tags
+content-management
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Scott Gondeck
+CMDB CI
+CI00000000396148
+Preferred solution for individual content storage for anyone with Lilly credentials
+Use Cases
+​
+Store my own document & files
+Share links to my documents with on-boarded workforce OR with external parties (email verification step required, no download)
+Create Request File links for external party document upload into specific OneDrive folders.
+See Also
+​
+https://collab.lilly.com/sites/onedriveforbusiness
+OpenShift Databases
+​
+Position
+Specialized
+Tags
+database-platforms
+Architect
+Chris Tornatta
+Contact(s)
+Chris Tornatta
+OpenShift Databases: popular relational and NoSQL database technologies. brAvailable for applications hosted inside of Openshift only.
+Use Cases
+​
+GxP Applications
+Notes
+​
+OpenShift database services: Redis, MariaDB, MongoDB, MySQL, PostgreSQLAvailable through the OpenShift platform. Not EIP Supported Services
+No support offered by OpenShift team. No backup and restore services available. Bring your own backup solution.
+OpenText
+​
+Position
+Specialized
+Tags
+content-management
+Information Sensitivity
+Red
+Architect
+Scott Kuckuck
+Contact(s)
+Scott Kuckuck
+Use for e-mail or hardcopy business records retention
+Use Cases
+​
+Lilly Email Management system (e-mail record retention), Lilly Records Management system (hardcopy)
+Notes
+​
+Core for the management of hardcopy record inventories (Lilly Records Management system) and for the management of emails that have been declared as business records (Lilly Email Management system)
+See Also
+​
+https://now.lilly.com/landingoverview/global-global-records-and-information-management/overview
+Posit (formerly RStudio) Workbench
+​
+Position
+Standard
+Tags
+data-science-tools
+Architect
+Rubin Wei
+Contact(s)
+Margaret Xue or Analytics_OPS for EIP support installing R; Jeff Kriske for RStudio IDE on HPC or Posit Workbench
+Recommended IDE for R users.
+Notes
+​
+Posit (formerly RStudio) Workbench is the most popular Integrated Development Environment (IDE) for R users (
+https://www.jetbrains.com/lp/devecosystem-2021/r/
+) with interoperability for Python, SQL, D3 and Stan. RStudio IDE is a regular desktop application available for Windows, macOS, and Linux. Posit Workbench (formerly RStudio Workbench and RStudio Server Pro) runs on a remote (Linux) server and allows accessing RStudio using a web browser. RStudio IDE can be installed from Workspace One on Windows or Mac. If you use Lilly High Performance Computing (
+https://hpc.am.lilly.com/index.php/Main_Page
+), can you use either RStudio IDE via remote desktop (
+http://hpc-analytics.am.lilly.com/r_info/rstudio_remote_desktop/
+) or Posit Workbench via browser (
+http://hpc-analytics.am.lilly.com/r_info/rstudio_workbench/
+).
+See Also
+​
+http://hpc-analytics.am.lilly.com/r_info/rstudio_workbench/
+R
+​
+Position
+Standard
+Tags
+data-science-tools
+Information Sensitivity
+Red
+Architect
+Rubin Wei
+Contact(s)
+Steven D Randolph or Analytics_OPS for EIP support installing R; Jeff Kriske for R on HPC
+Preferred tool to perform Statistical Analysis, simulation and visualization when SAS is not the required tool
+Use Cases
+​
+R is one of the most commonly used programming language for statistical computing, machine learning and visaulziaton. It's an open-source free software. At Lilly, you can install R on your Windows computer through Workspace One. You can also access R (
+http://hpc-analytics.am.lilly.com/r_info/r-on-command-line/
+) from Lilly High Performance Computing environment (
+https://hpc.am.lilly.com/index.php/Main_Page
+). EIP Team also supports R server to run R scripts invoked from Tableau Server.
+Notes
+​
+EIPTeam supports R server to run R scripts invoked from Tableau Server.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Reltio
+​
+Position
+Standard
+Tags
+database-platforms
+Information Sensitivity
+Red
+Architect
+Jon Grocock
+Contact(s)
+Antonia Costa
+Used to enable the following capabilities:
+Master Data Management: capabilities to cleanse, match, merge / unmerge master data of any type and domain; e.g. organizations, customers, suppliers,  locations and products. Source Crosswalks to manage identifiers from a variety of contributing data sources, for ongoing updates and downstream data distribution.
+Reference Data Management: Enables standardisation of reference data such as lookups and codes from multiple source systems.
+Use Cases
+​
+Currently used to master customer (EPH), material (APIMS) and patient (PPH) domains
+Notes
+​
+Cloud subscription based and charges based on number of users, consolidated profiles, API calls and support levels. Single standard tenant (hosts customer and material domains) and HIPPA tenant for patient domain.
+Salesforce Marketing Cloud - Messaging (Email & SMS)
+​
+Position
+Specialized
+Tags
+content-management
+Information Sensitivity
+Orange
+Architect
+Chad Stout
+Contact(s)
+Sierra Doucette
+Specialized for external campaigns to customers (HCPS, Consumers, Payers, etc)
+Use Cases
+​
+Product Updates, Disease State Awareness Campaigns, Meeting Confirmations, etc
+Notes
+​
+Usage for internal communication purposes can be evaluated on an exception basis
+See Also
+​
+https://teamgco.lilly.com/platform/email
+Salesforce Marketing Cloud – Landing Pages
+​
+Position
+Specialized
+Tags
+content-management
+Information Sensitivity
+Orange
+Architect
+Chad Stout
+Contact(s)
+Sierra Doucette
+Use to host web page for SalesForce marketing compaigns
+Use Cases
+​
+Consume/deliver static content
+See Also
+​
+https://teamgco.lilly.com/platform/email
+SAS
+​
+Position
+Standard
+Tags
+data-science-tools
+Information Sensitivity
+Red
+Architect
+Rubin Wei
+Contact(s)
+Steven D Randolph
+Use for Statistical Analysis
+Use Cases
+​
+To Perform statistical analysis
+Notes
+​
+SAS offers GUI and array of statistical functions using drag and drop. Technical support is available from EIP. Coding support is available from the vendor- SAS TECH SUPPORT
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+SharePoint Search
+​
+Position
+Standard
+Tags
+search-platforms
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Aditya Jichakar
+Preferred for SharePoint content & People search
+Use Cases
+​
+Keyword based search for SharePoint and LillyNow (Contentful) contentPeople/profile search with nickname matchingPromoted results (best bets) for specific top level content results
+Notes
+​
+Classic Search. Use this as default for SharePoint content and internal People contentSharePoint search is often consumed via LillyNow search boxCustomization available for results display, relevancy and rankingNo results personalization (Graph input) or enhancement (AI, Cognitive services)
+Spotfire
+​
+Position
+Specialized
+Tags
+business-intelligence
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Margaret Xue
+Use to create data visualizations and dashboards and wanted to have chemical structures in the graphics.
+Use Cases
+​
+Use this tool if you need to analyze chemical structures using graphics and create visualizations
+Notes
+​
+Create visualizations, analyze chemical structures. If you don’t have specific requirements such using chemical structures, considering using Power BI or QuickSight. License is required to use this tol
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Tableau AWS
+​
+Position
+Standard
+Tags
+business-intelligence, aws
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Mumtaz.
+Use if dashboards data, Visualization, Visual Analytics & Exploration, Augmented Analytics, Natural Language Querying, Statistical Clustering, Trendline, AI/ML Forecasting (basic), other statistical models and summaries, Integration with R, Python, Matlab  are the main considerations and wanted to make use of  wide range of ways to manipulate and visualize data. Supports more volume of data.
+Use Cases
+​
+Create visualization dashboards using different chart options, Compelling story-telling using data from different data stores, Use this tool if data visualization, visual data exploratory analytics, Natural Language Querying, no-code AI/ML, no code statistical modeling is the main objective.This tool is not suitable if you have requirements to collaborate using Microsoft Teams.
+Notes
+​
+Role Based license rquirement - Viewer (for end users) & Creator (for Dekstop Users). This tool is expensive than Power BI and QuickSight. Recommendation is to start with QuickSight if you have data on AWS and need to create simple dashboards/Visualizations. All other use cases,  consider Power BI. If both Power BI and QuickSight cannot meet the requirements, Tableau can be considered.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Trifacta
+​
+Position
+Standard
+Tags
+data-science-tools
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Andrea Price
+Use to prepare , cleanse and qualify data to produce consumable data products.  It works with structured and semi-structed data.
+Use Cases
+​
+Use to prepare and transform data  from EDB and consume it through various dashboard and analytics tools,  this is not suitable if you are already  using data transformation capabilities within analytics tool and you don’t have requirements to share transformed data
+Notes
+​
+Extract data from EDB data sources (S3, Postgres and Redshift) , cleanse and then publish cleansed data to the target data sources for consumption. License is required.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Veeva Quality Docs
+​
+Position
+Standard
+Tags
+content-management
+Information Sensitivity
+Red
+Architect
+Ted Carpenter
+Contact(s)
+Cristina Olza
+Preferred for regulated and controlled content
+Use Cases
+​
+Long-term in-use and complex document management, Controlled and/or regulated documents, Training content and material, Manage content that supports a local business process (controlled and regulated), Manage enterprise content, Batch Printing Records (Controlled printing of Manufacturing tickets). Controlled copies and printing
+Notes
+​
+Preferred for regulated and controlled content. Approval is required by the Veeva Quality Docs Steering Team (Contact Cristina Olza) for non-regulated content use cases that require complex version control/workflow
+See Also
+​
+https://collab.lilly.com/sites/QDocsProgram
+Veeva Vault
+​
+Position
+Specialized
+Tags
+content-management
+Information Sensitivity
+Red
+Architect
+Tim LaCreta
+Contact(s)
+Tim LaCreta
+Specialized for controlled content in a variety of use cases
+Use Cases
+​
+Pre-Built Frameworks for content solutions in Clinical-Trial, Quality-Mfg, Regulatory, Marketing, and Medical as well as a Platform for custom solutions with synergy capabilities between them
+Declining → Retired
+​
+Alteryx
+​
+Position
+Retired 2021-03-01
+Tags
+business-intelligence
+Architect
+Scott Albright
+Contact(s)
+Scott Albright
+Anzo
+​
+Position
+Declining 2022-01-02
+Tags
+search-platforms
+Information Sensitivity
+Red
+Architect
+Scott Albright
+Contact(s)
+Scott Albright
+Use for managing multiple content repositories/databases (ontology) and business terms - (GraphDB, Triple Store)
+Use Cases
+​
+Search and visualize relationships among business concepts (e.g. compound, study, patient)Search across multiple semantically integrated data sourcesSearch business Specific Content without giving access to the data (Cue)Search business Specific Content with security control on the data (Scout)General purpose SearchStructured and Unstructured SearchTool can store original Content
+Notes
+​
+Example: Project needs to manage relationships among business concepts (e.g. compound, study, patient) to be visualized via a search experience.   Anzo shines in patterns where search across multiple semantically integrated data sources. Out of the box or custom UI for exploration and dashboards/visualization. Agile data/content integration. MS Excel add-in to ingest spreadsheets. Designed as a semantic platform. Potential for business power users to create value without additional help. Caution: Emerging technology and expertise. Cost of entry
+HAWQ
+​
+Position
+Retired 2019-12-31
+Tags
+database-platforms
+Architect
+Larry Zetzl
+Contact(s)
+Douglas Marshall
+HAWQ is a high speed sql-on-hadoop RDBMS. Exit by Q4-2019
+Use Cases
+​
+ANSI SQL compliant relational dbms
+Notes
+​
+HAWQ is off support and exitingAlternatives: IBM BigSQL is the preferred high speed sql-on-hadoop solution
+Hortonworks DPP/DLM
+​
+Position
+Retired 2022-12-31
+Tags
+database-platforms
+Information Sensitivity
+Red
+Architect
+Manuela Elena Garcia
+Contact(s)
+Prem Kishore Dandamudi
+Open source data transfer applicance that is integrated with Datalake. Exit along with Hadoop
+Use Cases
+​
+Data transfer from Hadoop to any cloud storage
+Notes
+​
+Declining as in general Lilly is looking at more flexible, elastic, and cost-effective data management solutions such as AWS datasync,SFTP
+See Also
+​
+https://collab.lilly.com/sites/Hadoop/SitePages/Home.aspx
+Hortonworks Hadoop
+​
+Position
+Retired 2023-08-31
+Tags
+database-platforms
+Information Sensitivity
+Red
+Architect
+Manuela Elena Garcia
+Contact(s)
+Prem Kishore Dandamudi
+Open source datalake appliance with Data storage, processing and analytical capabilities. Exit by Q3 -2023
+Use Cases
+​
+Manage wide variety ( Structure, Semistructure, unstructure) and huge volume of data for distributed storage and distributed processing
+Notes
+​
+Declining as in general Lilly is looking at more flexible, elastic, and cost-effective data management solutions such as AWS EMR, S3, Athena.
+See Also
+​
+https://collab.lilly.com/sites/Hadoop/SitePages/Home.aspx
+IBM BigSQL
+​
+Position
+Retired 2020-07-31
+Tags
+database-platforms
+Architect
+Larry Zetzl
+Contact(s)
+Douglas Marshall
+Retired due to lack of business demand
+Use Cases
+​
+Low latency with high performance
+Sweet spot when  100 TB
+OLAP and some OLTP workloads
+Notes
+​
+Massively Parallel Processing (MPP)
+ANSI SQL Compliant
+See Also
+​
+https://lilly.service-now.com/kb_view.do?sysparm_article=KB0093301&sysparm_rank=2&sysparm_tsqueryId=ba575dc21bf2bf049d52b9dcdd4bcbfc
+IBM DB2
+​
+Position
+Declining 2020-07-01
+Tags
+database-platforms
+Architect
+Vijay Govindan
+Contact(s)
+Marc Krieg
+Specialized for only SAP. Exit by Q1-2025
+Notes
+​
+Only available for SAP.  Not for Enterprise consumption. SAP S4 go live with be Jan 2024 however the legacy SAP production system will retained in 2024 in order to provide a reference to the business.
+Microsoft SQL Server on AVS
+​
+Position
+Declining 2023-08-22
+Tags
+database-platforms
+Information Sensitivity
+Red
+Architect
+Manuela Elena Garcia
+Contact(s)
+Manuela Elena Garcia, Manikandan M
+Replace SQL Server running in AVS server with Azure Native services PaaS, Azure SQL DB or Azure SQL Manage Instance. When will be not possible to go to PaaS then replace by Azure VM server (IaaS).
+Use Cases
+​
+Was created as part of lift and shift project.
+See Also
+​
+https://collab.lilly.com/sites/SQLServer/SitePages/SQL-Server-positioning.aspx
+Modern Search (O365/Delve)
+​
+Position
+Retired 2021-12-31
+Tags
+search-platforms
+Information Sensitivity
+Red
+Architect
+Steve Scott
+Contact(s)
+Aditya Jichakar
+Use to search across the Microsoft O365 suite
+Use Cases
+​
+Graph powered, personalized search for O365 and LillyNow content.  No AIPeople search defaults to profile card result  Promoted results (best bets) for specific top level content results.
+Notes
+​
+Removed with the implementation of Microsoft Search
+Netezza PDA
+​
+Position
+Retiring
+Tags
+database-platforms
+Information Sensitivity
+Red
+Architect
+Manuela Elena Garcia
+Contact(s)
+Craig Welch
+Purpose built data warehouse / data analytics appliance for OLAP workloads. Exit by Q4-2023
+Use Cases
+​
+OLAP; not for OLTP workloads
+Consider Cloud First alternatives (e.g. Redshift)
+Notes
+​
+Declining as in general Lilly is looking at more flexible, elastic, and cost-effective analytical solutions such as AWS Redshift
+See Also
+​
+https://lilly.service-now.com/$knowledge.do?query=Netezza&sysparm_type_filter=all&sysparm_order=view_count
+Oracle
+​
+Position
+Retiring
+Tags
+database-platforms
+Information Sensitivity
+Red
+Architect
+Manuela Elena Garcia
+Contact(s)
+Craig Welch
+CMDB CI
+CI00000000019230
+No new Oracle databases will be created without an EA exception.
+Use Cases
+​
+COTS requirement
+OLTP workloads
+Notes
+​
+While the exit date is TBD, business area should seek opportunities to retire their Oracle databases.
+See Also
+​
+https://collab.lilly.com/sites/OracleServiceSite/
+Regulus
+​
+Position
+Retiring
+Tags
+content-management
+Information Sensitivity
+Red
+Architect
+Joaquin Rincon
+Contact(s)
+Joaquin Rincon
+Legacy solution for controlled documents in M&Q and centralized business functions. Retire by mid 2022
+Use Cases
+​
+Long-term in-use and complex document managementControlled and/or regulated documentsDrug Dev & Mkting content, including regulatory contentTraining content and materialCollaborate on team/project contentManage content that supports a local business processManage enterprise contentBatch Printing Records (Controlled printing of Manufacturing tickets
+Notes
+​
+Legacy solution for controlled documents for M&Q components and centralized business functions. No new repositories. Retire by mid 2022. The Regulus team will contact business areas to discuss the individual migration plans. All repositories will be migrated to Veeva Quality Docs
+Salesforce Communities
+​
+Position
+Declining 2021-04-15
+Tags
+content-management
+Information Sensitivity
+Orange
+Architect
+Rob Blackketter
+Contact(s)
+Rob Blackketter
+SSAS
+​
+Position
+Retiring
+Tags
+business-intelligence
+Architect
+Malika Mahoui
+Contact(s)
+Margaret Xue
+SQL Server Analysis Services is an online analytical processing (OLAP) and data mining tool.
+Use Cases
+​
+This tool is used for Bio-Meds area for data warehouse query to create cubes using data from data marts / data warehouse for deeper and faster data analysis
+Notes
+​
+This tool is available only for existing SSAS users. Plan to use Azure Analysis Services to replace the tool. We will have POC testing soon in Azure.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+SSIS
+​
+Position
+Retiring
+Tags
+business-intelligence
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Margaret Xue
+SQL Server Integration Services is a platform for data integration and workflow applications, used for data extraction, transformation, and loading (ETL).
+Use Cases
+​
+Upload data to another database or transfer data and ETL;Use for SAS licensing review and true up, to read data from spread sheet and calculate number of licenses automatically
+Notes
+​
+This tool is available only for existing SSIS users. New users should plan to use Azure Data Factory to replace it.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+SSRS
+​
+Position
+Retiring
+Tags
+business-intelligence
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Margaret Xue
+SQL Server Reporting Services is a server-based report generating software system. SQL reporting services can automate SSRS reports, and even drive tasks based on events.
+Use Cases
+​
+Create adhoc tabular column report which span across multiple pages with different charts, create formal static reports, like budget or auditing reports.
+Notes
+​
+This tool is available only for existing SSRS users. New users should consider using Power BI. Free tool  as license is part of Microsoft SQL server enterprise edition
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Tableau (On-prem)
+​
+Position
+Retiring
+Tags
+business-intelligence
+Information Sensitivity
+Red
+Architect
+Malika Mahoui
+Contact(s)
+Mumtaz.
+Tableau On-Premises servers are gradually  being reduced and will retire by end of 2023. User Tableau AWS instead.
+Use if dashboards data, Visualization, Visual Analytics & Exploration, Augmented Analytics, Natural Language Querying, Statistical Clustering, Trendline, AI/ML Forecasting (basic), other statistical models and summaries, Integration with R, Python, Matlab  are the main considerations and wanted to make use of  wide range of ways to manipulate and visualize data. Supports more volume of data.
+Use Cases
+​
+Create visualization dashboards using different chart options, Compelling story telling using data from different data stores, Use this tool if data visualization, visual data exploratory analytics, Natural Language Querying, no-code AI/ML, no code statistical modeling is the main objective.This tool is not suitable if you have requirements to collaborate using Microsoft Teams.
+Notes
+​
+Tableau On-Premises servers are gradually  being reduced and will retire by end of 2023. User Tableau AWS instead.
+Tableau On-Premises  Japan server is an exception as it will be retired by 2024.
+See Also
+​
+https://collab.lilly.com/sites/EIP/SitePages/Enterprise-Analytics.aspx
+Top Braid
+​
+Position
+Retired 2018-01-09
+Tags
+database-platforms
+Architect
+Larry Zetzl
+Contact(s)
+Douglas Marshall
+Document generated from Stack Overflow Enterprise articles (prioritized) and ea_tech.csv (fallback)
+Was this helpful?
+Edit this page
+Previous
+📊 Data & Analytics
+Next
+🧭 Data Catalogs and Access
+AWS QuickSight
+AWS RDS Oracle
+AWS RDS PostgreSQL
+AWS RDS SQL Server
+AWS Redshift
+AWS Redshift Spectrum
+Azure CosmosDB
+Azure Data Explorer
+Azure Data Factory
+Azure Data Lake Storage
+Azure Data Share
+Azure Database Migration Service
+Azure DataBricks
+Azure PostgreSQL
+Azure SQL
+Azure SQL Managed Instance
+Azure Stream Analytics
+Azure Synapse Analytics
+Azure Table Storage
+Denodo
+Heroku Databases
+IBM Watson Explorer
+InVision (Kaltura)
+JMP
+Knime
+Microsoft Search
+Microsoft SQL Server on-prem
+Microsoft Stream
+OneDrive for Business
+OpenShift Databases
+OpenText
+Posit (formerly RStudio) Workbench
+R
+Reltio
+Salesforce Marketing Cloud - Messaging (Email & SMS)
+Salesforce Marketing Cloud – Landing Pages
+SAS
+SharePoint Search
+Spotfire
+Tableau AWS
+Trifacta
+Veeva Quality Docs
+Veeva Vault
+Declining → Retired
+Alteryx
+Anzo
+HAWQ
+Hortonworks DPP/DLM
+Hortonworks Hadoop
+IBM BigSQL
+IBM DB2
+Microsoft SQL Server on AVS
+Modern Search (O365/Delve)
+Netezza PDA
+Oracle
+Regulus
+Salesforce Communities
+SSAS
+SSIS
+SSRS
+Tableau (On-prem)
+Top Braid
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

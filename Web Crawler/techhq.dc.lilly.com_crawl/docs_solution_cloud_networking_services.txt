@@ -1,0 +1,106 @@
+Title: 🧭 Networking Services | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/cloud/networking_services
+Description: Stack Overflow Article: 🧭 Networking Services
+
+🧭 Networking Services | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🗄️ Cloud & Infrastructure BLT
+🧭 Cloud Architecture
+🧭 Cloud FinOps
+🧭 Container Services
+🧭 Networking Services
+🧭 Workflow & Orchestration
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+☁️ Cloud & Infrastructure
+🧭 Networking Services
+On this page
+🧭 Networking Services
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-10-02
+Capability Owner: Ryan Castor
+EBA Lead: Todd Walters
+Contributors & Reviewers:
+Enterprise Connectivity delivers secure, reliable, and innovative network solutions that empower our global workforce and enable seamless connectivity. Enterprise Connectivity (EC) is member of the Digital Core family in the delivery of architectural and infrastructure services that enable information technology solutions across the enterprise.
+Visit the
+Enterprise Connectivity (EC) Landing Page
+for Service Requests, Change Requests, Incidents, and Knowledge Resources.
+Services Provided
+​
+Enterprise Connectivity provides the following services across all Lilly geographies:
+Wide Area network (WAN)
+Local Area Network (LAN)
+Wireless (WLAN)
+Domain Name System (DNS)
+Dynamic Host Configuration Protocol (DHCP)
+Internet Protocol address (IP)s
+Network Security Policy Management (Firemon)
+Network Visibility in terms of SPAN/TAP traffic (Gigamon)
+Network Access Control (Cisco ISE)
+Application Micro-segmentation (VMware NSX)
+Load Balancing (F5)
+Next Generation Firewalls (Palo Alto)
+LAN Segmentation (ISE)
+Audio Hardware (Audicodes)
+Knowledge Articles
+​
+Refer to the
+Network Services Knowledge Articles
+list for guidance on the following and more:
+Guidance on firewall requirements and access lists for CHG submissions
+Standardized templates required for submitting catalog items related to DHCP scopes, subnets, IP addresses, aliases, and miscellaneous records
+Instructions for requesting network port activation or a new network port; enabling an existing port or applying a static IP address
+Reference article for submitting the
+Indianapolis Telecom Room Card Access Request
+catalog item
+Information on
+Appropriate Network Access (ANA)
+, which restricts wired network access to trusted devices
+Support for ANA checks to ensure correct Windows Group Policy settings are applied to end-user machines
+Troubleshooting guidance for ANA-related issues such as “Unidentified Network / No Network Access” when connecting non-Lilly devices
+EC-only instructions for
+LiveAction Inventory Maintenance
+and
+Network Utilization Reports
+Criteria to determine whether a project qualifies as a Large or Small Project, and whether it requires Project Management or can be tracked solely within RITM
+Reference information for
+Site ID
+associated with Eli Lilly locations and Global Network Services-managed equipment
+If you need a specific procedure, escalation path, or architecture guidance for any of the services above, open a Service Request from the EC Landing Page or contact the Enterprise Connectivity team via the internal support channels.
+Was this helpful?
+Tags:
+cloud
+solution-guide
+techhq
+Edit this page
+Previous
+🧭 Container Services
+Next
+🧭 Workflow & Orchestration
+Services Provided
+Knowledge Articles
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

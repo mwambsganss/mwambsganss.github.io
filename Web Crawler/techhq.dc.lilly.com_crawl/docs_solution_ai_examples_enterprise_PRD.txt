@@ -1,0 +1,293 @@
+Title: Press Release Drafter (PRD) | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/ai/examples/enterprise/PRD
+Description: Last Updated: July 25, 2025
+
+Press Release Drafter (PRD) | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+Ecosystem
+Patterns
+Positioning
+Examples
+Enterprise
+Press Release Drafter (PRD)
+Press Release Miner (PRM)
+Product Exemplars
+AMIGO
+ChatNow
+Chat in a box
+Clinical Programming Assistant
+HR Talent Acquisition Agents
+LillyNow
+PrescriberPoint Kisunla AI Pilot
+Promo Maker
+Revenue Defender
+Scientific E-Author
+Coding Tools
+Standards
+AI Submission Guide Template
+🗄️ AI & Intelligent Agents BLT
+🤖 Agentic AI
+🧭 Conversational AI
+🧭 Knowledge Bases
+🧭 Multimodal AI
+🧭 Translation Services
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🚀 Team Productivity
+🎨 User Experience & Design
+🤖 AI & Intelligent Agents
+Examples
+Enterprise
+Press Release Drafter (PRD)
+On this page
+Press Release Drafter (PRD)
+Document Information
+Last Updated:
+July 25, 2025
+Owner:
+Brian Lewis
+Point of Contact:
+Ali Kharazmi
+Contributors and Reviewers:
+Archit Kaila, Haitham Maya, Malika Mahoui
+An Agentic AI System for Press Release Generation
+Product Overview
+​
+The Press Release Drafter (PRD) is an agentic AI product designed for Lilly's corporate communications team to automate
+the generation of preliminary press releases for clinical trial results. This advanced system leverages multi-agent
+reasoning and natural language processing to create accurate, compliant, and professionally styled press releases that
+align with Lilly's tone and communication standards.
+Problem Statement
+​
+Creating press releases for clinical trial results is a time-consuming process that requires:
+Extracting and synthesizing complex clinical data from various sources
+Ensuring medical and regulatory compliance
+Maintaining consistent messaging and brand voice
+Coordinating input from multiple stakeholders
+Meeting tight deadlines for market-sensitive information
+This process currently demands significant time from skilled communications professionals, medical reviewers, and
+regulatory experts, often leading to bottlenecks in the release pipeline.
+Target Users
+​
+Corporate Communications team members
+Medical Affairs professionals
+Regulatory Affairs specialists
+Clinical Trial teams
+Public Relations managers
+Product Goals
+​
+Reduce the time required to create initial press release drafts by 70%
+Ensure 100% compliance with regulatory requirements and Lilly's communication guidelines
+Improve consistency in messaging across all clinical trial press releases
+Enable communications team to focus on strategic messaging rather than initial drafting
+Accelerate the review cycle by providing higher quality first drafts
+Key Features and Requirements
+​
+1. Multi-Agent Reasoning System
+​
+Specialized agents for data extraction, medical accuracy, regulatory compliance, and content generation
+(
+Supervisor-Worker Agent Pattern
+)
+Collaborative reasoning between agents to resolve conflicts and ensure coherence
+(
+Peer Network Collaboration Pattern
+)
+Transparent decision-making process with justifications for content choices
+2. Advanced Insights Extraction
+​
+Support for multiple data source formats:
+Text documents (TXT, PDF)
+Presentations (PPTX)
+Spreadsheets (XLSX)
+Images and charts
+Word documents (DOCX)
+Automated extraction of key clinical trial data points
+(
+ReAct Pattern
+):
+Primary and secondary endpoints
+Safety profiles
+Statistical significance
+Patient demographics
+Study design details
+3. MLR Guardrails for Compliance
+​
+Built-in Medical, Legal, and Regulatory (MLR) checks
+(
+Self Critique Pattern
+)
+Automatic flagging of potential compliance issues
+Citation and reference management
+Verification of claims against source data
+Adverse event reporting compliance
+4. Dynamic Content Adjustment
+​
+Configurable tone settings (formal, conversational, technical)
+Adjustable draft length (brief announcement, detailed release, comprehensive background)
+Audience-specific language calibration
+Customizable emphasis on different aspects of trial results
+5. Rich Authoring Experience
+​
+Interactive editing interface
+Real-time suggestions and alternatives
+Collaborative review capabilities
+Version control and change tracking
+Comment and feedback integration
+User Stories
+​
+Communications Manager
+"As a communications manager, I want to quickly generate a first draft press release from clinical trial results so
+that I can focus on refining messaging strategy rather than creating content from scratch."
+Medical Reviewer
+"As a medical reviewer, I want the AI to accurately represent clinical data and flag potential medical claims that
+require additional verification so that I can ensure scientific accuracy."
+Regulatory Specialist
+"As a regulatory specialist, I want the system to automatically check content against current regulatory guidelines
+so that compliance issues are identified early in the drafting process."
+PR Director
+"As a PR director, I want to be able to adjust the tone and length of press releases based on the significance of
+the results so that our communications are appropriately calibrated to the news."
+Technical Requirements
+​
+Integration Requirements
+​
+Secure connection to clinical trial databases
+Integration with document management systems
+API access to regulatory guidelines database
+Connection to Lilly's brand voice guidelines
+Security and Compliance
+​
+End-to-end encryption for all data
+Role-based access controls
+Audit trail for all content generation and edits
+Compliance with data privacy regulations
+Secure handling of pre-public material information
+Performance Requirements
+​
+Initial draft generation in under 5 minutes
+Support for concurrent users across global teams
+99.9% uptime during business hours
+Architecture Diagrams
+​
+High-Level Architecture
+​
+The following diagram illustrates the high-level architecture of the Press Release Drafter (PRD), showing the agents and
+tools involved in the process:
+C2 Level Architecture
+​
+The following diagram provides a more detailed C2 (Component and Connector) level view of the system architecture:
+Demo Video
+​
+A demonstration video of the Press Release Drafter (PRD) in action is available at the following link:
+Press Release Drafter Demo Video
+This video showcases the key features and workflow of the system, demonstrating how it processes clinical trial data and
+generates compliant press releases.
+Success Metrics
+​
+Efficiency Metrics
+Time saved in draft creation process
+Reduction in review cycles
+Decrease in time-to-publish
+Quality Metrics
+Accuracy of extracted clinical data
+Compliance success rate
+Consistency with brand voice
+User satisfaction ratings
+Adoption Metrics
+Number of active users
+Frequency of use
+Feature utilization rates
+User retention
+Implementation Considerations
+​
+AI Ecosystem Integration
+​
+Leverage Lilly's existing AI ecosystem components:
+GenAI Cortex for core language generation
+Agentic AI framework for multi-agent orchestration
+Structured and Unstructured Knowledgebases for information retrieval
+MLR guardrails from the Responsible AI Layer
+Risks and Mitigations
+​
+Risk
+Impact
+Likelihood
+Mitigation
+Inaccurate data extraction
+High
+Medium
+Implement confidence scoring and human verification for critical data points
+Regulatory non-compliance
+High
+Low
+Regular updates to compliance rules and mandatory human review
+User resistance
+Medium
+Medium
+Phased rollout with extensive training and clear demonstration of value
+System performance issues
+Medium
+Low
+Robust testing and scalable infrastructure design
+Data security breach
+High
+Low
+End-to-end encryption and strict access controls
+Conclusion
+​
+The Press Release Drafter (PRD) represents a significant advancement in how Lilly approaches corporate communications
+for clinical trial results. By automating the initial drafting process while ensuring compliance and quality, this tool
+will enable the communications team to focus on strategic messaging and stakeholder engagement, ultimately improving the
+efficiency and effectiveness of Lilly's external communications.
+Was this helpful?
+Edit this page
+Previous
+Examples
+Next
+Press Release Miner (PRM)
+Product Overview
+Problem Statement
+Target Users
+Product Goals
+Key Features and Requirements
+1. Multi-Agent Reasoning System
+2. Advanced Insights Extraction
+3. MLR Guardrails for Compliance
+4. Dynamic Content Adjustment
+5. Rich Authoring Experience
+User Stories
+Technical Requirements
+Integration Requirements
+Security and Compliance
+Performance Requirements
+Architecture Diagrams
+High-Level Architecture
+C2 Level Architecture
+Demo Video
+Success Metrics
+Implementation Considerations
+AI Ecosystem Integration
+Risks and Mitigations
+Conclusion
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

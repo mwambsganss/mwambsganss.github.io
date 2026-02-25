@@ -1,0 +1,667 @@
+<!DOCTYPE html><html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-solution/ai/patterns/context_engineering" data-has-hydrated="true" data-theme="light" data-theme-choice="light" data-rh="lang,dir,class,data-has-hydrated"><head><meta charset="UTF-8"><meta name="generator" content="Docusaurus v3.9.2"><title>Context Engineering | Tech HQ</title><meta data-rh="true" name="viewport" content="width=device-width, initial-scale=1.0"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://techhq.dc.lilly.com/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://techhq.dc.lilly.com/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://techhq.dc.lilly.com/docs/solution/ai/patterns/context_engineering"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Context Engineering | Tech HQ"><meta data-rh="true" name="description" content="Last Updated: July 25, 2025"><meta data-rh="true" property="og:description" content="Last Updated: July 25, 2025"><style type="text/css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+  --fa-font-light: normal 300 1em/1 "Font Awesome 6 Pro";
+  --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Pro";
+  --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-regular: normal 400 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-light: normal 300 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-thin: normal 100 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-regular: normal 400 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-light: normal 300 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-thin: normal 100 1em/1 "Font Awesome 6 Sharp Duotone";
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+  overflow: visible;
+  box-sizing: content-box;
+}
+
+.svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285705em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  top: 0.25em;
+}
+.svg-inline--fa.fa-fw {
+  width: var(--fa-fw-width, 1.25em);
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-counter-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: 0.625em;
+  line-height: 0.1em;
+  vertical-align: 0.225em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+  line-height: 0.0833333337em;
+  vertical-align: 0.125em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+  line-height: 0.0714285718em;
+  vertical-align: 0.0535714295em;
+}
+
+.fa-lg {
+  font-size: 1.25em;
+  line-height: 0.05em;
+  vertical-align: -0.075em;
+}
+
+.fa-xl {
+  font-size: 1.5em;
+  line-height: 0.0416666682em;
+  vertical-align: -0.125em;
+}
+
+.fa-2xl {
+  font-size: 2em;
+  line-height: 0.03125em;
+  vertical-align: -0.1875em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: var(--fa-li-margin, 2.5em);
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: calc(-1 * var(--fa-li-width, 2em));
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.08em);
+  padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+}
+
+.fa-pull-left {
+  float: left;
+  margin-right: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right {
+  float: right;
+  margin-left: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  animation-name: fa-beat;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  animation-name: fa-bounce;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  animation-name: fa-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  animation-name: fa-beat-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  animation-name: fa-flip;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  animation-name: fa-shake;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  animation-name: fa-spin;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 2s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  animation-name: fa-spin;
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+.fa-bounce,
+.fa-fade,
+.fa-beat-fade,
+.fa-flip,
+.fa-pulse,
+.fa-shake,
+.fa-spin,
+.fa-spin-pulse {
+    animation-delay: -1ms;
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+    transition-delay: 0s;
+    transition-duration: 0s;
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-shake {
+  0% {
+    transform: rotate(-15deg);
+  }
+  4% {
+    transform: rotate(15deg);
+  }
+  8%, 24% {
+    transform: rotate(-18deg);
+  }
+  12%, 28% {
+    transform: rotate(18deg);
+  }
+  16% {
+    transform: rotate(-22deg);
+  }
+  20% {
+    transform: rotate(22deg);
+  }
+  32% {
+    transform: rotate(-12deg);
+  }
+  36% {
+    transform: rotate(12deg);
+  }
+  40%, 100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  transform: rotate(var(--fa-rotate-angle, 0));
+}
+
+.fa-stack {
+  display: inline-block;
+  vertical-align: middle;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: var(--fa-stack-z-index, auto);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.sr-only,
+.fa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:not(:focus),
+.fa-sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}</style><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://techhq.dc.lilly.com/docs/solution/ai/patterns/context_engineering"><link data-rh="true" rel="alternate" href="https://techhq.dc.lilly.com/docs/solution/ai/patterns/context_engineering" hreflang="en"><link data-rh="true" rel="alternate" href="https://techhq.dc.lilly.com/docs/solution/ai/patterns/context_engineering" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Tech HQ RSS Feed"><link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Tech HQ Atom Feed"><link rel="preconnect" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com"><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-J14K334996"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-J14K334996",{anonymize_ip:!0})</script><link rel="icon" href="/img/favicon.ico"><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#25c2a0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" href="/img/favicon.ico"><link rel="mask-icon" href="/img/logo-dark.svg" color="#25c2a0"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="msapplication-TileColor" content="#25c2a0"><link rel="stylesheet" href="/assets/css/styles.b4e04221.css"><script src="/assets/js/runtime~main.fb55c054.js" defer=""></script><script src="/assets/js/main.a9e40874.js" defer=""></script><script type="application/ld+json" data-rh="true">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"🤖 AI & Intelligent Agents","item":"https://techhq.dc.lilly.com/docs/solution/ai/"},{"@type":"ListItem","position":2,"name":"Patterns","item":"https://techhq.dc.lilly.com/docs/solution/ai/patterns/"},{"@type":"ListItem","position":3,"name":"Context Engineering","item":"https://techhq.dc.lilly.com/docs/solution/ai/patterns/context_engineering"}]}</script><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/060541e1.84596e91.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/355b7243.7ac8774f.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/9ac3e011.5c64d3bb.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/1e851244.783532ef.js"><link rel="prefetch" href="/assets/js/1df93b7f.aa171871.js"><link rel="prefetch" href="/assets/js/a7456010.d2461d2a.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/6edbee48.596a2d5b.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/8337dadf.481d17a3.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/ab169593.258b9817.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/ec9d463c.5f0d73ab.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/6ccc7eb1.d31e5424.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/9e87a62c.a3cfcfab.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/4766df6d.d26b3a73.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/3b1eb5ca.886e1f35.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/28b2f42f.bafcf55a.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/bc043b77.59531655.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/5705d7e7.2e56b88d.js"><link rel="prefetch" href="/assets/js/a6aa9e1f.2bdf7efd.js"><link rel="prefetch" href="/assets/js/36994c47.a641290b.js"><link rel="prefetch" href="/assets/js/814f3328.69bba93f.js"><link rel="prefetch" href="/assets/js/10e75197.da9cdbf4.js"><link rel="prefetch" href="/assets/js/74741bf4.789922d0.js"><link rel="prefetch" href="/assets/js/5d5b7b15.a71995be.js"><link rel="prefetch" href="/assets/js/0ca03195.c59285f9.js"><link rel="prefetch" href="/assets/js/c15d9823.f443d85e.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/33cc57f1.d7cd12ac.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/407bcc04.08937140.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/6fd3d2a1.c2321966.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/8def2dd5.af4ae0de.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/d4650589.07f9b35b.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/f5862a9e.f139b67b.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/9cd9edbf.8ac87421.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/5e95c892.ef78e19c.js"><link rel="prefetch" href="/assets/js/aba21aa0.7a490afd.js"><link rel="prefetch" href="/assets/js/a7bd4aaa.6cd8524e.js"><link rel="prefetch" href="/assets/js/0058b4c6.f958d03e.js"><link rel="prefetch" href="/assets/js/a94703ab.97c23976.js"><link rel="prefetch" href="/assets/js/17896441.a47e90e9.js"><link rel="prefetch" href="/assets/js/794b9018.1d892c5e.js"></head><body class="navigation-with-keyboard" data-rh="class" style="overflow: visible;"><svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_ToEg" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo-dark.svg" alt="Tech@Lilly Logo" class="themedComponent_br9s themedComponent--light_VhRU" height="50" width="100"></div><b class="navbar__title text--truncate">Tech HQ</b></a><a class="navbar__item navbar__link" href="/docs/innovate/">Innovate</a><a class="navbar__item navbar__link" href="/docs/plan/">Plan</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/solution/">Solution</a><a class="navbar__item navbar__link" href="/docs/access/">Access</a><a class="navbar__item navbar__link" href="/docs/learn/">Learn</a><a class="navbar__item navbar__link" href="/docs/contribute/">Contribute</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/blog">Updates</a><a href="https://flow.lilly.com" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link stackoverflow-link" aria-label="LillyFlow">LillyFlow<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a><div class="navbarSearchContainer_FAGn"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;"><input id="search_input_react" type="search" placeholder="Search ⌘+K" aria-label="Search" class="navbar__search-input search-bar ds-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="ds-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;"><div class="ds-dataset-1"></div></span></span></div></div><div class="toggle_h2qI colorModeToggle_TN9Z"><button class="clean-btn toggleButton_Nk0O" type="button" title="light mode" aria-label="Switch between dark and light mode (currently light mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX lightToggleIcon_KjIl"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX darkToggleIcon_fWkg"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_u_yX systemToggleIcon_Wx7I"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_gynm"><div class="docsWrapper_tLRL"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_xrlZ" type="button"></button><div class="docRoot_oqp2"><aside class="theme-doc-sidebar-container docSidebarContainer_Ze6h"><div class="sidebarViewport_dbQw"><div class="sidebar_Q15t"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_MLTQ"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/solution/"><span title="🧩 Solution Overview" class="linkLabel_bwUU">🧩 Solution Overview</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist menu__link--active" href="/docs/solution/ai/"><span title="🤖 AI &amp; Intelligent Agents" class="categoryLinkLabel_MFuf">🤖 AI &amp; Intelligent Agents</span></a><button aria-label="Collapse sidebar category '🤖 AI &amp; Intelligent Agents'" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list" style="display: block; overflow: visible; height: auto;"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" tabindex="0" href="/docs/solution/ai/ecosystem/"><span title="Ecosystem" class="categoryLinkLabel_MFuf">Ecosystem</span></a><button aria-label="Expand sidebar category 'Ecosystem'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist menu__link--active" tabindex="0" href="/docs/solution/ai/patterns/"><span title="Patterns" class="categoryLinkLabel_MFuf">Patterns</span></a><button aria-label="Collapse sidebar category 'Patterns'" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list" style="display: block; overflow: visible; height: auto;"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/patterns/Quantum_computing"><span title="Quantum Computing" class="linkLabel_bwUU">Quantum Computing</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/patterns/agentic_patterns"><span title="Agentic" class="linkLabel_bwUU">Agentic</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/patterns/agents_and_workflows"><span title="Workflows" class="linkLabel_bwUU">Workflows</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/patterns/building_agentic_patterns"><span title="Building Agentic Patterns" class="linkLabel_bwUU">Building Agentic Patterns</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/solution/ai/patterns/context_engineering"><span title="Context Engineering" class="linkLabel_bwUU">Context Engineering</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/patterns/deep_agents"><span title="Deep Agents" class="linkLabel_bwUU">Deep Agents</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/patterns/deep_research"><span title="Deep Research" class="linkLabel_bwUU">Deep Research</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/patterns/model_foundry"><span title="Model Foundry" class="linkLabel_bwUU">Model Foundry</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/patterns/protocols"><span title="Protocols" class="linkLabel_bwUU">Protocols</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" tabindex="0" href="/docs/solution/ai/positioning/"><span title="Positioning" class="categoryLinkLabel_MFuf">Positioning</span></a><button aria-label="Expand sidebar category 'Positioning'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" tabindex="0" href="/docs/solution/ai/examples/"><span title="Examples" class="categoryLinkLabel_MFuf">Examples</span></a><button aria-label="Expand sidebar category 'Examples'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" tabindex="0" href="/docs/solution/ai/coding-tools/"><span title="Coding Tools" class="categoryLinkLabel_MFuf">Coding Tools</span></a><button aria-label="Expand sidebar category 'Coding Tools'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a href="#" class="categoryLink_O72p menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0"><span title="Standards" class="categoryLinkLabel_MFuf">Standards</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/ai_submission_guides/"><span title="AI Submission Guide Template" class="linkLabel_bwUU">AI Submission Guide Template</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/ai-blt"><span title="🗄️ AI &amp; Intelligent Agents BLT" class="linkLabel_bwUU">🗄️ AI &amp; Intelligent Agents BLT</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/agentic_ai"><span title="🤖 Agentic AI" class="linkLabel_bwUU">🤖 Agentic AI</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/conversational_ai"><span title="🧭 Conversational AI" class="linkLabel_bwUU">🧭 Conversational AI</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/knowledge_bases"><span title="🧭 Knowledge Bases" class="linkLabel_bwUU">🧭 Knowledge Bases</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/multimodal_ai"><span title="🧭 Multimodal AI" class="linkLabel_bwUU">🧭 Multimodal AI</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/solution/ai/translation_services"><span title="🧭 Translation Services" class="linkLabel_bwUU">🧭 Translation Services</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/business-enablement/"><span title="🏢 Business Enablement" class="categoryLinkLabel_MFuf">🏢 Business Enablement</span></a><button aria-label="Expand sidebar category '🏢 Business Enablement'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/cloud/"><span title="☁️ Cloud &amp; Infrastructure" class="categoryLinkLabel_MFuf">☁️ Cloud &amp; Infrastructure</span></a><button aria-label="Expand sidebar category '☁️ Cloud &amp; Infrastructure'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/cybersecurity/"><span title="🔐 Cybersecurity" class="categoryLinkLabel_MFuf">🔐 Cybersecurity</span></a><button aria-label="Expand sidebar category '🔐 Cybersecurity'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/data/"><span title="📊 Data &amp; Analytics" class="categoryLinkLabel_MFuf">📊 Data &amp; Analytics</span></a><button aria-label="Expand sidebar category '📊 Data &amp; Analytics'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/engineering/"><span title="🛠️ Engineering Enablement" class="categoryLinkLabel_MFuf">🛠️ Engineering Enablement</span></a><button aria-label="Expand sidebar category '🛠️ Engineering Enablement'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/observability/"><span title="🛰️ Observability &amp; Reliability" class="categoryLinkLabel_MFuf">🛰️ Observability &amp; Reliability</span></a><button aria-label="Expand sidebar category '🛰️ Observability &amp; Reliability'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/productivity/"><span title="🚀 Team Productivity" class="categoryLinkLabel_MFuf">🚀 Team Productivity</span></a><button aria-label="Expand sidebar category '🚀 Team Productivity'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_O72p menu__link menu__link--sublist" href="/docs/solution/ux/"><span title="🎨 User Experience &amp; Design" class="categoryLinkLabel_MFuf">🎨 User Experience &amp; Design</span></a><button aria-label="Expand sidebar category '🎨 User Experience &amp; Design'" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_S1TL"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_A67S"><div class="docItemContainer_oKAG"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_sQDc" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_UUPH"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/solution/ai/"><span>🤖 AI &amp; Intelligent Agents</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/solution/ai/patterns/"><span>Patterns</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Context Engineering</span></li></ul></nav><div class="tocCollapsible_MbZu theme-doc-toc-mobile tocMobile_bDI5"><button type="button" class="clean-btn tocCollapsibleButton_khAz">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Context Engineering</h1></header>
+<div class="theme-admonition theme-admonition-info admonition_SytF alert alert--info"><div class="admonitionHeading_c8Bz"><span class="admonitionIcon_TU1o"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>Document Information</div><div class="admonitionContent_mnjq"><p><strong>Last Updated:</strong> July 25, 2025<br>
+<strong>Owner:</strong> Brian Lewis<br>
+<strong>Point of Contact:</strong> Ali Kharazmi<br>
+<strong>Contributors and Reviewers:</strong> Archit Kaila, Haitham Maya, Malika Mahoui</p></div></div>
+<p>Agents need context to perform tasks. Context engineering is the art and science of filling the context window with just the right information at each step of an agent's trajectory.</p>
+<p><img decoding="async" loading="lazy" alt="Context Engineering Diagram" src="/assets/images/Context_Engineering_Framework-e8b33941f02cd54c4f52058f28aba149.png" width="1710" height="596" class="img_1Tvj"></p>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="context-engineering-overview">Context Engineering Overview<a href="#context-engineering-overview" class="hash-link" aria-label="Direct link to Context Engineering Overview" title="Direct link to Context Engineering Overview" translate="no">​</a></h2>
+<!-- --><div class="docusaurus-mermaid-container container_gBxT"><svg id="mermaid-svg-5266046" width="100%" xmlns="http://www.w3.org/2000/svg" class="flowchart" style="max-width: 1367.65625px;" viewBox="0 0 1367.65625 1165" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#mermaid-svg-5266046{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-svg-5266046 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-svg-5266046 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-svg-5266046 .error-icon{fill:#552222;}#mermaid-svg-5266046 .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-5266046 .edge-thickness-normal{stroke-width:1px;}#mermaid-svg-5266046 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-5266046 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-5266046 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-svg-5266046 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-5266046 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-5266046 .marker{fill:#d83b01;stroke:#d83b01;}#mermaid-svg-5266046 .marker.cross{stroke:#d83b01;}#mermaid-svg-5266046 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-5266046 p{margin:0;}#mermaid-svg-5266046 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#mermaid-svg-5266046 .cluster-label text{fill:#333;}#mermaid-svg-5266046 .cluster-label span{color:#333;}#mermaid-svg-5266046 .cluster-label span p{background-color:transparent;}#mermaid-svg-5266046 .label text,#mermaid-svg-5266046 span{fill:#000000;color:#000000;}#mermaid-svg-5266046 .node rect,#mermaid-svg-5266046 .node circle,#mermaid-svg-5266046 .node ellipse,#mermaid-svg-5266046 .node polygon,#mermaid-svg-5266046 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-svg-5266046 .rough-node .label text,#mermaid-svg-5266046 .node .label text,#mermaid-svg-5266046 .image-shape .label,#mermaid-svg-5266046 .icon-shape .label{text-anchor:middle;}#mermaid-svg-5266046 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-svg-5266046 .rough-node .label,#mermaid-svg-5266046 .node .label,#mermaid-svg-5266046 .image-shape .label,#mermaid-svg-5266046 .icon-shape .label{text-align:center;}#mermaid-svg-5266046 .node.clickable{cursor:pointer;}#mermaid-svg-5266046 .root .anchor path{fill:#d83b01!important;stroke-width:0;stroke:#d83b01;}#mermaid-svg-5266046 .arrowheadPath{fill:#333333;}#mermaid-svg-5266046 .edgePath .path{stroke:#d83b01;stroke-width:2.0px;}#mermaid-svg-5266046 .flowchart-link{stroke:#d83b01;fill:none;}#mermaid-svg-5266046 .edgeLabel{background-color:white;text-align:center;}#mermaid-svg-5266046 .edgeLabel p{background-color:white;}#mermaid-svg-5266046 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-svg-5266046 .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-svg-5266046 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-svg-5266046 .cluster text{fill:#333;}#mermaid-svg-5266046 .cluster span{color:#333;}#mermaid-svg-5266046 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:#1a1a1a;border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-svg-5266046 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-svg-5266046 rect.text{fill:none;stroke-width:0;}#mermaid-svg-5266046 .icon-shape,#mermaid-svg-5266046 .image-shape{background-color:white;text-align:center;}#mermaid-svg-5266046 .icon-shape p,#mermaid-svg-5266046 .image-shape p{background-color:white;padding:2px;}#mermaid-svg-5266046 .icon-shape rect,#mermaid-svg-5266046 .image-shape rect{opacity:0.5;background-color:white;fill:white;}#mermaid-svg-5266046 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#mermaid-svg-5266046 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#mermaid-svg-5266046 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-5266046 .default&gt;*{fill:#2d2d2d!important;stroke:#ff4b1f!important;color:white!important;stroke-width:2px!important;}#mermaid-svg-5266046 .default span{fill:#2d2d2d!important;stroke:#ff4b1f!important;color:white!important;stroke-width:2px!important;}#mermaid-svg-5266046 .default tspan{fill:white!important;}#mermaid-svg-5266046 .mainNode&gt;*{fill:#1a1a1a!important;stroke:#ff4b1f!important;color:white!important;stroke-width:3px!important;}#mermaid-svg-5266046 .mainNode span{fill:#1a1a1a!important;stroke:#ff4b1f!important;color:white!important;stroke-width:3px!important;}#mermaid-svg-5266046 .mainNode tspan{fill:white!important;}#mermaid-svg-5266046 .primaryNode&gt;*{fill:#1a1a1a!important;stroke:#ff4b1f!important;color:white!important;stroke-width:3px!important;}#mermaid-svg-5266046 .primaryNode span{fill:#1a1a1a!important;stroke:#ff4b1f!important;color:white!important;stroke-width:3px!important;}#mermaid-svg-5266046 .primaryNode tspan{fill:white!important;}#mermaid-svg-5266046 .secondaryNode&gt;*{fill:#1a1a1a!important;stroke:#00b4d8!important;color:white!important;stroke-width:2px!important;}#mermaid-svg-5266046 .secondaryNode span{fill:#1a1a1a!important;stroke:#00b4d8!important;color:white!important;stroke-width:2px!important;}#mermaid-svg-5266046 .secondaryNode tspan{fill:white!important;}#mermaid-svg-5266046 .leafNode&gt;*{fill:#2d2d2d!important;stroke:#00b4d8!important;color:white!important;stroke-width:2px!important;}#mermaid-svg-5266046 .leafNode span{fill:#2d2d2d!important;stroke:#00b4d8!important;color:white!important;stroke-width:2px!important;}#mermaid-svg-5266046 .leafNode tspan{fill:white!important;}</style><g><marker id="mermaid-svg-5266046_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-svg-5266046_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-svg-5266046_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-svg-5266046_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-svg-5266046_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-svg-5266046_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"><g class="cluster" id="MainOps" data-look="classic"><rect style="stroke:#ff4b1f !important;stroke-width:2px !important;stroke-dasharray:5 5 !important;fill:none !important" x="262.8046875" y="87" width="178.25" height="1055.5"></rect><g class="cluster-label" transform="translate(334.4921875, 87)"><foreignObject width="34.875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p><font color="#ff4b1f"><b>Core</b></font></p></span></div></foreignObject></g></g></g><g class="edgePaths"><path d="M212.805,149L216.971,149C221.138,149,229.471,149,237.138,149C244.805,149,251.805,149,255.305,149L258.805,149" id="L_CE_MainOps_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_CE_MainOps_0" data-points="W3sieCI6MjEyLjgwNDY4NzUsInkiOjE0OX0seyJ4IjoyMzcuODA0Njg3NSwieSI6MTQ5fSx7IngiOjI2Mi44MDQ2ODc1LCJ5IjoxNDl9LHsieCI6MzAyLjU4OTg0Mzc1LCJ5IjoxNDl9XQ==" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path><path d="M401.27,149L407.9,149C414.531,149,427.793,149,438.59,149C449.388,149,457.721,149,466.482,149C475.243,149,484.432,149,489.027,149L493.621,149" id="L_W_WriteOps_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_W_WriteOps_0" data-points="W3sieCI6NDAxLjI2OTUzMTI1LCJ5IjoxNDl9LHsieCI6NDQxLjA1NDY4NzUsInkiOjE0OX0seyJ4Ijo0NjYuMDU0Njg3NSwieSI6MTQ5fSx7IngiOjQ5Ny42MjEwOTM3NSwieSI6MTQ5fV0=" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path><path d="M403.996,481L410.173,481C416.349,481,428.702,481,439.045,481C449.388,481,457.721,481,465.388,481C473.055,481,480.055,481,483.555,481L487.055,481" id="L_S_SelectOps_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_S_SelectOps_0" data-points="W3sieCI6NDAzLjk5NjA5Mzc1LCJ5Ijo0ODF9LHsieCI6NDQxLjA1NDY4NzUsInkiOjQ4MX0seyJ4Ijo0NjYuMDU0Njg3NSwieSI6NDgxfSx7IngiOjQ5MS4wNTQ2ODc1LCJ5Ijo0ODF9XQ==" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path><path d="M416.055,813L420.221,813C424.388,813,432.721,813,441.055,813C449.388,813,457.721,813,472.017,813C486.313,813,506.57,813,516.699,813L526.828,813" id="L_C_CompressOps_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C_CompressOps_0" data-points="W3sieCI6NDE2LjA1NDY4NzUsInkiOjgxM30seyJ4Ijo0NDEuMDU0Njg3NSwieSI6ODEzfSx7IngiOjQ2Ni4wNTQ2ODc1LCJ5Ijo4MTN9LHsieCI6NTMwLjgyODEyNSwieSI6ODEzfV0=" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path><path d="M405.785,1080.5L411.663,1080.5C417.542,1080.5,429.298,1080.5,439.343,1080.5C449.388,1080.5,457.721,1080.5,471.105,1080.5C484.49,1080.5,502.924,1080.5,512.142,1080.5L521.359,1080.5" id="L_I_IsolateOps_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_I_IsolateOps_0" data-points="W3sieCI6NDA1Ljc4NTE1NjI1LCJ5IjoxMDgwLjV9LHsieCI6NDQxLjA1NDY4NzUsInkiOjEwODAuNX0seyJ4Ijo0NjYuMDU0Njg3NSwieSI6MTA4MC41fSx7IngiOjUyNS4zNTkzNzUsInkiOjEwODAuNX1d" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_CE_MainOps_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_W_WriteOps_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_S_SelectOps_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_C_CompressOps_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_I_IsolateOps_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="root" transform="translate(517.359375, 996)"><g class="clusters"><g class="cluster" id="IsolateOps" data-look="classic"><rect style="stroke:#ff4b1f !important;stroke-width:2px !important;stroke-dasharray:5 5 !important;fill:none !important" x="8" y="8" width="799.9921875" height="153"></rect><g class="cluster-label" transform="translate(383.40625, 8)"><foreignObject width="49.1796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p><font color="#ff4b1f"><b>Isolate</b></font></p></span></div></foreignObject></g></g></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g class="node default leafNode" id="flowchart-I1-27" transform="translate(155.03125, 84.5)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-112.03125" y="-39" width="224.0625" height="78"></rect><g class="label" style="color:white !important" transform="translate(-82.03125, -24)"><rect></rect><foreignObject width="164.0625" height="48"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Split Across Sub-agents<br>Separation of Concern</p></span></div></foreignObject></g></g><g class="node default leafNode" id="flowchart-I2-28" transform="translate(412.546875, 84.5)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-95.484375" y="-39" width="190.96875" height="78"></rect><g class="label" style="color:white !important" transform="translate(-65.484375, -24)"><rect></rect><foreignObject width="130.96875" height="48"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Code Environment<br>Separation</p></span></div></foreignObject></g></g><g class="node default leafNode" id="flowchart-I3-29" transform="translate(665.51171875, 84.5)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-107.48046875" y="-27" width="214.9609375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-77.48046875, -12)"><rect></rect><foreignObject width="154.9609375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Runtime State Object</p></span></div></foreignObject></g></g></g></g><g class="root" transform="translate(522.828125, 664)"><g class="clusters"><g class="cluster" id="CompressOps" data-look="classic"><rect style="stroke:#ff4b1f !important;stroke-width:2px !important;stroke-dasharray:5 5 !important;fill:none !important" x="8" y="8" width="789.0546875" height="282"></rect><g class="cluster-label" transform="translate(366.6640625, 8)"><foreignObject width="71.7265625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p><font color="#ff4b1f"><b>Compress</b></font></p></span></div></foreignObject></g></g></g><g class="edgePaths"><path d="M225.728,99.5L213.868,105.75C202.009,112,178.289,124.5,166.43,136.333C154.57,148.167,154.57,159.333,154.57,164.917L154.57,170.5" id="L_C1_C1A_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C1_C1A_0" data-points="W3sieCI6MjI1LjcyNzY1MjYxNjI3OTA3LCJ5Ijo5OS41fSx7IngiOjE1NC41NzAzMTI1LCJ5IjoxMzd9LHsieCI6MTU0LjU3MDMxMjUsInkiOjE3NC41fV0=" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path><path d="M328.194,99.5L340.054,105.75C351.913,112,375.632,124.5,387.492,136.333C399.352,148.167,399.352,159.333,399.352,164.917L399.352,170.5" id="L_C1_C1B_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C1_C1B_0" data-points="W3sieCI6MzI4LjE5NDIyMjM4MzcyMDksInkiOjk5LjV9LHsieCI6Mzk5LjM1MTU2MjUsInkiOjEzN30seyJ4IjozOTkuMzUxNTYyNSwieSI6MTc0LjV9XQ==" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path><path d="M647.309,99.5L647.309,105.75C647.309,112,647.309,124.5,647.309,136.333C647.309,148.167,647.309,159.333,647.309,164.917L647.309,170.5" id="L_C2_C2A_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C2_C2A_0" data-points="W3sieCI6NjQ3LjMwODU5Mzc1LCJ5Ijo5OS41fSx7IngiOjY0Ny4zMDg1OTM3NSwieSI6MTM3fSx7IngiOjY0Ny4zMDg1OTM3NSwieSI6MTc0LjV9XQ==" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_C1_C1A_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_C1_C1B_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_C2_C2A_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default secondaryNode" id="flowchart-C1-19" transform="translate(276.9609375, 72.5)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-75.55859375" y="-27" width="151.1171875" height="54"></rect><g class="label" style="color:white !important" transform="translate(-45.55859375, -12)"><rect></rect><foreignObject width="91.1171875" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Summarizing</p></span></div></foreignObject></g></g><g class="node default leafNode" id="flowchart-C1A-22" transform="translate(154.5703125, 213.5)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-111.5703125" y="-39" width="223.140625" height="78"></rect><g class="label" style="color:white !important" transform="translate(-81.5703125, -24)"><rect></rect><foreignObject width="163.140625" height="48"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Recursive/Hierarchical<br>Summarization</p></span></div></foreignObject></g></g><g class="node default leafNode" id="flowchart-C1B-24" transform="translate(399.3515625, 213.5)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-83.2109375" y="-39" width="166.421875" height="78"></rect><g class="label" style="color:white !important" transform="translate(-53.2109375, -24)"><rect></rect><foreignObject width="106.421875" height="48"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Agent to Agent<br>Summarization</p></span></div></foreignObject></g></g><g class="node default secondaryNode" id="flowchart-C2-20" transform="translate(647.30859375, 72.5)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-63.10546875" y="-27" width="126.2109375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-33.10546875, -12)"><rect></rect><foreignObject width="66.2109375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Trimming</p></span></div></foreignObject></g></g><g class="node default leafNode" id="flowchart-C2A-26" transform="translate(647.30859375, 213.5)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-114.74609375" y="-39" width="229.4921875" height="78"></rect><g class="label" style="color:white !important" transform="translate(-84.74609375, -24)"><rect></rect><foreignObject width="169.4921875" height="48"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Remove Older Messages<br>From List</p></span></div></foreignObject></g></g></g></g><g class="root" transform="translate(483.0546875, 332)"><g class="clusters"><g class="cluster" id="SelectOps" data-look="classic"><rect style="stroke:#ff4b1f !important;stroke-width:2px !important;stroke-dasharray:5 5 !important;fill:none !important" x="8" y="8" width="868.6015625" height="282"></rect><g class="cluster-label" transform="translate(419.390625, 8)"><foreignObject width="45.8203125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p><font color="#ff4b1f"><b>Select</b></font></p></span></div></foreignObject></g></g></g><g class="edgePaths"><path d="M545.324,99.5L532.277,105.75C519.229,112,493.134,124.5,480.087,138.333C467.039,152.167,467.039,167.333,467.039,174.917L467.039,182.5" id="L_S2_S2A_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_S2_S2A_0" data-points="W3sieCI6NTQ1LjMyNDE3MzMyODQ4ODMsInkiOjk5LjV9LHsieCI6NDY3LjAzOTA2MjUsInkiOjEzN30seyJ4Ijo0NjcuMDM5MDYyNSwieSI6MTg2LjV9XQ==" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path><path d="M658.055,99.5L671.102,105.75C684.15,112,710.245,124.5,723.292,136.333C736.34,148.167,736.34,159.333,736.34,164.917L736.34,170.5" id="L_S2_S2B_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_S2_S2B_0" data-points="W3sieCI6NjU4LjA1NDczMjkyMTUxMTcsInkiOjk5LjV9LHsieCI6NzM2LjMzOTg0Mzc1LCJ5IjoxMzd9LHsieCI6NzM2LjMzOTg0Mzc1LCJ5IjoxNzQuNX1d" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_S2_S2A_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_S2_S2B_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default secondaryNode" id="flowchart-S1-13" transform="translate(173, 213.5)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="color:white !important" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Read State Object/Scratchpad</p></span></div></foreignObject></g></g><g class="node default secondaryNode" id="flowchart-S2-14" transform="translate(601.689453125, 72.5)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-93.171875" y="-27" width="186.34375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-63.171875, -12)"><rect></rect><foreignObject width="126.34375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Selecting Memory</p></span></div></foreignObject></g></g><g class="node default leafNode" id="flowchart-S2A-16" transform="translate(467.0390625, 213.5)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-114.0390625" y="-27" width="228.078125" height="54"></rect><g class="label" style="color:white !important" transform="translate(-84.0390625, -12)"><rect></rect><foreignObject width="168.078125" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Pull Narrow Sets of File</p></span></div></foreignObject></g></g><g class="node default leafNode" id="flowchart-S2B-18" transform="translate(736.33984375, 213.5)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-105.26171875" y="-39" width="210.5234375" height="78"></rect><g class="label" style="color:white !important" transform="translate(-75.26171875, -24)"><rect></rect><foreignObject width="150.5234375" height="48"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Knowledge Graph for<br>Memory Indexing</p></span></div></foreignObject></g></g></g></g><g class="root" transform="translate(489.62109375, 0)"><g class="clusters"><g class="cluster" id="WriteOps" data-look="classic"><rect style="stroke:#ff4b1f !important;stroke-width:2px !important;stroke-dasharray:5 5 !important;fill:none !important" x="8" y="8" width="855.46875" height="282"></rect><g class="cluster-label" transform="translate(415.234375, 8)"><foreignObject width="41" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p><font color="#ff4b1f"><b>Write</b></font></p></span></div></foreignObject></g></g></g><g class="edgePaths"><path d="M237.376,99.5L224.168,105.75C210.96,112,184.545,124.5,171.337,136.333C158.129,148.167,158.129,159.333,158.129,164.917L158.129,170.5" id="L_W1_W1A_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_W1_W1A_0" data-points="W3sieCI6MjM3LjM3NTgxNzU4NzIwOTMsInkiOjk5LjV9LHsieCI6MTU4LjEyODkwNjI1LCJ5IjoxMzd9LHsieCI6MTU4LjEyODkwNjI1LCJ5IjoxNzQuNX1d" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path><path d="M351.491,99.5L364.699,105.75C377.907,112,404.323,124.5,417.53,138.333C430.738,152.167,430.738,167.333,430.738,174.917L430.738,182.5" id="L_W1_W1B_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_W1_W1B_0" data-points="W3sieCI6MzUxLjQ5MTM2OTkxMjc5MDcsInkiOjk5LjV9LHsieCI6NDMwLjczODI4MTI1LCJ5IjoxMzd9LHsieCI6NDMwLjczODI4MTI1LCJ5IjoxODYuNX1d" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path><path d="M708.344,99.5L708.344,105.75C708.344,112,708.344,124.5,708.344,136.333C708.344,148.167,708.344,159.333,708.344,164.917L708.344,170.5" id="L_W2_W2A_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_W2_W2A_0" data-points="W3sieCI6NzA4LjM0Mzc1LCJ5Ijo5OS41fSx7IngiOjcwOC4zNDM3NSwieSI6MTM3fSx7IngiOjcwOC4zNDM3NSwieSI6MTc0LjV9XQ==" marker-end="url(#mermaid-svg-5266046_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_W1_W1A_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_W1_W1B_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="L_W2_W2A_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default secondaryNode" id="flowchart-W1-5" transform="translate(294.43359375, 72.5)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-69.7421875" y="-27" width="139.484375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-39.7421875, -12)"><rect></rect><foreignObject width="79.484375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Scratchpad</p></span></div></foreignObject></g></g><g class="node default leafNode" id="flowchart-W1A-8" transform="translate(158.12890625, 213.5)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-115.12890625" y="-39" width="230.2578125" height="78"></rect><g class="label" style="color:white !important" transform="translate(-85.12890625, -24)"><rect></rect><foreignObject width="170.2578125" height="48"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Tool Calling<br>Write to scratchpad file</p></span></div></foreignObject></g></g><g class="node default leafNode" id="flowchart-W1B-10" transform="translate(430.73828125, 213.5)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-107.48046875" y="-27" width="214.9609375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-77.48046875, -12)"><rect></rect><foreignObject width="154.9609375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Runtime State Object</p></span></div></foreignObject></g></g><g class="node default secondaryNode" id="flowchart-W2-6" transform="translate(708.34375, 72.5)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-58.02734375" y="-27" width="116.0546875" height="54"></rect><g class="label" style="color:white !important" transform="translate(-28.02734375, -12)"><rect></rect><foreignObject width="56.0546875" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Memory</p></span></div></foreignObject></g></g><g class="node default leafNode" id="flowchart-W2A-12" transform="translate(708.34375, 213.5)"><rect class="basic label-container" style="fill:#2d2d2d !important;stroke:#00b4d8 !important;stroke-width:2px !important" x="-120.125" y="-39" width="240.25" height="78"></rect><g class="label" style="color:white !important" transform="translate(-90.125, -24)"><rect></rect><foreignObject width="180.25" height="48"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Self Generated Memories<br>Across Sessions</p></span></div></foreignObject></g></g></g></g><g class="node default mainNode" id="flowchart-CE-0" transform="translate(110.40234375, 149)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#ff4b1f !important;stroke-width:3px !important" x="-102.40234375" y="-27" width="204.8046875" height="54"></rect><g class="label" style="color:white !important" transform="translate(-72.40234375, -12)"><rect></rect><foreignObject width="144.8046875" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Context Engineering</p></span></div></foreignObject></g></g><g class="node default primaryNode" id="flowchart-W-1" transform="translate(351.9296875, 149)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#ff4b1f !important;stroke-width:3px !important" x="-49.33984375" y="-27" width="98.6796875" height="54"></rect><g class="label" style="color:white !important" transform="translate(-19.33984375, -12)"><rect></rect><foreignObject width="38.6796875" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Write</p></span></div></foreignObject></g></g><g class="node default primaryNode" id="flowchart-S-2" transform="translate(351.9296875, 481)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#ff4b1f !important;stroke-width:3px !important" x="-52.06640625" y="-27" width="104.1328125" height="54"></rect><g class="label" style="color:white !important" transform="translate(-22.06640625, -12)"><rect></rect><foreignObject width="44.1328125" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Select</p></span></div></foreignObject></g></g><g class="node default primaryNode" id="flowchart-C-3" transform="translate(351.9296875, 813)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#ff4b1f !important;stroke-width:3px !important" x="-64.125" y="-27" width="128.25" height="54"></rect><g class="label" style="color:white !important" transform="translate(-34.125, -12)"><rect></rect><foreignObject width="68.25" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Compress</p></span></div></foreignObject></g></g><g class="node default primaryNode" id="flowchart-I-4" transform="translate(351.9296875, 1080.5)"><rect class="basic label-container" style="fill:#1a1a1a !important;stroke:#ff4b1f !important;stroke-width:3px !important" x="-53.85546875" y="-27" width="107.7109375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-23.85546875, -12)"><rect></rect><foreignObject width="47.7109375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel"><p>Isolate</p></span></div></foreignObject></g></g></g></g></g></svg></div>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="types-of-context">Types of Context<a href="#types-of-context" class="hash-link" aria-label="Direct link to Types of Context" title="Direct link to Types of Context" translate="no">​</a></h2>
+<p>Context engineering serves as an umbrella that applies across a few different context types:</p>
+<ul>
+<li class=""><strong>Instructions</strong> – prompts, memories, few-shot examples, tool descriptions, etc.</li>
+<li class=""><strong>Knowledge</strong> – facts, memories, etc.</li>
+<li class=""><strong>Tools</strong> – feedback from tool calls</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="https://blog.langchain.com/content/images/size/w1000/2025/07/image-1.png" alt="Context Engineering Types" class="img_1Tvj"></p>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="context-challenges">Context Challenges<a href="#context-challenges" class="hash-link" aria-label="Direct link to Context Challenges" title="Direct link to Context Challenges" translate="no">​</a></h2>
+<p>Long-running tasks and accumulating feedback from tool calls mean that agents often utilize a large number of tokens. This can degrade performance and opens up the door for hallucinations.</p>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="strategies-for-agent-context-engineering">Strategies for Agent Context Engineering<a href="#strategies-for-agent-context-engineering" class="hash-link" aria-label="Direct link to Strategies for Agent Context Engineering" title="Direct link to Strategies for Agent Context Engineering" translate="no">​</a></h2>
+<p>These strategies can be categorized into 4 buckets:</p>
+<ul>
+<li class=""><strong>Write</strong> – Saving context outside the context window to help an agent perform tasks</li>
+<li class=""><strong>Select</strong> – Pulling relevant context into the context window when needed</li>
+<li class=""><strong>Compress</strong> – Retaining only the essential tokens required to perform tasks</li>
+<li class=""><strong>Isolate</strong> – Splitting context into separate components to optimize agent performance</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="write">Write<a href="#write" class="hash-link" aria-label="Direct link to Write" title="Direct link to Write" translate="no">​</a></h3>
+<p>Just as humans take notes, agents can use "scratchpads" to persist information outside the context window. This approach saves critical information that remains accessible throughout task execution.</p>
+<p><strong>Implementation Methods:</strong></p>
+<p><strong>Single Session:</strong></p>
+<ol>
+<li class=""><strong>File-based storage</strong> – A tool call that writes information to a persistent file</li>
+<li class=""><strong>Runtime state</strong> – A field in a state object that persists during the session</li>
+</ol>
+<p><strong>Cross-Session:</strong>
+3. <strong>Long-term memory</strong> – Persistent storage that remembers information across multiple sessions (e.g., Windsurf, Cursor, ChatGPT)</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="select">Select<a href="#select" class="hash-link" aria-label="Direct link to Select" title="Direct link to Select" translate="no">​</a></h3>
+<p>Context selection depends on how the scratchpad is implemented. If it's a tool, agents access it via tool calls. If it's part of the agent's runtime state, developers decide which parts of the state are exposed at each step, allowing more control over what context is visible during reasoning.</p>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="memory-usage">Memory Usage<a href="#memory-usage" class="hash-link" aria-label="Direct link to Memory Usage" title="Direct link to Memory Usage" translate="no">​</a></h4>
+<p>When agents have memory, they must also select which memories to use:</p>
+<ul>
+<li class=""><strong>Episodic memories</strong> provide few-shot examples of prior behavior.</li>
+<li class=""><strong>Procedural memories</strong> store instructions to guide actions.</li>
+<li class=""><strong>Semantic memories</strong> store factual knowledge relevant to tasks.</li>
+</ul>
+<p>Selecting the right memory improves performance and personalization.</p>
+<h4 class="anchor anchorTargetStickyNavbar_evAY" id="challenges-and-solutions">Challenges and Solutions<a href="#challenges-and-solutions" class="hash-link" aria-label="Direct link to Challenges and Solutions" title="Direct link to Challenges and Solutions" translate="no">​</a></h4>
+<p>A key challenge is ensuring relevant memories are selected:</p>
+<ul>
+<li class="">Many code agents use fixed files (e.g., <code>CLAUDE.md</code>, <code>Cursor's rules files</code>) for consistent behavior.</li>
+<li class="">Agents with large memory stores (especially semantic memory) require advanced retrieval strategies.</li>
+<li class="">Embeddings and knowledge graphs help with retrieval, but issues like irrelevant memory injection can still happen. For instance, <strong>ChatGPT</strong> has mistakenly inserted private user data into responses, raising concerns over context control and trust.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="compress">Compress<a href="#compress" class="hash-link" aria-label="Direct link to Compress" title="Direct link to Compress" translate="no">​</a></h2>
+<p>Agent interactions can span hundreds of turns with token-heavy tool calls, requiring compression strategies to manage context efficiently.</p>
+<p><strong>Summarization:</strong></p>
+<ul>
+<li class="">Uses LLMs to distill essential information from lengthy interactions</li>
+<li class=""><code>Claude Code's</code> "auto-compact" feature demonstrates this approach, summarizing full trajectories when context exceeds 95%</li>
+<li class="">Can employ recursive or hierarchical summarization strategies</li>
+<li class="">Useful for post-processing token-heavy tool calls (e.g., search results)</li>
+<li class="">Applied at agent-agent boundaries to reduce tokens during knowledge hand-off</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="https://blog.langchain.com/content/images/size/w1000/2025/07/image-7.png" alt="Context Compression Strategies" class="img_1Tvj"></p>
+<p><strong>Context Trimming:</strong></p>
+<ul>
+<li class="">Filters or "prunes" context using hard-coded heuristics rather than LLM processing</li>
+<li class="">Examples include removing older messages from conversation history</li>
+<li class="">More deterministic than summarization but less intelligent about content relevance</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="isolate">Isolate<a href="#isolate" class="hash-link" aria-label="Direct link to Isolate" title="Direct link to Isolate" translate="no">​</a></h2>
+<p>Context isolation splits information across separate components to optimize agent performance.</p>
+<p><strong>Multi-Agent:</strong></p>
+<ul>
+<li class="">Split context across sub-agents with specific tools and instructions</li>
+<li class=""><code>OpenAI Swarm</code> library enables separation of concerns for specialized sub-tasks</li>
+<li class="">Each agent maintains its own context window</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="https://blog.langchain.com/content/images/size/w1000/2025/07/image-8.png" alt="Multi-Agent Context Isolation" class="img_1Tvj"></p>
+<p><strong>Sandboxed Environments:</strong></p>
+<ul>
+<li class="">Code execution in isolated environments (e.g., <code>HuggingFace CodeAgent</code>)</li>
+<li class="">Selected context from tool calls passed back to LLM</li>
+<li class="">Prevents context contamination between execution and reasoning</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="https://blog.langchain.com/content/images/size/w1000/2025/07/image-9.png" alt="Environment-Based Context Isolation" class="img_1Tvj"></p>
+<p><strong>State Objects:</strong></p>
+<ul>
+<li class="">Runtime state schemas with selective field exposure</li>
+<li class="">Context written to specific fields, only relevant portions exposed to LLM</li>
+<li class="">Enables controlled context access without full sandboxing</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="context-engineering-with-langgraph">Context Engineering with LangGraph<a href="#context-engineering-with-langgraph" class="hash-link" aria-label="Direct link to Context Engineering with LangGraph" title="Direct link to Context Engineering with LangGraph" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="write-context">Write Context<a href="#write-context" class="hash-link" aria-label="Direct link to Write Context" title="Direct link to Write Context" translate="no">​</a></h3>
+<p><code>LangGraph</code> supports short-term (thread-scoped) and long-term memory. Short-term memory uses checkpoints as a scratchpad, letting agents write and retrieve state across steps.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="select-context">Select Context<a href="#select-context" class="hash-link" aria-label="Direct link to Select Context" title="Direct link to Select Context" translate="no">​</a></h3>
+<p>At each step, agents can:</p>
+<ul>
+<li class=""><strong>Access short-term state</strong> to retrieve intermediate data</li>
+<li class=""><strong>Query long-term memory</strong> using different retrieval methods</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="compress-context">Compress Context<a href="#compress-context" class="hash-link" aria-label="Direct link to Compress Context" title="Direct link to Compress Context" translate="no">​</a></h3>
+<p><code>LangGraph</code> lets you control context by passing a <em>state</em> object between nodes. A common method is using a message list and periodically <em>summarizing</em> or <em>trimming it</em> with built-in tools.</p>
+<h3 class="anchor anchorTargetStickyNavbar_evAY" id="isolate-context">Isolate Context<a href="#isolate-context" class="hash-link" aria-label="Direct link to Isolate Context" title="Direct link to Isolate Context" translate="no">​</a></h3>
+<p><code>LangGraph</code> uses a structured <em>state</em> object where you define a schema. This lets you store tool outputs or other data in specific fields, keeping them isolated from the LLM until needed.</p>
+<h2 class="anchor anchorTargetStickyNavbar_evAY" id="references">References<a href="#references" class="hash-link" aria-label="Direct link to References" title="Direct link to References" translate="no">​</a></h2>
+<ol>
+<li class=""><strong>Context Engineering for Agents</strong> - arXiv preprint. Available at: <a href="https://arxiv.org/pdf/2507.13334" target="_blank" rel="noopener noreferrer" class="">https://arxiv.org/pdf/2507.13334</a></li>
+<li class=""><strong>Context Engineering for Agents</strong> - LangChain Blog. Available at: <a href="https://blog.langchain.com/context-engineering-for-agents/" target="_blank" rel="noopener noreferrer" class="">https://blog.langchain.com/context-engineering-for-agents/</a></li>
+</ol></div><div class="docsRating"><br><em>Was this helpful?&nbsp;</em><button type="button" title="Thumbs up"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="thumbs-up" class="svg-inline--fa fa-thumbs-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"></path></svg></button>&nbsp;<button type="button" title="Thumbs down"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="thumbs-down" class="svg-inline--fa fa-thumbs-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M313.4 479.1c26-5.2 42.9-30.5 37.7-56.5l-2.3-11.4c-5.3-26.7-15.1-52.1-28.8-75.2l144 0c26.5 0 48-21.5 48-48c0-18.5-10.5-34.6-25.9-42.6C497 236.6 504 223.1 504 208c0-23.4-16.8-42.9-38.9-47.1c4.4-7.3 6.9-15.8 6.9-24.9c0-21.3-13.9-39.4-33.1-45.6c.7-3.3 1.1-6.8 1.1-10.4c0-26.5-21.5-48-48-48l-97.5 0c-19 0-37.5 5.6-53.3 16.1L202.7 73.8C176 91.6 160 121.6 160 153.7l0 38.3 0 48 0 24.9c0 29.2 13.3 56.7 36 75l7.4 5.9c26.5 21.2 44.6 51 51.2 84.2l2.3 11.4c5.2 26 30.5 42.9 56.5 37.7zM32 384l64 0c17.7 0 32-14.3 32-32l0-224c0-17.7-14.3-32-32-32L32 96C14.3 96 0 110.3 0 128L0 352c0 17.7 14.3 32 32 32z"></path></svg></button>&nbsp;</div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_CE8P"><a href="https://github.com/EliLillyCo/dc-techhq/tree/dev/docs/solution/ai/patterns/context_engineering.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit__jv8" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_mNeN"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/solution/ai/patterns/building_agentic_patterns"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Building Agentic Patterns</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/solution/ai/patterns/deep_agents"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Deep Agents</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents__3iH thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#context-engineering-overview" class="table-of-contents__link toc-highlight">Context Engineering Overview</a></li><li><a href="#types-of-context" class="table-of-contents__link toc-highlight">Types of Context</a></li><li><a href="#context-challenges" class="table-of-contents__link toc-highlight">Context Challenges</a></li><li><a href="#strategies-for-agent-context-engineering" class="table-of-contents__link toc-highlight">Strategies for Agent Context Engineering</a><ul><li><a href="#write" class="table-of-contents__link toc-highlight">Write</a></li><li><a href="#select" class="table-of-contents__link toc-highlight">Select</a></li></ul></li><li><a href="#compress" class="table-of-contents__link toc-highlight">Compress</a></li><li><a href="#isolate" class="table-of-contents__link toc-highlight">Isolate</a></li><li><a href="#context-engineering-with-langgraph" class="table-of-contents__link toc-highlight">Context Engineering with LangGraph</a><ul><li><a href="#write-context" class="table-of-contents__link toc-highlight">Write Context</a></li><li><a href="#select-context" class="table-of-contents__link toc-highlight">Select Context</a></li><li><a href="#compress-context" class="table-of-contents__link toc-highlight">Compress Context</a></li><li><a href="#isolate-context" class="table-of-contents__link toc-highlight">Isolate Context</a></li></ul></li><li><a href="#references" class="table-of-contents__link toc-highlight">References</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://engage.cloud.microsoft/main/org/lilly.com/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIxNzM1MTc3MCJ9/new" target="_blank" rel="noopener noreferrer" class="footer__link-item">EBA Viva Engage<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://collab.lilly.com/sites/enterpriseitarchitecture2" target="_blank" rel="noopener noreferrer" class="footer__link-item">EBA SharePoint<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_w_mF"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Questions?</div><ul class="footer__items clean-list"><li class="footer__item"><a href="#" class="footer__link-item">Reach us on Viva Engage!</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Eli Lilly and Company</div></div></div></footer></div><div class="mermaidTooltip" style="opacity: 0;"></div></body></html>

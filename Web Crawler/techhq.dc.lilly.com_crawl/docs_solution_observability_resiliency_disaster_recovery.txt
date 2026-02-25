@@ -1,0 +1,344 @@
+Title: 🧭 Resiliency & Disaster Recovery | Tech HQ
+URL: https://techhq.dc.lilly.com/docs/solution/observability/resiliency_disaster_recovery
+Description: Stack Overflow Article: 🧭 Resiliency & Disaster Recovery
+
+🧭 Resiliency & Disaster Recovery | Tech HQ
+Skip to main content
+Tech HQ
+Innovate
+Plan
+Solution
+Access
+Learn
+Contribute
+Updates
+LillyFlow
+🧩 Solution Overview
+🤖 AI & Intelligent Agents
+🏢 Business Enablement
+☁️ Cloud & Infrastructure
+🔐 Cybersecurity
+📊 Data & Analytics
+🛠️ Engineering Enablement
+🛰️ Observability & Reliability
+🗄️ Observability & Reliability BLT
+Infrastructure Performance Monitoring
+Log Management & Analytics
+Network Monitoring
+🧭 Resiliency & Disaster Recovery
+🚀 Team Productivity
+🎨 User Experience & Design
+🛰️ Observability & Reliability
+🧭 Resiliency & Disaster Recovery
+On this page
+Resiliency & Disaster Recovery
+Synced daily from Stack Overflow
+Solution Guide
+Lifecycle: Draft
+Last Update: 2025-03-28
+Capability Owner: Smita Carneiro
+EBA Lead: Todd Walters
+Contributors & Reviewers: Karl Mayer
+This guide outlines our approach to system resiliency, the ability to withstand disruptions, recover from failures, and
+maintain continuous operations. This encompasses disaster recovery (DR) capabilities, high availability (HA)
+architecture, and business continuity planning. Proper resiliency ensures that critical business functions continue
+operating during hardware failures, software issues, network outages, or even catastrophic events. This document
+provides guidance on determining your application's resiliency requirements based on business criticality and
+implementing appropriate architectural patterns to achieve the required level of service availability.
+Resiliency Design Steps
+​
+Assess Application Criticality
+: Begin by identifying the Business Application CI ID in ServiceNow. Detailed
+instructions can be found in the
+Determine Application Criticality document
+.
+This step is crucial for understanding the criticality of your application within its business context.
+Define Resiliency Requirements
+: Next, use the
+[Resiliency Tier / Infrastructure Matrix](#resiliency-tier--infrastructure-matrix) below to determine the system's
+resiliency requirements. This will help you identify the necessary measures to ensure your application's availability
+and reliability. You can also refer to the
+Resiliency Requirements document
+for additional detail for your application's tier.
+Implement Resilient Architecture
+: Based on your application's tier, follow the guidelines in the
+Resiliency Patterns document
+.
+This resource provides comprehensive information on building high resiliency for various infrastructure components
+like VMs, databases, and containers. It also explains different disaster recovery (DR) models, helping you design a
+robust and fault-tolerant system.
+Critical Systems Governance
+​
+Tier 0, Critical Systems and Local HA Manufacturing must follow the governance processes for Critical Systems,
+documented here
+.
+Resiliency Tier / Infrastructure Matrix
+​
+Tier
+Cloud
+On-Prem
+Tier 0-A
+[Tier 0-A](#tier-0-a)
+same as cloud
+Tier 0-B
+[Tier 0-B](#tier-0-b)
+same as cloud
+Critical High
+[Critical High](#critical-high-cloud)
+[Critical High](#critical-high-on-prem)
+Critical Medium
+[Critical Medium](#critical-medium-cloud)
+[Critical Medium](#critical-medium-on-prem)
+Critical Low
+[Critical Low](#critical-low-cloud)
+[Critical Low](#critical-low-on-prem)
+Local HA Manufacturing
+N/A
+[Local HA Manufacturing](#local-ha-manufacturing)
+All Other Systems
+[All Other Systems](#all-other-systems)
+same as cloud
+If you have a system where you only want a subset of critical recovered after a disaster, rather than the entire app
+refer to [this section](#critical-data) .
+Tier 0-A
+​
+This tier includes critical applications like authentication and networking. An Active-Active DR model is ideal.
+DR RTO
+: < 1 hour
+DR RPO
+: < 15 minutes
+High Availability RTO
+: < 1 hour
+High Availability RPO
+: < 15 minutes
+Backups
+: One copy locally, one in a secondary region
+Monitoring
+: Implement monitoring and alerting
+DR Testing
+: Annual tests to ensure recovery within RTO and RPO
+HA Testing
+: Test before production. For Active-Active, DR tests also serve as HA tests
+DR Assessments
+: Periodic assessments for compliance
+Tier 0-B
+​
+This tier includes applications essential for recovering other applications after a disaster, such as backup systems.
+These have high resiliency requirements, though less stringent than Tier 0-A. If Active-Active is not feasible for DR,
+consider Warm-Active or Pilot Light models.
+DR RTO
+: < 4 hours
+DR RPO
+: < 15 minutes
+High Availability RTO
+: < 2 hours
+High Availability RPO
+: < 15 minutes
+Backups
+: One copy locally, one in a secondary region
+Monitoring
+: Implement monitoring and alerting
+DR Testing
+: Annual tests to ensure recovery within RTO and RPO
+HA Testing
+: Test before production. For Active-Active, DR tests also serve as HA tests
+DR Assessments
+: Periodic assessments for compliance
+Critical High Cloud
+​
+This tier includes applications hosted in native Azure or AWS (not AVS) that, if unavailable for more than 8 hours,
+would negatively impact the enterprise. Pilot Light models are sufficient for these applications.
+DR RTO
+: < 8 hours
+DR RPO
+: < 1 hour
+High Availability RTO
+: < 4.5 hours
+High Availability RPO
+: < 15 minutes
+Backups
+: One copy locally, one in a secondary region
+Monitoring
+: Implement monitoring and alerting
+DR Testing
+: Annual tests to ensure recovery within RTO and RPO
+HA Testing
+: Test before production. For Active-Active, DR tests also serve as HA tests
+DR Assessments
+: Periodic assessments for compliance
+Critical High On-Prem
+​
+This tier includes applications hosted on-prem or in AVS that, if unavailable for more than 8 hours, would negatively
+impact the enterprise. Pilot Light models are sufficient. The DR team offers a managed solution for this. To onboard
+systems, check out this
+link
+.
+Note that there is a
+charge
+for this.
+DR RTO
+: < 8 hours
+DR RPO
+: < 1 hour
+Backups
+: One copy locally, one in a secondary region
+Monitoring
+: Implement monitoring and alerting
+DR Testing
+: Annual tests to ensure recovery within RTO and RPO
+DR Assessments
+: Periodic assessments for compliance
+Critical Medium Cloud
+​
+This tier includes applications hosted in native Azure or AWS (not AVS) that, if unavailable for more than 24 hours,
+would negatively impact the enterprise. Pilot Light models are sufficient for these applications.
+DR RTO
+: < 24 hours
+DR RPO
+: < 1 hour
+High Availability RTO
+: < 8 hours
+High Availability RPO
+: < 15 minutes
+Backups
+: One copy locally, one in a secondary region
+Monitoring
+: Implement monitoring and alerting
+DR Testing
+: Annual tests to ensure recovery within RTO and RPO
+HA Testing
+: Test before production. For Active-Active, DR tests also serve as HA tests
+DR Assessments
+: Periodic assessments for compliance
+Critical Medium On-Prem
+​
+This tier includes applications hosted on-prem or in AVS that, if unavailable for more than 24 hours, would negatively
+impact the enterprise. Pilot Light models are sufficient. The DR team offers a managed solution for this. To onboard
+systems, check out this
+link
+.
+Note that there is a
+charge
+for this.
+DR RTO
+: < 24 hours
+DR RPO
+: < 1 hour
+Backups
+: One copy locally, one in a secondary region
+Monitoring
+: Implement monitoring and alerting
+DR Testing
+: Annual tests to ensure recovery within RTO and RPO
+DR Assessments
+: Periodic assessments for compliance
+Critical Low Cloud
+​
+This tier includes applications hosted in native Azure or AWS (not AVS) that, if unavailable for more than 72 hours,
+would negatively impact the enterprise. Pilot Light models are sufficient for these applications.
+DR RTO
+: < 72 hours
+DR RPO
+: < 1 hour
+High Availability RTO
+: < 24 hours
+High Availability RPO
+: < 15 minutes
+Backups
+: One copy locally, one in a secondary region
+Monitoring
+: Implement monitoring and alerting
+DR Testing
+: Annual tests to ensure recovery within RTO and RPO
+HA Testing
+: Test before production. For Active-Active, DR tests also serve as HA tests
+DR Assessments
+: Periodic assessments for compliance
+Critical Low On-Prem
+​
+This tier includes applications hosted on-prem or in AVS that, if unavailable for more than 72 hours, would negatively
+impact the enterprise. Pilot Light models are sufficient. The DR team offers a managed solution for this. To onboard
+systems, check out this
+link
+.
+Note that there is a
+charge
+for this.
+DR RTO
+: < 72 hours
+DR RPO
+: < 1 hour
+Backups
+: One copy locally, one in a secondary region
+Monitoring
+: Implement monitoring and alerting
+DR Testing
+: Annual tests to ensure recovery within RTO and RPO
+DR Assessments
+: Periodic assessments for compliance
+Local HA Manufacturing
+​
+This tier includes applications hosted on-prem at a manufacturing site, excluding global manufacturing applications. If
+a manufacturing site goes down, only the data at that site is recovered, not a full IT system recovery. Manufacturing
+cannot afford downtime due to component failure, so high availability is essential, typically achieved with dual
+computer rooms.
+High Availability RTO
+: < 2 hours
+High Availability RPO
+: < 0 minutes
+Backups
+: One copy locally, one in a secondary region
+Monitoring
+: Implement monitoring and alerting
+DR Assessments
+: Periodic assessments for compliance
+Critical Data
+​
+If you have a system that does not need to be brought up immediately after a disaster but contains data needed
+immediately, refer to the section titled ‘
+Saving data separately from applications
+’ in
+Resiliency Patterns
+If you have a question, you can discuss it with your
+DR Steward
+or send an email to
+resiliency@lists.lilly.com
+.
+All Other Systems
+​
+All production systems not covered by the above categories fall into this one. In case of a disaster, these systems will
+be recovered via backup. This is a best effort process and may take 3-4 months.
+DR RPO
+: < 24 hours
+Backups
+: One copy locally, one in a secondary region
+Was this helpful?
+Tags:
+observability
+solution-guide
+techhq
+Edit this page
+Previous
+Network Monitoring
+Next
+🚀 Team Productivity
+Resiliency Design Steps
+Critical Systems Governance
+Resiliency Tier / Infrastructure Matrix
+Tier 0-A
+Tier 0-B
+Critical High Cloud
+Critical High On-Prem
+Critical Medium Cloud
+Critical Medium On-Prem
+Critical Low Cloud
+Critical Low On-Prem
+Local HA Manufacturing
+Critical Data
+All Other Systems
+Community
+EBA Viva Engage
+EBA SharePoint
+Questions?
+Reach us on Viva Engage!
+Copyright © 2026 Eli Lilly and Company

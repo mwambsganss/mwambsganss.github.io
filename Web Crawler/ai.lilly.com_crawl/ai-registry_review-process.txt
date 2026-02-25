@@ -1,0 +1,167 @@
+Title: AI Registry Review Process | ai.lilly.com
+URL: https://ai.lilly.com/ai-registry/review-process
+Description: 
+
+AI Registry Review Process | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+AI Registry Review Process: What to Expect
+Important:
+This process reflects requirements for AI Registry submissions made on or after November 7, 2025. Submissions prior to November 7 will follow the review process based on the submission date. To use the new process, you can
+submit a modification request
+to:
+Cancel and resubmit your use case
+Request the Cybersecurity review be cancelled noting the
+SAE request ID
+Request the Privacy review be cancelled noting the Privacy request ID.
+Your
+AI use case
+may be reviewed for:
+Prioritization
+Functional
+Risk assessment
+AI Tech
+Legal
+Quality
+During the Risk assessment review, a Tech@Lilly partner will work with you to evaluate your use case against risk criteria (based on data, context of use, system, and vendor details per Global Digital Governance Committee (GDGC) guidelines) and confirm the appropriate review path. Use cases that meet the low-risk criteria will follow the Low Risk Fast Path, requiring only the following reviews.
+Prioritization
+Functional
+Risk Assessment
+* Quality reviews are only required if the AI is used in a GMP use case, if the AI uses continuous learning and the AI output impacts patient safety or product quality, or if the AI output is included in a Regulatory submission without 100% human review.
+** AI recommendations are supplemental and do not replace required company processes, including
+Privacy review
+,
+Cybersecurity review
+, and
+Working with Third Parties (WwTP)
+. Vendor contracts must include standard AI language.
+Review 1: Prioritization
+Weekly review of new form submissions to determine next steps using the following evaluation criteria:
+Should this be done?
+Is the expected ROI sufficient?
+Does this already exist or overlap with another program/product?
+Does it align with business strategy?
+Can it be funded and staffed across exploration, design, implementation, and support phases?
+Review outcomes:
+Proceed
+– assign priority: Critical, High, Medium, or Low
+Reject
+– Rejected items may be resubmitted later with updated information
+Review 2: Functional
+A Tech@Lilly representative from the selected organization will contact you to:
+Understand the use case
+Ensure alignment with local strategy
+Confirm if the need is already met
+If it's a new, high-value opportunity, the local Tech@Lilly team will partner with you to determine an appropriate path forward, which may include prioritization and potential funding. A local architect may draft a technical design to guide the next steps.
+Note:
+Many ideas spend a lot of time here due to strategic or technical alignment considerations.
+Review 3: Risk assessment
+The Tech@Lilly lead architect for the requesting function connects with the submitter to fully understand the use case and proposed design.
+Review includes:
+Answering key questions covering data processed, context of use, architectural design, and vendor contract details.
+Verifying and confirming all information in the AI Registry submission.
+Possible outcomes:
+Fast path review cycle
+Standard review cycle (templated Legal guidance)
+High Risk review cycle (full Legal review)
+Review 4: AI Tech
+Enterprise-wide technology AI experts review your proposed solution to:
+Recommend the reuse of existing systems/vendors
+Define architecture and models for new solutions
+Identify and mitigate technical risks
+Suggest testing and monitoring strategies
+Review 5: Legal, and Quality (in parallel)
+These reviews ensure your AI solution is:
+Legally compliant
+Protects personal and proprietary data
+Meets quality standards
+Reminders
+Dev work (using green data only) can begin after the completion of the AI Tech review.
+Work in QA/Prod or processing Lilly data through a vendor product cannot begin until all reviews are complete.
+Reviews take time – your engagement makes a big difference!
+Proactive teams respond to reviewers, clarify designs, and move quickly through approvals.
+Unresponsive teams delay reviews and risk missing key milestones.
+Start standard implementation processes early to accelerate the review cycle.
+Work with your CSQ representative
+Work with your
+BISO
+to complete the
+Security Architecture and Engineering (SAE) process
+Complete the
+Privacy Review Process(lilly.com)
+Complete WwTP and ensure vendor contracts contain AI wording
+Have an Idea?
+Integrating AI into our business is a team effort.
+All AI use cases must be registered and approved.
+Register AI Idea
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right

@@ -1,0 +1,149 @@
+Title: Featured Products Available to Limited Groups | ai.lilly.com
+URL: https://ai.lilly.com/products/limited-groups
+Description: 
+
+Featured Products Available to Limited Groups | ai.lilly.com
+Menu
+menu closed
+Search closed
+Account closed
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Close
+Home
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+Products
+Enterprise-wide
+Available to Limited Groups
+Stack
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+AI Registry
+Intake
+Process
+Reports
+FAQs
+Modify/Withdraw a Submission
+Guidance
+Learning
+FAQ
+Register AI Idea
+Suggestions will update as you type
+magnifying-glass
+Featured Products Available to Limited Groups
+Lilly continues to develop innovative AI solutions to improve workflows and drive efficiency. This page highlights featured products and is not intended to be an exhaustive list of the 400+ AI Products at Lilly.
+Please note that AI-generated content is not always accurate; verify responses with reliable evidence. Ensure all product usage follows
+Lilly’s AI Guidance
+.
+AI Change Champions
+Have questions about these products or how you can apply them to your workstream? Look no further than our
+AI Change Champions
+. They’ll help answer questions and support you as you navigate the road to adoption of AI!
+Products Available to Limited Groups
+Available to Manufacturing Globally
+AMIGO
+AMIGO (AI Monitor) is a GenAI-driven solution designed to augment the operational capabilities of line engineers by leveraging advanced analytics, automation, and AI to monitor production lines & provide real-time insights, recommendations, and alerts; thus enhancing throughput.
+Try AMIGO
+arrow-right
+US Only
+Pharm(ai) Studio
+Developed by Lilly, for Lilly. Create your own Claude 3.7 Sonnet persona-based agents, build websites in minutes, create quality documentation, and more.
+Get Started
+arrow-right
+Available for Cortex Developers
+Cortex Landing Zone
+Cortex has launched the Agentic Framework to drive enterprise adoption of Agentic AI. Cortex Landing Zone, a no-code interface integrated directly into Cortex, empowers teams to rapidly build and deploy custom knowledge workers, agents, and tools.
+Get Started
+arrow-right
+Available to Global Medical Information and Global Content Hub
+MediAuthor
+MediAuthor empowers medical content creators to efficiently generate first drafts of medical content, using the power of generative AI.
+Try MediAuthor
+arrow-right
+Available for Medical & Marketing – JP, SA, KR, LATAM
+Content Maestro
+AI assistant for P2P reviews – boosting compliance and productivity
+Learn more
+arrow-right
+Available for Tech@Lilly LRL
+eAuthoring
+eAuthoring automates document creation, generating drafts quickly for faster submissions.
+Learn more
+arrow-right
+Available for the U.S. Field
+iQ AI Assistant
+iQ is a ChatGPT-style AI assistant that provides field teams with fast, easy access to insights. Learn more in
+this video.
+Try iQ
+arrow-right
+Available for Lilly Regulatory Scientists
+Digital Regulatory Scientist (DRS)
+AI powered RIM copilot and Response to Question (RTQ) toolkit for Global Regulatory Affairs (GRA). Request access
+via this link.
+Try DRS (access required)
+arrow-right
+Available for U.S based LRL scientists
+BioNova
+BioNova accelerates drug discovery using custom ML workflows on Lilly’s supercomputer. To gain access, join the bionova_users group in Group Manager.
+Request access
+arrow-right
+Available for LMS writers
+Promo Maker
+AI Promo Maker empowers Lilly Marketing Studios to seamlessly ideate and draft promotional content, using the power of generative AI.
+Try Promo Maker
+arrow-right
+Anyone with a GitHub license
+GitHub Copilot
+GitHub Copilot is your AI-powered coding companion that seamlessly suggests code, automates repetitive tasks, and helps you understand complex code.
+Try GitHub Copilot
+arrow-right
+Have an Idea?
+Integrating AI into our business is a team effort.
+All AI use cases must be registered and approved.
+Register AI Idea
+chats-fill
+Questions? Chat now!
+Submit Requests and Report Issues
+Using AI Responsibly at Lilly
+Contact Us
+Lilly AI Guidance Assist
+Chatbot
+X
+Hi, I’m Lilly Assist, the Eli Lilly chatbot. I was created to answer your questions about Lilly AI.
+What may I help you with today?
+Avoid sharing personal information in this chat. Remember, AI-generated content may not always be accurate.
+Get started with our quick prompts, or ask your own question below.
+I’m new to AI. How do I get started?
+Do we have any AI tools that can generate images?
+Am I allowed to use ChatGPT at work?
+arrow-right
