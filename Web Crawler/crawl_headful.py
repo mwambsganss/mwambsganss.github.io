@@ -18,6 +18,39 @@ try:
 except ImportError:
     PLAYWRIGHT_AVAILABLE = False
 
+
+def sanitize_html(html: str) -> str:
+    """
+    Remove secrets and sensitive data from HTML before saving
+
+    Removes:
+    - Azure AD Client IDs (UUIDs)
+    - Azure AD Client Secrets
+    - API keys
+    - Access tokens
+    """
+    # Remove Azure AD Client Secrets (pattern: .xxxQ~xxx or similar)
+    html = re.sub(r'[A-Za-z0-9_~\-]{34,}Q~[A-Za-z0-9_~\-]{10,}', 'REDACTED-SECRET', html)
+    html = re.sub(r'\.nt8Q~[A-Za-z0-9_~\-]{30,}', 'REDACTED-SECRET', html)
+
+    # Remove UUIDs that are likely client IDs (in contexts like clientId, client_id, etc.)
+    html = re.sub(r'(client[_\-]?id["\']?\s*[:=]\s*["\']?)([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})',
+                  r'\1REDACTED-UUID', html, flags=re.IGNORECASE)
+
+    # Remove bearer tokens
+    html = re.sub(r'Bearer\s+[A-Za-z0-9_\-\.]{20,}', 'Bearer REDACTED-TOKEN', html, flags=re.IGNORECASE)
+
+    # Remove API keys (common patterns)
+    html = re.sub(r'(api[_\-]?key["\']?\s*[:=]\s*["\']?)([A-Za-z0-9_\-]{32,})',
+                  r'\1REDACTED-API-KEY', html, flags=re.IGNORECASE)
+
+    # Remove access tokens
+    html = re.sub(r'(access[_\-]?token["\']?\s*[:=]\s*["\']?)([A-Za-z0-9_\-\.]{32,})',
+                  r'\1REDACTED-TOKEN', html, flags=re.IGNORECASE)
+
+    return html
+
+
 def get_domain_name(url):
     """Extract clean domain name from URL"""
     parsed = urlparse(url)
@@ -90,10 +123,13 @@ def save_page_content(url, content, html):
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(content, f, indent=2, ensure_ascii=False)
 
+    # Sanitize HTML before saving (remove secrets)
+    sanitized_html = sanitize_html(html)
+
     # Save HTML
     html_path = os.path.join(output_dir, f"{filename}.html")
     with open(html_path, 'w', encoding='utf-8') as f:
-        f.write(html)
+        f.write(sanitized_html)
 
     # Save TXT
     txt_path = os.path.join(output_dir, f"{filename}.txt")
