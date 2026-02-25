@@ -66,11 +66,6 @@ crawler = WebCrawler("https://ai.lilly.com", config)
 # ========================================
 # Your cookies from ai.lilly.com:
 
-crawler.session.cookies.set('SIMI', 'eyJzdCI6MH0=', domain='ai.lilly.com')
-crawler.session.cookies.set('spo_abt', 'MTgwMCxbImR2Y19tbmdkIiwiZHZjX2NtcCJdLFsiYXBwX3JlcyJdLDAwOGRjOGY5LWE4ODEtMWM4My1hNmI3LTdjYjVjZTk4NWY5ZQ==', domain='ai.lilly.com')
-crawler.session.cookies.set('SyrenisGuid_a363400f-dda7-4d1b-8731-df252632081a', 'be9c16ea-ebee-480a-b274-11c5d8401ca3', domain='ai.lilly.com')
-crawler.session.cookies.set('gtm-session-start', '1772024748577', domain='ai.lilly.com')
-crawler.session.cookies.set('PageNumber', '9', domain='ai.lilly.com')
 # Replace 'PASTE_VALUE_HERE' with actual cookie values from Step 1
 # Add one line for EACH cookie you see on ai.lilly.com
 
