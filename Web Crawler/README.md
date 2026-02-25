@@ -2,7 +2,7 @@
 
 > Powerful server-side web crawler for complete content scraping and site mapping
 
-**✨ NEW: Runtime URL Support - Crawl any website without modifying code!**
+**✨ NEW in v3.3: Automatic Secret Sanitization - Safely crawl authenticated sites!**
 
 ## 🚀 Quick Start
 
@@ -16,10 +16,23 @@ python3 crawl_simple.py https://example.com
 ```bash
 pip install playwright
 playwright install chromium
-python3 crawl_authenticated.py https://your-site.com
+python3 crawl_headful.py https://your-site.com
+# Browser opens, you login, crawler maintains session
+# Secrets automatically removed from saved HTML
 ```
 
 **📖 See [USAGE.md](USAGE.md) for detailed examples and options.**
+
+## 🔒 Security Features (v3.3)
+
+All crawlers now automatically sanitize HTML before saving:
+- ✅ Azure AD Client IDs and Secrets redacted
+- ✅ Bearer tokens removed
+- ✅ API keys sanitized
+- ✅ Access tokens stripped
+- ✅ Safe to commit to git
+
+[Learn more →](SECURITY-UPDATE.md)
 
 ## 📦 What's Included
 
@@ -38,7 +51,9 @@ python3 crawl_authenticated.py https://your-site.com
 - ✅ **Scrapes full content** - HTML, text, metadata, images, links
 - ✅ **Maps all URLs** - Pages, subsites, resources, external links
 - ✅ **Multiple formats** - Saves JSON, HTML, and TXT for each page
-- ✅ **Configurable** - Control depth, rate limits, scope, exclusions
+- ✅ **Auto-generated summaries** - SUMMARY.md with content previews
+- ✅ **Security built-in** - Automatically removes secrets before saving
+- ✅ **Configurable** - Control depth (default: 4 layers), rate limits, scope, exclusions
 - ✅ **Respectful** - Built-in delays, user-agent, error handling
 - ✅ **Progress tracking** - Real-time console updates
 - ✅ **Resume capability** - Saves partial results on interrupt
@@ -50,36 +65,44 @@ python3 crawl_authenticated.py https://your-site.com
 After crawling `https://example.com`:
 
 ```
-crawl_output/
-├── sitemap_20260225_143022.json    # Complete sitemap with all content
-├── urls_20260225_143022.json       # Categorized URL list
-├── report_20260225_143022.txt      # Human-readable report
-├── index.json / .html / .txt       # Homepage content
-├── about.json / .html / .txt       # About page content
+example.com_crawl/
+├── sitemap.json                # Complete sitemap with all content
+├── urls.json                   # Categorized URL list
+├── report.txt                  # Human-readable report
+├── SUMMARY.md                  # ✨ Markdown summary with content previews
+├── index.json / .html / .txt   # Homepage content (HTML sanitized)
+├── about.json / .html / .txt   # About page content (HTML sanitized)
 └── ... (one set per page crawled)
 ```
 
 ### Output Files Explained
 
-1. **sitemap_*.json** - Complete data for every page:
+1. **sitemap.json** - Complete data for every page:
    - URL, title, description, keywords
    - All headings (h1, h2, h3)
    - Full text content
    - All links and images
    - Metadata and crawl info
 
-2. **urls_*.json** - Categorized URL lists:
+2. **urls.json** - Categorized URL lists:
    - Pages (regular HTML pages)
    - Subsites (different subdomains)
    - Resources (PDFs, docs, etc.)
    - External links
    - Failed URLs with errors
 
-3. **report_*.txt** - Human-readable summary
+3. **report.txt** - Human-readable summary
 
-4. **Individual page files** - For each page:
+4. **SUMMARY.md** - ✨ NEW: Markdown summary with:
+   - Table of contents with anchor links
+   - Page-by-page summaries
+   - Content previews (first 500 characters)
+   - Heading structures (H1, H2)
+   - Link counts
+
+5. **Individual page files** - For each page:
    - `.json` - Structured content
-   - `.html` - Original HTML
+   - `.html` - Original HTML (secrets removed)
    - `.txt` - Plain text content
 
 ## 🎯 Use Cases
@@ -258,6 +281,18 @@ See [QUICK-REFERENCE.md](QUICK-REFERENCE.md) for:
 - Troubleshooting fixes
 - Configuration cheat sheet
 
+See [SECURITY-UPDATE.md](SECURITY-UPDATE.md) for:
+- Automatic secret sanitization details
+- Security best practices
+- What gets redacted
+- Verification methods
+
+See [CRAWLER-UPDATES-V3.2.md](CRAWLER-UPDATES-V3.2.md) for:
+- Runtime URL support
+- Markdown summary generation
+- Depth limiting (4 layers)
+- Authentication approaches
+
 ## 🚨 Troubleshooting
 
 ### "Module not found"
@@ -291,6 +326,6 @@ Free to use and modify for any purpose.
 ---
 
 **Tool:** Python Web Crawler
-**Version:** 1.0
+**Version:** 3.3
 **Last Updated:** 2026-02-25
 **Also Available:** [Browser-Based Tools](../Sitemap%20Extractor/) for quick extraction
