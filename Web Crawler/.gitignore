@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Crawler output
+crawl_output/
+test_crawl/
+*_crawl/
+*.json
+*.txt
+*.html
+
+# Keep example config
+!config.example.json
+!requirements.txt
+!README.md
+!*-GUIDE.md
+!*-INSTRUCTIONS.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log

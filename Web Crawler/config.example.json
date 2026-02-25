@@ -1,0 +1,36 @@
+# Web Crawler Configuration
+# Copy this file to config.json and customize as needed
+
+{
+  "max_pages": 1000,
+  "max_depth": 10,
+  "delay": 1.0,
+  "timeout": 30,
+  "include_subdomains": true,
+  "include_external": false,
+  "save_content": true,
+  "output_dir": "crawl_output",
+  "user_agent": "Mozilla/5.0 (compatible; WebCrawler/1.0)",
+  "exclude_patterns": [
+    "/logout",
+    "/signout",
+    "/sign-out",
+    "/delete",
+    "/remove"
+  ],
+  "file_extensions": [
+    ".pdf",
+    ".doc",
+    ".docx",
+    ".xls",
+    ".xlsx",
+    ".ppt",
+    ".pptx",
+    ".zip",
+    ".tar",
+    ".gz",
+    ".csv",
+    ".json",
+    ".xml"
+  ]
+}
