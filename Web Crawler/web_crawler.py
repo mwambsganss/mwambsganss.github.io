@@ -28,8 +28,8 @@ def sanitize_html(html: str) -> str:
     - Access tokens
     """
     # Remove Azure AD Client Secrets (pattern: .xxxQ~xxx or similar)
-    html = re.sub(r'[A-Za-z0-9_~\-]{34,}Q~[A-Za-z0-9_~\-]{10,}', 'REDACTED-SECRET', html)
-    html = re.sub(r'\.nt8Q~[A-Za-z0-9_~\-]{30,}', 'REDACTED-SECRET', html)
+    # Azure secrets typically have 3-20 chars before Q~ and 20+ chars after
+    html = re.sub(r'[A-Za-z0-9_~\-\.]{3,20}Q~[A-Za-z0-9_~\-]{20,}', 'REDACTED-SECRET', html)
 
     # Remove UUIDs that are likely client IDs (in contexts like clientId, client_id, etc.)
     html = re.sub(r'(client[_\-]?id["\']?\s*[:=]\s*["\']?)([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})',

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page with Various Links</title>
+    <meta name="description" content="Test page with various types of links">
+</head>
+<body>
+    <h1>Link Test Page</h1>
+
+    <section>
+        <h2>Internal Links</h2>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/products/item1">Product 1</a></li>
+            <li><a href="/products/item2">Product 2</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Relative Links</h2>
+        <ul>
+            <li><a href="../parent">Parent Directory</a></li>
+            <li><a href="./sibling">Sibling Page</a></li>
+            <li><a href="subfolder/page">Subfolder Page</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Absolute Links (Same Domain)</h2>
+        <ul>
+            <li><a href="https://example.com/page1">Page 1</a></li>
+            <li><a href="https://example.com/page2">Page 2</a></li>
+            <li><a href="https://example.com/blog/post1">Blog Post</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Subdomain Links</h2>
+        <ul>
+            <li><a href="https://blog.example.com">Blog Subdomain</a></li>
+            <li><a href="https://shop.example.com">Shop Subdomain</a></li>
+            <li><a href="https://api.example.com">API Subdomain</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>External Links</h2>
+        <ul>
+            <li><a href="https://google.com">Google</a></li>
+            <li><a href="https://github.com">GitHub</a></li>
+            <li><a href="https://stackoverflow.com">Stack Overflow</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Resource Links</h2>
+        <ul>
+            <li><a href="/documents/manual.pdf">PDF Manual</a></li>
+            <li><a href="/downloads/data.csv">CSV Data</a></li>
+            <li><a href="/files/presentation.pptx">PowerPoint</a></li>
+            <li><a href="/archives/backup.zip">ZIP Archive</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Links with Query Parameters</h2>
+        <ul>
+            <li><a href="/search?q=test">Search Test</a></li>
+            <li><a href="/products?category=electronics&sort=price">Filtered Products</a></li>
+            <li><a href="/page?id=123&ref=home">Page with ID</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Links with Fragments</h2>
+        <ul>
+            <li><a href="#section1">Section 1</a></li>
+            <li><a href="/page#header">Page Header</a></li>
+            <li><a href="https://example.com/docs#api">API Docs Section</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Excluded Links (Should be filtered)</h2>
+        <ul>
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="/signout">Sign Out</a></li>
+            <li><a href="/delete-account">Delete Account</a></li>
+            <li><a href="/remove-user">Remove User</a></li>
+        </ul>
+    </section>
+</body>
+</html>

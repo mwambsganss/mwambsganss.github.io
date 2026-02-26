@@ -1,0 +1,39 @@
+# Test Requirements for Web Crawler Test Suite
+# Install with: pip install -r test_requirements.txt
+
+# Core testing frameworks
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-mock>=3.11.1
+pytest-timeout>=2.1.0
+
+# For HTTP mocking
+responses>=0.23.1
+
+# For memory profiling
+psutil>=5.9.0
+memory-profiler>=0.61.0
+
+# For generating test data
+faker>=19.0.0
+
+# Web scraping dependencies (should match main requirements)
+beautifulsoup4>=4.12.0
+requests>=2.31.0
+
+# HTML parsing
+lxml>=4.9.0
+
+# Test reporting
+pytest-html>=3.2.0
+pytest-json-report>=1.5.0
+
+# Code quality
+pytest-flake8>=1.1.1
+pytest-mypy>=0.10.3
+
+# Parallel test execution
+pytest-xdist>=3.3.0
+
+# Test fixtures and data generation
+pytest-factoryboy>=2.5.0
