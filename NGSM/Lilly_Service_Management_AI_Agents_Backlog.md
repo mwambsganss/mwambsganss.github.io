@@ -49,7 +49,11 @@ This backlog contains 106 AI agent opportunities for Lilly's Service Management 
 Execution-oriented agent responsible for orchestrating and completing approved service requests by coordinating workflows, triggering tasks, and invoking automations.
 
 **Implementation Recommendation:**
-**ServiceNow Flow Designer + Cortex AI:** Use ServiceNow's native workflow automation with Cortex AI decisioning for request routing. Integrate with existing TEA automation library for common fulfillment tasks. Leverage ServiceNow's catalog item fulfillment engine enhanced with Cortex for intelligent task assignment.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
 
 ---
 
@@ -63,7 +67,11 @@ Execution-oriented agent responsible for orchestrating and completing approved s
 Intelligent workflow-orchestration agent managing end-to-end lifecycle of service requests from intake through fulfillment and closure.
 
 **Implementation Recommendation:**
-**ServiceNow Flow Designer + Cortex + Approval Engine:** Build on ServiceNow's native request workflow with Cortex AI for intelligent routing and policy-based decisioning.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
 
 ---
 
@@ -77,7 +85,13 @@ Intelligent workflow-orchestration agent managing end-to-end lifecycle of servic
 Allows employees to easily discover and complete correct catalog items conversationally through ChatNow interface.
 
 **Implementation Recommendation:**
-**ChatNow + ServiceNow Catalog + Cortex NLU:** Build conversational catalog interface in ChatNow. Use Cortex NLU to map requests to catalog items with form pre-fill.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+✅ **ELIZA + Communication Integration**: Adapt Eliza (Lilly's Personal Assistant) for automated notifications via Teams/Email  
+✅ **EXISTING CORTEX AGENTS**: AI Researcher (AiR), AI Researcher (AiR), AI Think Tank  
+
 
 ---
 
@@ -91,7 +105,12 @@ Allows employees to easily discover and complete correct catalog items conversat
 Expands search for knowledge outside ServiceNow into other Lilly knowledge sources and brings results back into ServiceNow.
 
 **Implementation Recommendation:**
-**ServiceNow AI Search + Cortex + Enterprise Search:** Extend ServiceNow AI Search with Cortex to query SharePoint, Confluence, Teams, and external sources with unified results.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -105,6 +124,11 @@ Expands search for knowledge outside ServiceNow into other Lilly knowledge sourc
 Allows authorized persons to update catalog items through conversational or easy UI means.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **EXISTING CORTEX AGENTS**: AI Researcher (AiR), AI Researcher (AiR), AI Think Tank  
+
+
 **ServiceNow Catalog Builder + Now Assist for Creator:** Use Catalog Builder with AI assistance and approval workflows for authorized catalog changes.
 
 ---
@@ -119,6 +143,12 @@ Allows authorized persons to update catalog items through conversational or easy
 Automatically updates catalog items for service owners based on form completion or conversation interface.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **EXISTING CORTEX AGENTS**: AI Researcher (AiR), AI Researcher (AiR), AI Think Tank  
+
+
 **ServiceNow Catalog Builder + Now Assist for Creator:** Use Catalog Builder with AI assistance and approval workflows for authorized catalog changes.
 
 ---
@@ -134,6 +164,13 @@ Automatically updates catalog items for service owners based on form completion 
 Enables users to efficiently check and update status of ServiceNow tickets, requests, tasks, and incidents by ticket number or description.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
+
 **ServiceNow OOB AI Agent + ChatNow:** Use out-of-box status checking agent integrated with ChatNow for conversational updates plus SMS/email notifications.
 
 ---
@@ -155,7 +192,12 @@ Enables users to efficiently check and update status of ServiceNow tickets, requ
 Rather than just fill out a form, the agent creates detailed incidents by asking follow-up questions to determine if resolution can be provided through self-service or automation vs. manual ticket resolution.
 
 **Implementation Recommendation:**
-**ChatNow + ServiceNow Virtual Agent + Cortex:** Enhance ChatNow with Cortex AI decision-making to guide diagnostic questions. Use ServiceNow Now Assist for ITSM with knowledge base integration for self-service suggestions before ticket creation.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -169,7 +211,13 @@ Rather than just fill out a form, the agent creates detailed incidents by asking
 Intelligent assignment agent routing incidents to most appropriate resolver by considering skills, historical performance, real-time capacity, and individual availability—not just static assignment groups.
 
 **Implementation Recommendation:**
-**ServiceNow Assignment Rules + Cortex + Workload Analytics:** Extend assignment rules with Cortex AI for skills-based routing using Performance Analytics workload data.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -183,6 +231,14 @@ Intelligent assignment agent routing incidents to most appropriate resolver by c
 Based on knowledge articles and past incident data, dynamically asks appropriate follow-up questions to ensure proper assignment and resolution.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
+
 **ChatNow + ServiceNow Virtual Agent + Knowledge:** Build conversational triage in ChatNow using Virtual Agent framework with Knowledge Base and similar incident history.
 
 ---
@@ -197,7 +253,12 @@ Based on knowledge articles and past incident data, dynamically asks appropriate
 Replaces current ServiceNow agent and uses multiple knowledge sources at Lilly plus previous incident data to determine appropriate resolution.
 
 **Implementation Recommendation:**
-**ServiceNow Now Assist + Cortex + Enterprise Search:** Enhance existing resolution suggestions with Cortex AI querying SharePoint, Confluence, and external vendor knowledge.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -211,7 +272,13 @@ Replaces current ServiceNow agent and uses multiple knowledge sources at Lilly p
 Automatically generates communications to submitters that incident resolvers can send.
 
 **Implementation Recommendation:**
-**ServiceNow Notifications + Cortex NLP:** Use Cortex NLP to generate contextual communications. Leverage notification framework with sentiment-appropriate language.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **ELIZA + Communication Integration**: Adapt Eliza (Lilly's Personal Assistant) for automated notifications via Teams/Email  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -225,7 +292,13 @@ Automatically generates communications to submitters that incident resolvers can
 Detects patterns within resolved incidents and suggests resolution via self-resolution or automated methods.
 
 **Implementation Recommendation:**
-**ServiceNow Performance Analytics + Cortex ML:** Build Cortex ML models for incident pattern identification. Auto-create problem records when thresholds met.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -239,7 +312,11 @@ Detects patterns within resolved incidents and suggests resolution via self-reso
 Creates vendor issues and cross-references the ticket ID in Lilly incidents with bidirectional updates.
 
 **Implementation Recommendation:**
-**ServiceNow REST API + Vendor APIs + Cortex:** Build API integrations with vendor systems (Jira, ServiceDesk). Use Cortex for field mapping with bidirectional updates.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -253,7 +330,11 @@ Creates vendor issues and cross-references the ticket ID in Lilly incidents with
 Recalculates Incident Risk (impact × urgency × uncertainty) accounting for sentiments, blast radius, and historical volatility.
 
 **Implementation Recommendation:**
-**ServiceNow + Cortex Risk Modeling + CMDB:** Build Cortex multifactor risk models using CMDB for blast radius and NLP for sentiment analysis.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **EXISTING CORTEX AGENTS**: Clinical Trials Safety Analysis Agent, ITSM Process Chatbot - ITSMate, PRISM 360 Supply Risk Agent  
+
 
 ---
 
@@ -267,7 +348,13 @@ Recalculates Incident Risk (impact × urgency × uncertainty) accounting for sen
 Drafts PIRs using incident data and timelines, identifies contributing factors and gaps, pre-fills action items.
 
 **Implementation Recommendation:**
-**ServiceNow Problem + Cortex Timeline Analysis:** Use Cortex to analyze incident timelines and actions. Generate PIR drafts with patterns and improvement opportunities.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI THINK TANK**: Multi-AI group chat for diverse perspectives on complex issues  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -282,7 +369,14 @@ Drafts PIRs using incident data and timelines, identifies contributing factors a
 Finds incidents where documentation of issue and resolution is missing. Indicates incident, assignment group, assignee, group owner and patterns.
 
 **Implementation Recommendation:**
-**ServiceNow Quality Gates + Cortex NLP:** Analyze work notes/resolutions with Cortex NLP. Implement business rules to flag incomplete documentation with scorecards.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -296,7 +390,13 @@ Finds incidents where documentation of issue and resolution is missing. Indicate
 Reviews incidents to detect incidents created from alerts with no action taken and closed in 30 seconds or less.
 
 **Implementation Recommendation:**
-**ServiceNow Event Rules + Cortex Pattern Detection:** Analyze auto-closed incidents (<30s). Use Cortex to identify patterns and implement event suppression rules.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI THINK TANK**: Multi-AI group chat for diverse perspectives on complex issues  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -310,7 +410,11 @@ Reviews incidents to detect incidents created from alerts with no action taken a
 Translates technical incidents into clear business-impact narratives using service criticality, financial exposure, regulatory risk, and customer impact data.
 
 **Implementation Recommendation:**
-**ServiceNow CMDB + Cortex + Business Service Mapping:** Leverage Business Service Mapping to link technical CIs to business services. Use Cortex to translate impacts.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **EXISTING CORTEX AGENTS**: Clinical Trials Safety Analysis Agent, ITSM Process Chatbot - ITSMate, PRISM 360 Supply Risk Agent  
+
 
 ---
 
@@ -324,7 +428,10 @@ Translates technical incidents into clear business-impact narratives using servi
 Intelligent first-line support agent performing initial diagnosis and determining if issue can be resolved at Tier 1 or requires escalation.
 
 **Implementation Recommendation:**
-**ServiceNow Virtual Agent + ChatNow + Cortex:** Build intelligent triage workflow. Use Cortex to determine Tier 1 resolution vs. escalation requirements.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX AI PLATFORM**: Leverage Cortex's 111 inference models, 13 embedding models, and 1,091 shared prompts to build custom agent  
+
 
 ---
 
@@ -339,6 +446,15 @@ Intelligent first-line support agent performing initial diagnosis and determinin
 Resolves issues on end user devices based on threshold metrics using Nexthink agent before issues are reported as incidents.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+✅ **EXISTING CORTEX AGENTS**: Clinical Trials Efficacy Analysis Agent, ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor  
+
+
 **Nexthink + ServiceNow + Automated Remediation:** Leverage Nexthink device monitoring and remediation. Trigger ServiceNow workflows when thresholds breached.
 
 ---
@@ -354,6 +470,13 @@ Resolves issues on end user devices based on threshold metrics using Nexthink ag
 Resolves issues on end user devices using employee-supplied symptoms via Nexthink agent through ChatNow.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+✅ **ELIZA + Communication Integration**: Adapt Eliza (Lilly's Personal Assistant) for automated notifications via Teams/Email  
+✅ **EXISTING CORTEX AGENTS**: AI Researcher (AiR), AI Researcher (AiR), AI Think Tank  
+
+
 **ChatNow + Nexthink Remote Actions:** Build ChatNow interface to Nexthink remote actions for user-described symptoms with consent-based remediation.
 
 ---
@@ -368,7 +491,12 @@ Resolves issues on end user devices using employee-supplied symptoms via Nexthin
 Pulls details to troubleshoot issues including logs, timetable of events, and related ITSM records including knowledge articles.
 
 **Implementation Recommendation:**
-**ServiceNow + Splunk + Cortex Log Analysis:** Query ServiceNow for related records and Splunk for logs. Use Cortex for log analysis and timeline creation.
+
+**Existing Cortex Capabilities:**  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -382,7 +510,11 @@ Pulls details to troubleshoot issues including logs, timetable of events, and re
 Monitors stats to declare an outage based on patterns and impact analysis.
 
 **Implementation Recommendation:**
-**ServiceNow Event Monitoring + Cortex Impact Correlation:** Monitor event patterns and incident volumes. Use Cortex to correlate outage signals for declaration suggestions.
+
+**Existing Cortex Capabilities:**  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+
 
 ---
 
@@ -396,7 +528,12 @@ Monitors stats to declare an outage based on patterns and impact analysis.
 Agent that recommends solution development fixes for recurring technical incidents.
 
 **Implementation Recommendation:**
-**ServiceNow Incident + Cortex Code Analysis:** Analyze technical incidents for development patterns. Use Cortex to suggest code fixes linked to JIRA/Azure DevOps.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX JIRA TOOLKIT**: JIRA integration for development ticket tracking and updates  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -410,7 +547,11 @@ Agent that recommends solution development fixes for recurring technical inciden
 Analyzes patterns, determines improvement opportunities, and reports operations state to Service Management Office.
 
 **Implementation Recommendation:**
-**ServiceNow Performance Analytics + Cortex:** Analyze operational metrics across ITSM processes. Use Cortex for pattern identification and executive insights.
+
+**Existing Cortex Capabilities:**  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+
 
 ---
 
@@ -432,7 +573,14 @@ Analyzes patterns, determines improvement opportunities, and reports operations 
 Agentic workflow looks for similar incidents and evaluates if it should be a major incident by accessing knowledge article criteria.
 
 **Implementation Recommendation:**
-**ServiceNow Major Incident + Cortex Decision Engine:** Use Cortex to analyze severity, impact, and patterns. Query Knowledge for criteria with justification suggestions.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **AI THINK TANK**: Multi-AI group chat for diverse perspectives on complex issues  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -446,6 +594,14 @@ Agentic workflow looks for similar incidents and evaluates if it should be a maj
 Auto-notifies Incident Response Team via Everbridge and schedules IRT meeting.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **ELIZA + Communication Integration**: Adapt Eliza (Lilly's Personal Assistant) for automated notifications via Teams/Email  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
+
 **Everbridge API + ServiceNow + Teams Calendar:** Integrate Everbridge API for IRT notifications via ServiceNow workflows with Teams meeting auto-scheduling.
 
 ---
@@ -460,7 +616,14 @@ Auto-notifies Incident Response Team via Everbridge and schedules IRT meeting.
 Looks for major incidents and recommends if IAT or IRT is warranted based on notes/chat analysis.
 
 **Implementation Recommendation:**
-**ServiceNow Work Notes + Cortex NLP:** Use Cortex NLP to analyze incident notes and chat logs. Calculate business impact score for IAT/IRT recommendations.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **ELIZA + Communication Integration**: Adapt Eliza (Lilly's Personal Assistant) for automated notifications via Teams/Email  
+✅ **AI THINK TANK**: Multi-AI group chat for diverse perspectives on complex issues  
+✅ **EXISTING CORTEX AGENTS**: AI Researcher (AiR), AI Researcher (AiR), AI Think Tank  
+
 
 ---
 
@@ -476,7 +639,11 @@ Looks for major incidents and recommends if IAT or IRT is warranted based on not
 Leverages existing agent that determines if incidents should be considered for a problem ticket and actually creates the problem with similar incidents linked.
 
 **Implementation Recommendation:**
-**ServiceNow Problem + Cortex Pattern Detection:** Build Cortex ML models for incident cluster identification indicating systemic problems with auto-linking.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -490,7 +657,10 @@ Leverages existing agent that determines if incidents should be considered for a
 Enhance existing AI agent that provides recommendations for RCA and root cause.
 
 **Implementation Recommendation:**
-**ServiceNow Problem + Cortex AI + Event/Incident Data:** Enhance existing RCA with Cortex analyzing event timelines, CMDB relationships, and change history with AI-guided 5-Whys.
+
+**Existing Cortex Capabilities:**  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+
 
 ---
 
@@ -504,7 +674,11 @@ Enhance existing AI agent that provides recommendations for RCA and root cause.
 Knowledge-driven reliability agent responsible for identifying, creating, maintaining, and operationalizing known errors and workarounds.
 
 **Implementation Recommendation:**
-**ServiceNow Problem + Knowledge + Cortex Matching:** Create known error records from resolved problems. Use Cortex to match incoming incidents with auto-suggested workarounds.
+
+**Existing Cortex Capabilities:**  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -518,7 +692,10 @@ Knowledge-driven reliability agent responsible for identifying, creating, mainta
 Evaluates Root Cause Analysis documentation against quality standards, completeness criteria, and best practices.
 
 **Implementation Recommendation:**
-**ServiceNow Quality Gates + Cortex NLP:** Analyze RCA documentation with Cortex NLP for quality and completeness. Check required elements before problem closure.
+
+**Existing Cortex Capabilities:**  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+
 
 ---
 
@@ -532,7 +709,11 @@ Evaluates Root Cause Analysis documentation against quality standards, completen
 Translates technical problems into clear business-impact narratives using service criticality, financial exposure, regulatory risk, and customer impact data.
 
 **Implementation Recommendation:**
-**ServiceNow CMDB + Cortex + Business Service Mapping:** Link technical problems to business services. Use Cortex to translate impacts into business metrics.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **EXISTING CORTEX AGENTS**: Clinical Trials Safety Analysis Agent, PRISM 360 Supply Risk Agent, QA Fastlane: (3/5) Pitch Deck Agent  
+
 
 ---
 
@@ -546,7 +727,10 @@ Translates technical problems into clear business-impact narratives using servic
 Assists with documenting problems and providing detailed descriptions.
 
 **Implementation Recommendation:**
-**ServiceNow + Cortex NLP + Template Library:** Use Cortex NLP for problem documentation assistance with templates and auto-extracted details from linked incidents.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+
 
 ---
 
@@ -560,6 +744,13 @@ Assists with documenting problems and providing detailed descriptions.
 Automatically raises and documents a problem as a known error for all deferred defects in JIRA or HP ALM.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX JIRA TOOLKIT**: JIRA integration for development ticket tracking and updates  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
+
 **JIRA/ALM API + ServiceNow Problem:** Build API integration between defect tracking and ServiceNow. Auto-create known error records for deferred defects with bidirectional sync.
 
 ---
@@ -574,7 +765,12 @@ Automatically raises and documents a problem as a known error for all deferred d
 Looks into events and recommends creation of problem tickets for recurring event patterns.
 
 **Implementation Recommendation:**
-**ServiceNow Events + Cortex Pattern Analysis:** Analyze event patterns and recurrence. Use Cortex to recommend problem ticket creation for systemic issues.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -588,7 +784,12 @@ Looks into events and recommends creation of problem tickets for recurring event
 Assists with validating that a fix has terminated the problem by monitoring incident recurrence.
 
 **Implementation Recommendation:**
-**ServiceNow + Monitoring Tools + Cortex Validation:** Monitor incident recurrence post-resolution. Use Cortex to determine fix effectiveness with similar incident tracking.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -602,7 +803,10 @@ Assists with validating that a fix has terminated the problem by monitoring inci
 Suggests engineering fixes for problems requiring code or configuration changes.
 
 **Implementation Recommendation:**
-**Cortex Code Analysis + JIRA + ServiceNow:** Analyze problem data. Use Cortex to suggest engineering fixes with JIRA ticket creation for development teams.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+
 
 ---
 
@@ -616,7 +820,11 @@ Suggests engineering fixes for problems requiring code or configuration changes.
 Reviews known errors for potential automations and creates automation backlog items.
 
 **Implementation Recommendation:**
-**ServiceNow Known Errors + TEA + Cortex Automation Scoring:** Analyze known error workarounds. Use Cortex to score automation feasibility and create automation backlog items.
+
+**Existing Cortex Capabilities:**  
+✅ **AI THINK TANK**: Multi-AI group chat for diverse perspectives on complex issues  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
 
 ---
 
@@ -630,7 +838,11 @@ Reviews known errors for potential automations and creates automation backlog it
 Looks for reoccurring problems and suggests where to focus to permanently fix the issue (multi-layered problem analysis).
 
 **Implementation Recommendation:**
-**ServiceNow Problem + Cortex Root Cause Chain Analysis:** Use Cortex to analyze problem recurrence patterns. Identify multi-layered root causes with comprehensive fix strategies.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+
 
 ---
 
@@ -644,7 +856,12 @@ Looks for reoccurring problems and suggests where to focus to permanently fix th
 Looks at associated incidents and ensures communication is drafted and sent to update management and impacted parties.
 
 **Implementation Recommendation:**
-**ServiceNow Notifications + Cortex NLP Generation:** Use Cortex to generate stakeholder communications from problem data. Auto-send via ServiceNow notifications.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **ELIZA + Communication Integration**: Adapt Eliza (Lilly's Personal Assistant) for automated notifications via Teams/Email  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -658,7 +875,10 @@ Looks at associated incidents and ensures communication is drafted and sent to u
 Suggests what artifacts to preserve to assist with similar issues in the future.
 
 **Implementation Recommendation:**
-**ServiceNow + Log Management + Cortex Evidence Analysis:** Analyze investigations to identify critical evidence. Suggest artifact preservation with auto-configured retention policies.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX AI PLATFORM**: Leverage Cortex's 111 inference models, 13 embedding models, and 1,091 shared prompts to build custom agent  
+
 
 ---
 
@@ -672,7 +892,10 @@ Suggests what artifacts to preserve to assist with similar issues in the future.
 Breaks down RCA work into investigative tasks for appropriate teams.
 
 **Implementation Recommendation:**
-**ServiceNow Problem Tasks + Cortex RCA Framework:** Use Cortex to break down RCA using 5-Whys or Fishbone methodologies with appropriate team assignments.
+
+**Existing Cortex Capabilities:**  
+✅ **ELIZA + Communication Integration**: Adapt Eliza (Lilly's Personal Assistant) for automated notifications via Teams/Email  
+
 
 ---
 
@@ -686,7 +909,11 @@ Breaks down RCA work into investigative tasks for appropriate teams.
 Monitors problems that are not making progress and alerts SMO of stalled problems.
 
 **Implementation Recommendation:**
-**ServiceNow Problem Metrics + Cortex Stall Detection:** Monitor problem age and activity. Use Cortex to identify stalled problems with SMO alerts.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -700,7 +927,13 @@ Monitors problems that are not making progress and alerts SMO of stalled problem
 Looks at incident trends for specific CIs and determines if a proactive problem may be warranted.
 
 **Implementation Recommendation:**
-**ServiceNow Analytics + Cortex Pattern Detection:** Analyze incident trends by CI and category. Use Cortex to detect emerging patterns for proactive problem creation.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -716,7 +949,10 @@ Looks at incident trends for specific CIs and determines if a proactive problem 
 Creation of playbooks from received events focuses on self-healing resolution. If implemented for 75% of alerts, expect 25% reduction in labor.
 
 **Implementation Recommendation:**
-**ServiceNow Event Management + TEA Playbooks + Cortex:** Create event-driven playbooks triggering TEA automations. Use Cortex AI for confidence-based autonomous execution vs. human approval.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -730,7 +966,10 @@ Creation of playbooks from received events focuses on self-healing resolution. I
 Signal-detection and noise-reduction agent continuously observing telemetry, detecting meaningful events, and distinguishing real service impact from background noise.
 
 **Implementation Recommendation:**
-**Splunk/Dynatrace + ServiceNow Event Rules + Cortex:** Use existing observability stack as data sources. Build Cortex AI models for signal vs. noise classification.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -744,7 +983,11 @@ Signal-detection and noise-reduction agent continuously observing telemetry, det
 Causal-analysis agent grouping related events, identifying root events, and converting alert storms into single actionable operational narratives.
 
 **Implementation Recommendation:**
-**ServiceNow Event Management + Cortex ML:** Leverage native event correlation enhanced with Cortex ML models trained on event/incident relationships and CMDB topology.
+
+**Existing Cortex Capabilities:**  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -758,7 +1001,10 @@ Causal-analysis agent grouping related events, identifying root events, and conv
 Action-oriented agent driving events from detection to closure by executing predefined response actions and coordinating handoffs.
 
 **Implementation Recommendation:**
-**ServiceNow Event Actions + TEA Automations + Cortex:** Configure event actions to trigger TEA workflows. Use Cortex for confidence scoring and escalation logic.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -772,7 +1018,10 @@ Action-oriented agent driving events from detection to closure by executing pred
 Event-filtering agent suppressing irrelevant, duplicate, and low-value events to reduce alert fatigue.
 
 **Implementation Recommendation:**
-**ServiceNow Event Filters + Cortex ML:** Build Cortex ML models trained on closed events with no action. Use event rules for filtering with continuous improvement loops.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -786,7 +1035,10 @@ Event-filtering agent suppressing irrelevant, duplicate, and low-value events to
 Agent to automatically monitor threshold breaches and suggest optimal threshold adjustments.
 
 **Implementation Recommendation:**
-**ServiceNow Event Management + Monitoring Tools + Cortex:** Integrate monitoring tools with ServiceNow. Use Cortex to analyze patterns and suggest optimal thresholds.
+
+**Existing Cortex Capabilities:**  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
 
 ---
 
@@ -800,7 +1052,10 @@ Agent to automatically monitor threshold breaches and suggest optimal threshold 
 Compares failure data across observability tools and provides contextual summarization of possible causes.
 
 **Implementation Recommendation:**
-**Splunk/Dynatrace + ServiceNow + Cortex Correlation:** Integrate multiple observability platforms. Use Cortex to correlate failure signals presenting unified view in ServiceNow.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -814,7 +1069,12 @@ Compares failure data across observability tools and provides contextual summari
 Allows creation of outage records in ServiceNow based on event playbooks. Feeds agents' ability to identify outages and close incidents if outage was planned.
 
 **Implementation Recommendation:**
-**ServiceNow Event Playbooks + Outage Records + Cortex:** Create event-driven playbooks for auto-creating outage records. Use Cortex for impact analysis and related incident closure.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -828,7 +1088,12 @@ Allows creation of outage records in ServiceNow based on event playbooks. Feeds 
 Looks at event plan and runs resolution action or submits to Incident Management or a human.
 
 **Implementation Recommendation:**
-**ServiceNow Event Plans + TEA Automation + Cortex:** Configure event plans to execute TEA automations. Use Cortex decisioning for automated resolution vs. escalation.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -842,7 +1107,13 @@ Looks at event plan and runs resolution action or submits to Incident Management
 Monitors for big issues based on number of alerts triggered across several CIs. Notifies Incident Process Owner and Manager.
 
 **Implementation Recommendation:**
-**ServiceNow Event Aggregation + Cortex Impact Analysis:** Monitor event volumes across CIs. Use Cortex to detect large-scale issues and auto-notify managers.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -856,7 +1127,11 @@ Monitors for big issues based on number of alerts triggered across several CIs. 
 Monitors instantly closed non-automated/non-agentic resolved events to identify automation opportunities.
 
 **Implementation Recommendation:**
-**ServiceNow Event Analytics + Cortex Pattern Detection:** Track instantly-closed events without automation. Identify automation opportunities for service owners.
+
+**Existing Cortex Capabilities:**  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -870,7 +1145,13 @@ Monitors instantly closed non-automated/non-agentic resolved events to identify 
 Monitors incident patterns for event management opportunities and informs service owners.
 
 **Implementation Recommendation:**
-**ServiceNow Incident Analytics + Cortex Pattern Matching:** Analyze incident patterns for preventable issues. Suggest event monitoring opportunities to service owners.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -884,7 +1165,10 @@ Monitors incident patterns for event management opportunities and informs servic
 Monitors for events without action and suggests improvements to service owners.
 
 **Implementation Recommendation:**
-**ServiceNow Event Analysis + Cortex Action Classification:** Track events with no remediation. Classify reasoning and suggest event playbook improvements.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -898,7 +1182,13 @@ Monitors for events without action and suggests improvements to service owners.
 Monitors incidents reported by humans that could potentially be monitored. Suggests what could be monitored that isn't today.
 
 **Implementation Recommendation:**
-**ServiceNow Incidents + Cortex Proactive Monitoring:** Analyze manually-reported incidents. Identify monitoring gaps and suggest new monitoring configurations.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -912,7 +1202,11 @@ Monitors incidents reported by humans that could potentially be monitored. Sugge
 Monitors and alerts for items not run by an agent or automated, and/or potentially failed.
 
 **Implementation Recommendation:**
-**ServiceNow Event Management + Monitoring Tools + Cortex Alert Classification:** Integrate monitoring tools. Use Cortex to classify alerts and escalate appropriate items for agent review or manual intervention.
+
+**Existing Cortex Capabilities:**  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -933,7 +1227,10 @@ Monitors and alerts for items not run by an agent or automated, and/or potential
 Assists with creating change records from problems with recommended fixes based on CMDB and architectural diagrams.
 
 **Implementation Recommendation:**
-**ServiceNow Change Management + Cortex + CMDB:** Use ServiceNow Change Automation with Cortex AI to analyze CMDB relationships and generate change records with impact analysis.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+
 
 ---
 
@@ -947,7 +1244,11 @@ Assists with creating change records from problems with recommended fixes based 
 Identifies scheduling conflicts, dependency clashes, and risk amplification across planned changes using CMDB relationships.
 
 **Implementation Recommendation:**
-**ServiceNow Change + CMDB + OOB Collision Detection:** Leverage out-of-box change collision detection enhanced with CMDB dependency analysis and Cortex risk scoring.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **EXISTING CORTEX AGENTS**: Clinical Trials Safety Analysis Agent, PRISM 360 Supply Risk Agent, QA Fastlane: (3/5) Pitch Deck Agent  
+
 
 ---
 
@@ -961,7 +1262,12 @@ Identifies scheduling conflicts, dependency clashes, and risk amplification acro
 Analyzes historical release data, dependency complexity, and delivery patterns to forecast release readiness and risk.
 
 **Implementation Recommendation:**
-**ServiceNow Release Management + Cortex Predictive Analytics:** Build Cortex predictive models for release risk and readiness using historical ServiceNow release data.
+
+**Existing Cortex Capabilities:**  
+✅ **AI THINK TANK**: Multi-AI group chat for diverse perspectives on complex issues  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+✅ **EXISTING CORTEX AGENTS**: Clinical Trials Safety Analysis Agent, PRISM 360 Supply Risk Agent, QA Fastlane: (3/5) Pitch Deck Agent  
+
 
 ---
 
@@ -977,7 +1283,12 @@ Analyzes historical release data, dependency complexity, and delivery patterns t
 Identifies incidents with no supporting knowledge and detects repeated human explanations in ticket comments. Recommends new article creation.
 
 **Implementation Recommendation:**
-**ServiceNow Knowledge + Cortex NLP:** Use Cortex NLP to identify knowledge gaps from incident resolution patterns. Auto-create article drafts from well-documented incidents.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -991,7 +1302,12 @@ Identifies incidents with no supporting knowledge and detects repeated human exp
 Monitors usage, feedback, and incident linkage. Flags outdated or unused articles and recommends updates or retirement.
 
 **Implementation Recommendation:**
-**Evaluate with Cortex AI + ServiceNow:** Assess using Cortex AI for decision logic and ServiceNow for integration. Build MVP with ServiceNow workflows, Performance Analytics, and Flow Designer.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -1005,7 +1321,11 @@ Monitors usage, feedback, and incident linkage. Flags outdated or unused article
 Creates knowledge articles based on information in ITSM records or external sources.
 
 **Implementation Recommendation:**
-**ServiceNow Now Assist for Creator + Cortex NLP:** Use Now Assist for Knowledge article generation from incident data. Apply Cortex NLP to extract procedures from resolution notes.
+
+**Existing Cortex Capabilities:**  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -1019,7 +1339,12 @@ Creates knowledge articles based on information in ITSM records or external sour
 Recommends and allows update of existing knowledge based on ITSM record trends and alignment with external sources.
 
 **Implementation Recommendation:**
-**ServiceNow Knowledge + Cortex + Change Detection:** Monitor incident trends for resolution pattern changes. Use Cortex to suggest article updates.
+
+**Existing Cortex Capabilities:**  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -1033,7 +1358,12 @@ Recommends and allows update of existing knowledge based on ITSM record trends a
 Connects to external community sources of knowledge to help with problem RCA and incident troubleshooting.
 
 **Implementation Recommendation:**
-**Cortex Web Scraping + Vendor APIs:** Use Cortex to search vendor knowledge bases and community sites. Implement caching for frequently accessed content.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -1047,7 +1377,12 @@ Connects to external community sources of knowledge to help with problem RCA and
 Analyzes knowledge article usage, incident linkage, and feedback to identify stale, unused, or missing knowledge.
 
 **Implementation Recommendation:**
-**ServiceNow Knowledge OOB Metrics + Cortex:** Leverage out-of-box knowledge health reports enhanced with Cortex predictive analytics for proactive updates.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -1061,7 +1396,12 @@ Analyzes knowledge article usage, incident linkage, and feedback to identify sta
 Automatically assigns and maintains taxonomy, metadata, and tagging for ITSM records and knowledge articles.
 
 **Implementation Recommendation:**
-**ServiceNow OOB Tagging + Cortex NLP:** Leverage out-of-box metadata capabilities. Use Cortex NLP for auto-tagging based on content analysis.
+
+**Existing Cortex Capabilities:**  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **EXISTING CORTEX AGENTS**: AiR Planning Agent (Beta), AiR Research Report Agent (Beta), AI News Researcher Two  
+
 
 ---
 
@@ -1075,7 +1415,13 @@ Automatically assigns and maintains taxonomy, metadata, and tagging for ITSM rec
 Predicts impending SLA breaches using historical performance and workload trends, proactively escalates risk before violations.
 
 **Implementation Recommendation:**
-**ServiceNow SLA Engine + Cortex Predictive Analytics + OOB Alerts:** Leverage OOB SLA breach alerting enhanced with Cortex predictive models for early warning.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+✅ **EXISTING CORTEX AGENTS**: Clinical Trials Safety Analysis Agent, PRISM 360 Supply Risk Agent, QA Fastlane: (3/5) Pitch Deck Agent  
+
 
 ---
 
@@ -1089,7 +1435,12 @@ Predicts impending SLA breaches using historical performance and workload trends
 Assists users in resolving issues by analyzing the problem and generating resolution steps using web search tools.
 
 **Implementation Recommendation:**
-**ServiceNow OOB AI Agent + Cortex Web Search:** Use out-of-box web research agent enhanced with Cortex for intelligent search, summarization, and vendor knowledge integration.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+
 
 ---
 
@@ -1105,7 +1456,10 @@ Assists users in resolving issues by analyzing the problem and generating resolu
 Execution-focused SRE agent responsible for safely applying automated remediations to known, recurring, or well-understood reliability issues.
 
 **Implementation Recommendation:**
-**TEA Automation Library + Cortex + ServiceNow Event Management:** Leverage TEA's existing playbooks extended with Cortex AI for intelligent remediation selection. Integrate with monitoring tools for event-driven execution.
+
+**Existing Cortex Capabilities:**  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
 
 ---
 
@@ -1119,7 +1473,11 @@ Execution-focused SRE agent responsible for safely applying automated remediatio
 Intelligent remediation agent executing proven, low-risk corrective actions to restore service when known issues occur.
 
 **Implementation Recommendation:**
-**TEA Automation Library + Cortex + ServiceNow Event Management:** Leverage TEA's existing playbooks extended with Cortex AI for intelligent remediation selection. Integrate with monitoring tools for event-driven execution.
+
+**Existing Cortex Capabilities:**  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **EXISTING CORTEX AGENTS**: Clinical Trials Safety Analysis Agent, PRISM 360 Supply Risk Agent, QA Fastlane: (3/5) Pitch Deck Agent  
+
 
 ---
 
@@ -1133,7 +1491,14 @@ Intelligent remediation agent executing proven, low-risk corrective actions to r
 Looks at automation failures and performs self-healing or creates incidents to automation team with appropriate assignment.
 
 **Implementation Recommendation:**
-**TEA Logs + Cortex Failure Analysis + ServiceNow:** Monitor TEA execution logs, classify failures with Cortex, auto-create incidents to automation team with diagnostic context.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -1147,7 +1512,11 @@ Looks at automation failures and performs self-healing or creates incidents to a
 Build-focused agent responsible for designing, implementing, testing, and operationalizing automation.
 
 **Implementation Recommendation:**
-**ServiceNow Flow Designer + IntegrationHub + Cortex:** Use Flow Designer and IntegrationHub for automation building. Explore Cortex AI for code generation from natural language requirements.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX JIRA TOOLKIT**: JIRA integration for development ticket tracking and updates  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
 
 ---
 
@@ -1161,7 +1530,11 @@ Build-focused agent responsible for designing, implementing, testing, and operat
 Intelligent build-enablement agent turning automation opportunities into production-ready assets.
 
 **Implementation Recommendation:**
-**ServiceNow Flow Designer + IntegrationHub + Cortex:** Use Flow Designer and IntegrationHub for automation building. Explore Cortex AI for code generation from natural language requirements.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX JIRA TOOLKIT**: JIRA integration for development ticket tracking and updates  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
 
 ---
 
@@ -1175,7 +1548,11 @@ Intelligent build-enablement agent turning automation opportunities into product
 Delivery-oriented agent automating, governing, and optimizing software delivery lifecycle.
 
 **Implementation Recommendation:**
-**ServiceNow + Azure DevOps + Cortex:** Integrate with development tools (JIRA, Azure DevOps, GitHub). Use Cortex for pipeline orchestration and deployment decisioning.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX JIRA TOOLKIT**: JIRA integration for development ticket tracking and updates  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
 
 ---
 
@@ -1189,7 +1566,11 @@ Delivery-oriented agent automating, governing, and optimizing software delivery 
 Intelligent delivery and operations agent automating code flow from development through deployment.
 
 **Implementation Recommendation:**
-**ServiceNow + Azure DevOps + Cortex:** Integrate with development tools (JIRA, Azure DevOps, GitHub). Use Cortex for pipeline orchestration and deployment decisioning.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX JIRA TOOLKIT**: JIRA integration for development ticket tracking and updates  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
 
 ---
 
@@ -1203,7 +1584,10 @@ Intelligent delivery and operations agent automating code flow from development 
 Control and assurance-focused agent verifying that systems and automated actions behave as intended.
 
 **Implementation Recommendation:**
-**ServiceNow ATF + Cortex + Monitoring:** Use Automated Test Framework for pre/post-change validation. Integrate monitoring tools for health checks with Cortex anomaly detection.
+
+**Existing Cortex Capabilities:**  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
 
 ---
 
@@ -1217,7 +1601,10 @@ Control and assurance-focused agent verifying that systems and automated actions
 Pre- and post-change assurance agent exercising systems under expected and failure conditions.
 
 **Implementation Recommendation:**
-**ServiceNow ATF + Cortex + Test Automation:** Leverage Automated Test Framework for continuous testing. Use Cortex for test scenario generation and failure analysis.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+
 
 ---
 
@@ -1231,7 +1618,10 @@ Pre- and post-change assurance agent exercising systems under expected and failu
 Quality-assurance agent validating automations, workflows, and agentic solutions before and after deployment.
 
 **Implementation Recommendation:**
-**ServiceNow ATF + Cortex Test Generation:** Use Automated Test Framework. Explore Cortex for generating test cases from requirements integrated with CI/CD pipelines.
+
+**Existing Cortex Capabilities:**  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
 
 ---
 
@@ -1245,7 +1635,12 @@ Quality-assurance agent validating automations, workflows, and agentic solutions
 Generates and maintains operational runbooks by synthesizing incident history and automation workflows.
 
 **Implementation Recommendation:**
-**ServiceNow Knowledge + Cortex NLP + Incident History:** Extract procedures from resolved incidents using Cortex NLP. Generate runbooks stored as Knowledge articles.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+✅ **EXISTING CORTEX AGENTS**: ITSM Process Chatbot - ITSMate, ServiceNow Incident Extractor, SPE Support Assistant - Automation  
+
 
 ---
 
@@ -1259,7 +1654,10 @@ Generates and maintains operational runbooks by synthesizing incident history an
 Human-assisted intelligent operations agent monitoring, analyzing, and improving service reliability using SRE principles.
 
 **Implementation Recommendation:**
-**ServiceNow + Monitoring Tools + Cortex:** Integrate observability data (Splunk, Dynatrace) with ServiceNow. Use Cortex for reliability analysis and proactive issue detection.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -1275,7 +1673,10 @@ Human-assisted intelligent operations agent monitoring, analyzing, and improving
 Allows for query of CI records through conversational means.
 
 **Implementation Recommendation:**
-**ServiceNow CMDB + Cortex NLU + ChatNow:** Build conversational CMDB interface using ChatNow. Use Cortex NLU to parse queries into CMDB filters.
+
+**Existing Cortex Capabilities:**  
+✅ **EXISTING CORTEX AGENTS**: AI Researcher (AiR), AI Researcher (AiR), AI Think Tank  
+
 
 ---
 
@@ -1289,6 +1690,11 @@ Allows for query of CI records through conversational means.
 Allows authorized individuals to update CI records through conversational means.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **EXISTING CORTEX AGENTS**: AI Researcher (AiR), AI Researcher (AiR), AI Think Tank  
+
+
 **ServiceNow CMDB + Approval Workflow + Audit Logging:** Build conversational CI update interface with strict authorization, approval workflows, and comprehensive audit logs.
 
 ---
@@ -1303,6 +1709,12 @@ Allows authorized individuals to update CI records through conversational means.
 Automates a good portion of Service Mapping within ServiceNow.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **TEA AUTOMATION + CORTEX**: Integrate Cortex AI decision logic with TEA (Technology Enabling Automation) library for automated execution  
+
+
 **ServiceNow Service Mapping OOB + Discovery:** Leverage out-of-box Service Mapping enhanced with additional discovery patterns and IntegrationHub for API-based discovery.
 
 ---
@@ -1319,7 +1731,10 @@ Automates a good portion of Service Mapping within ServiceNow.
 Monitors execution of ITSM processes to detect non-compliance, gaps, and deviations from policy.
 
 **Implementation Recommendation:**
-**ServiceNow OOB Reports + Cortex Compliance Checking:** Use out-of-box governance reports. Build Cortex models to detect process deviations with executive dashboards.
+
+**Existing Cortex Capabilities:**  
+✅ **ETHICS & COMPLIANCE CHAT AGENT**: Policy and procedures knowledge worker for compliance monitoring  
+
 
 ---
 
@@ -1333,7 +1748,10 @@ Monitors execution of ITSM processes to detect non-compliance, gaps, and deviati
 Analyzes trends across all ITSM processes to identify systemic inefficiencies and recommend improvements.
 
 **Implementation Recommendation:**
-**ServiceNow Performance Analytics + Cortex Trend Analysis:** Analyze ServiceNow metrics across ITSM processes. Use Cortex to identify improvement opportunities with ROI estimates.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+
 
 ---
 
@@ -1347,7 +1765,11 @@ Analyzes trends across all ITSM processes to identify systemic inefficiencies an
 Aggregates operational metrics into executive-level dashboards linking IT performance to business KPIs and OKRs.
 
 **Implementation Recommendation:**
-**ServiceNow OOB Dashboards + Cortex Business Translation:** Leverage out-of-box executive dashboards. Use Cortex to translate technical metrics to business KPIs with OKR integration.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -1361,7 +1783,11 @@ Aggregates operational metrics into executive-level dashboards linking IT perfor
 Continuously scans ITSM records to detect violations of policy and regulatory requirements.
 
 **Implementation Recommendation:**
-**ServiceNow Business Rules + Cortex Policy Engine + OOB Audit:** Implement business rules for policy enforcement. Use Cortex to interpret compliance requirements with OOB audit.
+
+**Existing Cortex Capabilities:**  
+✅ **ETHICS & COMPLIANCE CHAT AGENT**: Policy and procedures knowledge worker for compliance monitoring  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -1375,7 +1801,11 @@ Continuously scans ITSM records to detect violations of policy and regulatory re
 Prepares ITSM records for audit by validating documentation completeness, traceability, and approvals.
 
 **Implementation Recommendation:**
-**ServiceNow Reports + Cortex Document Analysis:** Build automated audit reports. Use Cortex to validate completeness and generate export packages with evidence.
+
+**Existing Cortex Capabilities:**  
+✅ **AI RESEARCHER (AiR)**: Use Quick Chat for fast searches or Deep Research for comprehensive analysis with citations  
+✅ **ETHICS & COMPLIANCE CHAT AGENT**: Policy and procedures knowledge worker for compliance monitoring  
+
 
 ---
 
@@ -1389,7 +1819,10 @@ Prepares ITSM records for audit by validating documentation completeness, tracea
 Validates whether service design is operationally ready for production by checking monitoring, runbooks, and resilience criteria.
 
 **Implementation Recommendation:**
-**ServiceNow CMDB + Runbooks + Cortex Readiness Checklist:** Query CMDB for monitoring configuration. Check runbook existence and validate completeness against SRE checklist.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX + MONITORING TOOLS**: Build Cortex agent with Splunk/Dynatrace/Prometheus API integrations for event correlation  
+
 
 ---
 
@@ -1405,7 +1838,11 @@ Validates whether service design is operationally ready for production by checki
 Analyzes workload, ticket volumes, SLA pressure, and skill distribution to identify staffing bottlenecks.
 
 **Implementation Recommendation:**
-**ServiceNow Performance Analytics + Cortex + HR Data:** Analyze workload with ServiceNow analytics. Use Cortex to identify bottlenecks and integrate with HR for skills inventory.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+
 
 ---
 
@@ -1419,6 +1856,11 @@ Analyzes workload, ticket volumes, SLA pressure, and skill distribution to ident
 Analyzes customer feedback and operational trends to identify improvement opportunities.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+
+
 **ServiceNow OOB Agentic Workflow + Performance Analytics:** Leverage out-of-box workflow for service analysis with integrated survey platforms and trend identification.
 
 ---
@@ -1434,6 +1876,11 @@ Analyzes customer feedback and operational trends to identify improvement opport
 Generates structured work plan prioritizing tasks based on priority, SLAs, and sentiment.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX AI PLATFORM**: Leverage Cortex's 111 inference models, 13 embedding models, and 1,091 shared prompts to build custom agent  
+
+
 **ServiceNow Workload Optimization + OOB Agentic Workflow:** Use out-of-box work plan generation with Outlook/Teams calendar integration and AI prioritization.
 
 ---
@@ -1448,7 +1895,10 @@ Generates structured work plan prioritizing tasks based on priority, SLAs, and s
 Analyzes survey data to evaluate satisfaction metrics, identify concerns, and provide improvement recommendations.
 
 **Implementation Recommendation:**
-**ServiceNow OOB Agentic Workflow + Survey Analysis + Cortex:** Leverage out-of-box survey analysis with Cortex sentiment analysis and trend detection.
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX AI MODELS**: 111 inference models available for pattern recognition, classification, and predictive analytics  
+
 
 ---
 
@@ -1462,6 +1912,12 @@ Analyzes survey data to evaluate satisfaction metrics, identify concerns, and pr
 Voice AI agent assisting users with managing active tickets, fetching details, adding comments, or escalating urgency.
 
 **Implementation Recommendation:**
+
+**Existing Cortex Capabilities:**  
+✅ **CORTEX SNOW TOOLKIT**: ServiceNow integration for ticket management, status retrieval, and automated updates  
+✅ **CORTEX WORKDAY TOOLKIT**: Employee data, org structures, and reporting hierarchies for intelligent routing  
+
+
 **ServiceNow OOB Voice Agent + Telephony Integration:** Leverage out-of-box Voice AI Agent with Lilly telephony systems and Azure Speech Services.
 
 ---
