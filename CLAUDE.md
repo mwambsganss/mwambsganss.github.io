@@ -11,6 +11,38 @@ This is a GitHub Pages repository containing:
 
 ---
 
+## Custom Configuration
+
+### 🎸 Guitar-Themed Spinner Messages
+
+This repository uses custom guitar and music-themed spinner verbs configured in `~/.claude/settings.json`:
+
+**Spinner Verbs:**
+- "Tuning the strings" - General preparation
+- "Finding the right chord" - Searching/analyzing
+- "Playing through the progression" - Processing/working
+- "Reading the tablature" - Reading code
+- "Composing a new riff" - Writing new code
+- "Laying down the track" - Committing changes
+- "Sound checking" - Testing
+- "Adjusting the levels" - Configuring
+- "Fixing a broken string" - Debugging
+- "Finding the right note" - Searching
+- "Staging the performance" - Git staging
+- "Committing the jam session" - Git commit
+- "Recording to tape" - Saving files
+- "Building the guitar" - Building/compiling
+- "Preparing for the gig" - Setup tasks
+- "Plugging in the amp" - Initializing
+- "Dialing in the tone" - Fine-tuning
+- "Checking the mix" - Reviewing
+- "Learning the melody" - Understanding code
+- "Writing the arrangement" - Planning/designing
+
+These messages reflect the repository owner's musical interests while maintaining professional functionality.
+
+---
+
 ## General Guidelines
 
 ### Code Quality Standards
