@@ -1,0 +1,125 @@
+# Security - Never commit these files
+.env
+.env.*
+*.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.staging
+
+# Credentials and Secrets
+credentials.json
+secrets.json
+*secret*
+*password*
+*token*
+*.pem
+*.key
+*.p12
+*.pfx
+service-account*.json
+.git-credentials
+.netrc
+
+# SSH Keys
+.ssh/
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# Cloud Provider Credentials
+.aws/
+.azure/
+.gcloud/
+.kube/
+
+# API Keys
+*apikey*
+*api-key*
+*api_key*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Thumbnails
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+venv/
+env/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Backup files
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/settings.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Test outputs
+coverage_report/
+htmlcov/
+.pytest_cache/
+.coverage
+coverage.json
+*.log
+
+# Claude Code
+.claude/projects/
+.claude/debug/
+.claude/todos/
+.claude/backups/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Node modules (if any)
+node_modules/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Archives (optional - uncomment if you don't want to commit archives)
+# *.zip
+# *.tar
+# *.tar.gz
+# *.rar
+# *.7z
