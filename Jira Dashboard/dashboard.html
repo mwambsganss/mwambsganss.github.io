@@ -11,56 +11,42 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #0f172a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     #root { min-height: 100vh; }
+    #loading { display:flex; align-items:center; justify-content:center; height:100vh; color:#64748b; font-size:14px; }
   </style>
 </head>
 <body>
-  <div id="root"></div>
-
-  <script type="text/babel" data-type="module">
-    // Re-map module imports to globals provided by the CDN scripts
-    const { useState, useMemo, useCallback, useEffect } = React;
-  </script>
-
-  <script type="text/babel" data-presets="react">
-    /* ---- shim the named imports the JSX file uses ---- */
-    const { useState, useMemo, useCallback, useEffect } = React;
-
-    /* ============================================================
-       INLINE: jira-executive-dashboard.jsx (verbatim, minus the
-       `import` line and `export default` keyword — those are
-       handled by the shim above and the ReactDOM.createRoot call
-       below).
-    ============================================================ */
-  </script>
-
-  <!-- Load the JSX component source, stripping the ES-module import/export -->
-  <script type="text/babel" data-presets="react" id="dashScript"></script>
+  <div id="root"><div id="loading">Loading dashboard…</div></div>
 
   <script>
-    // Fetch the JSX file, strip the import/export lines, inject into Babel script tag, then mount
     fetch("jira-executive-dashboard.jsx")
       .then(r => r.text())
       .then(src => {
-        // Remove ES module import line
-        src = src.replace(/^import\s+.*from\s+["']react["'];?\s*\n?/m, "");
-        // Change `export default function Dashboard` → `function Dashboard`
+        // Strip ES module import line
+        src = src.replace(/^import\s+\{[^}]+\}\s+from\s+['"]react['"];?\s*\n?/m, "");
+        // Remove export default keyword
         src = src.replace(/export\s+default\s+function\s+Dashboard/, "function Dashboard");
-        // Append ReactDOM mount
-        src += `\n\nconst __root = ReactDOM.createRoot(document.getElementById("root"));\n__root.render(React.createElement(Dashboard));\n`;
+        // Prepend React hook shims and append mount call
+        src = `const { useState, useMemo, useCallback, useEffect } = React;\n` + src +
+              `\nReactDOM.createRoot(document.getElementById("root")).render(React.createElement(Dashboard));\n`;
 
-        const script = document.getElementById("dashScript");
-        script.textContent = src;
-
-        // Tell Babel standalone to transform and execute it
-        Babel.transformScriptTags();
+        // Compile with Babel then execute — single isolated eval, no duplicate scope issues
+        const compiled = Babel.transform(src, { presets: ["react"] }).code;
+        // eslint-disable-next-line no-eval
+        eval(compiled);
       })
       .catch(err => {
         document.getElementById("root").innerHTML =
-          `<div style="color:#f87171;padding:40px;font-family:monospace">
-            Failed to load dashboard: ${err.message}<br/><br/>
-            Make sure you are serving this folder over HTTP (not file://).<br/>
-            Run: <code>python3 -m http.server 8080</code> in the Jira Dashboard folder.
-           </div>`;
+          `<div style="color:#f87171;padding:40px;font-family:monospace;line-height:1.8">
+            <strong>Failed to load dashboard</strong><br/><br/>
+            ${err.message.replace(/</g,"&lt;")}<br/><br/>
+            Make sure you are serving this folder over HTTP:<br/>
+            <code style="background:#1e293b;padding:4px 8px;border-radius:4px">
+              python3 -m http.server 8081
+            </code><br/>
+            then open <a href="http://localhost:8081/dashboard.html" style="color:#60a5fa">
+              http://localhost:8081/dashboard.html
+            </a>
+          </div>`;
       });
   </script>
 </body>
