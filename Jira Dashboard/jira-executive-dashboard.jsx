@@ -6,39 +6,45 @@ const RAW = [["KILO-2079","KILO","LRL - Analysis of STLC Phase-wise Effort Distr
 
 const DONE_STATUSES = new Set(["Done","Live Service","Hypercare","Cancelled","Retired"]);
 
+
+// Lilly Brand Colors
+// Primary: #C8102E (Lilly Red), White, Dark Gray #1A1A1A, Mid Gray #6B6B6B, Light Gray #F5F5F5
+
+const DONE_STATUSES = new Set(["Done","Live Service","Hypercare","Cancelled","Retired"]);
+
 const PROJECTS = {
-  EAA: { accent: "#f59e0b" },
-  ASO: { accent: "#8b5cf6" },
-  KILO: { accent: "#06b6d4" },
+  EAA: { accent: "#C8102E", light: "#FFF0F2" },
+  ASO: { accent: "#0057A8", light: "#EBF3FF" },
+  KILO: { accent: "#00703C", light: "#EDFAF3" },
 };
 
-const STATUS_STYLE = {
-  "Done":                   { c: "#10b981", bg: "rgba(16,185,129,0.12)" },
-  "Live Service":           { c: "#10b981", bg: "rgba(16,185,129,0.12)" },
-  "Hypercare":              { c: "#6ee7b7", bg: "rgba(110,231,183,0.12)" },
-  "In Development":         { c: "#f59e0b", bg: "rgba(245,158,11,0.12)" },
-  "In Progress":            { c: "#3b82f6", bg: "rgba(59,130,246,0.12)" },
-  "Dev in Progress":        { c: "#3b82f6", bg: "rgba(59,130,246,0.12)" },
-  "Testing in Progress":    { c: "#818cf8", bg: "rgba(129,140,248,0.12)" },
-  "Blocked":                { c: "#ef4444", bg: "rgba(239,68,68,0.12)" },
-  "Cancelled":              { c: "#475569", bg: "rgba(71,85,105,0.12)" },
-  "Retired":                { c: "#475569", bg: "rgba(71,85,105,0.12)" },
-  "On Hold":                { c: "#dc2626", bg: "rgba(220,38,38,0.12)" },
-  "Backlog":                { c: "#94a3b8", bg: "rgba(148,163,184,0.12)" },
-  "To Do":                  { c: "#94a3b8", bg: "rgba(148,163,184,0.12)" },
-  "Ready for Development":  { c: "#a78bfa", bg: "rgba(167,139,250,0.12)" },
-  "Approved":               { c: "#34d399", bg: "rgba(52,211,153,0.12)" },
-  "Automation Opportunity": { c: "#fb923c", bg: "rgba(251,146,60,0.12)" },
-  "Exploration":            { c: "#e879f9", bg: "rgba(232,121,249,0.12)" },
-  "POT/POC":                { c: "#f472b6", bg: "rgba(244,114,182,0.12)" },
-  "In Review":              { c: "#60a5fa", bg: "rgba(96,165,250,0.12)" },
-  "Architect Gate":         { c: "#c084fc", bg: "rgba(192,132,252,0.12)" },
-  "Team & Vendor Formation":{ c: "#fbbf24", bg: "rgba(251,191,36,0.12)" },
-  "Capability Evaluation":  { c: "#67e8f9", bg: "rgba(103,232,249,0.12)" },
+const STATUS_COLOR = {
+  "Done":                   "#00703C",
+  "Live Service":           "#00703C",
+  "Hypercare":              "#00703C",
+  "In Development":         "#C8102E",
+  "In Progress":            "#0057A8",
+  "Dev in Progress":        "#0057A8",
+  "Testing in Progress":    "#6B3FA0",
+  "In Review":              "#0057A8",
+  "Approved":               "#00703C",
+  "Blocked":                "#C8102E",
+  "On Hold":                "#E8830C",
+  "Cancelled":              "#6B6B6B",
+  "Retired":                "#6B6B6B",
+  "Backlog":                "#6B6B6B",
+  "To Do":                  "#6B6B6B",
+  "Ready for Development":  "#6B3FA0",
+  "Automation Opportunity": "#E8830C",
+  "Exploration":            "#0087C1",
+  "POT/POC":                "#C8102E",
+  "Architect Gate":         "#6B3FA0",
+  "Team & Vendor Formation":"#E8830C",
+  "Capability Evaluation":  "#0087C1",
 };
 
 const TYPE_ICON = {
-  "Story": "📖", "Task": "✅", "Bug": "🐞", "Enhancement": "⚡",
+  "Story": "📖", "Task": "✅", "Bug": "🐛", "Enhancement": "⚡",
   "Release": "🚀", "Automation Project": "🤖", "Test Automation": "🧪",
   "Epic": "🎯", "Sub-task": "◻", "Consultation": "💬", "Test": "🔬",
   "Test Execution": "▶", "Test Plan": "📋", "Feature": "✨",
@@ -46,12 +52,12 @@ const TYPE_ICON = {
 };
 
 const PRIORITY_STYLE = {
-  "High":    { c: "#ef4444", i: "↑↑" },
-  "Highest": { c: "#dc2626", i: "↑↑↑" },
-  "Medium":  { c: "#f59e0b", i: "↑" },
-  "Low":     { c: "#10b981", i: "↓" },
-  "Lowest":  { c: "#6ee7b7", i: "↓↓" },
-  "Not Set": { c: "#475569", i: "—" },
+  "High":    { c: "#C8102E", label: "High" },
+  "Highest": { c: "#8B0000", label: "Highest" },
+  "Medium":  { c: "#E8830C", label: "Medium" },
+  "Low":     { c: "#00703C", label: "Low" },
+  "Lowest":  { c: "#6B6B6B", label: "Lowest" },
+  "Not Set": { c: "#C0C0C0", label: "—" },
 };
 
 const ISSUES = RAW.map(r => ({
@@ -59,7 +65,6 @@ const ISSUES = RAW.map(r => ({
   statusCat: r[4], issueType: r[5], priority: r[6],
   assignee: r[7] || "Unassigned", updated: r[8], created: r[9],
   dueDate: r[10], labels: r[11] ? r[11].split(",") : [],
-  // "completed" date = updated date when in a terminal status
   completed: DONE_STATUSES.has(r[3]) ? r[8] : "",
   url: `https://lilly-jira.atlassian.net/browse/${r[0]}`
 }));
@@ -74,36 +79,58 @@ const ALL_TYPES      = getUniq("issueType");
 const ALL_PRIORITIES = getUniq("priority");
 const ALL_ASSIGNEES  = getUniq("assignee");
 
-function StatusBadge({ status }) {
-  const st = STATUS_STYLE[status] || { c: "#64748b", bg: "rgba(100,116,139,0.12)" };
+function StatusPill({ status }) {
+  const c = STATUS_COLOR[status] || "#6B6B6B";
   return (
-    <span style={{ background: st.bg, color: st.c, padding: "2px 8px", borderRadius: 3, fontSize: 11, whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: 4 }}>
-      <span style={{ width: 5, height: 5, borderRadius: "50%", background: st.c, flexShrink: 0 }} />
+    <span style={{
+      display: "inline-flex", alignItems: "center", gap: 5,
+      background: c + "14", color: c, border: `1px solid ${c}30`,
+      padding: "2px 8px", borderRadius: 3, fontSize: 11, fontWeight: 600,
+      whiteSpace: "nowrap", fontFamily: "Arial, sans-serif"
+    }}>
+      <span style={{ width: 6, height: 6, borderRadius: "50%", background: c, flexShrink: 0 }} />
       {status}
     </span>
   );
 }
 
-function DateRangeFilter({ label, color, fromKey, toKey, filters, setFilter }) {
+function Select({ label, value, onChange, options }) {
   return (
-    <div style={{ background: "#060d1a", border: `1px solid ${color}22`, borderRadius: 5, padding: "8px 12px", display: "flex", flexDirection: "column", gap: 5, minWidth: 200 }}>
-      <div style={{ fontSize: 9, color: color, letterSpacing: ".1em", fontWeight: 700 }}>{label}</div>
-      <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-        <label style={{ fontSize: 10, color: "#334155", whiteSpace: "nowrap" }}>From</label>
-        <input type="date" value={filters[fromKey]} onChange={e => setFilter(fromKey, e.target.value)}
-          style={{ flex: 1, fontSize: 11, padding: "3px 6px", borderColor: filters[fromKey] ? color : undefined }} />
-      </div>
-      <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-        <label style={{ fontSize: 10, color: "#334155", whiteSpace: "nowrap" }}>To&nbsp;&nbsp;&nbsp;</label>
-        <input type="date" value={filters[toKey]} onChange={e => setFilter(toKey, e.target.value)}
-          style={{ flex: 1, fontSize: 11, padding: "3px 6px", borderColor: filters[toKey] ? color : undefined }} />
-      </div>
-      {(filters[fromKey] || filters[toKey]) && (
-        <button onClick={() => { setFilter(fromKey, ""); setFilter(toKey, ""); }}
-          style={{ fontSize: 9, color: "#475569", background: "none", border: "none", cursor: "pointer", textAlign: "left", padding: 0 }}>
-          ✕ clear
-        </button>
-      )}
+    <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+      <label style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", letterSpacing: ".06em", fontFamily: "Arial, sans-serif", textTransform: "uppercase" }}>{label}</label>
+      <select value={value} onChange={e => onChange(e.target.value)} style={{
+        fontFamily: "Arial, sans-serif", fontSize: 12, padding: "6px 10px",
+        border: "1px solid #D0D0D0", borderRadius: 3, background: "#fff",
+        color: "#1A1A1A", cursor: "pointer", minWidth: 140, outline: "none"
+      }}>
+        {options.slice(0, 60).map(o => <option key={o} value={o}>{o}</option>)}
+      </select>
+    </div>
+  );
+}
+
+function DateField({ label, value, onChange }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+      <label style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", letterSpacing: ".06em", fontFamily: "Arial, sans-serif", textTransform: "uppercase" }}>{label}</label>
+      <input type="date" value={value} onChange={e => onChange(e.target.value)} style={{
+        fontFamily: "Arial, sans-serif", fontSize: 12, padding: "6px 10px",
+        border: "1px solid #D0D0D0", borderRadius: 3, color: "#1A1A1A",
+        background: "#fff", outline: "none"
+      }} />
+    </div>
+  );
+}
+
+function StatCard({ value, label, color, sub }) {
+  return (
+    <div style={{
+      background: "#fff", border: "1px solid #E8E8E8", borderTop: `3px solid ${color}`,
+      borderRadius: 4, padding: "14px 16px", boxShadow: "0 1px 3px rgba(0,0,0,.05)"
+    }}>
+      <div style={{ fontSize: 28, fontWeight: 700, color, fontFamily: "Arial Black, Arial, sans-serif", lineHeight: 1 }}>{value.toLocaleString()}</div>
+      <div style={{ fontSize: 11, fontWeight: 700, color: "#1A1A1A", marginTop: 4, fontFamily: "Arial, sans-serif" }}>{label}</div>
+      {sub && <div style={{ fontSize: 10, color: "#6B6B6B", marginTop: 2, fontFamily: "Arial, sans-serif" }}>{sub}</div>}
     </div>
   );
 }
@@ -126,22 +153,16 @@ export default function Dashboard() {
   const [summaryCollapsed, setSummaryCollapsed] = useState(false);
   const [emailTo, setEmailTo] = useState("");
   const [emailCc, setEmailCc] = useState("");
-  const [emailStatus, setEmailStatus] = useState(null); // null | "sending" | "sent" | "error"
+  const [emailStatus, setEmailStatus] = useState(null);
   const [showEmailPanel, setShowEmailPanel] = useState(false);
   const [showDateFilters, setShowDateFilters] = useState(false);
   const PAGE_SIZE = 50;
 
   const setFilter = (k, v) => setFilters(f => ({ ...f, [k]: v }));
-
-  const clearFilters = () => setFilters({
-    project: "All", status: "All", issueType: "All",
-    priority: "All", assignee: "All", search: "",
-    createdFrom: "", createdTo: "",
-    completedFrom: "", completedTo: "",
-    updatedFrom: "", updatedTo: "",
-  });
+  const clearFilters = () => setFilters({ project: "All", status: "All", issueType: "All", priority: "All", assignee: "All", search: "", createdFrom: "", createdTo: "", completedFrom: "", completedTo: "", updatedFrom: "", updatedTo: "" });
 
   const hasDateFilters = filters.createdFrom || filters.createdTo || filters.completedFrom || filters.completedTo || filters.updatedFrom || filters.updatedTo;
+  const hasAnyFilter = Object.entries(filters).some(([k, v]) => v && v !== "All" && v !== "");
 
   const filtered = useMemo(() => {
     let r = ISSUES;
@@ -154,13 +175,10 @@ export default function Dashboard() {
       const q = filters.search.toLowerCase();
       r = r.filter(i => i.summary.toLowerCase().includes(q) || i.key.toLowerCase().includes(q) || i.assignee.toLowerCase().includes(q));
     }
-    // Date Created filters
     if (filters.createdFrom) r = r.filter(i => i.created >= filters.createdFrom);
     if (filters.createdTo)   r = r.filter(i => i.created <= filters.createdTo);
-    // Date Completed filters (only matches issues in terminal statuses)
     if (filters.completedFrom) r = r.filter(i => i.completed && i.completed >= filters.completedFrom);
     if (filters.completedTo)   r = r.filter(i => i.completed && i.completed <= filters.completedTo);
-    // Date Updated filters
     if (filters.updatedFrom) r = r.filter(i => i.updated >= filters.updatedFrom);
     if (filters.updatedTo)   r = r.filter(i => i.updated <= filters.updatedTo);
     return [...r].sort((a, b) => {
@@ -170,11 +188,7 @@ export default function Dashboard() {
   }, [filters, sortCol, sortDir]);
 
   useEffect(() => setPage(0), [filters, sortCol, sortDir]);
-
-  // Clear AI summary whenever filters change so stale summaries aren't shown
-  useEffect(() => {
-    setAiSummary("");
-  }, [filters]);
+  useEffect(() => { setAiSummary(""); }, [filters]);
 
   const paged = useMemo(() => filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE), [filtered, page]);
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
@@ -210,17 +224,14 @@ export default function Dashboard() {
   const formatSummaryAsText = useCallback(() => {
     if (!aiSummary) return "";
     const date = new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-    const activeFilters = Object.entries(filters)
-      .filter(([k, v]) => v && v !== "All" && v !== "")
-      .map(([k, v]) => `${k}: ${v}`).join(" | ");
+    const activeFilters = Object.entries(filters).filter(([k, v]) => v && v !== "All" && v !== "").map(([k, v]) => `${k}: ${v}`).join(" | ");
     return [
       `LILLY ENTERPRISE AUTOMATION — EXECUTIVE PORTFOLIO BRIEFING`,
       `${date}`,
       activeFilters ? `Filters: ${activeFilters}` : `Filters: None (all ${filtered.length.toLocaleString()} issues)`,
       ``,
       aiSummary,
-      ``,
-      `—`,
+      ``, `—`,
       `Generated by Scrum Master Dashboard · EAA / ASO / KILO · Lilly Jira`,
     ].join("\n");
   }, [aiSummary, filters, filtered.length]);
@@ -228,13 +239,11 @@ export default function Dashboard() {
   const handleSendEmail = useCallback(async () => {
     if (!emailTo.trim() || !aiSummary) return;
     setEmailStatus("sending");
-
     const date = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
     const subject = encodeURIComponent(`Lilly Portfolio Executive Briefing — ${date}`);
     const body = encodeURIComponent(formatSummaryAsText());
     const cc = emailCc.trim() ? `&cc=${encodeURIComponent(emailCc.trim())}` : "";
     const mailto = `mailto:${encodeURIComponent(emailTo.trim())}?subject=${subject}${cc}&body=${body}`;
-
     try {
       window.location.href = mailto;
       setEmailStatus("sent");
@@ -259,9 +268,7 @@ export default function Dashboard() {
     const sample = filtered.slice(0, 50).map(i =>
       `[${i.key}|${i.project}] ${i.summary} | ${i.status} | ${i.issueType} | ${i.assignee} | Updated: ${i.updated} | Created: ${i.created}${i.completed ? " | Completed: " + i.completed : ""}`
     ).join("\n");
-    const activeFilters = Object.entries(filters)
-      .filter(([k, v]) => v && v !== "All")
-      .map(([k, v]) => `${k}=${v}`).join(", ");
+    const activeFilters = Object.entries(filters).filter(([k, v]) => v && v !== "All").map(([k, v]) => `${k}=${v}`).join(", ");
     try {
       const res = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
@@ -269,30 +276,7 @@ export default function Dashboard() {
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
           max_tokens: 1200,
-          messages: [{ role: "user", content: `You are a Scrum Master producing a structured executive portfolio status briefing for Eli Lilly leadership. Active filters: ${activeFilters || "none"}. Total matching issues: ${filtered.length}.
-
-Sample issues (up to 50 shown):
-${sample}
-
-You MUST respond using EXACTLY the following format every time, with NO deviation. Use the exact section headers shown, each on its own line followed by a colon. Do not add, remove, or rename any section. Write 2-4 concise sentences per section grounded in the data above.
-
-PORTFOLIO OVERVIEW:
-[Overall health, total issue counts by project (EAA/ASO/KILO), and current velocity trend.]
-
-IN PROGRESS:
-[Key work streams actively being worked on. Call out specific issue summaries, assignees, and projects.]
-
-RECENTLY COMPLETED:
-[Items moved to Done, Live Service, Hypercare, or Cancelled. Highlight notable deliveries.]
-
-KEY RISKS:
-[Specific risks identified from the data: overdue items, high-priority unassigned work, stalled items, or concentration of blocked issues.]
-
-BLOCKERS:
-[Issues explicitly in Blocked or On Hold status, or patterns that indicate impediments to delivery.]
-
-RECOMMENDED ACTIONS:
-[2-3 concrete, actionable next steps for leadership or the team based on the above data.]` }]
+          messages: [{ role: "user", content: `You are a Scrum Master producing a structured executive portfolio status briefing for Eli Lilly leadership. Active filters: ${activeFilters || "none"}. Total matching issues: ${filtered.length}.\n\nSample issues (up to 50 shown):\n${sample}\n\nYou MUST respond using EXACTLY the following format every time, with NO deviation. Use the exact section headers shown, each on its own line followed by a colon. Do not add, remove, or rename any section. Write 2-4 concise sentences per section grounded in the data above.\n\nPORTFOLIO OVERVIEW:\n[Overall health, total issue counts by project (EAA/ASO/KILO), and current velocity trend.]\n\nIN PROGRESS:\n[Key work streams actively being worked on. Call out specific issue summaries, assignees, and projects.]\n\nRECENTLY COMPLETED:\n[Items moved to Done, Live Service, Hypercare, or Cancelled. Highlight notable deliveries.]\n\nKEY RISKS:\n[Specific risks identified from the data: overdue items, high-priority unassigned work, stalled items, or concentration of blocked issues.]\n\nBLOCKERS:\n[Issues explicitly in Blocked or On Hold status, or patterns that indicate impediments to delivery.]\n\nRECOMMENDED ACTIONS:\n[2-3 concrete, actionable next steps for leadership or the team based on the above data.]` }]
         })
       });
       const d = await res.json();
@@ -301,388 +285,447 @@ RECOMMENDED ACTIONS:
     setAiLoading(false);
   }, [filtered, filters]);
 
-  const SortTh = ({ col, label, style = {} }) => (
-    <th onClick={() => handleSort(col)} style={{ padding: "9px 12px", textAlign: "left", color: sortCol === col ? "#60a5fa" : "#475569", letterSpacing: "0.08em", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", userSelect: "none", fontSize: 11, ...style }}>
+  // Section header icons for AI summary
+  const SECTION_ICONS = {
+    "PORTFOLIO OVERVIEW": { icon: "📊", color: "#C8102E" },
+    "IN PROGRESS": { icon: "🔄", color: "#0057A8" },
+    "RECENTLY COMPLETED": { icon: "✅", color: "#00703C" },
+    "KEY RISKS": { icon: "⚠️", color: "#E8830C" },
+    "BLOCKERS": { icon: "🚫", color: "#C8102E" },
+    "RECOMMENDED ACTIONS": { icon: "💡", color: "#6B3FA0" },
+  };
+
+  const TH = ({ col, label, style = {} }) => (
+    <th onClick={() => handleSort(col)} style={{
+      padding: "10px 14px", textAlign: "left",
+      color: sortCol === col ? "#C8102E" : "#6B6B6B",
+      fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap",
+      userSelect: "none", fontSize: 11, letterSpacing: ".05em",
+      textTransform: "uppercase", fontFamily: "Arial, sans-serif",
+      borderBottom: "2px solid #E8E8E8", background: "#FAFAFA", ...style
+    }}>
       {label}{sortCol === col ? (sortDir === "asc" ? " ↑" : " ↓") : ""}
     </th>
   );
 
+  const BTN = ({ active, onClick, children, style = {} }) => (
+    <button onClick={onClick} style={{
+      fontFamily: "Arial, sans-serif", fontSize: 12, fontWeight: 600,
+      padding: "7px 14px", border: active ? "none" : "1px solid #D0D0D0",
+      borderRadius: 3, cursor: "pointer",
+      background: active ? "#C8102E" : "#fff",
+      color: active ? "#fff" : "#1A1A1A",
+      transition: "all .15s",
+      ...style
+    }}>{children}</button>
+  );
+
   return (
-    <div style={{ fontFamily: "'IBM Plex Mono', monospace", background: "#080f1e", minHeight: "100vh", color: "#e2e8f0" }}>
+    <div style={{ fontFamily: "Arial, sans-serif", background: "#F5F5F5", minHeight: "100vh", color: "#1A1A1A" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap');
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: #0d1526; }
-        ::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 3px; }
-        select, input[type=text], input[type=date] {
-          background: #0d1526; border: 1px solid #1e3a5f; color: #94a3b8;
-          padding: 5px 9px; border-radius: 3px; font-family: inherit; font-size: 11px;
-          outline: none; transition: border-color .15s;
-        }
-        select:hover, input:hover, select:focus, input:focus { border-color: #3b82f6; color: #e2e8f0; }
-        select { cursor: pointer; }
-        .btn { background: #0d1526; border: 1px solid #1e3a5f; color: #64748b; padding: 5px 12px; border-radius: 3px; font-family: inherit; font-size: 11px; cursor: pointer; transition: all .15s; }
-        .btn:hover { border-color: #3b82f6; color: #60a5fa; }
-        .btn.active { background: linear-gradient(135deg, #1d4ed8, #6d28d9); border-color: transparent; color: white; }
-        .btn-ai { background: linear-gradient(135deg, #1d4ed8, #6d28d9); border: none; color: white; padding: 6px 16px; border-radius: 3px; font-family: inherit; font-size: 11px; cursor: pointer; font-weight: 600; letter-spacing: .05em; transition: opacity .15s; }
-        .btn-ai:hover:not(:disabled) { opacity: .85; }
-        .btn-ai:disabled { opacity: .5; cursor: not-allowed; }
-        .row { cursor: pointer; transition: background .1s; }
-        .row:hover { background: rgba(59,130,246,0.06) !important; }
-        input[type=date]::-webkit-calendar-picker-indicator { filter: invert(.4); cursor: pointer; }
-        .scard { transition: transform .2s; }
-        .scard:hover { transform: translateY(-2px); }
-        .date-active { border-color: #3b82f6 !important; color: #60a5fa !important; }
+        * { box-sizing: border-box; }
+        input, select { outline: none; transition: border-color .15s; }
+        input:focus, select:focus { border-color: #C8102E !important; }
+        .row-hover:hover { background: #FFF8F8 !important; }
+        .btn-ghost:hover { background: #F5F5F5 !important; border-color: #C8102E !important; color: #C8102E !important; }
+        @keyframes spin { 0%,100%{opacity:.3} 50%{opacity:1} }
       `}</style>
 
       {/* HEADER */}
-      <div style={{ background: "linear-gradient(90deg,#0a1628,#0f1f3d)", borderBottom: "1px solid #1e3a5f", padding: "16px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 32, height: 32, background: "linear-gradient(135deg,#2563eb,#7c3aed)", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>⚡</div>
-          <div>
-            <div style={{ fontSize: 17, fontWeight: 600, color: "#f1f5f9", letterSpacing: "-.01em" }}>Scrum Master Dashboard</div>
-            <div style={{ fontSize: 10, color: "#334155", letterSpacing: ".1em" }}>EAA · ASO · KILO — {ISSUES.length.toLocaleString()} TOTAL ISSUES · LIVE DATA</div>
+      <div style={{ background: "#C8102E", padding: "0 32px", display: "flex", alignItems: "stretch", minHeight: 60 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, flex: 1 }}>
+          <div style={{ borderRight: "1px solid rgba(255,255,255,.3)", paddingRight: 16, marginRight: 4 }}>
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,.7)", letterSpacing: ".12em", fontWeight: 700, textTransform: "uppercase" }}>Eli Lilly and Company</div>
+            <div style={{ fontSize: 17, fontWeight: 700, color: "#fff", letterSpacing: "-.01em", fontFamily: "Arial Black, Arial, sans-serif" }}>Scrum Master Dashboard</div>
+          </div>
+          <div style={{ fontSize: 12, color: "rgba(255,255,255,.8)" }}>
+            EAA · ASO · KILO &nbsp;|&nbsp; <strong style={{ color: "#fff" }}>{ISSUES.length.toLocaleString()}</strong> total issues &nbsp;|&nbsp; Live Jira Data
           </div>
         </div>
-        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-          {["table","kanban","chart"].map(v => (
-            <button key={v} className={`btn ${view===v?"active":""}`} onClick={() => setView(v)}>
-              {v==="table"?"≡ TABLE":v==="kanban"?"⊞ KANBAN":"◎ CHART"}
-            </button>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          {["table", "kanban", "charts"].map(v => (
+            <button key={v} onClick={() => setView(v)} style={{
+              background: view === v ? "rgba(255,255,255,.25)" : "transparent",
+              border: "1px solid rgba(255,255,255,.4)", borderRadius: 3,
+              color: "#fff", fontFamily: "Arial, sans-serif", fontWeight: 600,
+              fontSize: 11, padding: "5px 12px", cursor: "pointer", textTransform: "capitalize"
+            }}>{v === "table" ? "📋 Table" : v === "kanban" ? "🗂 Board" : "📊 Charts"}</button>
           ))}
         </div>
       </div>
 
-      <div style={{ padding: "20px 28px" }}>
+      <div style={{ padding: "20px 32px" }}>
 
         {/* STAT CARDS */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))", gap: 10, marginBottom: 18 }}>
-          {[
-            { label: "TOTAL", value: stats.total.toLocaleString(), c: "#3b82f6", i: "📊" },
-            { label: "IN PROGRESS", value: stats.inProgress, c: "#f59e0b", i: "▶" },
-            { label: "DONE/LIVE", value: stats.done, c: "#10b981", i: "✓" },
-            { label: "BLOCKED/HOLD", value: stats.blocked, c: "#ef4444", i: "⏸" },
-            { label: "HIGH PRIORITY", value: stats.high, c: "#f97316", i: "⚠" },
-            { label: "OVERDUE", value: stats.overdue, c: "#dc2626", i: "⏰" },
-          ].map(s => (
-            <div key={s.label} className="scard" style={{ background: "#0d1526", border: `1px solid ${s.c}22`, borderRadius: 6, padding: "12px 14px" }}>
-              <div style={{ fontSize: 15, marginBottom: 4 }}>{s.i}</div>
-              <div style={{ fontSize: 24, fontWeight: 700, color: s.c }}>{s.value}</div>
-              <div style={{ fontSize: 9, color: "#334155", letterSpacing: ".1em", marginTop: 2 }}>{s.label}</div>
-            </div>
-          ))}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 12, marginBottom: 20 }}>
+          <StatCard value={stats.total} label="Total Issues" color="#1A1A1A" sub={`Filtered view`} />
+          <StatCard value={stats.inProgress} label="In Progress" color="#0057A8" />
+          <StatCard value={stats.done} label="Completed" color="#00703C" />
+          <StatCard value={stats.blocked} label="Blocked / On Hold" color="#C8102E" />
+          <StatCard value={stats.high} label="High Priority" color="#E8830C" />
+          <StatCard value={stats.overdue} label="Overdue" color="#8B0000" />
         </div>
 
-        {/* PROJECT BREAKDOWN */}
-        <div style={{ display: "flex", gap: 10, marginBottom: 18, flexWrap: "wrap" }}>
-          {Object.entries(stats.byProject).sort((a,b)=>b[1]-a[1]).map(([proj, cnt]) => {
-            const pc = PROJECTS[proj] || { accent: "#64748b" };
+        {/* PROJECT PILLS */}
+        <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
+          {Object.entries(PROJECTS).map(([proj, pc]) => {
+            const cnt = stats.byProject[proj] || 0;
             const isActive = filters.project === proj;
             return (
-              <div key={proj} style={{ background: "#0d1526", border: `1px solid ${isActive ? pc.accent : pc.accent+"33"}`, borderRadius: 6, padding: "10px 16px", cursor: "pointer", transition: "border-color .15s" }}
-                onClick={() => setFilter("project", isActive ? "All" : proj)}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <div style={{ width: 8, height: 8, borderRadius: 2, background: pc.accent }} />
-                  <span style={{ fontSize: 12, fontWeight: 600, color: pc.accent }}>{proj}</span>
-                  <span style={{ fontSize: 18, fontWeight: 700, color: "#e2e8f0", marginLeft: 4 }}>{cnt.toLocaleString()}</span>
-                </div>
+              <div key={proj}
+                onClick={() => setFilter("project", isActive ? "All" : proj)}
+                style={{
+                  background: isActive ? pc.accent : "#fff",
+                  border: `2px solid ${isActive ? pc.accent : "#E8E8E8"}`,
+                  borderRadius: 4, padding: "10px 20px", cursor: "pointer",
+                  display: "flex", alignItems: "center", gap: 10,
+                  transition: "all .15s", minWidth: 120,
+                  boxShadow: isActive ? `0 2px 8px ${pc.accent}40` : "0 1px 3px rgba(0,0,0,.05)"
+                }}
+              >
+                <div style={{ width: 10, height: 10, borderRadius: 2, background: isActive ? "#fff" : pc.accent }} />
+                <span style={{ fontWeight: 700, fontSize: 13, color: isActive ? "#fff" : pc.accent }}>{proj}</span>
+                <span style={{ fontSize: 20, fontWeight: 700, color: isActive ? "#fff" : "#1A1A1A", marginLeft: 4 }}>{cnt.toLocaleString()}</span>
               </div>
             );
           })}
         </div>
 
-        {/* FILTERS */}
-        <div style={{ background: "#0d1526", border: "1px solid #1e293b", borderRadius: 6, padding: 14, marginBottom: 16 }}>
-          {/* Row 1: Search + dropdowns */}
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 10 }}>
-            <input placeholder="Search key, summary, assignee…" value={filters.search}
-              onChange={e => setFilter("search", e.target.value)} style={{ minWidth: 220, flex: "1 1 180px" }} />
-            {[["project",ALL_PROJECTS],["status",ALL_STATUSES],["issueType",ALL_TYPES],["priority",ALL_PRIORITIES],["assignee",ALL_ASSIGNEES]].map(([k, opts]) => (
-              <select key={k} value={filters[k]} onChange={e => setFilter(k, e.target.value)} title={k}
-                className={filters[k] !== "All" ? "date-active" : ""}>
-                {opts.map(o => <option key={o} value={o}>{o==="All"?`All ${k}s`:o.length>28?o.slice(0,28)+"…":o}</option>)}
-              </select>
-            ))}
-            <button className={`btn ${hasDateFilters?"date-active":""}`} onClick={() => setShowDateFilters(s => !s)}>
-              📅 DATE FILTERS{hasDateFilters ? " ●" : ""}
-            </button>
-            <button className="btn" onClick={clearFilters}>✕ CLEAR ALL</button>
+        {/* FILTERS PANEL */}
+        <div style={{ background: "#fff", border: "1px solid #E8E8E8", borderRadius: 4, padding: 16, marginBottom: 16, boxShadow: "0 1px 3px rgba(0,0,0,.05)" }}>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "flex-end" }}>
+            <Select label="Project" value={filters.project} onChange={v => setFilter("project", v)} options={ALL_PROJECTS} />
+            <Select label="Status" value={filters.status} onChange={v => setFilter("status", v)} options={ALL_STATUSES} />
+            <Select label="Type" value={filters.issueType} onChange={v => setFilter("issueType", v)} options={ALL_TYPES} />
+            <Select label="Priority" value={filters.priority} onChange={v => setFilter("priority", v)} options={ALL_PRIORITIES} />
+            <Select label="Assignee" value={filters.assignee} onChange={v => setFilter("assignee", v)} options={ALL_ASSIGNEES} />
+            <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+              <label style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", letterSpacing: ".06em", textTransform: "uppercase" }}>Search</label>
+              <input
+                type="text"
+                placeholder="Key, summary, assignee..."
+                value={filters.search}
+                onChange={e => setFilter("search", e.target.value)}
+                style={{ fontFamily: "Arial, sans-serif", fontSize: 12, padding: "6px 10px", border: "1px solid #D0D0D0", borderRadius: 3, color: "#1A1A1A", width: 200 }}
+              />
+            </div>
+            <div style={{ display: "flex", gap: 8, alignItems: "flex-end" }}>
+              <BTN
+                active={showDateFilters}
+                onClick={() => setShowDateFilters(s => !s)}
+                style={{ height: 32 }}
+              >
+                📅 Date Filters{hasDateFilters ? " ●" : ""}
+              </BTN>
+              {hasAnyFilter && (
+                <BTN onClick={clearFilters} style={{ height: 32, color: "#C8102E", borderColor: "#C8102E" }}>
+                  ✕ Clear
+                </BTN>
+              )}
+            </div>
           </div>
 
-          {/* Row 2: Date filter panels — shown when toggled */}
           {showDateFilters && (
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", paddingTop: 10, borderTop: "1px solid #0f172a" }}>
-              <DateRangeFilter
-                label="📅 DATE CREATED"
-                color="#06b6d4"
-                fromKey="createdFrom"
-                toKey="createdTo"
-                filters={filters}
-                setFilter={setFilter}
-              />
-              <DateRangeFilter
-                label="✅ DATE COMPLETED"
-                color="#10b981"
-                fromKey="completedFrom"
-                toKey="completedTo"
-                filters={filters}
-                setFilter={setFilter}
-              />
-              <DateRangeFilter
-                label="🔄 DATE LAST UPDATED"
-                color="#8b5cf6"
-                fromKey="updatedFrom"
-                toKey="updatedTo"
-                filters={filters}
-                setFilter={setFilter}
-              />
-              <div style={{ background: "#060d1a", border: "1px solid #1e293b", borderRadius: 5, padding: "8px 12px", maxWidth: 240 }}>
-                <div style={{ fontSize: 9, color: "#475569", letterSpacing: ".08em", marginBottom: 6, fontWeight: 700 }}>ℹ NOTE ON COMPLETED DATE</div>
-                <div style={{ fontSize: 10, color: "#334155", lineHeight: 1.6 }}>
-                  Jira does not expose a resolution date in this API. <em style={{ color: "#475569" }}>Date Completed</em> uses the <strong style={{ color: "#4b5563" }}>last updated</strong> date for issues in terminal statuses: Done, Live Service, Hypercare, Cancelled, Retired.
+            <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid #E8E8E8", display: "flex", gap: 16, flexWrap: "wrap" }}>
+              <div>
+                <div style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", marginBottom: 6, textTransform: "uppercase", letterSpacing: ".06em" }}>Date Created</div>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <DateField label="From" value={filters.createdFrom} onChange={v => setFilter("createdFrom", v)} />
+                  <DateField label="To" value={filters.createdTo} onChange={v => setFilter("createdTo", v)} />
                 </div>
+              </div>
+              <div>
+                <div style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", marginBottom: 6, textTransform: "uppercase", letterSpacing: ".06em" }}>Date Completed</div>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <DateField label="From" value={filters.completedFrom} onChange={v => setFilter("completedFrom", v)} />
+                  <DateField label="To" value={filters.completedTo} onChange={v => setFilter("completedTo", v)} />
+                </div>
+              </div>
+              <div>
+                <div style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", marginBottom: 6, textTransform: "uppercase", letterSpacing: ".06em" }}>Date Updated</div>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <DateField label="From" value={filters.updatedFrom} onChange={v => setFilter("updatedFrom", v)} />
+                  <DateField label="To" value={filters.updatedTo} onChange={v => setFilter("updatedTo", v)} />
+                </div>
+              </div>
+              <div style={{ fontSize: 11, color: "#6B6B6B", alignSelf: "flex-end", maxWidth: 220, lineHeight: 1.5, paddingBottom: 6 }}>
+                <strong>Note:</strong> "Date Completed" uses last-updated date for issues in terminal statuses (Done, Live Service, Hypercare, Cancelled, Retired).
               </div>
             </div>
           )}
 
-          <div style={{ marginTop: 10, fontSize: 10, color: "#334155" }}>
-            Showing <span style={{ color: "#60a5fa", fontWeight: 600 }}>{filtered.length.toLocaleString()}</span> of {ISSUES.length.toLocaleString()} issues
-            {filtered.length > PAGE_SIZE && <span> · Page {page+1}/{totalPages}</span>}
-            {hasDateFilters && <span style={{ color: "#f59e0b", marginLeft: 8 }}>● date filters active</span>}
+          <div style={{ marginTop: 10, fontSize: 12, color: "#6B6B6B", display: "flex", gap: 16 }}>
+            <span>Showing <strong style={{ color: "#C8102E" }}>{filtered.length.toLocaleString()}</strong> of {ISSUES.length.toLocaleString()} issues</span>
+            {hasDateFilters && <span style={{ color: "#E8830C", fontWeight: 600 }}>● Date filters active</span>}
           </div>
         </div>
 
         {/* AI SUMMARY */}
-        <div style={{ background: "#0d1526", border: "1px solid #1e293b", borderRadius: 6, padding: 14, marginBottom: 16 }}>
+        <div style={{ background: "#fff", border: "1px solid #E8E8E8", borderRadius: 4, padding: 16, marginBottom: 16, boxShadow: "0 1px 3px rgba(0,0,0,.05)" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              {/* Collapse toggle */}
-              <button onClick={() => setSummaryCollapsed(c => !c)}
-                style={{ background: "none", border: "none", cursor: "pointer", color: "#334155", fontSize: 13, lineHeight: 1, padding: "0 2px", transition: "color .15s" }}
-                title={summaryCollapsed ? "Expand" : "Collapse"}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <button
+                onClick={() => setSummaryCollapsed(c => !c)}
+                style={{ background: "none", border: "none", cursor: "pointer", color: "#6B6B6B", fontSize: 14, padding: 0, lineHeight: 1 }}
+              >
                 {summaryCollapsed ? "▶" : "▼"}
               </button>
-              <span>🤖</span>
-              <span style={{ fontSize: 11, fontWeight: 600, color: "#64748b", letterSpacing: ".08em" }}>AI EXECUTIVE SUMMARY</span>
-              <span style={{ fontSize: 9, color: "#1e293b", background: "#0f172a", padding: "1px 6px", borderRadius: 8, border: "1px solid #1e293b" }}>CLAUDE</span>
-              {aiSummary && !aiLoading && (
-                <span style={{ fontSize: 9, color: "#334155", marginLeft: 4 }}>● ready</span>
-              )}
+              <span style={{ fontSize: 13, fontWeight: 700, color: "#1A1A1A" }}>AI Executive Summary</span>
+              <span style={{ fontSize: 10, background: "#C8102E", color: "#fff", padding: "1px 7px", borderRadius: 10, fontWeight: 700 }}>CLAUDE</span>
+              {!aiSummary && !aiLoading && <span style={{ fontSize: 11, color: "#6B6B6B" }}>Ready to generate</span>}
+              {aiLoading && <span style={{ fontSize: 11, color: "#0057A8" }}>Generating...</span>}
             </div>
-            <button className="btn-ai" onClick={generateAI} disabled={aiLoading}>
-              {aiLoading ? "⟳ GENERATING…" : "⚡ GENERATE SUMMARY"}
-            </button>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button
+                onClick={generateAI}
+                disabled={aiLoading}
+                style={{
+                  fontFamily: "Arial, sans-serif", fontSize: 12, fontWeight: 700,
+                  padding: "7px 16px", border: "none", borderRadius: 3,
+                  background: aiLoading ? "#E8E8E8" : "#C8102E",
+                  color: aiLoading ? "#6B6B6B" : "#fff",
+                  cursor: aiLoading ? "not-allowed" : "pointer"
+                }}
+              >
+                {aiLoading ? "Generating..." : "✦ Generate Summary"}
+              </button>
+            </div>
           </div>
+
           {!summaryCollapsed && (
-            <>
-              {aiLoading && <div style={{ padding: "10px 0", display: "flex", gap: 4 }}>{[0,1,2].map(i=><div key={i} style={{width:7,height:7,borderRadius:"50%",background:"#3b82f6",animation:`p 1.2s ${i*.2}s infinite`}}/>)}<style>{`@keyframes p{0%,100%{opacity:.3}50%{opacity:1}}`}</style></div>}
+            <div style={{ marginTop: 12 }}>
+              {aiLoading && (
+                <div style={{ display: "flex", gap: 6, padding: "10px 0", alignItems: "center" }}>
+                  {[0,1,2].map(i => (
+                    <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: "#C8102E", animation: `spin 1.2s ${i*.2}s infinite` }} />
+                  ))}
+                  <span style={{ fontSize: 12, color: "#6B6B6B", marginLeft: 6 }}>Analyzing {filtered.length.toLocaleString()} issues...</span>
+                </div>
+              )}
+
               {aiSummary && !aiLoading && (
-                <div style={{ marginTop: 12, background: "rgba(59,130,246,0.04)", border: "1px solid rgba(59,130,246,0.15)", borderRadius: 4, padding: "14px 16px" }}>
-                  {aiSummary.split("\n").map((line, i) => {
-                    const sectionHeaders = ["PORTFOLIO OVERVIEW:", "IN PROGRESS:", "RECENTLY COMPLETED:", "KEY RISKS:", "BLOCKERS:", "RECOMMENDED ACTIONS:"];
-                    const headerColors = {
-                      "PORTFOLIO OVERVIEW:":  { c: "#60a5fa", bg: "rgba(59,130,246,0.12)",  icon: "📊" },
-                      "IN PROGRESS:":         { c: "#f59e0b", bg: "rgba(245,158,11,0.12)",   icon: "▶" },
-                      "RECENTLY COMPLETED:":  { c: "#10b981", bg: "rgba(16,185,129,0.12)",   icon: "✓" },
-                      "KEY RISKS:":           { c: "#f97316", bg: "rgba(249,115,22,0.12)",   icon: "⚠" },
-                      "BLOCKERS:":            { c: "#ef4444", bg: "rgba(239,68,68,0.12)",     icon: "⛔" },
-                      "RECOMMENDED ACTIONS:": { c: "#a78bfa", bg: "rgba(167,139,250,0.12)", icon: "→" },
-                    };
-                    const trimmed = line.trim();
-                    const matchedHeader = sectionHeaders.find(h => trimmed.startsWith(h));
-                    if (matchedHeader) {
-                      const { c, bg, icon } = headerColors[matchedHeader];
+                <div>
+                  <div style={{ background: "#FAFAFA", border: "1px solid #E8E8E8", borderRadius: 4, padding: 16 }}>
+                    {aiSummary.split("\n").map((line, i) => {
+                      const trimmed = line.trim();
+                      const headerKey = Object.keys(SECTION_ICONS).find(k => trimmed.startsWith(k + ":"));
+                      if (headerKey) {
+                        const { icon, color } = SECTION_ICONS[headerKey];
+                        return (
+                          <div key={i} style={{
+                            display: "flex", alignItems: "center", gap: 8,
+                            background: color + "0D", border: `1px solid ${color}20`,
+                            borderRadius: 3, padding: "7px 12px",
+                            marginTop: i === 0 ? 0 : 14, marginBottom: 6
+                          }}>
+                            <span style={{ fontSize: 14 }}>{icon}</span>
+                            <span style={{ fontSize: 12, fontWeight: 700, color, letterSpacing: ".05em" }}>{headerKey}</span>
+                          </div>
+                        );
+                      }
+                      if (!trimmed) return null;
                       return (
-                        <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, background: bg, border: `1px solid ${c}33`, borderRadius: 4, padding: "6px 10px", marginTop: i === 0 ? 0 : 14, marginBottom: 6 }}>
-                          <span style={{ fontSize: 13 }}>{icon}</span>
-                          <span style={{ fontSize: 11, fontWeight: 700, color: c, letterSpacing: ".1em" }}>{matchedHeader.slice(0, -1)}</span>
-                        </div>
+                        <p key={i} style={{ fontSize: 13, lineHeight: 1.7, color: "#1A1A1A", margin: "0 0 4px 0", paddingLeft: 4, fontFamily: "Arial, sans-serif" }}>
+                          {trimmed}
+                        </p>
                       );
-                    }
-                    if (!trimmed) return null;
-                    return (
-                      <p key={i} style={{ fontSize: 12, lineHeight: 1.75, color: "#94a3b8", marginBottom: 4, paddingLeft: 4 }}>{trimmed}</p>
-                    );
-                  })}
-                </div>
-              )}
-              {!aiSummary && !aiLoading && (
-                <div style={{ marginTop: 10, fontSize: 11, color: "#1e3a5f", fontStyle: "italic" }}>
-                  Apply filters then click ⚡ Generate Summary for an AI-powered executive briefing.
-                </div>
-              )}
-
-              {/* EMAIL PANEL — only shown when a summary exists */}
-              {aiSummary && !aiLoading && (
-                <div style={{ marginTop: 14, borderTop: "1px solid #0f172a", paddingTop: 12 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: showEmailPanel ? 10 : 0 }}>
-                    <button
-                      onClick={() => setShowEmailPanel(p => !p)}
-                      style={{ background: "none", border: "none", cursor: "pointer", color: "#334155", fontSize: 13, padding: "0 2px", transition: "color .15s" }}
-                      title={showEmailPanel ? "Hide email options" : "Show email options"}>
-                      {showEmailPanel ? "▼" : "▶"}
-                    </button>
-                    <span style={{ fontSize: 11, fontWeight: 600, color: "#475569", letterSpacing: ".08em" }}>📧 SEND SUMMARY</span>
-
-                    {/* Copy button always visible */}
-                    <button onClick={handleCopyToClipboard} className="btn" style={{ marginLeft: "auto", fontSize: 10, padding: "3px 10px" }}>
-                      {emailStatus === "copied" ? "✓ COPIED" : "⎘ COPY TEXT"}
-                    </button>
+                    })}
                   </div>
 
-                  {showEmailPanel && (
-                    <div style={{ background: "#060d1a", border: "1px solid #1e293b", borderRadius: 5, padding: 14, display: "flex", flexDirection: "column", gap: 10 }}>
-                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-                        <div>
-                          <label style={{ fontSize: 9, color: "#334155", letterSpacing: ".1em", display: "block", marginBottom: 4, fontWeight: 700 }}>TO *</label>
-                          <input
-                            type="email"
-                            placeholder="recipient@lilly.com"
-                            value={emailTo}
-                            onChange={e => setEmailTo(e.target.value)}
-                            style={{ width: "100%", fontSize: 11, padding: "5px 8px", borderColor: emailTo ? "#3b82f6" : undefined }}
-                          />
-                        </div>
-                        <div>
-                          <label style={{ fontSize: 9, color: "#334155", letterSpacing: ".1em", display: "block", marginBottom: 4, fontWeight: 700 }}>CC</label>
-                          <input
-                            type="email"
-                            placeholder="cc@lilly.com (optional)"
-                            value={emailCc}
-                            onChange={e => setEmailCc(e.target.value)}
-                            style={{ width: "100%", fontSize: 11, padding: "5px 8px" }}
-                          />
-                        </div>
-                      </div>
+                  <div style={{ marginTop: 12, fontSize: 11, color: "#6B6B6B", fontStyle: "italic" }}>
+                    Generated {new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })} · Based on {filtered.length.toLocaleString()} issues
+                  </div>
 
-                      {/* Subject preview */}
-                      <div style={{ fontSize: 10, color: "#334155" }}>
-                        <span style={{ color: "#1e3a5f", fontWeight: 600 }}>SUBJECT: </span>
-                        <span>Lilly Portfolio Executive Briefing — {new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
-                      </div>
-
-                      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                        <button
-                          onClick={handleSendEmail}
-                          disabled={!emailTo.trim() || emailStatus === "sending"}
-                          style={{
-                            background: emailTo.trim() ? "linear-gradient(135deg, #0369a1, #1d4ed8)" : "#0d1526",
-                            border: `1px solid ${emailTo.trim() ? "transparent" : "#1e3a5f"}`,
-                            color: emailTo.trim() ? "white" : "#334155",
-                            padding: "6px 18px", borderRadius: 3, fontFamily: "inherit", fontSize: 11,
-                            cursor: emailTo.trim() ? "pointer" : "not-allowed",
-                            fontWeight: 600, letterSpacing: ".05em", transition: "all .15s"
-                          }}>
-                          {emailStatus === "sending" ? "⟳ OPENING…" : "📧 OPEN IN EMAIL CLIENT"}
-                        </button>
-
-                        {emailStatus === "sent" && (
-                          <span style={{ fontSize: 11, color: "#10b981" }}>✓ Email client opened with summary pre-filled</span>
-                        )}
-                        {emailStatus === "error" && (
-                          <span style={{ fontSize: 11, color: "#ef4444" }}>✗ Could not open email client — use Copy Text instead</span>
-                        )}
-                      </div>
-
-                      <div style={{ fontSize: 10, color: "#1e3a5f", borderTop: "1px solid #0f172a", paddingTop: 8 }}>
-                        Opens your default email client (Outlook) with the To, Subject, and formatted summary pre-populated. You can review and send from there.
-                      </div>
+                  <div style={{ marginTop: 12, borderTop: "1px solid #E8E8E8", paddingTop: 12 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: showEmailPanel ? 10 : 0 }}>
+                      <button onClick={() => setShowEmailPanel(s => !s)} style={{ background: "none", border: "none", cursor: "pointer", color: "#6B6B6B", fontSize: 14, padding: 0 }}>
+                        {showEmailPanel ? "▼" : "▶"}
+                      </button>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: "#1A1A1A" }}>📧 Send Summary</span>
+                      <button onClick={handleCopyToClipboard} style={{
+                        marginLeft: "auto", fontFamily: "Arial, sans-serif", fontSize: 11,
+                        padding: "4px 12px", border: "1px solid #D0D0D0", borderRadius: 3,
+                        background: "#fff", cursor: "pointer", color: "#1A1A1A"
+                      }}>
+                        {emailStatus === "copied" ? "✓ Copied!" : "📋 Copy Text"}
+                      </button>
                     </div>
-                  )}
+                    {showEmailPanel && (
+                      <div style={{ background: "#FAFAFA", border: "1px solid #E8E8E8", borderRadius: 4, padding: 14 }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
+                          <div>
+                            <label style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", display: "block", marginBottom: 4, textTransform: "uppercase", letterSpacing: ".06em" }}>To *</label>
+                            <input
+                              type="email" placeholder="recipient@lilly.com"
+                              value={emailTo} onChange={e => setEmailTo(e.target.value)}
+                              style={{ width: "100%", fontFamily: "Arial, sans-serif", fontSize: 12, padding: "6px 10px", border: `1px solid ${emailTo ? "#C8102E" : "#D0D0D0"}`, borderRadius: 3, color: "#1A1A1A" }}
+                            />
+                          </div>
+                          <div>
+                            <label style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", display: "block", marginBottom: 4, textTransform: "uppercase", letterSpacing: ".06em" }}>CC</label>
+                            <input
+                              type="email" placeholder="cc@lilly.com"
+                              value={emailCc} onChange={e => setEmailCc(e.target.value)}
+                              style={{ width: "100%", fontFamily: "Arial, sans-serif", fontSize: 12, padding: "6px 10px", border: "1px solid #D0D0D0", borderRadius: 3, color: "#1A1A1A" }}
+                            />
+                          </div>
+                        </div>
+                        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                          <button
+                            onClick={handleSendEmail}
+                            disabled={!emailTo.trim() || emailStatus === "sending"}
+                            style={{
+                              fontFamily: "Arial, sans-serif", fontSize: 12, fontWeight: 700,
+                              padding: "7px 20px", border: "none", borderRadius: 3,
+                              background: emailTo.trim() ? "#C8102E" : "#E8E8E8",
+                              color: emailTo.trim() ? "#fff" : "#6B6B6B",
+                              cursor: emailTo.trim() ? "pointer" : "not-allowed"
+                            }}
+                          >
+                            {emailStatus === "sending" ? "Opening..." : "Send via Email"}
+                          </button>
+                          {emailStatus === "sent" && <span style={{ fontSize: 12, color: "#00703C", fontWeight: 600 }}>✓ Email client opened</span>}
+                          {emailStatus === "error" && <span style={{ fontSize: 12, color: "#C8102E", fontWeight: 600 }}>✗ Use Copy Text instead</span>}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
-            </>
+            </div>
           )}
         </div>
 
         {/* TABLE VIEW */}
         {view === "table" && (
-          <div style={{ background: "#0d1526", border: "1px solid #1e293b", borderRadius: 6, overflow: "hidden" }}>
+          <div style={{ background: "#fff", border: "1px solid #E8E8E8", borderRadius: 4, overflow: "hidden", boxShadow: "0 1px 3px rgba(0,0,0,.05)" }}>
             <div style={{ overflowX: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                 <thead>
-                  <tr style={{ background: "#0a1628", borderBottom: "1px solid #1e3a5f" }}>
-                    <SortTh col="key" label="KEY" />
-                    <SortTh col="project" label="PROJECT" />
-                    <SortTh col="issueType" label="TYPE" />
-                    <SortTh col="summary" label="SUMMARY" style={{ minWidth: 260 }} />
-                    <SortTh col="status" label="STATUS" />
-                    <SortTh col="priority" label="PRI" />
-                    <SortTh col="assignee" label="ASSIGNEE" />
-                    <SortTh col="created" label="CREATED" />
-                    <SortTh col="updated" label="UPDATED" />
-                    <SortTh col="completed" label="COMPLETED" />
-                    <SortTh col="dueDate" label="DUE" />
+                  <tr>
+                    <TH col="key" label="Issue" />
+                    <TH col="project" label="Project" />
+                    <TH col="issueType" label="Type" />
+                    <TH col="summary" label="Summary" style={{ minWidth: 280 }} />
+                    <TH col="status" label="Status" />
+                    <TH col="priority" label="Priority" />
+                    <TH col="assignee" label="Assignee" />
+                    <TH col="created" label="Created" />
+                    <TH col="updated" label="Updated" />
+                    <TH col="completed" label="Completed" />
+                    <TH col="dueDate" label="Due" />
                   </tr>
                 </thead>
                 <tbody>
                   {paged.map((issue, idx) => {
-                    const pc = PROJECTS[issue.project] || { accent: "#64748b" };
+                    const pc = PROJECTS[issue.project] || { accent: "#6B6B6B", light: "#F5F5F5" };
                     const pr = PRIORITY_STYLE[issue.priority] || PRIORITY_STYLE["Not Set"];
-                    const isExp = expandedKey === issue.key;
-                    const isOverdue = issue.dueDate && issue.dueDate < new Date().toISOString().slice(0,10) && issue.statusCat !== "Done";
-                    return [
-                      <tr key={issue.key} className="row"
-                        style={{ borderBottom: "1px solid #0a1628", background: idx%2===0?"transparent":"#090e1c" }}
-                        onClick={() => setExpandedKey(isExp ? null : issue.key)}>
-                        <td style={{ padding: "8px 12px", whiteSpace: "nowrap" }}>
-                          <a href={issue.url} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()}
-                            style={{ color: pc.accent, textDecoration: "none", fontWeight: 600, fontSize: 11 }}>
-                            {issue.key}
-                          </a>
-                        </td>
-                        <td style={{ padding: "8px 12px" }}>
-                          <span style={{ background: pc.accent+"20", color: pc.accent, padding: "1px 6px", borderRadius: 3, fontSize: 10, fontWeight: 700 }}>{issue.project}</span>
-                        </td>
-                        <td style={{ padding: "8px 12px", color: "#475569", whiteSpace: "nowrap", fontSize: 11 }}>
-                          {TYPE_ICON[issue.issueType]||"•"} {issue.issueType}
-                        </td>
-                        <td style={{ padding: "8px 12px", maxWidth: 280, color: "#94a3b8" }}>
-                          <div style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{issue.summary}</div>
-                        </td>
-                        <td style={{ padding: "8px 12px" }}><StatusBadge status={issue.status} /></td>
-                        <td style={{ padding: "8px 12px", color: pr.c, fontWeight: 600 }}>{pr.i}</td>
-                        <td style={{ padding: "8px 12px", color: "#64748b", whiteSpace: "nowrap", fontSize: 11 }}>
-                          {issue.assignee==="Unassigned" ? <span style={{color:"#1e293b"}}>—</span> : issue.assignee}
-                        </td>
-                        <td style={{ padding: "8px 12px", color: "#3d5a80", whiteSpace: "nowrap", fontSize: 11 }}>{issue.created || "—"}</td>
-                        <td style={{ padding: "8px 12px", color: "#334155", whiteSpace: "nowrap", fontSize: 11 }}>{issue.updated}</td>
-                        <td style={{ padding: "8px 12px", whiteSpace: "nowrap", fontSize: 11 }}>
-                          {issue.completed
-                            ? <span style={{ color: "#10b981" }}>✓ {issue.completed}</span>
-                            : <span style={{ color: "#1e293b" }}>—</span>}
-                        </td>
-                        <td style={{ padding: "8px 12px", whiteSpace: "nowrap", color: isOverdue?"#ef4444":"#334155", fontSize: 11 }}>
-                          {issue.dueDate || "—"}
-                        </td>
-                      </tr>,
-                      isExp && (
-                        <tr key={issue.key+"-x"} style={{ background: "rgba(30,58,95,0.1)", borderBottom: "1px solid #0a1628" }}>
-                          <td colSpan={11} style={{ padding: "10px 20px" }}>
-                            <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-                              <div><div style={{ fontSize: 9, color: "#334155", letterSpacing: ".1em", marginBottom: 3 }}>FULL SUMMARY</div><div style={{ fontSize: 12, color: "#94a3b8", maxWidth: 500 }}>{issue.summary}</div></div>
-                              {issue.labels.length > 0 && <div><div style={{ fontSize: 9, color: "#334155", letterSpacing: ".1em", marginBottom: 3 }}>LABELS</div><div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>{issue.labels.map(l=><span key={l} style={{background:"rgba(59,130,246,0.1)",color:"#60a5fa",padding:"1px 6px",borderRadius:3,fontSize:10}}>{l}</span>)}</div></div>}
-                              <div><div style={{ fontSize: 9, color: "#334155", letterSpacing: ".1em", marginBottom: 3 }}>CREATED</div><div style={{ fontSize: 11, color: "#3d5a80" }}>{issue.created || "—"}</div></div>
-                              {issue.completed && <div><div style={{ fontSize: 9, color: "#334155", letterSpacing: ".1em", marginBottom: 3 }}>COMPLETED</div><div style={{ fontSize: 11, color: "#10b981" }}>{issue.completed}</div></div>}
-                              <div><div style={{ fontSize: 9, color: "#334155", letterSpacing: ".1em", marginBottom: 3 }}>OPEN IN JIRA</div><a href={issue.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 11, color: pc.accent }}>↗ {issue.key}</a></div>
+                    const today = new Date().toISOString().slice(0, 10);
+                    const isOverdue = issue.dueDate && issue.dueDate < today && issue.statusCat !== "Done";
+                    const isExpanded = expandedKey === issue.key;
+                    return (
+                      <>
+                        <tr
+                          key={issue.key}
+                          className="row-hover"
+                          onClick={() => setExpandedKey(isExpanded ? null : issue.key)}
+                          style={{
+                            borderBottom: "1px solid #F0F0F0",
+                            background: idx % 2 === 0 ? "#fff" : "#FAFAFA",
+                            cursor: "pointer"
+                          }}
+                        >
+                          <td style={{ padding: "10px 14px", whiteSpace: "nowrap" }}>
+                            <a href={issue.url} target="_blank" rel="noopener noreferrer"
+                              onClick={e => e.stopPropagation()}
+                              style={{ color: pc.accent, textDecoration: "none", fontWeight: 700, fontSize: 12 }}>
+                              {issue.key}
+                            </a>
+                          </td>
+                          <td style={{ padding: "10px 14px" }}>
+                            <span style={{
+                              background: pc.light, color: pc.accent,
+                              padding: "2px 8px", borderRadius: 3, fontSize: 11, fontWeight: 700,
+                              border: `1px solid ${pc.accent}30`
+                            }}>{issue.project}</span>
+                          </td>
+                          <td style={{ padding: "10px 14px", color: "#6B6B6B", fontSize: 12, whiteSpace: "nowrap" }}>
+                            {TYPE_ICON[issue.issueType] || "◻"} {issue.issueType}
+                          </td>
+                          <td style={{ padding: "10px 14px", maxWidth: 320, color: "#1A1A1A" }}>
+                            <div style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                              {issue.summary}
                             </div>
                           </td>
+                          <td style={{ padding: "10px 14px" }}><StatusPill status={issue.status} /></td>
+                          <td style={{ padding: "10px 14px" }}>
+                            <span style={{ color: pr.c, fontWeight: 700, fontSize: 12 }}>{pr.label}</span>
+                          </td>
+                          <td style={{ padding: "10px 14px", fontSize: 12, color: "#6B6B6B", whiteSpace: "nowrap" }}>
+                            {issue.assignee === "Unassigned" ? <span style={{ color: "#C0C0C0" }}>—</span> : issue.assignee}
+                          </td>
+                          <td style={{ padding: "10px 14px", fontSize: 12, color: "#6B6B6B", whiteSpace: "nowrap" }}>{issue.created || "—"}</td>
+                          <td style={{ padding: "10px 14px", fontSize: 12, color: "#6B6B6B", whiteSpace: "nowrap" }}>{issue.updated}</td>
+                          <td style={{ padding: "10px 14px", fontSize: 12, whiteSpace: "nowrap" }}>
+                            {issue.completed
+                              ? <span style={{ color: "#00703C", fontWeight: 600 }}>✓ {issue.completed}</span>
+                              : <span style={{ color: "#C0C0C0" }}>—</span>}
+                          </td>
+                          <td style={{ padding: "10px 14px", fontSize: 12, whiteSpace: "nowrap", color: isOverdue ? "#C8102E" : "#6B6B6B", fontWeight: isOverdue ? 700 : 400 }}>
+                            {issue.dueDate || "—"}
+                            {isOverdue && <span style={{ marginLeft: 4, fontSize: 10 }}>OVERDUE</span>}
+                          </td>
                         </tr>
-                      )
-                    ].filter(Boolean);
+                        {isExpanded && (
+                          <tr key={issue.key + "-expand"} style={{ background: "#FFF8F8", borderBottom: "2px solid #C8102E20" }}>
+                            <td colSpan={11} style={{ padding: "12px 20px" }}>
+                              <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+                                <div>
+                                  <div style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", letterSpacing: ".06em", marginBottom: 4, textTransform: "uppercase" }}>Full Summary</div>
+                                  <div style={{ fontSize: 13, color: "#1A1A1A", maxWidth: 520, lineHeight: 1.6 }}>{issue.summary}</div>
+                                </div>
+                                {issue.labels.length > 0 && (
+                                  <div>
+                                    <div style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", letterSpacing: ".06em", marginBottom: 4, textTransform: "uppercase" }}>Labels</div>
+                                    <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
+                                      {issue.labels.map(l => (
+                                        <span key={l} style={{ background: "#EBF3FF", color: "#0057A8", padding: "2px 8px", borderRadius: 3, fontSize: 11 }}>{l}</span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                {issue.completed && (
+                                  <div>
+                                    <div style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", letterSpacing: ".06em", marginBottom: 4, textTransform: "uppercase" }}>Completed</div>
+                                    <div style={{ fontSize: 12, color: "#00703C", fontWeight: 600 }}>{issue.completed}</div>
+                                  </div>
+                                )}
+                                <div>
+                                  <div style={{ fontSize: 10, fontWeight: 700, color: "#6B6B6B", letterSpacing: ".06em", marginBottom: 4, textTransform: "uppercase" }}>Open in Jira</div>
+                                  <a href={issue.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#C8102E", fontWeight: 600 }}>↗ {issue.key}</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </>
+                    );
                   })}
                 </tbody>
               </table>
             </div>
-            {filtered.length === 0 && <div style={{ textAlign: "center", padding: 40, color: "#1e293b" }}>No issues match the current filters.</div>}
+            {filtered.length === 0 && (
+              <div style={{ textAlign: "center", padding: 48, color: "#6B6B6B", fontSize: 14 }}>
+                No issues match the current filters.
+              </div>
+            )}
             {totalPages > 1 && (
-              <div style={{ padding: "10px 16px", borderTop: "1px solid #0a1628", display: "flex", alignItems: "center", gap: 8 }}>
-                <button className="btn" onClick={()=>setPage(0)} disabled={page===0}>«</button>
-                <button className="btn" onClick={()=>setPage(p=>Math.max(0,p-1))} disabled={page===0}>‹</button>
-                <span style={{ fontSize: 11, color: "#475569" }}>Page {page+1} of {totalPages} · {filtered.length.toLocaleString()} issues</span>
-                <button className="btn" onClick={()=>setPage(p=>Math.min(totalPages-1,p+1))} disabled={page>=totalPages-1}>›</button>
-                <button className="btn" onClick={()=>setPage(totalPages-1)} disabled={page>=totalPages-1}>»</button>
+              <div style={{ padding: "12px 16px", borderTop: "1px solid #E8E8E8", display: "flex", alignItems: "center", gap: 8, background: "#FAFAFA" }}>
+                <BTN onClick={() => setPage(p => Math.max(0, p - 1))} active={false} style={{ padding: "5px 12px" }}>← Prev</BTN>
+                <BTN onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))} active={false} style={{ padding: "5px 12px" }}>Next →</BTN>
+                <span style={{ fontSize: 12, color: "#6B6B6B", marginLeft: 8 }}>
+                  Page {page + 1} of {totalPages} · {filtered.length.toLocaleString()} issues
+                </span>
               </div>
             )}
           </div>
@@ -690,34 +733,38 @@ RECOMMENDED ACTIONS:
 
         {/* KANBAN VIEW */}
         {view === "kanban" && (
-          <div style={{ overflowX: "auto", paddingBottom: 8 }}>
+          <div style={{ overflowX: "auto", paddingBottom: 12 }}>
             <div style={{ display: "flex", gap: 12, minWidth: "max-content" }}>
-              {Object.entries(kanbanGroups).sort((a,b)=>b[1].length-a[1].length).slice(0,10).map(([status, issues]) => {
-                const st = STATUS_STYLE[status] || { c: "#64748b", bg: "rgba(100,116,139,0.12)" };
+              {Object.entries(kanbanGroups).sort((a, b) => b[1].length - a[1].length).slice(0, 10).map(([status, issues]) => {
+                const c = STATUS_COLOR[status] || "#6B6B6B";
                 return (
-                  <div key={status} style={{ width: 270, background: "#0d1526", border: `1px solid ${st.c}22`, borderRadius: 6, overflow: "hidden", flexShrink: 0 }}>
-                    <div style={{ padding: "10px 12px", background: st.bg, borderBottom: `2px solid ${st.c}33`, display: "flex", justifyContent: "space-between" }}>
-                      <span style={{ fontSize: 10, fontWeight: 700, color: st.c, letterSpacing: ".08em" }}>{status.toUpperCase()}</span>
-                      <span style={{ fontSize: 11, fontWeight: 700, color: st.c }}>{issues.length}</span>
+                  <div key={status} style={{ width: 280, background: "#fff", border: "1px solid #E8E8E8", borderRadius: 4, overflow: "hidden", flexShrink: 0, boxShadow: "0 1px 3px rgba(0,0,0,.05)" }}>
+                    <div style={{ padding: "10px 14px", background: c + "10", borderBottom: `3px solid ${c}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: c, textTransform: "uppercase", letterSpacing: ".06em" }}>{status}</span>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: c, background: c + "20", padding: "1px 8px", borderRadius: 10 }}>{issues.length}</span>
                     </div>
                     <div style={{ padding: 8, maxHeight: 560, overflowY: "auto" }}>
-                      {issues.slice(0,30).map(issue => {
-                        const pc = PROJECTS[issue.project] || { accent: "#64748b" };
+                      {issues.slice(0, 30).map(issue => {
+                        const pc = PROJECTS[issue.project] || { accent: "#6B6B6B" };
                         return (
-                          <div key={issue.key} style={{ background: "#090e1c", border: "1px solid #0f172a", borderRadius: 5, padding: "8px 10px", marginBottom: 6 }}>
-                            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
-                              <a href={issue.url} target="_blank" rel="noopener noreferrer" style={{ color: pc.accent, textDecoration: "none", fontSize: 10, fontWeight: 700 }}>{issue.key}</a>
-                              <span style={{ fontSize: 9, color: "#334155" }}>{issue.completed || issue.updated}</span>
+                          <div key={issue.key} style={{ background: "#FAFAFA", border: "1px solid #E8E8E8", borderRadius: 3, padding: "10px 12px", marginBottom: 6 }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                              <a href={issue.url} target="_blank" rel="noopener noreferrer" style={{ color: pc.accent, textDecoration: "none", fontSize: 11, fontWeight: 700 }}>{issue.key}</a>
+                              <span style={{ fontSize: 10, color: "#6B6B6B" }}>{issue.completed || issue.updated}</span>
                             </div>
-                            <div style={{ fontSize: 11, color: "#64748b", lineHeight: 1.5 }}>{issue.summary.slice(0,75)}{issue.summary.length>75?"…":""}</div>
-                            <div style={{ marginTop: 5, display: "flex", justifyContent: "space-between" }}>
-                              <span style={{ fontSize: 9, color: "#1e3a5f" }}>{TYPE_ICON[issue.issueType]} {issue.issueType}</span>
-                              <span style={{ fontSize: 9, color: "#334155" }}>{issue.assignee!=="Unassigned"?issue.assignee.split(" ")[0]:"—"}</span>
+                            <div style={{ fontSize: 12, color: "#1A1A1A", lineHeight: 1.5, marginBottom: 6 }}>{issue.summary.slice(0, 75)}{issue.summary.length > 75 ? "…" : ""}</div>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                              <span style={{ fontSize: 10, color: "#6B6B6B" }}>{TYPE_ICON[issue.issueType]} {issue.issueType}</span>
+                              <span style={{ fontSize: 10, color: "#6B6B6B" }}>{issue.assignee !== "Unassigned" ? issue.assignee.split(" ")[0] : "—"}</span>
                             </div>
                           </div>
                         );
                       })}
-                      {issues.length > 30 && <div style={{ textAlign: "center", fontSize: 10, color: "#334155", padding: 8 }}>+{issues.length-30} more</div>}
+                      {issues.length > 30 && (
+                        <div style={{ textAlign: "center", fontSize: 11, color: "#6B6B6B", padding: 8, background: "#F0F0F0", borderRadius: 3 }}>
+                          +{issues.length - 30} more
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
@@ -726,30 +773,29 @@ RECOMMENDED ACTIONS:
           </div>
         )}
 
-        {/* CHART VIEW */}
-        {view === "chart" && (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(340px,1fr))", gap: 16 }}>
+        {/* CHARTS VIEW */}
+        {view === "charts" && (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: 16 }}>
             {[
-              { title: "BY STATUS", data: stats.byStatus },
-              { title: "BY TYPE", data: stats.byType },
-              { title: "BY PROJECT", data: stats.byProject },
-            ].map(({ title, data }) => {
-              const sorted = Object.entries(data).sort((a,b)=>b[1]-a[1]).slice(0,12);
-              const max = sorted[0]?.[1]||1;
+              { title: "Issues by Status", data: stats.byStatus, colorFn: (k) => STATUS_COLOR[k] || "#6B6B6B" },
+              { title: "Issues by Project", data: stats.byProject, colorFn: (k) => PROJECTS[k]?.accent || "#6B6B6B" },
+              { title: "Issues by Type", data: stats.byType, colorFn: () => "#0057A8" },
+            ].map(({ title, data, colorFn }) => {
+              const sorted = Object.entries(data).sort((a, b) => b[1] - a[1]).slice(0, 15);
+              const max = sorted[0]?.[1] || 1;
               return (
-                <div key={title} style={{ background: "#0d1526", border: "1px solid #1e293b", borderRadius: 6, padding: 16 }}>
-                  <div style={{ fontSize: 11, fontWeight: 600, color: "#475569", letterSpacing: ".1em", marginBottom: 14 }}>{title}</div>
-                  {sorted.map(([k,v]) => {
-                    const st = STATUS_STYLE[k];
-                    const bc = st ? st.c : "#3b82f6";
+                <div key={title} style={{ background: "#fff", border: "1px solid #E8E8E8", borderRadius: 4, padding: 20, boxShadow: "0 1px 3px rgba(0,0,0,.05)" }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: "#1A1A1A", marginBottom: 16, paddingBottom: 10, borderBottom: "2px solid #C8102E" }}>{title}</div>
+                  {sorted.map(([k, v]) => {
+                    const bc = colorFn(k);
                     return (
                       <div key={k} style={{ marginBottom: 8 }}>
                         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
-                          <span style={{ fontSize: 11, color: "#64748b", maxWidth: 220, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{k}</span>
-                          <span style={{ fontSize: 11, color: bc, fontWeight: 600 }}>{v.toLocaleString()}</span>
+                          <span style={{ fontSize: 12, color: "#1A1A1A", maxWidth: 220, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{k}</span>
+                          <span style={{ fontSize: 12, color: bc, fontWeight: 700 }}>{v.toLocaleString()}</span>
                         </div>
-                        <div style={{ height: 5, background: "#0a1628", borderRadius: 3, overflow: "hidden" }}>
-                          <div style={{ height: "100%", width: `${(v/max)*100}%`, background: bc, borderRadius: 3, transition: "width .4s" }} />
+                        <div style={{ height: 6, background: "#F0F0F0", borderRadius: 3, overflow: "hidden" }}>
+                          <div style={{ height: "100%", width: `${(v / max) * 100}%`, background: bc, borderRadius: 3, transition: "width .4s" }} />
                         </div>
                       </div>
                     );
@@ -760,9 +806,10 @@ RECOMMENDED ACTIONS:
           </div>
         )}
 
-        <div style={{ marginTop: 20, borderTop: "1px solid #0a1628", paddingTop: 12, fontSize: 9, color: "#1e293b", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 4 }}>
-          <span>LILLY ENTERPRISE AUTOMATION · EAA / ASO / KILO · JIRA LIVE DATA</span>
-          <span>1,800 ISSUES · MARCH 2026</span>
+        {/* FOOTER */}
+        <div style={{ marginTop: 24, borderTop: "1px solid #E8E8E8", paddingTop: 14, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
+          <span style={{ fontSize: 11, color: "#6B6B6B" }}>Lilly Enterprise Automation · EAA / ASO / KILO · Jira Data as of {new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+          <span style={{ fontSize: 11, color: "#C0C0C0" }}>© {new Date().getFullYear()} Eli Lilly and Company</span>
         </div>
       </div>
     </div>
