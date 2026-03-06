@@ -269,19 +269,29 @@ export default function Dashboard() {
       `[${i.key}|${i.project}] ${i.summary} | ${i.status} | ${i.issueType} | ${i.assignee} | Updated: ${i.updated} | Created: ${i.created}${i.completed ? " | Completed: " + i.completed : ""}`
     ).join("\n");
     const activeFilters = Object.entries(filters).filter(([k, v]) => v && v !== "All").map(([k, v]) => `${k}=${v}`).join(", ");
+    // Read credentials from localStorage (set via ⚙️ Settings in dashboard.html)
+    const gatewayUrl = (localStorage.getItem("jiraDash_claudeUrl") || "https://lilly-code-server.api.gateway.llm.lilly.com").replace(/\/$/, "");
+    const apiKey = localStorage.getItem("jiraDash_claudeKey") || "";
+    const model = localStorage.getItem("jiraDash_claudeModel") || "sonnet-latest";
+    if (!apiKey) {
+      setAiSummary("⚙️ No API key configured.\n\nTo enable AI summaries:\n1. Click ⚙️ Settings (top right of dashboard.html)\n2. Enter your Lilly LLM Gateway URL and API key\n3. Click Save & Load\n\nThe key is stored only in your browser localStorage.");
+      setAiLoading(false);
+      return;
+    }
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch(`${gatewayUrl}/v1/messages`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-api-key": apiKey, "anthropic-version": "2023-06-01" },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
+          model,
           max_tokens: 1200,
           messages: [{ role: "user", content: `You are a Scrum Master producing a structured executive portfolio status briefing for Eli Lilly leadership. Active filters: ${activeFilters || "none"}. Total matching issues: ${filtered.length}.\n\nSample issues (up to 50 shown):\n${sample}\n\nYou MUST respond using EXACTLY the following format every time, with NO deviation. Use the exact section headers shown, each on its own line followed by a colon. Do not add, remove, or rename any section. Write 2-4 concise sentences per section grounded in the data above.\n\nPORTFOLIO OVERVIEW:\n[Overall health, total issue counts by project (EAA/ASO/KILO), and current velocity trend.]\n\nIN PROGRESS:\n[Key work streams actively being worked on. Call out specific issue summaries, assignees, and projects.]\n\nRECENTLY COMPLETED:\n[Items moved to Done, Live Service, Hypercare, or Cancelled. Highlight notable deliveries.]\n\nKEY RISKS:\n[Specific risks identified from the data: overdue items, high-priority unassigned work, stalled items, or concentration of blocked issues.]\n\nBLOCKERS:\n[Issues explicitly in Blocked or On Hold status, or patterns that indicate impediments to delivery.]\n\nRECOMMENDED ACTIONS:\n[2-3 concrete, actionable next steps for leadership or the team based on the above data.]` }]
         })
       });
+      if (!res.ok) { const e = await res.text(); throw new Error(`HTTP ${res.status}: ${e.slice(0,200)}`); }
       const d = await res.json();
       setAiSummary(d.content?.[0]?.text || "Could not generate summary.");
-    } catch { setAiSummary("Error generating summary. Please try again."); }
+    } catch (err) { setAiSummary(`Error generating summary: ${err.message}\n\nCheck your API key and Gateway URL in ⚙️ Settings.`); }
     setAiLoading(false);
   }, [filtered, filters]);
 
