@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jira Executive Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-logo">&#9671;</span>
+      <span class="topbar-title">Executive Dashboard</span>
+      <span class="topbar-projects" id="projectBadges"></span>
+    </div>
+    <div class="topbar-right">
+      <span class="last-updated" id="lastUpdated">Not yet loaded</span>
+      <button class="btn btn-primary" id="refreshBtn" onclick="refreshData()">&#8635; Refresh</button>
+      <button class="btn btn-ghost" id="settingsBtn" onclick="toggleSettings()">&#9881; Settings</button>
+    </div>
+  </header>
+
+  <!-- ========== SETTINGS PANEL ========== -->
+  <div class="settings-overlay" id="settingsOverlay" onclick="toggleSettings()"></div>
+  <aside class="settings-panel" id="settingsPanel">
+    <div class="settings-header">
+      <h2>API Configuration</h2>
+      <button class="btn-close" onclick="toggleSettings()">&#10005;</button>
+    </div>
+    <div class="settings-body">
+      <div class="form-group">
+        <label>Jira Base URL</label>
+        <input type="text" id="cfgBaseUrl" placeholder="https://lilly-jira.atlassian.net" />
+      </div>
+      <div class="form-group">
+        <label>Email / Username</label>
+        <input type="email" id="cfgEmail" placeholder="you@lilly.com" />
+      </div>
+      <div class="form-group">
+        <label>API Token <a href="https://id.atlassian.com/manage-profile/security/api-tokens" target="_blank" class="link-small">Generate</a></label>
+        <input type="password" id="cfgToken" placeholder="Your Atlassian API token" />
+      </div>
+      <div class="form-group">
+        <label>Projects (comma-separated)</label>
+        <input type="text" id="cfgProjects" value="EAA,ASO,KILO" />
+      </div>
+      <div class="settings-section-title">Claude AI Summaries (Lilly LLM Gateway)</div>
+      <div class="form-group">
+        <label>Gateway Base URL</label>
+        <input type="text" id="cfgClaudeUrl" placeholder="https://lilly-code-server.api.gateway.llm.lilly.com" />
+      </div>
+      <div class="form-group">
+        <label>API Key / Token</label>
+        <input type="password" id="cfgClaudeKey" placeholder="Bearer token or API key" />
+      </div>
+      <div class="form-group">
+        <label>Model</label>
+        <select id="cfgClaudeModel">
+          <option value="claude-sonnet-4-6">claude-sonnet-4-6 (recommended)</option>
+          <option value="claude-opus-4-6">claude-opus-4-6</option>
+          <option value="claude-haiku-4-5-20251001">claude-haiku-4-5-20251001 (fastest)</option>
+          <option value="sonnet-latest">sonnet-latest</option>
+          <option value="opus-latest">opus-latest</option>
+        </select>
+      </div>
+      <div class="settings-actions">
+        <button class="btn btn-primary" onclick="saveAndLoad()">Save &amp; Load</button>
+        <button class="btn btn-ghost" onclick="clearCreds()">Clear Saved</button>
+      </div>
+      <div class="settings-note">
+        Jira and Claude credentials are stored only in <strong>localStorage</strong> on this browser and are never transmitted to any third party — only directly to your Jira and LLM Gateway instances.
+      </div>
+      <hr style="border-color:var(--border);margin:4px 0"/>
+      <div class="form-group">
+        <label>Or load sample/demo data</label>
+        <button class="btn btn-outline" onclick="loadDemoData()">Load Demo Data</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========== FILTER BAR ========== -->
+  <section class="filter-bar" id="filterBar">
+    <div class="filter-group">
+      <label>Projects</label>
+      <div class="multi-select" id="filterProject"></div>
+    </div>
+    <div class="filter-group">
+      <label>Assignee</label>
+      <select id="filterAssignee" onchange="applyFilters()">
+        <option value="">All Assignees</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Status</label>
+      <div class="multi-select" id="filterStatus"></div>
+    </div>
+    <div class="filter-group">
+      <label>Issue Type</label>
+      <div class="multi-select" id="filterType"></div>
+    </div>
+    <div class="filter-group">
+      <label>Priority</label>
+      <div class="multi-select" id="filterPriority"></div>
+    </div>
+    <div class="filter-group">
+      <label>Sprint</label>
+      <select id="filterSprint" onchange="applyFilters()">
+        <option value="">All Sprints</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Date From</label>
+      <input type="date" id="filterDateFrom" onchange="applyFilters()" />
+    </div>
+    <div class="filter-group">
+      <label>Date To</label>
+      <input type="date" id="filterDateTo" onchange="applyFilters()" />
+    </div>
+    <div class="filter-group filter-group-search">
+      <label>Search</label>
+      <input type="text" id="filterSearch" placeholder="Key, summary, label..." oninput="applyFilters()" />
+    </div>
+    <div class="filter-group filter-group-actions">
+      <button class="btn btn-ghost btn-sm" onclick="clearFilters()">&#10005; Clear</button>
+    </div>
+  </section>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="main">
+    <!-- KPI Strip -->
+    <section class="kpi-strip" id="kpiStrip">
+      <div class="kpi-card" id="kpiTotal"><div class="kpi-val">—</div><div class="kpi-label">Total Issues</div></div>
+      <div class="kpi-card kpi-green" id="kpiDone"><div class="kpi-val">—</div><div class="kpi-label">Done</div></div>
+      <div class="kpi-card kpi-blue" id="kpiInProgress"><div class="kpi-val">—</div><div class="kpi-label">In Progress</div></div>
+      <div class="kpi-card kpi-orange" id="kpiTodo"><div class="kpi-val">—</div><div class="kpi-label">To Do</div></div>
+      <div class="kpi-card kpi-red" id="kpiBlocked"><div class="kpi-val">—</div><div class="kpi-label">Blocked</div></div>
+      <div class="kpi-card kpi-purple" id="kpiOverdue"><div class="kpi-val">—</div><div class="kpi-label">Overdue</div></div>
+      <div class="kpi-card" id="kpiVelocity"><div class="kpi-val">—</div><div class="kpi-label">Completion %</div></div>
+    </section>
+
+    <!-- Charts Row -->
+    <section class="charts-row">
+      <div class="chart-card">
+        <div class="chart-card-header">Status Breakdown</div>
+        <canvas id="chartStatus" height="200"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">Issues by Type</div>
+        <canvas id="chartType" height="200"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">By Assignee</div>
+        <canvas id="chartAssignee" height="200"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">Priority Distribution</div>
+        <canvas id="chartPriority" height="200"></canvas>
+      </div>
+    </section>
+
+    <!-- Burndown / Timeline Chart -->
+    <section class="chart-card chart-card-wide">
+      <div class="chart-card-header">Created vs. Resolved Over Time</div>
+      <canvas id="chartTimeline" height="100"></canvas>
+    </section>
+
+    <!-- AI Summary -->
+    <section class="summary-section">
+      <div class="summary-header">
+        <span>&#129302; Scrum Master Summary</span>
+        <button class="btn btn-primary btn-sm" onclick="generateSummary()">Generate Summary</button>
+      </div>
+      <div class="summary-body" id="summaryBody">
+        <p class="summary-placeholder">Apply filters and click "Generate Summary" to produce an AI-driven status update based on the current view.</p>
+      </div>
+    </section>
+
+    <!-- Issue Table -->
+    <section class="table-section">
+      <div class="table-header">
+        <span id="tableCount">Issues</span>
+        <div class="table-controls">
+          <label>Group by:
+            <select id="groupBy" onchange="renderTable()">
+              <option value="">None</option>
+              <option value="status">Status</option>
+              <option value="assignee">Assignee</option>
+              <option value="type">Type</option>
+              <option value="project">Project</option>
+              <option value="priority">Priority</option>
+              <option value="sprint">Sprint</option>
+            </select>
+          </label>
+          <label>Rows per page:
+            <select id="pageSize" onchange="renderTable()">
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="0">All</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table id="issueTable">
+          <thead>
+            <tr>
+              <th onclick="sortBy('key')" class="sortable">Key <span class="sort-icon">&#8597;</span></th>
+              <th onclick="sortBy('summary')" class="sortable">Summary <span class="sort-icon">&#8597;</span></th>
+              <th onclick="sortBy('type')" class="sortable">Type <span class="sort-icon">&#8597;</span></th>
+              <th onclick="sortBy('status')" class="sortable">Status <span class="sort-icon">&#8597;</span></th>
+              <th onclick="sortBy('priority')" class="sortable">Priority <span class="sort-icon">&#8597;</span></th>
+              <th onclick="sortBy('assignee')" class="sortable">Assignee <span class="sort-icon">&#8597;</span></th>
+              <th onclick="sortBy('sprint')" class="sortable">Sprint <span class="sort-icon">&#8597;</span></th>
+              <th onclick="sortBy('created')" class="sortable">Created <span class="sort-icon">&#8597;</span></th>
+              <th onclick="sortBy('updated')" class="sortable">Updated <span class="sort-icon">&#8597;</span></th>
+              <th onclick="sortBy('duedate')" class="sortable">Due <span class="sort-icon">&#8597;</span></th>
+              <th>Labels</th>
+            </tr>
+          </thead>
+          <tbody id="issueTableBody">
+            <tr><td colspan="11" class="table-empty">Load data to see issues.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination" id="pagination"></div>
+    </section>
+  </main>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-msg" id="loadingMsg">Fetching Jira issues…</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
