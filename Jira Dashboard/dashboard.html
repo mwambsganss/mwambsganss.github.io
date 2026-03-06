@@ -12,27 +12,204 @@
     body { background: #0f172a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     #root { min-height: 100vh; }
     #loading { display:flex; align-items:center; justify-content:center; height:100vh; color:#64748b; font-size:14px; }
+
+    /* ── Floating settings button ── */
+    #settingsBtn {
+      position: fixed; top: 12px; right: 16px; z-index: 9000;
+      background: #1e293b; border: 1px solid #334155; color: #94a3b8;
+      border-radius: 8px; padding: 7px 14px; font-size: 13px; font-weight: 600;
+      cursor: pointer; display: flex; align-items: center; gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.4); transition: background .15s, color .15s;
+    }
+    #settingsBtn:hover { background: #334155; color: #e2e8f0; }
+
+    /* ── Settings overlay ── */
+    #settingsOverlay {
+      display: none; position: fixed; inset: 0; z-index: 9001;
+      background: rgba(0,0,0,.6); backdrop-filter: blur(3px);
+    }
+    #settingsOverlay.open { display: block; }
+
+    /* ── Settings panel ── */
+    #settingsPanel {
+      position: fixed; top: 0; right: -460px; bottom: 0; z-index: 9002;
+      width: 440px; background: #0f172a; border-left: 1px solid #1e293b;
+      transition: right .25s ease; display: flex; flex-direction: column;
+      box-shadow: -4px 0 24px rgba(0,0,0,.5);
+    }
+    #settingsPanel.open { right: 0; }
+
+    .sp-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px; border-bottom: 1px solid #1e293b;
+    }
+    .sp-header h2 { font-size: 15px; font-weight: 700; color: #e2e8f0; }
+    .sp-close {
+      background: none; border: none; color: #64748b; font-size: 20px;
+      cursor: pointer; padding: 2px 6px; border-radius: 4px;
+    }
+    .sp-close:hover { color: #e2e8f0; background: #1e293b; }
+
+    .sp-body {
+      padding: 20px; overflow-y: auto; flex: 1;
+      display: flex; flex-direction: column; gap: 18px;
+    }
+
+    .sp-section-title {
+      font-size: 11px; font-weight: 700; color: #475569;
+      text-transform: uppercase; letter-spacing: .6px;
+      border-bottom: 1px solid #1e293b; padding-bottom: 8px;
+    }
+
+    .sp-group { display: flex; flex-direction: column; gap: 6px; }
+    .sp-group label {
+      font-size: 12px; font-weight: 600; color: #64748b;
+      text-transform: uppercase; letter-spacing: .4px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .sp-group label a { color: #60a5fa; font-size: 11px; text-transform: none; letter-spacing: 0; }
+    .sp-group input, .sp-group select {
+      background: #1e293b; border: 1px solid #334155; color: #e2e8f0;
+      border-radius: 6px; padding: 8px 12px; font-size: 13px; width: 100%;
+    }
+    .sp-group input:focus, .sp-group select:focus {
+      outline: none; border-color: #60a5fa;
+    }
+
+    .sp-actions { display: flex; gap: 8px; }
+    .sp-btn {
+      flex: 1; padding: 9px; border-radius: 6px; font-size: 13px;
+      font-weight: 700; cursor: pointer; border: none; transition: background .15s;
+    }
+    .sp-btn-primary { background: #2563eb; color: #fff; }
+    .sp-btn-primary:hover { background: #3b82f6; }
+    .sp-btn-ghost { background: transparent; color: #64748b; border: 1px solid #334155; }
+    .sp-btn-ghost:hover { color: #e2e8f0; border-color: #64748b; }
+
+    .sp-note {
+      background: #1e293b; border: 1px solid #334155; border-radius: 6px;
+      padding: 10px 12px; color: #64748b; font-size: 12px; line-height: 1.6;
+    }
+    .sp-saved { color: #4ade80; font-size: 12px; text-align: center; display: none; }
+    .sp-saved.show { display: block; }
+
+    hr.sp-divider { border: none; border-top: 1px solid #1e293b; }
   </style>
 </head>
 <body>
   <div id="root"><div id="loading">Loading dashboard…</div></div>
 
+  <!-- Floating settings button -->
+  <button id="settingsBtn" onclick="toggleSettings()">⚙ Settings</button>
+
+  <!-- Overlay -->
+  <div id="settingsOverlay" onclick="toggleSettings()"></div>
+
+  <!-- Settings panel -->
+  <div id="settingsPanel">
+    <div class="sp-header">
+      <h2>⚙ Dashboard Settings</h2>
+      <button class="sp-close" onclick="toggleSettings()">✕</button>
+    </div>
+    <div class="sp-body">
+
+      <div class="sp-section-title">Claude AI Summaries — Lilly LLM Gateway</div>
+
+      <div class="sp-group">
+        <label>Gateway Base URL</label>
+        <input type="text" id="cfgClaudeUrl"
+          placeholder="https://lilly-code-server.api.gateway.llm.lilly.com" />
+      </div>
+      <div class="sp-group">
+        <label>
+          API Key / Token
+          <a href="https://lilly-code.gateway.llm.lilly.com" target="_blank">Get token ↗</a>
+        </label>
+        <input type="password" id="cfgClaudeKey" placeholder="Your Lilly Code API key" />
+      </div>
+      <div class="sp-group">
+        <label>Model</label>
+        <select id="cfgClaudeModel">
+          <option value="sonnet-latest">sonnet-latest (recommended)</option>
+          <option value="claude-sonnet-4-6">claude-sonnet-4-6</option>
+          <option value="opus-latest">opus-latest</option>
+          <option value="claude-opus-4-6">claude-opus-4-6</option>
+          <option value="claude-haiku-4-5-20251001">claude-haiku-4-5-20251001 (fastest)</option>
+        </select>
+      </div>
+
+      <div class="sp-actions">
+        <button class="sp-btn sp-btn-primary" onclick="saveSettings()">Save</button>
+        <button class="sp-btn sp-btn-ghost" onclick="clearSettings()">Clear</button>
+      </div>
+      <div class="sp-saved" id="savedMsg">✓ Saved — settings active for this browser</div>
+
+      <div class="sp-note">
+        Credentials are stored only in <strong>localStorage</strong> on this browser.
+        They are never sent to any third party — only directly to your Lilly LLM Gateway.
+      </div>
+
+      <hr class="sp-divider" />
+      <div class="sp-section-title">How to use AI summaries</div>
+      <div class="sp-note" style="line-height:1.9">
+        1. Enter your Gateway URL and API key above and click <strong>Save</strong>.<br/>
+        2. Close this panel.<br/>
+        3. Use the filters on the dashboard to scope issues.<br/>
+        4. Click <strong>Generate AI Summary</strong> in the dashboard.
+      </div>
+    </div>
+  </div>
+
   <script>
+    const LS = {
+      CLAUDE_URL:   "jiraDash_claudeUrl",
+      CLAUDE_KEY:   "jiraDash_claudeKey",
+      CLAUDE_MODEL: "jiraDash_claudeModel",
+    };
+
+    function toggleSettings() {
+      document.getElementById("settingsOverlay").classList.toggle("open");
+      document.getElementById("settingsPanel").classList.toggle("open");
+      if (document.getElementById("settingsPanel").classList.contains("open")) {
+        loadSettingsIntoForm();
+      }
+    }
+
+    function loadSettingsIntoForm() {
+      const set = (id, key, def) => {
+        const el = document.getElementById(id);
+        if (el) el.value = localStorage.getItem(key) || def;
+      };
+      set("cfgClaudeUrl",   LS.CLAUDE_URL,   "https://lilly-code-server.api.gateway.llm.lilly.com");
+      set("cfgClaudeKey",   LS.CLAUDE_KEY,   "");
+      set("cfgClaudeModel", LS.CLAUDE_MODEL, "sonnet-latest");
+    }
+
+    function saveSettings() {
+      const get = id => document.getElementById(id)?.value?.trim() || "";
+      localStorage.setItem(LS.CLAUDE_URL,   get("cfgClaudeUrl").replace(/\/$/, ""));
+      localStorage.setItem(LS.CLAUDE_KEY,   get("cfgClaudeKey"));
+      localStorage.setItem(LS.CLAUDE_MODEL, get("cfgClaudeModel"));
+      const msg = document.getElementById("savedMsg");
+      msg.classList.add("show");
+      setTimeout(() => msg.classList.remove("show"), 3000);
+    }
+
+    function clearSettings() {
+      Object.values(LS).forEach(k => localStorage.removeItem(k));
+      loadSettingsIntoForm();
+    }
+
+    // ── Load and run the JSX dashboard ──────────────────────────────────────
     fetch("jira-executive-dashboard.jsx")
       .then(r => r.text())
       .then(src => {
-        // Strip ES module import line
         src = src.replace(/^import\s+\{[^}]+\}\s+from\s+['"]react['"];?\s*\n?/m, "");
-        // Remove export default keyword
         src = src.replace(/export\s+default\s+function\s+Dashboard/, "function Dashboard");
-        // Prepend React hook shims and append mount call
         src = `const { useState, useMemo, useCallback, useEffect } = React;\n` + src +
               `\nReactDOM.createRoot(document.getElementById("root")).render(React.createElement(Dashboard));\n`;
-
-        // Compile with Babel then execute — single isolated eval, no duplicate scope issues
         const compiled = Babel.transform(src, { presets: ["react"] }).code;
-        // eslint-disable-next-line no-eval
-        eval(compiled);
+        eval(compiled); // eslint-disable-line no-eval
       })
       .catch(err => {
         document.getElementById("root").innerHTML =
