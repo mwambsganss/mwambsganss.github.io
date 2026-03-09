@@ -12,361 +12,38 @@
     body { background: #0f172a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     #root { min-height: 100vh; }
     #loading { display:flex; align-items:center; justify-content:center; height:100vh; color:#64748b; font-size:14px; }
-
-    /* ── Floating settings button ── */
-    #settingsBtn {
-      position: fixed; top: 12px; right: 16px; z-index: 9000;
-      background: #1e293b; border: 1px solid #334155; color: #94a3b8;
-      border-radius: 8px; padding: 7px 14px; font-size: 13px; font-weight: 600;
-      cursor: pointer; display: flex; align-items: center; gap: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.4); transition: background .15s, color .15s;
-    }
-    #settingsBtn:hover { background: #334155; color: #e2e8f0; }
-
-    /* ── Settings overlay ── */
-    #settingsOverlay {
-      display: none; position: fixed; inset: 0; z-index: 9001;
-      background: rgba(0,0,0,.6); backdrop-filter: blur(3px);
-    }
-    #settingsOverlay.open { display: block; }
-
-    /* ── Settings panel ── */
-    #settingsPanel {
-      position: fixed; top: 0; right: -480px; bottom: 0; z-index: 9002;
-      width: 460px; background: #0f172a; border-left: 1px solid #1e293b;
-      transition: right .25s ease; display: flex; flex-direction: column;
-      box-shadow: -4px 0 24px rgba(0,0,0,.5);
-    }
-    #settingsPanel.open { right: 0; }
-
-    .sp-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 20px; border-bottom: 1px solid #1e293b;
-    }
-    .sp-header h2 { font-size: 15px; font-weight: 700; color: #e2e8f0; }
-    .sp-close {
-      background: none; border: none; color: #64748b; font-size: 20px;
-      cursor: pointer; padding: 2px 6px; border-radius: 4px;
-    }
-    .sp-close:hover { color: #e2e8f0; background: #1e293b; }
-
-    .sp-body {
-      padding: 20px; overflow-y: auto; flex: 1;
-      display: flex; flex-direction: column; gap: 18px;
-    }
-
-    .sp-section-title {
-      font-size: 11px; font-weight: 700; color: #475569;
-      text-transform: uppercase; letter-spacing: .6px;
-      border-bottom: 1px solid #1e293b; padding-bottom: 8px;
-    }
-
-    .sp-group { display: flex; flex-direction: column; gap: 6px; }
-    .sp-group label {
-      font-size: 12px; font-weight: 600; color: #64748b;
-      text-transform: uppercase; letter-spacing: .4px;
-    }
-    .sp-group input, .sp-group select {
-      background: #1e293b; border: 1px solid #334155; color: #e2e8f0;
-      border-radius: 6px; padding: 8px 12px; font-size: 13px; width: 100%;
-    }
-    .sp-group input:focus, .sp-group select:focus {
-      outline: none; border-color: #60a5fa;
-    }
-    .sp-group input::placeholder { color: #475569; }
-
-    /* auth status card */
-    .sp-auth-card {
-      background: #1e293b; border: 1px solid #334155; border-radius: 8px;
-      padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;
-    }
-    .sp-auth-row { display: flex; align-items: center; justify-content: space-between; }
-    .sp-auth-label { font-size: 12px; color: #64748b; }
-    .sp-auth-value { font-size: 13px; font-weight: 600; color: #e2e8f0; }
-    .sp-auth-status { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; }
-    .sp-auth-status.ok  { color: #4ade80; }
-    .sp-auth-status.err { color: #f87171; }
-    .sp-auth-status.loading { color: #94a3b8; }
-
-    /* Jira URL list */
-    .jira-url-list { display: flex; flex-direction: column; gap: 8px; }
-    .jira-url-row { display: flex; gap: 6px; align-items: center; }
-    .jira-url-row input {
-      background: #1e293b; border: 1px solid #334155; color: #e2e8f0;
-      border-radius: 6px; padding: 8px 12px; font-size: 13px; flex: 1;
-    }
-    .jira-url-row input:focus { outline: none; border-color: #60a5fa; }
-    .jira-url-row input::placeholder { color: #475569; }
-    .jira-url-remove {
-      background: none; border: 1px solid #334155; color: #64748b;
-      border-radius: 6px; padding: 7px 10px; font-size: 14px; cursor: pointer;
-      line-height: 1; flex-shrink: 0;
-    }
-    .jira-url-remove:hover { border-color: #f87171; color: #f87171; }
-    .jira-url-add {
-      background: transparent; border: 1px dashed #334155; color: #64748b;
-      border-radius: 6px; padding: 8px; font-size: 13px; cursor: pointer;
-      width: 100%; text-align: center; transition: all .15s;
-    }
-    .jira-url-add:hover { border-color: #60a5fa; color: #60a5fa; }
-
-    .sp-actions { display: flex; gap: 8px; }
-    .sp-btn {
-      flex: 1; padding: 9px; border-radius: 6px; font-size: 13px;
-      font-weight: 700; cursor: pointer; border: none; transition: background .15s;
-    }
-    .sp-btn-primary { background: #2563eb; color: #fff; }
-    .sp-btn-primary:hover { background: #3b82f6; }
-    .sp-btn-secondary { background: #1e293b; color: #e2e8f0; border: 1px solid #334155; }
-    .sp-btn-secondary:hover { background: #334155; }
-    .sp-btn-ghost { background: transparent; color: #64748b; border: 1px solid #334155; }
-    .sp-btn-ghost:hover { color: #e2e8f0; border-color: #64748b; }
-
-    .sp-note {
-      background: #1e293b; border: 1px solid #334155; border-radius: 6px;
-      padding: 10px 12px; color: #64748b; font-size: 12px; line-height: 1.6;
-    }
-    .sp-saved { color: #4ade80; font-size: 12px; text-align: center; display: none; }
-    .sp-saved.show { display: block; }
-
-    hr.sp-divider { border: none; border-top: 1px solid #1e293b; }
   </style>
 </head>
 <body>
   <div id="root"><div id="loading">Loading dashboard…</div></div>
 
-  <!-- Floating settings button -->
-  <button id="settingsBtn" onclick="toggleSettings()">⚙ Settings</button>
-
-  <!-- Overlay -->
-  <div id="settingsOverlay" onclick="toggleSettings()"></div>
-
-  <!-- Settings panel -->
-  <div id="settingsPanel">
-    <div class="sp-header">
-      <h2>⚙ Dashboard Settings</h2>
-      <button class="sp-close" onclick="toggleSettings()">✕</button>
-    </div>
-    <div class="sp-body">
-
-      <!-- ── Lilly Code Auth ── -->
-      <div class="sp-section-title">Lilly Code — AI Summaries</div>
-
-      <div class="sp-auth-card">
-        <div id="authStatus" class="sp-auth-status loading">⏳ Checking authentication…</div>
-        <div id="authDetails" style="display:none">
-          <div class="sp-auth-row">
-            <span class="sp-auth-label">Signed in as</span>
-            <span class="sp-auth-value" id="authEmail">—</span>
-          </div>
-          <div class="sp-auth-row">
-            <span class="sp-auth-label">Token expires</span>
-            <span class="sp-auth-value" id="authExpiry">—</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="sp-actions">
-        <button class="sp-btn sp-btn-secondary" onclick="refreshAuth()">↺ Refresh token</button>
-        <button class="sp-btn sp-btn-ghost" onclick="openLillyCodeLogin()">Re-authenticate ↗</button>
-      </div>
-
-      <div class="sp-group">
-        <label>Model</label>
-        <select id="cfgClaudeModel">
-          <option value="sonnet-latest">sonnet-latest (recommended)</option>
-          <option value="claude-sonnet-4-6">claude-sonnet-4-6</option>
-          <option value="opus-latest">opus-latest</option>
-          <option value="claude-opus-4-6">claude-opus-4-6</option>
-          <option value="claude-haiku-4-5-20251001">claude-haiku-4-5-20251001 (fastest)</option>
-        </select>
-      </div>
-
-      <div class="sp-actions">
-        <button class="sp-btn sp-btn-primary" onclick="saveModelSetting()">Save Model</button>
-      </div>
-      <div class="sp-saved" id="savedMsg">✓ Saved</div>
-
-      <hr class="sp-divider" />
-
-      <!-- ── Jira Project URLs ── -->
-      <div class="sp-section-title">Jira Project URLs</div>
-
-      <div class="sp-note">
-        Add the base URLs for each Jira project you want to connect to.<br/>
-        Example: <code style="color:#93c5fd">https://jira.lilly.com/projects/EAA</code>
-      </div>
-
-      <div class="jira-url-list" id="jiraUrlList"></div>
-      <button class="jira-url-add" onclick="addJiraUrl()">+ Add Jira Project URL</button>
-
-      <div class="sp-actions">
-        <button class="sp-btn sp-btn-primary" onclick="saveJiraUrls()">Save URLs</button>
-        <button class="sp-btn sp-btn-ghost" onclick="clearJiraUrls()">Clear</button>
-      </div>
-      <div class="sp-saved" id="jiraSavedMsg">✓ Saved</div>
-
-    </div>
-  </div>
-
   <script>
-    const LS = {
-      CLAUDE_URL:   "jiraDash_claudeUrl",
-      CLAUDE_KEY:   "jiraDash_claudeKey",
-      CLAUDE_MODEL: "jiraDash_claudeModel",
-      JIRA_URLS:    "jiraDash_jiraUrls",
-    };
-
-    // ── Auth ─────────────────────────────────────────────────────────────────
-
+    // ── Auth token: fetch from server (SSO session or keychain fallback) ──────
     async function fetchAndStoreToken() {
       try {
         const r = await fetch("/api/auth-token");
-        if (!r.ok) throw new Error((await r.json()).error || r.statusText);
-        const { token, expires_at, email } = await r.json();
-        if (!token) throw new Error("Empty token returned");
-        localStorage.setItem(LS.CLAUDE_KEY, token);
-        localStorage.setItem(LS.CLAUDE_URL, "https://lilly-code-server.api.gateway.llm.lilly.com");
-        if (!localStorage.getItem(LS.CLAUDE_MODEL))
-          localStorage.setItem(LS.CLAUDE_MODEL, "sonnet-latest");
-        return { token, expires_at, email };
+        const data = await r.json();
+        if (!r.ok) {
+          // Server returned a login_url when SSO is configured — redirect there
+          if (data.login_url) { window.location.href = data.login_url; return; }
+          return;
+        }
+        const { token, expires_at, email } = data;
+        if (token) {
+          localStorage.setItem("jiraDash_claudeKey", token);
+          localStorage.setItem("jiraDash_claudeUrl", "https://lilly-code-server.api.gateway.llm.lilly.com");
+          if (!localStorage.getItem("jiraDash_claudeModel"))
+            localStorage.setItem("jiraDash_claudeModel", "sonnet-latest");
+        }
       } catch (e) {
-        return { error: e.message };
+        console.warn("Auth token fetch failed:", e);
       }
     }
 
-    function formatExpiry(isoString) {
-      if (!isoString) return "unknown";
-      const exp = new Date(isoString);
-      const diff = Math.round((exp - Date.now()) / 60000);
-      if (diff <= 0) return "expired";
-      if (diff < 60) return `in ${diff} min`;
-      return `in ${Math.round(diff / 60)} hr`;
-    }
-
-    function updateAuthUI({ token, expires_at, email, error }) {
-      const statusEl  = document.getElementById("authStatus");
-      const detailsEl = document.getElementById("authDetails");
-      const emailEl   = document.getElementById("authEmail");
-      const expiryEl  = document.getElementById("authExpiry");
-      if (error) {
-        statusEl.className = "sp-auth-status err";
-        statusEl.textContent = "✗ Not authenticated";
-        detailsEl.style.display = "none";
-      } else {
-        statusEl.className = "sp-auth-status ok";
-        statusEl.textContent = "✓ Signed in with Lilly SSO";
-        emailEl.textContent  = email || "—";
-        expiryEl.textContent = formatExpiry(expires_at);
-        detailsEl.style.display = "block";
-      }
-    }
-
-    async function refreshAuth() {
-      document.getElementById("authStatus").className = "sp-auth-status loading";
-      document.getElementById("authStatus").textContent = "⏳ Refreshing…";
-      document.getElementById("authDetails").style.display = "none";
-      const result = await fetchAndStoreToken();
-      updateAuthUI(result);
-    }
-
-    function openLillyCodeLogin() {
-      alert("Run this in your terminal:\n\n  lilly-code login\n\nThen click \"↺ Refresh token\" here.");
-    }
-
-    // ── Model ────────────────────────────────────────────────────────────────
-
-    function saveModelSetting() {
-      const model = document.getElementById("cfgClaudeModel")?.value;
-      if (model) localStorage.setItem(LS.CLAUDE_MODEL, model);
-      flash("savedMsg");
-    }
-
-    // ── Jira URLs ────────────────────────────────────────────────────────────
-
-    function getJiraUrls() {
-      try { return JSON.parse(localStorage.getItem(LS.JIRA_URLS) || "[]"); }
-      catch { return []; }
-    }
-
-    function renderJiraUrlList(urls) {
-      const list = document.getElementById("jiraUrlList");
-      list.innerHTML = "";
-      (urls.length ? urls : [""]).forEach((url, i) => {
-        const row = document.createElement("div");
-        row.className = "jira-url-row";
-        row.innerHTML = `
-          <input type="url" placeholder="https://jira.lilly.com/projects/EAA"
-                 value="${escHtml(url)}" data-idx="${i}" />
-          <button class="jira-url-remove" onclick="removeJiraUrl(${i})" title="Remove">✕</button>
-        `;
-        list.appendChild(row);
-      });
-    }
-
-    function addJiraUrl() {
-      const urls = getJiraUrls();
-      urls.push("");
-      renderJiraUrlList(urls);
-    }
-
-    function removeJiraUrl(idx) {
-      let urls = getJiraUrls();
-      urls.splice(idx, 1);
-      localStorage.setItem(LS.JIRA_URLS, JSON.stringify(urls));
-      renderJiraUrlList(urls);
-    }
-
-    function saveJiraUrls() {
-      const inputs = document.querySelectorAll("#jiraUrlList input");
-      const urls = [...inputs].map(i => i.value.trim()).filter(Boolean);
-      localStorage.setItem(LS.JIRA_URLS, JSON.stringify(urls));
-      renderJiraUrlList(urls);
-      flash("jiraSavedMsg");
-    }
-
-    function clearJiraUrls() {
-      localStorage.removeItem(LS.JIRA_URLS);
-      renderJiraUrlList([]);
-    }
-
-    // ── Panel lifecycle ──────────────────────────────────────────────────────
-
-    function toggleSettings() {
-      const panel = document.getElementById("settingsPanel");
-      document.getElementById("settingsOverlay").classList.toggle("open");
-      panel.classList.toggle("open");
-      if (panel.classList.contains("open")) loadSettingsIntoForm();
-    }
-
-    async function loadSettingsIntoForm() {
-      // Model
-      const modelEl = document.getElementById("cfgClaudeModel");
-      if (modelEl) modelEl.value = localStorage.getItem(LS.CLAUDE_MODEL) || "sonnet-latest";
-      // Auth
-      const result = await fetchAndStoreToken();
-      updateAuthUI(result);
-      // Jira URLs
-      renderJiraUrlList(getJiraUrls());
-    }
-
-    // ── Helpers ──────────────────────────────────────────────────────────────
-
-    function flash(id) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.classList.add("show");
-      setTimeout(() => el.classList.remove("show"), 2500);
-    }
-
-    function escHtml(s) {
-      return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
-    }
-
-    // ── Auto-load token on page load ─────────────────────────────────────────
+    // Auto-load token on page load
     fetchAndStoreToken();
 
-    // ── Load and run the JSX dashboard ──────────────────────────────────────
+    // ── Load and run the JSX dashboard ───────────────────────────────────────
     fetch("jira-executive-dashboard.jsx")
       .then(r => r.text())
       .then(src => {
