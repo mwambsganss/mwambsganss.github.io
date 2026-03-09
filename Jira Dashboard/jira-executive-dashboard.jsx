@@ -55,13 +55,17 @@ function getUniq(issues, field) {
 function parseJiraUrl(url) {
   try {
     const u = new URL(url.trim());
-    const projectMatch = u.pathname.match(/\/(?:jira\/software\/projects|browse)\/([A-Z][A-Z0-9_-]+)/i);
+    // Match /jira/{software|core|work|servicedesk}/projects/KEY or /browse/KEY
+    const projectMatch = u.pathname.match(/\/(?:jira\/(?:software|core|work|servicedesk)\/projects|browse)\/([A-Z][A-Z0-9_-]+)/i);
     if (projectMatch) {
       return { baseUrl: `${u.protocol}//${u.hostname}`, projectKey: projectMatch[1].toUpperCase() };
     }
+    // Fallback: find the segment immediately after "projects"
     const segments = u.pathname.split("/").filter(Boolean);
-    const key = segments.find(s => /^[A-Z][A-Z0-9_-]{1,20}$/i.test(s));
-    if (key) return { baseUrl: `${u.protocol}//${u.hostname}`, projectKey: key.toUpperCase() };
+    const projIdx = segments.findIndex(s => s.toLowerCase() === "projects");
+    if (projIdx !== -1 && segments[projIdx + 1]) {
+      return { baseUrl: `${u.protocol}//${u.hostname}`, projectKey: segments[projIdx + 1].toUpperCase() };
+    }
     return null;
   } catch { return null; }
 }
@@ -224,31 +228,39 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
     const errors = [];
 
     for (const { baseUrl, projectKey } of parsed) {
+      // Use Jira REST API v3 with Basic auth (email:token) for all instances
       const authHeader = "Basic " + btoa(`${jiraEmail}:${jiraToken}`);
-      const apiBase    = `${baseUrl}/rest/api/3`;
-      let startAt = 0;
+      const apiBase = `${baseUrl}/rest/api/3`;
       const maxResults = 100;
       let totalFetched = 0;
-      let totalAvailable = Infinity;
+      let nextPageToken = null;
 
       setFetchStatus({ type: "info", msg: `Fetching ${projectKey} (${baseUrl})...` });
 
       try {
-        while (totalFetched < totalAvailable && totalFetched < 2000) {
+        while (totalFetched < 2000) {
           const jql = encodeURIComponent(`project = ${projectKey} ORDER BY updated DESC`);
-          const url = `${apiBase}/search?jql=${jql}&startAt=${startAt}&maxResults=${maxResults}&fields=summary,status,issuetype,priority,assignee,updated,created,duedate,labels`;
-          const resp = await fetch(url, {
-            headers: { "Authorization": authHeader, "Accept": "application/json" }
+          const fields = "summary,status,issuetype,priority,assignee,updated,created,duedate,labels";
+          let url = `${apiBase}/search/jql?jql=${jql}&maxResults=${maxResults}&fields=${fields}`;
+          if (nextPageToken) url += `&nextPageToken=${encodeURIComponent(nextPageToken)}`;
+          const resp = await fetch("/api/jira-proxy", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ url, headers: { "Authorization": authHeader, "Accept": "application/json" } })
           });
           if (!resp.ok) {
             const errText = await resp.text();
             throw new Error(`HTTP ${resp.status}: ${errText.slice(0, 200)}`);
           }
           const data = await resp.json();
-          totalAvailable = data.total;
-          if (!data.issues?.length) break;
+          // Handle both possible response shapes: {issues:[]} or {values:[]}
+          const page = data.issues ?? data.values ?? [];
+          if (!page.length) {
+            if (totalFetched === 0) throw new Error(`No issues found. JQL: "project = ${projectKey} ORDER BY updated DESC" | isLast: ${data.isLast ?? "n/a"} | Check the project key is correct and you have permission to view issues.`);
+            break;
+          }
 
-          for (const issue of data.issues) {
+          for (const issue of page) {
             const f = issue.fields;
             allIssues.push({
               key:        issue.key,
@@ -268,9 +280,9 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
             });
           }
 
-          totalFetched += data.issues.length;
-          startAt      += maxResults;
-          if (totalFetched >= totalAvailable) break;
+          totalFetched += page.length;
+          nextPageToken = data.nextPageToken || null;
+          if (!nextPageToken) break;
         }
       } catch (err) {
         errors.push(`${projectKey}: ${err.message}`);
@@ -348,10 +360,7 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
                   <LabelEl>Jira API Token</LabelEl>
                   <InputEl value={jiraToken} onChange={setJiraToken} placeholder="Atlassian API token" type="password" />
                   <div style={{ fontSize: 10, color: "#6B6B6B", marginTop: 4 }}>
-                    Generate at:{" "}
-                    <a href="https://id.atlassian.com/manage-profile/security/api-tokens" target="_blank" rel="noopener noreferrer" style={{ color: "#0057A8" }}>
-                      id.atlassian.com → API Tokens
-                    </a>
+                    Generate at: Profile → Personal Access Tokens (or Atlassian account settings)
                   </div>
                 </div>
               </div>
@@ -464,9 +473,10 @@ export default function Dashboard() {
     jiraUrls:  "",
     jiraToken: "",
     jiraEmail: "",
-    llmUrl:    "https://lilly-code-server.api.gateway.llm.lilly.com",
-    llmKey:    "",
-    llmModel:  "claude-sonnet-4-20250514",
+    // Bootstrap llmKey/llmUrl from tokens stored by dashboard.html's fetchAndStoreToken()
+    llmUrl:    localStorage.getItem("jiraDash_claudeUrl") || "https://lilly-code-server.api.gateway.llm.lilly.com",
+    llmKey:    localStorage.getItem("jiraDash_claudeKey") || "",
+    llmModel:  localStorage.getItem("jiraDash_claudeModel") || "claude-sonnet-4-20250514",
   });
 
   // ── Filters ──
@@ -654,17 +664,21 @@ BLOCKERS:
 RECOMMENDED ACTIONS:`;
 
     try {
-      const res = await fetch(`${llmUrl.replace(/\/$/, "")}/v1/messages`, {
+      const res = await fetch("/api/llm-proxy", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": llmKey,
-          "anthropic-version": "2023-06-01"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: llmModel,
-          max_tokens: 1200,
-          messages: [{ role: "user", content: prompt }]
+          url: `${llmUrl.replace(/\/$/, "")}/v1/messages`,
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${llmKey}`,
+            "anthropic-version": "2023-06-01"
+          },
+          body: {
+            model: llmModel,
+            max_tokens: 1200,
+            messages: [{ role: "user", content: prompt }]
+          }
         })
       });
       if (!res.ok) { const e = await res.text(); throw new Error(`HTTP ${res.status}: ${e.slice(0, 300)}`); }

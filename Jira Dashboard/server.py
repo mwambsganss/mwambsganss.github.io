@@ -18,6 +18,63 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(SERVE_DIR), **kwargs)
 
+    def do_POST(self):
+        if self.path == "/api/jira-proxy":
+            self._proxy_jira()
+        elif self.path == "/api/llm-proxy":
+            self._proxy_llm()
+        else:
+            self._error(404, "Not found")
+
+    def _proxy_jira(self):
+        import urllib.request, urllib.error, ssl
+        length = int(self.headers.get("Content-Length", 0))
+        body = json.loads(self.rfile.read(length))
+        target_url = body.get("url", "")
+        headers = body.get("headers", {})
+        req = urllib.request.Request(target_url, headers=headers)
+        # Use an unverified SSL context for corporate internal Jira instances
+        # whose cert chain may not be in Python's default CA bundle
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        try:
+            with urllib.request.urlopen(req, context=ctx) as resp:
+                data = resp.read()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self._cors_headers()
+            self.end_headers()
+            self.wfile.write(data)
+        except urllib.error.HTTPError as e:
+            self._error(e.code, e.read().decode()[:300])
+        except Exception as e:
+            self._error(500, str(e))
+
+    def _proxy_llm(self):
+        import urllib.request, urllib.error, ssl
+        length = int(self.headers.get("Content-Length", 0))
+        body = json.loads(self.rfile.read(length))
+        target_url = body.get("url", "")
+        req_headers = body.get("headers", {})
+        req_body = json.dumps(body.get("body", {})).encode()
+        req = urllib.request.Request(target_url, data=req_body, headers=req_headers, method="POST")
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        try:
+            with urllib.request.urlopen(req, context=ctx) as resp:
+                data = resp.read()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self._cors_headers()
+            self.end_headers()
+            self.wfile.write(data)
+        except urllib.error.HTTPError as e:
+            self._error(e.code, e.read().decode()[:500])
+        except Exception as e:
+            self._error(500, str(e))
+
     def do_GET(self):
         if self.path == "/api/auth-token":
             self._serve_auth_token()
