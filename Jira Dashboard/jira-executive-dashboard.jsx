@@ -51,25 +51,6 @@ function getUniq(issues, field) {
   return ["All", ...[...new Set(issues.map(i => i[field]))].filter(Boolean).sort()];
 }
 
-// ── Parse Jira project URL → { baseUrl, projectKey } ──
-function parseJiraUrl(url) {
-  try {
-    const u = new URL(url.trim());
-    // Match /jira/{software|core|work|servicedesk}/projects/KEY or /browse/KEY
-    const projectMatch = u.pathname.match(/\/(?:jira\/(?:software|core|work|servicedesk)\/projects|browse)\/([A-Z][A-Z0-9_-]+)/i);
-    if (projectMatch) {
-      return { baseUrl: `${u.protocol}//${u.hostname}`, projectKey: projectMatch[1].toUpperCase() };
-    }
-    // Fallback: find the segment immediately after "projects"
-    const segments = u.pathname.split("/").filter(Boolean);
-    const projIdx = segments.findIndex(s => s.toLowerCase() === "projects");
-    if (projIdx !== -1 && segments[projIdx + 1]) {
-      return { baseUrl: `${u.protocol}//${u.hostname}`, projectKey: segments[projIdx + 1].toUpperCase() };
-    }
-    return null;
-  } catch { return null; }
-}
-
 // ─────────────────────────────────────────────────────────────────
 // Sub-components
 // ─────────────────────────────────────────────────────────────────
@@ -199,9 +180,12 @@ function EmptyState({ onOpenSettings }) {
 // Settings Modal
 // ─────────────────────────────────────────────────────────────────
 function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
-  const [jiraUrls, setJiraUrls]   = useState(initialSettings.jiraUrls  || "");
-  const [jiraToken, setJiraToken] = useState(initialSettings.jiraToken || "");
-  const [jiraEmail, setJiraEmail] = useState(initialSettings.jiraEmail || "");
+  const [jiraBaseUrl, setJiraBaseUrl] = useState(initialSettings.jiraBaseUrl || "https://lilly-jira.atlassian.net");
+  const [jiraToken, setJiraToken]     = useState(initialSettings.jiraToken || "");
+  const [jiraEmail, setJiraEmail]     = useState(initialSettings.jiraEmail || "");
+  const [availableProjects, setAvailableProjects] = useState(initialSettings.jiraProjects || []);
+  const [projectsLoading, setProjectsLoading]     = useState(false);
+  const [projectsError, setProjectsError]         = useState(null);
   const [llmUrl,   setLlmUrl]     = useState(initialSettings.llmUrl    || "https://lilly-code-server.api.gateway.llm.lilly.com");
   const [llmKey,   setLlmKey]     = useState(initialSettings.llmKey    || "");
   const [llmModel, setLlmModel]   = useState(initialSettings.llmModel  || "claude-sonnet-4-20250514");
@@ -231,24 +215,59 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
 
   // Fetch available models on mount and when LLM URL or key changes
   useEffect(() => { fetchModels(llmUrl, llmKey); }, [llmUrl, llmKey]);
+
+  // ── Project discovery ──────────────────────────────────────────
+  async function fetchProjects(baseUrl, email, token) {
+    setProjectsLoading(true);
+    setProjectsError(null);
+    const authHeader = "Basic " + btoa(`${email}:${token}`);
+    const base = baseUrl.replace(/\/$/, "");
+    const allProjs = [];
+    let startAt = 0;
+    try {
+      while (true) {
+        const url = `${base}/rest/api/3/project/search?maxResults=50&startAt=${startAt}&orderBy=name`;
+        const resp = await fetch("/api/jira-proxy", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url, headers: { Authorization: authHeader, Accept: "application/json" } }),
+        });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+        const page = data.values || [];
+        allProjs.push(...page.map(p => ({ key: p.key, name: p.name })));
+        if (data.isLast || page.length < 50) break;
+        startAt += page.length;
+      }
+      // Preserve prior selections; default all selected on first load
+      const prevSelected = new Set((initialSettings.jiraProjects || []).filter(p => p.selected).map(p => p.key));
+      const hasPrefs = prevSelected.size > 0;
+      setAvailableProjects(allProjs.map(p => ({ ...p, selected: hasPrefs ? prevSelected.has(p.key) : true })));
+    } catch (e) {
+      setProjectsError(e.message);
+    } finally {
+      setProjectsLoading(false);
+    }
+  }
+
+  // Auto-fetch projects whenever credentials change
+  useEffect(() => {
+    if (jiraBaseUrl && jiraEmail && jiraToken) fetchProjects(jiraBaseUrl, jiraEmail, jiraToken);
+  }, [jiraBaseUrl, jiraEmail, jiraToken]);
   const [fetchStatus, setFetchStatus] = useState(null);
   const [isFetching, setIsFetching]   = useState(false);
 
   async function handleFetchProjects() {
-    const urls = jiraUrls.split("\n").map(s => s.trim()).filter(Boolean);
-    if (!urls.length)   { setFetchStatus({ type: "error", msg: "Enter at least one Jira project URL." }); return; }
-    if (!jiraToken)     { setFetchStatus({ type: "error", msg: "Enter your Jira API token." }); return; }
-    if (!jiraEmail)     { setFetchStatus({ type: "error", msg: "Enter your Jira account email." }); return; }
+    const selected = availableProjects.filter(p => p.selected);
+    if (!selected.length)  { setFetchStatus({ type: "error", msg: "Select at least one project." }); return; }
+    if (!jiraToken)        { setFetchStatus({ type: "error", msg: "Enter your Jira API token." }); return; }
+    if (!jiraEmail)        { setFetchStatus({ type: "error", msg: "Enter your Jira account email." }); return; }
 
     setIsFetching(true);
     setFetchStatus({ type: "info", msg: "Connecting to Jira..." });
 
-    const parsed = urls.map(u => parseJiraUrl(u)).filter(Boolean);
-    if (!parsed.length) {
-      setFetchStatus({ type: "error", msg: "Could not parse any valid Jira project URLs. Paste the full board or backlog URL." });
-      setIsFetching(false);
-      return;
-    }
+    const base = jiraBaseUrl.replace(/\/$/, "");
+    const parsed = selected.map(p => ({ baseUrl: base, projectKey: p.key }));
 
     const allIssues = [];
     const errors = [];
@@ -322,12 +341,12 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
     } else {
       const msg = `✓ Loaded ${allIssues.length.toLocaleString()} issues from ${parsed.length - errors.length} project(s).${errors.length ? ` Errors: ${errors.join("; ")}` : ""}`;
       setFetchStatus({ type: "success", msg });
-      onSave({ jiraUrls, jiraToken, jiraEmail, llmUrl, llmKey, llmModel, liveIssues: allIssues });
+      onSave({ jiraBaseUrl, jiraToken, jiraEmail, jiraProjects: availableProjects, llmUrl, llmKey, llmModel, liveIssues: allIssues });
     }
   }
 
   function handleSaveSettingsOnly() {
-    onSave({ jiraUrls, jiraToken, jiraEmail, llmUrl, llmKey, llmModel, liveIssues: null });
+    onSave({ jiraBaseUrl, jiraToken, jiraEmail, jiraProjects: availableProjects, llmUrl, llmKey, llmModel, liveIssues: null });
     onClose();
   }
 
@@ -360,21 +379,8 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
 
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               <div>
-                <LabelEl>Jira Project URLs — one per line</LabelEl>
-                <textarea
-                  value={jiraUrls}
-                  onChange={e => setJiraUrls(e.target.value)}
-                  placeholder={"https://lilly-jira.atlassian.net/jira/software/projects/EAA/boards\nhttps://lilly-jira.atlassian.net/jira/software/projects/ASO/boards\nhttps://lilly-jira.atlassian.net/jira/software/projects/KILO/boards"}
-                  rows={4}
-                  style={{
-                    width: "100%", fontFamily: "monospace", fontSize: 12, padding: "8px 10px",
-                    border: "1px solid #D0D0D0", borderRadius: 3, color: "#1A1A1A",
-                    resize: "vertical", outline: "none", lineHeight: 1.6
-                  }}
-                />
-                <div style={{ fontSize: 11, color: "#6B6B6B", marginTop: 4, lineHeight: 1.5 }}>
-                  Paste the URL of any Jira board, backlog, or browse page — the project key is extracted automatically.
-                </div>
+                <LabelEl>Jira Base URL</LabelEl>
+                <InputEl value={jiraBaseUrl} onChange={setJiraBaseUrl} placeholder="https://lilly-jira.atlassian.net" />
               </div>
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
@@ -386,9 +392,50 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
                   <LabelEl>Jira API Token</LabelEl>
                   <InputEl value={jiraToken} onChange={setJiraToken} placeholder="Atlassian API token" type="password" />
                   <div style={{ fontSize: 10, color: "#6B6B6B", marginTop: 4 }}>
-                    Generate at: Profile → Personal Access Tokens (or Atlassian account settings)
+                    Generate at: <a href="https://id.atlassian.com/manage-profile/security/api-tokens" target="_blank" rel="noreferrer" style={{ color: "#0057A8" }}>id.atlassian.com → Security → API tokens</a>
                   </div>
                 </div>
+              </div>
+
+              {/* Project checklist */}
+              <div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
+                  <LabelEl>Projects to Include</LabelEl>
+                  {availableProjects.length > 0 && (
+                    <div style={{ display: "flex", gap: 10, fontSize: 10 }}>
+                      <button onClick={() => setAvailableProjects(p => p.map(x => ({ ...x, selected: true  })))} style={{ color: "#0057A8", background: "none", border: "none", cursor: "pointer", padding: 0 }}>Select all</button>
+                      <button onClick={() => setAvailableProjects(p => p.map(x => ({ ...x, selected: false })))} style={{ color: "#6B6B6B", background: "none", border: "none", cursor: "pointer", padding: 0 }}>Clear all</button>
+                    </div>
+                  )}
+                </div>
+
+                {projectsLoading && (
+                  <div style={{ fontSize: 12, color: "#0057A8", padding: "10px 0" }}>Loading projects…</div>
+                )}
+                {projectsError && (
+                  <div style={{ fontSize: 12, color: "#C8102E", padding: "6px 10px", background: "#FFF0F2", borderRadius: 3 }}>
+                    Could not load projects: {projectsError}
+                  </div>
+                )}
+                {!projectsLoading && !projectsError && availableProjects.length === 0 && (
+                  <div style={{ fontSize: 12, color: "#6B6B6B" }}>
+                    {jiraBaseUrl && jiraEmail && jiraToken ? "No projects found." : "Enter base URL, email, and token above to load projects."}
+                  </div>
+                )}
+                {availableProjects.length > 0 && (
+                  <div style={{ maxHeight: 200, overflowY: "auto", border: "1px solid #D0D0D0", borderRadius: 3, padding: "4px 0" }}>
+                    {availableProjects.map(p => (
+                      <label key={p.key} style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 10px", cursor: "pointer", fontSize: 12 }}
+                        onMouseEnter={e => e.currentTarget.style.background = "#F5F5F5"}
+                        onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                      >
+                        <input type="checkbox" checked={p.selected} onChange={e => setAvailableProjects(prev => prev.map(x => x.key === p.key ? { ...x, selected: e.target.checked } : x))} />
+                        <span style={{ fontWeight: 600, color: "#1A1A1A", minWidth: 60 }}>{p.key}</span>
+                        <span style={{ color: "#6B6B6B" }}>{p.name}</span>
+                      </label>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {fetchStatus && (
@@ -513,9 +560,10 @@ export default function Dashboard() {
   // ── Settings ──
   const [showSettings, setShowSettings] = useState(false);
   const [settings, setSettings] = useState({
-    jiraUrls:  "",
-    jiraToken: "",
-    jiraEmail: localStorage.getItem("jiraDash_email") || "",
+    jiraBaseUrl: localStorage.getItem("jiraDash_jiraBaseUrl") || "https://lilly-jira.atlassian.net",
+    jiraToken:   localStorage.getItem("jiraDash_jiraToken")   || "",
+    jiraEmail:   localStorage.getItem("jiraDash_email")       || "",
+    jiraProjects: JSON.parse(localStorage.getItem("jiraDash_jiraProjects") || "[]"),
     // Bootstrap llmKey/llmUrl from tokens stored by dashboard.html's fetchAndStoreToken()
     llmUrl:    localStorage.getItem("jiraDash_claudeUrl") || "https://lilly-code-server.api.gateway.llm.lilly.com",
     llmKey:    localStorage.getItem("jiraDash_claudeKey") || "",
@@ -629,6 +677,9 @@ export default function Dashboard() {
   // ── Settings save handler ──
   function handleSaveSettings(newSettings) {
     setSettings(prev => ({ ...prev, ...newSettings }));
+    if (newSettings.jiraBaseUrl) localStorage.setItem("jiraDash_jiraBaseUrl", newSettings.jiraBaseUrl);
+    if (newSettings.jiraToken)   localStorage.setItem("jiraDash_jiraToken",   newSettings.jiraToken);
+    if (newSettings.jiraProjects?.length) localStorage.setItem("jiraDash_jiraProjects", JSON.stringify(newSettings.jiraProjects));
     if (newSettings.liveIssues?.length > 0) {
       setIssues(newSettings.liveIssues);
       // Build projects color map
