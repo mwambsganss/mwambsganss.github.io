@@ -20,6 +20,8 @@
   <script>
     // ── Auth token: fetch from server (SSO session or keychain fallback) ──────
     async function fetchAndStoreToken() {
+      // Skip if token already in localStorage — avoids repeated keychain prompts
+      if (localStorage.getItem("jiraDash_claudeKey")) return;
       try {
         const r = await fetch("/api/auth-token");
         const data = await r.json();
@@ -34,6 +36,8 @@
           localStorage.setItem("jiraDash_claudeUrl", "https://lilly-code-server.api.gateway.llm.lilly.com");
           if (!localStorage.getItem("jiraDash_claudeModel"))
             localStorage.setItem("jiraDash_claudeModel", "sonnet-latest");
+          if (email)
+            localStorage.setItem("jiraDash_email", email);
         }
       } catch (e) {
         console.warn("Auth token fetch failed:", e);

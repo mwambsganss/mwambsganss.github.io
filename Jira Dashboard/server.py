@@ -37,6 +37,7 @@ SSO_CONFIGURED   = SSO_TENANT_ID != "FILL_IN_LILLY_TENANT_ID"
 # In-memory session store (resets on server restart)
 _sessions: dict = {}  # session_id  → {access_token, email, expires_at}
 _pending:  dict = {}  # oauth_state → session_id  (CSRF guard)
+_keychain: dict = {}  # cached keychain token so macOS only prompts once
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):
@@ -60,6 +61,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self._start_sso_login()
         elif self.path.startswith("/api/callback"):
             self._handle_sso_callback()
+        elif self.path.startswith("/api/llm-models"):
+            self._serve_llm_models()
         else:
             super().do_GET()
 
@@ -164,6 +167,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
 
         # 2. Fallback: macOS keychain token from `lilly-code login`
+        # Cache the result so macOS only prompts once per server session
+        if _keychain:
+            self._json(200, _keychain)
+            return
         try:
             result = subprocess.run(
                 ["security", "find-generic-password", "-s", "lilly-code", "-w"],
@@ -183,6 +190,30 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self._error(500, str(e))
 
     # ── Proxies ───────────────────────────────────────────────────────────────
+
+    def _serve_llm_models(self):
+        """Fetch available models from the LLM gateway's /v1/models endpoint."""
+        qs    = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+        token = qs.get("token", [None])[0] or ""
+        url   = qs.get("url",   ["https://lilly-code-server.api.gateway.llm.lilly.com"])[0]
+        target = url.rstrip("/") + "/v1/models"
+        req = urllib.request.Request(
+            target,
+            headers={"Authorization": f"Bearer {token}", "Accept": "application/json"},
+        )
+        ctx = self._ssl_ctx()
+        try:
+            with urllib.request.urlopen(req, context=ctx) as resp:
+                data = json.loads(resp.read())
+            # Anthropic /v1/models returns {"data": [{id, ...}, ...]}
+            models = [m["id"] for m in data.get("data", []) if "id" in m]
+            if not models:
+                models = [m.get("id") or m for m in data.get("models", data if isinstance(data, list) else [])]
+            self._json(200, {"models": sorted(models)})
+        except urllib.error.HTTPError as e:
+            self._error(e.code, e.read().decode()[:300])
+        except Exception as e:
+            self._error(500, str(e))
 
     def _proxy_jira(self):
         length     = int(self.headers.get("Content-Length", 0))
@@ -227,6 +258,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         ctx = ssl.create_default_context()
         ctx.check_hostname = False
         ctx.verify_mode    = ssl.CERT_NONE
+        # Python 3.12 / OpenSSL 3.0: suppress abrupt EOF during TLS handshake
+        # (common with corporate proxies that intercept TLS)
+        if hasattr(ssl, "OP_IGNORE_UNEXPECTED_EOF"):
+            ctx.options |= ssl.OP_IGNORE_UNEXPECTED_EOF
         return ctx
 
     @staticmethod

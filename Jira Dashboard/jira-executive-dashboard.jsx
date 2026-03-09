@@ -205,6 +205,32 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
   const [llmUrl,   setLlmUrl]     = useState(initialSettings.llmUrl    || "https://lilly-code-server.api.gateway.llm.lilly.com");
   const [llmKey,   setLlmKey]     = useState(initialSettings.llmKey    || "");
   const [llmModel, setLlmModel]   = useState(initialSettings.llmModel  || "claude-sonnet-4-20250514");
+  const [availableModels, setAvailableModels] = useState([]);
+  const [modelsLoading, setModelsLoading]     = useState(false);
+  const [modelsError, setModelsError]         = useState(null);
+
+  function fetchModels(url, key) {
+    const target = url || llmUrl;
+    if (!target) return;
+    setModelsLoading(true);
+    setModelsError(null);
+    const params = new URLSearchParams({ token: key !== undefined ? key : llmKey, url: target });
+    fetch(`/api/llm-models?${params}`)
+      .then(r => r.json())
+      .then(d => {
+        if (d.models?.length) {
+          setAvailableModels(d.models);
+          if (!d.models.includes(llmModel)) setLlmModel(d.models[0]);
+        } else {
+          setModelsError(d.error || "No models returned");
+        }
+      })
+      .catch(e => setModelsError(e.message))
+      .finally(() => setModelsLoading(false));
+  }
+
+  // Fetch available models on mount and when LLM URL or key changes
+  useEffect(() => { fetchModels(llmUrl, llmKey); }, [llmUrl, llmKey]);
   const [fetchStatus, setFetchStatus] = useState(null);
   const [isFetching, setIsFetching]   = useState(false);
 
@@ -416,9 +442,26 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
                   <div style={{ fontSize: 10, color: "#6B6B6B", marginTop: 3 }}>Obtained from Lilly Code or the LLM Gateway team</div>
                 </div>
                 <div>
-                  <LabelEl>Model Name</LabelEl>
-                  <InputEl value={llmModel} onChange={setLlmModel} placeholder="claude-sonnet-4-20250514" />
-                  <div style={{ fontSize: 10, color: "#6B6B6B", marginTop: 3 }}>e.g. claude-sonnet-4-20250514, gpt-4o</div>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <LabelEl>Model Name</LabelEl>
+                    <button onClick={() => fetchModels()} disabled={modelsLoading} style={{ fontSize: 10, color: "#C8102E", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+                      {modelsLoading ? "Loading…" : "↺ Refresh"}
+                    </button>
+                  </div>
+                  {availableModels.length > 0 ? (
+                    <select
+                      value={llmModel}
+                      onChange={e => setLlmModel(e.target.value)}
+                      style={{ width: "100%", padding: "7px 10px", border: "1px solid #D1D5DB", borderRadius: 4, fontSize: 13, background: "#fff", color: "#1A1A1A" }}
+                    >
+                      {availableModels.map(m => <option key={m} value={m}>{m}</option>)}
+                    </select>
+                  ) : (
+                    <InputEl value={llmModel} onChange={setLlmModel} placeholder="claude-sonnet-4-20250514" />
+                  )}
+                  <div style={{ fontSize: 10, color: modelsError ? "#C8102E" : "#6B6B6B", marginTop: 3 }}>
+                    {modelsLoading ? "Loading available models…" : modelsError ? `Could not load models: ${modelsError}` : availableModels.length > 0 ? `${availableModels.length} models available` : "Enter manually or check LLM Gateway URL/token above"}
+                  </div>
                 </div>
               </div>
             </div>
@@ -472,7 +515,7 @@ export default function Dashboard() {
   const [settings, setSettings] = useState({
     jiraUrls:  "",
     jiraToken: "",
-    jiraEmail: "",
+    jiraEmail: localStorage.getItem("jiraDash_email") || "",
     // Bootstrap llmKey/llmUrl from tokens stored by dashboard.html's fetchAndStoreToken()
     llmUrl:    localStorage.getItem("jiraDash_claudeUrl") || "https://lilly-code-server.api.gateway.llm.lilly.com",
     llmKey:    localStorage.getItem("jiraDash_claudeKey") || "",
