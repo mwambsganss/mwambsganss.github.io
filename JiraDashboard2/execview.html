@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExecView · Jira Executive Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body, #root { height: 100%; }
+    body { font-family: 'Sora', 'Segoe UI', sans-serif; background: #F1F5F9; color: #0F1923; }
+    @keyframes spin    { to { transform: rotate(360deg); } }
+    @keyframes fadeUp  { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:none; } }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+    .fade { animation: fadeUp 0.22s ease both; }
+    .trow:hover td { background: #F8FAFC !important; }
+    .projbtn:hover { filter: brightness(0.88); }
+    button, input, select, textarea { font-family: inherit; }
+    button:focus, input:focus, select:focus, textarea:focus { outline: none; }
+    input:focus, textarea:focus { border-color: #C8102E !important; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #F1F5F9; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useCallback, useMemo } = React;
+
+// ─── CONFIG ───────────────────────────────────────────────────────────────────
+const CLIENT_ID      = "x9X6bEEkvvgQGftWpqHNaguNhR84M7hD";
+const SCOPES         = "read:jira-work read:jira-user offline_access";
+const ANTHROPIC_API  = "https://api.anthropic.com/v1/messages";
+const REDIRECT_URI   = () => window.location.origin + window.location.pathname.replace(/\/+$/, "");
+
+// ─── COLORS ───────────────────────────────────────────────────────────────────
+const R = "#C8102E", DARK = "#0F1923", BLUE = "#0057A8", GREEN = "#00703C", BDR = "#E2E8F0";
+const PALETTE = [R,BLUE,GREEN,"#7C3AED","#D97706","#0891B2","#DC2626","#059669",
+                 "#7C2D12","#1D4ED8","#B45309","#6D28D9","#0F766E","#B91C1C","#1E40AF","#15803D","#92400E"];
+const STATUS_C = {
+  "In Progress":"#2563EB","Done":"#16A34A","To Do":"#64748B","Backlog":"#94A3B8",
+  "Blocked":"#DC2626","In Review":"#D97706","Cancelled":"#94A3B8","Hypercare":"#16A34A",
+  "In Development":"#2563EB","In Documentation":"#7C3AED","Implementing":"#2563EB",
+  "Aligned":"#16A34A","Approved":"#16A34A","Analyzing":"#D97706","Funnel":"#94A3B8",
+  "Dev in Progress":"#2563EB","Testing in Progress":"#7C3AED","Routing for Approval":"#D97706",
+};
+const FREQS = [{v:"weekly",l:"Weekly"},{v:"biweekly",l:"Every 2 Weeks"},{v:"monthly",l:"Monthly"}];
+const DAYS  = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const SK    = "jira_execview_v1";
+
+// ─── PKCE ─────────────────────────────────────────────────────────────────────
+const rndBytes    = n => { const a = new Uint8Array(n); crypto.getRandomValues(a); return a; };
+const b64url      = a => btoa(String.fromCharCode(...a)).replace(/\+/g,"-").replace(/\//g,"_").replace(/=/g,"");
+const genVerifier = () => b64url(rndBytes(32));
+const genState    = () => Array.from(rndBytes(16), b => b.toString(16).padStart(2,"0")).join("");
+const genChallenge = async v => b64url(new Uint8Array(
+  await crypto.subtle.digest("SHA-256", new TextEncoder().encode(v))
+));
+
+// ─── STORAGE ──────────────────────────────────────────────────────────────────
+const SS = {
+  g: k  => { try { return JSON.parse(sessionStorage.getItem(k)); } catch { return null; } },
+  s: (k,v) => sessionStorage.setItem(k, JSON.stringify(v)),
+  d: k  => sessionStorage.removeItem(k),
+};
+const LS = {
+  g: (k, fb=[]) => { try { return JSON.parse(localStorage.getItem(k) ?? JSON.stringify(fb)); } catch { return fb; } },
+  s: (k,v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+};
+
+// ─── DATE ─────────────────────────────────────────────────────────────────────
+const fmt = d => d.toISOString().split("T")[0];
+function getRange(freq, day) {
+  const now = new Date(), diff = (now.getDay() - DAYS.indexOf(day) + 7) % 7;
+  const end = new Date(now); end.setDate(now.getDate() - diff); end.setHours(23,59,59,999);
+  const start = new Date(end);
+  if (freq === "weekly")        start.setDate(start.getDate() - 6);
+  else if (freq === "biweekly") start.setDate(start.getDate() - 13);
+  else                          start.setMonth(start.getMonth() - 1);
+  start.setHours(0,0,0,0);
+  return { start, end };
+}
+
+// ─── ATLASSIAN API ────────────────────────────────────────────────────────────
+const jiraGet = async (path, token, cloudId) => {
+  const res = await fetch(`https://api.atlassian.com/ex/jira/${cloudId}/rest/api/3${path}`, {
+    headers: { Authorization: `Bearer ${token}`, Accept: "application/json" },
+  });
+  if (!res.ok) throw new Error(`Jira API error ${res.status}`);
+  return res.json();
+};
+
+const toIssue = i => ({
+  key:         i.key ?? "",
+  summary:     i.fields?.summary ?? "",
+  status:      i.fields?.status?.name ?? "",
+  statusCat:   i.fields?.status?.statusCategory?.name ?? "",
+  assignee:    i.fields?.assignee?.displayName ?? "Unassigned",
+  priority:    i.fields?.priority?.name ?? "None",
+  issuetype:   i.fields?.issuetype?.name ?? "",
+  updated:    (i.fields?.updated ?? "").slice(0,10),
+  created:    (i.fields?.created ?? "").slice(0,10),
+  project:     i.fields?.project?.key ?? i.key.split("-")[0],
+  projectName: i.fields?.project?.name ?? "",
+  labels:      i.fields?.labels ?? [],
+});
+
+async function fetchAllIssues(cloudId, jql, token, onProgress) {
+  const fields = "summary,status,assignee,priority,issuetype,updated,created,project,labels";
+  let all = [], cursor = null;
+  do {
+    const p = new URLSearchParams({ jql, maxResults:"100", fields });
+    if (cursor) p.set("nextPageToken", cursor);
+    const data = await jiraGet(`/search/jql?${p}`, token, cloudId);
+    all = all.concat((data.issues ?? []).map(toIssue));
+    cursor = data.nextPageToken ?? null;
+    onProgress?.(all.length, !!cursor);
+  } while (cursor);
+  return all;
+}
+
+// ─── STYLE HELPERS ────────────────────────────────────────────────────────────
+const btn = (v="primary") => ({
+  padding: "8px 18px", borderRadius: 8, cursor: "pointer", fontWeight: 700, fontSize: 12,
+  border: v==="danger" ? `1.5px solid ${R}` : v==="outline" ? `1.5px solid ${BDR}` : "none",
+  background: v==="primary" ? R : v==="blue" ? BLUE : v==="green" ? GREEN
+            : v==="ghost" ? "transparent" : v==="secondary" ? "#F1F5F9" : "#fff",
+  color: ["primary","blue","green"].includes(v) ? "#fff" : v==="danger" ? R : DARK,
+  display: "inline-flex", alignItems: "center", gap: 6, transition: "opacity 0.15s",
+});
+const inp = { padding:"8px 12px", borderRadius:8, border:`1.5px solid ${BDR}`, fontSize:13, color:DARK, background:"#fff", outline:"none", width:"100%", boxSizing:"border-box" };
+const lbl = { fontSize:11, fontWeight:700, color:"#475569", marginBottom:5, display:"block", textTransform:"uppercase", letterSpacing:0.6 };
+const th  = { textAlign:"left", padding:"9px 13px", background:"#F8FAFC", color:"#94A3B8", fontWeight:800, fontSize:10, textTransform:"uppercase", letterSpacing:0.8, borderBottom:`2px solid ${BDR}` };
+const td  = { padding:"10px 13px", borderBottom:`1px solid ${BDR}`, fontSize:12, verticalAlign:"middle" };
+const pill = c => ({ display:"inline-block", padding:"2px 9px", borderRadius:20, fontSize:11, fontWeight:700, background:c+"1A", color:c, border:`1px solid ${c}33` });
+const card = { background:"#fff", borderRadius:12, border:`1px solid ${BDR}`, padding:"20px 22px", marginBottom:18, boxShadow:"0 1px 3px rgba(0,0,0,0.04)" };
+const sec  = { fontSize:10, fontWeight:800, textTransform:"uppercase", letterSpacing:1.2, color:"#94A3B8", marginBottom:14 };
+const Spin = () => <div style={{width:16,height:16,border:"2px solid #CBD5E1",borderTop:`2px solid ${R}`,borderRadius:"50%",animation:"spin 0.7s linear infinite",flexShrink:0}} />;
+
+// ─── SHIMMER PILLS ────────────────────────────────────────────────────────────
+const ShimmerPill = ({w}) => (
+  <div style={{width:w,height:30,borderRadius:14,background:"linear-gradient(90deg,#F1F5F9 25%,#E2E8F0 50%,#F1F5F9 75%)",backgroundSize:"400% 100%",animation:"shimmer 1.4s ease infinite"}} />
+);
+
+// ─── SCHEDULE MODAL ───────────────────────────────────────────────────────────
+function SchedModal({ sched, allProjects, colorMap, onSave, onClose }) {
+  const [f, setF] = useState({
+    id: sched?.id||null, name: sched?.name||"", projects: sched?.projects||[],
+    frequency: sched?.frequency||"weekly", dayOfWeek: sched?.dayOfWeek||"Friday",
+    recipients: sched?.recipients||[], emailInput: "",
+  });
+  const [err, setErr] = useState("");
+  const upd = (k,v) => setF(p => ({...p,[k]:v}));
+
+  const addEmail = () => {
+    const e = f.emailInput.trim();
+    if (!e) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) { setErr("Invalid email address"); return; }
+    if (f.recipients.includes(e)) { setErr("Already added"); return; }
+    upd("recipients",[...f.recipients,e]); upd("emailInput",""); setErr("");
+  };
+  const submit = () => {
+    if (!f.name.trim())       { setErr("Schedule name required"); return; }
+    if (!f.projects.length)   { setErr("Select at least one project"); return; }
+    if (!f.recipients.length) { setErr("Add at least one recipient"); return; }
+    onSave({id:f.id,name:f.name,projects:f.projects,frequency:f.frequency,dayOfWeek:f.dayOfWeek,recipients:f.recipients});
+  };
+  const {start,end} = getRange(f.frequency, f.dayOfWeek);
+
+  return (
+    <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(15,25,35,0.55)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:1000,padding:20,backdropFilter:"blur(3px)"}}>
+      <div onClick={e=>e.stopPropagation()} style={{background:"#fff",borderRadius:16,padding:"28px 28px 24px",width:"100%",maxWidth:560,maxHeight:"90vh",overflowY:"auto",boxShadow:"0 24px 64px rgba(0,0,0,0.18)"}}>
+        <div style={{fontSize:17,fontWeight:800,marginBottom:20,color:DARK}}>{f.id?"Edit":"New"} Schedule</div>
+
+        <label style={lbl}>Schedule Name</label>
+        <input style={{...inp,marginBottom:16}} value={f.name} onChange={e=>upd("name",e.target.value)} placeholder="Weekly KILO Status" />
+
+        <label style={lbl}>Projects</label>
+        <div style={{display:"flex",flexWrap:"wrap",gap:5,marginBottom:16,maxHeight:150,overflowY:"auto",padding:8,border:`1.5px solid ${BDR}`,borderRadius:8}}>
+          {allProjects.map(p => {
+            const sel=f.projects.includes(p.key), c=colorMap[p.key]||BLUE;
+            return <button key={p.key} onClick={()=>upd("projects",sel?f.projects.filter(k=>k!==p.key):[...f.projects,p.key])} style={{padding:"3px 10px",borderRadius:12,border:`2px solid ${c}`,background:sel?c:"#fff",color:sel?"#fff":c,fontWeight:700,fontSize:11,cursor:"pointer"}}>{p.key}</button>;
+          })}
+        </div>
+
+        <div style={{display:"flex",gap:12,marginBottom:16}}>
+          <div style={{flex:1}}>
+            <label style={lbl}>Frequency</label>
+            <select style={{...inp,cursor:"pointer"}} value={f.frequency} onChange={e=>upd("frequency",e.target.value)}>
+              {FREQS.map(o=><option key={o.v} value={o.v}>{o.l}</option>)}
+            </select>
+          </div>
+          <div style={{flex:1}}>
+            <label style={lbl}>Day of Week</label>
+            <select style={{...inp,cursor:"pointer"}} value={f.dayOfWeek} onChange={e=>upd("dayOfWeek",e.target.value)}>
+              {DAYS.map(d=><option key={d} value={d}>{d}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <div style={{background:"#EFF6FF",border:"1px solid #BFDBFE",borderRadius:8,padding:"10px 14px",fontSize:12,color:"#1D4ED8",marginBottom:16}}>
+          📅 Run will summarize issues updated <strong>{fmt(start)}</strong> → <strong>{fmt(end)}</strong>
+        </div>
+
+        <label style={lbl}>Recipients</label>
+        <div style={{display:"flex",gap:8,marginBottom:8}}>
+          <input style={inp} value={f.emailInput} onChange={e=>upd("emailInput",e.target.value)} onKeyDown={e=>e.key==="Enter"&&addEmail()} placeholder="email@lilly.com" />
+          <button onClick={addEmail} style={{...btn("secondary"),padding:"8px 14px",whiteSpace:"nowrap"}}>Add</button>
+        </div>
+        <div style={{display:"flex",flexWrap:"wrap",gap:5,marginBottom:18}}>
+          {f.recipients.map(r=>(
+            <span key={r} style={{background:"#F1F5F9",borderRadius:12,padding:"3px 10px",fontSize:11,display:"flex",alignItems:"center",gap:5}}>
+              {r}
+              <button onClick={()=>upd("recipients",f.recipients.filter(x=>x!==r))} style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:16,padding:0,lineHeight:1}}>×</button>
+            </span>
+          ))}
+        </div>
+
+        {err && <div style={{color:R,fontSize:12,marginBottom:12}}>⚠️ {err}</div>}
+        <div style={{display:"flex",gap:8,justifyContent:"flex-end"}}>
+          <button onClick={onClose} style={{...btn("secondary"),padding:"8px 16px"}}>Cancel</button>
+          <button onClick={submit}  style={{...btn("primary"), padding:"8px 18px"}}>{f.id?"Save Changes":"Create Schedule"}</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── MAIN APP ─────────────────────────────────────────────────────────────────
+function App() {
+  // Auth
+  const [token,    setToken]    = useState(null);
+  const [sites,    setSites]    = useState([]);
+  const [authErr,  setAuthErr]  = useState("");
+  const [authBusy, setAuthBusy] = useState(true);
+
+  // Projects
+  const [allProjs,   setAllProjs]   = useState([]);
+  const [colorMap,   setColorMap]   = useState({});
+  const [selProjs,   setSelProjs]   = useState([]);
+  const [projSearch, setProjSearch] = useState("");
+  const [projBusy,   setProjBusy]   = useState(false);
+
+  // Issues
+  const [issues,    setIssues]    = useState([]);
+  const [loadedFor, setLoadedFor] = useState([]);
+  const [loadDate,  setLoadDate]  = useState(null);
+  const [loadBusy,  setLoadBusy]  = useState(false);
+  const [loadProg,  setLoadProg]  = useState({n:0,more:false});
+  const [loadErr,   setLoadErr]   = useState("");
+
+  // UI
+  const [filters,  setFilters]  = useState({status:[],priority:[],assignee:[],issuetype:[],label:""});
+  const [search,   setSearch]   = useState("");
+  const [tab,      setTab]      = useState("dashboard");
+  const [aiSum,    setAiSum]    = useState("");
+  const [aiBusy,   setAiBusy]   = useState(false);
+  const [scheds,   setScheds]   = useState(()=>LS.g(SK));
+  const [schedMod, setSchedMod] = useState(false);
+  const [editSch,  setEditSch]  = useState(null);
+  const [sendMod,  setSendMod]  = useState(false);
+  const [recips,   setRecips]   = useState("");
+  const [sendMsg,  setSendMsg]  = useState("");
+  const [schedPre, setSchedPre] = useState(null);
+
+  // ── OAuth callback or session restore ─────────────────────────────────────
+  useEffect(() => {
+    const params   = new URLSearchParams(window.location.search);
+    const code     = params.get("code");
+    const retState = params.get("state");
+    const savedSt  = SS.g("oauth_state");
+    const verifier = SS.g("oauth_verifier");
+
+    if (code && retState && retState === savedSt && verifier) {
+      SS.d("oauth_state"); SS.d("oauth_verifier");
+      window.history.replaceState({}, "", window.location.pathname);
+      (async () => {
+        try {
+          const tr = await fetch("https://auth.atlassian.com/oauth/token", {
+            method:"POST", headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({grant_type:"authorization_code",client_id:CLIENT_ID,code,redirect_uri:REDIRECT_URI(),code_verifier:verifier}),
+          });
+          const td = await tr.json();
+          if (!tr.ok) throw new Error(td.error_description || "Token exchange failed");
+          const sr = await fetch("https://api.atlassian.com/oauth/token/accessible-resources", {headers:{Authorization:`Bearer ${td.access_token}`}});
+          const sd = await sr.json();
+          if (!Array.isArray(sd)||!sd.length) throw new Error("No accessible Atlassian sites found.");
+          SS.s("jira_token",td.access_token); SS.s("jira_sites",sd);
+          setToken(td.access_token); setSites(sd);
+        } catch(e) { setAuthErr(e.message); }
+        setAuthBusy(false);
+      })();
+    } else {
+      const t=SS.g("jira_token"), s=SS.g("jira_sites");
+      if (t&&s) { setToken(t); setSites(s); }
+      setAuthBusy(false);
+    }
+  }, []);
+
+  // ── Load projects on auth ──────────────────────────────────────────────────
+  useEffect(() => {
+    if (!token||!sites[0]) return;
+    setProjBusy(true);
+    jiraGet("/project/search?maxResults=200&orderBy=name", token, sites[0].id)
+      .then(d => {
+        const ps = d.values??[];
+        const cm = {};
+        ps.forEach((p,i) => { cm[p.key]=PALETTE[i%PALETTE.length]; });
+        setAllProjs(ps.map(p=>({key:p.key,name:p.name})));
+        setColorMap(cm);
+      })
+      .catch(e => setAuthErr("Could not load projects: "+e.message))
+      .finally(() => setProjBusy(false));
+  }, [token, sites]);
+
+  // ── Sign in ────────────────────────────────────────────────────────────────
+  const signIn = useCallback(async () => {
+    const verifier  = genVerifier();
+    const challenge = await genChallenge(verifier);
+    const state     = genState();
+    SS.s("oauth_verifier",verifier); SS.s("oauth_state",state);
+    const u = new URL("https://auth.atlassian.com/authorize");
+    u.searchParams.set("audience",              "api.atlassian.com");
+    u.searchParams.set("client_id",             CLIENT_ID);
+    u.searchParams.set("scope",                 SCOPES);
+    u.searchParams.set("redirect_uri",          REDIRECT_URI());
+    u.searchParams.set("state",                 state);
+    u.searchParams.set("response_type",         "code");
+    u.searchParams.set("prompt",                "consent");
+    u.searchParams.set("code_challenge",        challenge);
+    u.searchParams.set("code_challenge_method", "S256");
+    window.location.href = u.toString();
+  }, []);
+
+  const signOut = () => {
+    SS.d("jira_token"); SS.d("jira_sites");
+    setToken(null); setSites([]); setAllProjs([]); setIssues([]);
+    setLoadedFor([]); setSelProjs([]); setAiSum(""); setSchedPre(null);
+  };
+
+  // ── Load issues ────────────────────────────────────────────────────────────
+  const loadIssues = useCallback(async () => {
+    if (!selProjs.length||!token||!sites[0]) return;
+    setLoadBusy(true); setLoadErr(""); setAiSum(""); setLoadProg({n:0,more:false}); setSchedPre(null);
+    try {
+      const jql = `project in (${selProjs.map(k=>`"${k}"`).join(",")}) ORDER BY updated DESC`;
+      const res = await fetchAllIssues(sites[0].id, jql, token, (n,more)=>setLoadProg({n,more}));
+      setIssues(res); setLoadedFor([...selProjs]); setLoadDate(fmt(new Date()));
+      setFilters({status:[],priority:[],assignee:[],issuetype:[],label:""}); setSearch("");
+    } catch(e) { setLoadErr(e.message); }
+    setLoadBusy(false);
+  }, [selProjs, token, sites]);
+
+  // ── Derived ────────────────────────────────────────────────────────────────
+  const base = useMemo(() =>
+    (schedPre!=null ? schedPre : issues).filter(i=>selProjs.includes(i.project)),
+    [schedPre, issues, selProjs]
+  );
+
+  const opts = useMemo(() => ({
+    status:    [...new Set(base.map(i=>i.status))].filter(Boolean).sort(),
+    priority:  [...new Set(base.map(i=>i.priority))].filter(Boolean).sort(),
+    assignee:  [...new Set(base.map(i=>i.assignee))].filter(Boolean).sort(),
+    issuetype: [...new Set(base.map(i=>i.issuetype))].filter(Boolean).sort(),
+  }), [base]);
+
+  const filtered = useMemo(() => base.filter(i => {
+    if (filters.status.length    && !filters.status.includes(i.status))       return false;
+    if (filters.priority.length  && !filters.priority.includes(i.priority))   return false;
+    if (filters.assignee.length  && !filters.assignee.includes(i.assignee))   return false;
+    if (filters.issuetype.length && !filters.issuetype.includes(i.issuetype)) return false;
+    if (filters.label && !i.labels?.some(l=>l.toLowerCase().includes(filters.label.toLowerCase()))) return false;
+    if (search && !i.summary?.toLowerCase().includes(search.toLowerCase()) && !i.key?.toLowerCase().includes(search.toLowerCase())) return false;
+    return true;
+  }), [base, filters, search]);
+
+  const stats = useMemo(() => ({
+    total:      filtered.length,
+    inProgress: filtered.filter(i=>i.statusCat==="In Progress").length,
+    done:       filtered.filter(i=>i.statusCat==="Done").length,
+    todo:       filtered.filter(i=>i.statusCat==="To Do").length,
+    blocked:    filtered.filter(i=>i.status==="Blocked").length,
+  }), [filtered]);
+
+  const visProjs = useMemo(() =>
+    projSearch ? allProjs.filter(p=>p.key.toLowerCase().includes(projSearch.toLowerCase())||p.name.toLowerCase().includes(projSearch.toLowerCase())) : allProjs,
+    [allProjs, projSearch]
+  );
+
+  const hasData  = issues.length>0 && loadedFor.some(k=>selProjs.includes(k));
+  const needLoad = selProjs.some(k=>!loadedFor.includes(k));
+
+  // ── AI summary ────────────────────────────────────────────────────────────
+  const genSummary = useCallback(async (list, ctx="") => {
+    if (!list?.length) return;
+    setAiBusy(true); setAiSum("");
+    try {
+      const lines = list.slice(0,80).map(i=>`${i.key}|${(i.summary||"").slice(0,80)}|${i.status}|${i.priority}|${i.assignee}`).join("\n");
+      const res = await fetch(ANTHROPIC_API, {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({
+          model:"claude-sonnet-4-20250514", max_tokens:900,
+          system:"You are an executive communications specialist. Write concise board-ready project status summaries in short paragraphs (no bullet lists). Sections: Overall Health | Key Progress | Active Work | Risks & Blockers | Recommended Actions.",
+          messages:[{role:"user",content:`${ctx?`Context: ${ctx}\n`:""}${list.length} issues (key|summary|status|priority|assignee):\n${lines}\n\nWrite the executive summary.`}],
+        }),
+      });
+      const d = await res.json();
+      if (d.error) throw new Error(d.error.message);
+      setAiSum(d.content?.find(b=>b.type==="text")?.text||"");
+    } catch(e) { setAiSum("Error: "+e.message); }
+    setAiBusy(false);
+  }, []);
+
+  // ── Schedules ─────────────────────────────────────────────────────────────
+  const saveSched = s => {
+    const u = s.id ? scheds.map(x=>x.id===s.id?s:x) : [...scheds,{...s,id:Date.now().toString(),createdAt:new Date().toISOString()}];
+    setScheds(u); LS.s(SK,u);
+  };
+  const delSched = id => { const u=scheds.filter(s=>s.id!==id); setScheds(u); LS.s(SK,u); };
+  const runSched = sched => {
+    const {start,end}=getRange(sched.frequency,sched.dayOfWeek);
+    const s=fmt(start),e=fmt(end);
+    setSelProjs(sched.projects);
+    const pre=issues.filter(i=>sched.projects.includes(i.project)&&i.updated>=s&&i.updated<=e);
+    setSchedPre(pre); setTab("dashboard");
+    genSummary(pre,`${sched.frequency} | ${s} → ${e} | ${sched.projects.join(", ")}`);
+  };
+
+  // ── RENDER ────────────────────────────────────────────────────────────────
+  return (
+    <div style={{fontFamily:"'Sora','Segoe UI',sans-serif",background:"#F1F5F9",minHeight:"100vh",color:DARK}}>
+
+      {/* HEADER */}
+      <header style={{background:"#fff",borderBottom:`3px solid ${R}`,padding:"0 28px",display:"flex",alignItems:"center",justifyContent:"space-between",height:62,position:"sticky",top:0,zIndex:200,boxShadow:"0 1px 8px rgba(0,0,0,0.06)"}}>
+        <div style={{display:"flex",alignItems:"center",gap:12}}>
+          <div style={{width:34,height:34,background:`linear-gradient(135deg,${R},#8b0000)`,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontWeight:900,fontSize:16,boxShadow:`0 2px 8px ${R}44`}}>L</div>
+          <div>
+            <div style={{fontSize:17,fontWeight:800,color:DARK,letterSpacing:-0.5,lineHeight:1.2}}>ExecView</div>
+            <div style={{fontSize:10,color:"#94A3B8",fontWeight:600,letterSpacing:0.3}}>
+              Jira Executive Dashboard{loadDate&&` · ${issues.length.toLocaleString()} issues · ${loadDate}`}
+            </div>
+          </div>
+        </div>
+        <div style={{display:"flex",gap:6,alignItems:"center"}}>
+          {token&&<>
+            <div style={{display:"flex"}}>
+              {[["dashboard","📊 Dashboard"],["schedules","📅 Schedules"]].map(([v,l])=>(
+                <button key={v} onClick={()=>setTab(v)} style={{...btn("ghost"),padding:"6px 14px",fontSize:12,borderRadius:0,color:tab===v?R:"#64748B",fontWeight:tab===v?800:600,borderBottom:tab===v?`2px solid ${R}`:"2px solid transparent"}}>{l}</button>
+              ))}
+            </div>
+            <div style={{width:1,height:24,background:BDR}}/>
+            <span style={{fontSize:11,color:"#94A3B8",maxWidth:200,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{sites[0]?.name}</span>
+            <button style={{...btn("outline"),padding:"5px 12px",fontSize:11}} onClick={signOut}>Sign Out</button>
+          </>}
+        </div>
+      </header>
+
+      <main style={{padding:"24px 28px",maxWidth:1440,margin:"0 auto"}}>
+
+        {/* FULL SPINNER while checking session */}
+        {authBusy&&(
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",minHeight:"calc(100vh - 80px)",gap:16}}>
+            <div style={{width:40,height:40,border:`3px solid ${BDR}`,borderTop:`3px solid ${R}`,borderRadius:"50%",animation:"spin 0.75s linear infinite"}}/>
+            <div style={{fontSize:14,fontWeight:600,color:"#64748B"}}>Connecting…</div>
+          </div>
+        )}
+
+        {/* SIGN IN */}
+        {!authBusy&&!token&&(
+          <div className="fade" style={{display:"flex",alignItems:"center",justifyContent:"center",minHeight:"calc(100vh - 80px)"}}>
+            <div style={{...card,maxWidth:440,textAlign:"center",padding:"52px 40px",boxShadow:"0 8px 40px rgba(0,0,0,0.09)"}}>
+              <div style={{width:64,height:64,background:`linear-gradient(135deg,${R},#8b0000)`,borderRadius:16,display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontWeight:900,fontSize:28,margin:"0 auto 24px",boxShadow:`0 4px 16px ${R}44`}}>L</div>
+              <h1 style={{fontSize:24,fontWeight:800,color:DARK,marginBottom:8,letterSpacing:-0.5}}>ExecView</h1>
+              <p style={{color:"#64748B",fontSize:14,lineHeight:1.65,marginBottom:32}}>
+                Executive Jira portfolio dashboard for Eli Lilly. Sign in with your Atlassian account to view projects, generate AI summaries, and schedule recurring reports.
+              </p>
+              {authErr&&<div style={{background:"#FFF1F2",border:"1px solid #FECDD3",borderRadius:8,padding:"10px 14px",fontSize:12,color:"#BE123C",marginBottom:18,textAlign:"left"}}>⚠️ {authErr}</div>}
+              <button style={{...btn("primary"),width:"100%",justifyContent:"center",padding:"12px 24px",fontSize:14}} onClick={signIn}>
+                Sign in with Atlassian
+              </button>
+              <p style={{marginTop:14,fontSize:11,color:"#CBD5E1"}}>OAuth 2.0 · Read-only Jira access · No passwords stored</p>
+            </div>
+          </div>
+        )}
+
+        {/* AUTHENTICATED */}
+        {!authBusy&&token&&<>
+
+          {/* DASHBOARD TAB */}
+          {tab==="dashboard"&&(
+            <div className="fade">
+
+              {/* PROJECT SELECTOR */}
+              <div style={card}>
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
+                  <div style={sec}>
+                    Select Projects
+                    {selProjs.length>0&&<span style={{fontWeight:600,textTransform:"none",letterSpacing:0,color:"#64748B",marginLeft:6}}>({selProjs.length} selected)</span>}
+                  </div>
+                  <div style={{display:"flex",gap:7,alignItems:"center"}}>
+                    <input style={{...inp,width:175,padding:"5px 10px",fontSize:11}} placeholder="🔍 Search projects…" value={projSearch} onChange={e=>setProjSearch(e.target.value)} />
+                    <button style={{...btn("secondary"),padding:"5px 11px",fontSize:11}} onClick={()=>setSelProjs(allProjs.map(p=>p.key))}>All</button>
+                    <button style={{...btn("secondary"),padding:"5px 11px",fontSize:11}} onClick={()=>{setSelProjs([]);setSchedPre(null);}}>None</button>
+                  </div>
+                </div>
+
+                {projBusy?(
+                  <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+                    {[100,80,130,90,110,75,120,95].map((w,i)=><ShimmerPill key={i} w={w}/>)}
+                  </div>
+                ):(
+                  <div style={{display:"flex",flexWrap:"wrap",gap:7}}>
+                    {visProjs.map(p=>{
+                      const sel=selProjs.includes(p.key), c=colorMap[p.key]||BLUE;
+                      const cnt=issues.filter(i=>i.project===p.key).length;
+                      return (
+                        <button key={p.key} className="projbtn" title={p.name}
+                          onClick={()=>{setSelProjs(prev=>sel?prev.filter(k=>k!==p.key):[...prev,p.key]);setSchedPre(null);}}
+                          style={{padding:"5px 13px",borderRadius:16,border:`2px solid ${sel?c:BDR}`,background:sel?c:"#fff",color:sel?"#fff":c,fontWeight:700,fontSize:11,cursor:"pointer"}}>
+                          {p.key}{cnt>0&&<span style={{fontWeight:500,opacity:0.75,fontSize:10,marginLeft:3}}>({cnt.toLocaleString()})</span>}
+                        </button>
+                      );
+                    })}
+                    {!projBusy&&allProjs.length===0&&<span style={{fontSize:13,color:"#94A3B8"}}>No projects found.</span>}
+                  </div>
+                )}
+
+                {/* LOAD BUTTON */}
+                {selProjs.length>0&&(
+                  <div style={{marginTop:16,paddingTop:16,borderTop:`1px solid ${BDR}`,display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
+                    <button style={{...btn(loadBusy?"secondary":"primary"),padding:"9px 22px",fontSize:13,cursor:loadBusy?"not-allowed":"pointer"}} onClick={loadIssues} disabled={loadBusy}>
+                      {loadBusy
+                        ? <><Spin/>Loading{loadProg.n>0?` ${loadProg.n.toLocaleString()} issues`:"…"}{loadProg.more?" · fetching more…":""}</>
+                        : `↓ Load Issues for ${selProjs.length} Project${selProjs.length>1?"s":""}`
+                      }
+                    </button>
+                    {hasData&&!needLoad&&<span style={{fontSize:12,color:"#64748B"}}>Last loaded: <strong>{loadDate}</strong> · <strong>{issues.filter(i=>selProjs.includes(i.project)).length.toLocaleString()}</strong> issues</span>}
+                    {hasData&&needLoad&&<span style={{fontSize:12,color:"#D97706"}}>⚠ Some projects not loaded yet — click Load to fetch them.</span>}
+                    {loadErr&&<span style={{fontSize:12,color:R}}>⚠ {loadErr}</span>}
+                  </div>
+                )}
+              </div>
+
+              {/* EMPTY STATES */}
+              {!hasData&&!loadBusy&&selProjs.length===0&&(
+                <div style={{...card,textAlign:"center",padding:"56px 24px"}}>
+                  <div style={{fontSize:38,marginBottom:14}}>☝️</div>
+                  <div style={{fontWeight:700,fontSize:15,color:DARK,marginBottom:6}}>Select projects to begin</div>
+                  <div style={{fontSize:13,color:"#94A3B8"}}>Choose one or more projects above, then click Load Issues.</div>
+                </div>
+              )}
+              {!hasData&&!loadBusy&&selProjs.length>0&&(
+                <div style={{...card,textAlign:"center",padding:"56px 24px"}}>
+                  <div style={{fontSize:38,marginBottom:14}}>📋</div>
+                  <div style={{fontWeight:700,fontSize:15,color:DARK,marginBottom:6}}>Ready to load</div>
+                  <div style={{fontSize:13,color:"#94A3B8"}}>Click Load Issues above to fetch all issues for the selected projects.</div>
+                </div>
+              )}
+
+              {/* FILTERS */}
+              {hasData&&(
+                <div style={card}>
+                  <div style={sec}>Filters</div>
+                  <div style={{display:"flex",gap:16,flexWrap:"wrap",marginBottom:14}}>
+                    {["status","priority","issuetype"].map(f=>(
+                      <div key={f} style={{flex:"1 1 160px"}}>
+                        <label style={lbl}>{f==="issuetype"?"Type":f.charAt(0).toUpperCase()+f.slice(1)}</label>
+                        <div style={{display:"flex",flexWrap:"wrap",gap:4}}>
+                          {(opts[f]||[]).slice(0,15).map(opt=>{
+                            const sel=filters[f]?.includes(opt), c=f==="status"?(STATUS_C[opt]||"#64748B"):DARK;
+                            return <button key={opt} onClick={()=>setFilters(prev=>({...prev,[f]:sel?prev[f].filter(x=>x!==opt):[...(prev[f]||[]),opt]}))} style={{padding:"3px 9px",borderRadius:10,border:`1px solid ${sel?c:BDR}`,background:sel?c+"18":"#F8FAFC",color:sel?c:"#475569",fontSize:10,fontWeight:700,cursor:"pointer"}}>{opt}</button>;
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                    <div style={{flex:"1 1 130px"}}>
+                      <label style={lbl}>Label</label>
+                      <input style={inp} placeholder="e.g. TestRx" value={filters.label} onChange={e=>setFilters(p=>({...p,label:e.target.value}))} />
+                    </div>
+                    <div style={{flex:"2 1 200px"}}>
+                      <label style={lbl}>Search</label>
+                      <input style={inp} placeholder="Key or summary…" value={search} onChange={e=>setSearch(e.target.value)} />
+                    </div>
+                  </div>
+                  <button style={{...btn("secondary"),padding:"5px 12px",fontSize:11}} onClick={()=>{setFilters({status:[],priority:[],assignee:[],issuetype:[],label:""});setSearch("");}}>Clear All Filters</button>
+                </div>
+              )}
+
+              {/* STATS */}
+              {hasData&&(
+                <div style={{display:"flex",gap:12,flexWrap:"wrap",marginBottom:18}}>
+                  {[["Total",stats.total,BLUE],["In Progress",stats.inProgress,"#D97706"],["Done",stats.done,GREEN],["To Do / Backlog",stats.todo,"#64748B"],["Blocked",stats.blocked,R]].map(([l,v,c])=>(
+                    <div key={l} style={{flex:"1 1 140px",background:"#fff",border:`1px solid ${BDR}`,borderTop:`3px solid ${c}`,borderRadius:10,padding:"14px 16px",boxShadow:"0 1px 3px rgba(0,0,0,0.04)"}}>
+                      <div style={{fontSize:30,fontWeight:900,color:c,lineHeight:1,marginBottom:3}}>{v.toLocaleString()}</div>
+                      <div style={{fontSize:10,color:"#94A3B8",fontWeight:800,textTransform:"uppercase",letterSpacing:0.8}}>{l}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* SCHEDULE PREVIEW BANNER */}
+              {schedPre!=null&&(
+                <div style={{background:"#EFF6FF",border:"1px solid #BFDBFE",borderRadius:8,padding:"10px 14px",fontSize:12,color:"#1D4ED8",marginBottom:16,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                  <span>📅 Schedule window: <strong>{schedPre.length.toLocaleString()} issues</strong> matching date range</span>
+                  <button style={{...btn("secondary"),padding:"3px 10px",fontSize:11}} onClick={()=>{setSchedPre(null);setAiSum("");}}>✕ Clear</button>
+                </div>
+              )}
+
+              {/* AI SUMMARY */}
+              {hasData&&(
+                <div style={card}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
+                    <div style={sec}>AI Executive Summary</div>
+                    <div style={{display:"flex",gap:8}}>
+                      <button style={btn("secondary")} onClick={()=>genSummary(filtered)} disabled={aiBusy||!filtered.length}>
+                        {aiBusy?<><Spin/>Generating…</>:"⚡ Generate Summary"}
+                      </button>
+                      {aiSum&&<button style={btn("primary")} onClick={()=>setSendMod(true)}>✉️ Send</button>}
+                    </div>
+                  </div>
+                  {!aiBusy&&aiSum&&<div style={{background:"#F8FAFC",borderRadius:8,padding:16,fontSize:13,lineHeight:1.8,color:"#334155",whiteSpace:"pre-wrap",border:`1px solid ${BDR}`}}>{aiSum}</div>}
+                  {!aiBusy&&!aiSum&&<div style={{color:"#CBD5E1",fontSize:13}}>Load issues, apply filters if needed, then click Generate.</div>}
+                </div>
+              )}
+
+              {/* ISSUES TABLE */}
+              {hasData&&(
+                <div style={card}>
+                  <div style={{...sec,marginBottom:14}}>Issues ({filtered.length.toLocaleString()})</div>
+                  <div style={{overflowX:"auto"}}>
+                    <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
+                      <thead><tr>{["Key","Summary","Status","Priority","Assignee","Type","Updated"].map(h=><th key={h} style={th}>{h}</th>)}</tr></thead>
+                      <tbody>
+                        {filtered.slice(0,250).map(i=>{
+                          const pc=colorMap[i.project]||BLUE, sc=STATUS_C[i.status]||"#64748B";
+                          return (
+                            <tr key={i.key} className="trow">
+                              <td style={td}><span style={pill(pc)}>{i.key}</span></td>
+                              <td style={{...td,maxWidth:320}}>{i.summary}</td>
+                              <td style={td}><span style={pill(sc)}>{i.status}</span></td>
+                              <td style={td}>{i.priority}</td>
+                              <td style={td}>{i.assignee}</td>
+                              <td style={td}>{i.issuetype}</td>
+                              <td style={{...td,color:"#94A3B8",whiteSpace:"nowrap"}}>{i.updated}</td>
+                            </tr>
+                          );
+                        })}
+                        {filtered.length===0&&<tr><td colSpan={7} style={{...td,textAlign:"center",color:"#CBD5E1",padding:"40px 0"}}>No issues match the current filters.</td></tr>}
+                      </tbody>
+                    </table>
+                    {filtered.length>250&&<div style={{textAlign:"center",padding:"10px 0",fontSize:11,color:"#94A3B8"}}>Showing 250 of {filtered.length.toLocaleString()} — use filters to narrow results</div>}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* SCHEDULES TAB */}
+          {tab==="schedules"&&(
+            <div className="fade">
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20}}>
+                <div>
+                  <div style={{fontSize:20,fontWeight:800,color:DARK,letterSpacing:-0.3}}>Scheduled Summaries</div>
+                  <div style={{fontSize:12,color:"#94A3B8",marginTop:3}}>Automate recurring executive summary delivery</div>
+                </div>
+                <button style={btn("primary")} onClick={()=>{setEditSch(null);setSchedMod(true);}}>+ New Schedule</button>
+              </div>
+              {scheds.length===0?(
+                <div style={{...card,textAlign:"center",padding:"56px 24px"}}>
+                  <div style={{fontSize:44,marginBottom:16}}>📅</div>
+                  <div style={{fontWeight:700,fontSize:16,color:DARK,marginBottom:8}}>No schedules yet</div>
+                  <div style={{fontSize:13,color:"#94A3B8",marginBottom:24}}>Create recurring summaries to keep stakeholders informed.</div>
+                  <button style={btn("primary")} onClick={()=>{setEditSch(null);setSchedMod(true);}}>Create First Schedule</button>
+                </div>
+              ):(
+                <div style={card}>
+                  <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
+                    <thead><tr>{["Name","Projects","Frequency","Day","Recipients","Created","Actions"].map(h=><th key={h} style={th}>{h}</th>)}</tr></thead>
+                    <tbody>
+                      {scheds.map(s=>{
+                        const {start,end}=getRange(s.frequency,s.dayOfWeek);
+                        return (
+                          <tr key={s.id} className="trow">
+                            <td style={{...td,fontWeight:700}}>{s.name}</td>
+                            <td style={td}>{(s.projects||[]).map(k=><span key={k} style={{...pill(colorMap[k]||BLUE),marginRight:3}}>{k}</span>)}</td>
+                            <td style={td}>{FREQS.find(f=>f.v===s.frequency)?.l}</td>
+                            <td style={td}>{s.dayOfWeek}</td>
+                            <td style={{...td,maxWidth:200,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{(s.recipients||[]).join(", ")}</td>
+                            <td style={{...td,color:"#94A3B8"}}>{s.createdAt?new Date(s.createdAt).toLocaleDateString():"—"}</td>
+                            <td style={td}>
+                              <div style={{display:"flex",gap:5}}>
+                                <button title={`${fmt(start)} → ${fmt(end)}`} style={{...btn("blue"),padding:"3px 10px",fontSize:11}} onClick={()=>runSched(s)}>▶ Run</button>
+                                <button style={{...btn("outline"),padding:"3px 10px",fontSize:11}} onClick={()=>{setEditSch(s);setSchedMod(true);}}>Edit</button>
+                                <button style={{...btn("danger"),padding:"3px 10px",fontSize:11}} onClick={()=>delSched(s.id)}>Delete</button>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          )}
+        </>}
+      </main>
+
+      {/* SEND MODAL */}
+      {sendMod&&(
+        <div onClick={()=>{setSendMod(false);setSendMsg("");}} style={{position:"fixed",inset:0,background:"rgba(15,25,35,0.55)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:1000,padding:20,backdropFilter:"blur(3px)"}}>
+          <div onClick={e=>e.stopPropagation()} style={{background:"#fff",borderRadius:16,padding:"28px 28px 24px",width:"100%",maxWidth:540,maxHeight:"90vh",overflowY:"auto",boxShadow:"0 24px 64px rgba(0,0,0,0.18)"}}>
+            <div style={{fontSize:17,fontWeight:800,marginBottom:18,color:DARK}}>Send Executive Summary</div>
+            <label style={lbl}>Recipients (comma-separated)</label>
+            <textarea value={recips} onChange={e=>setRecips(e.target.value)} placeholder="jane.doe@lilly.com, john.smith@lilly.com" style={{...inp,height:76,resize:"vertical",marginBottom:14}} />
+            <div style={{background:"#F8FAFC",border:`1px solid ${BDR}`,borderRadius:8,padding:14,fontSize:12,lineHeight:1.75,maxHeight:240,overflowY:"auto",marginBottom:14,whiteSpace:"pre-wrap",color:"#334155"}}>{aiSum}</div>
+            {sendMsg&&<div style={{background:"#EFF6FF",border:"1px solid #BFDBFE",borderRadius:8,padding:"10px 14px",fontSize:12,color:"#1D4ED8",marginBottom:12}}>{sendMsg}</div>}
+            <div style={{display:"flex",gap:8,justifyContent:"flex-end"}}>
+              <button style={{...btn("secondary"),padding:"8px 16px"}} onClick={()=>{setSendMod(false);setSendMsg("");}}>Cancel</button>
+              <button style={{...btn("primary"),padding:"8px 18px"}} onClick={()=>{
+                if(!recips.trim()){setSendMsg("⚠️ Enter at least one recipient.");return;}
+                setSendMsg("✓ Queued for delivery. (Email requires backend/SMTP integration.)");
+                setTimeout(()=>{setSendMod(false);setSendMsg("");setRecips("");},2800);
+              }}>Send</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* SCHEDULE MODAL */}
+      {schedMod&&(
+        <SchedModal
+          sched={editSch}
+          allProjects={allProjs}
+          colorMap={colorMap}
+          onSave={s=>{saveSched(s);setSchedMod(false);}}
+          onClose={()=>setSchedMod(false)}
+        />
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
