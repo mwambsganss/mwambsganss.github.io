@@ -182,7 +182,7 @@ function EmptyState({ onOpenSettings }) {
 const DAYS  = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 const FREQS = [{ value:"weekly", label:"Every week" }, { value:"biweekly", label:"Every 2 weeks" }, { value:"monthly", label:"Every month" }];
 
-const BLANK_FORM = { name:"", frequency:"weekly", dayOfWeek:4, recipients:"", smtpHost:"smtp.office365.com", smtpPort:"587", smtpUser:"", smtpPassword:"", fromEmail:"" };
+const BLANK_FORM = { name:"", frequency:"weekly", dayOfWeek:4, recipients:"" };
 
 function SchedulesSection({ jiraBaseUrl, jiraEmail, jiraToken, projects, llmUrl, llmKey, llmModel }) {
   const [schedules, setSchedules]   = useState([]);
@@ -205,8 +205,7 @@ function SchedulesSection({ jiraBaseUrl, jiraEmail, jiraToken, projects, llmUrl,
   function openNew() { setForm(BLANK_FORM); setEditing(null); setShowForm(true); }
   function openEdit(s) {
     setForm({ name: s.name, frequency: s.frequency, dayOfWeek: s.dayOfWeek,
-      recipients: (s.recipients || []).join(", "), smtpHost: s.smtpHost || "smtp.office365.com",
-      smtpPort: String(s.smtpPort || 587), smtpUser: s.smtpUser || "", smtpPassword: s.smtpPassword || "", fromEmail: s.fromEmail || "" });
+      recipients: (s.recipients || []).join(", ") });
     setEditing(s.id); setShowForm(true);
   }
 
@@ -217,11 +216,6 @@ function SchedulesSection({ jiraBaseUrl, jiraEmail, jiraToken, projects, llmUrl,
       frequency:  form.frequency,
       dayOfWeek:  Number(form.dayOfWeek),
       recipients: form.recipients.split(/[,\n]/).map(s => s.trim()).filter(Boolean),
-      smtpHost:   form.smtpHost,
-      smtpPort:   Number(form.smtpPort),
-      smtpUser:   form.smtpUser,
-      smtpPassword: form.smtpPassword,
-      fromEmail:  form.fromEmail,
       // Capture current Jira + LLM credentials and selected projects
       jiraBaseUrl, jiraEmail, jiraToken,
       projects:   projects.filter(p => p.selected),
@@ -252,49 +246,31 @@ function SchedulesSection({ jiraBaseUrl, jiraEmail, jiraToken, projects, llmUrl,
 
   const secStyle = { fontSize: 12, color: "#6B6B6B" };
   const inputStyle = { width:"100%", padding:"7px 10px", border:"1px solid #D0D0D0", borderRadius:3, fontSize:13, color:"#1A1A1A" };
-  const [smtpTesting, setSmtpTesting] = useState(false);
-  const [smtpTestResult, setSmtpTestResult] = useState(null);
-  const [graphStatus, setGraphStatus] = useState(null);
+  const [emailTesting,    setEmailTesting]    = useState(false);
+  const [emailTestResult, setEmailTestResult] = useState(null);
+  const [graphAuth,       setGraphAuth]       = useState(null);
 
   useEffect(() => {
-    fetch("/api/graph-status").then(r => r.json()).then(setGraphStatus).catch(() => {});
+    fetch("/api/graph-auth-status").then(r => r.json()).then(setGraphAuth).catch(() => {});
   }, []);
 
-  function connectGraph() {
-    const popup = window.open("/api/graph-login", "graph-auth", "width=520,height=640,left=200,top=100");
-    function onMsg(e) {
-      if (e.data === "graph-auth-complete") {
-        window.removeEventListener("message", onMsg);
-        fetch("/api/graph-status").then(r => r.json()).then(setGraphStatus).catch(() => {});
-      }
-    }
-    window.addEventListener("message", onMsg);
-    // Clean up listener if popup is closed without completing auth
-    const pollClosed = setInterval(() => {
-      if (popup && popup.closed) {
-        clearInterval(pollClosed);
-        window.removeEventListener("message", onMsg);
-      }
-    }, 1000);
-  }
-
-  async function testSmtp() {
-    setSmtpTesting(true);
-    setSmtpTestResult(null);
+  async function testEmail() {
+    setEmailTesting(true);
+    setEmailTestResult(null);
     try {
-      if (graphStatus?.connected) {
-        const r = await fetch("/api/graph-status");
-        const d = await r.json();
-        setSmtpTestResult({ ok: d.connected && d.valid, msg: d.connected ? `Graph API ready — connected as ${d.email}` : "Graph token expired — reconnect" });
-      } else {
-        const r = await fetch("/api/smtp-test", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ smtpHost: form.smtpHost, smtpPort: Number(form.smtpPort), smtpUser: form.smtpUser, smtpPassword: form.smtpPassword }) });
-        const d = await r.json();
-        setSmtpTestResult(d);
-      }
+      const r = await fetch("/api/email-test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          recipients: form.recipients.split(/[,\n]/).map(s => s.trim()).filter(Boolean),
+        }),
+      });
+      const d = await r.json();
+      setEmailTestResult(d);
     } catch (e) {
-      setSmtpTestResult({ ok: false, msg: e.message });
+      setEmailTestResult({ ok: false, msg: e.message });
     } finally {
-      setSmtpTesting(false);
+      setEmailTesting(false);
     }
   }
 
@@ -335,61 +311,21 @@ function SchedulesSection({ jiraBaseUrl, jiraEmail, jiraToken, projects, llmUrl,
 
           <div style={{ fontWeight:600, fontSize:11, color:"#6B6B6B", marginTop:4, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
             <span>Email Delivery</span>
-            <button onClick={testSmtp} disabled={smtpTesting} style={{ fontSize:11, padding:"3px 10px", border:"1px solid #0057A8", borderRadius:3, color:"#0057A8", background:"#fff", cursor:"pointer" }}>
-              {smtpTesting ? "Testing…" : "⚡ Test Connection"}
+            <button onClick={testEmail} disabled={emailTesting || !form.recipients} style={{ fontSize:11, padding:"3px 10px", border:"1px solid #0057A8", borderRadius:3, color:"#0057A8", background:"#fff", cursor: form.recipients ? "pointer" : "not-allowed", opacity: form.recipients ? 1 : 0.5 }}>
+              {emailTesting ? "Sending…" : "✉ Send Test Email"}
             </button>
           </div>
 
-          {/* Microsoft Graph connection status */}
-          <div style={{ display:"flex", alignItems:"center", gap:10, padding:"8px 12px", borderRadius:3, background: graphStatus?.connected ? "#EDFAF3" : "#FFFBEB", border:`1px solid ${graphStatus?.connected ? "#00703C30" : "#D9770030"}` }}>
-            {graphStatus?.connected ? (
-              <>
-                <span style={{ color:"#00703C", fontSize:12 }}>✓ Microsoft account connected as <strong>{graphStatus.email}</strong> — emails will send via Graph API</span>
-                <button onClick={connectGraph} style={{ marginLeft:"auto", fontSize:11, padding:"3px 10px", border:"1px solid #00703C", borderRadius:3, color:"#00703C", background:"#fff", cursor:"pointer", whiteSpace:"nowrap" }}>↺ Reconnect</button>
-              </>
-            ) : (
-              <>
-                <span style={{ color:"#D97700", fontSize:12 }}>
-                  {graphStatus?.clientIdNeeded
-                    ? `⚠ Set SSO_CLIENT_ID in server.py${graphStatus?.tenantDetected ? " (tenant auto-detected ✓)" : ""} — see instructions below`
-                    : "⚠ Microsoft account not connected"}
-                </span>
-                {graphStatus?.graphConfigured && (
-                  <button onClick={connectGraph} style={{ marginLeft:"auto", fontSize:11, fontWeight:700, padding:"4px 12px", border:"none", borderRadius:3, background:"#0057A8", color:"#fff", cursor:"pointer", whiteSpace:"nowrap" }}>Connect Microsoft Account</button>
-                )}
-              </>
-            )}
+          <div style={{ fontSize:11, padding:"6px 10px", borderRadius:3, background: graphAuth?.authorized ? "#EDFAF3" : "#FFF4E5", color: graphAuth?.authorized ? "#00703C" : "#E8830C", border: `1px solid ${graphAuth?.authorized ? "#00703C30" : "#E8830C30"}` }}>
+            {graphAuth?.authorized
+              ? `✓ Authorized — emails sent as ${graphAuth.email}`
+              : <><span>✗ Not authorized — </span><a href="/api/login" style={{ color:"#E8830C" }}>Sign in with your Lilly account</a><span> to enable email sending</span></>
+            }
           </div>
 
-          {smtpTestResult && (
-            <div style={{ fontSize:11, padding:"5px 10px", borderRadius:3, background: smtpTestResult.ok ? "#EDFAF3" : "#FFF0F2", color: smtpTestResult.ok ? "#00703C" : "#C8102E", border: `1px solid ${smtpTestResult.ok ? "#00703C30" : "#C8102E30"}` }}>
-              {smtpTestResult.ok ? "✓" : "✗"} {smtpTestResult.msg}
-            </div>
-          )}
-
-          {/* SMTP fallback — shown only when Graph not connected */}
-          {!graphStatus?.connected && (
-            <div style={{ display:"grid", gridTemplateColumns:"2fr 1fr 2fr", gap:12 }}>
-              <div>
-                <LabelEl>SMTP Host</LabelEl>
-                <input style={inputStyle} value={form.smtpHost} onChange={e => setForm(f => ({ ...f, smtpHost:e.target.value }))} placeholder="smtp.office365.com" />
-              </div>
-              <div>
-                <LabelEl>Port</LabelEl>
-                <input style={inputStyle} value={form.smtpPort} onChange={e => setForm(f => ({ ...f, smtpPort:e.target.value }))} placeholder="587" type="number" />
-              </div>
-              <div>
-                <LabelEl>From Address</LabelEl>
-                <input style={inputStyle} value={form.fromEmail} onChange={e => setForm(f => ({ ...f, fromEmail:e.target.value }))} placeholder="your@lilly.com" />
-              </div>
-              <div>
-                <LabelEl>SMTP Username</LabelEl>
-                <input style={inputStyle} value={form.smtpUser} onChange={e => setForm(f => ({ ...f, smtpUser:e.target.value }))} placeholder="your@lilly.com" />
-              </div>
-              <div style={{ gridColumn:"span 2" }}>
-                <LabelEl>SMTP Password</LabelEl>
-                <input style={inputStyle} value={form.smtpPassword} onChange={e => setForm(f => ({ ...f, smtpPassword:e.target.value }))} placeholder="Password or app password" type="password" />
-              </div>
+          {emailTestResult && (
+            <div style={{ fontSize:11, padding:"5px 10px", borderRadius:3, background: emailTestResult.ok ? "#EDFAF3" : "#FFF0F2", color: emailTestResult.ok ? "#00703C" : "#C8102E", border: `1px solid ${emailTestResult.ok ? "#00703C30" : "#C8102E30"}` }}>
+              {emailTestResult.ok ? "✓" : "✗"} {emailTestResult.msg}
             </div>
           )}
 

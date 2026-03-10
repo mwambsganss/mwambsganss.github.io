@@ -12,16 +12,16 @@ Serves static files and provides:
   POST   /api/schedules         — create or update a schedule
   DELETE /api/schedules/<id>    — delete a schedule
   POST   /api/schedules/<id>/run — run a schedule immediately
+  GET    /api/graph-auth-status  — whether Graph Mail.Send token is available
+  POST   /api/email-test         — send a test email via Microsoft Graph
 """
 import base64
 import concurrent.futures
-import email.mime.multipart
-import email.mime.text
+import os
 import http.server
 import json
 import logging
 import secrets
-import smtplib
 import subprocess
 import threading
 import time
@@ -42,30 +42,33 @@ log = logging.getLogger("jira-dash")
 
 PORT           = 8080
 SERVE_DIR      = Path(__file__).parent
-SCHEDULES_FILE = SERVE_DIR / "schedules.json"
+SCHEDULES_FILE   = SERVE_DIR / "schedules.json"
+GRAPH_TOKEN_FILE = SERVE_DIR / "graph_token.json"
 
 # Max issues fetched per project per scheduled run
 MAX_ISSUES_PER_PROJECT = 2000
 JIRA_PAGE_SIZE         = 100
 
 # ── Lilly SSO / Azure AD config ───────────────────────────────────────────────
-SSO_TENANT_ID    = "18a59a81-eea8-4c30-948a-d8824cdc2580"
-SSO_CLIENT_ID    = "82e22945-302c-4dc6-b961-54b937ff4c5f"
-SSO_REDIRECT_URI = f"http://localhost:{PORT}/api/callback"
-SSO_SCOPES       = "openid profile email offline_access"
+# Set these in a .env file or as environment variables (never hardcode secrets)
+SSO_TENANT_ID     = os.getenv("SSO_TENANT_ID", "FILL_IN_LILLY_TENANT_ID")
+SSO_CLIENT_ID     = os.getenv("SSO_CLIENT_ID", "FILL_IN_LILLY_CLIENT_ID")
+SSO_CLIENT_SECRET = os.getenv("SSO_CLIENT_SECRET", "FILL_IN_LILLY_CLIENT_SECRET")
+SSO_REDIRECT_URI  = f"http://localhost:{PORT}/api/callback"
+# Mail.Send lets the server call Graph /me/sendMail on behalf of the logged-in user.
+# offline_access returns a refresh token so scheduled emails work after the 1-hour
+# access token expires.
+SSO_SCOPES       = "openid profile email offline_access https://graph.microsoft.com/Mail.Send"
 SSO_CONFIGURED   = SSO_TENANT_ID != "FILL_IN_LILLY_TENANT_ID"
 
 # In-memory session store (resets on server restart)
 _sessions: dict = {}  # session_id  → {access_token, email, expires_at}
 _pending:  dict = {}  # oauth_state → session_id  (CSRF guard)
 _keychain: dict = {}  # cached keychain token so macOS only prompts once
-_graph_token:   dict = {}   # {access_token, refresh_token, email, expires_at}
-_graph_pending: dict = {}   # oauth_state → True  (CSRF guard)
-GRAPH_SCOPES       = "Mail.Send offline_access openid profile email"
-GRAPH_REDIRECT_URI = f"http://localhost:{PORT}/api/graph-callback"
 
-# Lock protecting schedules.json reads/writes and _graph_token mutation
-_schedules_lock = threading.Lock()
+# Lock protecting schedules.json reads/writes
+_schedules_lock   = threading.Lock()
+# Lock protecting graph_token.json reads/writes
 _graph_token_lock = threading.Lock()
 
 # Event used to wake the scheduler early (e.g. on shutdown)
@@ -132,8 +135,16 @@ def _ssl_ctx_internal() -> ssl.SSLContext:
 
 
 def _ssl_ctx_external() -> ssl.SSLContext:
-    """Verified SSL context for external endpoints (Microsoft Graph, Azure AD)."""
-    ctx = ssl.create_default_context()
+    """Verified SSL context for external endpoints (Microsoft Graph, Azure AD).
+
+    Uses certifi's CA bundle if available — required on macOS python.org builds
+    which ship without system root certificates baked in.
+    """
+    try:
+        import certifi
+        ctx = ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        ctx = ssl.create_default_context()
     if hasattr(ssl, "OP_IGNORE_UNEXPECTED_EOF"):
         ctx.options |= ssl.OP_IGNORE_UNEXPECTED_EOF
     return ctx
@@ -194,101 +205,103 @@ def _email_from_jwt(token: str) -> str:
     )
 
 
-# ── Graph API helpers ─────────────────────────────────────────────────────────
+# ── Email delivery via Microsoft Graph ───────────────────────────────────────
 
-def _graph_configured() -> bool:
-    return bool(_get_effective_tenant_id()) and SSO_CLIENT_ID != "FILL_IN_CLIENT_ID"
-
-
-def _graph_token_valid() -> bool:
-    with _graph_token_lock:
-        if not _graph_token.get("access_token"):
-            return False
-        exp = _graph_token.get("expires_at", "")
+def _load_graph_token() -> dict:
     try:
-        return datetime.strptime(exp, "%Y-%m-%dT%H:%M:%SZ") > _utcnow()
+        return json.loads(GRAPH_TOKEN_FILE.read_text()) if GRAPH_TOKEN_FILE.exists() else {}
     except Exception:
-        return True   # assume valid if we can't parse expiry
+        return {}
 
 
-def _refresh_graph_if_needed() -> bool:
-    """Refresh the Graph access token using the stored refresh token. Returns True if now valid."""
-    if _graph_token_valid():
-        return True
+def _save_graph_token(data: dict) -> None:
+    GRAPH_TOKEN_FILE.write_text(json.dumps(data, indent=2))
+
+
+def _get_valid_graph_token() -> str:
+    """Return a valid Graph access token, refreshing via stored refresh token if needed."""
     with _graph_token_lock:
-        refresh = _graph_token.get("refresh_token", "")
-    if not refresh:
-        log.warning("Graph refresh failed: no refresh token stored")
-        return False
-    tenant_id = _get_effective_tenant_id()
-    if not tenant_id:
-        log.warning("Graph refresh failed: cannot determine tenant ID")
-        return False
+        tok = _load_graph_token()
+    if not tok:
+        return ""
+    # Return existing token if not yet expired (with 60 s buffer)
+    expires_at = tok.get("expires_at", "")
+    if expires_at:
+        try:
+            exp = datetime.strptime(expires_at, "%Y-%m-%dT%H:%M:%SZ")
+            if _utcnow() < exp - timedelta(seconds=60):
+                return tok.get("access_token", "")
+        except ValueError:
+            pass
+    # Refresh
+    refresh_token = tok.get("refresh_token", "")
+    if not refresh_token:
+        return ""
     try:
-        token_url = f"https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token"
-        body = urllib.parse.urlencode({
+        token_url  = f"https://login.microsoftonline.com/{SSO_TENANT_ID}/oauth2/v2.0/token"
+        token_body = urllib.parse.urlencode({
             "client_id":     SSO_CLIENT_ID,
-            "refresh_token": refresh,
+            "client_secret": SSO_CLIENT_SECRET,
             "grant_type":    "refresh_token",
-            "scope":         GRAPH_SCOPES,
+            "refresh_token": refresh_token,
+            "scope":         "https://graph.microsoft.com/Mail.Send offline_access",
         }).encode()
         req = urllib.request.Request(
-            token_url, data=body,
+            token_url, data=token_body,
             headers={"Content-Type": "application/x-www-form-urlencoded"},
         )
-        with urllib.request.urlopen(req) as resp:
-            data = json.loads(resp.read())
+        with urllib.request.urlopen(req, context=_ssl_ctx_external()) as resp:
+            new_tok = json.loads(resp.read())
+        expires_in = new_tok.get("expires_in", 3600)
+        new_tok["expires_at"] = (
+            _utcnow() + timedelta(seconds=expires_in)
+        ).strftime("%Y-%m-%dT%H:%M:%SZ")
         with _graph_token_lock:
-            _graph_token["access_token"]  = data.get("access_token", "")
-            _graph_token["refresh_token"] = data.get("refresh_token", refresh)
-            _graph_token["expires_at"]    = time.strftime(
-                "%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() + data.get("expires_in", 3600))
-            )
-        ok = bool(_graph_token.get("access_token"))
-        if not ok:
-            log.warning("Graph refresh returned no access_token")
-        return ok
-    except urllib.error.HTTPError as e:
-        log.error("Graph refresh HTTP error %s: %s", e.code, e.read().decode()[:200])
-        return False
+            _save_graph_token(new_tok)
+        log.info("Graph token refreshed successfully")
+        return new_tok.get("access_token", "")
     except Exception as e:
-        log.error("Graph refresh failed: %s", e)
-        return False
+        log.error("Graph token refresh failed: %s", e)
+        return ""
 
 
 def _send_via_graph(subject: str, html_body: str, recipients: list) -> str:
-    """Send email via Microsoft Graph API /me/sendMail."""
-    if not _refresh_graph_if_needed():
-        return "Email failed: Microsoft account not connected — open Settings > Schedules and click Connect Microsoft Account"
-    with _graph_token_lock:
-        access_token = _graph_token.get("access_token", "")
-    payload = {
+    """Send email via Microsoft Graph /me/sendMail using the stored delegated token."""
+    access_token = _get_valid_graph_token()
+    if not access_token:
+        return "Email not sent — sign in at /api/login to authorize email sending (needed once)"
+
+    payload = json.dumps({
         "message": {
             "subject": subject,
             "body":    {"contentType": "HTML", "content": html_body},
-            "toRecipients": [{"emailAddress": {"address": r}} for r in recipients],
+            "toRecipients": [
+                {"emailAddress": {"address": r}} for r in recipients
+            ],
         },
-        "saveToSentItems": False,
-    }
+        "saveToSentItems": True,
+    }).encode()
     req = urllib.request.Request(
         "https://graph.microsoft.com/v1.0/me/sendMail",
-        data=json.dumps(payload).encode(),
-        headers={"Authorization": f"Bearer {access_token}",
-                 "Content-Type": "application/json"},
+        data=payload,
+        headers={
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type":  "application/json",
+        },
         method="POST",
     )
     try:
-        with urllib.request.urlopen(req) as resp:
-            resp.read()   # 202 Accepted = success
+        with urllib.request.urlopen(req, context=_ssl_ctx_external()) as resp:
+            resp.read()
         log.info("Graph email sent to %d recipients", len(recipients))
         return f"Sent to {len(recipients)} recipient(s) via Microsoft Graph"
     except urllib.error.HTTPError as e:
         msg = e.read().decode()[:300]
         log.error("Graph send HTTP error %s: %s", e.code, msg)
-        return f"Graph send failed: {e.code} {msg}"
+        return f"Graph send failed: HTTP {e.code} — {msg}"
     except Exception as e:
         log.error("Graph send failed: %s", e)
-        return f"Graph send failed: {e}"
+        return f"Graph send failed: {repr(e)}"
 
 
 # ── Jira fetch helpers ────────────────────────────────────────────────────────
@@ -342,20 +355,15 @@ def _fetch_project_issues(jira_base: str, auth: str, proj_key: str,
 
 def run_schedule(schedule: dict) -> str:
     """Fetch Jira issues, generate LLM summary, send email. Returns status string."""
-    jira_base  = schedule.get("jiraBaseUrl", "").rstrip("/")
-    jira_email = schedule.get("jiraEmail", "")
-    jira_token = schedule.get("jiraToken", "")
-    projects   = [p for p in schedule.get("projects", []) if p.get("selected", True)]
-    llm_url    = schedule.get("llmUrl", "").rstrip("/")
-    llm_key    = schedule.get("llmKey", "")
-    llm_model  = schedule.get("llmModel", "")
-    recipients = schedule.get("recipients", [])
-    frequency  = schedule.get("frequency", "weekly")
-    smtp_host  = schedule.get("smtpHost", "smtp.office365.com")
-    smtp_port  = int(schedule.get("smtpPort", 587))
-    smtp_user  = schedule.get("smtpUser", "")
-    smtp_pass  = schedule.get("smtpPassword", "")
-    from_email = schedule.get("fromEmail", "")
+    jira_base    = schedule.get("jiraBaseUrl", "").rstrip("/")
+    jira_email   = schedule.get("jiraEmail", "")
+    jira_token   = schedule.get("jiraToken", "")
+    projects     = [p for p in schedule.get("projects", []) if p.get("selected", True)]
+    llm_url      = schedule.get("llmUrl", "").rstrip("/")
+    llm_key      = schedule.get("llmKey", "")
+    llm_model    = schedule.get("llmModel", "")
+    recipients   = schedule.get("recipients", [])
+    frequency    = schedule.get("frequency", "weekly")
 
     if not all([jira_base, jira_email, jira_token, projects, llm_url, llm_key, recipients]):
         return "Missing required configuration"
@@ -430,8 +438,6 @@ def run_schedule(schedule: dict) -> str:
         freq_label=freq_label, date_from=date_from, date_to=date_to,
         project_names=project_names, total_issues=len(all_issues),
         summary_text=summary_text, recipients=recipients,
-        smtp_host=smtp_host, smtp_port=smtp_port,
-        smtp_user=smtp_user, smtp_pass=smtp_pass, from_email=from_email,
     )
     log.info("Schedule '%s' completed: %s", schedule.get("name"), result)
     return result
@@ -440,9 +446,8 @@ def run_schedule(schedule: dict) -> str:
 def _build_and_send_email(*, schedule_name: str, freq_label: str,
                            date_from: str, date_to: str, project_names: str,
                            total_issues: int, summary_text: str,
-                           recipients: list, smtp_host: str, smtp_port: int,
-                           smtp_user: str, smtp_pass: str, from_email: str) -> str:
-    """Construct the HTML email and send it via Graph API or SMTP fallback."""
+                           recipients: list) -> str:
+    """Construct the HTML email and deliver via Microsoft Graph."""
     subject = f"{schedule_name} — {date_from} to {date_to}"
 
     # Sanitize LLM output: strip HTML tags before embedding in email body
@@ -463,32 +468,7 @@ def _build_and_send_email(*, schedule_name: str, freq_label: str,
   </div>
 </body></html>"""
 
-    # Prefer Microsoft Graph API (no SMTP auth required); fall back to SMTP
-    if _graph_token.get("access_token") or _graph_token.get("refresh_token"):
-        return _send_via_graph(subject, html_body, recipients)
-
-    # SMTP fallback
-    msg = email.mime.multipart.MIMEMultipart("alternative")
-    msg["Subject"] = subject
-    msg["From"]    = from_email
-    msg["To"]      = ", ".join(recipients)
-    msg.attach(email.mime.text.MIMEText(
-        f"Lilly Enterprise Automation — {freq_label.title()} Portfolio Briefing\n"
-        f"{date_from} to {date_to}\nProjects: {project_names}\n\n{safe_summary}", "plain"
-    ))
-    msg.attach(email.mime.text.MIMEText(html_body, "html"))
-
-    try:
-        with smtplib.SMTP(smtp_host, smtp_port, timeout=30) as smtp:
-            smtp.ehlo()
-            smtp.starttls()
-            smtp.ehlo()
-            if smtp_user and smtp_pass:
-                smtp.login(smtp_user, smtp_pass)
-            smtp.sendmail(from_email, recipients, msg.as_string())
-        return f"Sent to {len(recipients)} recipient(s)"
-    except Exception as e:
-        return f"Email failed: {e}"
+    return _send_via_graph(subject, html_body, recipients)
 
 
 # ── Background scheduler ──────────────────────────────────────────────────────
@@ -547,8 +527,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self._upsert_schedule()
         elif self.path.startswith("/api/schedules/") and self.path.endswith("/run"):
             self._run_schedule_now()
-        elif self.path == "/api/smtp-test":
-            self._test_smtp()
+        elif self.path == "/api/email-test":
+            self._test_email()
         else:
             self._error(404, "Not found")
 
@@ -559,16 +539,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self._start_sso_login()
         elif self.path.startswith("/api/callback"):
             self._handle_sso_callback()
-        elif self.path == "/api/graph-login":
-            self._start_graph_login()
-        elif self.path.startswith("/api/graph-callback"):
-            self._handle_graph_callback()
-        elif self.path == "/api/graph-status":
-            self._serve_graph_status()
         elif self.path.startswith("/api/llm-models"):
             self._serve_llm_models()
         elif self.path == "/api/schedules":
             self._list_schedules()
+        elif self.path == "/api/graph-auth-status":
+            self._serve_graph_auth_status()
         else:
             super().do_GET()
 
@@ -626,34 +602,46 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         token_url  = f"https://login.microsoftonline.com/{SSO_TENANT_ID}/oauth2/v2.0/token"
         token_body = urllib.parse.urlencode({
-            "client_id":    SSO_CLIENT_ID,
-            "code":         code,
-            "redirect_uri": SSO_REDIRECT_URI,
-            "grant_type":   "authorization_code",
-            "scope":        SSO_SCOPES,
+            "client_id":     SSO_CLIENT_ID,
+            "client_secret": SSO_CLIENT_SECRET,
+            "code":          code,
+            "redirect_uri":  SSO_REDIRECT_URI,
+            "grant_type":    "authorization_code",
+            "scope":         SSO_SCOPES,
         }).encode()
         try:
             req = urllib.request.Request(
                 token_url, data=token_body,
                 headers={"Content-Type": "application/x-www-form-urlencoded"},
             )
-            with urllib.request.urlopen(req) as resp:
+            with urllib.request.urlopen(req, context=_ssl_ctx_external()) as resp:
                 token_json = json.loads(resp.read())
         except Exception as e:
             self._error(500, f"Token exchange failed: {e}")
             return
 
-        access_token = token_json.get("access_token", "")
-        expires_in   = token_json.get("expires_in", 3600)
-        email_addr   = _email_from_jwt(access_token)
+        access_token  = token_json.get("access_token", "")
+        refresh_token = token_json.get("refresh_token", "")
+        expires_in    = token_json.get("expires_in", 3600)
+        expires_at    = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() + expires_in))
+        email_addr    = _email_from_jwt(access_token)
 
         _sessions[session_id] = {
             "access_token": access_token,
             "email":        email_addr,
-            "expires_at":   time.strftime(
-                "%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() + expires_in)
-            ),
+            "expires_at":   expires_at,
         }
+
+        # Persist Graph token so scheduled email runs can use it after the session expires
+        if refresh_token:
+            with _graph_token_lock:
+                _save_graph_token({
+                    "access_token":  access_token,
+                    "refresh_token": refresh_token,
+                    "expires_at":    expires_at,
+                    "email":         email_addr,
+                })
+            log.info("Graph Mail.Send token saved for %s", email_addr)
 
         self.send_response(302)
         self.send_header("Location", "/dashboard.html")
@@ -698,110 +686,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         except Exception as e:
             self._error(500, str(e))
 
-    # ── Graph API auth ────────────────────────────────────────────────────────
-
-    def _start_graph_login(self):
-        if not _graph_configured():
-            tenant_id = _get_effective_tenant_id()
-            if not tenant_id:
-                self._error(501, "Cannot detect tenant ID — run: lilly-code login, then retry")
-            else:
-                self._error(501, f"SSO_CLIENT_ID not configured — set it in server.py (tenant auto-detected: {tenant_id})")
-            return
-        state = secrets.token_urlsafe(16)
-        _graph_pending[state] = True
-        tenant_id = _get_effective_tenant_id()
-        params = urllib.parse.urlencode({
-            "client_id":     SSO_CLIENT_ID,
-            "response_type": "code",
-            "redirect_uri":  GRAPH_REDIRECT_URI,
-            "response_mode": "query",
-            "scope":         GRAPH_SCOPES,
-            "state":         state,
-        })
-        auth_url = (
-            f"https://login.microsoftonline.com/{tenant_id}"
-            f"/oauth2/v2.0/authorize?{params}"
-        )
-        self.send_response(302)
-        self.send_header("Location", auth_url)
-        self._cors_headers()
-        self.end_headers()
-
-    def _handle_graph_callback(self):
-        qs    = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
-        code  = qs.get("code",  [None])[0]
-        state = qs.get("state", [None])[0]
-        error = qs.get("error", [None])[0]
-
-        if error:
-            self._error(401, f"Graph auth error: {qs.get('error_description', [error])[0]}")
-            return
-        if not _graph_pending.pop(state, False) or not code:
-            self._error(400, "Invalid Graph OAuth callback — state mismatch or missing code")
-            return
-
-        tenant_id = _get_effective_tenant_id()
-        token_url = f"https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token"
-        body = urllib.parse.urlencode({
-            "client_id":    SSO_CLIENT_ID,
-            "code":         code,
-            "redirect_uri": GRAPH_REDIRECT_URI,
-            "grant_type":   "authorization_code",
-            "scope":        GRAPH_SCOPES,
-        }).encode()
-        try:
-            req = urllib.request.Request(
-                token_url, data=body,
-                headers={"Content-Type": "application/x-www-form-urlencoded"},
-            )
-            with urllib.request.urlopen(req) as resp:
-                data = json.loads(resp.read())
-        except Exception as e:
-            self._error(500, f"Graph token exchange failed: {e}")
-            return
-
-        with _graph_token_lock:
-            _graph_token["access_token"]  = data.get("access_token", "")
-            _graph_token["refresh_token"] = data.get("refresh_token", "")
-            _graph_token["expires_at"]    = time.strftime(
-                "%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() + data.get("expires_in", 3600))
-            )
-            _graph_token["email"] = _email_from_jwt(_graph_token["access_token"])
-
-        log.info("Graph token stored for %s", _graph_token.get("email"))
-
-        # Close the popup and notify the opener
-        self.send_response(200)
-        self.send_header("Content-Type", "text/html")
-        self._cors_headers()
-        self.end_headers()
-        self.wfile.write(
-            b"<!DOCTYPE html><html><body>"
-            b"<script>window.opener&&window.opener.postMessage('graph-auth-complete','*');window.close();</script>"
-            b"<p>Connected! You can close this window.</p>"
-            b"</body></html>"
-        )
-
-    def _serve_graph_status(self):
-        tenant_id    = _get_effective_tenant_id()
-        client_ready = SSO_CLIENT_ID != "FILL_IN_CLIENT_ID"
-        if _graph_token.get("access_token") or _graph_token.get("refresh_token"):
-            self._json(200, {
-                "connected":       True,
-                "email":           _graph_token.get("email", ""),
-                "valid":           _graph_token_valid(),
-                "graphConfigured": True,
-            })
-        else:
-            self._json(200, {
-                "connected":       False,
-                "graphConfigured": _graph_configured(),
-                "tenantDetected":  bool(tenant_id),
-                "tenantId":        tenant_id,
-                "clientIdNeeded":  not client_ready,
-            })
-
     # ── Schedule CRUD ─────────────────────────────────────────────────────────
 
     def _list_schedules(self):
@@ -837,23 +721,31 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             _save_schedules(schedules)
         self._json(200, {"ok": True})
 
-    def _test_smtp(self):
-        length    = int(self.headers.get("Content-Length", 0))
-        body      = json.loads(self.rfile.read(length))
-        smtp_host = body.get("smtpHost", "")
-        smtp_port = int(body.get("smtpPort", 25))
-        smtp_user = body.get("smtpUser", "")
-        smtp_pass = body.get("smtpPassword", "")
-        try:
-            with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as smtp:
-                smtp.ehlo()
-                smtp.starttls()
-                code, msg = smtp.ehlo()
-                if smtp_user and smtp_pass:
-                    smtp.login(smtp_user, smtp_pass)
-            self._json(200, {"ok": True, "msg": f"Connected to {smtp_host}:{smtp_port} — STARTTLS + EHLO OK ({code})"})
-        except Exception as e:
-            self._json(200, {"ok": False, "msg": str(e)})
+    def _serve_graph_auth_status(self):
+        tok = _load_graph_token()
+        if tok.get("refresh_token"):
+            self._json(200, {
+                "authorized": True,
+                "email": tok.get("email", ""),
+                "expires_at": tok.get("expires_at", ""),
+            })
+        else:
+            self._json(200, {"authorized": False})
+
+    def _test_email(self):
+        length  = int(self.headers.get("Content-Length", 0))
+        body    = json.loads(self.rfile.read(length))
+        recipients = body.get("recipients", [])
+        if not recipients:
+            self._json(200, {"ok": False, "msg": "No recipients provided"})
+            return
+        result = _send_via_graph(
+            subject   = "Jira Dashboard — Email Test",
+            html_body = "<p>This is a test message from the Jira Executive Dashboard.</p>",
+            recipients = recipients,
+        )
+        ok = result.startswith("Sent")
+        self._json(200, {"ok": ok, "msg": result})
 
     def _run_schedule_now(self):
         sched_id = self.path.split("/")[-2]

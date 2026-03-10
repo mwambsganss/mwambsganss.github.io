@@ -1,6 +1,7 @@
 # Security - Never commit these files
 .env
 .env.*
+!.env.example
 *.env
 .env.local
 .env.development

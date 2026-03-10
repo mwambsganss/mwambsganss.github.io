@@ -1,0 +1,28 @@
+[
+  {
+    "id": "4af03f27-e216-44f2-a555-42a614b37dc6",
+    "name": "Weekly Monday Summary",
+    "frequency": "weekly",
+    "dayOfWeek": 0,
+    "recipients": [
+      "m.wambsganss@lilly.com"
+    ],
+    "webhookUrl": "https://default18a59a81eea84c30948ad8824cdc25.80.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/bb4a42b843fd4faf8eaee5e821e8949e/triggers/manual/paths/invoke?api-version=1",
+    "jiraBaseUrl": "https://lilly-jira.atlassian.net",
+    "jiraEmail": "m.wambsganss@lilly.com",
+    "jiraToken": "",
+    "projects": [
+      {
+        "key": "EAA",
+        "name": "EA Architects",
+        "selected": true
+      }
+    ],
+    "llmUrl": "https://lilly-code-server.api.gateway.llm.lilly.com",
+    "llmKey": "",
+    "llmModel": "sonnet-latest",
+    "enabled": true,
+    "lastRun": "2026-03-10T16:56:36Z",
+    "lastStatus": "Email failed: (530, b'5.7.57 Client not authenticated to send mail. [CH2PR11CA0024.namprd11.prod.outlook.com 2026-03-10T16:56:11.170Z 08DE7DB150E78857]', '')"
+  }
+]
