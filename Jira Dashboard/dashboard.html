@@ -59,10 +59,11 @@
         eval(compiled); // eslint-disable-line no-eval
       })
       .catch(err => {
+        function esc(s) { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
         document.getElementById("root").innerHTML =
           `<div style="color:#f87171;padding:40px;font-family:monospace;line-height:1.8">
             <strong>Failed to load dashboard</strong><br/><br/>
-            ${err.message.replace(/</g,"&lt;")}<br/><br/>
+            ${esc(err.message)}<br/><br/>
             Make sure you are serving this folder via server.py:<br/>
             <code style="background:#1e293b;padding:4px 8px;border-radius:4px">
               python3 server.py

@@ -3,6 +3,7 @@
    Jira REST API v3 + Claude (Lilly LLM Gateway)
    Projects: EAA, ASO, KILO
    ===================================================== */
+/* global Chart */
 
 "use strict";
 
@@ -16,6 +17,11 @@ const LS = {
   CLAUDE_KEY:  "jiraDash_claudeKey",
   CLAUDE_MODEL:"jiraDash_claudeModel",
 };
+
+// ── Constants ─────────────────────────────────────────────────────────────────
+const JIRA_PAGE_SIZE      = 100;   // issues per Jira API request
+const MAX_ISSUES_PER_PROJ = 2000;  // safety cap per project
+const DEFAULT_PAGE_SIZE   = 25;    // table rows per page
 
 // ── Runtime state ─────────────────────────────────────────────────────────────
 let allIssues   = [];   // raw normalized issues
@@ -141,12 +147,12 @@ async function refreshData() {
 
 // ── Jira REST API ─────────────────────────────────────────────────────────────
 async function fetchProjectIssues(baseUrl, auth, projectKey) {
-  const maxResults = 100;
+  const maxResults = JIRA_PAGE_SIZE;
   let startAt = 0;
   let total = Infinity;
   const results = [];
 
-  while (startAt < total) {
+  while (startAt < total && startAt < MAX_ISSUES_PER_PROJ) {
     const jql = encodeURIComponent(
       `project = ${projectKey} ORDER BY updated DESC`
     );
@@ -359,15 +365,15 @@ function buildFilterOptions() {
   const priorities = [...new Set(allIssues.map(i => i.priorityDisplay))].sort();
   const sprints    = [...new Set(allIssues.map(i => i.sprint).filter(Boolean))].sort();
 
-  buildMultiSelect("filterProject",  projects,   applyFilters);
-  buildMultiSelect("filterStatus",   statuses,   applyFilters);
-  buildMultiSelect("filterType",     types,      applyFilters);
-  buildMultiSelect("filterPriority", priorities, applyFilters);
+  buildMultiSelect("filterProject",  projects);
+  buildMultiSelect("filterStatus",   statuses);
+  buildMultiSelect("filterType",     types);
+  buildMultiSelect("filterPriority", priorities);
   buildSelectOptions("filterAssignee", assignees, "All Assignees");
   buildSelectOptions("filterSprint",   sprints,   "All Sprints");
 }
 
-function buildMultiSelect(containerId, items, onChange) {
+function buildMultiSelect(containerId, items) {
   const container = document.getElementById(containerId);
   if (!container) return;
   container.innerHTML = items.map(item =>
@@ -471,10 +477,10 @@ const CHART_COLORS = [
 ];
 
 function renderCharts(issues) {
-  renderDoughnut("chartStatus",   groupBy(issues, "statusDisplay"),   "Status Breakdown");
-  renderDoughnut("chartType",     groupBy(issues, "typeDisplay"),     "Issue Types");
-  renderBar("chartAssignee",      groupBy(issues, "assignee"),        "By Assignee");
-  renderDoughnut("chartPriority", groupBy(issues, "priorityDisplay"), "Priority");
+  renderDoughnut("chartStatus",   groupBy(issues, "statusDisplay"));
+  renderDoughnut("chartType",     groupBy(issues, "typeDisplay"));
+  renderBar("chartAssignee",      groupBy(issues, "assignee"));
+  renderDoughnut("chartPriority", groupBy(issues, "priorityDisplay"));
   renderTimeline("chartTimeline", issues);
 }
 
@@ -488,12 +494,18 @@ function groupBy(issues, key) {
   return Object.fromEntries(Object.entries(map).sort((a,b) => b[1]-a[1]));
 }
 
-function renderDoughnut(canvasId, data, title) {
+function renderDoughnut(canvasId, data) {
   const ctx = document.getElementById(canvasId)?.getContext("2d");
   if (!ctx) return;
-  if (charts[canvasId]) charts[canvasId].destroy();
   const labels = Object.keys(data);
   const values = Object.values(data);
+  if (charts[canvasId]) {
+    // Update in place — avoids destroy/recreate flicker
+    charts[canvasId].data.labels = labels;
+    charts[canvasId].data.datasets[0].data = values;
+    charts[canvasId].update("none");
+    return;
+  }
   charts[canvasId] = new Chart(ctx, {
     type: "doughnut",
     data: {
@@ -504,23 +516,30 @@ function renderDoughnut(canvasId, data, title) {
       responsive: true, maintainAspectRatio: true,
       plugins: {
         legend: { position:"right", labels:{ color:"#8b949e", font:{size:11}, boxWidth:12 } },
-        tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw}` } }
+        tooltip: { callbacks: { label: c => ` ${c.label}: ${c.raw}` } }
       }
     }
   });
 }
 
-function renderBar(canvasId, data, title) {
+function renderBar(canvasId, data) {
   const ctx = document.getElementById(canvasId)?.getContext("2d");
   if (!ctx) return;
-  if (charts[canvasId]) charts[canvasId].destroy();
-  const top12 = Object.fromEntries(Object.entries(data).slice(0, 12));
+  const top12   = Object.fromEntries(Object.entries(data).slice(0, 12));
+  const labels  = Object.keys(top12);
+  const values  = Object.values(top12);
+  if (charts[canvasId]) {
+    charts[canvasId].data.labels = labels;
+    charts[canvasId].data.datasets[0].data = values;
+    charts[canvasId].update("none");
+    return;
+  }
   charts[canvasId] = new Chart(ctx, {
     type: "bar",
     data: {
-      labels: Object.keys(top12),
+      labels,
       datasets: [{
-        data: Object.values(top12),
+        data: values,
         backgroundColor: CHART_COLORS,
         borderRadius: 4, borderWidth: 0
       }]
@@ -625,7 +644,7 @@ function sortedIssues(issues) {
 // ── Table render ──────────────────────────────────────────────────────────────
 function renderTable() {
   const groupByVal = document.getElementById("groupBy")?.value || "";
-  const pageSize   = parseInt(document.getElementById("pageSize")?.value || "25") || filtered.length;
+  const pageSize   = parseInt(document.getElementById("pageSize")?.value || String(DEFAULT_PAGE_SIZE)) || filtered.length;
   const sorted     = sortedIssues(filtered);
   const totalRows  = sorted.length;
   const totalPages = pageSize > 0 ? Math.ceil(totalRows / pageSize) : 1;
@@ -884,8 +903,10 @@ ${topAssignee ? `- Highest load: **${topAssignee[0]}** (${topAssignee[1]} issues
 }
 
 // Minimal markdown → HTML for summary display
+// Input is HTML-escaped first to prevent XSS from LLM output,
+// then safe markdown patterns are applied on the escaped text.
 function markdownToHtml(text) {
-  return text
+  return String(text || "")
     .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
     .replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")
     .replace(/\*(.+?)\*/g,"<em>$1</em>")
@@ -910,14 +931,18 @@ function setLoadingMsg(msg) {
   document.getElementById("loadingMsg").textContent = msg;
 }
 
-function showToast(msg, type) {
-  // Simple: log to console and write to loading area briefly
+function showToast(msg) {
   console.warn(msg);
 }
 
 // ── Utilities ─────────────────────────────────────────────────────────────────
 function escHtml(s) {
-  return String(s||"")
-    .replace(/&/g,"&amp;").replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  return String(s || "")
+    .replace(/&/g,  "&amp;")
+    .replace(/</g,  "&lt;")
+    .replace(/>/g,  "&gt;")
+    .replace(/"/g,  "&quot;")
+    .replace(/'/g,  "&#39;")
+    .replace(/`/g,  "&#96;")
+    .replace(/\//g, "&#x2F;");
 }

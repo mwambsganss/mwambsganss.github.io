@@ -177,6 +177,274 @@ function EmptyState({ onOpenSettings }) {
 }
 
 // ─────────────────────────────────────────────────────────────────
+// Schedules Section  (embedded inside SettingsModal)
+// ─────────────────────────────────────────────────────────────────
+const DAYS  = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+const FREQS = [{ value:"weekly", label:"Every week" }, { value:"biweekly", label:"Every 2 weeks" }, { value:"monthly", label:"Every month" }];
+
+const BLANK_FORM = { name:"", frequency:"weekly", dayOfWeek:4, recipients:"", smtpHost:"smtp.office365.com", smtpPort:"587", smtpUser:"", smtpPassword:"", fromEmail:"" };
+
+function SchedulesSection({ jiraBaseUrl, jiraEmail, jiraToken, projects, llmUrl, llmKey, llmModel }) {
+  const [schedules, setSchedules]   = useState([]);
+  const [loading, setLoading]       = useState(false);
+  const [showForm, setShowForm]     = useState(false);
+  const [editing, setEditing]       = useState(null);   // schedule id being edited, or null
+  const [form, setForm]             = useState(BLANK_FORM);
+  const [runStatus, setRunStatus]   = useState({});     // id → status string
+  const [running, setRunning]       = useState({});     // id → bool
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("/api/schedules")
+      .then(r => r.json())
+      .then(d => setSchedules(d.schedules || []))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  function openNew() { setForm(BLANK_FORM); setEditing(null); setShowForm(true); }
+  function openEdit(s) {
+    setForm({ name: s.name, frequency: s.frequency, dayOfWeek: s.dayOfWeek,
+      recipients: (s.recipients || []).join(", "), smtpHost: s.smtpHost || "smtp.office365.com",
+      smtpPort: String(s.smtpPort || 587), smtpUser: s.smtpUser || "", smtpPassword: s.smtpPassword || "", fromEmail: s.fromEmail || "" });
+    setEditing(s.id); setShowForm(true);
+  }
+
+  async function saveSchedule() {
+    const payload = {
+      ...(editing ? { id: editing } : {}),
+      name:       form.name,
+      frequency:  form.frequency,
+      dayOfWeek:  Number(form.dayOfWeek),
+      recipients: form.recipients.split(/[,\n]/).map(s => s.trim()).filter(Boolean),
+      smtpHost:   form.smtpHost,
+      smtpPort:   Number(form.smtpPort),
+      smtpUser:   form.smtpUser,
+      smtpPassword: form.smtpPassword,
+      fromEmail:  form.fromEmail,
+      // Capture current Jira + LLM credentials and selected projects
+      jiraBaseUrl, jiraEmail, jiraToken,
+      projects:   projects.filter(p => p.selected),
+      llmUrl, llmKey, llmModel,
+      enabled:    true,
+    };
+    const r = await fetch("/api/schedules", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(payload) });
+    const saved = await r.json();
+    setSchedules(prev => editing ? prev.map(s => s.id === editing ? saved : s) : [...prev, saved]);
+    setShowForm(false);
+  }
+
+  async function deleteSchedule(id) {
+    await fetch(`/api/schedules/${id}`, { method:"DELETE" });
+    setSchedules(prev => prev.filter(s => s.id !== id));
+  }
+
+  async function runNow(id) {
+    setRunning(prev => ({ ...prev, [id]: true }));
+    setRunStatus(prev => ({ ...prev, [id]: "Running…" }));
+    const r = await fetch(`/api/schedules/${id}/run`, { method:"POST" });
+    const d = await r.json();
+    setRunStatus(prev => ({ ...prev, [id]: d.status || d.error || "Done" }));
+    setRunning(prev => ({ ...prev, [id]: false }));
+    // Refresh list to get updated lastRun
+    fetch("/api/schedules").then(r => r.json()).then(d => setSchedules(d.schedules || []));
+  }
+
+  const secStyle = { fontSize: 12, color: "#6B6B6B" };
+  const inputStyle = { width:"100%", padding:"7px 10px", border:"1px solid #D0D0D0", borderRadius:3, fontSize:13, color:"#1A1A1A" };
+  const [smtpTesting, setSmtpTesting] = useState(false);
+  const [smtpTestResult, setSmtpTestResult] = useState(null);
+  const [graphStatus, setGraphStatus] = useState(null);
+
+  useEffect(() => {
+    fetch("/api/graph-status").then(r => r.json()).then(setGraphStatus).catch(() => {});
+  }, []);
+
+  function connectGraph() {
+    const popup = window.open("/api/graph-login", "graph-auth", "width=520,height=640,left=200,top=100");
+    function onMsg(e) {
+      if (e.data === "graph-auth-complete") {
+        window.removeEventListener("message", onMsg);
+        fetch("/api/graph-status").then(r => r.json()).then(setGraphStatus).catch(() => {});
+      }
+    }
+    window.addEventListener("message", onMsg);
+    // Clean up listener if popup is closed without completing auth
+    const pollClosed = setInterval(() => {
+      if (popup && popup.closed) {
+        clearInterval(pollClosed);
+        window.removeEventListener("message", onMsg);
+      }
+    }, 1000);
+  }
+
+  async function testSmtp() {
+    setSmtpTesting(true);
+    setSmtpTestResult(null);
+    try {
+      if (graphStatus?.connected) {
+        const r = await fetch("/api/graph-status");
+        const d = await r.json();
+        setSmtpTestResult({ ok: d.connected && d.valid, msg: d.connected ? `Graph API ready — connected as ${d.email}` : "Graph token expired — reconnect" });
+      } else {
+        const r = await fetch("/api/smtp-test", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ smtpHost: form.smtpHost, smtpPort: Number(form.smtpPort), smtpUser: form.smtpUser, smtpPassword: form.smtpPassword }) });
+        const d = await r.json();
+        setSmtpTestResult(d);
+      }
+    } catch (e) {
+      setSmtpTestResult({ ok: false, msg: e.message });
+    } finally {
+      setSmtpTesting(false);
+    }
+  }
+
+  return (
+    <section>
+      <div style={{ fontSize:13, fontWeight:700, color:"#1A1A1A", marginBottom:14, paddingBottom:8, borderBottom:"2px solid #C8102E", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+        <span>📅 Scheduled Email Reports</span>
+        <button onClick={openNew} style={{ fontSize:11, fontWeight:700, padding:"4px 12px", background:"#0057A8", color:"#fff", border:"none", borderRadius:3, cursor:"pointer" }}>+ New Schedule</button>
+      </div>
+
+      {/* ── Schedule form ── */}
+      {showForm && (
+        <div style={{ background:"#F9FAFB", border:"1px solid #E0E0E0", borderRadius:4, padding:16, marginBottom:16, display:"flex", flexDirection:"column", gap:12 }}>
+          <div style={{ fontWeight:600, fontSize:13, color:"#1A1A1A" }}>{editing ? "Edit Schedule" : "New Schedule"}</div>
+
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+            <div>
+              <LabelEl>Schedule Name</LabelEl>
+              <input style={inputStyle} value={form.name} onChange={e => setForm(f => ({ ...f, name:e.target.value }))} placeholder="Weekly Friday Summary" />
+            </div>
+            <div>
+              <LabelEl>Frequency</LabelEl>
+              <select style={inputStyle} value={form.frequency} onChange={e => setForm(f => ({ ...f, frequency:e.target.value }))}>
+                {FREQS.map(f => <option key={f.value} value={f.value}>{f.label}</option>)}
+              </select>
+            </div>
+            <div>
+              <LabelEl>Day of Week</LabelEl>
+              <select style={inputStyle} value={form.dayOfWeek} onChange={e => setForm(f => ({ ...f, dayOfWeek:Number(e.target.value) }))}>
+                {DAYS.map((d,i) => <option key={i} value={i}>{d}</option>)}
+              </select>
+            </div>
+            <div>
+              <LabelEl>Recipients (comma-separated)</LabelEl>
+              <input style={inputStyle} value={form.recipients} onChange={e => setForm(f => ({ ...f, recipients:e.target.value }))} placeholder="user1@lilly.com, user2@lilly.com" />
+            </div>
+          </div>
+
+          <div style={{ fontWeight:600, fontSize:11, color:"#6B6B6B", marginTop:4, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+            <span>Email Delivery</span>
+            <button onClick={testSmtp} disabled={smtpTesting} style={{ fontSize:11, padding:"3px 10px", border:"1px solid #0057A8", borderRadius:3, color:"#0057A8", background:"#fff", cursor:"pointer" }}>
+              {smtpTesting ? "Testing…" : "⚡ Test Connection"}
+            </button>
+          </div>
+
+          {/* Microsoft Graph connection status */}
+          <div style={{ display:"flex", alignItems:"center", gap:10, padding:"8px 12px", borderRadius:3, background: graphStatus?.connected ? "#EDFAF3" : "#FFFBEB", border:`1px solid ${graphStatus?.connected ? "#00703C30" : "#D9770030"}` }}>
+            {graphStatus?.connected ? (
+              <>
+                <span style={{ color:"#00703C", fontSize:12 }}>✓ Microsoft account connected as <strong>{graphStatus.email}</strong> — emails will send via Graph API</span>
+                <button onClick={connectGraph} style={{ marginLeft:"auto", fontSize:11, padding:"3px 10px", border:"1px solid #00703C", borderRadius:3, color:"#00703C", background:"#fff", cursor:"pointer", whiteSpace:"nowrap" }}>↺ Reconnect</button>
+              </>
+            ) : (
+              <>
+                <span style={{ color:"#D97700", fontSize:12 }}>
+                  {graphStatus?.clientIdNeeded
+                    ? `⚠ Set SSO_CLIENT_ID in server.py${graphStatus?.tenantDetected ? " (tenant auto-detected ✓)" : ""} — see instructions below`
+                    : "⚠ Microsoft account not connected"}
+                </span>
+                {graphStatus?.graphConfigured && (
+                  <button onClick={connectGraph} style={{ marginLeft:"auto", fontSize:11, fontWeight:700, padding:"4px 12px", border:"none", borderRadius:3, background:"#0057A8", color:"#fff", cursor:"pointer", whiteSpace:"nowrap" }}>Connect Microsoft Account</button>
+                )}
+              </>
+            )}
+          </div>
+
+          {smtpTestResult && (
+            <div style={{ fontSize:11, padding:"5px 10px", borderRadius:3, background: smtpTestResult.ok ? "#EDFAF3" : "#FFF0F2", color: smtpTestResult.ok ? "#00703C" : "#C8102E", border: `1px solid ${smtpTestResult.ok ? "#00703C30" : "#C8102E30"}` }}>
+              {smtpTestResult.ok ? "✓" : "✗"} {smtpTestResult.msg}
+            </div>
+          )}
+
+          {/* SMTP fallback — shown only when Graph not connected */}
+          {!graphStatus?.connected && (
+            <div style={{ display:"grid", gridTemplateColumns:"2fr 1fr 2fr", gap:12 }}>
+              <div>
+                <LabelEl>SMTP Host</LabelEl>
+                <input style={inputStyle} value={form.smtpHost} onChange={e => setForm(f => ({ ...f, smtpHost:e.target.value }))} placeholder="smtp.office365.com" />
+              </div>
+              <div>
+                <LabelEl>Port</LabelEl>
+                <input style={inputStyle} value={form.smtpPort} onChange={e => setForm(f => ({ ...f, smtpPort:e.target.value }))} placeholder="587" type="number" />
+              </div>
+              <div>
+                <LabelEl>From Address</LabelEl>
+                <input style={inputStyle} value={form.fromEmail} onChange={e => setForm(f => ({ ...f, fromEmail:e.target.value }))} placeholder="your@lilly.com" />
+              </div>
+              <div>
+                <LabelEl>SMTP Username</LabelEl>
+                <input style={inputStyle} value={form.smtpUser} onChange={e => setForm(f => ({ ...f, smtpUser:e.target.value }))} placeholder="your@lilly.com" />
+              </div>
+              <div style={{ gridColumn:"span 2" }}>
+                <LabelEl>SMTP Password</LabelEl>
+                <input style={inputStyle} value={form.smtpPassword} onChange={e => setForm(f => ({ ...f, smtpPassword:e.target.value }))} placeholder="Password or app password" type="password" />
+              </div>
+            </div>
+          )}
+
+          <div style={{ ...secStyle, background:"#EBF3FF", border:"1px solid #0057A820", borderRadius:3, padding:"8px 10px" }}>
+            ℹ️ This schedule will use the Jira credentials, selected projects, and LLM settings currently configured above. <strong>{projects.filter(p=>p.selected).length} project(s)</strong> selected.
+          </div>
+
+          <div style={{ display:"flex", gap:8, justifyContent:"flex-end" }}>
+            <button onClick={() => setShowForm(false)} style={{ fontSize:12, padding:"6px 16px", border:"1px solid #D0D0D0", borderRadius:3, background:"#fff", cursor:"pointer" }}>Cancel</button>
+            <button onClick={saveSchedule} disabled={!form.name || !form.recipients} style={{ fontSize:12, fontWeight:700, padding:"6px 16px", border:"none", borderRadius:3, background: (!form.name||!form.recipients)?"#ccc":"#C8102E", color:"#fff", cursor: (!form.name||!form.recipients)?"not-allowed":"pointer" }}>
+              {editing ? "Save Changes" : "Create Schedule"}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ── Schedule list ── */}
+      {loading && <div style={secStyle}>Loading schedules…</div>}
+      {!loading && schedules.length === 0 && !showForm && (
+        <div style={{ ...secStyle, padding:"12px 0" }}>No schedules yet. Click <strong>+ New Schedule</strong> to create one.</div>
+      )}
+      {schedules.map(s => (
+        <div key={s.id} style={{ border:"1px solid #E0E0E0", borderRadius:4, padding:"12px 14px", marginBottom:8, display:"flex", flexDirection:"column", gap:6 }}>
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+            <div style={{ fontWeight:700, fontSize:13, color:"#1A1A1A" }}>{s.name}</div>
+            <div style={{ display:"flex", gap:6 }}>
+              <button onClick={() => runNow(s.id)} disabled={running[s.id]} style={{ fontSize:11, padding:"3px 10px", border:"1px solid #0057A8", borderRadius:3, color:"#0057A8", background:"#fff", cursor:"pointer" }}>
+                {running[s.id] ? "Running…" : "▶ Run Now"}
+              </button>
+              <button onClick={() => openEdit(s)} style={{ fontSize:11, padding:"3px 10px", border:"1px solid #6B6B6B", borderRadius:3, color:"#6B6B6B", background:"#fff", cursor:"pointer" }}>✏ Edit</button>
+              <button onClick={() => deleteSchedule(s.id)} style={{ fontSize:11, padding:"3px 10px", border:"1px solid #C8102E", borderRadius:3, color:"#C8102E", background:"#fff", cursor:"pointer" }}>🗑 Delete</button>
+            </div>
+          </div>
+          <div style={{ display:"flex", gap:20, fontSize:11, color:"#6B6B6B", flexWrap:"wrap" }}>
+            <span>{FREQS.find(f=>f.value===s.frequency)?.label || s.frequency} on {DAYS[s.dayOfWeek] || "?"}</span>
+            <span>To: {(s.recipients||[]).join(", ")}</span>
+            <span>{(s.projects||[]).filter(p=>p.selected).length} project(s)</span>
+          </div>
+          <div style={{ display:"flex", gap:20, fontSize:11, color:"#6B6B6B", flexWrap:"wrap" }}>
+            {s.nextRun && <span>Next run: {s.nextRun.replace("T"," ").replace("Z"," UTC")}</span>}
+            {s.lastRun && <span>Last run: {s.lastRun.replace("T"," ").replace("Z"," UTC")}</span>}
+            {s.lastStatus && <span style={{ color: s.lastStatus.startsWith("Sent") ? "#00703C" : "#C8102E" }}>{s.lastStatus}</span>}
+          </div>
+          {runStatus[s.id] && (
+            <div style={{ fontSize:11, padding:"4px 8px", borderRadius:3, background: runStatus[s.id].startsWith("Sent") ? "#EDFAF3" : "#FFF0F2", color: runStatus[s.id].startsWith("Sent") ? "#00703C" : "#C8102E" }}>
+              {runStatus[s.id]}
+            </div>
+          )}
+        </div>
+      ))}
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────
 // Settings Modal
 // ─────────────────────────────────────────────────────────────────
 function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
@@ -514,6 +782,12 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
             </div>
           </section>
 
+          {/* ── SCHEDULED EMAILS ── */}
+          <SchedulesSection
+            jiraBaseUrl={jiraBaseUrl} jiraEmail={jiraEmail} jiraToken={jiraToken}
+            projects={availableProjects} llmUrl={llmUrl} llmKey={llmKey} llmModel={llmModel}
+          />
+
           {/* Security note */}
           <div style={{ fontSize: 11, color: "#6B6B6B", background: "#FAFAFA", border: "1px solid #E8E8E8", borderRadius: 3, padding: "10px 14px", lineHeight: 1.6 }}>
             🔒 <strong>Security note:</strong> All credentials are held only in browser memory for this session. They are never sent anywhere except directly to the Jira and LLM Gateway APIs you configure above.
@@ -616,7 +890,7 @@ export default function Dashboard() {
   const ALL_PRIORITIES = useMemo(() => getUniq(issues, "priority"),  [issues]);
   const ALL_ASSIGNEES  = useMemo(() => getUniq(issues, "assignee"),  [issues]);
 
-  // Filtered + sorted issues
+  // Filtered issues (re-runs only when issues or filters change, not on sort)
   const filtered = useMemo(() => {
     let r = issues;
     if (filters.project   !== "All") r = r.filter(i => i.project   === filters.project);
@@ -634,17 +908,22 @@ export default function Dashboard() {
     if (filters.completedTo)   r = r.filter(i => i.completed && i.completed <= filters.completedTo);
     if (filters.updatedFrom)   r = r.filter(i => i.updated >= filters.updatedFrom);
     if (filters.updatedTo)     r = r.filter(i => i.updated <= filters.updatedTo);
-    return [...r].sort((a, b) => {
+    return r;
+  }, [issues, filters]);
+
+  // Sorted view (re-runs only when filtered result or sort settings change)
+  const filteredSorted = useMemo(() => {
+    return [...filtered].sort((a, b) => {
       const av = a[sortCol] || "", bv = b[sortCol] || "";
       return sortDir === "asc" ? av.localeCompare(bv) : bv.localeCompare(av);
     });
-  }, [issues, filters, sortCol, sortDir]);
+  }, [filtered, sortCol, sortDir]);
 
   useEffect(() => setPage(0), [filters, sortCol, sortDir, issues]);
   useEffect(() => { setAiSummary(""); }, [filters]);
 
-  const paged      = useMemo(() => filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE), [filtered, page]);
-  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  const paged      = useMemo(() => filteredSorted.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE), [filteredSorted, page]);
+  const totalPages = Math.ceil(filteredSorted.length / PAGE_SIZE);
 
   const stats = useMemo(() => {
     const byStatus = {}, byProject = {}, byType = {};
