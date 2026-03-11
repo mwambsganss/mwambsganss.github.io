@@ -405,9 +405,17 @@ def run_schedule(schedule: dict) -> str:
         f"Date range: {date_from} to {date_to}\nProjects: {project_names}\n"
         f"Total issues: {len(all_issues)}\nStatus breakdown: {status_str}\n\n"
         f"Issues:\n{issue_lines}\n\n"
-        "Write a concise executive summary (3-5 paragraphs) covering: overall portfolio health, "
-        "key accomplishments, in-progress items and blockers, items at risk, and recommended next steps. "
-        "Keep it professional and suitable for senior leadership."
+        "Write a concise executive summary for senior leadership using this exact structure:\n\n"
+        "## Overall Health\n"
+        "- bullet points about portfolio health and key metrics\n\n"
+        "## Progress This Period\n"
+        "- bullet points about completed work and momentum\n\n"
+        "## Risks & Blockers\n"
+        "- bullet points about overdue items, blockers, and capacity concerns\n\n"
+        "## Recommended Actions\n"
+        "- 2-3 specific, actionable recommendations for leadership\n\n"
+        "Use markdown: ## for section headings, - for bullet points, **bold** for emphasis. "
+        "Keep bullets concise (one line each). No prose paragraphs."
     )
 
     # ── Call LLM ─────────────────────────────────────────────────────
@@ -450,20 +458,78 @@ def _build_and_send_email(*, schedule_name: str, freq_label: str,
     """Construct the HTML email and deliver via Microsoft Graph."""
     subject = f"{schedule_name} — {date_from} to {date_to}"
 
-    # Sanitize LLM output: strip HTML tags before embedding in email body
+    # Convert markdown from LLM output into styled HTML sections for the email.
+    # Only allow a safe subset of tags; strip everything else.
     import re as _re
-    safe_summary = _re.sub(r"<[^>]+>", "", summary_text)
 
-    html_body = f"""<html><body style="font-family:Arial,sans-serif;max-width:800px;margin:0 auto;color:#1A1A1A">
-  <div style="background:#C8102E;padding:20px;color:#fff">
-    <h1 style="margin:0;font-size:20px">Lilly Enterprise Automation</h1>
-    <p style="margin:4px 0 0;font-size:14px;opacity:.85">{freq_label.title()} Portfolio Briefing &middot; {date_from} to {date_to}</p>
+    def _md_to_email_html(md: str) -> str:
+        # Strip any raw HTML tags the LLM may have injected
+        md = _re.sub(r"<[^>]+>", "", md)
+        lines = md.split("\n")
+        out   = []
+        in_ul = False
+        for line in lines:
+            # Bold headings: **Heading** or ## Heading
+            h2 = _re.match(r"^#{1,3}\s+(.+)", line)
+            bold_heading = _re.match(r"^\*\*(.+?)\*\*\s*[:\-—]?\s*$", line)
+            bullet = _re.match(r"^[\-\*]\s+(.+)", line)
+            bold_inline = lambda s: _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
+
+            if h2 or bold_heading:
+                if in_ul:
+                    out.append("</ul>")
+                    in_ul = False
+                text = (h2.group(1) if h2 else bold_heading.group(1)).strip(" *:")
+                out.append(
+                    f'<div style="margin:20px 0 6px;padding:8px 12px;'
+                    f'background:#f0f4f8;border-left:4px solid #C8102E;'
+                    f'font-size:13px;font-weight:700;color:#1A1A1A;'
+                    f'letter-spacing:.3px;text-transform:uppercase">{text}</div>'
+                )
+            elif bullet:
+                if not in_ul:
+                    out.append('<ul style="margin:4px 0 8px 0;padding-left:20px">')
+                    in_ul = True
+                out.append(
+                    f'<li style="margin:4px 0;font-size:14px;line-height:1.6;color:#2D2D2D">'
+                    f'{bold_inline(bullet.group(1))}</li>'
+                )
+            elif line.strip():
+                if in_ul:
+                    out.append("</ul>")
+                    in_ul = False
+                out.append(
+                    f'<p style="margin:6px 0;font-size:14px;line-height:1.7;color:#2D2D2D">'
+                    f'{bold_inline(line.strip())}</p>'
+                )
+            else:
+                if in_ul:
+                    out.append("</ul>")
+                    in_ul = False
+        if in_ul:
+            out.append("</ul>")
+        return "\n".join(out)
+
+    summary_html = _md_to_email_html(summary_text)
+
+    html_body = f"""<html><body style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;color:#1A1A1A;background:#F4F4F4">
+  <!-- Header -->
+  <div style="background:#C8102E;padding:24px 28px;color:#fff">
+    <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;opacity:.75;margin-bottom:4px">Lilly Enterprise Automation</div>
+    <div style="font-size:20px;font-weight:700;margin:0">{freq_label.title()} Portfolio Briefing</div>
+    <div style="font-size:13px;opacity:.85;margin-top:6px">{date_from} &ndash; {date_to}</div>
   </div>
-  <div style="padding:24px;background:#fff;border:1px solid #E8E8E8">
-    <p style="margin:0 0 16px;font-size:13px;color:#6B6B6B">Projects: <strong>{project_names}</strong> &middot; {total_issues} issues</p>
-    <div style="white-space:pre-wrap;line-height:1.7;font-size:14px">{safe_summary}</div>
+  <!-- Meta bar -->
+  <div style="background:#1A1A1A;padding:10px 28px;display:flex;gap:24px">
+    <span style="font-size:12px;color:#aaa">Projects: <strong style="color:#fff">{project_names}</strong></span>
+    <span style="font-size:12px;color:#aaa">Issues: <strong style="color:#fff">{total_issues}</strong></span>
   </div>
-  <div style="padding:16px;background:#F5F5F5;border-top:1px solid #E8E8E8;font-size:11px;color:#6B6B6B">
+  <!-- Body -->
+  <div style="background:#fff;padding:24px 28px;border:1px solid #E0E0E0;border-top:none">
+    {summary_html}
+  </div>
+  <!-- Footer -->
+  <div style="padding:14px 28px;background:#F4F4F4;border-top:1px solid #E0E0E0;font-size:11px;color:#999">
     Generated by Jira Executive Dashboard &middot; Lilly LLM Gateway
   </div>
 </body></html>"""
@@ -739,10 +805,22 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if not recipients:
             self._json(200, {"ok": False, "msg": "No recipients provided"})
             return
-        result = _send_via_graph(
-            subject   = "Jira Dashboard — Email Test",
-            html_body = "<p>This is a test message from the Jira Executive Dashboard.</p>",
-            recipients = recipients,
+        sample_md = (
+            "## Overall Health\n"
+            "- Portfolio is **on track** — this is a test email from the Jira Dashboard\n"
+            "- Email formatting and delivery confirmed working\n\n"
+            "## Recommended Actions\n"
+            "- No action needed — this is a test\n"
+        )
+        result = _build_and_send_email(
+            schedule_name="Email Test",
+            freq_label="test",
+            date_from="—",
+            date_to="—",
+            project_names="Test",
+            total_issues=0,
+            summary_text=sample_md,
+            recipients=recipients,
         )
         ok = result.startswith("Sent")
         self._json(200, {"ok": ok, "msg": result})
