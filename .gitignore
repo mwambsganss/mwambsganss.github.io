@@ -1,3 +1,8 @@
+# Jira Dashboard — user data & secrets
+Jira Dashboard/schedules.json
+Jira Dashboard/schedules_*.json
+Jira Dashboard/.env
+
 # Security - Never commit these files
 .env
 .env.*

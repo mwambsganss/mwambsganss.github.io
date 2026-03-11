@@ -18,6 +18,7 @@ Serves static files and provides:
 import base64
 import concurrent.futures
 import os
+import re
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -80,6 +81,12 @@ SSO_CONFIGURED   = SSO_TENANT_ID != "FILL_IN_LILLY_TENANT_ID"
 SMTP_RELAY_HOST = os.getenv("SMTP_RELAY_HOST", "smtp-z1-nomx.lilly.com")
 SMTP_RELAY_PORT = int(os.getenv("SMTP_RELAY_PORT", "25"))
 
+# ── Credential encryption config ──────────────────────────────────────────────
+# Set SECRET_KEY in .env to encrypt jiraToken and llmKey at rest in schedule files.
+# Requires: pip3 install cryptography
+# Without it, credentials are stored in plaintext (single-user local use is fine).
+SECRET_KEY = os.getenv("SECRET_KEY", "")
+
 # In-memory session store (resets on server restart)
 _sessions: dict = {}  # session_id  → {access_token, email, expires_at}
 _pending:  dict = {}  # oauth_state → session_id  (CSRF guard)
@@ -100,17 +107,92 @@ def _utcnow() -> datetime:
     return datetime.now(timezone.utc).replace(tzinfo=None)  # naive UTC
 
 
+# ── Credential encryption helpers ─────────────────────────────────────────────
+
+def _encrypt_field(plaintext: str) -> str:
+    """Encrypt a sensitive field using Fernet (AES-128-CBC + HMAC).
+
+    Returns "enc:<token>" when cryptography is installed and SECRET_KEY is set.
+    Returns plaintext unchanged if cryptography is unavailable or SECRET_KEY unset.
+    Already-encrypted values (starting with "enc:") are returned as-is.
+    """
+    if not SECRET_KEY or not plaintext or plaintext.startswith("enc:"):
+        return plaintext
+    try:
+        import hashlib as _hl
+        from cryptography.fernet import Fernet as _Fernet
+        key = base64.urlsafe_b64encode(_hl.sha256(SECRET_KEY.encode()).digest())
+        return "enc:" + _Fernet(key).encrypt(plaintext.encode()).decode()
+    except ImportError:
+        log.warning("cryptography not installed — credentials stored in plaintext. "
+                    "Run: pip3 install cryptography")
+        return plaintext
+    except Exception as e:
+        log.error("Encryption failed: %s", e)
+        return plaintext
+
+
+def _decrypt_field(value: str) -> str:
+    """Decrypt a field encrypted by _encrypt_field. Returns original value if not encrypted."""
+    if not value or not value.startswith("enc:"):
+        return value
+    if not SECRET_KEY:
+        log.error("SECRET_KEY not set — cannot decrypt stored credential")
+        return ""
+    try:
+        import hashlib as _hl
+        from cryptography.fernet import Fernet as _Fernet
+        key = base64.urlsafe_b64encode(_hl.sha256(SECRET_KEY.encode()).digest())
+        return _Fernet(key).decrypt(value[4:].encode()).decode()
+    except Exception as e:
+        log.error("Decryption failed: %s", e)
+        return ""
+
+
+# ── Per-user schedule file helpers ────────────────────────────────────────────
+
+def _schedules_path(user_id: str) -> Path:
+    """Return the schedule file path for a given user identity.
+
+    Uses the legacy schedules.json for unauthenticated / single-user runs.
+    Creates per-user files (schedules_<safe_id>.json) when identity is known.
+    """
+    if not user_id or user_id == "default":
+        return SCHEDULES_FILE
+    safe = re.sub(r"[^\w]", "_", user_id.lower())
+    return SERVE_DIR / f"schedules_{safe}.json"
+
+
+def _get_session_email(handler) -> str:
+    """Extract the authenticated user's email from an active SSO session.
+
+    Returns 'default' for keychain / unauthenticated users — per-user schedule
+    files only activate when SSO is in use (multi-user shared server).
+    """
+    cookies = {}
+    for part in handler.headers.get("Cookie", "").split(";"):
+        if "=" in part:
+            k, v = part.strip().split("=", 1)
+            cookies[k.strip()] = v.strip()
+    session = _sessions.get(cookies.get("session", ""))
+    if session and session.get("email"):
+        return session["email"]
+    return "default"
+
+
 # ── Schedule helpers ──────────────────────────────────────────────────────────
 
-def _load_schedules() -> list:
+def _load_schedules(path: Path = None) -> list:
+    p = path or SCHEDULES_FILE
     try:
-        return json.loads(SCHEDULES_FILE.read_text()) if SCHEDULES_FILE.exists() else []
+        return json.loads(p.read_text()) if p.exists() else []
     except Exception:
         return []
 
 
-def _save_schedules(schedules: list) -> None:
-    SCHEDULES_FILE.write_text(json.dumps(schedules, indent=2))
+def _save_schedules(schedules: list, path: Path = None) -> None:
+    p = path or SCHEDULES_FILE
+    p.write_text(json.dumps(schedules, indent=2))
 
 
 def _compute_next_run(frequency: str, day_of_week: int) -> str:
@@ -401,10 +483,10 @@ def run_schedule(schedule: dict) -> str:
     """Fetch Jira issues, generate LLM summary, send email. Returns status string."""
     jira_base    = schedule.get("jiraBaseUrl", "").rstrip("/")
     jira_email   = schedule.get("jiraEmail", "")
-    jira_token   = schedule.get("jiraToken", "")
+    jira_token   = _decrypt_field(schedule.get("jiraToken", ""))
     projects     = [p for p in schedule.get("projects", []) if p.get("selected", True)]
     llm_url      = schedule.get("llmUrl", "").rstrip("/")
-    llm_key      = schedule.get("llmKey", "")
+    llm_key      = _decrypt_field(schedule.get("llmKey", ""))
     llm_model    = schedule.get("llmModel", "")
     recipients   = schedule.get("recipients", [])
     frequency    = schedule.get("frequency", "weekly")
@@ -509,20 +591,18 @@ def _build_and_send_email(*, schedule_name: str, freq_label: str,
 
     # Convert markdown from LLM output into styled HTML sections for the email.
     # Only allow a safe subset of tags; strip everything else.
-    import re as _re
-
     def _md_to_email_html(md: str) -> str:
         # Strip any raw HTML tags the LLM may have injected
-        md = _re.sub(r"<[^>]+>", "", md)
+        md = re.sub(r"<[^>]+>", "", md)
         lines = md.split("\n")
         out   = []
         in_ul = False
         for line in lines:
             # Bold headings: **Heading** or ## Heading
-            h2 = _re.match(r"^#{1,3}\s+(.+)", line)
-            bold_heading = _re.match(r"^\*\*(.+?)\*\*\s*[:\-—]?\s*$", line)
-            bullet = _re.match(r"^[\-\*]\s+(.+)", line)
-            bold_inline = lambda s: _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
+            h2 = re.match(r"^#{1,3}\s+(.+)", line)
+            bold_heading = re.match(r"^\*\*(.+?)\*\*\s*[:\-—]?\s*$", line)
+            bullet = re.match(r"^[\-\*]\s+(.+)", line)
+            bold_inline = lambda s: re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
 
             if h2 or bold_heading:
                 if in_ul:
@@ -597,32 +677,37 @@ def _scheduler_loop() -> None:
         _scheduler_wake.wait(timeout=60)
         _scheduler_wake.clear()
         try:
-            with _schedules_lock:
-                schedules = _load_schedules()
-            now     = _utcnow()
-            changed = False
-            for sched in schedules:
-                if not sched.get("enabled", True):
-                    continue
-                next_run_str = sched.get("nextRun", "")
-                if not next_run_str:
-                    continue
-                try:
-                    next_run = datetime.strptime(next_run_str, "%Y-%m-%dT%H:%M:%SZ")
-                except ValueError:
-                    continue
-                if now >= next_run:
-                    log.info("Running schedule '%s'", sched.get("name"))
-                    status = run_schedule(sched)
-                    freq   = sched.get("frequency", "weekly")
-                    days   = {"weekly": 7, "biweekly": 14, "monthly": 30}.get(freq, 7)
-                    sched["lastRun"]    = now.strftime("%Y-%m-%dT%H:%M:%SZ")
-                    sched["lastStatus"] = status
-                    sched["nextRun"]    = (next_run + timedelta(days=days)).strftime("%Y-%m-%dT%H:%M:%SZ")
-                    changed = True
-            if changed:
+            # Collect all schedule files: legacy schedules.json + per-user schedules_*.json
+            sched_files = list(SERVE_DIR.glob("schedules_*.json"))
+            if SCHEDULES_FILE.exists() and SCHEDULES_FILE not in sched_files:
+                sched_files.append(SCHEDULES_FILE)
+            now = _utcnow()
+            for sched_file in sched_files:
                 with _schedules_lock:
-                    _save_schedules(schedules)
+                    schedules = _load_schedules(sched_file)
+                changed = False
+                for sched in schedules:
+                    if not sched.get("enabled", True):
+                        continue
+                    next_run_str = sched.get("nextRun", "")
+                    if not next_run_str:
+                        continue
+                    try:
+                        next_run = datetime.strptime(next_run_str, "%Y-%m-%dT%H:%M:%SZ")
+                    except ValueError:
+                        continue
+                    if now >= next_run:
+                        log.info("Running schedule '%s'", sched.get("name"))
+                        status = run_schedule(sched)
+                        freq   = sched.get("frequency", "weekly")
+                        days   = {"weekly": 7, "biweekly": 14, "monthly": 30}.get(freq, 7)
+                        sched["lastRun"]    = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+                        sched["lastStatus"] = status
+                        sched["nextRun"]    = (next_run + timedelta(days=days)).strftime("%Y-%m-%dT%H:%M:%SZ")
+                        changed = True
+                if changed:
+                    with _schedules_lock:
+                        _save_schedules(schedules, sched_file)
         except Exception as e:
             log.error("Scheduler loop error: %s", e)
 
@@ -806,14 +891,26 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     # ── Schedule CRUD ─────────────────────────────────────────────────────────
 
     def _list_schedules(self):
+        user_id = _get_session_email(self)
+        path    = _schedules_path(user_id)
         with _schedules_lock:
-            self._json(200, {"schedules": _load_schedules()})
+            schedules = _load_schedules(path)
+        # Decrypt sensitive fields before sending to the browser
+        for s in schedules:
+            s["jiraToken"] = _decrypt_field(s.get("jiraToken", ""))
+            s["llmKey"]    = _decrypt_field(s.get("llmKey", ""))
+        self._json(200, {"schedules": schedules})
 
     def _upsert_schedule(self):
-        length    = int(self.headers.get("Content-Length", 0))
-        body      = json.loads(self.rfile.read(length))
+        length   = int(self.headers.get("Content-Length", 0))
+        body     = json.loads(self.rfile.read(length))
+        user_id  = _get_session_email(self)
+        path     = _schedules_path(user_id)
+        # Encrypt sensitive fields before writing to disk
+        body["jiraToken"] = _encrypt_field(body.get("jiraToken", ""))
+        body["llmKey"]    = _encrypt_field(body.get("llmKey", ""))
         with _schedules_lock:
-            schedules = _load_schedules()
+            schedules = _load_schedules(path)
             sched_id  = body.get("id")
             if sched_id:
                 for i, s in enumerate(schedules):
@@ -828,14 +925,19 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 body["nextRun"]   = _compute_next_run(body.get("frequency", "weekly"), body.get("dayOfWeek", 4))
                 body.setdefault("enabled", True)
                 schedules.append(body)
-            _save_schedules(schedules)
+            _save_schedules(schedules, path)
+        # Return the body with decrypted values so the UI stays consistent
+        body["jiraToken"] = _decrypt_field(body.get("jiraToken", ""))
+        body["llmKey"]    = _decrypt_field(body.get("llmKey", ""))
         self._json(200, body)
 
     def _delete_schedule(self):
         sched_id = self.path.split("/")[-1]
+        user_id  = _get_session_email(self)
+        path     = _schedules_path(user_id)
         with _schedules_lock:
-            schedules = [s for s in _load_schedules() if s.get("id") != sched_id]
-            _save_schedules(schedules)
+            schedules = [s for s in _load_schedules(path) if s.get("id") != sched_id]
+            _save_schedules(schedules, path)
         self._json(200, {"ok": True})
 
     def _serve_graph_auth_status(self):
@@ -867,7 +969,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body.get("fromEmail", "")
             or _load_graph_token().get("email", "")
             or _keychain.get("email", "")
-            or next((s.get("jiraEmail", "") for s in _load_schedules() if s.get("jiraEmail")), "")
+            or next((s.get("jiraEmail", "") for s in _load_schedules(_schedules_path(_get_session_email(self))) if s.get("jiraEmail")), "")
         )
         if not from_email:
             self._json(200, {"ok": False, "msg": "No sender address available — add jiraEmail to a schedule or pass fromEmail in the request"})
@@ -888,15 +990,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     def _run_schedule_now(self):
         sched_id = self.path.split("/")[-2]
+        user_id  = _get_session_email(self)
+        path     = _schedules_path(user_id)
         with _schedules_lock:
-            schedules = _load_schedules()
+            schedules = _load_schedules(path)
         for sched in schedules:
             if sched.get("id") == sched_id:
                 status = run_schedule(sched)
                 sched["lastRun"]    = _utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
                 sched["lastStatus"] = status
                 with _schedules_lock:
-                    _save_schedules(schedules)
+                    _save_schedules(schedules, path)
                 self._json(200, {"status": status})
                 return
         self._error(404, "Schedule not found")
