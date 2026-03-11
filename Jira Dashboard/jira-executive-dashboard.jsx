@@ -202,7 +202,7 @@ function SchedulesSection({ jiraBaseUrl, jiraEmail, jiraToken, projects, llmUrl,
       .finally(() => setLoading(false));
   }, []);
 
-  // function openNew() { setForm(BLANK_FORM); setEditing(null); setShowForm(true); }
+  function openNew() { setForm(BLANK_FORM); setEditing(null); setShowForm(true); }
   function openEdit(s) {
     setForm({ name: s.name, frequency: s.frequency, dayOfWeek: s.dayOfWeek,
       recipients: (s.recipients || []).join(", ") });
@@ -263,6 +263,7 @@ function SchedulesSection({ jiraBaseUrl, jiraEmail, jiraToken, projects, llmUrl,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           recipients: form.recipients.split(/[,\n]/).map(s => s.trim()).filter(Boolean),
+          fromEmail: jiraEmail,
         }),
       });
       const d = await r.json();
@@ -278,8 +279,7 @@ function SchedulesSection({ jiraBaseUrl, jiraEmail, jiraToken, projects, llmUrl,
     <section>
       <div style={{ fontSize:13, fontWeight:700, color:"#1A1A1A", marginBottom:14, paddingBottom:8, borderBottom:"2px solid #C8102E", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
         <span>📅 Scheduled Email Reports</span>
-        {/* <button onClick={openNew} style={{ fontSize:11, fontWeight:700, padding:"4px 12px", background:"#0057A8", color:"#fff", border:"none", borderRadius:3, cursor:"pointer" }}>+ New Schedule</button> */}
-        <button disabled style={{ fontSize:11, fontWeight:700, padding:"4px 12px", background:"#9E9E9E", color:"#fff", border:"none", borderRadius:3, cursor:"not-allowed", opacity:0.7 }}>Scheduling Coming Soon</button>
+        <button onClick={openNew} style={{ fontSize:11, fontWeight:700, padding:"4px 12px", background:"#0057A8", color:"#fff", border:"none", borderRadius:3, cursor:"pointer" }}>+ New Schedule</button>
       </div>
 
       {/* ── Schedule form ── */}

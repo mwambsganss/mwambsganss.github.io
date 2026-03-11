@@ -18,6 +18,19 @@ Serves static files and provides:
 import base64
 import concurrent.futures
 import os
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+# Load .env file if present (no third-party library needed)
+_env_path = os.path.join(os.path.dirname(__file__), ".env")
+if os.path.exists(_env_path):
+    with open(_env_path) as _f:
+        for _line in _f:
+            _line = _line.strip()
+            if _line and not _line.startswith("#") and "=" in _line:
+                _k, _v = _line.split("=", 1)
+                os.environ.setdefault(_k.strip(), _v.strip())
 import http.server
 import json
 import logging
@@ -51,8 +64,8 @@ JIRA_PAGE_SIZE         = 100
 
 # ── Lilly SSO / Azure AD config ───────────────────────────────────────────────
 # Set these in a .env file or as environment variables (never hardcode secrets)
-SSO_TENANT_ID     = os.getenv("SSO_TENANT_ID", "FILL_IN_LILLY_TENANT_ID")
-SSO_CLIENT_ID     = os.getenv("SSO_CLIENT_ID", "FILL_IN_LILLY_CLIENT_ID")
+SSO_TENANT_ID     = os.getenv("SSO_TENANT_ID", "18a59a81-eea8-4c30-948a-d8824cdc2580")
+SSO_CLIENT_ID     = os.getenv("SSO_CLIENT_ID", "82e22945-302c-4dc6-b961-54b937ff4c5f")
 SSO_CLIENT_SECRET = os.getenv("SSO_CLIENT_SECRET", "FILL_IN_LILLY_CLIENT_SECRET")
 SSO_REDIRECT_URI  = f"http://localhost:{PORT}/api/callback"
 # Mail.Send lets the server call Graph /me/sendMail on behalf of the logged-in user.
@@ -60,6 +73,12 @@ SSO_REDIRECT_URI  = f"http://localhost:{PORT}/api/callback"
 # access token expires.
 SSO_SCOPES       = "openid profile email offline_access https://graph.microsoft.com/Mail.Send"
 SSO_CONFIGURED   = SSO_TENANT_ID != "FILL_IN_LILLY_TENANT_ID"
+
+# ── Lilly internal SMTP relay config ──────────────────────────────────────────
+# No auth required — works on Lilly network / VPN only.
+# Zone options: smtp-z1-nomx.lilly.com, smtp-z2-nomx.lilly.com, smtp-z3-nomx.lilly.com
+SMTP_RELAY_HOST = os.getenv("SMTP_RELAY_HOST", "smtp-z1-nomx.lilly.com")
+SMTP_RELAY_PORT = int(os.getenv("SMTP_RELAY_PORT", "25"))
 
 # In-memory session store (resets on server restart)
 _sessions: dict = {}  # session_id  → {access_token, email, expires_at}
@@ -203,6 +222,31 @@ def _email_from_jwt(token: str) -> str:
         or payload.get("email")
         or ""
     )
+
+
+# ── Email delivery via Lilly internal SMTP relay ─────────────────────────────
+
+def _send_via_smtp_relay(subject: str, html_body: str, recipients: list,
+                         from_email: str) -> str:
+    """Send email via Lilly internal SMTP relay (no auth, no TLS).
+
+    Requires Lilly network or VPN.  Uses smtp-z1-nomx.lilly.com:25 by default;
+    override with SMTP_RELAY_HOST / SMTP_RELAY_PORT env vars.
+    """
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = subject
+    msg["From"]    = from_email
+    msg["To"]      = ", ".join(recipients)
+    msg.attach(MIMEText(html_body, "html"))
+    try:
+        with smtplib.SMTP(SMTP_RELAY_HOST, SMTP_RELAY_PORT, timeout=10) as smtp:
+            smtp.sendmail(from_email, recipients, msg.as_string())
+        log.info("SMTP relay email sent to %d recipients via %s",
+                 len(recipients), SMTP_RELAY_HOST)
+        return f"Sent to {len(recipients)} recipient(s) via SMTP relay ({SMTP_RELAY_HOST})"
+    except Exception as e:
+        log.error("SMTP relay send failed: %s", e)
+        return f"SMTP relay failed: {repr(e)}"
 
 
 # ── Email delivery via Microsoft Graph ───────────────────────────────────────
@@ -446,6 +490,7 @@ def run_schedule(schedule: dict) -> str:
         freq_label=freq_label, date_from=date_from, date_to=date_to,
         project_names=project_names, total_issues=len(all_issues),
         summary_text=summary_text, recipients=recipients,
+        from_email=jira_email,
     )
     log.info("Schedule '%s' completed: %s", schedule.get("name"), result)
     return result
@@ -454,8 +499,12 @@ def run_schedule(schedule: dict) -> str:
 def _build_and_send_email(*, schedule_name: str, freq_label: str,
                            date_from: str, date_to: str, project_names: str,
                            total_issues: int, summary_text: str,
-                           recipients: list) -> str:
-    """Construct the HTML email and deliver via Microsoft Graph."""
+                           recipients: list, from_email: str = "") -> str:
+    """Construct the HTML email and deliver.
+
+    Tries the Lilly internal SMTP relay first (no auth, requires network/VPN).
+    Falls back to Microsoft Graph if a stored delegated token is available.
+    """
     subject = f"{schedule_name} — {date_from} to {date_to}"
 
     # Convert markdown from LLM output into styled HTML sections for the email.
@@ -534,6 +583,8 @@ def _build_and_send_email(*, schedule_name: str, freq_label: str,
   </div>
 </body></html>"""
 
+    if from_email:
+        return _send_via_smtp_relay(subject, html_body, recipients, from_email)
     return _send_via_graph(subject, html_body, recipients)
 
 
@@ -812,6 +863,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             "## Recommended Actions\n"
             "- No action needed — this is a test\n"
         )
+        from_email = (
+            body.get("fromEmail", "")
+            or _load_graph_token().get("email", "")
+            or _keychain.get("email", "")
+            or next((s.get("jiraEmail", "") for s in _load_schedules() if s.get("jiraEmail")), "")
+        )
+        if not from_email:
+            self._json(200, {"ok": False, "msg": "No sender address available — add jiraEmail to a schedule or pass fromEmail in the request"})
+            return
         result = _build_and_send_email(
             schedule_name="Email Test",
             freq_label="test",
@@ -821,6 +881,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             total_issues=0,
             summary_text=sample_md,
             recipients=recipients,
+            from_email=from_email,
         )
         ok = result.startswith("Sent")
         self._json(200, {"ok": ok, "msg": result})
