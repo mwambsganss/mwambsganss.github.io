@@ -196,17 +196,17 @@ def _save_schedules(schedules: list, path: Path = None) -> None:
 
 
 def _compute_next_run(frequency: str, day_of_week: int) -> str:
-    """Return ISO UTC datetime of the next scheduled run (8 AM UTC on target day).
+    """Return ISO UTC datetime of the next scheduled run (13:00 UTC / 8 AM ET on target day).
 
-    If today is the target day AND it is before 8 AM UTC, schedules for today.
+    If today is the target day AND it is before 13:00 UTC, schedules for today.
     Otherwise schedules for the next occurrence of that weekday.
     """
     now = _utcnow()
     days_ahead = (day_of_week - now.weekday()) % 7
-    if days_ahead == 0 and now.hour >= 8:
+    if days_ahead == 0 and now.hour >= 13:
         days_ahead = 7   # today's window already passed; go to next week
     next_dt = (now + timedelta(days=days_ahead)).replace(
-        hour=8, minute=0, second=0, microsecond=0
+        hour=13, minute=0, second=0, microsecond=0
     )
     return next_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
