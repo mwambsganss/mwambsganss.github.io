@@ -26,7 +26,6 @@ wheels/
 # Crawler output
 crawl_output/
 test_crawl/
-*_crawl/
 *.json
 *.txt
 *.html

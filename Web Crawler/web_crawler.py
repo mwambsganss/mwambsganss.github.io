@@ -17,36 +17,73 @@ from typing import Set, Dict, List
 import argparse
 
 
+def sanitize_content(text: str) -> str:
+    """
+    Remove secrets and sensitive data from any text before saving.
+
+    Applies to HTML, JSON, TXT, and Markdown outputs. Removes:
+    - Azure AD client secrets (Q~ pattern)
+    - UUIDs in client_id / tenant_id / app_id contexts
+    - Bearer / Authorization header tokens
+    - JWT tokens (eyJ...)
+    - OpenAI keys (sk-...), Anthropic keys (sk-ant-...)
+    - Generic API keys and access/refresh tokens
+    - Passwords and connection strings
+    - Private key blocks
+    """
+    # Azure AD client secrets (Q~ pattern)
+    text = re.sub(r'[A-Za-z0-9_~\-\.]{3,20}Q~[A-Za-z0-9_~\-]{10,}', 'REDACTED-SECRET', text)
+
+    # UUIDs in credential contexts
+    uuid_pattern = r'[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}'
+    text = re.sub(
+        r'((?:client|tenant|app|subscription|object|resource)[_\-]?id["\']?\s*[:=]\s*["\']?)(' + uuid_pattern + r')',
+        r'\1REDACTED-UUID', text, flags=re.IGNORECASE)
+
+    # Bearer / Authorization tokens
+    text = re.sub(r'Bearer\s+[A-Za-z0-9_\-\.]{20,}', 'Bearer REDACTED-TOKEN', text, flags=re.IGNORECASE)
+    text = re.sub(
+        r'(Authorization["\']?\s*[:=]\s*["\']?[A-Za-z]+\s+)[A-Za-z0-9_\-\.]{20,}',
+        r'\1REDACTED-TOKEN', text, flags=re.IGNORECASE)
+
+    # JWT tokens (eyJ base64 header)
+    text = re.sub(r'eyJ[A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+', 'REDACTED-JWT', text)
+
+    # OpenAI / Anthropic / common provider keys
+    text = re.sub(r'sk-ant-[A-Za-z0-9_\-]{20,}', 'REDACTED-API-KEY', text)
+    text = re.sub(r'sk-[A-Za-z0-9]{20,}', 'REDACTED-API-KEY', text)
+
+    # Generic API keys
+    text = re.sub(
+        r'(api[_\-]?key["\']?\s*[:=]\s*["\']?)([A-Za-z0-9_\-]{32,})',
+        r'\1REDACTED-API-KEY', text, flags=re.IGNORECASE)
+
+    # Access / refresh tokens
+    text = re.sub(
+        r'((?:access|refresh|id)[_\-]?token["\']?\s*[:=]\s*["\']?)([A-Za-z0-9_\-\.]{32,})',
+        r'\1REDACTED-TOKEN', text, flags=re.IGNORECASE)
+
+    # Passwords in key=value or JSON context
+    text = re.sub(
+        r'((?:password|passwd|pwd)["\']?\s*[:=]\s*["\']?)([^\s"\']{8,})',
+        r'\1REDACTED-PASSWORD', text, flags=re.IGNORECASE)
+
+    # Connection strings (e.g. Server=...;Password=...)
+    text = re.sub(
+        r'((?:Password|Pwd)=)([^;"\'\s]{4,})',
+        r'\1REDACTED-PASSWORD', text, flags=re.IGNORECASE)
+
+    # Private key blocks
+    text = re.sub(
+        r'-----BEGIN [A-Z ]*PRIVATE KEY-----.*?-----END [A-Z ]*PRIVATE KEY-----',
+        'REDACTED-PRIVATE-KEY', text, flags=re.DOTALL)
+
+    return text
+
+
+# Keep legacy alias so existing callers still work
 def sanitize_html(html: str) -> str:
-    """
-    Remove secrets and sensitive data from HTML before saving
-
-    Removes:
-    - Azure AD Client IDs (UUIDs)
-    - Azure AD Client Secrets
-    - API keys
-    - Access tokens
-    """
-    # Remove Azure AD Client Secrets (pattern: .xxxQ~xxx or similar)
-    # Azure secrets typically have 3-20 chars before Q~ and 20+ chars after
-    html = re.sub(r'[A-Za-z0-9_~\-\.]{3,20}Q~[A-Za-z0-9_~\-]{20,}', 'REDACTED-SECRET', html)
-
-    # Remove UUIDs that are likely client IDs (in contexts like clientId, client_id, etc.)
-    html = re.sub(r'(client[_\-]?id["\']?\s*[:=]\s*["\']?)([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})',
-                  r'\1REDACTED-UUID', html, flags=re.IGNORECASE)
-
-    # Remove bearer tokens
-    html = re.sub(r'Bearer\s+[A-Za-z0-9_\-\.]{20,}', 'Bearer REDACTED-TOKEN', html, flags=re.IGNORECASE)
-
-    # Remove API keys (common patterns)
-    html = re.sub(r'(api[_\-]?key["\']?\s*[:=]\s*["\']?)([A-Za-z0-9_\-]{32,})',
-                  r'\1REDACTED-API-KEY', html, flags=re.IGNORECASE)
-
-    # Remove access tokens
-    html = re.sub(r'(access[_\-]?token["\']?\s*[:=]\s*["\']?)([A-Za-z0-9_\-\.]{32,})',
-                  r'\1REDACTED-TOKEN', html, flags=re.IGNORECASE)
-
-    return html
+    return sanitize_content(html)
 
 
 class WebCrawler:
@@ -260,26 +297,29 @@ class WebCrawler:
         # Limit filename length
         filename = filename[:200]
 
-        # Save JSON metadata
+        # Sanitize JSON before saving
         json_path = os.path.join(self.config['output_dir'], f"{filename}.json")
         with open(json_path, 'w', encoding='utf-8') as f:
-            json.dump(content, f, indent=2, ensure_ascii=False)
+            f.write(sanitize_content(json.dumps(content, indent=2, ensure_ascii=False)))
 
-        # Sanitize HTML before saving (remove secrets)
-        sanitized_html = sanitize_html(html)
+        # Sanitize HTML before saving
+        sanitized_html = sanitize_content(html)
 
         # Save HTML
         html_path = os.path.join(self.config['output_dir'], f"{filename}.html")
         with open(html_path, 'w', encoding='utf-8') as f:
             f.write(sanitized_html)
 
-        # Save text content
+        # Build TXT content then sanitize before saving
+        txt_content = (
+            f"Title: {content['title']}\n"
+            f"URL: {url}\n"
+            f"Description: {content['description']}\n\n"
+            f"{content['text_content']}"
+        )
         txt_path = os.path.join(self.config['output_dir'], f"{filename}.txt")
         with open(txt_path, 'w', encoding='utf-8') as f:
-            f.write(f"Title: {content['title']}\n")
-            f.write(f"URL: {url}\n")
-            f.write(f"Description: {content['description']}\n\n")
-            f.write(content['text_content'])
+            f.write(sanitize_content(txt_content))
 
     def crawl_page(self, url: str, depth: int) -> bool:
         """Crawl a single page"""
