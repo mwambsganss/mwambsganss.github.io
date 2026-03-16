@@ -22,6 +22,8 @@ SocketIO events:
 import json
 import logging
 import os
+import ssl
+import urllib.request
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -39,7 +41,6 @@ if os.path.exists(_env_path):
 import eventlet
 eventlet.monkey_patch()
 
-import anthropic
 from flask import Flask, jsonify, request, send_from_directory
 from flask_socketio import SocketIO, emit, join_room
 
@@ -130,14 +131,24 @@ def _rebuild_room_code_map() -> None:
 _rebuild_room_code_map()
 
 
-# ── AI Summary ─────────────────────────────────────────────────────────────────
+# ── AI Summary (Lilly LLM Gateway) ────────────────────────────────────────────
+
+def _ssl_ctx() -> ssl.SSLContext:
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    return ctx
+
 
 def generate_exercise_summary(exercise_meta: dict, messages: list[dict]) -> str:
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not api_key or api_key.startswith("sk-ant-api03-your"):
-        raise ValueError("ANTHROPIC_API_KEY not configured. Add it to your .env file.")
+    llm_url   = os.environ.get("LLM_GATEWAY_URL", "").rstrip("/")
+    llm_key   = os.environ.get("LLM_GATEWAY_KEY", "")
+    llm_model = os.environ.get("LLM_MODEL", "claude-sonnet-4-6")
 
-    client = anthropic.Anthropic(api_key=api_key)
+    if not llm_url or not llm_key:
+        raise ValueError(
+            "LLM_GATEWAY_URL and LLM_GATEWAY_KEY are required. Add them to your .env file."
+        )
 
     transcript_lines = []
     for m in messages:
@@ -189,13 +200,30 @@ Generate a structured summary using this exact structure:
 
 Keep the summary readable in under 2 minutes. Be specific — reference actual content from the transcript."""
 
-    message = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=1500,
-        system=system_prompt,
-        messages=[{"role": "user", "content": user_prompt}],
+    # Combine system + user into a single user message (gateway pattern)
+    combined_prompt = f"{system_prompt}\n\n{user_prompt}"
+
+    payload = json.dumps({
+        "model":      llm_model,
+        "max_tokens": 1500,
+        "messages":   [{"role": "user", "content": combined_prompt}],
+    }).encode()
+
+    req = urllib.request.Request(
+        llm_url + "/v1/messages",
+        data=payload,
+        headers={
+            "Authorization":      f"Bearer {llm_key}",
+            "Content-Type":       "application/json",
+            "anthropic-version":  "2023-06-01",
+        },
+        method="POST",
     )
-    return message.content[0].text
+
+    with urllib.request.urlopen(req, context=_ssl_ctx()) as resp:
+        data = json.loads(resp.read())
+
+    return data.get("content", [{}])[0].get("text", "")
 
 
 # ── HTTP Routes ────────────────────────────────────────────────────────────────
@@ -536,9 +564,9 @@ def handle_message(data):
 if __name__ == "__main__":
     log.info("DTW Workshop App starting on http://localhost:%d", PORT)
     log.info("Sessions directory: %s", SESSIONS_DIR)
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not api_key or api_key.startswith("sk-ant-api03-your"):
-        log.warning("ANTHROPIC_API_KEY not set — AI summaries will not work. Add it to .env")
+    if not os.environ.get("LLM_GATEWAY_URL") or not os.environ.get("LLM_GATEWAY_KEY"):
+        log.warning("LLM_GATEWAY_URL / LLM_GATEWAY_KEY not set — AI summaries will not work. Add them to .env")
     else:
-        log.info("Anthropic API key configured ✓")
+        log.info("LLM Gateway configured: %s (model: %s) ✓",
+                 os.environ.get("LLM_GATEWAY_URL"), os.environ.get("LLM_MODEL", "claude-sonnet-4-6"))
     socketio.run(app, host="0.0.0.0", port=PORT, debug=False)
