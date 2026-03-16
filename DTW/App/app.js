@@ -16,6 +16,8 @@ const state = {
   exercises:          [],        // full exercises.json catalog
   currentExerciseMeta: null,
   summaryVisible:     false,
+  msalInstance:       null,      // MSAL PublicClientApplication (null if no Azure config)
+  azureAccount:       null,      // MSAL AccountInfo when authenticated
 };
 
 // ── Init ───────────────────────────────────────────────────────────────────────
@@ -27,6 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Failed to load exercises.json:", e);
   }
   renderExercisePicker();
+  await initAuth();
 });
 
 // ── View management ────────────────────────────────────────────────────────────
@@ -35,6 +38,83 @@ function showView(viewName) {
   const target = document.getElementById("view-" + viewName);
   if (target) target.classList.add("active");
   state.view = viewName;
+}
+
+// ── Azure AD authentication (MSAL.js) ─────────────────────────────────────────
+async function initAuth() {
+  const loginOverlay = document.getElementById("loginOverlay");
+  const hideLogin = () => loginOverlay && loginOverlay.classList.remove("active");
+
+  try {
+    const cfgResp = await fetch("/api/config");
+    const cfg     = await cfgResp.json();
+
+    if (!cfg.azure_client_id) {
+      // No Azure config — skip auth, run in manual-name mode
+      hideLogin();
+      return;
+    }
+
+    const msalConfig = {
+      auth: {
+        clientId:    cfg.azure_client_id,
+        authority:   `https://login.microsoftonline.com/${cfg.azure_tenant_id}`,
+        redirectUri: window.location.origin,
+      },
+      cache: { cacheLocation: "sessionStorage" },
+    };
+
+    const msal = new msal.PublicClientApplication(msalConfig);
+    await msal.initialize();
+    state.msalInstance = msal;
+
+    // Handle the redirect coming back from Microsoft login
+    const result = await msal.handleRedirectPromise();
+
+    let account = result ? result.account : null;
+    if (!account) {
+      const accounts = msal.getAllAccounts();
+      account = accounts.length ? accounts[0] : null;
+    }
+
+    if (account) {
+      state.azureAccount  = account;
+      state.displayName   = account.name || account.username;
+      applyAzureIdentity();
+      hideLogin();
+    } else {
+      // Not signed in — redirect to Microsoft login
+      await msal.loginRedirect({ scopes: ["User.Read"] });
+      // Page will reload after redirect; execution stops here
+    }
+  } catch (e) {
+    console.error("Azure AD auth error:", e);
+    // On any error fall back to manual mode so the app remains usable
+    hideLogin();
+  }
+}
+
+/** Pre-fill UI elements with the Azure AD identity. */
+function applyAzureIdentity() {
+  if (!state.azureAccount) return;
+
+  // Participant join — hide manual name input, show read-only name
+  const nameGroup = document.getElementById("join-name-group");
+  const nameInput = document.getElementById("join-display-name");
+  if (nameGroup && nameInput) {
+    nameInput.value    = state.displayName;
+    nameInput.readOnly = true;
+    nameInput.style.background = "var(--bg2)";
+    nameInput.style.color      = "var(--text2)";
+  }
+
+  // Facilitator setup — show "Facilitating as" badge
+  const badge     = document.getElementById("fac-identity-badge");
+  const badgeName = document.getElementById("fac-identity-name");
+  if (badge && badgeName) {
+    badgeName.textContent = state.displayName;
+    badge.style.display   = "block";
+  }
 }
 
 // ── Exercise picker (facilitator setup) ───────────────────────────────────────
@@ -197,11 +277,16 @@ async function resumeSession() {
 // ── Participant join ───────────────────────────────────────────────────────────
 function joinSession() {
   const code = document.getElementById("join-room-code").value.trim().toUpperCase();
-  const name = document.getElementById("join-display-name").value.trim();
   if (!code || code.length !== 6) { showToast("Enter the 6-character room code.", true); return; }
-  if (!name)  { showToast("Enter your display name.", true); return; }
 
-  state.displayName = name;
+  // Use Azure AD name if available; otherwise fall back to manual input
+  if (state.azureAccount) {
+    state.displayName = state.displayName || state.azureAccount.name;
+  } else {
+    const name = document.getElementById("join-display-name").value.trim();
+    if (!name) { showToast("Enter your display name.", true); return; }
+    state.displayName = name;
+  }
   // Look up session by room code first
   showLoading("Joining…");
   fetch(`/api/sessions/${code}`)
@@ -313,6 +398,9 @@ function renderFacilitatorDashboard(s) {
   // Top bar
   document.getElementById("fac-topbar-session").textContent = s.session_name;
   document.getElementById("fac-topbar-code").textContent = s.room_code;
+  // Show facilitator's real name in topbar if available
+  const nameEl = document.getElementById("fac-topbar-participants");
+  if (nameEl && state.displayName) nameEl.title = `Facilitating as ${state.displayName}`;
   updateParticipantDisplay();
 
   // Exercise list in sidebar
@@ -552,7 +640,7 @@ function sendMessage(role) {
   const exId = s ? (s.exercise_order[idx] || "") : "";
 
   const sender = role === "facilitator"
-    ? `Facilitator`
+    ? (state.displayName || "Facilitator")
     : (state.displayName || "Participant");
 
   state.socket && state.socket.emit("send_message", {

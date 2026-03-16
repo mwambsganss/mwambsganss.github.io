@@ -9,6 +9,12 @@
 <body>
 
 <!-- ── Loading overlay ─────────────────────────────────────────────────────── -->
+<!-- ── Azure AD login overlay (shown while MSAL redirect resolves) ─────────── -->
+<div class="loading-overlay active" id="loginOverlay">
+  <div class="spinner"></div>
+  <div class="loading-msg">Signing you in with your Lilly account…</div>
+</div>
+
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
   <div class="loading-msg" id="loadingMsg">Loading…</div>
@@ -52,7 +58,7 @@
              style="text-transform:uppercase;letter-spacing:4px;font-size:18px;font-family:monospace;font-weight:700;"
              oninput="this.value=this.value.toUpperCase()"/>
     </div>
-    <div class="form-group">
+    <div class="form-group" id="join-name-group">
       <label>Your Display Name</label>
       <input id="join-display-name" type="text" placeholder="e.g. Alice Johnson" maxlength="40"/>
     </div>
@@ -93,6 +99,9 @@
     <div class="form-group">
       <label>Session Name</label>
       <input id="setup-session-name" type="text" placeholder="e.g. Q2 Banner Process Workshop"/>
+    </div>
+    <div id="fac-identity-badge" style="display:none;margin-bottom:12px;padding:8px 12px;background:var(--bg2);border-radius:var(--radius);font-size:13px;color:var(--text2);">
+      Facilitating as: <strong id="fac-identity-name"></strong>
     </div>
     <div class="form-group">
       <label>Facilitator Passcode <span style="font-weight:400;color:var(--text3)">(shared only with you)</span></label>
@@ -314,6 +323,8 @@
   </div>
 </div>
 
+<script src="https://alcdn.msauth.net/browser/3.0.22/js/msal-browser.min.js"
+        crossorigin="anonymous"></script>
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"
         crossorigin="anonymous"></script>
 <script src="app.js"></script>

@@ -414,6 +414,15 @@ def generate_summary(session_id):
     return jsonify({"exercise_id": ex_id, "summary_text": summary_text})
 
 
+@app.route("/api/config")
+def get_config():
+    """Return public Azure AD config for frontend MSAL.js auth."""
+    return jsonify({
+        "azure_client_id": os.environ.get("AZURE_CLIENT_ID", ""),
+        "azure_tenant_id": os.environ.get("AZURE_TENANT_ID", ""),
+    })
+
+
 @app.route("/api/sessions/<session_id>/export", methods=["GET"])
 def export_session(session_id):
     s = load_session(session_id)
