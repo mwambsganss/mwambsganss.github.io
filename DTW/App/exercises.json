@@ -1,0 +1,172 @@
+[
+  {
+    "id": "hopes_fears",
+    "name": "Hopes & Fears Board",
+    "phase": 1,
+    "phase_name": "Understanding",
+    "description": "A warm-up exercise to surface what participants are hoping to achieve and what concerns they bring into the workshop. Creates psychological safety by naming fears openly.",
+    "desired_outcome": "A shared list of participant hopes and fears, organized into themes, that will inform how the team approaches the rest of the workshop.",
+    "instructions": "Share what you are hoping this workshop will achieve. Then share any fears, concerns, or reservations you have going in. Be honest — there are no wrong answers. Post one thought per message and label it HOPE or FEAR.",
+    "prompt_hint": "Organize responses into HOPES and FEARS categories. Identify recurring themes in each. Note any tensions between what participants hope for and what they fear. Highlight the 2–3 most common hopes and the 2–3 most common fears."
+  },
+  {
+    "id": "persona_cards",
+    "name": "Persona Cards",
+    "phase": 1,
+    "phase_name": "Understanding",
+    "description": "Participants describe the key people involved in the process being studied — their roles, responsibilities, goals, and frustrations. Builds shared empathy across the team.",
+    "desired_outcome": "A set of 3–6 persona cards capturing the key roles in the process, each with a name, role title, primary goals, and top pain points.",
+    "instructions": "Describe one of the key people involved in this process. Who are they? What is their role? What are they trying to accomplish? What frustrates them most? You can describe yourself or someone you work with.",
+    "prompt_hint": "Extract distinct personas from the discussion. For each persona, synthesize: role title, primary goals (2–3), key pain points (2–3), and a representative quote. Group overlapping descriptions of the same role type."
+  },
+  {
+    "id": "stakeholder_map",
+    "name": "Stakeholder Map",
+    "phase": 1,
+    "phase_name": "Understanding",
+    "description": "Maps the people and teams involved in the process, showing how they relate to each other and to the central challenge. Reveals who influences outcomes and who is affected.",
+    "desired_outcome": "A visual map identifying all stakeholders, their proximity to the core process, and their primary relationship (driver, impacted, decision-maker, executor).",
+    "instructions": "Name a person or team involved in this process. What is their role in relation to the core challenge? Are they a decision-maker, an executor, someone impacted, or someone who enables the work? How closely are they involved day-to-day?",
+    "prompt_hint": "Identify all named stakeholders. Categorize each by role type (decision-maker, executor, impacted party, enabler). Note relationships and handoff points between stakeholders. Flag any stakeholders mentioned as sources of confusion or friction."
+  },
+  {
+    "id": "empathy_maps",
+    "name": "Empathy Maps",
+    "phase": 2,
+    "phase_name": "Empathizing & Mapping",
+    "description": "Deep-dive into what specific personas think, feel, say, and do during the process. Uncovers hidden frustrations and unspoken assumptions that don't appear in process documentation.",
+    "desired_outcome": "Empathy maps for 2–3 key personas, each capturing what they Think, Feel, Say, and Do — plus their Pains and Gains.",
+    "instructions": "Pick one persona from the earlier exercise. What do they think while doing their part of this process? What do they feel? What do they say out loud vs. keep to themselves? What specific actions do they take? What frustrates them (pains)? What would make them successful (gains)?",
+    "prompt_hint": "For each persona mentioned, extract and organize content into the 4 empathy quadrants: THINKS, FEELS, SAYS, DOES — plus PAINS and GAINS. Keep language close to participants' own words. Surface emotional tone."
+  },
+  {
+    "id": "asis_process_map",
+    "name": "As-Is Process Map",
+    "phase": 2,
+    "phase_name": "Empathizing & Mapping",
+    "description": "Documents the current state of the process as it actually happens — not as it is supposed to happen. Surfaces handoffs, delays, decision points, and pain moments.",
+    "desired_outcome": "A swim-lane process map showing the current steps, who does each step, what people are thinking and feeling at each stage, and where the biggest pain points occur.",
+    "instructions": "Walk through the current process step by step. What happens first? Who does it? Then what? Who hands off to whom? Where do things slow down or break down? What are people thinking and feeling at each stage? Flag pain points clearly.",
+    "prompt_hint": "Extract a sequential process flow. Identify each step, its owner/role, and any pain points. Organize into phases. Note where handoffs occur, where communication breaks down, and where participants expressed frustration or confusion."
+  },
+  {
+    "id": "needs_statements",
+    "name": "Needs Statements",
+    "phase": 2,
+    "phase_name": "Empathizing & Mapping",
+    "description": "Converts pain points and observations into actionable 'needs' framed from the user's perspective. Uses the format: [Persona] needs a way to [action] so that [benefit].",
+    "desired_outcome": "A set of 6–12 needs statements that reframe problems as design opportunities, organized by persona and theme.",
+    "instructions": "Complete this sentence: '[Person] needs a way to [do something] so that [they get this benefit].' Focus on the underlying need, not a specific solution. Aim to write 1–3 needs statements.",
+    "prompt_hint": "Extract and formalize needs statements in the '[Persona] needs a way to [action] so that [benefit]' format. If participants describe problems rather than needs, reframe them. Group by persona and by theme. Avoid solution-framing."
+  },
+  {
+    "id": "assumptions_grid",
+    "name": "Assumptions & Questions 2×2 Grid",
+    "phase": 3,
+    "phase_name": "Ideation & Prioritization",
+    "description": "Maps the team's assumptions and open questions on a 2×2 grid of Risk (high/low) vs. Certainty (certain/uncertain). The high-risk, uncertain quadrant reveals what needs to be validated first.",
+    "desired_outcome": "A populated 2×2 grid showing assumptions and questions plotted by risk level and certainty, with the high-risk/uncertain quadrant clearly identified as the priority to address.",
+    "instructions": "Share an assumption your team is making about the process, users, or solution. Or share an open question you still have. Then rate it: How risky is it if this assumption is wrong? How certain are you that it's true? High risk + uncertain = must validate first.",
+    "prompt_hint": "Categorize each item as an assumption or a question. For each, assess implied risk (high/low) and certainty (certain/uncertain). Highlight items in the high-risk/uncertain quadrant as critical to validate. Summarize the top 3 most pressing unknowns."
+  },
+  {
+    "id": "big_idea_vignettes",
+    "name": "Big Idea Vignettes",
+    "phase": 3,
+    "phase_name": "Ideation & Prioritization",
+    "description": "A structured brainstorm where participants generate bold ideas without judging feasibility yet. Ideas are organized into clusters or themes that represent solution directions.",
+    "desired_outcome": "A set of 10–20 big ideas organized into 3–5 thematic clusters, with enough detail to evaluate and prioritize in the next exercise.",
+    "instructions": "Brainstorm boldly. What if you could solve this problem with no constraints? What new tool, process, or approach would change everything? Share one idea per message. Give it a short headline and a one-sentence description. Don't worry about feasibility yet.",
+    "prompt_hint": "Cluster ideas by theme (e.g., automation, process, communication, tools, roles). For each idea, capture the headline and core concept. Flag ideas that involve technology or automation. Highlight any ideas that appeared more than once or generated enthusiasm."
+  },
+  {
+    "id": "prioritization_grid",
+    "name": "Prioritization Grid",
+    "phase": 3,
+    "phase_name": "Ideation & Prioritization",
+    "description": "Plots the big ideas on a 2×2 grid of Importance to Users vs. Feasibility for the Team. Reveals quick wins (no-brainers), strategic investments (big bets), and ideas to deprioritize.",
+    "desired_outcome": "A prioritized 2×2 grid with ideas in four quadrants: No-Brainers (quick wins), Big Bets (high value/harder), Utilities (easy/lower value), and Unwise (low value/expensive).",
+    "instructions": "For each idea from the brainstorm: How important is it to the people experiencing this process? How feasible is it for us to implement? No-Brainers = high importance + easy. Big Bets = high importance + hard. Rate ideas you feel strongly about.",
+    "prompt_hint": "For each idea discussed, assess importance to users and feasibility. Place ideas into four quadrants: NO-BRAINERS, BIG BETS, UTILITIES, UNWISE. Summarize the top 5 No-Brainers and top 3 Big Bets. Note any consensus or disagreements."
+  },
+  {
+    "id": "tobe_process_map",
+    "name": "To-Be Process Map",
+    "phase": 3,
+    "phase_name": "Ideation & Prioritization",
+    "description": "Designs the future-state process incorporating the best ideas from prioritization. Shows how the experience changes for each persona when the solution is implemented.",
+    "desired_outcome": "A future-state swim-lane map showing the improved process, with resolved pain points marked, new capabilities called out, and a noticeably better emotional experience for users.",
+    "instructions": "Imagine the process after our best ideas are implemented. Walk through it step by step. What happens now? Who does it? How is it different from today? What pain points are resolved? What does the person feel at each step in this new world?",
+    "prompt_hint": "Map the future-state process sequentially. For each step, note: what changed from the As-Is, which pain points are resolved, which new capabilities are required, and how the user experience improves. Highlight automation opportunities and quick wins."
+  },
+  {
+    "id": "experience_roadmap",
+    "name": "Experience-Based Roadmap",
+    "phase": 4,
+    "phase_name": "Planning & Execution",
+    "description": "Organizes capabilities and improvements into a timeline framed around user experience milestones — 'Our user can...' — rather than technical deliverables. Uses near/mid/long-term horizons.",
+    "desired_outcome": "A roadmap organized into three time horizons (near-term, mid-term, long-term) with user-facing capability statements that describe what becomes possible at each stage.",
+    "instructions": "Complete the sentence: 'Our user can...' for something that should be possible soon (1–3 months), in a few months (4–6 months), and eventually (7–12 months). Think about what becomes real for the people in this process — not just what we build.",
+    "prompt_hint": "Organize capability statements into three time horizons: Near-term (1–3 months), Mid-term (4–6 months), Long-term (7–12 months). Use 'Our user can...' framing. Flag automation capabilities. Ensure each horizon shows meaningful improvement over the previous."
+  },
+  {
+    "id": "hills_objectives",
+    "name": "Hills / Objectives",
+    "phase": 4,
+    "phase_name": "Planning & Execution",
+    "description": "Defines the team's overarching success outcomes in the IBM Hill format: WHO will be able to do WHAT, and the WOW (measurable outcome) that proves success. Hills are ambitious but achievable.",
+    "desired_outcome": "2–3 Hill statements that define clear success outcomes, each with a specific WHO, a bold WHAT, and a measurable WOW that the team can rally around.",
+    "instructions": "Define a Hill: WHO is the person this is for? WHAT will they be able to do that they can't do today? WOW: what is the measurable outcome that proves we succeeded? Example: 'Marketers can complete banner trafficking in one day with zero manual handoffs — reducing time by 80%.'",
+    "prompt_hint": "Extract Hill statements in WHO / WHAT / WOW format. If participants describe goals without structure, reframe them as Hills. Identify 2–3 distinct Hills covering different user groups or outcomes. Ensure each WOW is measurable."
+  },
+  {
+    "id": "gantt_roadmap",
+    "name": "Gantt Roadmap",
+    "phase": 4,
+    "phase_name": "Planning & Execution",
+    "description": "A time-phased execution roadmap showing which initiatives happen in which months, grouped by theme. Makes the plan visible and helps identify dependencies and resource conflicts.",
+    "desired_outcome": "A 12-month roadmap showing initiatives across themes, organized into Short-term (months 1–3), Mid-term (months 4–6), and Long-term (months 7–12) zones.",
+    "instructions": "For each initiative on our list: when should it start? How long will it take? Is it a Quick Win (month 1–2), a medium-term effort (months 3–6), or a long-term transformation (months 7–12)? Identify dependencies — what needs to be in place before something else can start?",
+    "prompt_hint": "Organize initiatives into a time-phased roadmap with short/mid/long-term zones. Group by theme. Identify dependencies and sequencing constraints. Flag high-priority items. Note any initiatives that are blockers for others."
+  },
+  {
+    "id": "resource_plan",
+    "name": "Resource Plan",
+    "phase": 4,
+    "phase_name": "Planning & Execution",
+    "description": "Identifies the people, skills, and resources needed to execute the roadmap. Surfaces ownership gaps, effort levels, and dependencies that must be resolved to move forward.",
+    "desired_outcome": "A resource plan showing each initiative with: required role/skill, proposed owner, effort level (Low/Medium/High), key dependencies, and any identified gaps.",
+    "instructions": "For each initiative: who needs to own it? What skills or roles are required? How much effort will it take? What dependencies must be resolved first? Flag any initiatives where we don't have a clear owner yet — those are our gaps.",
+    "prompt_hint": "Extract a resource plan. For each initiative, identify: owner or team, required skills/roles, effort estimate (Low/Medium/High), dependencies, and whether there is a gap (no owner identified). Highlight unowned initiatives as risks."
+  },
+  {
+    "id": "feedback_grid",
+    "name": "Feedback Grid",
+    "phase": 5,
+    "phase_name": "Review & Presentation",
+    "description": "A retrospective exercise to capture what worked well, what should change, open questions, and new ideas sparked by the workshop. Closes the loop and informs future sessions.",
+    "desired_outcome": "A feedback grid populated in four quadrants: Things That Worked (+), Things to Change (△), Questions We Still Have (?), and New Ideas to Try (💡).",
+    "instructions": "Reflect on the workshop itself. What worked well? What would you change for next time? What questions do you still have that weren't answered? What new ideas came up that we didn't get to explore? Label your message with +, change, question, or idea.",
+    "prompt_hint": "Organize responses into the four Feedback Grid quadrants: THINGS THAT WORKED, THINGS TO CHANGE, QUESTIONS WE STILL HAVE, NEW IDEAS TO TRY. Identify themes within each quadrant. Surface the top 2–3 items from each. Note any recurring concerns."
+  },
+  {
+    "id": "executive_summary",
+    "name": "Executive Summary",
+    "phase": 5,
+    "phase_name": "Review & Presentation",
+    "description": "A one-page summary of the entire workshop: the problem, the users, top insights, pain points, big ideas, agreed Hills, and immediate next steps. Designed to be shared with stakeholders who did not attend.",
+    "desired_outcome": "A concise executive summary covering: workshop context, key users, top 3 insights, top pain points, top 5 ideas, agreed Hills, and next steps with owners and target dates.",
+    "instructions": "Help build the executive summary. What was the core problem we addressed? Who are the key users? What are the most important insights from today? What are the top ideas? What did we agree to do next, and who owns it?",
+    "prompt_hint": "Synthesize into an executive summary with these sections: Problem Statement, Key Users, Top 3 Insights, Top 3 Pain Points, Top 5 Ideas, Agreed Hills, Immediate Next Steps (with owners). Keep it scannable and executive-ready. Use bullet points."
+  },
+  {
+    "id": "playback_deck",
+    "name": "Workshop Playback Deck",
+    "phase": 5,
+    "phase_name": "Review & Presentation",
+    "description": "The final workshop deliverable: a presentation deck that tells the story of the workshop — the problem, the personas, key insights, the Hills, and the path forward. Used for stakeholder readouts.",
+    "desired_outcome": "A 6–7 slide narrative deck covering: workshop objectives, key personas, key insights, Hills/success outcomes, roadmap highlights, and next steps.",
+    "instructions": "Help shape the playback story. If you were presenting this workshop to your senior leadership, what are the 5–6 most important things they need to know? What's the headline finding? What are you asking them to support or decide?",
+    "prompt_hint": "Structure as a narrative presentation: (1) Workshop Objectives & Context, (2) Key Personas & Challenges, (3) Key Insights from Empathy Work, (4) Hills / Success Outcomes, (5) Roadmap Highlights, (6) Next Steps & Asks. Write speaker-note-style summaries for each section."
+  }
+]
