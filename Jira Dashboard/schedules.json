@@ -1,1 +1,76 @@
-[]
+[
+  {
+    "id": "1bf14195-945d-43a2-bf0c-aa1422d4551a",
+    "name": "Friday EAA, ASO Summary",
+    "frequency": "weekly",
+    "dayOfWeek": 4,
+    "recipients": [
+      "m.wambsganss@lilly.com"
+    ],
+    "jiraBaseUrl": "https://lilly-jira.atlassian.net",
+    "jiraEmail": "m.wambsganss@lilly.com",
+    "jiraToken": "enc:gAAAAABpsq9PudTC7NzSMLPqFdhqsHaaetP0RSe-zFXD7f4lpkacslcWBpmv-X6hFUuHhaWY0y7gTT5_Qoq0mKRhptSIdbbyZ5tktIVT5-zHPYBSbt_Re2MYxGQ3BXQnIEtk-TKFzxrug6VpEsZlqCrDcJuJKcBMzpS0ZvDi3y7MCygb1UXviNjY_zPcNaa-SQL1CU7glVGwgqvd6NonN2F4YS6tcLoIwRbAoqESLrrvnRH6z_T9HZLFJOOxvBCvzcRFfcLf1EBVfgzZR6IYnGlzrwredrligLrBRLS4Fvj3sTc1DwKRHLcTr7tNsYUwEuo1di0o0Dy6-2HJ5ZN4CyodPyBm-jH1VQ==",
+    "projects": [
+      {
+        "key": "EAA",
+        "name": "EA Architects",
+        "selected": true
+      },
+      {
+        "key": "ASO",
+        "name": "Enterprise Automation Portfolio (TM)",
+        "selected": true
+      }
+    ],
+    "llmUrl": "https://lilly-code-server.api.gateway.llm.lilly.com",
+    "llmKey": "enc:gAAAAABpsq9PSWZ9dsiRnzV4QO5eNdWgx2uqFx1CaB5ouU8N9vYLxVmC2nx-ipc5JapGouZM6MNA1vXeJDBM7UqLsixnYH7PzMTMj4yn1bDD2byjuTRBw50FeB9ZlEW4S1JdgEwiLBZ98wirUykRBnpk9_s7_qb-HIP87gcQIsp7phwxi7g477O-9X6yPJYS13Df7NPrh367GpFUoITp2RxtHUeXRLLxVO4drnp7UhZTDl3YtC17CwaBqEaRZI-Sa-R-GBSZ9njbe-vQ07XXx67GC3hu6tWe70lnJDSbB1a8-ohF5tAblGA22MtyIFAnwIBGpvCFRlIJzyrPUVQfFwX925Vf-u2Gx8CVskath5i_7loHnTFv1VYxK61xELIy-1Wv96QZJc7nMbqaEcDKVN4JgM1DdtuOqy25mY9ZjCkTEJ-a_vb5wsenokZvSkgCxo9fTlaVt4Fy2PMw9rCLNn7rBKxjnXLxQy_RXwnr2ek5OBHZsSaahUbDDDM557ii_vq9jqtEneybQD0eB_GiD_cDrKUPnK0CfoQMBnPqiQ5A7nVVs2isB7evWk94KZGJcjV0cz9qrARzNnp7SohDg_chsPRPsKCZ4Gc8fAdFRlWxBZfe-Z7z8rR0a-a6e7v7ZlSeo6GG30okq_QH0JmbwTWgE3gQ4DWPrMpxDM_dmARusZiVBSsRuh1jm_CJhLkeWSY146grMl-NODguS1_akfgNHzY54mii_g8wgD8eXKr-n0MlNF0Y9KbYgWa-DdoQbRmiXwMNdftL2EQ8nTgcNGdJ1lG-xHknOo97YKudZOSbscxRWXuuN9MCOUQjE2pbak3dE7Lw9vCr5bSgn3CmpVlaOQCNW4RqXQsMhP2SKfELR-btmUsnm2pN2TzzQ2rYK0nP98hV49fJk6eTX1SgMlw5Mh030yNbG96954RTZmkYFjAKOsh48oplq0yl78zinnK_ZE7xWkZSsS4qZj42TjWXbH5ZPJXnxBkHvO8A19vGvJ8ix3lZiQi1AMF3FjUskz6v9DXT06-fBxJi81j3MQeujp8HACS9CEAibzptCF-Z_D_0aGj9Hbmp0PiAWimvMoUocIVsS3yArnetK9TzMQ6i9HPkBQPy_mtHFYzXM7yeG4MT6UfpU5HKFrqbNIed8-JQAfn6IevHGAiXSg4PGMSs_wIOg1vb-CMOuSUpimG4puekx8aiJZQeZ0K2pbxJmSfIkUl9sI2txZDR-udKHhMrFoYUhFZqiSBn8KyCQyD7Krh7CT7PRSfIcEPteJ33_yt_Zzuy5frSQFJFnE4qoVBZ-tI7_vVJBm3A_cQEaeHPpQvlTgSH_lLJXMKBvtFt6Wea9PaIvyGNEbbGr51IfpTr5ElTl-qPb8U0-nIOIB4GsxsodSZ4NU0slDZTnG4wG6yczQVCSbvuPdGySoHkrO_isJUjZVZwrt019gaqsjgQg65ZmGAscdklXlLcZCvapBCpGo65IIwOLQc2Ayh3TWj11KclPkwShVagpXY8J_lNruhB692-VSzm6Aybsh6Rgbdi4WhyK3wWuvs7-3Df9V1o_dAcLTukzo2MgS_xWpvKm5mHW-o1HPWzgnanpaf0erUH4NYTCb3zHZxQvkZFwNLFARK2tQqlIRac9heDGmcjY7KtMlworNlLMt3hPyVYThOAecGwwbs0KqVutEcW1dxS_vXO6wjPFyqSby_RfMiMle5pC6d50eXv56kqdPBZs9AOgltBtQtmuXCmgWDg3QEmhRMiaD48v9ZM_Bg0wRSOURS5VcAIb0TE5mfpfZ9_083QwBLATXryiLYQM3cyHAO2Nl0IlwH2EsNBUrZ7pPuqa7nIGqsEaJcnsuOYnX2DLj4Ngknq0l0j6ez2j1skokesAcBDP9Nu21t1to4_7UhW5dLsG7GPuUw6G69gHUKGHjkhhta7YSmlyCGc1xQF0sy-PbTWs-21BZAFkT-jjAHcBAefg-PeT4Sss4GB6wLR_hQrGrSBYSlHZ7BCgb9R4ifE7wIx2JUPPy6WWiUiY-oQHkvYY7TNFVBU1ctQcexppoSBdyUCnIlAi_SEiVZZh49kfoO0ZHTSJp5HPUyuEbkRQJBBjQtjK61yXdLJ_UUCPqt9ySUqZLp08kcTlxXNbljZcXt0g3o2dPZh-cMe4ywVe1cr3fI3edRsjLgxsLbZB398PeHZkgjeZ-bgs7KT99bxPLUYM9LtVHmqYhZql_DxwoiHPYgzuRaVTW8-xSm-YdTeJVHCDvTDx_A-mX-LRt43kN0nKHwuhg==",
+    "llmModel": "sonnet-latest",
+    "enabled": true
+  },
+  {
+    "id": "e8e61583-f6c6-43dc-9cc5-9eee72e92ea8",
+    "name": "Friday Kilo Summary",
+    "frequency": "weekly",
+    "dayOfWeek": 4,
+    "recipients": [
+      "m.wambsganss@lilly.com"
+    ],
+    "jiraBaseUrl": "https://lilly-jira.atlassian.net",
+    "jiraEmail": "m.wambsganss@lilly.com",
+    "jiraToken": "enc:gAAAAABpsq9kIh5AjwEaROe8Ud6QjwQHkKwKp2iHP2LUdz27cBbhn1Li5Qhvjgcw4KoSVA48os9aqpXJVSOFikT6iqi8SzamvLare9fnZaC6reEgPz-v6jKUlHreaJnxma1TGEET7eQNw1kR4P2IMlHHwU5Pv6fmfejiADDznMtC1snJ6HmGaKswXfl8zjz4EGRNKyVFZ47hALkihZ36rGhj1DDHeXiJ_cNKwXnHUpcNBH8u_G-FYyrH13f1-r4g10cOl9d2c-pSoBDq12ZTBOKiuU0qJcS5eUnBzWetNqY8WthhbmkT7UBIa7H6LHQIfD2YeVfdDu4nqvytiywazLSx5nzh3DmE1Q==",
+    "projects": [
+      {
+        "key": "KILO",
+        "name": "Capability_Test Automation",
+        "selected": true
+      }
+    ],
+    "llmUrl": "https://lilly-code-server.api.gateway.llm.lilly.com",
+    "llmKey": "enc:gAAAAABpsq9kcZTWDrjOJxhxC2IwcOxY-qsRs-kToc4m0Bl7vVkOtw0HeA_HjefoHMes2EDvJbOjXdcMFUxDT3JPld3jMjOn9Tt4tSXThVjInrs0YJI_FjRrvwVUPF4rM01YZkvjP70PQ931UDjNseuX_3kAeq6KMsMZjq1Rayegt1cjs0WNY1OURInQmFMb714b7Vmiz5h2TxxHsRkY8SqpglEXsd14_MCrFW7w-ocG3HMrN3QlDdD4FrebYnESiiKcrp5lb1yb3OZNCl8P-QgRRhoymiLbkmhcrHmiQZMZvSTdOFcndM8G5_yif-CccLCcUCNFwP__atLANHEMy4vzOCOi8zwPyTHH-OA0FJ2zL1rBaJSis4oJmRr3RNFqh8T1F_7Sz1ayLfdMG14dSV4GFQRwA8tpROuzbSxCzGlWiOnJTCX1tacaCZ2gelTyzpPPOxSRe223bu9zcOGzUW-3KC3xWvW4mT9g9rpmCNTWgweATOKxIjxO9VpdborIIyCOGkef5r_Apz-RqdgR_iiYDbSPaPdwB1RICxLU9pgKz3Oi8dPPNSNmigHujAi7IPz_5mY1ZM7Whk6hwdFgbcTQAnTkeaJJTAnzT1Tw6F3AI07j5uZF1L1pt5RPF__ZLat5V_SjYopO__DoKM5wAH551ow1Uf50NScjG4hgMpdMg7gPXn8DZI-OgxEL7ejLHSDHzcDMPBU993LxrMllp3bTc5YcBhy4xtXjlOZ2--4EW2l74XPUj31SI0LlW0_46dFcaba-8I3kxrAW8aLJGTo0F63TK-VR5gxMVtWEoHU5ffnyqT4j2YYuobQHAFYCr6UaHo-4tWslFrgzBk7GZwEx_rDg8CNE9Xl0rs6yxb_boBLtIly3R158oOvX08a5-SvBXgAHWNOuFM2qLHUeIDelbCkB6_efHF7TRGVvPqTBjnvxgEkyAJp7Q8B9XDbDOukMAni1MJBsmyfOhweEGEeGFQPSbzb8zXxilu1k69Gs6MdFUFGrMO1HtBuzKkGwvDfjg1Enho1UUsLaFodcHX2BxT9ZMjnHTdQeBe7_0fxA7JHiHgyo3Hfgoht1VJJQxOQTmxyfZrn1bo3CbAdrRa5wD1fPA2phFsOOpfs13v8juPQcRO50btyjNtsDh2z08lcCPkZquRjpBpdqQOR8qp6u1deUm9sHFIrNZh1l3DgVIqbV5FnU-0cKmZorn5niToobMQtZR9WPYCd6CNJvKRdr4qgFESdw_3sQc4XSkk3WMDJv8JVZdfQOMqXW2CSnjhmyp0FCi8Pm4mJNfvWoOYwcCBqNz0zDotEyy074b9woj34lsKR0CfS1j0iF7wL6oNUCIUCIsDf0bgJOceWCZgpk5FWkPxu5HBsqWquEC4ErqMi-xlMDCXf5SAdrhdpUo7mn0AAXChsfe5dD7_7P9wrbqnWtj7xi_iDYLOU39Q7jwAZ1Qx1smKbGThxR8bKpSn0-eFBkn8myXhO9nABdPHB7ocdBuUO9TUtwWmHKt5cTCBKxr_-IpHJpb_oOYP1fTNoAxnvmqTqgksHBwFAtuyPk6Dk9PBUxNpPBrwOKoLdliw_WtaXX4gQUHoE7sU6syDEdTOaPAotK8C4a4Ezkw0XyvtXkkfw0g6ZpVW3fij_o8XH7ZLKQnz6xCNnMo0uf7QROk9oM8u6Lbx_slFxwZC91WDwV5Pk1R-VXyTz8WshB7pdGqDfOUt3zwizgmDyjpkK134RifsDkJzWoXnmwbhX_N4MdmpiATaRebeBeI37QKBLAwkqNZv0sjPMOth68RrRgZ9IyutLzlN8vHo04l8AxU8hZtiyt5WeaBA5CS-WzRljHBSC0UNOXew6Zgs1G51O4-7i2C1Em3ZJOK3M5BpGNP0hnt3eEcnKPIcYTjOqFbEWgM36Dacg0NvW6uYKZ4UoyXkOobwaHMeqJftt75COuenhB9QQ3koWy_rB2BCn0anM2YiamXCZSq3K9nP5VR0iiMOiQP9MzvqRgEVX1zqqwmh2k2y3E-86CwgeMZD5y2LZvixwyLwPWOOkcaaBuaXc9cwmCLrxQ3TtDJDTRXHSCY6Wr4JWFS15teisU0Kv7XLg8I7_GBGhywHh_wczIq-bLM-jrsUVQsvZ5GaA45uyvIEw5HyFqR1UKN_qs8IU0X4A6f0qHHHM-G0bPl5XL0nhxXsJEnoZtJxGsZwOGUSrhrqa5DdCtpSB7XiccqJsQ7UsDL2vi_x7n6Cg4F_oNb9SEY2zt3uUurm8n3m97RdGqw3gMTXe7Bw==",
+    "llmModel": "sonnet-latest",
+    "enabled": true
+  },
+  {
+    "id": "bdecc482-3b5a-4a7a-a764-87039fa94f42",
+    "name": "Monthly EAA Summary",
+    "frequency": "monthly",
+    "dayOfWeek": 4,
+    "recipients": [
+      "m.wambsganss@lilly.com"
+    ],
+    "jiraBaseUrl": "https://lilly-jira.atlassian.net",
+    "jiraEmail": "m.wambsganss@lilly.com",
+    "jiraToken": "enc:gAAAAABpsq9WR-JZne2xWEQYDJW_soNrsdRB-mFdVxdKqarBe64KIUiYni-yED2rDjB3YvG_3wqbn0wnDwX7zZW0eWsRUD0QxPsnn0U5qaTXZqQRtSRrJnRX0QaLhDKWPFjR70GjPINyTQtwaAVOuPMfKijseiMfiVINB5-_7GOaGSaF_ZOrUBkTNtPhwGX1MQwfghmiEncJR6LNg5smbFGNHzJbjog1lQIRk6OD0D4ivcEbbnTaggVYqDqTUOaDk08ftWn5Ri2i7Wz3BvqSYob4U1urpnLC4fDyDVqV9e_KKekH8nAM2oNLx-Cdk5jPgwxWpo-07jxd2ULed0YEY15k4xaYjLJxBg==",
+    "projects": [
+      {
+        "key": "EAA",
+        "name": "EA Architects",
+        "selected": true
+      }
+    ],
+    "llmUrl": "https://lilly-code-server.api.gateway.llm.lilly.com",
+    "llmKey": "enc:gAAAAABpsq9WzVejvKlXTVs8VShDK1LCZ-m6HyhxvMXO9eqLPyI3VXFkHGh8ICzoMjt910Hd5G72qcABnqvDWfiXoTz2QDx-04r-Ms4Avh42SCx0907fltCuM9ciFcDgRfbTS55A2PTlN1jeDeEJAJBPabv439dFgMVSFcjPKYIf3gbq20Uc1u9gCLzSheNq9uwmETiGHqQd04regvUHXlS2yOAcrIG0SIYZctszddI5VOdu61Fs9McVZurs94G5k83GApTkEz2QICTZXAkTxUSXHpsFgFqPGE3bO1IHwE2denS7Aj14OCxFt9CiCjU9s6JOX4Tr9Mm9BC256m4gVB_TZliIrx8p3_4lpBc0u9rYPc6ILZ67HWAAvt9eM1acuX0SAPfnXWew5jepkH7r1e4RHtsbQsp6Zu1COnAZ-E3DwKPdh4S5gz9RuS0zrw6HGybuAwxC5yBJfe0QNtaLxy3wryP5FhOKDTkemMmCYOtSiAKvSizOx63OKAffaqfUZrF08AFgkagEj1P9xLNpuzP-pFOoUL4pVWZGKRkraWgtliM0Bk8nLqD3IyDHLkHdcKs_L430Am6BJuyvyAO0x1thJiV71we-8xnxURmmyOGo-d7sGovcFt7oX-46sA0DVxS487SNKU_zr7uLjL8Om3JUV2EydLYBIeMeWDsAWajXuGV96hA65HNZSREyjalp_QwGrpZer1gydmr4m5DhSk9rnYXFd4d94SDZCXcbs318uTYPKiq9NAaMb8pf-zmfeDBbzyEhYfzRiORitpu7hoVNQoCbX986be7gtfTYgNm-f9Ch6_jOa29sR5BQCYfe9CUN5G5JX6RtvntFFOraBZe1v_2b0IJXGwCCAP4MXrwWJjqfIO-LBO5U-NDvXy7tzNswNaTkjjZjWmtcAX64q7cbWW_nA5ZBgNzrOZQfaOd_Kyfyyfv-05_5GM2Yvk0QzSqtdRNbIdG6vXFB0T4GyrpUsnjwXHBPogGUVuOYghWnvIT2nxC8BTsWSHe-6y1DFI_w8fLTO9g3X9sFeiYICtp7g7WIPIuBaHKlC2b0Q90MmiUNm5k9JII2EeJvqcbTrQD5Q8NISzA73ddxveZWHm-BoprIheqaimUN2mlaqpg7HjcB702IbD3O-17oixHUMC9WCWBIn97_GC2PuCEq3AvHAD5VnOxQUgTOqnoxjP_WVoTrkLyDuiag4UawJc9ujrPOY_VtnwHqMpLm5Kdtovdc3R1Wh0Yt7gl9GuaZVl3ZZGO0qsr_SsUHCk8RO2xBxoxbtLPxA1CS7axw-IhFZt93i_SQVnGUBpTNi6qEJxTIZY-xzMC_Trd9ZyM5x8YxMW68yKigsbOdTQd8MgtILcbAdvg1HZ3imxPFuUTGAx0SlZA0gIxaoUQ-4pJ-9Zn-2W-GdhuVsvjDLP3RwF28iEWVALfyfluuIPGKYWx7JxQa5ZN3TmFdlcU1n4y7GGWm6ZHBGxDbuSJOT3dkcQ_AE4YXlvchbGYBUZfyrm4ZWTzB2bYRZDQlnGr_vAHGngZoJxSRmCPZeXSEWC5qanXWww2vnpEAknZR-dZHDyEizn3GqVLbzjWiXb_okBSj3i7MuplZViR_gUOWSlk8isp_CxWUdz99Bg9f6g87w0YZFSXl2dcOP5etCwIEObI8yVYIegINwVTSGsH4uz7329rGpRokskglsTS9c-halk5EOxR0_IItxndEJ7KHQOySId9FWAOhbUCYBrMPLHrd6g_KUk01Ybp1BBRp7wuUGF52KDwo8MlZez96BtP7I2_hnv2vGckD4-yA-pmfSjFZQ3HGwdmjoDOibQcffoaw9wig2I7r-AodSvn7otBPxE8K-5lMqBIkpWHMH1A_Et_TVdcMhwGJM3LQWMuKiqwn69BWP-_i4KllUA6XNapEiRPm2_aZYVeHUdQU9Oox6-iPoSMj4Uvsaf_YH3XVYCoro87zMQt6jlgS-uum4pOmUpnPxSiR6LoLswuoMrnk0Mee-1iyHDC3RBnX_dw4ZbmX0H962qucolUPNGHzzODcmXCzsI9Y41v9cAcfpn5TAmbXEr_AdQ9s2E7Lfn42421AYbQ5WmpD-zI-df6J_9G_3hFGF82K9ZSQBkPdnLL-MPL2eSB0Qa8_cLw3oSyLfpC_MTSbPSjkIe82gy7YElrHtaYLSHdMR2VBxp2om4sJbCsClyr-u1B8Q0i3RY-gXywGYIpQ4Nmu23fsk9hIex9gIka2y6bvVtNjJyW-y0ifxstUPST2VXXd8tAwYZkypA==",
+    "llmModel": "sonnet-latest",
+    "enabled": true
+  }
+]
