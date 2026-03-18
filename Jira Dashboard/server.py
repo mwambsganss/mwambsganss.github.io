@@ -81,6 +81,56 @@ SSO_CONFIGURED   = SSO_TENANT_ID != "FILL_IN_LILLY_TENANT_ID"
 SMTP_RELAY_HOST = os.getenv("SMTP_RELAY_HOST", "smtp-z1-nomx.lilly.com")
 SMTP_RELAY_PORT = int(os.getenv("SMTP_RELAY_PORT", "25"))
 
+# ── LLM Gateway config ────────────────────────────────────────────────────────
+# Option A: static key (LLM_KEY) – used as-is.
+# Option B: OAuth2 client credentials (LLM_CLIENT_ID + LLM_CLIENT_SECRET + LLM_TENANT_ID)
+#   – server fetches and caches an Azure AD JWT automatically.
+LLM_KEY           = os.getenv("LLM_KEY", "")
+LLM_URL           = os.getenv("LLM_URL", "https://lilly-code-server.api.gateway.llm.lilly.com")
+LLM_CLIENT_ID     = os.getenv("LLM_CLIENT_ID", "").strip()
+LLM_CLIENT_SECRET = os.getenv("LLM_CLIENT_SECRET", "").strip()
+LLM_TENANT_ID     = os.getenv("LLM_TENANT_ID", "").strip()
+# Scope for Lilly LLM Gateway client-credentials flow (Azure Cognitive Services)
+LLM_SCOPE         = os.getenv("LLM_SCOPE", "https://cognitiveservices.azure.com/.default")
+
+_llm_token_cache: dict = {"token": "", "expires_at": 0.0}
+
+def _get_llm_bearer() -> str:
+    """Return a valid bearer token for the LLM gateway.
+
+    Priority:
+    1. OAuth2 client-credentials token (if CLIENT_ID/SECRET/TENANT are set)
+    2. Static LLM_KEY from .env
+    """
+    import time
+    if LLM_CLIENT_ID and LLM_CLIENT_SECRET and LLM_TENANT_ID:
+        now = time.time()
+        if _llm_token_cache["token"] and now < _llm_token_cache["expires_at"] - 60:
+            return _llm_token_cache["token"]
+        token_url = (
+            f"https://login.microsoftonline.com/{LLM_TENANT_ID}/oauth2/v2.0/token"
+        )
+        payload = urllib.parse.urlencode({
+            "grant_type":    "client_credentials",
+            "client_id":     LLM_CLIENT_ID,
+            "client_secret": LLM_CLIENT_SECRET,
+            "scope":         LLM_SCOPE,
+        }).encode()
+        req = urllib.request.Request(
+            token_url, data=payload,
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+        )
+        try:
+            with urllib.request.urlopen(req, context=_ssl_ctx_internal()) as resp:
+                td = json.loads(resp.read())
+            _llm_token_cache["token"]      = td["access_token"]
+            _llm_token_cache["expires_at"] = now + td.get("expires_in", 3600)
+            print(f"[LLM] OAuth2 token fetched, expires in {td.get('expires_in', 3600)}s")
+            return _llm_token_cache["token"]
+        except Exception as exc:
+            print(f"[LLM] OAuth2 token fetch failed: {exc} — falling back to LLM_KEY")
+    return LLM_KEY
+
 # ── Credential encryption config ──────────────────────────────────────────────
 # Set SECRET_KEY in .env to encrypt jiraToken and llmKey at rest in schedule files.
 # Requires: pip3 install cryptography
@@ -857,17 +907,40 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if "=" in part:
                 k, v = part.strip().split("=", 1)
                 cookies[k.strip()] = v.strip()
+
+        # Helper: load keychain LLM token (aud = LLM gateway, upn = personal account)
+        # This is the token that grants access to the LLM gateway.
+        def _llm_token_from_keychain() -> str:
+            if _keychain.get("token"):
+                return _keychain["token"]
+            try:
+                result = subprocess.run(
+                    ["security", "find-generic-password", "-s", "lilly-code", "-w"],
+                    capture_output=True, text=True, check=True,
+                )
+                data  = json.loads(result.stdout.strip())
+                token = data.get("access_token", "")
+                expires_at = data.get("expires_at", "")
+                _keychain.update({"token": token, "expires_at": expires_at,
+                                  "email": _email_from_jwt(token)})
+                return token
+            except Exception:
+                return ""
+
         session = _sessions.get(cookies.get("session", ""))
         if session and session.get("access_token"):
+            llm_tok = _llm_token_from_keychain() or session["access_token"]
             self._json(200, {
                 "token":      session["access_token"],
                 "expires_at": session["expires_at"],
                 "email":      session["email"],
+                "llm_key":    llm_tok,
+                "llm_url":    LLM_URL,
             })
             return
 
         if _keychain:
-            self._json(200, _keychain)
+            self._json(200, {**_keychain, "llm_key": _keychain.get("token", ""), "llm_url": LLM_URL})
             return
         try:
             result = subprocess.run(
@@ -879,7 +952,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             expires_at = data.get("expires_at", "")
             email_addr = _email_from_jwt(token)
             _keychain.update({"token": token, "expires_at": expires_at, "email": email_addr})
-            self._json(200, _keychain)
+            self._json(200, {**_keychain, "llm_key": token, "llm_url": LLM_URL})
         except subprocess.CalledProcessError:
             if SSO_CONFIGURED:
                 self._json(401, {"error": "Not authenticated", "login_url": "/api/login"})
@@ -1011,10 +1084,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         qs     = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
         token  = qs.get("token", [None])[0] or ""
         url    = qs.get("url", ["https://lilly-code-server.api.gateway.llm.lilly.com"])[0]
-        target = url.rstrip("/") + "/v1/models"
+        # Prefer server-side LLM_KEY over client-supplied token
+        auth_token = _get_llm_bearer() or token
+        target = (LLM_URL if (LLM_KEY or LLM_CLIENT_ID) else url).rstrip("/") + "/v1/models"
         req    = urllib.request.Request(
             target,
-            headers={"Authorization": f"Bearer {token}", "Accept": "application/json"},
+            headers={"Authorization": f"Bearer {auth_token}", "Accept": "application/json"},
         )
         ctx = self._ssl_ctx()
         try:
@@ -1050,6 +1125,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         body        = json.loads(self.rfile.read(length))
         target_url  = body.get("url", "")
         req_headers = body.get("headers", {})
+        # Pass the client's Authorization header through as-is.
+        # The frontend stores the user's SSO token (personal Azure AD token),
+        # which the LLM gateway accepts for users in the required groups.
         req_body    = json.dumps(body.get("body", {})).encode()
         req         = urllib.request.Request(
             target_url, data=req_body, headers=req_headers, method="POST"

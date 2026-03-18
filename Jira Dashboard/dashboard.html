@@ -20,8 +20,6 @@
   <script>
     // ── Auth token: fetch from server (SSO session or keychain fallback) ──────
     async function fetchAndStoreToken() {
-      // Skip if token already in localStorage — avoids repeated keychain prompts
-      if (localStorage.getItem("jiraDash_claudeKey")) return;
       try {
         const r = await fetch("/api/auth-token");
         const data = await r.json();
@@ -30,15 +28,23 @@
           if (data.login_url) { window.location.href = data.login_url; return; }
           return;
         }
-        const { token, expires_at, email } = data;
-        if (token) {
+        const { token, expires_at, email, llm_key, llm_url } = data;
+        // SSO token (returned as llm_key from server) is the user's personal Azure AD token.
+        // The LLM gateway accepts it because the user's account has the required group access.
+        // Always refresh on page load so an expired token gets replaced.
+        if (llm_key) {
+          localStorage.setItem("jiraDash_claudeKey", llm_key);
+          if (llm_url) localStorage.setItem("jiraDash_claudeUrl", llm_url);
+          if (!localStorage.getItem("jiraDash_claudeModel"))
+            localStorage.setItem("jiraDash_claudeModel", "sonnet-latest");
+        } else if (token) {
+          // Fallback: use SSO token directly if llm_key wasn't returned
           localStorage.setItem("jiraDash_claudeKey", token);
           localStorage.setItem("jiraDash_claudeUrl", "https://lilly-code-server.api.gateway.llm.lilly.com");
           if (!localStorage.getItem("jiraDash_claudeModel"))
             localStorage.setItem("jiraDash_claudeModel", "sonnet-latest");
-          if (email)
-            localStorage.setItem("jiraDash_email", email);
         }
+        if (email) localStorage.setItem("jiraDash_email", email);
       } catch (e) {
         console.warn("Auth token fetch failed:", e);
       }
