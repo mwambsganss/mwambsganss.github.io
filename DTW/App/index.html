@@ -33,14 +33,16 @@
     <h1 style="font-size:22px;margin-bottom:6px;">Design Thinking Workshop</h1>
     <p class="landing-subtitle">Collaborative AI-powered workshop facilitation</p>
     <div class="landing-actions">
-      <button class="btn btn-primary btn-wide" onclick="showView('join')">
+      <button class="btn btn-primary btn-wide" onclick="showJoin()">
         Join a Session
       </button>
-      <div class="landing-divider">or</div>
-      <button class="btn btn-outline btn-wide" onclick="showView('facilitator-login')">
+      <div class="landing-divider" id="fac-divider" style="display:none;">or</div>
+      <button class="btn btn-outline btn-wide" id="fac-login-btn" style="display:none;"
+              onclick="showFacilitatorAccess()">
         Facilitator Login
       </button>
     </div>
+    <div id="landing-identity" style="margin-top:16px;font-size:13px;color:var(--text3);"></div>
   </div>
 </div>
 
@@ -69,20 +71,37 @@
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════════════════ -->
-<!-- VIEW: FACILITATOR LOGIN (enter existing session OR create new)            -->
+<!-- VIEW: FACILITATOR PIN (fallback when keychain identity unavailable)       -->
 <!-- ══════════════════════════════════════════════════════════════════════════ -->
 <div class="view" id="view-facilitator-login">
   <div class="form-panel">
     <span class="back-link" onclick="showView('landing')">← Back</span>
     <h2>Facilitator Access</h2>
-    <p class="subtitle">Create a new session or resume an existing one.</p>
-    <div class="form-actions" style="flex-direction:column;">
-      <button class="btn btn-red btn-wide" onclick="showView('facilitator-setup')">
-        + Create New Session
-      </button>
-      <button class="btn btn-ghost btn-wide" onclick="showView('facilitator-resume')">
-        Resume Existing Session
-      </button>
+    <p class="subtitle">Enter your name to continue.</p>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input id="fac-login-name" type="text" placeholder="e.g. Matt Wambsganss" maxlength="60"/>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" onclick="facilitatorPinLogin()">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<!-- VIEW: SESSION PICKER (after facilitator auth)                              -->
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<div class="view" id="view-session-picker">
+  <div class="form-panel" style="max-width:680px;">
+    <span class="back-link" onclick="showView('landing')">← Back</span>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+      <h2 style="margin:0;">Your Sessions</h2>
+      <button class="btn btn-red btn-sm" onclick="showView('facilitator-setup')">+ New Session</button>
+    </div>
+    <p class="subtitle" id="session-picker-greeting"></p>
+    <div id="session-picker-list" style="display:flex;flex-direction:column;gap:10px;margin-top:12px;"></div>
+    <div id="session-picker-empty" style="display:none;text-align:center;padding:40px 0;color:var(--text3);">
+      No sessions yet. Create your first one above.
     </div>
   </div>
 </div>
@@ -92,20 +111,13 @@
 <!-- ══════════════════════════════════════════════════════════════════════════ -->
 <div class="view" id="view-facilitator-setup">
   <div class="form-panel" style="max-width:620px;">
-    <span class="back-link" onclick="showView('facilitator-login')">← Back</span>
+    <span class="back-link" onclick="showView('session-picker')">← Back</span>
     <h2>Create Workshop Session</h2>
-    <p class="subtitle">Name your session, set a facilitator passcode, and choose your exercises.</p>
+    <p class="subtitle">Name your session and choose your exercises.</p>
 
     <div class="form-group">
       <label>Session Name</label>
       <input id="setup-session-name" type="text" placeholder="e.g. Q2 Banner Process Workshop"/>
-    </div>
-    <div id="fac-identity-badge" style="display:none;margin-bottom:12px;padding:8px 12px;background:var(--bg2);border-radius:var(--radius);font-size:13px;color:var(--text2);">
-      Facilitating as: <strong id="fac-identity-name"></strong>
-    </div>
-    <div class="form-group">
-      <label>Facilitator Passcode <span style="font-weight:400;color:var(--text3)">(shared only with you)</span></label>
-      <input id="setup-passcode" type="text" placeholder="e.g. dtw2026" maxlength="20"/>
     </div>
 
     <div class="form-group">
@@ -124,29 +136,6 @@
 
     <div class="form-actions">
       <button class="btn btn-primary" onclick="createSession()">Create Session →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════════════════ -->
-<!-- VIEW: FACILITATOR RESUME                                                   -->
-<!-- ══════════════════════════════════════════════════════════════════════════ -->
-<div class="view" id="view-facilitator-resume">
-  <div class="form-panel">
-    <span class="back-link" onclick="showView('facilitator-login')">← Back</span>
-    <h2>Resume Session</h2>
-    <p class="subtitle">Enter the session ID and your passcode.</p>
-    <div class="form-group">
-      <label>Room Code or Session ID</label>
-      <input id="resume-session-id" type="text" placeholder="Room code (e.g. AB12CD) or full session ID"
-             oninput="this.value=this.value.toUpperCase()"/>
-    </div>
-    <div class="form-group">
-      <label>Facilitator Passcode</label>
-      <input id="resume-passcode" type="password" placeholder="Your passcode"/>
-    </div>
-    <div class="form-actions">
-      <button class="btn btn-primary" onclick="resumeSession()">Resume →</button>
     </div>
   </div>
 </div>
@@ -180,6 +169,7 @@
 <div class="view" id="view-facilitator">
   <!-- Top bar -->
   <div class="topbar">
+    <button class="topbar-home" onclick="goHome()" title="Back to home">&#8962;</button>
     <div class="topbar-logo">Lilly <span>DTW</span></div>
     <span id="fac-topbar-session" class="topbar-session"></span>
     <div class="topbar-sep"></div>
@@ -208,6 +198,7 @@
         <button class="btn btn-red btn-wide btn-sm" id="btn-summary" onclick="triggerAISummary()">
           ✦ Generate AI Summary
         </button>
+        <button class="btn btn-ghost btn-sm" onclick="openEditExercises()">✎ Edit Exercises</button>
         <button class="btn btn-ghost btn-sm" onclick="exportSession()">↓ Export Session</button>
       </div>
     </div>
@@ -252,6 +243,7 @@
 <div class="view" id="view-participant">
   <!-- Top bar -->
   <div class="topbar">
+    <button class="topbar-home" onclick="goHome()" title="Back to home">&#8962;</button>
     <div class="topbar-logo">Lilly <span>DTW</span></div>
     <span id="par-topbar-session" class="topbar-session"></span>
     <div class="topbar-sep"></div>
@@ -319,6 +311,36 @@
     <div class="summary-card-actions">
       <button class="btn btn-ghost btn-sm" onclick="closeSummary()">Close</button>
       <button class="btn btn-primary btn-sm" onclick="facilitatorAdvance()">Next Exercise →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<!-- EDIT EXERCISES MODAL (facilitator)                                         -->
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<div class="summary-overlay" id="edit-exercises-overlay">
+  <div class="summary-card" style="max-width:560px;">
+    <div class="summary-card-header">
+      <h2>Edit Exercises</h2>
+    </div>
+    <div class="summary-card-body" style="overflow-y:auto;max-height:60vh;">
+      <p style="font-size:13px;color:var(--text3);margin-bottom:12px;">
+        Select exercises and drag to reorder. Changes take effect immediately for all participants.
+      </p>
+      <div class="exercise-picker" style="border:none;padding:0;">
+        <div class="exercise-picker-header">
+          <span id="edit-ex-picker-count">0 selected</span>
+          <div style="display:flex;gap:8px;">
+            <span style="cursor:pointer;color:var(--blue);font-size:12px;" onclick="editExSelectAll()">Select All</span>
+            <span style="cursor:pointer;color:var(--text3);font-size:12px;" onclick="editExDeselectAll()">Clear</span>
+          </div>
+        </div>
+        <div id="edit-exercise-picker-list"></div>
+      </div>
+    </div>
+    <div class="summary-card-actions">
+      <button class="btn btn-ghost btn-sm" onclick="closeEditExercises()">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="saveEditExercises()">Save Changes</button>
     </div>
   </div>
 </div>

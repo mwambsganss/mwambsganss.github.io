@@ -8,7 +8,6 @@ Serves the DTW collaborative workshop app with:
   POST   /api/sessions                  — create session
   GET    /api/sessions                  — list all sessions
   GET    /api/sessions/<id>             — get session state
-  POST   /api/sessions/<id>/verify-passcode
   POST   /api/sessions/<id>/advance     — next exercise
   POST   /api/sessions/<id>/back        — previous exercise
   POST   /api/sessions/<id>/summary     — generate AI summary
@@ -23,6 +22,7 @@ import json
 import logging
 import os
 import ssl
+import subprocess
 import urllib.request
 import uuid
 from datetime import datetime, timezone
@@ -108,13 +108,6 @@ def get_exercise_meta(exercise_id: str) -> dict | None:
     return None
 
 
-def check_passcode(session: dict, req) -> bool:
-    passcode = (
-        req.headers.get("X-Passcode")
-        or (req.json or {}).get("passcode", "")
-    )
-    return passcode == session.get("passcode", "")
-
 
 def _rebuild_room_code_map() -> None:
     """Rebuild in-memory room_code→session_id map from disk at startup."""
@@ -133,6 +126,79 @@ _rebuild_room_code_map()
 
 # ── AI Summary (Lilly LLM Gateway) ────────────────────────────────────────────
 
+LLM_GATEWAY_URL = os.environ.get(
+    "LLM_GATEWAY_URL",
+    "https://lilly-code-server.api.gateway.llm.lilly.com"
+).rstrip("/")
+LLM_MODEL = os.environ.get("LLM_MODEL", "claude-sonnet-4-6")
+
+# ── Facilitator access control ────────────────────────────────────────────────
+
+# Names exactly as they appear in the JWT 'name' claim (case-insensitive match)
+FACILITATORS: list[str] = [
+    "Matt Wambsganss",
+]
+
+
+_keychain: dict = {}
+
+
+def _read_keychain_token() -> str:
+    """Read the lilly-code JWT from the macOS keychain (populated by Lilly Code VS Code extension).
+    The keychain value is a JSON blob: {"access_token": "eyJ...", "expires_at": "..."}.
+    """
+    try:
+        result = subprocess.run(
+            ["security", "find-generic-password", "-s", "lilly-code", "-w"],
+            capture_output=True, text=True, check=True,
+        )
+        raw = result.stdout.strip()
+        try:
+            data = json.loads(raw)
+            token = data.get("access_token", "")
+        except json.JSONDecodeError:
+            token = raw  # fallback: treat raw value as the token
+        _keychain["token"] = token
+        return token
+    except subprocess.CalledProcessError:
+        log.warning("lilly-code keychain entry not found — AI summaries will fail until you sign in via VS Code")
+        return ""
+
+
+def _decode_jwt_payload(token: str) -> dict:
+    """Decode the payload of a JWT without signature verification."""
+    import base64
+    try:
+        parts = token.split(".")
+        if len(parts) < 2:
+            return {}
+        payload = parts[1]
+        # Add padding
+        payload += "=" * (-len(payload) % 4)
+        return json.loads(base64.urlsafe_b64decode(payload).decode("utf-8"))
+    except Exception:
+        return {}
+
+
+def _identity_from_keychain() -> dict:
+    """Return {name, email, is_facilitator} from the keychain JWT, or empty strings."""
+    token = _keychain.get("token", "") or _read_keychain_token()
+    if not token:
+        return {"name": "", "email": "", "is_facilitator": False}
+    claims = _decode_jwt_payload(token)
+    name  = claims.get("name") or claims.get("given_name", "")
+    email = claims.get("upn") or claims.get("email") or claims.get("preferred_username", "")
+    is_fac = name.lower() in [f.lower() for f in FACILITATORS]
+    return {"name": name, "email": email, "is_facilitator": is_fac}
+
+
+def _get_llm_token() -> str:
+    """Return a valid gateway token, refreshing from keychain if needed."""
+    token = _keychain.get("token", "")
+    if not token:
+        token = _read_keychain_token()
+    return token
+
 def _ssl_ctx() -> ssl.SSLContext:
     ctx = ssl.create_default_context()
     ctx.check_hostname = False
@@ -141,13 +207,10 @@ def _ssl_ctx() -> ssl.SSLContext:
 
 
 def generate_exercise_summary(exercise_meta: dict, messages: list[dict]) -> str:
-    llm_url   = os.environ.get("LLM_GATEWAY_URL", "").rstrip("/")
-    llm_key   = os.environ.get("LLM_GATEWAY_KEY", "")
-    llm_model = os.environ.get("LLM_MODEL", "claude-sonnet-4-6")
-
-    if not llm_url or not llm_key:
+    token = _get_llm_token()
+    if not token:
         raise ValueError(
-            "LLM_GATEWAY_URL and LLM_GATEWAY_KEY are required. Add them to your .env file."
+            "No LLM gateway token found. Sign in via the Lilly Code VS Code extension to populate the keychain."
         )
 
     transcript_lines = []
@@ -204,24 +267,32 @@ Keep the summary readable in under 2 minutes. Be specific — reference actual c
     combined_prompt = f"{system_prompt}\n\n{user_prompt}"
 
     payload = json.dumps({
-        "model":      llm_model,
+        "model":      LLM_MODEL,
         "max_tokens": 1500,
         "messages":   [{"role": "user", "content": combined_prompt}],
     }).encode()
 
     req = urllib.request.Request(
-        llm_url + "/v1/messages",
+        LLM_GATEWAY_URL + "/v1/messages",
         data=payload,
         headers={
-            "Authorization":      f"Bearer {llm_key}",
+            "Authorization":      f"Bearer {token}",
             "Content-Type":       "application/json",
             "anthropic-version":  "2023-06-01",
         },
         method="POST",
     )
 
-    with urllib.request.urlopen(req, context=_ssl_ctx()) as resp:
-        data = json.loads(resp.read())
+    try:
+        with urllib.request.urlopen(req, context=_ssl_ctx()) as resp:
+            data = json.loads(resp.read())
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8", errors="replace")
+        # If 401/403, the token may have expired — clear it so next call re-reads from keychain
+        if e.code in (401, 403):
+            _keychain.pop("token", None)
+        log.error("LLM Gateway HTTP %s: %s", e.code, body[:500])
+        raise RuntimeError(f"LLM Gateway returned {e.code}: {body[:200]}") from e
 
     return data.get("content", [{}])[0].get("text", "")
 
@@ -242,13 +313,10 @@ def static_files(filename):
 def create_session():
     body = request.json or {}
     session_name = (body.get("session_name") or "").strip()
-    passcode     = (body.get("passcode") or "").strip()
     exercise_order = body.get("exercise_order") or []
 
     if not session_name:
         return jsonify({"error": "session_name is required"}), 400
-    if not passcode:
-        return jsonify({"error": "passcode is required"}), 400
     if not exercise_order:
         return jsonify({"error": "exercise_order must not be empty"}), 400
 
@@ -275,7 +343,6 @@ def create_session():
     session = {
         "session_id": session_id,
         "session_name": session_name,
-        "passcode": passcode,
         "room_code": room_code,
         "created_at": utcnow(),
         "exercise_order": exercise_order,
@@ -327,23 +394,11 @@ def get_session(session_id):
     return jsonify(safe)
 
 
-@app.route("/api/sessions/<session_id>/verify-passcode", methods=["POST"])
-def verify_passcode(session_id):
-    s = load_session(session_id)
-    if not s:
-        return jsonify({"error": "Session not found"}), 404
-    if check_passcode(s, request):
-        return jsonify({"valid": True})
-    return jsonify({"valid": False}), 401
-
-
 @app.route("/api/sessions/<session_id>/advance", methods=["POST"])
 def advance_exercise(session_id):
     s = load_session(session_id)
     if not s:
         return jsonify({"error": "Session not found"}), 404
-    if not check_passcode(s, request):
-        return jsonify({"error": "Invalid passcode"}), 401
 
     idx = s["current_exercise_index"]
     max_idx = len(s["exercise_order"]) - 1
@@ -376,8 +431,6 @@ def back_exercise(session_id):
     s = load_session(session_id)
     if not s:
         return jsonify({"error": "Session not found"}), 404
-    if not check_passcode(s, request):
-        return jsonify({"error": "Invalid passcode"}), 401
 
     idx = s["current_exercise_index"]
     if idx <= 0:
@@ -401,13 +454,47 @@ def back_exercise(session_id):
     return jsonify({"current_exercise_index": idx - 1, "exercise_id": new_ex_id})
 
 
+@app.route("/api/sessions/<session_id>/exercises", methods=["PUT"])
+def update_exercises(session_id):
+    """Replace the exercise order for a session, preserving existing messages/summaries."""
+    s = load_session(session_id)
+    if not s:
+        return jsonify({"error": "Session not found"}), 404
+
+    body = request.json or {}
+    new_order = body.get("exercise_order") or []
+    if not new_order:
+        return jsonify({"error": "exercise_order must not be empty"}), 400
+
+    # Preserve existing exercise state; initialise any new exercises
+    existing = s.get("exercises", {})
+    new_exercises: dict = {}
+    for ex_id in new_order:
+        new_exercises[ex_id] = existing.get(ex_id, {
+            "messages": [], "summary": None, "summary_generated_at": None, "status": "pending",
+        })
+
+    # Clamp current_exercise_index to valid range
+    new_idx = min(s.get("current_exercise_index", 0), len(new_order) - 1)
+
+    s["exercise_order"] = new_order
+    s["exercises"] = new_exercises
+    s["current_exercise_index"] = new_idx
+    save_session(s)
+
+    # Notify all connected clients
+    safe = {k: v for k, v in s.items() if k != "passcode"}
+    socketio.emit("session_state", safe, room=session_id)
+
+    log.info("Updated exercise list for session %s (%d exercises)", session_id, len(new_order))
+    return jsonify({"exercise_order": new_order, "current_exercise_index": new_idx})
+
+
 @app.route("/api/sessions/<session_id>/summary", methods=["POST"])
 def generate_summary(session_id):
     s = load_session(session_id)
     if not s:
         return jsonify({"error": "Session not found"}), 404
-    if not check_passcode(s, request):
-        return jsonify({"error": "Invalid passcode"}), 401
 
     idx    = s["current_exercise_index"]
     ex_id  = s["exercise_order"][idx]
@@ -449,6 +536,25 @@ def get_config():
         "azure_client_id": os.environ.get("AZURE_CLIENT_ID", ""),
         "azure_tenant_id": os.environ.get("AZURE_TENANT_ID", ""),
     })
+
+
+@app.route("/api/me")
+def get_me():
+    """Return current user identity decoded from the keychain JWT."""
+    identity = _identity_from_keychain()
+    return jsonify(identity)
+
+
+@app.route("/api/facilitator-auth", methods=["POST"])
+def facilitator_auth():
+    """Authenticate a facilitator by name (fallback when keychain unavailable)."""
+    body = request.json or {}
+    name = (body.get("name") or "").strip()
+
+    if name.lower() not in [f.lower() for f in FACILITATORS]:
+        return jsonify({"error": "Name not on facilitator list"}), 403
+
+    return jsonify({"name": name, "is_facilitator": True})
 
 
 @app.route("/api/sessions/<session_id>/export", methods=["GET"])
@@ -505,14 +611,10 @@ def handle_join(data):
 @socketio.on("facilitator_join")
 def handle_facilitator_join(data):
     session_id = data.get("session_id", "").strip()
-    passcode   = (data.get("passcode") or "").strip()
 
     s = load_session(session_id)
     if not s:
         emit("error", {"message": "Session not found."})
-        return
-    if passcode != s.get("passcode", ""):
-        emit("error", {"message": "Invalid passcode."})
         return
 
     join_room(session_id)
@@ -564,9 +666,9 @@ def handle_message(data):
 if __name__ == "__main__":
     log.info("DTW Workshop App starting on http://localhost:%d", PORT)
     log.info("Sessions directory: %s", SESSIONS_DIR)
-    if not os.environ.get("LLM_GATEWAY_URL") or not os.environ.get("LLM_GATEWAY_KEY"):
-        log.warning("LLM_GATEWAY_URL / LLM_GATEWAY_KEY not set — AI summaries will not work. Add them to .env")
+    token = _read_keychain_token()
+    if token:
+        log.info("LLM Gateway configured: %s (model: %s) ✓", LLM_GATEWAY_URL, LLM_MODEL)
     else:
-        log.info("LLM Gateway configured: %s (model: %s) ✓",
-                 os.environ.get("LLM_GATEWAY_URL"), os.environ.get("LLM_MODEL", "claude-sonnet-4-6"))
+        log.warning("lilly-code keychain token not found — AI summaries disabled until you sign in via VS Code")
     socketio.run(app, host="0.0.0.0", port=PORT, debug=False)

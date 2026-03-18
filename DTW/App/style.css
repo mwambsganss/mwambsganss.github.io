@@ -60,6 +60,11 @@ body {
   box-shadow: var(--shadow);
   z-index: 100;
 }
+.topbar-home {
+  background: none; border: none; color: #fff; font-size: 22px; line-height: 1;
+  cursor: pointer; padding: 0 8px 0 0; opacity: .8; flex-shrink: 0;
+}
+.topbar-home:hover { opacity: 1; }
 .topbar-logo { font-weight: 800; font-size: 18px; letter-spacing: -0.3px; }
 .topbar-logo span { opacity: .7; font-weight: 400; }
 .topbar-sep { flex: 1; }
@@ -530,7 +535,38 @@ body {
   pointer-events: none;
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
-.toast.error { background: var(--red); }
+.toast.error { background: var(--red); padding-right: 12px; display: flex; align-items: center; gap: 10px; pointer-events: auto; }
+.toast-msg { flex: 1; }
+.toast-close {
+  background: none; border: none; color: #fff; font-size: 18px; line-height: 1;
+  cursor: pointer; padding: 0 4px; opacity: .8; flex-shrink: 0;
+}
+.toast-close:hover { opacity: 1; }
+.toast-copy {
+  background: none; border: 1px solid rgba(255,255,255,.4); border-radius: 4px;
+  color: #fff; font-size: 13px; line-height: 1; cursor: pointer; padding: 1px 6px;
+  opacity: .8; flex-shrink: 0;
+}
+.toast-copy:hover { opacity: 1; background: rgba(255,255,255,.15); }
+
+/* ─── Session picker cards ────────────────────────────────────────────────── */
+.session-pick-card {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  cursor: pointer; transition: border-color .15s, box-shadow .15s;
+}
+.session-pick-card:hover {
+  border-color: var(--blue); box-shadow: 0 0 0 2px rgba(0,100,210,.12);
+}
+.session-pick-name { font-weight: 600; font-size: 15px; margin-bottom: 3px; }
+.session-pick-meta { font-size: 12px; color: var(--text3); }
+.session-pick-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.session-pick-code {
+  font-family: monospace; font-size: 15px; font-weight: 700;
+  letter-spacing: 3px; color: var(--blue);
+}
+.session-pick-participants { font-size: 11px; color: var(--text3); }
 
 /* ─── Room code display ───────────────────────────────────────────────────── */
 .room-code-display {

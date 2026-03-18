@@ -1,5 +1,15 @@
 [
   {
+    "id": "intros_outcomes",
+    "name": "Intros & Desired Outcomes",
+    "phase": 1,
+    "phase_name": "Understanding",
+    "description": "Kick off the workshop with brief participant introductions and an alignment on what success looks like. Sets context, builds rapport, and ensures everyone shares the same definition of a good outcome.",
+    "desired_outcome": "Each participant introduced, and a shared, agreed-upon set of desired outcomes for the workshop documented and visible to the whole team.",
+    "instructions": "Introduce yourself in 2–3 sentences: your name, your role, and one word that describes what you're hoping to get out of today. Then share what a successful workshop outcome looks like from your perspective.",
+    "prompt_hint": "Summarize who is in the room (roles represented). Extract the desired outcomes each person stated. Identify common themes and any divergence in expectations. Highlight the 2–3 most-cited success criteria the group can align on."
+  },
+  {
     "id": "hopes_fears",
     "name": "Hopes & Fears Board",
     "phase": 1,

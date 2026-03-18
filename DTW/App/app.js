@@ -11,13 +11,11 @@ const state = {
   sessionData:        null,
   displayName:        null,
   isFacilitator:      false,
-  passcode:           null,
   socket:             null,
   exercises:          [],        // full exercises.json catalog
   currentExerciseMeta: null,
   summaryVisible:     false,
-  msalInstance:       null,      // MSAL PublicClientApplication (null if no Azure config)
-  azureAccount:       null,      // MSAL AccountInfo when authenticated
+  identity:           null,      // {name, email, is_facilitator} from /api/me
 };
 
 // ── Init ───────────────────────────────────────────────────────────────────────
@@ -40,80 +38,162 @@ function showView(viewName) {
   state.view = viewName;
 }
 
-// ── Azure AD authentication (MSAL.js) ─────────────────────────────────────────
+// ── Auth via keychain SSO (/api/me) ────────────────────────────────────────────
 async function initAuth() {
+  // Dismiss the login overlay immediately (no MSAL redirect needed)
   const loginOverlay = document.getElementById("loginOverlay");
-  const hideLogin = () => loginOverlay && loginOverlay.classList.remove("active");
+  if (loginOverlay) loginOverlay.classList.remove("active");
 
   try {
-    const cfgResp = await fetch("/api/config");
-    const cfg     = await cfgResp.json();
+    const resp = await fetch("/api/me");
+    const me   = await resp.json();
 
-    if (!cfg.azure_client_id) {
-      // No Azure config — skip auth, run in manual-name mode
-      hideLogin();
-      return;
-    }
+    if (me.name) {
+      state.displayName = me.name;
+      state.identity    = me;
 
-    const msalConfig = {
-      auth: {
-        clientId:    cfg.azure_client_id,
-        authority:   `https://login.microsoftonline.com/${cfg.azure_tenant_id}`,
-        redirectUri: window.location.origin,
-      },
-      cache: { cacheLocation: "sessionStorage" },
-    };
+      // Show identity hint on landing
+      const idEl = document.getElementById("landing-identity");
+      if (idEl) idEl.textContent = `Signed in as ${me.name}`;
 
-    const msal = new msal.PublicClientApplication(msalConfig);
-    await msal.initialize();
-    state.msalInstance = msal;
+      // Pre-fill participant name input (read-only since we know who they are)
+      const nameInput = document.getElementById("join-display-name");
+      if (nameInput) {
+        nameInput.value    = me.name;
+        nameInput.readOnly = true;
+        nameInput.style.background = "var(--bg2)";
+        nameInput.style.color      = "var(--text2)";
+      }
 
-    // Handle the redirect coming back from Microsoft login
-    const result = await msal.handleRedirectPromise();
-
-    let account = result ? result.account : null;
-    if (!account) {
-      const accounts = msal.getAllAccounts();
-      account = accounts.length ? accounts[0] : null;
-    }
-
-    if (account) {
-      state.azureAccount  = account;
-      state.displayName   = account.name || account.username;
-      applyAzureIdentity();
-      hideLogin();
+      // Show Facilitator button only if on the whitelist
+      if (me.is_facilitator) {
+        const btn = document.getElementById("fac-login-btn");
+        const div = document.getElementById("fac-divider");
+        if (btn) { btn.style.display = "block"; btn.textContent = `Facilitate as ${me.name.split(" ")[0]}`; }
+        if (div) div.style.display   = "block";
+      }
     } else {
-      // Not signed in — redirect to Microsoft login
-      await msal.loginRedirect({ scopes: ["User.Read"] });
-      // Page will reload after redirect; execution stops here
+      // Server running without keychain (e.g. non-Mac) — show facilitator button for PIN fallback
+      const btn = document.getElementById("fac-login-btn");
+      const div = document.getElementById("fac-divider");
+      if (btn) btn.style.display = "block";
+      if (div) div.style.display = "block";
     }
   } catch (e) {
-    console.error("Azure AD auth error:", e);
-    // On any error fall back to manual mode so the app remains usable
-    hideLogin();
+    console.warn("Could not fetch identity:", e);
+    const btn = document.getElementById("fac-login-btn");
+    const div = document.getElementById("fac-divider");
+    if (btn) btn.style.display = "block";
+    if (div) div.style.display = "block";
   }
 }
 
-/** Pre-fill UI elements with the Azure AD identity. */
-function applyAzureIdentity() {
-  if (!state.azureAccount) return;
+function showJoin() {
+  showView("join");
+}
 
-  // Participant join — hide manual name input, show read-only name
-  const nameGroup = document.getElementById("join-name-group");
-  const nameInput = document.getElementById("join-display-name");
-  if (nameGroup && nameInput) {
-    nameInput.value    = state.displayName;
-    nameInput.readOnly = true;
-    nameInput.style.background = "var(--bg2)";
-    nameInput.style.color      = "var(--text2)";
+function showFacilitatorAccess() {
+  if (state.identity && state.identity.is_facilitator) {
+    showSessionPicker();
+  } else {
+    showView("facilitator-login");
+  }
+}
+
+async function facilitatorPinLogin() {
+  const name = document.getElementById("fac-login-name").value.trim();
+  if (!name) { showToast("Enter your name.", true); return; }
+
+  showLoading("Verifying…");
+  try {
+    const resp = await fetch("/api/facilitator-auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name }),
+    });
+    const data = await resp.json();
+    if (!resp.ok) throw new Error(data.error || "Access denied");
+    state.displayName = data.name;
+    state.identity    = { name: data.name, is_facilitator: true };
+    showSessionPicker();
+  } catch (e) {
+    showToast(e.message, true);
+  } finally {
+    hideLoading();
+  }
+}
+
+// ── Session picker ─────────────────────────────────────────────────────────────
+async function showSessionPicker() {
+  showView("session-picker");
+
+  const greeting = document.getElementById("session-picker-greeting");
+  if (greeting && state.identity) {
+    greeting.textContent = `Welcome, ${state.identity.name}. Click a session to start facilitating.`;
   }
 
-  // Facilitator setup — show "Facilitating as" badge
-  const badge     = document.getElementById("fac-identity-badge");
-  const badgeName = document.getElementById("fac-identity-name");
-  if (badge && badgeName) {
-    badgeName.textContent = state.displayName;
-    badge.style.display   = "block";
+  showLoading("Loading sessions…");
+  try {
+    const resp = await fetch("/api/sessions");
+    const sessions = await resp.json();
+    renderSessionPicker(sessions);
+  } catch (e) {
+    showToast("Failed to load sessions: " + e.message, true);
+  } finally {
+    hideLoading();
+  }
+}
+
+function renderSessionPicker(sessions) {
+  const list  = document.getElementById("session-picker-list");
+  const empty = document.getElementById("session-picker-empty");
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  if (!sessions.length) {
+    list.style.display  = "none";
+    if (empty) empty.style.display = "block";
+    return;
+  }
+
+  list.style.display  = "flex";
+  if (empty) empty.style.display = "none";
+
+  sessions.forEach(s => {
+    const progress = s.exercise_count
+      ? `${s.current_exercise_index + 1} / ${s.exercise_count} exercises`
+      : "No exercises";
+    const date = s.created_at ? s.created_at.slice(0, 10) : "";
+    const card = document.createElement("div");
+    card.className = "session-pick-card";
+    card.onclick   = () => enterSessionAsFacilitator(s.session_id);
+    card.innerHTML = `
+      <div class="session-pick-main">
+        <div class="session-pick-name">${escHtml(s.session_name)}</div>
+        <div class="session-pick-meta">${escHtml(progress)} &nbsp;·&nbsp; ${escHtml(date)}</div>
+      </div>
+      <div class="session-pick-right">
+        <span class="session-pick-code">${escHtml(s.room_code)}</span>
+        <span class="session-pick-participants">${s.participant_count} participant${s.participant_count !== 1 ? "s" : ""}</span>
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+async function enterSessionAsFacilitator(sessionId) {
+  showLoading("Entering session…");
+  try {
+    const resp = await fetch(`/api/sessions/${sessionId}`);
+    if (!resp.ok) throw new Error("Session not found");
+    const s = await resp.json();
+    state.sessionId     = s.session_id;
+    state.isFacilitator = true;
+    showView("facilitator");
+    connectSocket(true);
+  } catch (e) {
+    showToast(e.message, true);
+    hideLoading();
   }
 }
 
@@ -126,20 +206,24 @@ function renderExercisePicker() {
   const container = document.getElementById("exercise-picker-list");
   if (!container) return;
 
-  // Init pickerOrder if empty (all exercises, in default order)
+  // Init pickerOrder: intros_outcomes first, then persona_cards + executive_summary, then the rest
   if (!pickerOrder.length) {
-    pickerOrder = state.exercises.map(e => e.id);
+    const priority = ["intros_outcomes", "persona_cards", "executive_summary"];
+    const rest = state.exercises
+      .map(e => e.id)
+      .filter(id => !priority.includes(id));
+    pickerOrder = [...priority.filter(id => state.exercises.find(e => e.id === id)), ...rest];
   }
 
   container.innerHTML = "";
   pickerOrder.forEach((exId, idx) => {
-    const ex   = state.exercises.find(e => e.id === exId);
+    const ex  = state.exercises.find(e => e.id === exId);
     if (!ex) return;
     const item = document.createElement("div");
-    item.className    = "ex-pick-item";
-    item.draggable    = true;
-    item.dataset.idx  = idx;
-    item.dataset.id   = exId;
+    item.className   = "ex-pick-item";
+    item.draggable   = true;
+    item.dataset.idx = idx;
+    item.dataset.id  = exId;
     item.innerHTML = `
       <span class="ex-pick-drag" title="Drag to reorder">⠿</span>
       <input type="checkbox" id="ex-${exId}" checked
@@ -195,20 +279,19 @@ function deselectAllExercises() {
 }
 
 function getSelectedExerciseOrder() {
-  return pickerOrder.filter(id => {
+  const selected = pickerOrder.filter(id => {
     const cb = document.getElementById("ex-" + id);
     return cb && cb.checked;
   });
+  return selected;
 }
 
 // ── Session creation ───────────────────────────────────────────────────────────
 async function createSession() {
-  const name     = document.getElementById("setup-session-name").value.trim();
-  const passcode = document.getElementById("setup-passcode").value.trim();
-  const order    = getSelectedExerciseOrder();
+  const name  = document.getElementById("setup-session-name").value.trim();
+  const order = getSelectedExerciseOrder();
 
-  if (!name)     { showToast("Please enter a session name.", true); return; }
-  if (!passcode) { showToast("Please set a facilitator passcode.", true); return; }
+  if (!name)         { showToast("Please enter a session name.", true); document.getElementById("setup-session-name").focus(); return; }
   if (!order.length) { showToast("Please select at least one exercise.", true); return; }
 
   showLoading("Creating session…");
@@ -216,16 +299,18 @@ async function createSession() {
     const resp = await fetch("/api/sessions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_name: name, passcode, exercise_order: order }),
+      body: JSON.stringify({
+        session_name:   name,
+        exercise_order: order,
+      }),
     });
     const data = await resp.json();
     if (!resp.ok) throw new Error(data.error || "Failed to create session");
 
-    state.sessionId = data.session_id;
-    state.passcode  = passcode;
+    state.sessionId     = data.session_id;
     state.isFacilitator = true;
 
-    document.getElementById("created-room-code").textContent = data.room_code;
+    document.getElementById("created-room-code").textContent    = data.room_code;
     document.getElementById("created-session-name").textContent = name;
     showView("session-created");
   } catch (e) {
@@ -240,38 +325,19 @@ function enterFacilitatorDashboard() {
   connectSocket(true);
 }
 
-// ── Resume session (facilitator) ───────────────────────────────────────────────
-async function resumeSession() {
-  const rawId   = document.getElementById("resume-session-id").value.trim();
-  const passcode = document.getElementById("resume-passcode").value.trim();
-  if (!rawId || !passcode) { showToast("Fill in both fields.", true); return; }
-
-  showLoading("Verifying…");
-  try {
-    // First get the session (handles room code)
-    const resp = await fetch(`/api/sessions/${encodeURIComponent(rawId)}`);
-    if (!resp.ok) throw new Error("Session not found");
-    const s = await resp.json();
-
-    // Verify passcode
-    const vResp = await fetch(`/api/sessions/${s.session_id}/verify-passcode`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Passcode": passcode },
-      body: JSON.stringify({ passcode }),
-    });
-    if (!vResp.ok) throw new Error("Invalid passcode");
-
-    state.sessionId     = s.session_id;
-    state.passcode      = passcode;
-    state.isFacilitator = true;
-
-    showView("facilitator");
-    connectSocket(true);
-  } catch (e) {
-    showToast(e.message, true);
-  } finally {
-    hideLoading();
+function goHome() {
+  // Disconnect socket if active
+  if (state.socket) {
+    state.socket.disconnect();
+    state.socket = null;
   }
+  // Reset session state
+  state.sessionId     = null;
+  state.sessionData   = null;
+  state.displayName   = null;
+  state.isFacilitator = false;
+  hideLoading();
+  showView("landing");
 }
 
 // ── Participant join ───────────────────────────────────────────────────────────
@@ -279,15 +345,10 @@ function joinSession() {
   const code = document.getElementById("join-room-code").value.trim().toUpperCase();
   if (!code || code.length !== 6) { showToast("Enter the 6-character room code.", true); return; }
 
-  // Use Azure AD name if available; otherwise fall back to manual input
-  if (state.azureAccount) {
-    state.displayName = state.displayName || state.azureAccount.name;
-  } else {
-    const name = document.getElementById("join-display-name").value.trim();
-    if (!name) { showToast("Enter your display name.", true); return; }
-    state.displayName = name;
-  }
-  // Look up session by room code first
+  const name = state.displayName || document.getElementById("join-display-name").value.trim();
+  if (!name) { showToast("Enter your display name.", true); return; }
+  state.displayName = name;
+
   showLoading("Joining…");
   fetch(`/api/sessions/${code}`)
     .then(r => {
@@ -314,7 +375,6 @@ function connectSocket(isFacilitator) {
     if (isFacilitator) {
       socket.emit("facilitator_join", {
         session_id: state.sessionId,
-        passcode:   state.passcode,
       });
     } else {
       socket.emit("join_session", {
@@ -660,8 +720,8 @@ async function facilitatorAdvance() {
   try {
     const resp = await fetch(`/api/sessions/${state.sessionId}/advance`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "X-Passcode": state.passcode },
-      body: JSON.stringify({ passcode: state.passcode }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
     });
     const data = await resp.json();
     if (!resp.ok) throw new Error(data.error || "Failed");
@@ -678,8 +738,8 @@ async function facilitatorBack() {
   try {
     const resp = await fetch(`/api/sessions/${state.sessionId}/back`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "X-Passcode": state.passcode },
-      body: JSON.stringify({ passcode: state.passcode }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
     });
     const data = await resp.json();
     if (!resp.ok) throw new Error(data.error || "Failed");
@@ -696,8 +756,8 @@ async function triggerAISummary() {
   try {
     const resp = await fetch(`/api/sessions/${state.sessionId}/summary`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "X-Passcode": state.passcode },
-      body: JSON.stringify({ passcode: state.passcode }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
     });
     const data = await resp.json();
     if (!resp.ok) throw new Error(data.error || "Failed");
@@ -747,6 +807,126 @@ function toggleExercisePanel() {
 function exportSession() {
   if (!state.sessionId) return;
   window.open(`/api/sessions/${state.sessionId}/export`, "_blank");
+}
+
+// ── Edit exercises modal ────────────────────────────────────────────────────────
+let editPickerOrder = [];
+let editDragSrcIdx  = null;
+
+function openEditExercises() {
+  if (!state.exercises.length || !state.sessionData) return;
+  // Init from current session order
+  editPickerOrder = [...(state.sessionData.exercise_order || [])];
+  renderEditExercisePicker();
+  document.getElementById("edit-exercises-overlay").classList.add("visible");
+}
+
+function closeEditExercises() {
+  document.getElementById("edit-exercises-overlay").classList.remove("visible");
+  editPickerOrder = [];
+}
+
+function renderEditExercisePicker() {
+  const container = document.getElementById("edit-exercise-picker-list");
+  if (!container) return;
+  container.innerHTML = "";
+
+  // Show all exercises; those in editPickerOrder are checked
+  const allIds = state.exercises.map(e => e.id);
+  // Build display order: editPickerOrder first (checked), then unchecked ones appended
+  const unchecked = allIds.filter(id => !editPickerOrder.includes(id));
+  const displayOrder = [...editPickerOrder, ...unchecked];
+
+  displayOrder.forEach((exId, idx) => {
+    const ex = state.exercises.find(e => e.id === exId);
+    if (!ex) return;
+    const isChecked = editPickerOrder.includes(exId);
+    const item = document.createElement("div");
+    item.className   = "ex-pick-item";
+    item.draggable   = isChecked;
+    item.dataset.idx = idx;
+    item.dataset.id  = exId;
+    item.innerHTML = `
+      <span class="ex-pick-drag" style="${isChecked ? "" : "opacity:.2;cursor:default;"}">⠿</span>
+      <input type="checkbox" id="edit-ex-${exId}" ${isChecked ? "checked" : ""}
+             onchange="editExToggle('${exId}')"/>
+      <label class="ex-pick-name" for="edit-ex-${exId}">${escHtml(ex.name)}</label>
+      <span class="phase-badge ex-pick-phase" data-phase="${ex.phase}">${escHtml(ex.phase_name)}</span>
+    `;
+    if (isChecked) {
+      item.addEventListener("dragstart", e => {
+        editDragSrcIdx = editPickerOrder.indexOf(exId);
+        item.classList.add("dragging");
+        e.dataTransfer.effectAllowed = "move";
+      });
+      item.addEventListener("dragend", () => {
+        item.classList.remove("dragging");
+        editDragSrcIdx = null;
+        container.querySelectorAll(".ex-pick-item").forEach(i => i.classList.remove("drag-over"));
+      });
+      item.addEventListener("dragover", e => {
+        if (editDragSrcIdx === null) return;
+        e.preventDefault();
+        container.querySelectorAll(".ex-pick-item").forEach(i => i.classList.remove("drag-over"));
+        item.classList.add("drag-over");
+      });
+      item.addEventListener("drop", e => {
+        e.preventDefault();
+        const targetIdx = editPickerOrder.indexOf(exId);
+        if (editDragSrcIdx === null || editDragSrcIdx === targetIdx) return;
+        const [moved] = editPickerOrder.splice(editDragSrcIdx, 1);
+        editPickerOrder.splice(targetIdx, 0, moved);
+        renderEditExercisePicker();
+      });
+    }
+    container.appendChild(item);
+  });
+  updateEditPickerCount();
+}
+
+function editExToggle(exId) {
+  const idx = editPickerOrder.indexOf(exId);
+  if (idx === -1) {
+    editPickerOrder.push(exId);
+  } else {
+    editPickerOrder.splice(idx, 1);
+  }
+  renderEditExercisePicker();
+}
+
+function editExSelectAll() {
+  editPickerOrder = state.exercises.map(e => e.id);
+  renderEditExercisePicker();
+}
+
+function editExDeselectAll() {
+  editPickerOrder = [];
+  renderEditExercisePicker();
+}
+
+function updateEditPickerCount() {
+  const el = document.getElementById("edit-ex-picker-count");
+  if (el) el.textContent = `${editPickerOrder.length} of ${state.exercises.length} selected`;
+}
+
+async function saveEditExercises() {
+  if (!editPickerOrder.length) { showToast("Select at least one exercise.", true); return; }
+  showLoading("Saving exercise list…");
+  try {
+    const resp = await fetch(`/api/sessions/${state.sessionId}/exercises`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ exercise_order: editPickerOrder }),
+    });
+    const data = await resp.json();
+    if (!resp.ok) throw new Error(data.error || "Failed to update exercises");
+    closeEditExercises();
+    showToast("Exercise list updated.");
+  } catch (e) {
+    showToast(e.message, true);
+  } finally {
+    hideLoading();
+  }
 }
 
 // ── Utilities (copied from Jira Dashboard app.js patterns) ────────────────────
@@ -807,10 +987,33 @@ let _toastTimer = null;
 function showToast(msg, isError = false) {
   const el = document.getElementById("toast");
   if (!el) return;
-  el.textContent = msg;
-  el.className   = "toast show" + (isError ? " error" : "");
   clearTimeout(_toastTimer);
-  _toastTimer = setTimeout(() => { el.classList.remove("show"); }, 3500);
+
+  // Build inner content: message text + close button for errors
+  if (isError) {
+    el.innerHTML = `<span class="toast-msg">${escHtml(msg)}</span><button class="toast-copy" onclick="copyToastMsg(this)" title="Copy error">&#x2398;</button><button class="toast-close" onclick="dismissToast()" title="Dismiss">&times;</button>`;
+    el.className = "toast show error";
+    // No auto-dismiss for errors — user must click ×
+  } else {
+    el.textContent = msg;
+    el.className   = "toast show";
+    _toastTimer = setTimeout(() => { el.classList.remove("show"); }, 3500);
+  }
+}
+
+function dismissToast() {
+  const el = document.getElementById("toast");
+  if (el) el.classList.remove("show");
+  clearTimeout(_toastTimer);
+}
+
+function copyToastMsg(btn) {
+  const msgEl = btn.closest(".toast")?.querySelector(".toast-msg");
+  if (!msgEl) return;
+  navigator.clipboard.writeText(msgEl.textContent).then(() => {
+    btn.textContent = "✓";
+    setTimeout(() => { btn.innerHTML = "&#x2398;"; }, 1500);
+  });
 }
 
 // Auto-resize textarea
