@@ -427,8 +427,49 @@ body {
   font-size: 13px;
 }
 .exercise-card-outcome strong { font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--blue); display: block; margin-bottom: 2px; }
+.exercise-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.btn-field-guide {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600; color: var(--text2);
+  background: var(--bg3, #f0f0f0); border: 1px solid var(--border);
+  border-radius: 6px; padding: 3px 9px; cursor: pointer; white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.btn-field-guide:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+.btn-field-guide.active { background: var(--blue); color: #fff; border-color: var(--blue); }
 
-/* ─── Summary overlay ─────────────────────────────────────────────────────── */
+/* ─── Field guide panel (below exercise card) ────────────────────────────── */
+.field-guide-panel {
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 480px;
+}
+.field-guide-panel-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 16px 6px;
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .5px; color: var(--text3);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  flex-shrink: 0;
+}
+.field-guide-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+.field-guide-scroll canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.field-guide-loading, .field-guide-no-page {
+  padding: 24px; text-align: center; color: var(--text3); font-size: 13px;
+}
+
+
 .summary-overlay {
   position: fixed;
   inset: 0;

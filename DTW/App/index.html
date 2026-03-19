@@ -193,7 +193,10 @@
       <div class="ex-list" id="fac-exercise-list"></div>
 
       <div class="facilitator-sidebar-section">
-        <h3>Participants</h3>
+        <h3 style="cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between;" onclick="toggleParticipantList()">
+          Participants
+          <span id="participant-list-toggle" style="font-size:10px;color:var(--text3);">▾</span>
+        </h3>
         <div class="participant-list" id="fac-participant-list"></div>
       </div>
 
@@ -217,15 +220,33 @@
     </div>
 
     <!-- Main panel -->
-    <div class="facilitator-main">
+    <div class="facilitator-main" id="facilitator-main">
       <!-- Exercise card -->
       <div class="exercise-card" id="fac-exercise-card">
-        <span class="phase-badge" id="fac-phase-badge" data-phase="1">Phase 1</span>
+        <div class="exercise-card-top">
+          <span class="phase-badge" id="fac-phase-badge" data-phase="1">Phase 1</span>
+          <button class="btn-field-guide" id="btn-field-guide" onclick="toggleFieldGuide()" title="View field guide for this exercise">
+            <span id="field-guide-icon">📖</span> Field Guide
+          </button>
+        </div>
         <div class="exercise-card-title" id="fac-exercise-title">Select an exercise</div>
         <div class="exercise-card-desc" id="fac-exercise-desc"></div>
         <div class="exercise-card-outcome">
           <strong>Desired Outcome</strong>
           <span id="fac-exercise-outcome"></span>
+        </div>
+      </div>
+
+      <!-- Field guide panel (collapsible, below exercise card) -->
+      <div class="field-guide-panel" id="field-guide-panel" style="display:none;">
+        <div class="field-guide-panel-header">
+          <span id="field-guide-label">Field Guide</span>
+          <button class="btn-ghost btn-sm" onclick="toggleFieldGuide()" style="font-size:18px;line-height:1;padding:2px 6px;">×</button>
+        </div>
+        <div class="field-guide-scroll">
+          <canvas id="field-guide-canvas"></canvas>
+          <div class="field-guide-loading" id="field-guide-loading">Loading…</div>
+          <div class="field-guide-no-page" id="field-guide-no-page" style="display:none;">No field guide page for this exercise.</div>
         </div>
       </div>
 
@@ -367,6 +388,8 @@
 <script src="https://alcdn.msauth.net/browser/3.0.22/js/msal-browser.min.js"
         crossorigin="anonymous"></script>
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
         crossorigin="anonymous"></script>
 <script src="app.js"></script>
 </body>

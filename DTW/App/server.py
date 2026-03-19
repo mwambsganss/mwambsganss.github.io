@@ -202,28 +202,55 @@ FACILITATORS: list[str] = [
 
 
 _keychain: dict = {}
+_keychain_lock = eventlet.semaphore.Semaphore(1)
 
 
 def _read_keychain_token() -> str:
     """Read the lilly-code JWT from the macOS keychain (populated by Lilly Code VS Code extension).
     The keychain value is a JSON blob: {"access_token": "eyJ...", "expires_at": "..."}.
+    Uses eventlet.tpool so the blocking subprocess runs in a real OS thread (not a green thread),
+    and a semaphore to prevent concurrent callers from each triggering a separate keychain prompt.
+    After reading, re-applies the partition-list ACL so future reads don't prompt again.
     """
-    try:
-        result = subprocess.run(
-            ["security", "find-generic-password", "-s", "lilly-code", "-w"],
-            capture_output=True, text=True, check=True,
-        )
-        raw = result.stdout.strip()
+    # Fast path — return cached value if available
+    if _keychain.get("token"):
+        return _keychain["token"]
+
+    with _keychain_lock:
+        # Re-check inside lock in case another caller just populated it
+        if _keychain.get("token"):
+            return _keychain["token"]
+
+        def _run_security():
+            return subprocess.run(
+                ["security", "find-generic-password", "-s", "lilly-code", "-w"],
+                capture_output=True, text=True,
+            )
+
         try:
-            data = json.loads(raw)
-            token = data.get("access_token", "")
-        except json.JSONDecodeError:
-            token = raw  # fallback: treat raw value as the token
-        _keychain["token"] = token
-        return token
-    except subprocess.CalledProcessError:
-        log.warning("lilly-code keychain entry not found — AI summaries will fail until you sign in via VS Code")
-        return ""
+            result = eventlet.tpool.execute(_run_security)
+            if result.returncode != 0:
+                raise subprocess.CalledProcessError(result.returncode, "security")
+            raw = result.stdout.strip()
+            try:
+                data = json.loads(raw)
+                token = data.get("access_token", "")
+            except json.JSONDecodeError:
+                token = raw  # fallback: treat raw value as the token
+            _keychain["token"] = token
+            # Grant python3/security permanent ACL access so future reads don't prompt.
+            # Runs silently — Lilly Code extension resets the ACL on each token refresh,
+            # so we re-apply it here each time we read.
+            eventlet.tpool.execute(lambda: subprocess.run(
+                ["security", "set-generic-password-partition-list",
+                 "-s", "lilly-code", "-a", "sso-token",
+                 "-S", "apple-tool:,apple:", "-k", ""],
+                capture_output=True, text=True,
+            ))
+            return token
+        except subprocess.CalledProcessError:
+            log.warning("lilly-code keychain entry not found — AI summaries will fail until you sign in via VS Code")
+            return ""
 
 
 def _decode_jwt_payload(token: str) -> dict:
@@ -254,7 +281,11 @@ def _identity_from_keychain() -> dict:
 
 
 def _get_llm_token() -> str:
-    """Return a valid gateway token, always re-reading from keychain so a VS Code re-login is picked up immediately."""
+    """Return a valid gateway token. Use the cached value to avoid repeated keychain prompts;
+    the cache is cleared on 401/403 so a VS Code re-login is still picked up automatically."""
+    cached = _keychain.get("token", "")
+    if cached:
+        return cached
     return _read_keychain_token()
 
 def _ssl_ctx() -> ssl.SSLContext:
@@ -350,6 +381,7 @@ Repeat for each persona. End with:
 Create ONE section per persona. Use EXACTLY this format for each:
 
 ## [Persona Name / Role]
+- **CONTEXT:** [1–2 sentences: who they are, their role in this process, and the single defining challenge they face]
 - **SAYS:** "[A direct quote or paraphrase of something this persona says aloud]"
 - **SAYS:** "[Another representative quote]"
 - **DOES:** [A concrete action or behavior they perform in the process]
@@ -358,6 +390,10 @@ Create ONE section per persona. Use EXACTLY this format for each:
 - **THINKS:** [Another thought or concern they rarely voice]
 - **FEELS:** [An emotional state — frustration, anxiety, pride, confusion]
 - **FEELS:** [Another emotion or tension they experience]
+- **PAINS:** [Top frustration or pain point — specific and grounded in the transcript]
+- **PAINS:** [Second key pain point]
+- **GAINS:** [What success looks like for this persona — concrete and measurable]
+- **GAINS:** [Another gain or goal they are working toward]
 
 Repeat the ## [Persona Name / Role] block for every persona identified in the conversation.
 End with:
@@ -731,131 +767,273 @@ def create_test_session():
 
     SYNTHETIC_CHATS: dict[str, list[str]] = {
         "intros_outcomes": [
-            "Hi everyone — Sarah Chen, Digital Marketing Manager. Today I want to understand where our trafficking process is actually breaking down.",
-            "Marcus here — Campaign Ops. My goal is to get clarity on handoff points that cause the most delays.",
-            "Priya, analytics. I want to map out where data gets lost between teams and find a way to fix it.",
-            "James, Brand Strategy. Hoping we come out of today with prioritized improvements we can actually act on.",
-            "Lily from Creative. I want the team to understand what it's like waiting days for feedback on assets.",
+            "Hi everyone — Sarah Chen, Digital Marketing Manager. I run campaign delivery across 6 brands and I'm here because our trafficking process is costing us weeks of lead time that we don't have.",
+            "Marcus Rodriguez, Campaign Operations. I own the trafficking workflows end-to-end and I want to get clear on which specific handoff points are creating the most delay so we can fix them.",
+            "Priya Nair, Analytics. I'm joining because I'm often the last person in the chain — and by the time I get campaign parameters to set up tracking, we've already missed the launch window.",
+            "James Okafor, Brand Strategy Director. My goal today is to walk out with a prioritized, actionable list of improvements we can actually resource and execute — not just a list of complaints.",
+            "Lily Thompson, Content and Creative. I want the rest of this group to understand what it's like on the creative side — waiting 4 days to hear if an asset is approved, not knowing which version is final.",
+            "Sarah: My main outcome for today — identify the top 2 or 3 root causes of trafficking delay and agree on who owns fixing them.",
+            "Marcus: I want us to map the as-is process completely honestly, including the workarounds we've all built because the official process doesn't work.",
+            "Priya: I want to leave with a clear definition of what 'done' looks like for each handoff — so analytics isn't always scrambling at launch.",
+            "James: I need us to separate the problems we can solve this quarter from the platform changes that need a 12-month roadmap. Both matter, but they need different owners.",
+            "Lily: Success for me is if Marcus and Sarah leave today with a real understanding of how much revision-chasing affects our output quality — and how fixable it actually is.",
+            "Sarah: One more thing — I want to be honest that some of this is a brief quality problem, not just a trafficking problem. We're sending incomplete information and then wondering why things break downstream.",
+            "Marcus: Agreed. And the feedback loop is broken too — when trafficking flags an issue, it often goes into a Slack thread that nobody owns, and the fix never makes it back to the original process.",
+            "Priya: From analytics' view, the biggest desired outcome is same-day tracking setup at launch. Right now we average 2.3 days post-launch before tracking is live. That's data we can never recover.",
+            "James: So let me restate what I'm hearing: we want a process where briefs arrive complete, traffickers can act immediately, and analytics is configured at launch. Is that a fair summary of what success looks like?",
+            "Lily: Yes — and I'd add: creative knows which feedback is final before starting revisions. Right now I often do two full rounds before I find out the first round wasn't actually approved.",
         ],
         "hopes_fears": [
-            "Hope: We finally agree on a single source of truth for campaign status. Fear: We'll talk a lot but leave without clear owners.",
-            "Hope: Identify the 2-3 changes that will have the biggest impact. Fear: Politics get in the way of honest conversation.",
-            "Hope: Data quality improves so we can actually trust our reporting. Fear: Any solutions will be too complex to adopt.",
-            "Hope: Leadership backs the changes we recommend. Fear: We scope too broadly and try to fix everything at once.",
-            "Hope: Creative and ops teams build empathy for each other's constraints. Fear: We don't have enough time to go deep.",
+            "Hope: We leave today with a brief standard that every campaign manager agrees to use — not a suggestion, a requirement. Fear: We design a perfect process on paper but nothing changes because nobody owns enforcement.",
+            "Hope: We identify the 2–3 changes that have the biggest impact on time-to-launch. Fear: We spend all day on root causes and run out of time to define solutions.",
+            "Hope: Data quality in the first 72 hours post-launch improves to the point where we can actually do mid-flight optimization. Fear: Any solution requires platform changes that won't be funded until next fiscal year.",
+            "Hope: Leadership backs the changes we recommend today with real budget and protected time. Fear: We define great Hills but they become 'good ideas' that get deprioritized the minute Q3 planning starts.",
+            "Hope: Creative and Ops teams build genuine empathy for each other's constraints today. Fear: We go deep on creative-ops friction but ignore the Campaign Manager's role in upstream brief quality.",
+            "Sarah: I hope we stop treating trafficking as a black box. Every campaign manager should understand what a trafficker actually does with a brief — that alone would improve brief quality by 50%.",
+            "Marcus: My fear is that we conflate tool problems with process problems. A new platform won't fix unclear ownership. We need to agree on process first.",
+            "Priya: I hope we get specific about what 'complete' means for analytics handoff. Right now it means different things to different people — which is how we end up with late tracking setup.",
+            "James: Fear: we scope this too broadly and try to boil the ocean. I'd rather leave with 3 things we're actually going to do than 15 things nobody will resource.",
+            "Lily: Hope: this workshop surfaces the invisible cost of revision cycles — how many hours creative spends re-doing work that was signed off, then un-signed off. That cost is real and nobody tracks it.",
+            "Sarah: Fear that I have — we're going to identify root causes and point at Marketing Ops as the problem, when actually the problem starts with how briefs are written. Including by me.",
+            "Marcus: Hope: by the end of today, everyone in this room understands the full end-to-end process — not just their slice. That shared understanding is worth more than any tool change.",
+            "Priya: Fear: we build a beautiful new process flow and then discover that our trafficking platform literally cannot support it. We need a technical feasibility check built into whatever we decide.",
+            "James: Hope: the Hills we write today are specific enough that we can actually measure success. 'Faster trafficking' is not a Hill. 'Zero campaigns with incomplete briefs by Q3' is.",
+            "Lily: Fear: we run out of time to get to the roadmap and ideation. The root cause mapping is important but I want us to actually design the future state, not just document the broken present.",
         ],
         "persona_cards": [
-            "The Campaign Manager: juggles 15+ campaigns, no single place to check status, constantly chasing updates via Slack.",
-            "The Trafficking Specialist: receives briefs at the last minute, unclear specs, spends 40% of time on rework.",
-            "The Analytics Lead: waits until campaign end to pull data because mid-flight reporting is unreliable.",
-            "The Creative Producer: told 'urgent' so often the word has lost meaning; unclear which feedback is final.",
-            "The Brand Director: wants a dashboard but gets a PowerPoint; has to manually reconcile numbers before every Monday review.",
+            "The Campaign Manager juggles 15+ active campaigns simultaneously. There is no single place to check status — she cross-references Slack threads, email chains, a shared spreadsheet that's always out of date, and direct messages to traffickers.",
+            "The Campaign Manager's biggest pain: she finds out about trafficking delays when something breaks, never proactively. She described her job as 'reactive by design' — the system forces her into firefighting mode.",
+            "The Trafficking Specialist receives briefs with missing or conflicting fields on roughly 40% of submissions. He has built his own personal intake checklist to catch errors — but that checklist is in his head, not documented anywhere.",
+            "The Trafficking Specialist spends an estimated 35–40% of his week on rework — re-entering corrected data, following up on missing specs, and managing platform errors caused by upstream gaps.",
+            "The Analytics Lead is effectively locked out of mid-flight optimization because reporting data isn't trustworthy until 48–72 hours post-launch. She described the current state as 'flying blind for the first three days of every campaign.'",
+            "The Analytics Lead has built shadow tracking using manual UTM spreadsheets as a workaround. She knows this is fragile and unsustainable but has no better option within the current workflow.",
+            "The Creative Producer operates in a constant state of unclear prioritization. The word 'urgent' is used on 80%+ of requests, which means it signals nothing. She described it as 'everything is on fire, so nothing is.'",
+            "The Creative Producer's biggest complaint isn't volume — it's revision ambiguity. She frequently completes a second or third round of revisions only to discover the first round was never formally approved.",
+            "The Brand Director wants a real-time campaign health dashboard and has been asking for one for 18 months. What he receives instead is a static PowerPoint deck, updated manually before Monday reviews.",
+            "The Brand Director spends 2–3 hours every Sunday manually reconciling campaign numbers from 3 different sources before his Monday morning leadership review. He considers this an unacceptable use of his time.",
+            "Sarah: The Campaign Manager's representative quote — 'I have 18 campaigns running right now and I genuinely don't know the status of 6 of them without making 6 phone calls.'",
+            "Marcus: The Trafficking Specialist's representative quote — 'I've gotten to the point where I don't trust any brief I receive on the first submission. I always assume I'll need to follow up at least once.'",
+            "Priya: The Analytics Lead's representative quote — 'By the time I can trust the data, the window to optimize has already closed. We're doing post-mortems, not real-time management.'",
+            "Lily: The Creative Producer's representative quote — 'I get told something is urgent, I drop everything to deliver it, and then it sits in someone's inbox for four days waiting for approval. That's demoralizing.'",
+            "James: The Brand Director's representative quote — 'I ask for a dashboard and I get a PowerPoint. Every week. That's not visibility — that's theater.'",
         ],
         "stakeholder_map": [
-            "Core owners: Campaign Managers and Trafficking Specialists — they touch every step.",
-            "Decision makers: Brand Directors approve final creative and control budget reallocation.",
-            "Impacted: Paid Media buyers feel the ripple effect when trafficking is delayed — their optimization windows shrink.",
-            "Enablers: Marketing Ops owns the trafficking platform but isn't looped in until things break.",
-            "Key friction: Brand and Ops rarely meet — decisions get made in siloes then conflict at handoff.",
+            "Core process owners: Campaign Managers initiate the process with a brief and own campaign performance. Trafficking Specialists are the primary executors — every asset flows through them before going live.",
+            "Decision makers: Brand Directors hold final approval authority on creative and budget reallocation. They are also the primary recipients of campaign performance reporting.",
+            "Impacted parties — Paid Media: Media buyers lose optimization windows when trafficking is delayed. A 3-day delay at launch can mean 15–20% of the campaign budget is spent without optimization active.",
+            "Impacted parties — Legal and Compliance: Legal reviews assets before trafficking, but the review SLA is frequently missed because briefs arrive late. When briefs are delayed, Legal is blamed for slowing down launch.",
+            "Impacted parties — External Agencies: When Lilly runs agency-supported campaigns, agencies are waiting on the same incomplete briefs and experiencing the same delays — but they have contractual SLAs we're violating.",
+            "Enablers — Marketing Operations: MarOps owns the trafficking platform (currently Workfront) but is not looped into process design decisions. They find out about workflow failures after they've already caused delays.",
+            "Enablers — IT/Digital: IT owns platform integrations and data pipelines. Analytics' mid-flight reporting gap requires an IT-owned integration between the trafficking platform and the analytics stack.",
+            "Key friction point 1: Brand Directors and Campaign Managers rarely speak directly during execution. Decisions made by Brand Directors (like creative changes mid-flight) don't reach Campaign Managers until work has already been done.",
+            "Key friction point 2: Legal and Trafficking operate on different SLA clocks and don't coordinate. Legal approval is a prerequisite for trafficking, but neither team has visibility into the other's queue.",
+            "Key friction point 3: Marketing Ops is accountable for the platform but has no ownership of the process. When the platform surfaces a problem, there's no clear owner to resolve it.",
+            "Sarah: There's a missing role in this map — someone who owns cross-functional process health. Right now that accountability doesn't formally exist. James would be the logical owner, but it's not in anyone's job description.",
+            "Marcus: The agency relationship is under-represented in how we think about this process. We treat agencies as external, but they're fully embedded in our workflow. Their delays become our delays.",
+            "Priya: I'd add that IT is a bottleneck we never name. Any real fix to the analytics reporting gap requires IT prioritization, and we have zero leverage over that queue right now.",
+            "James: This map is showing me that we have too many stakeholders with impact and not enough with accountability. We need to rationalize ownership before we redesign the process.",
+            "Lily: Creative has no upstream visibility and no downstream feedback. We produce into a black hole — we don't know if our assets actually performed, which means we can't improve them.",
         ],
         "empathy_maps": [
-            "Campaign Manager SAYS: 'I have no idea where things stand until something breaks.' FEELS: anxious, always reactive.",
-            "Trafficking Specialist SAYS: 'I get briefs with missing fields constantly.' DOES: creates unofficial checklists to compensate.",
-            "Analytics Lead THINKS: 'If the data were clean we could optimize mid-flight.' FEELS: frustrated by manual reconciliation.",
-            "Creative Producer DOES: sends assets to Slack AND email AND the platform because they don't trust any single channel.",
-            "Brand Director THINKS: 'Why can't I see real-time campaign status?' SAYS: 'I need a simpler dashboard.' FEELS: out of the loop.",
+            "Campaign Manager Sarah SAYS: 'I have no idea where things stand until something breaks.' THINKS: There's no system giving me a live view — I have to chase information manually every single day. FEELS: Chronically anxious and reactive. She described herself as 'always behind, even when I'm on top of things.' DOES: Sends 3–5 status check Slack messages per campaign per day. Maintains a personal tracking spreadsheet in parallel with the official system. PAINS: No proactive visibility — she learns about problems after they've already impacted the campaign. GAINS: Real-time status view that eliminates daily status chasing.",
+            "Trafficking Specialist Marcus SAYS: 'I get briefs with missing fields constantly — probably 4 out of 10 have at least one gap I have to chase.' THINKS: The upstream process is broken and I've compensated by building my own safeguards. If I didn't, nothing would work. FEELS: Burdened and quietly resigned. He's normalized a level of friction that shouldn't exist. DOES: Has built a personal 22-point intake checklist that he applies to every brief before accepting it. Sends a follow-up email within 2 hours of receiving any brief. PAINS: Briefs arrive incomplete, forcing him to interrupt campaign managers mid-day for missing information. GAINS: A validated, complete brief on first submission — zero rework before he can begin trafficking.",
+            "Analytics Lead Priya SAYS: 'Clean data at launch would change everything — right now we're doing post-mortems, not optimization.' THINKS: The integration problem is solvable but nobody has prioritized it. I could fix this in a sprint if I had IT resources. FEELS: Professionally frustrated — she has the analytical capability but not the data infrastructure to use it. DOES: Builds manual UTM spreadsheets as a workaround. Sets calendar reminders to check campaign launch notifications from Slack instead of receiving automated alerts. PAINS: Analytics setup is delayed 2–3 days post-launch because she isn't automatically notified when a campaign goes live. GAINS: Same-day analytics configuration at launch, enabling mid-flight optimization from day one.",
+            "Creative Producer Lily SAYS: 'Everything is urgent — which means nothing is. And I never know which round of feedback is actually final.' THINKS: The feedback process is broken at the approval layer, not the creative layer. I deliver what's asked, then the ask changes. FEELS: Demoralized and undervalued. Her best work goes unseen because the review process obscures quality. DOES: Sends assets to Slack AND email AND the project management platform simultaneously — she doesn't trust any single channel to reach the approver. Checks for feedback notifications every 45 minutes when an asset is in review. PAINS: Unclear prioritization means all requests are treated as equally urgent, creating constant context-switching. GAINS: Single consolidated feedback round with clear approval status before any revision begins.",
+            "Brand Director James SAYS: 'I ask for a dashboard and I get a PowerPoint. Every single week.' THINKS: My team is spending hours on manual reporting that should be automated. This is a resource waste I can see but can't seem to fix. FEELS: Frustrated by the gap between what the business should be capable of and what it actually delivers. DOES: Spends 2–3 hours every Sunday manually reconciling numbers from three different sources before Monday morning reviews. Has requested a live dashboard 4 times in 18 months. PAINS: Must manually build Monday review decks from static data exports because no live reporting exists. GAINS: Real-time campaign health dashboard that auto-updates, eliminating manual prep for leadership reviews.",
         ],
         "asis_process_map": [
-            "Phase 1 — Brief: Campaign Manager creates brief in Word doc, emails to Creative and Trafficking separately. No version control.",
-            "Phase 2 — Creative: Designer picks up brief; average 2.1 rounds of revision due to unclear specs. No structured feedback tool.",
-            "Phase 3 — Trafficking: Specialist manually enters specs into platform. 30% error rate requires re-entry.",
-            "Phase 4 — QA: QA team reviews against original brief — but brief has often changed by this point.",
-            "Phase 5 — Launch: Campaign goes live but Analytics isn't notified; reporting setup is delayed by 2–3 days.",
-            "Key pain: Handoff between Creative and Trafficking has no formal step — files are shared via email attachment.",
+            "Phase 1 — Brief Creation: Campaign Manager creates a brief in a Word document template. There is no required field validation — briefs can be submitted with empty sections. Average brief has 3–4 incomplete fields.",
+            "Phase 1 continued: Brief is emailed simultaneously to Creative and Trafficking. There is no version control — if the brief changes after submission, teams receive a new email. The old version remains in inboxes.",
+            "Phase 2 — Legal Review: Legal must approve all campaign creative before trafficking can begin. Legal is copied on the brief email but there is no formal handoff — they learn about the timeline from context clues, not a system.",
+            "Phase 2 continued: Legal SLA is 3 business days. In practice, legal review takes 4.7 days on average because briefs arrive with missing legal disclaimers, triggering a back-and-forth loop before review can start.",
+            "Phase 3 — Creative Development: Creative begins work upon receiving the brief email. Average revision cycles: 2.1 rounds. Primary cause of revision: brief specifications changed after creative began, or feedback was not consolidated before delivery.",
+            "Phase 3 continued: Creative delivers assets via email attachment AND uploads to Workfront AND posts to a Slack channel — because different stakeholders check different places. Asset management is fragmented across 3 systems.",
+            "Phase 4 — Trafficking: Specialist manually enters campaign specifications into the trafficking platform. This step takes 45–90 minutes per campaign. 30% of campaigns require re-entry due to spec errors traced back to the original brief.",
+            "Phase 4 continued: Trafficking has no automated connection to Legal approval status. Traffickers must ask Campaign Managers if Legal has approved before proceeding — adding a step that should be a system trigger.",
+            "Phase 5 — QA: QA team reviews the live trafficking setup against the original brief email. If the brief has been revised since submission, QA may be checking against an outdated version without knowing it.",
+            "Phase 5 continued: QA errors traced to brief version mismatch account for 22% of all QA failures. These are preventable — they exist because there is no single source of truth for the current brief version.",
+            "Phase 6 — Launch: Campaign goes live when Trafficking marks it ready in the platform. Analytics is not automatically notified. Priya finds out via a Slack message from Marcus, usually 4–6 hours after launch.",
+            "Phase 6 continued: Analytics tracking setup takes 2–3 days post-launch due to manual parameter entry. Mid-flight data is unavailable during this window. Optimization opportunities in the first 72 hours are lost.",
+            "Key handoff pain: Creative → Trafficking is not a formal handoff. Assets are uploaded to Workfront, but there is no task trigger or notification. Marcus manually checks for new assets twice a day.",
+            "Key handoff pain: Campaign Manager → Legal has no SLA tracking. Legal has no visibility into campaign volume until briefs arrive. Peaks in campaign launches cause Legal queue backup with no advance warning.",
+            "Overall pattern: Every stage of this process has at least one informal workaround built by someone trying to make it work. The workarounds are invisible to leadership and create single points of failure when the person who built them is unavailable.",
         ],
         "needs_statements": [
-            "Campaign Managers need a way to see real-time trafficking status so they can proactively manage client expectations.",
-            "Trafficking Specialists need a way to receive complete, validated briefs so they can reduce re-work.",
-            "Analytics team needs a way to access campaign parameters at launch so they can configure tracking without delay.",
-            "Creative team needs a way to receive consolidated, final feedback so they can deliver approved assets on first submission.",
-            "Brand Directors need a way to monitor campaign health in one view so they can intervene before issues escalate.",
+            "Campaign Managers need a way to see real-time trafficking status for all active campaigns so that they can proactively manage client expectations and stop spending 30% of their day on status chasing.",
+            "Campaign Managers need a way to submit briefs with all required fields validated before submission so that downstream teams can begin work immediately without follow-up.",
+            "Trafficking Specialists need a way to receive complete, validated briefs on first submission so that they can eliminate the intake triage step and reduce rework from 40% to under 10% of weekly hours.",
+            "Trafficking Specialists need a way to see Legal approval status in the platform so that they can begin setup immediately upon approval without waiting for a manual notification from the Campaign Manager.",
+            "Analytics team needs a way to receive automated campaign launch notifications with all parameters pre-populated so that they can configure tracking same-day and enable mid-flight optimization from day one.",
+            "Analytics team needs a way to access a live connection between the trafficking platform and the analytics stack so that reporting data is available within 4 hours of launch without manual data entry.",
+            "Creative team needs a way to receive consolidated, final feedback in a single submission so that they can deliver approved assets on the first revision and eliminate the back-and-forth loop.",
+            "Creative team needs a way to know which campaign requests are highest priority so that they can allocate capacity intentionally instead of treating every request as equally urgent.",
+            "Brand Directors need a way to access a live campaign health dashboard with auto-updating data so that they can conduct Monday reviews without manually reconciling numbers from multiple sources.",
+            "Brand Directors need a way to receive proactive alerts when campaign performance deviates from expected benchmarks so that they can intervene before issues compound.",
+            "Legal needs a way to see incoming campaign volume 5–7 business days in advance so that they can resource review queues before peaks create SLA misses.",
+            "Marketing Ops needs a way to be included in process design decisions so that platform capabilities are aligned with process requirements before new workflows are implemented.",
+            "All roles need a way to access a single authoritative version of the current brief so that every team is working from the same source of truth regardless of when they joined the process.",
+            "All roles need a way to understand how their handoff affects the next step in the process so that brief quality and timing decisions are made with full awareness of downstream impact.",
         ],
         "assumptions_grid": [
-            "High confidence / High risk: Traffickers are the main source of delays. If wrong, solving trafficking won't move the needle.",
-            "High confidence / Low risk: Teams want a unified brief format. Low risk to test — just try it.",
-            "Low confidence / High risk: A new platform will solve the coordination problem. Could be expensive and fail.",
-            "Low confidence / Low risk: Teams will adopt a new status dashboard without training. Worth piloting cheaply.",
-            "Key question: Does leadership actually have time to participate in process redesign, or will this stall?",
+            "HIGH RISK / UNCERTAIN — Must validate: Trafficking is the primary bottleneck in time-to-launch. If the actual bottleneck is Legal review or brief quality, optimizing trafficking will have minimal impact on lead time.",
+            "HIGH RISK / UNCERTAIN — Must validate: Teams will adopt a standardized brief template without executive mandate. Voluntary adoption of new standards has failed twice in the past 3 years at Lilly.",
+            "HIGH RISK / UNCERTAIN — Must validate: A live status dashboard will reduce the need for status check meetings and Slack messages. If teams don't trust the dashboard data, they'll continue to use manual channels.",
+            "HIGH RISK / CERTAIN — Monitor closely: Campaign volume will increase 20–30% next year due to new product launches. Any process improvement must scale — solutions designed for current volume may break at higher load.",
+            "HIGH RISK / CERTAIN — Monitor closely: IT prioritization is required for any platform integration fix. IT queue is typically 6–9 months for non-critical projects. Analytics fix may be delayed regardless of business priority.",
+            "LOW RISK / UNCERTAIN — Worth exploring: A weekly cross-functional sync could replace most status check Slack messages. Worth piloting with 2 campaign managers for 30 days to validate the hypothesis.",
+            "LOW RISK / UNCERTAIN — Worth exploring: Creative output quality would improve if the revision process were more structured. Hypothesis: one formal review round with consolidated feedback produces better outcomes than 3 informal rounds.",
+            "LOW RISK / CERTAIN: Teams want better tooling. Every persona in today's workshop named a tool gap. Appetite for change exists — the question is readiness and resourcing.",
+            "KEY QUESTION — Must answer before proceeding: Who owns enforcement of the brief standard? Without a named owner and consequence for non-compliance, the brief template will be ignored within 60 days.",
+            "KEY QUESTION — Must answer before proceeding: Does leadership understand the cost of the current state? James expressed concern that the upstream cost (Creative rework hours, Analytics delay cost) has never been quantified for leadership.",
+            "KEY QUESTION — Must answer before proceeding: Can the existing trafficking platform (Workfront) support automated analytics notifications, or does this require a new integration? If new integration, IT estimate is needed before committing to the roadmap.",
+            "Sarah: I'd add one more critical assumption — we're assuming the brief template will be adopted by Campaign Managers, but Campaign Managers haven't been in the room today to agree to it. We need their buy-in before we finalize anything.",
+            "Marcus: The biggest unknown for me is whether Legal can actually do 3-day reviews at current volume. We've never tested whether the 4.7-day average is a resource problem or a process problem. Those require different solutions.",
         ],
         "big_idea_vignettes": [
-            "Idea 1: A single campaign workspace — brief, creative, trafficking, and reporting all in one tool. No more email handoffs.",
-            "Idea 2: An AI-powered brief validator that flags incomplete or ambiguous fields before the brief is submitted.",
-            "Idea 3: Auto-notify Analytics the moment a campaign goes live, with all parameters pre-populated.",
-            "Idea 4: A weekly 15-minute cross-functional sync replacing 40+ status Slack messages. Structured agenda, rotating owner.",
-            "Idea 5: Dashboard for Brand Directors — live campaign health score, auto-updated, no manual PowerPoint needed.",
+            "Theme: Unified Campaign Workspace. Idea: A single platform where the brief, creative, trafficking specs, Legal approval, and analytics setup all live in one place — no email handoffs, no version conflicts, no duplicate entry.",
+            "Theme: Unified Campaign Workspace. Idea: Auto-populate trafficking fields from the approved brief. When a Campaign Manager marks a brief complete, Workfront pre-fills the trafficking setup with no manual re-entry. Eliminates 30% of trafficking rework.",
+            "Theme: Unified Campaign Workspace. Idea: Auto-notify Analytics at launch with all campaign parameters pre-populated. A system trigger when trafficking marks a campaign live sends a structured data packet to the analytics stack.",
+            "Theme: Brief Quality at Intake. Idea: An AI-powered brief validator that checks for required fields, conflicting specs, and missing legal language before the brief can be submitted — like a spell-checker for campaign briefs.",
+            "Theme: Brief Quality at Intake. Idea: A 'brief readiness score' visible to Campaign Managers before submission. Color-coded (green / yellow / red) against a checklist of what trafficking and legal need. Forces self-review before handoff.",
+            "Theme: Brief Quality at Intake. Idea: Mandatory brief template with hard-required fields. No submission without completion. Sounds obvious — but we've never enforced it. This alone would eliminate 40% of trafficking follow-up.",
+            "Theme: Visibility and Status. Idea: A live campaign status dashboard for Brand Directors — auto-updated from the trafficking platform, showing trafficking status, Legal approval, and launch date with no manual input required.",
+            "Theme: Visibility and Status. Idea: A 'campaign heartbeat' Slack notification — automated daily digest showing status of all in-flight campaigns, replacing the 15+ individual status messages Campaign Managers currently send.",
+            "Theme: Visibility and Status. Idea: Traffic light indicators in Workfront visible to all stakeholders — green (on track), yellow (at risk), red (delayed) — with a mandatory comment required to move from green to yellow.",
+            "Theme: Process Coordination. Idea: A weekly 20-minute cross-functional launch review — Campaign Managers, Trafficking, Legal, Analytics, and Creative — replacing 40+ ad-hoc status messages. Fixed agenda. Rotating facilitator.",
+            "Theme: Process Coordination. Idea: Legal volume forecasting — Campaign Managers submit a 2-week forward look of planned briefs. Legal uses this to staff reviews proactively instead of reacting to peaks.",
+            "Theme: Process Coordination. Idea: A formal Creative-to-Trafficking handoff trigger in Workfront. When Creative marks assets as final, an automated task is created in Marcus's queue — no more manual checking twice a day.",
+            "Theme: Analytics and Measurement. Idea: Real-time mid-flight optimization dashboard — live performance data available from hour 1 of launch, enabling intra-campaign budget reallocation based on actual performance.",
+            "Theme: Analytics and Measurement. Idea: A campaign performance retrospective template — structured 30-minute post-campaign review that captures what worked, what didn't, and feeds back into brief quality for the next campaign.",
         ],
         "prioritization_grid": [
-            "High importance / High feasibility: Standardized brief template — do this first, costs nothing, high impact.",
-            "High importance / Low feasibility: Unified campaign platform — high value but requires 12-month procurement.",
-            "Low importance / High feasibility: Auto-email status updates — easy win but not the core problem.",
-            "Low importance / Low feasibility: AI brief validator — interesting but complex and unproven; revisit in 6 months.",
-            "Team consensus: Start with brief template + cross-functional sync. Quick wins before platform change.",
+            "HIGH IMPORTANCE / HIGH FEASIBILITY — No-Brainer: Standardized brief template with required field enforcement. Zero cost, immediate impact, within our control. Brief quality is root cause of 40%+ of downstream rework. Do this first.",
+            "HIGH IMPORTANCE / HIGH FEASIBILITY — No-Brainer: Weekly cross-functional launch review (20 min). Replaces fragmented Slack status checking. Can be started next week with no tools or budget. James to own calendar invite.",
+            "HIGH IMPORTANCE / HIGH FEASIBILITY — No-Brainer: Formal Creative-to-Trafficking handoff trigger in Workfront. IT estimates 2 days of configuration. Eliminates Marcus's twice-daily manual asset check immediately.",
+            "HIGH IMPORTANCE / HIGH FEASIBILITY — No-Brainer: Legal volume forecasting — Campaign Managers submit 2-week forward brief outlook. No tools required, just a process change. Legal gets to staff proactively instead of reactively.",
+            "HIGH IMPORTANCE / LOWER FEASIBILITY — Big Bet: Live campaign status dashboard for Brand Directors. High value — eliminates James's Sunday manual reconciliation. Requires IT prioritization and 3–6 month build. Needs exec sponsorship.",
+            "HIGH IMPORTANCE / LOWER FEASIBILITY — Big Bet: Auto-populated trafficking fields from approved brief. Requires Workfront configuration and data mapping. Eliminates 30% of trafficking rework. 2–3 month project with IT involvement.",
+            "HIGH IMPORTANCE / LOWER FEASIBILITY — Big Bet: Automated analytics notification at campaign launch. Requires integration between Workfront and the analytics stack. IT-dependent. 4–6 month timeline. Highest analytical ROI.",
+            "LOWER IMPORTANCE / HIGH FEASIBILITY — Utility: Campaign heartbeat Slack digest — automated daily status summary. Easy to build, nice to have. But if the brief template and weekly sync are working, this may become unnecessary.",
+            "LOWER IMPORTANCE / HIGH FEASIBILITY — Utility: Brief readiness score visible before submission. Good UX improvement. Doesn't solve the root problem if Campaign Managers can still submit incomplete briefs — needs hard enforcement to matter.",
+            "LOWER IMPORTANCE / LOWER FEASIBILITY — Revisit: AI-powered brief validator. Technically interesting but complex and unproven at Lilly. Not a Q1 or Q2 priority. Revisit when foundational fixes are in place.",
+            "Team consensus emerged: Start with the 4 no-brainers — brief template, weekly sync, Workfront handoff trigger, Legal forecasting. These can all be running within 30 days and cost essentially nothing.",
+            "Big bets priority order: (1) auto-populated trafficking fields, (2) analytics auto-notification, (3) Brand Director dashboard. Sequence matters — brief fix must come before trafficking automation or we automate bad data.",
+            "James: I'm committing to sponsor the dashboard project in Q2 if the no-brainer improvements show measurable reduction in rework in Q1. We need to demonstrate ROI before asking IT for 6 months of engineering time.",
         ],
         "tobe_process_map": [
-            "Phase 1 — Brief: Standardized brief form with required fields; auto-validated before submission to Creative.",
-            "Phase 2 — Creative: Feedback consolidated in single platform; Creative receives one clear revision round.",
-            "Phase 3 — Trafficking: Specs auto-populated from approved brief; manual entry eliminated for standard fields.",
-            "Phase 4 — QA: QA checks against the live brief version (not the original email); discrepancies flagged automatically.",
-            "Phase 5 — Launch: Analytics auto-notified at launch with all parameters; same-day reporting setup.",
+            "Phase 1 — Brief Creation (To-Be): Campaign Manager completes a standardized digital brief form with required field validation. The system blocks submission if mandatory fields — including legal disclaimers, asset specs, and trafficking parameters — are empty.",
+            "Phase 1 continued: Upon submission, the brief is automatically versioned and stored as the single source of truth. All downstream teams see the same current version. No more email attachments or version confusion.",
+            "Phase 2 — Legal Review (To-Be): Legal receives an automated notification with the complete brief and a pre-calculated review deadline based on the campaign launch date. Legal queue visibility allows proactive resourcing.",
+            "Phase 2 continued: Legal approval is captured in the platform as a status flag. When Legal approves, Trafficking receives an automatic task with all brief fields pre-populated. No manual notification step.",
+            "Phase 3 — Creative (To-Be): Creative receives a structured brief with prioritization score (High / Standard / Low). All feedback is collected in a single consolidated review round. Creative marks assets final in the platform — triggering the Trafficking task.",
+            "Phase 3 continued: Only one round of revision is formally supported. If additional changes are required after the first revision, a new mini-brief is required — making scope creep visible and accountable.",
+            "Phase 4 — Trafficking (To-Be): Trafficking setup begins from pre-populated brief data. Spec re-entry is eliminated for standard fields. Trafficker validates and confirms — this step now takes 15–20 minutes instead of 45–90.",
+            "Phase 4 continued: QA reviews against the live, versioned brief — not an email. Version mismatch errors are eliminated. QA pass rate is expected to improve from 78% to 95%+ in the first quarter.",
+            "Phase 5 — Launch (To-Be): When Trafficking marks the campaign live, an automated trigger sends campaign parameters to Analytics. Tracking is configured within 4 hours of launch. Mid-flight data is available same day.",
+            "Phase 5 continued: Brand Directors receive a real-time dashboard view of all active campaigns — trafficking status, launch date, early performance indicators. Monday review prep time drops from 2–3 hours to 15 minutes.",
+            "Pain resolved: Brief quality gaps — eliminated by required field validation and submission block. Rework caused by incomplete briefs drops from 40% to under 5%.",
+            "Pain resolved: Analytics delay — automated launch notification and pre-populated parameter handoff enables same-day tracking. The 2.3-day average delay is eliminated.",
+            "Pain resolved: Status visibility — live platform status visible to all stakeholders eliminates reactive status chasing and reduces Campaign Manager Slack messages by an estimated 70%.",
+            "New capability required: Workfront configuration for required field validation, automated triggers, and versioned brief storage. IT estimate: 6–8 weeks of configuration work.",
+            "Quick wins (can start immediately): Brief template standard with enforcement, weekly launch review meeting, Creative-to-Trafficking handoff trigger, Legal volume forecasting process.",
         ],
         "experience_roadmap": [
-            "Near-term (0–3 months): 'Our users can submit complete briefs using a shared template.' Launch brief standard + training.",
-            "Mid-term (3–9 months): 'Our users can see campaign status in one place without asking.' Build lightweight status tracker.",
-            "Long-term (9–18 months): 'Our users can access real-time performance data from day one of launch.' Integrate trafficking + analytics.",
+            "NEAR-TERM (0–3 months): Our users can submit campaign briefs using a standardized template with required field validation — eliminating incomplete brief submissions from day one of rollout.",
+            "NEAR-TERM (0–3 months): Our users can see cross-functional campaign status in a single weekly 20-minute review meeting, replacing fragmented Slack status checking.",
+            "NEAR-TERM (0–3 months): Our trafficking specialists can begin work immediately upon Creative sign-off via an automated Workfront handoff trigger — eliminating the manual twice-daily asset check.",
+            "MID-TERM (3–6 months): Our Campaign Managers can track trafficking status in real time without sending a single Slack message — through a live status view in the campaign platform.",
+            "MID-TERM (3–6 months): Our trafficking specialists can set up campaigns in 15–20 minutes instead of 45–90 minutes, because spec fields are auto-populated from the approved brief.",
+            "MID-TERM (3–6 months): Our analytics team receives automated launch notifications with pre-populated parameters, enabling tracking configuration within 4 hours of launch — down from 2.3 days.",
+            "LONG-TERM (6–12 months): Our Brand Directors can access a live, auto-updating campaign health dashboard that replaces the manual PowerPoint prep before Monday reviews.",
+            "LONG-TERM (6–12 months): Our analytics team can run mid-flight campaign optimization from day one of launch, because tracking data is live same-day and connected to budget controls.",
+            "LONG-TERM (6–12 months): Our Campaign Managers can predict Legal review timelines and plan launches accordingly — because Legal has a forward visibility tool and manages reviews proactively.",
+            "LONG-TERM (12–18 months): Our teams can work within a fully integrated campaign platform where brief, creative, trafficking, legal approval, and analytics are connected with no manual handoffs.",
+            "Learning at each stage — Near-term: Does brief quality actually improve with enforcement, or do Campaign Managers find workarounds? Measure: % of briefs requiring follow-up within 30 days.",
+            "Learning at mid-term: Does trafficking auto-population actually reduce rework, or do edge cases still require manual correction? Measure: trafficking re-entry rate before vs. after.",
+            "Learning at long-term: Does the dashboard actually change how Brand Directors make decisions, or do they revert to manual review? Measure: Sunday prep time and dashboard active usage rate.",
         ],
         "hills_objectives": [
-            "Hill 1: Campaign Managers can see trafficking status in real time without sending a single Slack message.",
-            "Hill 2: Trafficking Specialists receive zero incomplete briefs by end of Q3.",
-            "Hill 3: Analytics is configured and live within 4 hours of campaign launch — not 2 days.",
-            "Deliverables: Brief template (immediate), status tracker pilot (Q2), analytics integration spec (Q3).",
-            "Quantified value: 30% reduction in rework, 2-day reduction in time-to-launch, 100% same-day analytics.",
+            "Hill 1: A Campaign Manager with 15 active campaigns can see the real-time trafficking status of every campaign without sending a single Slack message or email — from any device, at any time.",
+            "Hill 1 — WHO: Campaign Managers across all brand teams. WHAT: Real-time status visibility without manual status requests. WOW: Zero campaign status Slack messages per week, measured at 30 days post-launch.",
+            "Hill 1 — Pain addressed: Chronic reactive posture, daily status chasing, anxiety about missing delays. Deliverables: live status dashboard, automated status triggers in Workfront. Timeline: Q2.",
+            "Hill 2: A Trafficking Specialist receives zero incomplete briefs by end of Q3 2026 — measured as briefs that require at least one follow-up before trafficking can begin.",
+            "Hill 2 — WHO: Trafficking Specialists. WHAT: Complete, validated briefs on first submission. WOW: Brief rework rate drops from 40% to under 5% of weekly hours.",
+            "Hill 2 — Pain addressed: Manual intake triage, chronic rework, 45–90 min setup time per campaign. Deliverables: mandatory brief template with field validation, brief readiness score, enforcement process. Timeline: Q1.",
+            "Hill 3: The Analytics team can configure campaign tracking and have live data available within 4 hours of campaign launch — down from the current 2.3-day average.",
+            "Hill 3 — WHO: Analytics team. WHAT: Same-day tracking configuration via automated parameter handoff. WOW: Mid-flight optimization active on 100% of campaigns from launch day.",
+            "Hill 3 — Pain addressed: Blind first 72 hours of every campaign, no mid-flight optimization, manual UTM workaround. Deliverables: Workfront-to-Analytics integration, automated launch trigger. Timeline: Q3 with IT dependency.",
+            "Quantified value across all 3 Hills: 30% reduction in trafficking rework hours (15 hrs/week saved), 2.3 days recovered in time-to-reporting per campaign, 2–3 hours/week saved for Brand Directors on manual prep.",
+            "James: I want to be explicit that Hill 2 is the prerequisite for Hills 1 and 3. If briefs are still incomplete, automating downstream steps just automates bad data. Brief quality must be fixed first.",
         ],
         "gantt_roadmap": [
-            "Month 1–2: Design and pilot standardized brief template with 2 campaign managers.",
-            "Month 2–3: Roll out brief template org-wide; establish weekly cross-functional sync cadence.",
-            "Month 3–6: Build and test lightweight status tracker; integrate with existing trafficking platform.",
-            "Month 6–9: Analytics auto-notification pilot; measure time-to-reporting improvement.",
-            "Month 9–12: Evaluate unified platform options; RFP if KPIs are met.",
+            "Month 1: Design and socialize standardized brief template with all campaign managers. Get explicit sign-off from top 5 brief-writers. Marcus and Sarah co-own. Target: template live in Workfront by end of Month 1.",
+            "Month 1–2: Establish weekly cross-functional launch review cadence. James facilitates first 4 sessions to establish norms. Hand off facilitation rotation to Campaign Ops after 30 days.",
+            "Month 2: Configure Creative-to-Trafficking handoff trigger in Workfront. IT estimate: 2 days of configuration. Marcus defines trigger logic. Go live end of Month 2.",
+            "Month 2–3: Implement Legal volume forecasting process. Campaign Managers submit 2-week brief outlook every Friday. Legal uses to staff proactively. Priya tracks on-time Legal review rate as leading indicator.",
+            "Month 3: Measure Q1 no-brainer impact. KPIs: brief rework rate (target: <10%), Legal SLA miss rate (target: <5%), Campaign Manager Slack status messages (target: -50%). Decision gate for Q2 investment.",
+            "Month 3–5: Configure Workfront auto-population of trafficking fields from approved brief. IT owns with Marketing Ops as product owner. Marcus defines data mapping requirements. Target: 10 campaign pilot in Month 5.",
+            "Month 4–6: Build analytics auto-notification integration. Priya defines parameter schema. IT builds Workfront-to-Analytics data trigger. Target: pilot on 3 campaigns in Month 6 before full rollout.",
+            "Month 5–7: Brand Director dashboard design and build. James defines KPIs and layout requirements. IT and Marketing Ops co-own build. Target: live for Monday review use in Month 7.",
+            "Month 6: Mid-point review of all Q2 big-bet initiatives. Measure trafficking setup time (target: <20 min), analytics configuration time (target: <4 hours), dashboard active usage rate.",
+            "Month 9: Full rollout of integrated workflow — brief → trafficking auto-population → analytics auto-trigger → live dashboard. All campaign managers required to use new workflow. Marketing Ops owns ongoing support.",
+            "Month 10–12: Evaluate unified platform options if integrated workflow shows gaps. RFP only if KPIs are not met by Month 9. James owns the go/no-go decision based on Q3 data.",
+            "Dependencies: IT availability is the critical path for Months 3–7. Workfront auto-population, analytics integration, and dashboard all require IT. Marcus to submit IT requests in Month 1 to secure queue position.",
         ],
         "resource_plan": [
-            "Owner: Marcus Rodriguez (Campaign Ops Lead) — accountable for brief template and status tracker.",
-            "Support: Priya Nair (Analytics) — defines tracking requirements and validates reporting improvements.",
-            "Exec sponsor: James Okafor (Brand Strategy Director) — approves budget, removes blockers.",
-            "External: May need 1 FTE contractor for platform integration in months 3–9.",
-            "Budget estimate: $0 for process changes; $50–80K for status tracker; $200–400K for platform evaluation.",
+            "Initiative: Brief Template + Enforcement. Owner: Marcus Rodriguez (Campaign Ops). Support: Sarah Chen (Campaign Managers). Skills: process design, Workfront configuration. Effort: Low (2 weeks). Cost: $0. No gaps.",
+            "Initiative: Weekly Cross-Functional Launch Review. Owner: James Okafor (Brand Strategy). Facilitation rotation after Month 1. Skills: meeting design, facilitation. Effort: Low (ongoing 20 min/week). Cost: $0. No gaps.",
+            "Initiative: Creative-to-Trafficking Workfront Trigger. Owner: Marketing Ops + IT. Skills: Workfront configuration. Effort: Low (2 days IT). Cost: $0 if internal. Risk: IT queue dependency — submit request Month 1.",
+            "Initiative: Legal Volume Forecasting Process. Owner: Marcus Rodriguez + Legal lead (TBD). Skills: process design, calendar coordination. Effort: Low. Cost: $0. Gap: Legal lead has not been identified as owner yet.",
+            "Initiative: Trafficking Auto-Population from Brief. Owner: Marcus Rodriguez (business), IT (technical). Skills: Workfront data mapping, API configuration. Effort: Medium (6–8 weeks IT). Cost: $15–25K if IT capacity purchased.",
+            "Initiative: Analytics Launch Auto-Notification. Owner: Priya Nair (business), IT (technical). Skills: Workfront-to-analytics integration, API development. Effort: High (12–16 weeks IT). Cost: $40–60K. Highest ROI initiative.",
+            "Initiative: Brand Director Live Dashboard. Owner: James Okafor (business), IT + Marketing Ops (technical). Skills: data visualization, Workfront API, BI platform. Effort: High (16–20 weeks). Cost: $60–100K. Requires exec funding approval.",
+            "Exec Sponsor: James Okafor owns budget approval and removes blockers for all Q2+ initiatives. Must formally commit to Q2 funding in writing by end of Month 1.",
+            "External resource need: May need 1 FTE contractor for platform integration work in Months 3–9 if IT internal capacity is insufficient. Estimated cost: $80–120K for 6-month engagement.",
+            "Skills gap: No internal campaign analytics engineer. The Workfront-to-analytics integration requires skills Priya's team doesn't have. Options: (1) IT internal, (2) contractor, (3) analytics platform vendor professional services.",
+            "Budget summary: No-brainer initiatives: $0. Q2 big bets: $55–85K (trafficking auto-pop + analytics trigger). Q3 dashboard: $60–100K. Total investment range: $115–185K for full roadmap. Excludes ongoing maintenance.",
+            "Marcus: The biggest resource gap is IT prioritization, not budget. Every technical initiative on this roadmap requires IT queue position. If we don't submit requests in Month 1, we'll be waiting until Q3 to start.",
         ],
         "feedback_grid": [
-            "Worked well: The empathy map exercise — teams genuinely understood each other's pain for the first time.",
-            "Change: The assumptions grid felt rushed; would benefit from a longer timebox.",
-            "New idea: Record a short video summary of the day and share with stakeholders who couldn't attend.",
-            "Questions: How do we keep momentum after today? Who owns follow-through on the brief template?",
-            "Overall: High energy, honest conversation, clear next steps — best DTW we've run.",
+            "WORKED WELL: The empathy map exercise. For the first time, Marcus understood why Lily sends assets to three different places — and Lily understood why Marcus can't just 'start on the brief' when fields are missing. Real empathy was built.",
+            "WORKED WELL: The process mapping exercise. Seeing the whole as-is flow on one page made it obvious where the friction is. The visual was more powerful than any summary document.",
+            "WORKED WELL: James setting a clear scope at the start — 'I want 3 things we're actually going to do.' That framing kept us from going too broad and helped us prioritize ruthlessly.",
+            "WORKED WELL: The assumptions grid surfaced a critical assumption nobody had named — that brief quality enforcement requires a named owner, not just a template. That insight is worth the whole day.",
+            "WORKED WELL: Priya quantifying the analytics delay cost — 2.3 days of lost optimization per campaign. Putting a number on it changed how seriously James is taking the analytics integration.",
+            "CHANGE: The stakeholder map felt rushed. We needed more time to map the Legal and Agency relationships — those turned out to be more important than we initially thought.",
+            "CHANGE: We should have had a Campaign Manager in the room today. We made assumptions about brief quality and adoption that we can't validate without their perspective.",
+            "CHANGE: The big ideas session needed more time. We generated 14 ideas in 20 minutes — the quality was high but the discussion was shallow. Consider 40 minutes next time.",
+            "CHANGE: Start with the process map, not introductions. Understanding the as-is flow is the foundation for everything else. Front-loading it would make the empathy exercise more concrete.",
+            "NEW IDEA: Record a 3-minute video summary of the day's outputs — Hills, top ideas, immediate next steps — and share with stakeholders who weren't in the room. Builds alignment without another meeting.",
+            "NEW IDEA: Run a follow-up 'brief writer' workshop specifically with Campaign Managers. They need to understand what happens downstream of their brief — that visibility alone would improve quality.",
+            "QUESTION: Who owns the brief enforcement process? We named the template but didn't name an enforcer. Without enforcement, adoption will decay within 60 days — we've seen this before.",
+            "QUESTION: How do we keep momentum? The risk is that this session becomes a great memory but not a catalyst. We need a 30-day check-in with the same group to review Hill 2 progress.",
+            "OVERALL: This was the best DTW we've run. High energy, honest conversation, specific outputs. The Hills are real and the no-brainers are already assigned. The question now is execution.",
         ],
         "executive_summary": [
-            "Core finding: Campaign trafficking delays stem from three root causes — incomplete briefs, fragmented status visibility, and disconnected analytics setup.",
-            "Key insight: All personas experience the same process, but from completely different vantage points — alignment was missing, not intent.",
-            "Priority 1: Standardized brief template — immediate, zero cost, eliminates 30% of rework.",
-            "Priority 2: Live status tracker — 3-month build, eliminates Slack chasing, gives Brand Directors real-time visibility.",
-            "Priority 3: Analytics auto-notification at launch — 6-month integration, enables same-day reporting.",
-            "Call to action: Approve brief template this week; allocate Q2 budget for status tracker development.",
+            "Core problem: Campaign trafficking delays at Lilly Digital Marketing stem from three interdependent root causes — incomplete brief submissions, fragmented cross-functional visibility, and disconnected analytics setup at launch.",
+            "Workshop context: 5 participants representing Campaign Management, Campaign Operations, Analytics, Brand Strategy, and Creative. Full-day Design Thinking Workshop using IBM Enterprise Design Thinking methodology.",
+            "Key insight 1: All 5 personas experience the same broken process from entirely different vantage points. The dysfunction is structural, not behavioral. Teams aren't failing — the system is failing them.",
+            "Key insight 2: Every role has built a personal workaround to compensate for process gaps. These workarounds are invisible to leadership and create single points of failure when the person who built them is unavailable.",
+            "Key insight 3: Brief quality is the root cause upstream of every downstream problem. Fixing trafficking, analytics, and visibility without fixing brief quality would automate bad data through a faster process.",
+            "Top pain theme 1 — Brief Quality: 40% of briefs require at least one follow-up before trafficking can begin. Trafficking rework accounts for 35–40% of Marcus's weekly hours. Root cause: no required field validation, no submission enforcement.",
+            "Top pain theme 2 — Visibility: Campaign Managers send 3–5 status Slack messages per campaign per day. Brand Directors spend 2–3 hours every Sunday manually reconciling data for Monday reviews. No live status view exists.",
+            "Top pain theme 3 — Analytics Delay: Tracking setup averages 2.3 days post-launch. Mid-flight optimization is impossible in the first 72 hours. Root cause: no automated launch notification, no parameter handoff from trafficking.",
+            "Top 5 ideas prioritized: (1) Mandatory brief template with required field enforcement, (2) Weekly cross-functional launch review, (3) Auto-populated trafficking fields from approved brief, (4) Automated analytics launch notification, (5) Live Brand Director campaign dashboard.",
+            "Agreed Hills: Hill 1 — Zero Slack status messages from Campaign Managers (real-time visibility). Hill 2 — Zero incomplete briefs by Q3 (brief quality enforcement). Hill 3 — Analytics live within 4 hours of launch.",
+            "Immediate next steps: James approves brief template standard by end of week. Marcus configures Workfront handoff trigger in Month 1. Both submit IT requests for Q2 platform work before next Friday.",
+            "Investment required: No-brainer fixes cost $0 and can be live within 30 days. Q2 platform improvements estimated at $55–85K. Q3 dashboard at $60–100K. Total roadmap: $115–185K over 12 months.",
         ],
         "playback_deck": [
-            "We started today asking: why does it take so long to get a campaign live?",
-            "We mapped the as-is process and found 5 key friction points — all caused by information gaps, not effort gaps.",
-            "We defined what our users need: complete briefs, visible status, same-day analytics.",
-            "We prioritized three hills: no Slack chasing, zero incomplete briefs, analytics live in 4 hours.",
-            "Our roadmap: brief template now, status tracker in Q2, analytics integration in H2.",
-            "Next step: James approves brief template standard by Friday. Marcus leads rollout in 30 days.",
+            "We started this workshop with one question: why does it take so long to get a campaign live, and what will it take to fix it?",
+            "We mapped the current state — an as-is process with 6 phases, 12+ documented pain points, and at least 8 informal workarounds built by individuals to make a broken process function.",
+            "We built empathy maps for all 5 personas in the room. The most important thing we learned: everyone is suffering from the same systemic failures, but experiencing them from completely different vantage points.",
+            "We identified the root causes: incomplete briefs upstream, no cross-functional visibility mid-process, and a disconnected analytics setup at launch. These three causes account for roughly 80% of our time-to-launch delays.",
+            "We generated 14 big ideas and prioritized them using a feasibility-vs-impact grid. 4 ideas are no-brainers — high impact, low cost, within our control. We can start all 4 next week.",
+            "We defined 3 Hills that represent what success looks like: Campaign Managers with real-time status visibility, zero incomplete briefs, and same-day analytics at launch.",
+            "Our roadmap: Month 1 — brief template, weekly sync, Workfront trigger, Legal forecasting. Months 3–6 — trafficking auto-population, analytics integration. Months 6–12 — Brand Director dashboard, full platform integration.",
+            "The investment: $0 for the no-brainers. $115–185K for the full roadmap over 12 months. The cost of the current state — in rework hours, optimization windows lost, and manual prep time — far exceeds that investment.",
+            "What we need from leadership: Approve the brief template standard this week. Commit Q2 budget for trafficking and analytics improvements. Protect IT capacity for the integrations on the roadmap.",
+            "Next step — everyone in this room: Brief template reviewed and approved by Friday. IT requests submitted by Marcus and Priya before next Friday. 30-day check-in scheduled before we leave today.",
         ],
     }
 
@@ -1185,297 +1363,502 @@ def _generate_docx(session: dict, ex_id: str, ex_meta: dict, summary_text: str) 
 
 
 def _generate_pptx(session: dict, ex_id: str, ex_meta: dict, summary_text: str) -> Path:
-    """Create a .pptx summary and return its path.
+    """Create a .pptx summary styled after Cloud_DTW_Updated.pptx.
 
-    Layout strategy:
-    - Process maps (asis/tobe): swimlane rows — one lane per section, sticky notes filling lane.
-    - All other exercises: split layout — left 58% text panel, right 42% sticky-note cluster.
-    Sticky notes are coloured rectangles with a shadow offset, arranged in a grid.
+    Layout strategy by exercise type:
+    - empathy_maps:        left context panel + 4-quadrant sticky grid (SAYS/THINKS/FEELS/DOES)
+    - asis/tobe_process_map: left sidebar + horizontal stage columns with sticky notes
+    - big_idea_vignettes:  left sidebar with tag legend + card grid
+    - everything else:     white bg, dark-red header bar, card columns (1–3 per slide)
     """
     from pptx import Presentation
-    from pptx.util import Inches, Pt
+    from pptx.util import Inches, Pt, Emu
     from pptx.dml.color import RGBColor
     from pptx.enum.text import PP_ALIGN
 
+    # ── Slide dimensions: 13.3333" × 7.5" (matches Cloud_DTW_Updated.pptx) ──────
     prs = Presentation()
-    prs.slide_width  = Inches(13.33)
-    prs.slide_height = Inches(7.5)
+    prs.slide_width  = Emu(12_192_000)
+    prs.slide_height = Emu(6_858_000)
+    blank = prs.slide_layouts[6]
 
-    LILLY_RED  = RGBColor(0xCC, 0x00, 0x00)
+    # ── Color palette ─────────────────────────────────────────────────────────────
+    DARK_RED   = RGBColor(0x8B, 0x00, 0x00)  # header bars
+    LILLY_RED  = RGBColor(0xD5, 0x2B, 0x1E)  # top/bottom master bar
+    DARK_BURG  = RGBColor(0x51, 0x12, 0x07)  # sidebar fill
+    ACCENT_RED = RGBColor(0xE1, 0x25, 0x1B)  # sidebar edge, tags
+    NEAR_BLACK = RGBColor(0x1A, 0x1A, 0x1A)  # primary text
+    DARK_GRAY  = RGBColor(0x33, 0x33, 0x33)  # body text
+    MID_GRAY   = RGBColor(0x55, 0x55, 0x55)  # secondary text
     WHITE      = RGBColor(0xFF, 0xFF, 0xFF)
-    DARK       = RGBColor(0x1A, 0x1A, 0x1A)
-    LIGHT_GRAY = RGBColor(0xF5, 0xF5, 0xF5)
+    CARD_BODY  = RGBColor(0xFD, 0xF5, 0xF5)  # card body (very light pink)
+    PALE_PINK  = RGBColor(0xFB, 0xCF, 0xC8)  # sidebar secondary text
+    LT_GRAY    = RGBColor(0xDD, 0xDD, 0xDD)  # dividers on dark
+    SHADOW     = RGBColor(0xCC, 0xBF, 0xB0)  # card shadow
 
-    STICKY_COLORS = [
-        RGBColor(0xFF, 0xF0, 0x6A),  # yellow
-        RGBColor(0xA8, 0xD8, 0xFF),  # light blue
-        RGBColor(0xA8, 0xF0, 0xC0),  # light green
-        RGBColor(0xFF, 0xCC, 0xA8),  # peach
-        RGBColor(0xFF, 0xA8, 0xC8),  # pink
-        RGBColor(0xD4, 0xA8, 0xFF),  # lavender
+    # Empathy map quadrant colors (from slides 8–15)
+    EM_YELLOW = RGBColor(0xFF, 0xE5, 0x7A)   # SAYS / THINKS
+    EM_PINK   = RGBColor(0xFF, 0xB3, 0xB3)   # FEELS
+    EM_GREEN  = RGBColor(0xB7, 0xE1, 0xA1)   # DOES
+
+    # Big-ideas tag palette: (tag_fill, card_header_bg)
+    TAG_PALETTE = [
+        (RGBColor(0xE1, 0x25, 0x1B), RGBColor(0xFF, 0xF8, 0xF8)),
+        (RGBColor(0x0F, 0x3A, 0x85), RGBColor(0xEB, 0xF4, 0xFF)),
+        (RGBColor(0x14, 0x4B, 0x2D), RGBColor(0xE8, 0xF0, 0xEB)),
+        (RGBColor(0xFF, 0xC7, 0x09), RGBColor(0xFF, 0xF8, 0xE1)),
+        (RGBColor(0xF5, 0x8E, 0x7D), RGBColor(0xFC, 0xEE, 0xE8)),
+        (RGBColor(0x99, 0xBF, 0xE5), RGBColor(0xEB, 0xF4, 0xFF)),
     ]
 
-    blank = prs.slide_layouts[6]  # blank layout
+    # ── Low-level helpers ─────────────────────────────────────────────────────────
+    def _rect(slide, x, y, w, h, fill_rgb):
+        shp = slide.shapes.add_shape(1, Inches(x), Inches(y), Inches(w), Inches(h))
+        shp.fill.solid(); shp.fill.fore_color.rgb = fill_rgb
+        shp.line.fill.background()
+        return shp
 
-    SWIMLANE_EXERCISES   = {"asis_process_map", "tobe_process_map"}
-    EMPATHY_MAP_EXERCISES = {"empathy_maps"}
-    TEXT_ONLY_EXERCISES  = {"intros_outcomes"}
+    def _tbx(slide, x, y, w, h):
+        return slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
 
-    # Quadrant label → sticky color index
-    QUADRANT_META = {
-        "SAYS":   (0, RGBColor(0xFF, 0xF0, 0x6A)),   # yellow
-        "DOES":   (1, RGBColor(0xA8, 0xD8, 0xFF)),   # blue
-        "THINKS": (2, RGBColor(0xA8, 0xF0, 0xC0)),   # green
-        "FEELS":  (3, RGBColor(0xFF, 0xCC, 0xA8)),   # peach
-    }
-
-    def _add_header(slide, title_text: str):
-        header = slide.shapes.add_shape(
-            1, Inches(0), Inches(0), Inches(13.33), Inches(1.1)
-        )
-        header.fill.solid()
-        header.fill.fore_color.rgb = LILLY_RED
-        header.line.fill.background()
-        tf = header.text_frame
-        tf.word_wrap = True
-        tf.margin_left = Inches(0.3)
-        tf.margin_top  = Inches(0.15)
-        p = tf.paragraphs[0]
-        p.text = title_text
-        p.alignment = PP_ALIGN.LEFT
-        r = p.runs[0]
-        r.font.size = Pt(24)
-        r.font.bold = True
-        r.font.color.rgb = WHITE
-
-    def _add_sticky(slide, text: str, left, top, width, height, color: RGBColor):
-        """Draw a sticky-note rectangle with shadow and scaled text to prevent overflow."""
-        # Shadow rectangle
-        shadow_offset = Inches(0.07)
-        sh = slide.shapes.add_shape(
-            1,
-            left + shadow_offset, top + shadow_offset, width, height
-        )
-        sh.fill.solid()
-        sh.fill.fore_color.rgb = RGBColor(0xAA, 0xAA, 0xAA)
-        sh.line.fill.background()
-
-        # Scale font down for longer text; hard-truncate as last resort
-        char_count = len(text)
-        if char_count <= 60:
-            font_pt = 10
-        elif char_count <= 100:
-            font_pt = 9
-        else:
-            font_pt = 8
-            if char_count > 140:
-                text = text[:137] + "…"
-
-        # Main sticky rectangle
-        rect = slide.shapes.add_shape(1, left, top, width, height)
-        rect.fill.solid()
-        rect.fill.fore_color.rgb = color
-        rect.line.fill.background()
-
-        tf = rect.text_frame
-        tf.word_wrap = True
-        tf.margin_left  = Inches(0.08)
-        tf.margin_right = Inches(0.08)
-        tf.margin_top   = Inches(0.06)
-        p = tf.paragraphs[0]
+    def _set_text(tf, text, size_pt, bold=False, italic=False, color=None,
+                  align=PP_ALIGN.LEFT, name="Arial", first=False, space_after=0):
+        p = tf.paragraphs[0] if first else tf.add_paragraph()
         p.text = text
-        p.alignment = PP_ALIGN.LEFT
-        r = p.runs[0]
-        r.font.size  = Pt(font_pt)
-        r.font.color.rgb = DARK
-
-    def _add_text_panel(slide, bullets: list[str], full_width: bool = False):
-        """Bullet text panel. full_width=True spans the whole slide (no sticky cluster)."""
-        panel_w = Inches(12.6) if full_width else Inches(7.2)
-        panel = slide.shapes.add_textbox(
-            Inches(0.35), Inches(1.25), panel_w, Inches(5.9)
-        )
-        panel.text_frame.word_wrap = True
-        first = True
-        for bullet in bullets[:14]:
-            if first:
-                p = panel.text_frame.paragraphs[0]
-                first = False
-            else:
-                p = panel.text_frame.add_paragraph()
-            p.text = f"• {bullet}"
-            p.space_after = Pt(5)
+        p.alignment = align
+        if space_after:
+            p.space_after = Pt(space_after)
+        if p.runs:
             r = p.runs[0]
-            r.font.size = Pt(14)
-            r.font.color.rgb = DARK
+            r.font.size  = Pt(size_pt)
+            r.font.bold  = bold
+            r.font.italic = italic
+            r.font.name  = name
+            if color:
+                r.font.color.rgb = color
+        return p
 
-    def _add_sticky_cluster(slide, bullets: list[str]):
-        """Right-side sticky-note cluster (3-column grid)."""
-        RIGHT_LEFT   = Inches(7.85)
-        TOP_Y        = Inches(1.3)
-        COLS         = 3
-        STICKY_W     = Inches(1.55)
-        STICKY_H     = Inches(1.35)
-        COL_GAP      = Inches(0.12)
-        ROW_GAP      = Inches(0.18)
-        MAX_STICKIES = 12
+    # ── Master decorations: thin red top line + red bottom bar ────────────────────
+    def _decorate(slide):
+        _rect(slide, 0, 0,        13.3333, 0.05, LILLY_RED)   # top line
+        _rect(slide, 0, 7.1944,   13.3333, 0.30, LILLY_RED)   # bottom bar
 
-        for i, bullet in enumerate(bullets[:MAX_STICKIES]):
-            col = i % COLS
-            row = i // COLS
-            left = RIGHT_LEFT + col * (STICKY_W + COL_GAP)
-            top  = TOP_Y + row * (STICKY_H + ROW_GAP)
-            color = STICKY_COLORS[i % len(STICKY_COLORS)]
-            _add_sticky(slide, bullet, left, top, STICKY_W, STICKY_H, color)
+    # ── Dark-red full-width header bar ────────────────────────────────────────────
+    def _header(slide, title_text: str):
+        bar = _rect(slide, 0, 0.05, 13.3333, 0.75, DARK_RED)
+        tf = bar.text_frame
+        tf.word_wrap = False
+        tf.margin_left = Inches(0.4)
+        tf.margin_top  = Inches(0.0)
+        p = tf.paragraphs[0]
+        p.text = title_text.upper()
+        p.space_before = Pt(11)
+        if p.runs:
+            r = p.runs[0]
+            r.font.size  = Pt(16)
+            r.font.bold  = True
+            r.font.name  = "Arial Black"
+            r.font.color.rgb = WHITE
 
-    def _add_swimlane_slide(section_list: list[dict]):
-        """One slide with horizontal swimlanes, one lane per section."""
+    # ── Left sidebar (dark-burgundy panel) ───────────────────────────────────────
+    def _sidebar(slide, section_label: str, title: str, body_lines: list[str],
+                 width: float = 2.82):
+        _rect(slide, 0,     0, width, 7.5, DARK_BURG)
+        _rect(slide, 0,     0, 0.09,  7.5, ACCENT_RED)
+        lbl = _tbx(slide, 0.18, 0.20, width - 0.28, 0.38)
+        lbl.text_frame.word_wrap = True
+        _set_text(lbl.text_frame, section_label.upper(), 8, bold=True,
+                  color=ACCENT_RED, name="Arial", first=True)
+        ttl = _tbx(slide, 0.18, 0.62, width - 0.28, 0.85)
+        ttl.text_frame.word_wrap = True
+        _set_text(ttl.text_frame, title, 15, bold=True,
+                  color=WHITE, name="Arial Black", first=True)
+        _rect(slide, 0.26, 1.55, width - 0.44, 0.025, ACCENT_RED)
+        if body_lines:
+            bx = _tbx(slide, 0.18, 1.62, width - 0.28, 5.4)
+            bx.text_frame.word_wrap = True
+            for i, ln in enumerate(body_lines[:14]):
+                _set_text(bx.text_frame, ln, 8, italic=True,
+                          color=PALE_PINK, name="Calibri", first=(i == 0),
+                          space_after=2)
+
+    # ── Sticky note card ──────────────────────────────────────────────────────────
+    def _sticky(slide, text: str, x: float, y: float, color: RGBColor,
+                w: float = 3.5, h: float = 0.634):
+        _rect(slide, x + 0.025, y + 0.025, w, h, SHADOW)  # shadow
+        card = _rect(slide, x, y, w, h, color)
+        tf = card.text_frame
+        tf.word_wrap = True
+        tf.margin_left = Inches(0.08); tf.margin_right  = Inches(0.08)
+        tf.margin_top  = Inches(0.04); tf.margin_bottom = Inches(0.04)
+        n = len(text)
+        pt = 9 if n <= 80 else (8 if n <= 130 else 7)
+        if n > 160:
+            text = text[:157] + "…"
+        p = tf.paragraphs[0]; p.text = text
+        if p.runs:
+            r = p.runs[0]
+            r.font.size = Pt(pt); r.font.name = "Calibri"
+            r.font.color.rgb = NEAR_BLACK
+
+    # ─────────────────────────────────────────────────────────────────────────────
+    # EMPATHY MAP  (slides 8–15 style from template)
+    # ─────────────────────────────────────────────────────────────────────────────
+    def _empathy_slide(persona_section: dict):
         slide = prs.slides.add_slide(blank)
-        bg = slide.background.fill; bg.solid(); bg.fore_color.rgb = LIGHT_GRAY
+        _decorate(slide)
 
-        _add_header(slide, ex_meta.get("name", ex_id))
+        QUADRANT_KEYS = {"SAYS", "THINKS", "FEELS", "DOES"}
+        LEFT_KEYS     = {"CONTEXT", "PAINS", "GAINS"}
+        left_buckets:     dict[str, list[str]] = {k: [] for k in LEFT_KEYS}
+        quadrant_bullets: dict[str, list[str]] = {q: [] for q in QUADRANT_KEYS}
 
-        LANE_LEFT    = Inches(0)
-        LABEL_W      = Inches(1.5)
-        CONTENT_LEFT = Inches(1.55)
-        CONTENT_W    = Inches(11.7)
-        TOP_Y        = Inches(1.15)
-        AVAILABLE_H  = Inches(6.2)
+        for b in persona_section["bullets"]:
+            placed = False
+            # Check all known keys (left panel + quadrant)
+            for key in list(QUADRANT_KEYS) + list(LEFT_KEYS):
+                if (b.upper().startswith(key + ":")
+                        or b.upper().startswith(f"**{key}:**")
+                        or b.upper().startswith(f"**{key}:**".upper())):
+                    clean = b.split(":", 1)[-1].strip().lstrip("* ").strip()
+                    if key in QUADRANT_KEYS:
+                        quadrant_bullets[key].append(clean)
+                    else:
+                        left_buckets[key].append(clean)
+                    placed = True; break
+            if not placed:
+                left_buckets["CONTEXT"].append(b)
 
-        n_lanes = max(len(section_list), 1)
-        lane_h  = AVAILABLE_H / n_lanes
-        STICKY_W = Inches(1.5)
-        STICKY_H = min(lane_h - Inches(0.2), Inches(1.3))
-        MAX_PER_LANE = 7
+        # ── Left panel ────────────────────────────────────────────────────────────
+        # "Empathy Map" label
+        lbl = _tbx(slide, 0.28, 0.10, 5.2, 0.38)
+        _set_text(lbl.text_frame, "EMPATHY MAP", 10, bold=True,
+                  color=DARK_RED, name="Arial", first=True)
 
-        for lane_i, sec in enumerate(section_list):
-            lane_top = TOP_Y + lane_i * lane_h
+        # Persona name
+        name_box = _tbx(slide, 0.28, 0.52, 5.2, 0.55)
+        name_box.text_frame.word_wrap = True
+        _set_text(name_box.text_frame, persona_section["title"], 20, bold=True,
+                  color=NEAR_BLACK, name="Arial Black", first=True)
 
-            # Lane background (alternating)
-            lane_bg_color = RGBColor(0xF0, 0xF0, 0xF0) if lane_i % 2 == 0 else RGBColor(0xE4, 0xE4, 0xE4)
-            bg_rect = slide.shapes.add_shape(1, LANE_LEFT, lane_top, Inches(13.33), lane_h)
-            bg_rect.fill.solid(); bg_rect.fill.fore_color.rgb = lane_bg_color
-            bg_rect.line.fill.background()
+        # Thin red divider under name
+        _rect(slide, 0.28, 1.12, 4.9, 0.025, DARK_RED)
 
-            # Lane label
-            label_box = slide.shapes.add_textbox(Inches(0.05), lane_top + Inches(0.05), LABEL_W, lane_h - Inches(0.1))
-            label_box.text_frame.word_wrap = True
-            p = label_box.text_frame.paragraphs[0]
-            p.text = sec["title"]
-            r = p.runs[0]; r.font.size = Pt(11); r.font.bold = True; r.font.color.rgb = DARK
+        # Context description
+        ctx_y = 1.18
+        if left_buckets["CONTEXT"]:
+            ctx = _tbx(slide, 0.28, ctx_y, 5.0, 1.10)
+            ctx.text_frame.word_wrap = True
+            for i, cb in enumerate(left_buckets["CONTEXT"][:2]):
+                _set_text(ctx.text_frame, cb, 10, italic=True,
+                          color=MID_GRAY, name="Calibri",
+                          first=(i == 0), space_after=3)
+            ctx_y += 1.18
 
-            # Sticky notes in lane
-            bullets = sec["bullets"][:MAX_PER_LANE]
-            COL_GAP = Inches(0.1)
-            for b_i, bullet in enumerate(bullets):
-                left  = CONTENT_LEFT + b_i * (STICKY_W + COL_GAP)
-                top   = lane_top + (lane_h - STICKY_H) / 2
-                color = STICKY_COLORS[b_i % len(STICKY_COLORS)]
-                _add_sticky(slide, bullet, left, top, STICKY_W, STICKY_H, color)
+        # PAINS section
+        if left_buckets["PAINS"]:
+            _rect(slide, 0.28, ctx_y, 1.0, 0.24, RGBColor(0x8B, 0x00, 0x00))
+            pl = _tbx(slide, 0.28, ctx_y, 1.02, 0.24)
+            p = pl.text_frame.paragraphs[0]; p.text = "PAINS"
+            p.alignment = PP_ALIGN.CENTER
+            if p.runs:
+                r = p.runs[0]; r.font.size = Pt(8); r.font.bold = True
+                r.font.name = "Arial"; r.font.color.rgb = WHITE
+            pain_box = _tbx(slide, 0.28, ctx_y + 0.28, 5.0, 1.80)
+            pain_box.text_frame.word_wrap = True
+            for i, pain in enumerate(left_buckets["PAINS"][:4]):
+                _set_text(pain_box.text_frame, f"• {pain}", 10,
+                          color=DARK_GRAY, name="Calibri",
+                          first=(i == 0), space_after=4)
+            ctx_y += 0.28 + min(len(left_buckets["PAINS"]), 4) * 0.42 + 0.15
 
-    def _add_empathy_map_slide(persona_section: dict):
-        """2×2 quadrant slide for one persona (Says/Does/Thinks/Feels)."""
+        # GAINS section
+        if left_buckets["GAINS"] and ctx_y < 6.5:
+            GAINS_COLOR = RGBColor(0x14, 0x4B, 0x2D)
+            _rect(slide, 0.28, ctx_y, 1.05, 0.24, GAINS_COLOR)
+            gl = _tbx(slide, 0.28, ctx_y, 1.07, 0.24)
+            p = gl.text_frame.paragraphs[0]; p.text = "GAINS"
+            p.alignment = PP_ALIGN.CENTER
+            if p.runs:
+                r = p.runs[0]; r.font.size = Pt(8); r.font.bold = True
+                r.font.name = "Arial"; r.font.color.rgb = WHITE
+            gain_box = _tbx(slide, 0.28, ctx_y + 0.28, 5.0, 7.10 - ctx_y - 0.30)
+            gain_box.text_frame.word_wrap = True
+            for i, gain in enumerate(left_buckets["GAINS"][:4]):
+                _set_text(gain_box.text_frame, f"• {gain}", 10,
+                          color=DARK_GRAY, name="Calibri",
+                          first=(i == 0), space_after=4)
+
+        # ── Right: 4-quadrant grid ────────────────────────────────────────────────
+        _rect(slide, 5.58, 0.70, 7.40, 6.45, WHITE)
+        _rect(slide, 9.27, 0.70, 0.02, 6.45, NEAR_BLACK)   # vertical divider
+        _rect(slide, 5.58, 3.92, 7.40, 0.02, NEAR_BLACK)   # horizontal divider
+
+        # Quadrant label bars
+        QLABELS = [
+            ("SAYS",   5.58, 0.70, RGBColor(0xFF, 0xE5, 0x7A)),
+            ("THINKS", 9.29, 0.70, RGBColor(0xFF, 0xE5, 0x7A)),
+            ("FEELS",  5.58, 3.92, EM_PINK),
+            ("DOES",   9.29, 3.92, EM_GREEN),
+        ]
+        for label, qx, qy, lcolor in QLABELS:
+            bar = _rect(slide, qx, qy, 3.67, 0.30, lcolor)
+            tf = bar.text_frame
+            tf.margin_left = Inches(0.12); tf.margin_top = Inches(0.0)
+            p = tf.paragraphs[0]; p.text = label; p.space_before = Pt(4)
+            if p.runs:
+                r = p.runs[0]; r.font.size = Pt(11)
+                r.font.bold = True; r.font.name = "Arial"
+                r.font.color.rgb = NEAR_BLACK
+
+        # Sticky cards (3 per quadrant)
+        CARD_W = 3.50
+        CARD_H = 0.87
+        ROW_GAP = 0.07
+        QLAYOUT = [
+            ("SAYS",   5.62, [1.04, 1.98, 2.92], EM_YELLOW),
+            ("THINKS", 9.31, [1.04, 1.98, 2.92], EM_YELLOW),
+            ("FEELS",  5.62, [4.24, 5.18, 6.12], EM_PINK),
+            ("DOES",   9.31, [4.24, 5.18, 6.12], EM_GREEN),
+        ]
+        for quad, qx, y_rows, color in QLAYOUT:
+            items = quadrant_bullets[quad]
+            for i, ypos in enumerate(y_rows):
+                if i < len(items):
+                    _sticky(slide, items[i], qx, ypos, color,
+                            w=CARD_W, h=CARD_H)
+
+    # ─────────────────────────────────────────────────────────────────────────────
+    # PROCESS MAP  (left sidebar + horizontal stage columns)
+    # ─────────────────────────────────────────────────────────────────────────────
+    def _process_slide(sections: list[dict]):
         slide = prs.slides.add_slide(blank)
-        bg = slide.background.fill; bg.solid(); bg.fore_color.rgb = LIGHT_GRAY
-        _add_header(slide, f"{ex_meta.get('name', ex_id)}: {persona_section['title']}")
+        _decorate(slide)
 
-        # Layout: 2 columns × 2 rows filling the content area
-        TOP_Y    = Inches(1.2)
-        AVAIL_W  = Inches(13.1)
-        AVAIL_H  = Inches(6.1)
-        COL_W    = AVAIL_W / 2
-        ROW_H    = AVAIL_H / 2
-        GAP      = Inches(0.12)
-        STICKY_W = Inches(1.55)
-        STICKY_H = Inches(0.9)
+        SB_W       = 1.80
+        CONT_X     = SB_W + 0.08
+        CONT_W     = 13.3333 - CONT_X - 0.10
+        BAND_Y     = 0.05
+        BAND_H     = 0.60
+        STAGE_H    = 0.48
+        CONTENT_Y  = BAND_Y + BAND_H + STAGE_H + 0.08
+        AVAIL_H    = 7.1944 - CONTENT_Y - 0.10
 
-        QUADRANT_ORDER = ["SAYS", "DOES", "THINKS", "FEELS"]
-        QUADRANT_COLORS = {
-            "SAYS":   RGBColor(0xFF, 0xF0, 0x6A),
-            "DOES":   RGBColor(0xA8, 0xD8, 0xFF),
-            "THINKS": RGBColor(0xA8, 0xF0, 0xC0),
-            "FEELS":  RGBColor(0xFF, 0xCC, 0xA8),
-        }
-        QUADRANT_POS = {
-            "SAYS":   (Inches(0.1),         TOP_Y),
-            "DOES":   (Inches(0.1) + COL_W, TOP_Y),
-            "THINKS": (Inches(0.1),         TOP_Y + ROW_H),
-            "FEELS":  (Inches(0.1) + COL_W, TOP_Y + ROW_H),
-        }
+        # Sidebar
+        _rect(slide, 0, 0, SB_W, 7.1944, DARK_BURG)
+        _rect(slide, 0, 0, 0.09, 7.1944, ACCENT_RED)
+        lbl = _tbx(slide, 0.15, 0.22, SB_W - 0.22, 0.32)
+        _set_text(lbl.text_frame, ex_meta.get("phase_name", "PROCESS MAP").upper(),
+                  7, bold=True, color=ACCENT_RED, name="Arial", first=True)
+        ttl = _tbx(slide, 0.15, 0.58, SB_W - 0.22, 0.75)
+        ttl.text_frame.word_wrap = True
+        _set_text(ttl.text_frame, ex_meta.get("name", ex_id), 12, bold=True,
+                  color=WHITE, name="Arial Black", first=True)
 
-        # Group bullets by quadrant keyword prefix (SAYS:/DOES:/THINKS:/FEELS:)
-        quadrant_bullets: dict[str, list[str]] = {q: [] for q in QUADRANT_ORDER}
-        for bullet in persona_section["bullets"]:
-            for q in QUADRANT_ORDER:
-                prefix = f"**{q}:**"
-                if bullet.upper().startswith(q + ":") or bullet.startswith(prefix):
-                    clean = bullet.split(":", 1)[-1].strip().lstrip("*").strip()
-                    quadrant_bullets[q].append(clean)
+        # Stage header band
+        _rect(slide, CONT_X, BAND_Y + BAND_H, CONT_W, STAGE_H,
+              RGBColor(0x22, 0x22, 0x22))
+
+        n_stages = max(len(sections), 1)
+        stage_w  = CONT_W / n_stages
+        CIRCLE_D = 0.24
+        NOTES_PER_STAGE = max(1, int(AVAIL_H / 0.85))
+
+        for i, sec in enumerate(sections):
+            sx = CONT_X + i * stage_w
+            if i > 0:
+                _rect(slide, sx, BAND_Y + BAND_H, 0.015,
+                      7.1944 - BAND_Y - BAND_H,
+                      RGBColor(0x44, 0x44, 0x44))
+            # Stage circle
+            cx = sx + stage_w / 2 - CIRCLE_D / 2
+            cy = BAND_Y + BAND_H + (STAGE_H - CIRCLE_D) / 2
+            circ = slide.shapes.add_shape(
+                9, Inches(cx), Inches(cy), Inches(CIRCLE_D), Inches(CIRCLE_D))
+            circ.fill.solid(); circ.fill.fore_color.rgb = DARK_RED
+            circ.line.fill.background()
+            nb = _tbx(slide, cx + 0.015, cy + 0.02, CIRCLE_D - 0.03, CIRCLE_D - 0.04)
+            _set_text(nb.text_frame, str(i + 1), 7, bold=True,
+                      color=WHITE, name="Arial", align=PP_ALIGN.CENTER, first=True)
+            # Stage label
+            lbl2 = _tbx(slide, sx + 0.04, BAND_Y + BAND_H + STAGE_H - 0.04,
+                        stage_w - 0.08, 0.42)
+            lbl2.text_frame.word_wrap = True
+            _set_text(lbl2.text_frame, sec["title"], 7,
+                      color=LT_GRAY, name="Arial",
+                      align=PP_ALIGN.CENTER, first=True)
+            # Sticky notes
+            STICKY_W  = stage_w - 0.14
+            STICKY_H  = min(0.82, AVAIL_H / max(NOTES_PER_STAGE, 1) - 0.08)
+            NOTE_COLORS = [EM_YELLOW, RGBColor(0xFF, 0xCC, 0xA8),
+                           RGBColor(0xA8, 0xD8, 0xFF), EM_GREEN]
+            for j, bullet in enumerate(sec["bullets"][:NOTES_PER_STAGE]):
+                bx = sx + 0.07
+                by = CONTENT_Y + j * (STICKY_H + 0.08)
+                if by + STICKY_H > 7.1944:
                     break
-            else:
-                # Unclassified — append to SAYS as fallback
-                quadrant_bullets["SAYS"].append(bullet)
+                _sticky(slide, bullet, bx, by, NOTE_COLORS[j % 4],
+                        w=STICKY_W, h=STICKY_H)
 
-        for q in QUADRANT_ORDER:
-            qx, qy = QUADRANT_POS[q]
-            color = QUADRANT_COLORS[q]
+    # ─────────────────────────────────────────────────────────────────────────────
+    # BIG IDEAS  (left sidebar + card grid with colored tags)
+    # ─────────────────────────────────────────────────────────────────────────────
+    def _big_ideas_slide(sections: list[dict]):
+        slide = prs.slides.add_slide(blank)
+        _decorate(slide)
 
-            # Quadrant label background strip
-            label_rect = slide.shapes.add_shape(1, qx, qy, COL_W - GAP, Inches(0.35))
-            label_rect.fill.solid(); label_rect.fill.fore_color.rgb = color
-            label_rect.line.fill.background()
-            tf = label_rect.text_frame
-            p = tf.paragraphs[0]; p.text = q
-            r = p.runs[0]; r.font.size = Pt(13); r.font.bold = True; r.font.color.rgb = DARK
+        SB_W      = 3.00
+        TAG_W     = 0.90; TAG_H  = 0.185
+        HDR_H     = 0.72; BODY_H = 1.10
+        CW        = 2.25; GAP    = 0.12
+        COLS      = 4
+        START_X   = SB_W + 0.22
+        START_Y   = 0.42
+        ROW_H     = HDR_H + BODY_H + 0.22
 
-            # Sticky notes for this quadrant
-            bullets = quadrant_bullets[q][:6]
-            COLS = 3
-            INNER_TOP = qy + Inches(0.4)
-            for i, b in enumerate(bullets):
-                col = i % COLS
-                row = i // COLS
-                bx = qx + col * (STICKY_W + Inches(0.08))
-                by = INNER_TOP + row * (STICKY_H + Inches(0.1))
-                _add_sticky(slide, b, bx, by, STICKY_W, STICKY_H, color)
+        # Sidebar
+        _rect(slide, 0, 0, SB_W, 7.5, DARK_BURG)
+        _rect(slide, 0, 0, 0.09, 7.5, ACCENT_RED)
+        lbl_s = _tbx(slide, 0.20, 0.22, SB_W - 0.30, 0.32)
+        _set_text(lbl_s.text_frame, "BIG IDEAS", 9, bold=True,
+                  color=ACCENT_RED, name="Calibri", first=True)
+        ttl_s = _tbx(slide, 0.20, 0.57, SB_W - 0.30, 0.80)
+        ttl_s.text_frame.word_wrap = True
+        _set_text(ttl_s.text_frame, ex_meta.get("name", ex_id), 17, bold=True,
+                  color=WHITE, name="Arial Black", first=True)
+        _rect(slide, 0.28, 1.45, SB_W - 0.52, 0.025, ACCENT_RED)
 
-    # ── Build slides ─────────────────────────────────────────────────────────────
+        # Theme list in sidebar
+        sy = 1.53
+        for i, sec in enumerate(sections):
+            if sy > 6.6: break
+            tc, _ = TAG_PALETTE[i % len(TAG_PALETTE)]
+            _rect(slide, 0.22, sy + 0.04, 0.13, 0.13, tc)
+            tb = _tbx(slide, 0.42, sy, SB_W - 0.55, 0.22)
+            _set_text(tb.text_frame, sec["title"][:48], 8, bold=True,
+                      color=WHITE, name="Calibri", first=True)
+            sy += 0.27
+
+        # Card grid
+        all_cards: list[tuple] = []
+        for si, sec in enumerate(sections):
+            tc, hbg = TAG_PALETTE[si % len(TAG_PALETTE)]
+            for b in sec["bullets"][:3]:
+                all_cards.append((sec["title"], b, tc, hbg))
+
+        for ci, (theme, bullet, tag_color, hdr_bg) in enumerate(all_cards[:12]):
+            col = ci % COLS
+            row = ci // COLS
+            cx_ = START_X + col * (CW + GAP)
+            cy_ = START_Y + row * ROW_H
+            if cy_ + HDR_H + BODY_H > 7.5:
+                break
+            _rect(slide, cx_ + 0.025, cy_ + 0.025, CW, HDR_H + BODY_H, SHADOW)
+            _rect(slide, cx_, cy_, CW, HDR_H, hdr_bg)
+            tag = _rect(slide, cx_ + 0.07, cy_ + 0.07, TAG_W, TAG_H, tag_color)
+            p = tag.text_frame.paragraphs[0]
+            p.text = theme[:22].upper(); p.alignment = PP_ALIGN.CENTER
+            if p.runs:
+                r = p.runs[0]; r.font.size = Pt(6)
+                r.font.bold = True; r.font.name = "Arial"
+                r.font.color.rgb = WHITE
+            title_box = _tbx(slide, cx_ + 0.07, cy_ + 0.31, CW - 0.14, 0.40)
+            title_box.text_frame.word_wrap = True
+            t_text = bullet[:65] if len(bullet) > 65 else bullet
+            _set_text(title_box.text_frame, t_text, 9, bold=True,
+                      color=NEAR_BLACK, name="Calibri", first=True)
+            _rect(slide, cx_, cy_ + HDR_H, CW, BODY_H, WHITE)
+            _rect(slide, cx_, cy_ + HDR_H, CW, 0.015, RGBColor(0xCC, 0xCC, 0xCC))
+            rest = bullet[65:]
+            if rest:
+                body_box = _tbx(slide, cx_ + 0.07, cy_ + HDR_H + 0.04,
+                                CW - 0.14, BODY_H - 0.08)
+                body_box.text_frame.word_wrap = True
+                _set_text(body_box.text_frame, rest[:120], 8,
+                          color=DARK_GRAY, name="Calibri", first=True)
+
+    # ─────────────────────────────────────────────────────────────────────────────
+    # COLUMN-CARD slide  (white bg, dark-red header, N card columns)
+    # ─────────────────────────────────────────────────────────────────────────────
+    def _column_slide(slide_title: str, sections: list[dict], subtitle: str = ""):
+        slide = prs.slides.add_slide(blank)
+        _decorate(slide)
+        _header(slide, slide_title)
+
+        if subtitle:
+            st = _tbx(slide, 0.45, 0.84, 12.4, 0.28)
+            _set_text(st.text_frame, subtitle, 10, italic=True,
+                      color=MID_GRAY, name="Arial", first=True)
+
+        TOP_Y   = 1.14
+        AVAIL_H = 7.1944 - TOP_Y - 0.12
+        AVAIL_W = 12.43
+        LEFT_X  = 0.45
+        n       = max(len(sections), 1)
+        GAP     = 0.18
+        COL_W   = (AVAIL_W - GAP * (n - 1)) / n
+        font_pt = 9 if n >= 3 else (10 if n == 2 else 12)
+
+        for i, sec in enumerate(sections):
+            cx_ = LEFT_X + i * (COL_W + GAP)
+            hdr = _rect(slide, cx_, TOP_Y, COL_W, 0.36, DARK_RED)
+            hdr_tf = hdr.text_frame
+            hdr_tf.margin_left = Inches(0.12); hdr_tf.margin_top = Inches(0.0)
+            p = hdr_tf.paragraphs[0]
+            p.text = sec["title"].upper(); p.space_before = Pt(8)
+            if p.runs:
+                r = p.runs[0]; r.font.size = Pt(9)
+                r.font.bold = True; r.font.name = "Arial"
+                r.font.color.rgb = WHITE
+            body_h = AVAIL_H - 0.36
+            _rect(slide, cx_, TOP_Y + 0.36, COL_W, body_h, CARD_BODY)
+            txt = _tbx(slide, cx_ + 0.12, TOP_Y + 0.44, COL_W - 0.20, body_h - 0.15)
+            txt.text_frame.word_wrap = True
+            for bi, bullet in enumerate(sec["bullets"][:16]):
+                _set_text(txt.text_frame, f"• {bullet}", font_pt,
+                          color=DARK_GRAY, name="Arial",
+                          first=(bi == 0), space_after=3)
+
+    # ─────────────────────────────────────────────────────────────────────────────
+    # BUILD SLIDES
+    # ─────────────────────────────────────────────────────────────────────────────
+    EMPATHY_EXERCISES   = {"empathy_maps"}
+    PROCESS_EXERCISES   = {"asis_process_map", "tobe_process_map"}
+    BIG_IDEAS_EXERCISES = {"big_idea_vignettes"}
+
     sections = _parse_markdown_sections(summary_text)
     if not sections:
-        sections = [{"title": "Summary", "bullets": [l.strip() for l in summary_text.splitlines() if l.strip()]}]
+        sections = [{"title": ex_meta.get("name", ex_id),
+                     "bullets": [l.strip() for l in summary_text.splitlines() if l.strip()]}]
 
-    if ex_id in SWIMLANE_EXERCISES:
-        # All sections → single swimlane slide (or multiple if many sections)
-        LANES_PER_SLIDE = 5
-        for chunk_start in range(0, len(sections), LANES_PER_SLIDE):
-            _add_swimlane_slide(sections[chunk_start:chunk_start + LANES_PER_SLIDE])
-    elif ex_id in EMPATHY_MAP_EXERCISES:
-        # One 2×2 quadrant slide per persona; last section (Common Threads) uses split layout
+    if ex_id in EMPATHY_EXERCISES:
         for sec in sections:
             if sec["title"].lower().startswith("common thread"):
-                slide = prs.slides.add_slide(blank)
-                bg = slide.background.fill; bg.solid(); bg.fore_color.rgb = LIGHT_GRAY
-                _add_header(slide, sec["title"])
-                _add_text_panel(slide, sec["bullets"])
-                _add_sticky_cluster(slide, sec["bullets"])
+                _column_slide(sec["title"], [sec])
             else:
-                _add_empathy_map_slide(sec)
-    elif ex_id in TEXT_ONLY_EXERCISES:
-        # Text-only: full-width bullet panel, no sticky cluster
-        for sec in sections:
-            slide = prs.slides.add_slide(blank)
-            bg = slide.background.fill; bg.solid(); bg.fore_color.rgb = LIGHT_GRAY
-            _add_header(slide, sec["title"])
-            _add_text_panel(slide, sec["bullets"], full_width=True)
-    else:
-        # Split layout: one slide per section
-        for sec in sections:
-            slide = prs.slides.add_slide(blank)
-            bg = slide.background.fill; bg.solid(); bg.fore_color.rgb = LIGHT_GRAY
+                _empathy_slide(sec)
 
-            _add_header(slide, sec["title"])
-            _add_text_panel(slide, sec["bullets"])
-            _add_sticky_cluster(slide, sec["bullets"])
+    elif ex_id in PROCESS_EXERCISES:
+        STAGES_PER_SLIDE = 6
+        for chunk_start in range(0, len(sections), STAGES_PER_SLIDE):
+            _process_slide(sections[chunk_start:chunk_start + STAGES_PER_SLIDE])
+
+    elif ex_id in BIG_IDEAS_EXERCISES:
+        THEMES_PER_SLIDE = 6
+        for chunk_start in range(0, len(sections), THEMES_PER_SLIDE):
+            _big_ideas_slide(sections[chunk_start:chunk_start + THEMES_PER_SLIDE])
+
+    else:
+        MAX_COLS = 3
+        if len(sections) <= MAX_COLS:
+            _column_slide(ex_meta.get("name", ex_id), sections)
+        else:
+            for chunk_start in range(0, len(sections), MAX_COLS):
+                chunk = sections[chunk_start:chunk_start + MAX_COLS]
+                slide_title = (ex_meta.get("name", ex_id)
+                               if chunk_start == 0
+                               else f"{ex_meta.get('name', ex_id)} (cont.)")
+                _column_slide(slide_title, chunk)
 
     slug = _safe_filename(ex_meta.get("name", ex_id))
     filename = f"{session['session_id']}_{slug}.pptx"
@@ -1894,9 +2277,5 @@ if __name__ == "__main__":
     else:
         log.info("S3 not configured — using local filesystem (set S3_BUCKET in .env to enable)")
         log.info("Sessions directory: %s", SESSIONS_DIR)
-    token = _read_keychain_token()
-    if token:
-        log.info("LLM Gateway configured: %s (model: %s) ✓", LLM_GATEWAY_URL, LLM_MODEL)
-    else:
-        log.warning("lilly-code keychain token not found — AI summaries disabled until you sign in via VS Code")
+    log.info("LLM Gateway configured: %s (model: %s) — keychain read deferred to first request", LLM_GATEWAY_URL, LLM_MODEL)
     socketio.run(app, host="0.0.0.0", port=PORT, debug=False)

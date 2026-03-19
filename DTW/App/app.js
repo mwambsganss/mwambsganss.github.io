@@ -581,6 +581,98 @@ function renderExerciseCard(ex) {
   setText("fac-exercise-desc",    ex.description || "");
   setText("fac-exercise-outcome", ex.desired_outcome || "");
   state.currentExerciseMeta = ex;
+  // Reset field guide to closed state when exercise changes
+  const panel = document.getElementById("field-guide-panel");
+  const btn   = document.getElementById("btn-field-guide");
+  if (panel && panel.style.display !== "none") {
+    panel.style.display = "none";
+    if (btn) btn.classList.remove("active");
+  }
+}
+
+// ── Field Guide ────────────────────────────────────────────────────────────────
+const FIELD_GUIDE_PAGES = {
+  intros_outcomes:   15,
+  hopes_fears:       15,
+  stakeholder_map:   16,
+  persona_cards:     17,
+  empathy_maps:      17,
+  asis_process_map:  18,
+  tobe_process_map:  18,
+  big_idea_vignettes:19,
+  prioritization_grid:20,
+  needs_statements:  21,
+  assumptions_grid:  23,
+  feedback_grid:     24,
+  experience_roadmap:25,
+  hills_objectives:   5,
+  playback_deck:      6,
+};
+
+let _pdfDoc = null;
+
+async function _getPdf() {
+  if (_pdfDoc) return _pdfDoc;
+  const pdfjsLib = window["pdfjs-dist/build/pdf"];
+  if (!pdfjsLib) return null;
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  _pdfDoc = await pdfjsLib.getDocument("/field-guide.pdf").promise;
+  return _pdfDoc;
+}
+
+async function toggleFieldGuide() {
+  const panel   = document.getElementById("field-guide-panel");
+  const btn     = document.getElementById("btn-field-guide");
+  const canvas  = document.getElementById("field-guide-canvas");
+  const loading = document.getElementById("field-guide-loading");
+  const noPage  = document.getElementById("field-guide-no-page");
+  if (!panel) return;
+
+  const isOpen = panel.style.display !== "none";
+  if (isOpen) {
+    panel.style.display = "none";
+    if (btn) btn.classList.remove("active");
+    return;
+  }
+
+  // Open panel
+  panel.style.display = "block";
+  if (btn) btn.classList.add("active");
+
+  const exId   = state.currentExerciseMeta?.id;
+  const pageNum = FIELD_GUIDE_PAGES[exId];
+
+  canvas.style.display  = "none";
+  noPage.style.display  = "none";
+  loading.style.display = "block";
+
+  if (!pageNum) {
+    loading.style.display = "none";
+    noPage.style.display  = "block";
+    return;
+  }
+
+  try {
+    const pdf  = await _getPdf();
+    const page = await pdf.getPage(pageNum);
+    const panelWidth = panel.clientWidth || 560;
+    const viewport   = page.getViewport({ scale: 1 });
+    const scale      = (panelWidth - 2) / viewport.width;
+    const scaled     = page.getViewport({ scale });
+
+    canvas.width  = scaled.width;
+    canvas.height = scaled.height;
+    canvas.style.display = "block";
+
+    await page.render({ canvasContext: canvas.getContext("2d"), viewport: scaled }).promise;
+
+    loading.style.display = "none";
+    document.getElementById("field-guide-label").textContent =
+      `Field Guide — p.${pageNum * 2 - 1}`;  // printed page numbers (PDF page 15 = printed p.26)
+  } catch (e) {
+    loading.textContent = "Failed to load field guide.";
+  }
 }
 
 function updateNavButtons(s) {
@@ -855,6 +947,16 @@ function showParticipantSummary(summaryText) {
   requestAnimationFrame(() => { banner.scrollIntoView({ behavior: "smooth", block: "start" }); });
 }
 
+// ── Participant list collapse (facilitator sidebar) ────────────────────────────
+function toggleParticipantList() {
+  const list   = document.getElementById("fac-participant-list");
+  const toggle = document.getElementById("participant-list-toggle");
+  if (!list) return;
+  const collapsed = list.style.display === "none";
+  list.style.display   = collapsed ? "" : "none";
+  if (toggle) toggle.textContent = collapsed ? "▾" : "▸";
+}
+
 // ── Exercise panel toggle (participant) ────────────────────────────────────────
 function toggleExercisePanel() {
   const panel = document.getElementById("par-exercise-panel");
@@ -925,16 +1027,15 @@ function renderArtifacts(artifacts) {
     byLabel[a.label].push(a);
   });
   const rows = Object.entries(byLabel).map(([label, files]) => {
-    const links = files.map(f =>
-      `<a href="${escHtml(f.url)}" download style="color:var(--blue);text-decoration:none;font-size:11px;font-weight:600;">${f.type}</a>`
+    const fileLinks = files.map(f =>
+      `<span style="display:inline-flex;align-items:center;gap:2px;">` +
+      `<a href="${escHtml(f.url)}" download style="color:var(--blue);text-decoration:none;font-size:11px;font-weight:600;">${f.type}</a>` +
+      `<button class="btn-artifact-del" onclick="deleteArtifact('${escHtml(f.filename)}')" title="Delete ${f.type}">✕</button>` +
+      `</span>`
     ).join(" · ");
-    // Use first file's filename for the delete action (deletes all files for that label)
-    const delButtons = files.map(f =>
-      `<button class="btn-artifact-del" onclick="deleteArtifact('${escHtml(f.filename)}')" title="Delete ${f.type}">✕</button>`
-    ).join("");
     return `<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);gap:6px;">
       <span style="font-size:12px;color:var(--text2);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escHtml(label)}">${escHtml(label)}</span>
-      <span style="flex-shrink:0;display:flex;align-items:center;gap:4px;">${links}${delButtons}</span>
+      <span style="flex-shrink:0;display:flex;align-items:center;gap:6px;">${fileLinks}</span>
     </div>`;
   }).join("");
   el.innerHTML = rows;
