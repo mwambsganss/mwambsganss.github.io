@@ -841,7 +841,7 @@ Keep it crisp and executive-ready. Use bullet points under each heading.`;
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": apiKey,
+          "Authorization": `Bearer ${apiKey}`,
           "anthropic-version": "2023-06-01"
         },
         body: JSON.stringify({

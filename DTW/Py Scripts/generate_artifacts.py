@@ -1,520 +1,541 @@
 #!/usr/bin/env python3
 """
-Design Thinking Workshop Artifacts Generator
-Generates all 17 artifacts from workshop transcript
+Design Thinking Workshop Artifacts Generator — Parts 1–3
+Hopes & Fears Board, Personas, Stakeholder Map
+
+Design system follows Cloud_DTW_Updated.pptx template:
+  - Slide: 13.33" × 7.50" (standard widescreen)
+  - Fonts: Arial / Calibri (NO Comic Sans)
+  - Lilly brand colors: Red #D52B1E, Blue #0063BE, Green #007A33,
+                        Purple #6D2077, Orange #E87722, Teal #00A3E0
+  - Layout: full-width red header bar (0.75") + thin accent divider
+  - Content cards: white/light bg with 0.06"-wide colored left accent bar
+  - NO rotation, NO sticky-note aesthetic
 """
 
 from pptx import Presentation
-from pptx.util import Inches, Pt
+from pptx.util import Inches, Pt, Emu
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
-import random
-import math
 
-# Lilly Brand Colors (approximations)
-LILLY_RED = RGBColor(227, 24, 55)
-LILLY_BLUE = RGBColor(0, 122, 194)
-LILLY_GRAY = RGBColor(88, 89, 91)
-LILLY_LIGHT_GRAY = RGBColor(200, 200, 200)
+# ── Lilly Brand Colors ──────────────────────────────────────────────────────
+RED     = RGBColor(0xD5, 0x2B, 0x1E)   # primary
+BLUE    = RGBColor(0x00, 0x63, 0xBE)
+GREEN   = RGBColor(0x00, 0x7A, 0x33)
+PURPLE  = RGBColor(0x6D, 0x20, 0x77)
+ORANGE  = RGBColor(0xE8, 0x77, 0x22)
+TEAL    = RGBColor(0x00, 0xA3, 0xE0)
+WHITE   = RGBColor(0xFF, 0xFF, 0xFF)
+NEAR_BLACK = RGBColor(0x1A, 0x1A, 0x1A)
+DARK_GRAY  = RGBColor(0x58, 0x58, 0x58)
+LIGHT_GRAY = RGBColor(0xF2, 0xF2, 0xF2)
+MID_GRAY   = RGBColor(0xC8, 0xC8, 0xC8)
 
-# IBM EDT-style colors for sticky notes
-YELLOW = RGBColor(255, 242, 117)
-PINK = RGBColor(255, 182, 193)
-ORANGE = RGBColor(255, 160, 122)
-GREEN = RGBColor(152, 251, 152)
-BLUE = RGBColor(173, 216, 230)
-TEAL = RGBColor(64, 224, 208)
-RED = RGBColor(255, 105, 97)
-GRAY = RGBColor(211, 211, 211)
+ACCENT_COLORS = [RED, BLUE, GREEN, PURPLE, ORANGE, TEAL]
 
-# Background colors
-KRAFT_BG = RGBColor(222, 184, 135)
-WHITE_BG = RGBColor(255, 255, 255)
+# ── Slide dimensions (standard widescreen, matches Cloud_DTW_Updated.pptx) ─
+SLIDE_W = Inches(13.33)
+SLIDE_H = Inches(7.50)
 
-def add_title_slide(prs, title, subtitle=""):
-    """Add a title slide with Lilly branding"""
-    slide = prs.slides.add_slide(prs.slide_layouts[6])  # Blank layout
+# ── Layout constants ────────────────────────────────────────────────────────
+HEADER_H     = Inches(0.75)
+DIVIDER_H    = Inches(0.04)
+LEFT_MARGIN  = Inches(0.5)
+ACCENT_W     = Inches(0.06)   # left accent bar width on cards
+CARD_PADDING = Inches(0.12)   # text indent from accent bar
 
-    # Dark header bar
-    header = slide.shapes.add_shape(
+# ── Helpers ─────────────────────────────────────────────────────────────────
+
+def new_prs():
+    prs = Presentation()
+    prs.slide_width  = SLIDE_W
+    prs.slide_height = SLIDE_H
+    return prs
+
+
+def blank_slide(prs):
+    return prs.slides.add_slide(prs.slide_layouts[6])
+
+
+def add_header(slide, prs, title, subtitle=""):
+    """Full-width red header bar + thin accent divider + title text."""
+    # Red bar
+    bar = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, 0, 0, prs.slide_width, HEADER_H)
+    bar.fill.solid()
+    bar.fill.fore_color.rgb = RED
+    bar.line.fill.background()
+
+    # Title in bar
+    tb = slide.shapes.add_textbox(LEFT_MARGIN, Inches(0.12),
+                                  prs.slide_width - Inches(1), Inches(0.55))
+    tf = tb.text_frame
+    tf.text = title
+    p = tf.paragraphs[0]
+    p.font.name  = "Arial"
+    p.font.size  = Pt(28)
+    p.font.bold  = True
+    p.font.color.rgb = WHITE
+
+    # Thin accent divider below header
+    div = slide.shapes.add_shape(
         MSO_SHAPE.RECTANGLE,
-        0, 0, prs.slide_width, Inches(1.5)
-    )
-    header.fill.solid()
-    header.fill.fore_color.rgb = LILLY_RED
-    header.line.fill.background()
+        0, HEADER_H, prs.slide_width, DIVIDER_H)
+    div.fill.solid()
+    div.fill.fore_color.rgb = MID_GRAY
+    div.line.fill.background()
 
-    # Title text
-    title_box = slide.shapes.add_textbox(
-        Inches(0.5), Inches(0.3),
-        prs.slide_width - Inches(1), Inches(0.9)
-    )
-    title_frame = title_box.text_frame
-    title_frame.text = title
-    title_frame.paragraphs[0].font.size = Pt(44)
-    title_frame.paragraphs[0].font.bold = True
-    title_frame.paragraphs[0].font.color.rgb = RGBColor(255, 255, 255)
-
-    # Subtitle
+    # Optional subtitle
     if subtitle:
-        subtitle_box = slide.shapes.add_textbox(
-            Inches(0.5), Inches(1.8),
-            prs.slide_width - Inches(1), Inches(0.5)
-        )
-        subtitle_frame = subtitle_box.text_frame
-        subtitle_frame.text = subtitle
-        subtitle_frame.paragraphs[0].font.size = Pt(18)
-        subtitle_frame.paragraphs[0].font.color.rgb = LILLY_GRAY
+        stb = slide.shapes.add_textbox(
+            LEFT_MARGIN, HEADER_H + DIVIDER_H + Inches(0.08),
+            prs.slide_width - Inches(1), Inches(0.35))
+        stf = stb.text_frame
+        stf.text = subtitle
+        sp = stf.paragraphs[0]
+        sp.font.name  = "Calibri"
+        sp.font.size  = Pt(12)
+        sp.font.italic = True
+        sp.font.color.rgb = DARK_GRAY
 
-    return slide
 
-def add_sticky_note(slide, left, top, width, height, text, color, rotation=0):
-    """Add a sticky note shape with text"""
-    note = slide.shapes.add_shape(
-        MSO_SHAPE.RECTANGLE,
-        left, top, width, height
-    )
-    note.fill.solid()
-    note.fill.fore_color.rgb = color
-    note.line.color.rgb = RGBColor(180, 180, 180)
-    note.line.width = Pt(1)
+def add_card(slide, left, top, width, height, text, accent_color,
+             title=None, font_size=Pt(10), bg_color=None):
+    """
+    Card with colored left accent bar (matching Cloud_DTW template pattern).
+    Optional bold title line above body text.
+    """
+    bg = bg_color or WHITE
 
-    # Add slight rotation (in degrees * 60000)
-    if rotation != 0:
-        note.rotation = rotation
+    # Card background
+    card = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, left, top, width, height)
+    card.fill.solid()
+    card.fill.fore_color.rgb = bg
+    card.line.color.rgb = MID_GRAY
+    card.line.width = Pt(0.5)
 
-    # Add text
-    text_frame = note.text_frame
-    text_frame.text = text
-    text_frame.word_wrap = True
-    text_frame.margin_left = Inches(0.1)
-    text_frame.margin_right = Inches(0.1)
-    text_frame.margin_top = Inches(0.1)
-    text_frame.margin_bottom = Inches(0.1)
+    # Left accent bar
+    accent = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, left, top, ACCENT_W, height)
+    accent.fill.solid()
+    accent.fill.fore_color.rgb = accent_color
+    accent.line.fill.background()
 
-    # Font styling
-    for paragraph in text_frame.paragraphs:
-        paragraph.font.size = Pt(11)
-        paragraph.font.name = "Comic Sans MS"  # Hand-written style alternative
-        paragraph.font.color.rgb = RGBColor(0, 0, 0)
+    # Text box indented past accent bar
+    text_left   = left + ACCENT_W + CARD_PADDING
+    text_width  = width - ACCENT_W - CARD_PADDING - Inches(0.08)
+    text_top    = top + Inches(0.07)
+    text_height = height - Inches(0.14)
 
-    return note
+    tb = slide.shapes.add_textbox(text_left, text_top, text_width, text_height)
+    tf = tb.text_frame
+    tf.word_wrap = True
 
-def add_background(slide, prs, color=KRAFT_BG):
-    """Add background color to slide"""
-    background = slide.shapes.add_shape(
-        MSO_SHAPE.RECTANGLE,
-        0, 0, prs.slide_width, prs.slide_height
-    )
-    slide.shapes._spTree.remove(background._element)
-    slide.shapes._spTree.insert(2, background._element)
-    background.fill.solid()
-    background.fill.fore_color.rgb = color
-    background.line.fill.background()
+    if title:
+        p0 = tf.paragraphs[0]
+        p0.text = title
+        p0.font.name  = "Arial"
+        p0.font.size  = Pt(10)
+        p0.font.bold  = True
+        p0.font.color.rgb = NEAR_BLACK
+        p1 = tf.add_paragraph()
+        p1.text = text
+        p1.font.name  = "Calibri"
+        p1.font.size  = font_size
+        p1.font.color.rgb = DARK_GRAY
+    else:
+        p0 = tf.paragraphs[0]
+        p0.text = text
+        p0.font.name  = "Calibri"
+        p0.font.size  = font_size
+        p0.font.color.rgb = NEAR_BLACK
+
+    return card
+
+
+def add_section_label(slide, left, top, width, text, color=None):
+    """Bold uppercase section label, optionally colored."""
+    tb = slide.shapes.add_textbox(left, top, width, Inches(0.3))
+    tf = tb.text_frame
+    tf.text = text
+    p = tf.paragraphs[0]
+    p.font.name  = "Arial"
+    p.font.size  = Pt(11)
+    p.font.bold  = True
+    p.font.color.rgb = color or NEAR_BLACK
+    return tb
+
+
+def add_numbered_circle(slide, cx, cy, number, color):
+    """0.45" diameter circle with bold number — for process flows."""
+    d = Inches(0.45)
+    circ = slide.shapes.add_shape(
+        MSO_SHAPE.OVAL,
+        cx - d // 2, cy - d // 2, d, d)
+    circ.fill.solid()
+    circ.fill.fore_color.rgb = color
+    circ.line.fill.background()
+    tf = circ.text_frame
+    tf.text = str(number)
+    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    p.font.name  = "Arial"
+    p.font.size  = Pt(14)
+    p.font.bold  = True
+    p.font.color.rgb = WHITE
+
+
+def content_top():
+    """Y position where content starts (below header + divider + small gap)."""
+    return HEADER_H + DIVIDER_H + Inches(0.18)
+
+
+# ── Artifact 1: Hopes & Fears Board ────────────────────────────────────────
 
 def create_hopes_fears_board():
     """OUTPUT 1: Hopes & Fears Board"""
-    prs = Presentation()
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    prs = new_prs()
+    slide = blank_slide(prs)
+    add_header(slide, prs, "Hopes & Fears")
 
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_background(slide, prs, WHITE_BG)
+    ct = content_top()
+    usable_h = SLIDE_H - ct - Inches(0.15)
+    half_h   = usable_h / 2 - Inches(0.08)
 
-    # Title
-    title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.3), Inches(4), Inches(0.5))
-    title_frame = title_box.text_frame
-    title_frame.text = "Hopes & Fears"
-    title_frame.paragraphs[0].font.size = Pt(48)
-    title_frame.paragraphs[0].font.bold = True
-    title_frame.paragraphs[0].font.color.rgb = RGBColor(0, 0, 0)
+    col_w  = (SLIDE_W - Inches(1.0)) / 2 - Inches(0.1)
+    left_x = LEFT_MARGIN
+    right_x = LEFT_MARGIN + col_w + Inches(0.2)
 
-    # Section labels
-    hopes_label = slide.shapes.add_textbox(Inches(0.5), Inches(1.2), Inches(3), Inches(0.6))
-    hopes_frame = hopes_label.text_frame
-    hopes_frame.text = "HOPES"
-    hopes_frame.paragraphs[0].font.size = Pt(36)
-    hopes_frame.paragraphs[0].font.bold = True
-    hopes_frame.paragraphs[0].font.color.rgb = RGBColor(0, 100, 0)
+    # Section headers
+    add_section_label(slide, left_x,  ct, Inches(2.5), "HOPES", GREEN)
+    add_section_label(slide, right_x, ct, Inches(2.5), "FEARS", RED)
 
-    fears_label = slide.shapes.add_textbox(Inches(0.5), Inches(5.2), Inches(3), Inches(0.6))
-    fears_frame = fears_label.text_frame
-    fears_frame.text = "FEARS"
-    fears_frame.paragraphs[0].font.size = Pt(36)
-    fears_frame.paragraphs[0].font.bold = True
-    fears_frame.paragraphs[0].font.color.rgb = RGBColor(139, 0, 0)
+    label_h = Inches(0.32)
 
-    # Divider line
-    line = slide.shapes.add_connector(1, Inches(0.5), Inches(5), Inches(15.5), Inches(5))
-    line.line.width = Pt(3)
-    line.line.color.rgb = RGBColor(0, 0, 0)
-
-    # HOPES - Extract from transcript
     hopes = [
-        "ADCO/MCOs: Visibility on the hand offs, so we can jump in and help/assist to keep/manage to the speed of the hand offs",
-        "The quicker we get this info to Media parters the quicker they can work to get banners in market",
-        "Standardization across lines of business, and business units",
+        "Visibility on the hand offs so ADCO/MCO can jump in and help manage speed",
+        "Quicker handoff to Media partners means faster time to market",
+        "Standardization across lines of business and business units",
         "Role clarity among everyone involved in the process",
         "Better systems in place that talk to each other",
         "Clear ownership of Creative Grid process within Lilly",
-        "Revamp QA process before sent to agency",
-        "Establishing Clear, End-to-End DTC Production Timeframes",
+        "Revamp QA process before assets sent to agency",
+        "Clear, end-to-end DTC production timeframes established",
         "Consistency in approval process timing"
     ]
 
-    # Place HOPES sticky notes
-    x_positions = [1, 4, 7, 10, 13, 1, 4, 7, 10]
-    y_positions = [2, 2.2, 2.1, 2, 2.2, 3.5, 3.6, 3.4, 3.5]
-    colors = [YELLOW, GREEN, YELLOW, GREEN, YELLOW, GREEN, YELLOW, GREEN, YELLOW]
-    rotations = [-2, 3, -1, 2, -3, 1, -2, 2, -1]
+    fears = [
+        "So many roles constantly changing — impossible to keep up",
+        "A lot of black boxes — unclear who is supposed to be doing what",
+        "Ongoing improvement needed in trafficking process to cut revisions and swirl",
+        "Too many cooks in the kitchen for the trafficking process",
+        "Roles are not clearly owned across teams",
+        "Digital team may traffic assets too quickly before marketer sends email",
+        "Too many handoffs can feel heavy and frustrating",
+        "Loss of control when it gets to the creative grid process",
+        "No clear standard on who fills grids, who traffics, who fixes failures",
+        "Number of handoffs in this process can feel heavy and sometimes frustrating"
+    ]
+
+    card_h  = Inches(0.54)
+    gap     = Inches(0.07)
+    start_y = ct + label_h + Inches(0.04)
 
     for i, hope in enumerate(hopes):
-        if i < len(x_positions):
-            add_sticky_note(
-                slide,
-                Inches(x_positions[i]), Inches(y_positions[i]),
-                Inches(2.5), Inches(1.2),
-                hope, colors[i], rotations[i]
-            )
-
-    # FEARS - Extract from transcript
-    fears = [
-        "There are so many roles in this organization that constantly keep changing, its impossible to keep up",
-        "A lot of black boxes folks don't quite understand who is supposed to be doing what",
-        "There is area of improvement within the overall trafficking process to help cut down revisions and swirl",
-        "There are sometimes too many cooks in the kitchen for the trafficking process",
-        "Roles are not clearly owned",
-        "The Lilly Digital team will traffic assets too quickly before a marketer sends an email",
-        "There are a lot of handoffs with this new process that can make me feel frustrated",
-        "I feel a loss of control when it gets to the creative grid process",
-        "There is no clear standard on who should be filling out the grids, who is trafficking",
-        "The number of handoffs in this process can feel heavy and sometimes frustrating"
-    ]
-
-    # Place FEARS sticky notes
-    x_positions_fears = [1, 4, 7, 10, 13, 1, 4, 7, 10, 13]
-    y_positions_fears = [6, 6.1, 6.2, 6, 6.1, 7.4, 7.5, 7.3, 7.4, 7.5]
-    colors_fears = [PINK, ORANGE, PINK, ORANGE, PINK, ORANGE, PINK, ORANGE, PINK, ORANGE]
-    rotations_fears = [2, -3, 1, -2, 3, -1, 2, -3, 1, -2]
+        y = start_y + i * (card_h + gap)
+        if y + card_h > SLIDE_H - Inches(0.1):
+            break
+        add_card(slide, left_x, y, col_w, card_h, hope, GREEN,
+                 font_size=Pt(9))
 
     for i, fear in enumerate(fears):
-        if i < len(x_positions_fears):
-            add_sticky_note(
-                slide,
-                Inches(x_positions_fears[i]), Inches(y_positions_fears[i]),
-                Inches(2.5), Inches(1),
-                fear, colors_fears[i], rotations_fears[i]
-            )
+        y = start_y + i * (card_h + gap)
+        if y + card_h > SLIDE_H - Inches(0.1):
+            break
+        add_card(slide, right_x, y, col_w, card_h, fear, RED,
+                 font_size=Pt(9))
 
-    prs.save('/Users/V5X8512/Downloads/01_hopes_fears.pptx')
-    print("✓ Generated: 01_hopes_fears.pptx")
+    out = '/Users/V5X8512/Downloads/01_hopes_fears.pptx'
+    prs.save(out)
+    print(f"✓ Generated: {out}")
+
+
+# ── Artifact 2: Personas ─────────────────────────────────────────────────────
 
 def create_personas():
-    """OUTPUT 2: Personas"""
-    prs = Presentation()
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    """OUTPUT 2: Persona Cards — one slide per persona."""
+    prs = new_prs()
 
-    # Define personas from transcript
     personas = [
         {
-            "name": "Mia (HCP Marketer)",
+            "name": "Mia — HCP Marketer",
             "role": "HCP Marketing Lead",
-            "quote": "I feel like there are a lot of handoffs with this new process that can make me feel frustrated or wish that it could be a click of a button",
-            "goals": ["Kick off banners with brand strategy", "Project manage through MLR", "Be proactive 1-2 months out to ensure right message gets into market", "Think through the HCP experience"],
-            "pains": ["A lot of handoffs in the process", "Takes 5-10 minutes to enter marketing inputs and that is hard to come by", "Loss of control in creative grid process", "Communication gaps - banners left hanging"],
-            "behaviors": ["Presents idea to LMS or E2E colleagues", "Takes through MLR for approval", "Sends CMI team updated excel grid with banner rotation", "Fills in rotation, start, end date", "Checks in via email, Teams, or live during NPP weekly status"],
-            "tools": ["MLR", "Excel/Creative Grid", "Email", "Teams", "NPP weekly status meetings"]
+            "quote": "I feel like there are a lot of handoffs that can make me feel frustrated or wish it could be a click of a button.",
+            "goals":     ["Kick off banners with brand strategy",
+                          "Project manage through MLR and creative grid",
+                          "Be proactive 1–2 months out",
+                          "Think through HCP experience"],
+            "pains":     ["Too many handoffs in the process",
+                          "5–10 min to enter inputs — hard to find time",
+                          "Loss of control in creative grid process",
+                          "Communication gaps leave banners hanging"],
+            "behaviors": ["Presents idea to LMS or E2E colleagues",
+                          "Takes through MLR for approval",
+                          "Sends CMI team updated grid with banner rotation",
+                          "Checks in via email, Teams, or NPP weekly status"],
+            "tools":     ["MLR", "Excel / Creative Grid", "Email", "Teams"],
+            "color": RED,
         },
         {
-            "name": "Julie (DTC Media Lead)",
+            "name": "Julie — DTC Media Lead",
             "role": "DTC Media Strategy",
-            "quote": "We need to work more strongly with the Lilly organization to understand impact when assets are not available and how that dilutes our marketplace impact",
-            "goals": ["Ensure placements are strategically placed for patients/consumers", "Coordinate timing for market impact", "Drive scripts through targeted messaging"],
-            "pains": ["Constant moving pieces", "Assets delayed or not available", "Negatively impacts the way plans drive action", "Dilutes marketplace impact"],
-            "behaviors": ["Strategically determine placements for ad unit types", "Provide specs to TA & GCO CC&A team", "Confirm creative grid inputs are accurate", "Approve for agency hand off"],
-            "tools": ["Media planning tools", "Creative grid", "Google Studio"]
+            "quote": "We need to work more strongly with the Lilly organization to understand impact when assets are not available.",
+            "goals":     ["Ensure placements are strategically placed",
+                          "Coordinate timing for market impact",
+                          "Drive scripts through targeted messaging"],
+            "pains":     ["Constant moving pieces to coordinate",
+                          "Assets delayed or unavailable",
+                          "Dilutes marketplace impact to drive scripts"],
+            "behaviors": ["Strategically determine placements for ad unit types",
+                          "Provide specs to TA & GCO CC&A team",
+                          "Confirm creative grid inputs are accurate",
+                          "Approve for agency handoff"],
+            "tools":     ["Media planning tools", "Creative Grid", "Google Studio"],
+            "color": BLUE,
         },
         {
-            "name": "Jenn (HCP Agency - CMI)",
+            "name": "Jenn — HCP Agency (CMI)",
             "role": "Agency Media Operations",
-            "quote": "CMI often has to help facilitate the task to see it through to completion in a timely manner to not delay launch",
-            "goals": ["Receive and QA assets properly", "Build and launch media accurately", "Meet launch timelines"],
-            "pains": ["Too many cooks in the kitchen", "Roles not clearly owned", "Click tags often missing", "Expiration dates not updated", "CMI often dark in the process"],
-            "behaviors": ["Receive assets from Lilly through Google Studio or SharePoint", "QA assets for web specs & creative grids", "Assign creatives in internal systems", "Build tags and send to suppliers", "QA post launch"],
-            "tools": ["Google Studio", "SharePoint", "Internal creative systems", "Ad serving platforms"]
+            "quote": "CMI often has to help facilitate the task to see it through to completion in a timely manner.",
+            "goals":     ["Receive and QA assets properly",
+                          "Build and launch media accurately",
+                          "Meet launch timelines"],
+            "pains":     ["Too many cooks in the kitchen",
+                          "Roles not clearly owned",
+                          "Click tags often missing; expiration dates not updated"],
+            "behaviors": ["Receive assets via Google Studio or SharePoint",
+                          "QA for web specs & creative grids",
+                          "Assign creatives in internal systems",
+                          "Build tags and send to suppliers"],
+            "tools":     ["Google Studio", "SharePoint", "Ad serving platforms"],
+            "color": GREEN,
         },
         {
-            "name": "Matt (Digital Brand Lead)",
+            "name": "Matt — Digital Brand Lead",
             "role": "Digital Development Strategy",
-            "quote": "There is no clear standard on who should be filling out the grids, who is trafficking, and who is fixing failed creatives",
-            "goals": ["Ensure assets delivered/trafficked on time", "Validate creatives prior to trafficking", "Remove blocks and escalate issues", "Discover innovation opportunities"],
-            "pains": ["No clear standard on responsibilities", "Pulled in when information is missing", "Pulled in when QA fails", "Unclear who fixes failed creatives"],
-            "behaviors": ["Partners with brands on digital development best practices", "Consults on digital tactic design for compliance", "Oversees QA to validate creatives", "Acts as escalation point"],
-            "tools": ["Adobe Workfront (proposed)", "Creative trafficking forms", "QA systems"]
+            "quote": "There is no clear standard on who should be filling out the grids, who is trafficking, and who is fixing failed creatives.",
+            "goals":     ["Ensure assets delivered on time",
+                          "Validate creatives prior to trafficking",
+                          "Remove blocks and escalate issues"],
+            "pains":     ["No clear standard on responsibilities",
+                          "Called in when information is missing",
+                          "Unclear who fixes failed creatives"],
+            "behaviors": ["Partners with brands on digital best practices",
+                          "Consults on digital tactic design for compliance",
+                          "Oversees QA to validate creatives"],
+            "tools":     ["Adobe Workfront (proposed)", "Creative trafficking forms"],
+            "color": PURPLE,
         },
         {
-            "name": "Kate (Campaign Execution)",
+            "name": "Kate — Campaign Execution",
             "role": "Campaign Activation Strategy",
-            "quote": "There are many hands in the pot for this process. Order of operations is not clear. Roles and Responsibilities are fuzzy",
-            "goals": ["Work with brand and omnichannel to determine banner needs", "Program banners in campaign software when approved"],
-            "pains": ["Many hands in the pot", "Order of operations unclear", "Roles and responsibilities fuzzy", "Combination creates delays"],
-            "behaviors": ["Receive/assess media plan", "Determine if banners need to be created", "Alert marketing and brand DCO to include in backlog", "Enter metadata in CAP"],
-            "tools": ["CAP (Campaign Activation Platform)", "Media plans", "Backlog systems"]
+            "quote": "There are many hands in the pot. Order of operations is not clear. Roles and responsibilities are fuzzy.",
+            "goals":     ["Work with brand & omnichannel on banner needs",
+                          "Program banners in campaign software when approved"],
+            "pains":     ["Many hands in the pot",
+                          "Order of operations unclear",
+                          "Combination creates delays"],
+            "behaviors": ["Receive/assess media plan",
+                          "Determine if banners need to be created",
+                          "Alert marketing and brand DCO to include in backlog"],
+            "tools":     ["CAP (Campaign Activation Platform)", "Media plans"],
+            "color": ORANGE,
         },
         {
-            "name": "Molly (Media Operations)",
+            "name": "Molly — Media Operations",
             "role": "Media Ops Process Owner",
-            "quote": "There are so many roles in this organization that constantly keep changing, its impossible to keep up with how its changing",
-            "goals": ["Ensure trafficking handoff processes work well", "Provide necessary tools like Smartsheet", "Enable teams to work together confidently"],
-            "pains": ["Roles constantly changing", "Black boxes - unclear who does what", "When problems arise, hard to know who to triage"],
-            "behaviors": ["Provides process documentation", "Manages Smartsheet tools", "Facilitates communication between groups"],
-            "tools": ["Smartsheet", "Process documentation", "Communication platforms"]
-        }
+            "quote": "There are so many roles in this organization constantly changing — it's impossible to keep up.",
+            "goals":     ["Ensure trafficking handoff processes work well",
+                          "Provide necessary tools like Smartsheet",
+                          "Enable teams to work together confidently"],
+            "pains":     ["Roles constantly changing",
+                          "Black boxes — unclear who does what",
+                          "When problems arise, hard to know who to triage"],
+            "behaviors": ["Provides process documentation",
+                          "Manages Smartsheet tools",
+                          "Facilitates communication between groups"],
+            "tools":     ["Smartsheet", "Process documentation"],
+            "color": TEAL,
+        },
     ]
 
-    for persona in personas:
-        slide = prs.slides.add_slide(prs.slide_layouts[6])
-        add_background(slide, prs, KRAFT_BG)
+    for idx, p in enumerate(personas):
+        slide = blank_slide(prs)
+        add_header(slide, prs,
+                   p["name"],
+                   subtitle=p["role"])
 
-        # Persona name and role
-        name_box = slide.shapes.add_textbox(Inches(2), Inches(0.5), Inches(12), Inches(0.6))
-        name_frame = name_box.text_frame
-        name_frame.text = persona["name"]
-        name_frame.paragraphs[0].font.size = Pt(40)
-        name_frame.paragraphs[0].font.bold = True
-        name_frame.paragraphs[0].font.color.rgb = RGBColor(0, 0, 0)
+        ct = content_top() + Inches(0.38)   # extra room for subtitle
 
-        role_box = slide.shapes.add_textbox(Inches(2), Inches(1.1), Inches(12), Inches(0.4))
-        role_frame = role_box.text_frame
-        role_frame.text = persona["role"]
-        role_frame.paragraphs[0].font.size = Pt(20)
-        role_frame.paragraphs[0].font.italic = True
-        role_frame.paragraphs[0].font.color.rgb = LILLY_GRAY
+        # Quote bar — full-width light card
+        quote_h = Inches(0.50)
+        qcard = slide.shapes.add_shape(
+            MSO_SHAPE.RECTANGLE,
+            LEFT_MARGIN, ct,
+            SLIDE_W - Inches(1.0), quote_h)
+        qcard.fill.solid()
+        qcard.fill.fore_color.rgb = LIGHT_GRAY
+        qcard.line.fill.background()
 
-        # Avatar placeholder
-        avatar = slide.shapes.add_shape(
-            MSO_SHAPE.OVAL,
-            Inches(0.5), Inches(0.5),
-            Inches(1.2), Inches(1.2)
-        )
-        avatar.fill.solid()
-        avatar.fill.fore_color.rgb = LILLY_LIGHT_GRAY
-        avatar.line.color.rgb = LILLY_GRAY
+        accent = slide.shapes.add_shape(
+            MSO_SHAPE.RECTANGLE,
+            LEFT_MARGIN, ct, ACCENT_W, quote_h)
+        accent.fill.solid()
+        accent.fill.fore_color.rgb = p["color"]
+        accent.line.fill.background()
 
-        # Quote
-        quote_box = slide.shapes.add_textbox(Inches(2), Inches(1.7), Inches(13), Inches(0.8))
-        quote_frame = quote_box.text_frame
-        quote_frame.text = f'"{persona["quote"]}"'
-        quote_frame.paragraphs[0].font.size = Pt(14)
-        quote_frame.paragraphs[0].font.italic = True
-        quote_frame.paragraphs[0].font.color.rgb = RGBColor(80, 80, 80)
+        qtb = slide.shapes.add_textbox(
+            LEFT_MARGIN + ACCENT_W + CARD_PADDING, ct + Inches(0.08),
+            SLIDE_W - Inches(1.3), Inches(0.38))
+        qtf = qtb.text_frame
+        qtf.text = f'"{p["quote"]}"'
+        qpar = qtf.paragraphs[0]
+        qpar.font.name   = "Calibri"
+        qpar.font.size   = Pt(10)
+        qpar.font.italic = True
+        qpar.font.color.rgb = DARK_GRAY
 
-        # Goals section
-        y_offset = 2.8
-        label = slide.shapes.add_textbox(Inches(0.5), Inches(y_offset), Inches(3), Inches(0.3))
-        label.text_frame.text = "GOALS & MOTIVATIONS"
-        label.text_frame.paragraphs[0].font.size = Pt(14)
-        label.text_frame.paragraphs[0].font.bold = True
+        # 4 section columns: Goals | Pains | Behaviors | Tools
+        sections = [
+            ("GOALS & MOTIVATIONS", p["goals"],     GREEN),
+            ("PAIN POINTS",         p["pains"],      RED),
+            ("KEY BEHAVIORS",       p["behaviors"],  BLUE),
+            ("TOOLS & SYSTEMS",     p["tools"],      TEAL),
+        ]
 
-        for i, goal in enumerate(persona["goals"][:3]):
-            add_sticky_note(
-                slide,
-                Inches(0.5 + (i * 3.2)), Inches(y_offset + 0.4),
-                Inches(3), Inches(0.8),
-                goal, YELLOW, random.randint(-2, 2)
-            )
+        col_area_top = ct + quote_h + Inches(0.14)
+        col_area_h   = SLIDE_H - col_area_top - Inches(0.12)
+        n_cols       = len(sections)
+        col_w        = (SLIDE_W - Inches(1.0)) / n_cols - Inches(0.08)
 
-        # Pain points section
-        y_offset = 4.2
-        label = slide.shapes.add_textbox(Inches(0.5), Inches(y_offset), Inches(3), Inches(0.3))
-        label.text_frame.text = "PAIN POINTS"
-        label.text_frame.paragraphs[0].font.size = Pt(14)
-        label.text_frame.paragraphs[0].font.bold = True
-        label.text_frame.paragraphs[0].font.color.rgb = RGBColor(139, 0, 0)
+        for ci, (label, items, color) in enumerate(sections):
+            cx = LEFT_MARGIN + ci * (col_w + Inches(0.08))
+            # Column header
+            add_section_label(slide, cx, col_area_top, col_w, label, color)
+            # Items as cards
+            card_h  = Inches(0.56)
+            gap     = Inches(0.06)
+            item_y  = col_area_top + Inches(0.32)
+            for item in items[:5]:
+                if item_y + card_h > SLIDE_H - Inches(0.08):
+                    break
+                add_card(slide, cx, item_y, col_w, card_h, item, color,
+                         font_size=Pt(9))
+                item_y += card_h + gap
 
-        for i, pain in enumerate(persona["pains"][:3]):
-            add_sticky_note(
-                slide,
-                Inches(0.5 + (i * 3.2)), Inches(y_offset + 0.4),
-                Inches(3), Inches(0.8),
-                pain, PINK, random.randint(-2, 2)
-            )
+    out = '/Users/V5X8512/Downloads/02_personas.pptx'
+    prs.save(out)
+    print(f"✓ Generated: {out}")
 
-        # Behaviors section
-        y_offset = 5.6
-        label = slide.shapes.add_textbox(Inches(0.5), Inches(y_offset), Inches(3), Inches(0.3))
-        label.text_frame.text = "KEY BEHAVIORS"
-        label.text_frame.paragraphs[0].font.size = Pt(14)
-        label.text_frame.paragraphs[0].font.bold = True
 
-        for i, behavior in enumerate(persona["behaviors"][:3]):
-            add_sticky_note(
-                slide,
-                Inches(0.5 + (i * 3.2)), Inches(y_offset + 0.4),
-                Inches(3), Inches(0.8),
-                behavior, BLUE, random.randint(-2, 2)
-            )
-
-        # Tools section
-        y_offset = 7
-        label = slide.shapes.add_textbox(Inches(0.5), Inches(y_offset), Inches(3), Inches(0.3))
-        label.text_frame.text = "TOOLS & SYSTEMS"
-        label.text_frame.paragraphs[0].font.size = Pt(14)
-        label.text_frame.paragraphs[0].font.bold = True
-
-        for i, tool in enumerate(persona["tools"][:3]):
-            add_sticky_note(
-                slide,
-                Inches(0.5 + (i * 3.2)), Inches(y_offset + 0.4),
-                Inches(3), Inches(0.6),
-                tool, GREEN, random.randint(-2, 2)
-            )
-
-    prs.save('/Users/V5X8512/Downloads/02_personas.pptx')
-    print("✓ Generated: 02_personas.pptx")
+# ── Artifact 3: Stakeholder Map ──────────────────────────────────────────────
 
 def create_stakeholder_map():
-    """OUTPUT 3: Stakeholder Map"""
-    prs = Presentation()
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    """OUTPUT 3: Stakeholder Map — concentric ring layout."""
+    prs = new_prs()
+    slide = blank_slide(prs)
+    add_header(slide, prs, "Stakeholder Map",
+               subtitle="Banner Display Trafficking & Handoff Process")
 
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_background(slide, prs, WHITE_BG)
+    ct = content_top()
 
-    # Title
-    title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.3), Inches(6), Inches(0.5))
-    title_frame = title_box.text_frame
-    title_frame.text = "Stakeholder Map"
-    title_frame.paragraphs[0].font.size = Pt(48)
-    title_frame.paragraphs[0].font.bold = True
-
-    # Central initiative
-    center = slide.shapes.add_shape(
+    # Center oval — the initiative
+    cx  = SLIDE_W / 2
+    cy  = ct + (SLIDE_H - ct) / 2 + Inches(0.1)
+    ow  = Inches(2.2)
+    oh  = Inches(1.1)
+    center_oval = slide.shapes.add_shape(
         MSO_SHAPE.OVAL,
-        Inches(6.5), Inches(3.5),
-        Inches(3), Inches(2)
-    )
-    center.fill.solid()
-    center.fill.fore_color.rgb = LILLY_RED
-    center.line.color.rgb = RGBColor(0, 0, 0)
-    center.line.width = Pt(2)
+        cx - ow / 2, cy - oh / 2, ow, oh)
+    center_oval.fill.solid()
+    center_oval.fill.fore_color.rgb = RED
+    center_oval.line.fill.background()
+    ctf = center_oval.text_frame
+    ctf.text = "Banner\nTrafficking\nProcess"
+    ctf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    cp = ctf.paragraphs[0]
+    cp.alignment = PP_ALIGN.CENTER
+    cp.font.name  = "Arial"
+    cp.font.size  = Pt(12)
+    cp.font.bold  = True
+    cp.font.color.rgb = WHITE
+    for pp in ctf.paragraphs[1:]:
+        pp.alignment = PP_ALIGN.CENTER
+        pp.font.name  = "Arial"
+        pp.font.size  = Pt(12)
+        pp.font.bold  = True
+        pp.font.color.rgb = WHITE
 
-    center_text = center.text_frame
-    center_text.text = "Banner Display\nTrafficking &\nHandoff Process"
-    center_text.paragraphs[0].alignment = PP_ALIGN.CENTER
-    center_text.vertical_anchor = MSO_ANCHOR.MIDDLE
-    for paragraph in center_text.paragraphs:
-        paragraph.font.size = Pt(18)
-        paragraph.font.bold = True
-        paragraph.font.color.rgb = RGBColor(255, 255, 255)
-
-    # Stakeholder groups with verbatim quotes
+    # Stakeholder groups: (group, role_detail, quote, x_offset, y_offset, color)
     stakeholders = [
-        {
-            "group": "ADCO/MCO",
-            "role": "Carrie Sieglitz",
-            "quote": "We tend to be the one asked where is the banner at the end or why doesn't CMI have the files",
-            "position": (1, 1.5),
-            "color": YELLOW
-        },
-        {
-            "group": "Marketers (HCP)",
-            "role": "Mia Lynn McCrumb",
-            "quote": "I have to be proactive (think 1-2 months out) to ensure the right message gets into market",
-            "position": (1, 4.5),
-            "color": YELLOW
-        },
-        {
-            "group": "Marketers (DTC)",
-            "role": "Jamie Doyle",
-            "quote": "The DTC marketer should own the media grid so that the marketer is very in the loop",
-            "position": (1, 7),
-            "color": YELLOW
-        },
-        {
-            "group": "Media Leads",
-            "role": "Julie Gogan, Alex Lund",
-            "quote": "We need to work more strongly with the Lilly organization to understand impact when assets are not available",
-            "position": (4.5, 1),
-            "color": BLUE
-        },
-        {
-            "group": "Media Operations",
-            "role": "Molly Hudlow",
-            "quote": "There are so many roles that constantly keep changing, its impossible to keep up",
-            "position": (11, 1),
-            "color": BLUE
-        },
-        {
-            "group": "HCP Agency (CMI)",
-            "role": "Jenn Margiloff",
-            "quote": "CMI often has to help facilitate the task to see it through to completion in a timely manner",
-            "position": (13, 3.5),
-            "color": GREEN
-        },
-        {
-            "group": "Consumer Agency (PA)",
-            "role": "Alex Fox",
-            "quote": "Better learning and understanding of processes between teams to aid in collaboration",
-            "position": (13, 6.5),
-            "color": GREEN
-        },
-        {
-            "group": "Digital Brand Lead",
-            "role": "Matt Casolaro",
-            "quote": "There is no clear standard on who should be filling out the grids, who is trafficking",
-            "position": (11, 7.5),
-            "color": ORANGE
-        },
-        {
-            "group": "Campaign Execution",
-            "role": "Kate Kilgore",
-            "quote": "There are many hands in the pot. Order of operations is not clear",
-            "position": (4.5, 7.5),
-            "color": ORANGE
-        },
-        {
-            "group": "Digital PM/Production",
-            "role": "LMS, E2E Team",
-            "quote": "Intakes creative requests, production in platform, trafficking and handoff to agencies",
-            "position": (8, 7.5),
-            "color": TEAL
-        }
+        ("ADCO / MCO",      "Carrie Sieglitz / Jordyn King",
+         "We tend to be asked: where is the banner? Why doesn't CMI have the files?",
+         -4.5, -1.8, RED),
+        ("HCP Marketers",   "Mia McCrumb",
+         "I have to be proactive (1–2 months out) to ensure the right message gets to market.",
+         -4.5,  0.0, BLUE),
+        ("DTC Marketers",   "Jamie Doyle",
+         "The DTC marketer should own the media grid so the marketer stays in the loop.",
+         -4.5,  1.8, BLUE),
+        ("Media Leads",     "Julie Gogan / Alex Lund",
+         "We need to understand impact when assets are not available.",
+         -1.5, -2.4, GREEN),
+        ("Media Operations","Molly Hudlow",
+         "So many roles constantly changing — impossible to keep up.",
+         1.5,  -2.4, GREEN),
+        ("HCP Agency (CMI)","Jenn Margiloff",
+         "CMI often has to help facilitate to see it through completion in a timely manner.",
+         4.5,  -1.2, PURPLE),
+        ("Consumer Agency", "Alex Fox",
+         "Better learning of processes between teams to aid in collaboration.",
+         4.5,   0.8, PURPLE),
+        ("Digital Brand Lead","Matt Casolaro",
+         "No clear standard on who fills the grids, who traffics, who fixes failures.",
+         2.0,   2.2, ORANGE),
+        ("Campaign Execution","Kate Kilgore",
+         "Many hands in the pot. Order of operations is not clear.",
+         -2.0,  2.2, ORANGE),
     ]
 
-    for stakeholder in stakeholders:
-        # Role sticky note
-        add_sticky_note(
-            slide,
-            Inches(stakeholder["position"][0]), Inches(stakeholder["position"][1]),
-            Inches(2.2), Inches(0.5),
-            f"{stakeholder['group']}\n{stakeholder['role']}",
-            stakeholder["color"], random.randint(-3, 3)
-        )
+    card_w = Inches(2.5)
+    card_h = Inches(1.1)
 
-        # Quote sticky note below
-        add_sticky_note(
-            slide,
-            Inches(stakeholder["position"][0]), Inches(stakeholder["position"][1] + 0.6),
-            Inches(2.2), Inches(0.8),
-            f'"{stakeholder["quote"]}"',
-            RGBColor(255, 255, 220), random.randint(-2, 2)
-        )
+    for group, role, quote, dx, dy, color in stakeholders:
+        x = cx + Inches(dx) - card_w / 2
+        y = cy + Inches(dy) - card_h / 2
+        # Clamp to slide
+        x = max(Inches(0.1), min(x, SLIDE_W - card_w - Inches(0.1)))
+        y = max(ct + Inches(0.05), min(y, SLIDE_H - card_h - Inches(0.05)))
+        add_card(slide, x, y, card_w, card_h,
+                 quote, color,
+                 title=f"{group}  ·  {role}",
+                 font_size=Pt(8))
 
-    prs.save('/Users/V5X8512/Downloads/03_stakeholder_map.pptx')
-    print("✓ Generated: 03_stakeholder_map.pptx")
+    out = '/Users/V5X8512/Downloads/03_stakeholder_map.pptx'
+    prs.save(out)
+    print(f"✓ Generated: {out}")
 
-# Run all generation functions
+
+# ── Entry point ──────────────────────────────────────────────────────────────
+
 if __name__ == "__main__":
-    print("Generating Design Thinking Workshop Artifacts...")
+    print("Generating Design Thinking Workshop Artifacts 1–3...")
     print("=" * 60)
-
     create_hopes_fears_board()
     create_personas()
     create_stakeholder_map()
-
     print("=" * 60)
-    print("Completed first 3 artifacts. Continuing with remaining outputs...")
+    print("Completed artifacts 1–3.")

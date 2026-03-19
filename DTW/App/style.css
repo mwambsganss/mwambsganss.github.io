@@ -260,22 +260,15 @@ body {
 .participant-chip {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   background: var(--bg3);
   border-radius: 20px;
   padding: 3px 10px;
   font-size: 12px;
   margin: 3px 3px 3px 0;
 }
-.participant-avatar-sm {
-  width: 18px; height: 18px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: #fff;
-  font-size: 9px;
-  font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-}
+.participant-name { font-weight: 600; }
+.participant-role { color: var(--text3); font-size: 11px; }
 .facilitator-main {
   flex: 1;
   display: flex;
@@ -495,6 +488,23 @@ body {
 .summary-banner-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--blue); }
 .summary-banner-content { font-size: 13px; line-height: 1.6; }
 
+/* Participant artifacts panel */
+.par-artifacts { border-top: 1px solid var(--border); background: var(--bg2); }
+.par-artifacts-header { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--text3); padding: 8px 14px 4px; }
+
+/* Artifact delete button */
+.btn-artifact-del {
+  background: none; border: none; cursor: pointer;
+  color: var(--text3); font-size: 11px; padding: 1px 4px;
+  border-radius: 3px; line-height: 1;
+}
+.btn-artifact-del:hover { color: var(--red); background: rgba(204,0,0,.08); }
+
+/* Exercise list item — clickable + summary dot */
+.ex-list-item { cursor: pointer; }
+.ex-list-item:hover { background: var(--bg3); }
+.ex-list-summary-dot { color: var(--blue); font-size: 10px; margin-right: 2px; }
+
 /* ─── Loading spinner ─────────────────────────────────────────────────────── */
 .loading-overlay {
   position: fixed;
@@ -550,6 +560,8 @@ body {
 .toast-copy:hover { opacity: 1; background: rgba(255,255,255,.15); }
 
 /* ─── Session picker cards ────────────────────────────────────────────────── */
+#fac-artifact-list { max-height: 180px; overflow-y: auto; }
+
 .session-pick-card {
   display: flex; align-items: center; justify-content: space-between;
   background: var(--bg2); border: 1px solid var(--border);
@@ -562,6 +574,13 @@ body {
 .session-pick-name { font-weight: 600; font-size: 15px; margin-bottom: 3px; }
 .session-pick-meta { font-size: 12px; color: var(--text3); }
 .session-pick-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.btn-session-del {
+  background: none; border: none; cursor: pointer; font-size: 14px;
+  opacity: 0.35; padding: 2px 4px; border-radius: 4px; line-height: 1;
+  transition: opacity .15s, background .15s;
+}
+.session-pick-card:hover .btn-session-del { opacity: 0.7; }
+.btn-session-del:hover { opacity: 1 !important; background: rgba(204,0,0,.1); }
 .session-pick-code {
   font-family: monospace; font-size: 15px; font-weight: 700;
   letter-spacing: 3px; color: var(--blue);

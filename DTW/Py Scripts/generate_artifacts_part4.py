@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Design Thinking Workshop Artifacts Generator - Part 4
+Design Thinking Workshop Artifacts Generator — Parts 11–14
 Experience Roadmap, Hills, Gantt Roadmap, Resource Plan
 """
 
@@ -9,517 +9,594 @@ from pptx.util import Inches, Pt
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
-import random
 
-# Color definitions
-LILLY_RED = RGBColor(227, 24, 55)
-LILLY_BLUE = RGBColor(0, 122, 194)
-LILLY_GRAY = RGBColor(88, 89, 91)
-YELLOW = RGBColor(255, 242, 117)
-PINK = RGBColor(255, 182, 193)
-ORANGE = RGBColor(255, 160, 122)
-GREEN = RGBColor(152, 251, 152)
-BLUE = RGBColor(173, 216, 230)
-TEAL = RGBColor(64, 224, 208)
-RED = RGBColor(255, 105, 97)
-KRAFT_BG = RGBColor(222, 184, 135)
-WHITE_BG = RGBColor(255, 255, 255)
+RED     = RGBColor(0xD5, 0x2B, 0x1E)
+BLUE    = RGBColor(0x00, 0x63, 0xBE)
+GREEN   = RGBColor(0x00, 0x7A, 0x33)
+PURPLE  = RGBColor(0x6D, 0x20, 0x77)
+ORANGE  = RGBColor(0xE8, 0x77, 0x22)
+TEAL    = RGBColor(0x00, 0xA3, 0xE0)
+WHITE      = RGBColor(0xFF, 0xFF, 0xFF)
+NEAR_BLACK = RGBColor(0x1A, 0x1A, 0x1A)
+DARK_GRAY  = RGBColor(0x58, 0x58, 0x58)
+LIGHT_GRAY = RGBColor(0xF2, 0xF2, 0xF2)
+MID_GRAY   = RGBColor(0xC8, 0xC8, 0xC8)
 
-def add_background(slide, prs, color):
-    background = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, prs.slide_width, prs.slide_height)
-    slide.shapes._spTree.remove(background._element)
-    slide.shapes._spTree.insert(2, background._element)
-    background.fill.solid()
-    background.fill.fore_color.rgb = color
-    background.line.fill.background()
+SLIDE_W      = Inches(13.33)
+SLIDE_H      = Inches(7.50)
+HEADER_H     = Inches(0.75)
+DIVIDER_H    = Inches(0.04)
+LEFT_MARGIN  = Inches(0.5)
+ACCENT_W     = Inches(0.06)
+CARD_PADDING = Inches(0.12)
 
-def add_sticky_note(slide, left, top, width, height, text, color, rotation=0):
-    note = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, left, top, width, height)
-    note.fill.solid()
-    note.fill.fore_color.rgb = color
-    note.line.color.rgb = RGBColor(180, 180, 180)
-    note.line.width = Pt(1)
-    if rotation != 0:
-        note.rotation = rotation
-    text_frame = note.text_frame
-    text_frame.text = text
-    text_frame.word_wrap = True
-    text_frame.margin_left = Inches(0.1)
-    text_frame.margin_right = Inches(0.1)
-    text_frame.margin_top = Inches(0.1)
-    text_frame.margin_bottom = Inches(0.1)
-    for paragraph in text_frame.paragraphs:
-        paragraph.font.size = Pt(10)
-        paragraph.font.name = "Comic Sans MS"
-        paragraph.font.color.rgb = RGBColor(0, 0, 0)
-    return note
+
+def new_prs():
+    prs = Presentation()
+    prs.slide_width  = SLIDE_W
+    prs.slide_height = SLIDE_H
+    return prs
+
+
+def blank_slide(prs):
+    return prs.slides.add_slide(prs.slide_layouts[6])
+
+
+def add_header(slide, prs, title, subtitle=""):
+    bar = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, 0, 0, prs.slide_width, HEADER_H)
+    bar.fill.solid()
+    bar.fill.fore_color.rgb = RED
+    bar.line.fill.background()
+    tb = slide.shapes.add_textbox(LEFT_MARGIN, Inches(0.12),
+                                  prs.slide_width - Inches(1), Inches(0.55))
+    tf = tb.text_frame
+    tf.text = title
+    p = tf.paragraphs[0]
+    p.font.name = "Arial"
+    p.font.size = Pt(28)
+    p.font.bold = True
+    p.font.color.rgb = WHITE
+    div = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, 0, HEADER_H, prs.slide_width, DIVIDER_H)
+    div.fill.solid()
+    div.fill.fore_color.rgb = MID_GRAY
+    div.line.fill.background()
+    if subtitle:
+        stb = slide.shapes.add_textbox(
+            LEFT_MARGIN, HEADER_H + DIVIDER_H + Inches(0.06),
+            prs.slide_width - Inches(1), Inches(0.32))
+        stf = stb.text_frame
+        stf.text = subtitle
+        sp = stf.paragraphs[0]
+        sp.font.name   = "Calibri"
+        sp.font.size   = Pt(11)
+        sp.font.italic = True
+        sp.font.color.rgb = DARK_GRAY
+
+
+def add_card(slide, left, top, width, height, text, accent_color,
+             title=None, font_size=Pt(10), bg_color=None):
+    bg = bg_color or WHITE
+    card = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, left, top, width, height)
+    card.fill.solid()
+    card.fill.fore_color.rgb = bg
+    card.line.color.rgb = MID_GRAY
+    card.line.width = Pt(0.5)
+    accent = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, left, top, ACCENT_W, height)
+    accent.fill.solid()
+    accent.fill.fore_color.rgb = accent_color
+    accent.line.fill.background()
+    text_left  = left + ACCENT_W + CARD_PADDING
+    text_width = width - ACCENT_W - CARD_PADDING - Inches(0.08)
+    tb = slide.shapes.add_textbox(
+        text_left, top + Inches(0.06), text_width, height - Inches(0.12))
+    tf = tb.text_frame
+    tf.word_wrap = True
+    if title:
+        p0 = tf.paragraphs[0]
+        p0.text = title
+        p0.font.name  = "Arial"
+        p0.font.size  = Pt(9)
+        p0.font.bold  = True
+        p0.font.color.rgb = NEAR_BLACK
+        p1 = tf.add_paragraph()
+        p1.text = text
+        p1.font.name  = "Calibri"
+        p1.font.size  = font_size
+        p1.font.color.rgb = DARK_GRAY
+    else:
+        p0 = tf.paragraphs[0]
+        p0.text = text
+        p0.font.name  = "Calibri"
+        p0.font.size  = font_size
+        p0.font.color.rgb = NEAR_BLACK
+
+
+def add_section_label(slide, left, top, width, text, color=None, size=Pt(10)):
+    tb = slide.shapes.add_textbox(left, top, width, Inches(0.28))
+    tf = tb.text_frame
+    tf.text = text
+    p = tf.paragraphs[0]
+    p.font.name  = "Arial"
+    p.font.size  = size
+    p.font.bold  = True
+    p.font.color.rgb = color or NEAR_BLACK
+
+
+def content_top(has_subtitle=False):
+    extra = Inches(0.38) if has_subtitle else Inches(0.14)
+    return HEADER_H + DIVIDER_H + extra
+
+
+# ── Artifact 11: Experience-Based Roadmap ────────────────────────────────────
 
 def create_experience_roadmap():
-    """OUTPUT 11: Experience-Based Roadmap"""
-    prs = Presentation()
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    """OUTPUT 11: Experience-Based Roadmap — 3 columns (Near / Mid / Long term)."""
+    prs = new_prs()
+    slide = blank_slide(prs)
+    add_header(slide, prs,
+               "Experience-Based Roadmap",
+               subtitle="Our user will be able to...")
 
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_background(slide, prs, KRAFT_BG)
+    ct = content_top(has_subtitle=True)
 
-    # Header
-    header_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.3), Inches(15), Inches(0.6))
-    header_frame = header_box.text_frame
-    header_frame.text = "OUR USER CAN / OUR USER WILL BE ABLE TO..."
-    header_frame.paragraphs[0].font.size = Pt(36)
-    header_frame.paragraphs[0].font.bold = True
-    header_frame.paragraphs[0].font.color.rgb = LILLY_RED
-    header_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
-
-    # Column headers
-    columns = ["NEAR-TERM (Months 1-3)\nCupcake", "MID-TERM (Months 4-6)\nBirthday Cake", "LONG-TERM (Months 7-12)\nWedding Cake"]
-    col_x = [1, 6, 11]
-
-    for i, col in enumerate(columns):
-        col_box = slide.shapes.add_textbox(Inches(col_x[i]), Inches(1.2), Inches(4.5), Inches(0.6))
-        col_frame = col_box.text_frame
-        col_frame.text = col
-        col_frame.paragraphs[0].font.size = Pt(16)
-        col_frame.paragraphs[0].font.bold = True
-        col_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
-
-    # Vertical dividers
-    for x in [5.5, 10.5]:
-        divider = slide.shapes.add_connector(2, Inches(x), Inches(1.8), Inches(x), Inches(8.5))
-        divider.line.width = Pt(2)
-        divider.line.color.rgb = RGBColor(100, 100, 100)
-
-    # Near-term capabilities
-    near_term = [
-        "Our user can see clear roles and responsibilities for each step",
-        "Our user can access a marketer cheat sheet with required steps",
-        "Our user can receive Teams channel notifications when handoffs are ready",
-        "Our user can view a quarterly rotation matrix aligned with creative grid",
-        "Our user can track banner status (Not Started → In Progress → Ready → Launched)",
-        "Our marketer can complete grid inputs in under 2 minutes with pre-filled fields"
+    columns = [
+        ("NEAR-TERM  (Months 1–3)",  RED,    [
+            "See clear roles and responsibilities for each step of the process",
+            "Access a marketer cheat sheet with required steps before handoff",
+            "Receive Teams channel notifications when handoffs are ready",
+            "View a quarterly rotation matrix aligned with the creative grid",
+            "Track banner status: Not Started → In Progress → Ready → Launched",
+            "Complete grid inputs in under 2 minutes with pre-filled fields",
+        ]),
+        ("MID-TERM  (Months 4–6)",   BLUE,   [
+            "Benefit from automated grid notifications when steps complete",
+            "Access a high-level creative map showing what launches when and why",
+            "Leverage auto-populated metadata in the creative grid",
+            "See agencies receive assets with complete information in one handoff",
+            "Utilize standardized banner templates across HCP and DTC lines",
+            "Experience one-day turnaround from AFD to CMI QA",
+        ]),
+        ("LONG-TERM  (Months 7–12)", GREEN,  [
+            "Benefit from fully automated metadata collection and grid population",
+            "Work in a unified workflow system with Adobe Workfront integration",
+            "Leverage a fast-track path for high-urgency messages",
+            "Experience seamless system integration where tools talk to each other",
+            "Feel confident banners reach market without communication gaps",
+            "Achieve cross-BU standardization across all business units and lines",
+        ]),
     ]
 
-    y = 2
-    for item in near_term:
-        add_sticky_note(slide, Inches(1), Inches(y), Inches(4.2), Inches(0.9), item, YELLOW, random.randint(-2, 2))
-        y += 1
+    col_gap = Inches(0.12)
+    col_w   = (SLIDE_W - Inches(1.0) - col_gap * 2) / 3
+    card_h  = Inches(0.70)
+    card_gap = Inches(0.06)
+    label_h = Inches(0.36)
 
-    # Mid-term capabilities
-    mid_term = [
-        "⭐ Our user can benefit from automated grid notifications when steps complete",
-        "Our user can access a high-level creative map showing what launches when and why",
-        "⭐ Our user can leverage auto-populated metadata in the creative grid",
-        "Our agency can receive assets with complete and accurate information in one handoff",
-        "Our user can utilize standardized banner templates across HCP and DTC",
-        "Our user can see one day turnaround from AFD to CMI QA"
-    ]
+    for ci, (label, color, items) in enumerate(columns):
+        cx = LEFT_MARGIN + ci * (col_w + col_gap)
 
-    y = 2
-    for item in mid_term:
-        add_sticky_note(slide, Inches(6), Inches(y), Inches(4.2), Inches(0.9), item, GREEN, random.randint(-2, 2))
-        y += 1
+        # Column header band
+        band = slide.shapes.add_shape(
+            MSO_SHAPE.RECTANGLE, cx, ct, col_w, Inches(0.38))
+        band.fill.solid()
+        band.fill.fore_color.rgb = color
+        band.line.fill.background()
+        btb = slide.shapes.add_textbox(cx + Inches(0.1), ct + Inches(0.06),
+                                       col_w - Inches(0.2), Inches(0.30))
+        btf = btb.text_frame
+        btf.text = label
+        bp = btf.paragraphs[0]
+        bp.font.name  = "Arial"
+        bp.font.size  = Pt(10)
+        bp.font.bold  = True
+        bp.font.color.rgb = WHITE
 
-    # Long-term capabilities
-    long_term = [
-        "⭐ Our user can benefit from fully automated metadata collection and grid population",
-        "Our user can work in a unified workflow system with Adobe Workfront integration",
-        "Our user can leverage a fast-track path for high-urgency messages with pre-approved templates",
-        "⭐ Our user can experience seamless system integration where tools talk to each other",
-        "Our marketer can feel confident banners reach market without communication gaps",
-        "Our organization can achieve standardization across all business units and lines"
-    ]
+        iy = ct + Inches(0.44)
+        for item in items:
+            if iy + card_h > SLIDE_H - Inches(0.1):
+                break
+            add_card(slide, cx, iy, col_w, card_h, item, color,
+                     font_size=Pt(9))
+            iy += card_h + card_gap
 
-    y = 2
-    for item in long_term:
-        add_sticky_note(slide, Inches(11), Inches(y), Inches(4.2), Inches(0.9), item, TEAL, random.randint(-2, 2))
-        y += 1
+    # Vertical dividers between columns
+    for ci in range(1, 3):
+        dx = LEFT_MARGIN + ci * (col_w + col_gap) - col_gap / 2
+        dv = slide.shapes.add_connector(2, dx, ct, dx, SLIDE_H - Inches(0.1))
+        dv.line.width = Pt(0.5)
+        dv.line.color.rgb = MID_GRAY
 
-    # Legend
-    legend_box = slide.shapes.add_textbox(Inches(0.5), Inches(8.3), Inches(8), Inches(0.4))
-    legend_frame = legend_box.text_frame
-    legend_frame.text = "⭐ = Automation/Agentic Capability"
-    legend_frame.paragraphs[0].font.size = Pt(12)
-    legend_frame.paragraphs[0].font.color.rgb = LILLY_BLUE
+    out = '/Users/V5X8512/Downloads/11_experience_roadmap.pptx'
+    prs.save(out)
+    print(f"✓ Generated: {out}")
 
-    prs.save('/Users/V5X8512/Downloads/11_experience_roadmap.pptx')
-    print("✓ Generated: 11_experience_roadmap.pptx")
+
+# ── Artifact 12: Hills / Objectives ─────────────────────────────────────────
 
 def create_hills():
-    """OUTPUT 12: Hills / Objectives"""
-    prs = Presentation()
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    """OUTPUT 12: Hills — numbered cards with WHO / WHAT / WOW structure."""
+    prs = new_prs()
+    slide = blank_slide(prs)
+    add_header(slide, prs, "Hills",
+               subtitle="Meaningful outcomes we commit to delivering")
 
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_background(slide, prs, WHITE_BG)
+    ct = content_top(has_subtitle=True)
 
-    # Title
-    title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.3), Inches(6), Inches(0.5))
-    title_frame = title_box.text_frame
-    title_frame.text = "Hills"
-    title_frame.paragraphs[0].font.size = Pt(48)
-    title_frame.paragraphs[0].font.bold = True
-
-    # Hills from transcript - synthesized from goals and roadmap
     hills = [
         {
-            "who": "Marketers and Media Teams",
-            "what": "Complete banner trafficking from AFD to live in market within 1 day with zero communication gaps",
-            "wow": "Reducing time to market by 80% and eliminating all handoff-related delays"
+            "num":  1,
+            "who":  "Marketers and Media Teams",
+            "what": "Complete banner trafficking from AFD to live in market within 1 business day with zero communication gaps",
+            "wow":  "Reducing time-to-market by 80% and eliminating all handoff-related delays",
+            "color": RED,
         },
         {
-            "who": "All trafficking process stakeholders",
+            "num":  2,
+            "who":  "All trafficking process stakeholders",
             "what": "Know exactly who owns each step, what actions are required, and receive automated notifications when it's their turn",
-            "wow": "Achieving 100% role clarity and eliminating all black box confusion across teams"
+            "wow":  "Achieving 100% role clarity and eliminating all black box confusion across teams",
+            "color": BLUE,
         },
         {
-            "who": "HCP and Consumer Agencies",
+            "num":  3,
+            "who":  "HCP and Consumer Agencies",
             "what": "Receive complete, accurate, error-free banner assets with all required metadata in a single automated handoff",
-            "wow": "Reducing agency QA rework by 90% and meeting SLA requirements consistently"
-        }
+            "wow":  "Reducing agency QA rework by 90% and consistently meeting SLA requirements",
+            "color": GREEN,
+        },
     ]
 
-    y_offset = 1.5
-    for hill in hills:
+    card_h  = (SLIDE_H - ct - Inches(0.2)) / len(hills) - Inches(0.10)
+    card_w  = SLIDE_W - Inches(1.0)
+
+    for i, hill in enumerate(hills):
+        cy = ct + i * (card_h + Inches(0.10))
+        color = hill["color"]
+
         # Card background
         card = slide.shapes.add_shape(
-            MSO_SHAPE.RECTANGLE,
-            Inches(1), Inches(y_offset),
-            Inches(14), Inches(1.8)
-        )
+            MSO_SHAPE.RECTANGLE, LEFT_MARGIN, cy, card_w, card_h)
         card.fill.solid()
-        card.fill.fore_color.rgb = KRAFT_BG
-        card.line.color.rgb = RGBColor(100, 100, 100)
-        card.line.width = Pt(2)
+        card.fill.fore_color.rgb = LIGHT_GRAY
+        card.line.color.rgb = MID_GRAY
+        card.line.width = Pt(0.5)
 
-        # Triangle icon
-        icon_box = slide.shapes.add_textbox(Inches(1.3), Inches(y_offset + 0.1), Inches(0.5), Inches(0.5))
-        icon_frame = icon_box.text_frame
-        icon_frame.text = "▲"
-        icon_frame.paragraphs[0].font.size = Pt(32)
-        icon_frame.paragraphs[0].font.color.rgb = LILLY_RED
+        # Left accent bar
+        acc = slide.shapes.add_shape(
+            MSO_SHAPE.RECTANGLE, LEFT_MARGIN, cy, ACCENT_W, card_h)
+        acc.fill.solid()
+        acc.fill.fore_color.rgb = color
+        acc.line.fill.background()
 
-        # Hill text
-        text_box = slide.shapes.add_textbox(Inches(2), Inches(y_offset + 0.2), Inches(12.5), Inches(1.4))
-        text_frame = text_box.text_frame
-        text_frame.word_wrap = True
+        # Numbered circle
+        circ_d = Inches(0.48)
+        circ = slide.shapes.add_shape(
+            MSO_SHAPE.OVAL,
+            LEFT_MARGIN + ACCENT_W + Inches(0.12), cy + (card_h - circ_d) / 2,
+            circ_d, circ_d)
+        circ.fill.solid()
+        circ.fill.fore_color.rgb = color
+        circ.line.fill.background()
+        ctf = circ.text_frame
+        ctf.text = str(hill["num"])
+        ctf.vertical_anchor = MSO_ANCHOR.MIDDLE
+        cp = ctf.paragraphs[0]
+        cp.alignment = PP_ALIGN.CENTER
+        cp.font.name  = "Arial"
+        cp.font.size  = Pt(18)
+        cp.font.bold  = True
+        cp.font.color.rgb = WHITE
 
-        p1 = text_frame.paragraphs[0]
-        p1.text = f"WHO: {hill['who']}"
-        p1.font.size = Pt(12)
-        p1.font.name = "Courier New"
-        p1.level = 0
+        # Text content
+        text_x = LEFT_MARGIN + ACCENT_W + Inches(0.75)
+        text_w = card_w - ACCENT_W - Inches(0.82)
+        tb = slide.shapes.add_textbox(text_x, cy + Inches(0.10), text_w, card_h - Inches(0.20))
+        tf = tb.text_frame
+        tf.word_wrap = True
 
-        p2 = text_frame.add_paragraph()
-        p2.text = f"WHAT: {hill['what']}"
-        p2.font.size = Pt(12)
-        p2.font.name = "Courier New"
-        p2.level = 0
+        p_who = tf.paragraphs[0]
+        p_who.text = f"WHO:   {hill['who']}"
+        p_who.font.name  = "Arial"
+        p_who.font.size  = Pt(10)
+        p_who.font.color.rgb = DARK_GRAY
 
-        p3 = text_frame.add_paragraph()
-        p3.text = f"WOW: {hill['wow']}"
-        p3.font.size = Pt(12)
-        p3.font.name = "Courier New"
-        p3.font.bold = True
-        p3.font.color.rgb = LILLY_RED
-        p3.level = 0
+        p_what = tf.add_paragraph()
+        p_what.text = f"WHAT:  {hill['what']}"
+        p_what.font.name  = "Arial"
+        p_what.font.size  = Pt(10)
+        p_what.font.color.rgb = NEAR_BLACK
 
-        y_offset += 2.2
+        p_wow = tf.add_paragraph()
+        p_wow.text = f"WOW:   {hill['wow']}"
+        p_wow.font.name  = "Arial"
+        p_wow.font.size  = Pt(10)
+        p_wow.font.bold  = True
+        p_wow.font.color.rgb = color
 
-    prs.save('/Users/V5X8512/Downloads/12_hills.pptx')
-    print("✓ Generated: 12_hills.pptx")
+    out = '/Users/V5X8512/Downloads/12_hills.pptx'
+    prs.save(out)
+    print(f"✓ Generated: {out}")
+
+
+# ── Artifact 13: Gantt Roadmap ───────────────────────────────────────────────
 
 def create_gantt_roadmap():
-    """OUTPUT 13: Gantt Roadmap"""
-    prs = Presentation()
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    """OUTPUT 13: Gantt-style 12-month roadmap."""
+    prs = new_prs()
+    slide = blank_slide(prs)
+    add_header(slide, prs, "12-Month Roadmap",
+               subtitle="Initiatives grouped by theme — short / mid / long term")
 
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_background(slide, prs, WHITE_BG)
+    ct = content_top(has_subtitle=True)
 
-    # Title
-    title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.3), Inches(6), Inches(0.5))
-    title_frame = title_box.text_frame
-    title_frame.text = "Roadmap"
-    title_frame.paragraphs[0].font.size = Pt(40)
-    title_frame.paragraphs[0].font.bold = True
+    # Timeline dimensions
+    name_col_w   = Inches(3.2)
+    timeline_x   = LEFT_MARGIN + name_col_w + Inches(0.1)
+    timeline_w   = SLIDE_W - timeline_x - Inches(0.4)
+    month_w      = timeline_w / 12
 
-    # Timeline header (12 months)
-    timeline_x = 4.5
-    timeline_width = 10.5
-    month_width = timeline_width / 12
-
-    # Zone labels
+    # Zone header
     zones = [
-        ("SHORT-TERM", 0, 3, YELLOW),
-        ("MID-TERM", 3, 3, GREEN),
-        ("LONG-TERM", 6, 6, BLUE)
+        ("SHORT-TERM",  0,  3, RGBColor(0xFF, 0xEE, 0xEE)),
+        ("MID-TERM",    3,  3, RGBColor(0xE8, 0xF0, 0xFB)),
+        ("LONG-TERM",   6,  6, RGBColor(0xED, 0xF4, 0xED)),
     ]
-
-    for zone_name, start_month, duration, color in zones:
-        zone_box = slide.shapes.add_shape(
-            MSO_SHAPE.RECTANGLE,
-            Inches(timeline_x + start_month * month_width), Inches(0.9),
-            Inches(duration * month_width), Inches(0.4)
-        )
-        zone_box.fill.solid()
-        zone_box.fill.fore_color.rgb = color
-        zone_box.line.fill.background()
-
-        zone_text = zone_box.text_frame
-        zone_text.text = zone_name
-        zone_text.vertical_anchor = MSO_ANCHOR.MIDDLE
-        zone_text.paragraphs[0].alignment = PP_ALIGN.CENTER
-        zone_text.paragraphs[0].font.size = Pt(10)
-        zone_text.paragraphs[0].font.bold = True
+    zone_h = Inches(0.30)
+    for name, start, dur, fill in zones:
+        zx = timeline_x + start * month_w
+        zb = slide.shapes.add_shape(
+            MSO_SHAPE.RECTANGLE, zx, ct, dur * month_w - Inches(0.02), zone_h)
+        zb.fill.solid()
+        zb.fill.fore_color.rgb = fill
+        zb.line.fill.background()
+        ztb = slide.shapes.add_textbox(zx + Inches(0.06), ct + Inches(0.04),
+                                       dur * month_w - Inches(0.14), Inches(0.24))
+        ztf = ztb.text_frame
+        ztf.text = name
+        zp = ztf.paragraphs[0]
+        zp.font.name  = "Arial"
+        zp.font.size  = Pt(8)
+        zp.font.bold  = True
+        zp.font.color.rgb = DARK_GRAY
 
     # Month numbers
-    for i in range(12):
-        month_box = slide.shapes.add_textbox(
-            Inches(timeline_x + i * month_width), Inches(1.35),
-            Inches(month_width), Inches(0.25)
-        )
-        month_frame = month_box.text_frame
-        month_frame.text = str(i + 1)
-        month_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
-        month_frame.paragraphs[0].font.size = Pt(9)
+    month_row_y = ct + zone_h
+    month_row_h = Inches(0.22)
+    for m in range(12):
+        mx = timeline_x + m * month_w
+        mtb = slide.shapes.add_textbox(mx, month_row_y, month_w, month_row_h)
+        mtf = mtb.text_frame
+        mtf.text = str(m + 1)
+        mp = mtf.paragraphs[0]
+        mp.alignment = PP_ALIGN.CENTER
+        mp.font.name  = "Calibri"
+        mp.font.size  = Pt(8)
+        mp.font.color.rgb = DARK_GRAY
 
-    # Initiative groups and items
+    # Vertical month grid lines
+    for m in range(1, 12):
+        gx = timeline_x + m * month_w
+        gv = slide.shapes.add_connector(2, gx, ct, gx, SLIDE_H - Inches(0.1))
+        gv.line.width = Pt(0.25)
+        gv.line.color.rgb = MID_GRAY
+
+    # Initiative rows
     initiatives = [
         {
-            "theme": "QUICK WINS & AUTOMATION",
-            "color": LILLY_RED,
+            "theme": "QUICK WINS",
+            "color": RED,
             "items": [
-                {"name": "⭐ Teams Channel Notifications", "start": 0, "duration": 1, "priority": True},
-                {"name": "⭐ Automated Grid Notifications", "start": 0, "duration": 2, "priority": True},
-                {"name": "Role Clarity Documentation (RACI)", "start": 0, "duration": 2, "priority": True},
-                {"name": "Marketer Cheat Sheet", "start": 1, "duration": 1, "priority": False}
-            ]
+                ("Teams Channel Notifications",        0, 1),
+                ("Role Clarity Documentation (RACI)",  0, 2),
+                ("Marketer Cheat Sheet",               1, 1),
+                ("Automated Grid Notifications",       0, 2),
+            ],
         },
         {
             "theme": "PROCESS & COMMUNICATION",
-            "color": LILLY_BLUE,
+            "color": BLUE,
             "items": [
-                {"name": "Status Tracker Implementation", "start": 1, "duration": 2, "priority": False},
-                {"name": "Quarterly Rotation Matrix Template", "start": 1, "duration": 2, "priority": False},
-                {"name": "High-Level Creative Map", "start": 3, "duration": 2, "priority": False},
-                {"name": "Enhanced QA Process", "start": 4, "duration": 2, "priority": False}
-            ]
+                ("Status Tracker Implementation",      1, 2),
+                ("Quarterly Rotation Matrix Template", 1, 2),
+                ("High-Level Creative Map",            3, 2),
+                ("Enhanced QA Process",                4, 2),
+            ],
         },
         {
-            "theme": "GRID & SYSTEMS IMPROVEMENT",
-            "color": TEAL,
+            "theme": "GRID & SYSTEMS",
+            "color": GREEN,
             "items": [
-                {"name": "Creative Grid Simplification", "start": 2, "duration": 3, "priority": False},
-                {"name": "⭐ Metadata Auto-Population", "start": 4, "duration": 4, "priority": True},
-                {"name": "Workfront Integration", "start": 6, "duration": 4, "priority": False},
-                {"name": "⭐ Full Grid Automation", "start": 8, "duration": 4, "priority": True}
-            ]
+                ("Creative Grid Simplification",       2, 3),
+                ("Metadata Auto-Population",           4, 4),
+                ("Workfront Integration",              6, 4),
+                ("Full Grid Automation",               8, 4),
+            ],
         },
         {
             "theme": "STANDARDIZATION & SCALE",
-            "color": LILLY_GRAY,
+            "color": ORANGE,
             "items": [
-                {"name": "Fast-Track Templates", "start": 5, "duration": 3, "priority": False},
-                {"name": "Cross-BU Standardization", "start": 7, "duration": 5, "priority": False},
-                {"name": "⭐ Unified Workflow System", "start": 9, "duration": 3, "priority": True}
-            ]
-        }
+                ("Fast-Track Templates",               5, 3),
+                ("Cross-BU Standardization",           7, 5),
+                ("Unified Workflow System",            9, 3),
+            ],
+        },
     ]
 
-    y_offset = 2
+    row_start_y = month_row_y + month_row_h + Inches(0.06)
+    avail_row_h = SLIDE_H - row_start_y - Inches(0.12)
+    n_items_total = sum(len(g["items"]) for g in initiatives) + len(initiatives)
+    row_h = avail_row_h / n_items_total
+    item_h = max(Inches(0.20), row_h * 0.85)
+
+    current_y = row_start_y
+
     for group in initiatives:
-        # Theme header
-        theme_box = slide.shapes.add_textbox(Inches(0.5), Inches(y_offset), Inches(3.8), Inches(0.3))
-        theme_frame = theme_box.text_frame
-        theme_frame.text = group["theme"]
-        theme_frame.paragraphs[0].font.size = Pt(11)
-        theme_frame.paragraphs[0].font.bold = True
-        theme_frame.paragraphs[0].font.color.rgb = group["color"]
+        # Theme label
+        tlb = slide.shapes.add_textbox(LEFT_MARGIN, current_y,
+                                       name_col_w, item_h)
+        tlf = tlb.text_frame
+        tlf.text = group["theme"]
+        tp = tlf.paragraphs[0]
+        tp.font.name  = "Arial"
+        tp.font.size  = Pt(8.5)
+        tp.font.bold  = True
+        tp.font.color.rgb = group["color"]
+        current_y += item_h
 
-        y_offset += 0.35
-
-        # Items
-        for item in group["items"]:
+        for name, start_m, dur_m in group["items"]:
             # Initiative name
-            name_box = slide.shapes.add_textbox(Inches(0.5), Inches(y_offset), Inches(3.8), Inches(0.3))
-            name_frame = name_box.text_frame
-            name_frame.text = ("★ " if item["priority"] else "") + item["name"]
-            name_frame.paragraphs[0].font.size = Pt(9)
+            nlb = slide.shapes.add_textbox(LEFT_MARGIN + Inches(0.1), current_y,
+                                           name_col_w - Inches(0.1), item_h)
+            nlf = nlb.text_frame
+            nlf.text = name
+            np_ = nlf.paragraphs[0]
+            np_.font.name  = "Calibri"
+            np_.font.size  = Pt(8)
+            np_.font.color.rgb = NEAR_BLACK
 
-            # Timeline bar
+            # Gantt bar
+            bx = timeline_x + start_m * month_w
+            bw = dur_m * month_w - Inches(0.04)
             bar = slide.shapes.add_shape(
-                MSO_SHAPE.RECTANGLE,
-                Inches(timeline_x + item["start"] * month_width), Inches(y_offset),
-                Inches(item["duration"] * month_width), Inches(0.25)
-            )
+                MSO_SHAPE.RECTANGLE, bx, current_y + Inches(0.03),
+                bw, item_h - Inches(0.06))
             bar.fill.solid()
             bar.fill.fore_color.rgb = group["color"]
-            bar.line.color.rgb = RGBColor(80, 80, 80)
-            bar.line.width = Pt(1)
+            bar.line.fill.background()
 
-            y_offset += 0.35
+            current_y += item_h
 
-        y_offset += 0.15
+    out = '/Users/V5X8512/Downloads/13_roadmap.pptx'
+    prs.save(out)
+    print(f"✓ Generated: {out}")
 
-    # Legend
-    legend_box = slide.shapes.add_textbox(Inches(0.5), Inches(8.2), Inches(8), Inches(0.5))
-    legend_frame = legend_box.text_frame
-    legend_frame.text = "★ = High Priority    ⭐ = Automation/Agentic Capability"
-    legend_frame.paragraphs[0].font.size = Pt(10)
 
-    prs.save('/Users/V5X8512/Downloads/13_roadmap.pptx')
-    print("✓ Generated: 13_roadmap.pptx")
+# ── Artifact 14: Resource Plan ───────────────────────────────────────────────
 
 def create_resource_plan():
-    """OUTPUT 14: Resource Plan"""
-    prs = Presentation()
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    """OUTPUT 14: Resource Plan — table with effort color coding."""
+    prs = new_prs()
+    slide = blank_slide(prs)
+    add_header(slide, prs, "Resource Plan",
+               subtitle="Roles, owners, effort, and dependencies by initiative")
 
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_background(slide, prs, WHITE_BG)
+    ct = content_top(has_subtitle=True)
 
-    # Title
-    title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.3), Inches(6), Inches(0.5))
-    title_frame = title_box.text_frame
-    title_frame.text = "Resource Plan"
-    title_frame.paragraphs[0].font.size = Pt(40)
-    title_frame.paragraphs[0].font.bold = True
+    headers = ["Initiative", "Required Role / Skill", "Owner / Team", "Effort", "Dependencies", "Gap?"]
+    col_widths = [Inches(2.8), Inches(2.4), Inches(2.0), Inches(0.90), Inches(2.8), Inches(0.75)]
+    header_h = Inches(0.36)
+    row_h    = Inches(0.38)
 
-    # Table header
-    headers = ["Initiative", "Required Role/Skill", "Owner/Team", "Effort", "Dependencies", "Gap"]
-    col_widths = [3, 2.5, 2, 1.2, 3, 1]
-    col_x = 0.5
+    effort_colors = {
+        "Low":    RGBColor(0xE8, 0xF5, 0xE9),
+        "Medium": RGBColor(0xFF, 0xF3, 0xE0),
+        "High":   RGBColor(0xFF, 0xEB, 0xEB),
+    }
+    effort_text_colors = {
+        "Low":    GREEN,
+        "Medium": ORANGE,
+        "High":   RED,
+    }
 
-    # Draw header row
-    y = 1
-    for i, header in enumerate(headers):
-        header_box = slide.shapes.add_shape(
-            MSO_SHAPE.RECTANGLE,
-            Inches(col_x), Inches(y),
-            Inches(col_widths[i]), Inches(0.4)
-        )
-        header_box.fill.solid()
-        header_box.fill.fore_color.rgb = LILLY_GRAY
-        header_box.line.color.rgb = RGBColor(100, 100, 100)
-
-        header_text = header_box.text_frame
-        header_text.text = header
-        header_text.vertical_anchor = MSO_ANCHOR.MIDDLE
-        header_text.paragraphs[0].alignment = PP_ALIGN.CENTER
-        header_text.paragraphs[0].font.size = Pt(10)
-        header_text.paragraphs[0].font.bold = True
-        header_text.paragraphs[0].font.color.rgb = RGBColor(255, 255, 255)
-
-        col_x += col_widths[i]
-
-    # Table data
     resources = [
-        {"initiative": "Teams Notifications", "role": "IT/Platform Admin", "owner": "Media Ops", "effort": "Low", "deps": "Teams setup", "gap": ""},
-        {"initiative": "Automated Grid Notifications", "role": "Developer", "owner": "TBD", "effort": "Medium", "deps": "Smartsheet API access", "gap": "⚠"},
-        {"initiative": "RACI Documentation", "role": "Process Owner", "owner": "Media Ops - Molly", "effort": "Low", "deps": "Stakeholder input", "gap": ""},
-        {"initiative": "Marketer Cheat Sheet", "role": "Process Designer", "owner": "ADCO - Carrie", "effort": "Low", "deps": "RACI complete", "gap": ""},
-        {"initiative": "Status Tracker", "role": "PM/Business Analyst", "owner": "TBD", "effort": "Medium", "deps": "Tool selection", "gap": "⚠"},
-        {"initiative": "Quarterly Matrix Template", "role": "Marketing Ops", "owner": "Mia/Jamie", "effort": "Low", "deps": "Template design", "gap": ""},
-        {"initiative": "Creative Grid Simplification", "role": "UX Designer + Developer", "owner": "TBD", "effort": "High", "deps": "User research", "gap": "⚠"},
-        {"initiative": "Metadata Auto-Population", "role": "Developer + Data Analyst", "owner": "TBD", "effort": "High", "deps": "Source system integration", "gap": "⚠"},
-        {"initiative": "Workfront Integration", "role": "Workfront Admin + Developer", "owner": "Digital PM Team", "effort": "High", "deps": "Workfront license", "gap": ""},
-        {"initiative": "Cross-BU Standardization", "role": "Change Management", "owner": "TBD", "effort": "High", "deps": "Executive sponsorship", "gap": "⚠"}
+        ("Teams Channel Notifications",     "IT / Platform Admin",           "Media Ops",           "Low",    "Teams workspace setup",             ""),
+        ("Automated Grid Notifications",    "Developer",                     "TBD",                 "Medium", "Smartsheet API access",             "⚠"),
+        ("RACI Documentation",             "Process Owner",                 "Media Ops — Molly",   "Low",    "Stakeholder input",                 ""),
+        ("Marketer Cheat Sheet",           "Process Designer",              "ADCO — Carrie",       "Low",    "RACI complete",                     ""),
+        ("Status Tracker",                 "PM / Business Analyst",         "TBD",                 "Medium", "Tool selection",                    "⚠"),
+        ("Quarterly Rotation Matrix",      "Marketing Ops",                 "Mia / Jamie",         "Low",    "Template design",                   ""),
+        ("Creative Grid Simplification",   "UX Designer + Developer",      "TBD",                 "High",   "User research, stakeholder sign-off","⚠"),
+        ("Metadata Auto-Population",       "Developer + Data Analyst",     "TBD",                 "High",   "Source system integration",         "⚠"),
+        ("Workfront Integration",          "Workfront Admin + Developer",  "Digital PM Team",     "High",   "Workfront license",                 ""),
+        ("Cross-BU Standardization",       "Change Management",            "TBD",                 "High",   "Executive sponsorship",             "⚠"),
     ]
 
-    # Effort colors
-    effort_colors = {"Low": GREEN, "Medium": YELLOW, "High": RED}
+    # Draw header row
+    x0 = LEFT_MARGIN
+    for i, (hdr, cw) in enumerate(zip(headers, col_widths)):
+        hbox = slide.shapes.add_shape(
+            MSO_SHAPE.RECTANGLE, x0, ct, cw - Inches(0.02), header_h)
+        hbox.fill.solid()
+        hbox.fill.fore_color.rgb = DARK_GRAY
+        hbox.line.fill.background()
+        htb = slide.shapes.add_textbox(
+            x0 + Inches(0.07), ct + Inches(0.06), cw - Inches(0.12), header_h - Inches(0.10))
+        htf = htb.text_frame
+        htf.text = hdr
+        hp = htf.paragraphs[0]
+        hp.font.name  = "Arial"
+        hp.font.size  = Pt(9)
+        hp.font.bold  = True
+        hp.font.color.rgb = WHITE
+        x0 += cw
 
-    y = 1.4
-    for resource in resources:
-        col_x = 0.5
-
-        # Initiative
-        box = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(col_x), Inches(y), Inches(col_widths[0]), Inches(0.35))
-        box.fill.solid()
-        box.fill.fore_color.rgb = WHITE_BG if not resource["gap"] else ORANGE
-        box.line.color.rgb = RGBColor(180, 180, 180)
-        box.text_frame.text = resource["initiative"]
-        box.text_frame.paragraphs[0].font.size = Pt(8)
-        box.text_frame.margin_left = Inches(0.05)
-        col_x += col_widths[0]
-
-        # Role
-        box = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(col_x), Inches(y), Inches(col_widths[1]), Inches(0.35))
-        box.fill.solid()
-        box.fill.fore_color.rgb = WHITE_BG
-        box.line.color.rgb = RGBColor(180, 180, 180)
-        box.text_frame.text = resource["role"]
-        box.text_frame.paragraphs[0].font.size = Pt(8)
-        box.text_frame.margin_left = Inches(0.05)
-        box.text_frame.word_wrap = True
-        col_x += col_widths[1]
-
-        # Owner
-        box = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(col_x), Inches(y), Inches(col_widths[2]), Inches(0.35))
-        box.fill.solid()
-        box.fill.fore_color.rgb = WHITE_BG
-        box.line.color.rgb = RGBColor(180, 180, 180)
-        box.text_frame.text = resource["owner"]
-        box.text_frame.paragraphs[0].font.size = Pt(8)
-        box.text_frame.margin_left = Inches(0.05)
-        box.text_frame.word_wrap = True
-        col_x += col_widths[2]
-
-        # Effort
-        box = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(col_x), Inches(y), Inches(col_widths[3]), Inches(0.35))
-        box.fill.solid()
-        box.fill.fore_color.rgb = effort_colors[resource["effort"]]
-        box.line.color.rgb = RGBColor(180, 180, 180)
-        box.text_frame.text = resource["effort"]
-        box.text_frame.paragraphs[0].font.size = Pt(8)
-        box.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
-        box.text_frame.vertical_anchor = MSO_ANCHOR.MIDDLE
-        col_x += col_widths[3]
-
-        # Dependencies
-        box = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(col_x), Inches(y), Inches(col_widths[4]), Inches(0.35))
-        box.fill.solid()
-        box.fill.fore_color.rgb = WHITE_BG
-        box.line.color.rgb = RGBColor(180, 180, 180)
-        box.text_frame.text = resource["deps"]
-        box.text_frame.paragraphs[0].font.size = Pt(8)
-        box.text_frame.margin_left = Inches(0.05)
-        box.text_frame.word_wrap = True
-        col_x += col_widths[4]
-
-        # Gap
-        box = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(col_x), Inches(y), Inches(col_widths[5]), Inches(0.35))
-        box.fill.solid()
-        box.fill.fore_color.rgb = WHITE_BG
-        box.line.color.rgb = RGBColor(180, 180, 180)
-        box.text_frame.text = resource["gap"]
-        box.text_frame.paragraphs[0].font.size = Pt(12)
-        box.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
-        box.text_frame.vertical_anchor = MSO_ANCHOR.MIDDLE
-
-        y += 0.35
+    # Draw data rows
+    for ri, (init, role, owner, effort, deps, gap) in enumerate(resources):
+        ry = ct + header_h + ri * row_h
+        if ry + row_h > SLIDE_H - Inches(0.06):
+            break
+        row_bg = RGBColor(0xFF, 0xFF, 0xFF) if ri % 2 == 0 else LIGHT_GRAY
+        x0 = LEFT_MARGIN
+        cells = [init, role, owner, effort, deps, gap]
+        for ci, (cell_text, cw) in enumerate(zip(cells, col_widths)):
+            is_effort = (ci == 3)
+            bg = effort_colors.get(cell_text, row_bg) if is_effort else row_bg
+            cbox = slide.shapes.add_shape(
+                MSO_SHAPE.RECTANGLE, x0, ry, cw - Inches(0.02), row_h - Inches(0.02))
+            cbox.fill.solid()
+            cbox.fill.fore_color.rgb = bg
+            cbox.line.color.rgb = MID_GRAY
+            cbox.line.width = Pt(0.5)
+            ctb = slide.shapes.add_textbox(
+                x0 + Inches(0.07), ry + Inches(0.06),
+                cw - Inches(0.12), row_h - Inches(0.10))
+            ctf = ctb.text_frame
+            ctf.word_wrap = True
+            ctf.text = cell_text
+            cp = ctf.paragraphs[0]
+            cp.font.name  = "Calibri"
+            cp.font.size  = Pt(8.5)
+            if is_effort:
+                cp.font.bold  = True
+                cp.font.color.rgb = effort_text_colors.get(cell_text, NEAR_BLACK)
+            elif ci == 5 and cell_text:  # gap warning
+                cp.font.bold  = True
+                cp.font.color.rgb = RED
+                cp.alignment = PP_ALIGN.CENTER
+            else:
+                cp.font.color.rgb = NEAR_BLACK
+            x0 += cw
 
     # Legend
-    legend_box = slide.shapes.add_textbox(Inches(0.5), Inches(8.2), Inches(10), Inches(0.4))
-    legend_frame = legend_box.text_frame
-    legend_frame.text = "⚠ = Unassigned/Gap    Effort Levels: Green=Low, Yellow=Medium, Red=High"
-    legend_frame.paragraphs[0].font.size = Pt(10)
+    leg = slide.shapes.add_textbox(
+        LEFT_MARGIN, SLIDE_H - Inches(0.30),
+        Inches(8), Inches(0.24))
+    legtf = leg.text_frame
+    legtf.text = "⚠ = Unassigned / capability gap     Effort: Green = Low  |  Amber = Medium  |  Red = High"
+    legp = legtf.paragraphs[0]
+    legp.font.name   = "Calibri"
+    legp.font.size   = Pt(8)
+    legp.font.italic = True
+    legp.font.color.rgb = DARK_GRAY
 
-    prs.save('/Users/V5X8512/Downloads/14_resource_plan.pptx')
-    print("✓ Generated: 14_resource_plan.pptx")
+    out = '/Users/V5X8512/Downloads/14_resource_plan.pptx'
+    prs.save(out)
+    print(f"✓ Generated: {out}")
+
+
+# ── Entry point ──────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    print("Generating Artifacts 11-14...")
+    print("Generating Design Thinking Workshop Artifacts 11–14...")
     print("=" * 60)
-
     create_experience_roadmap()
     create_hills()
     create_gantt_roadmap()
     create_resource_plan()
-
     print("=" * 60)
-    print("Completed artifacts 11-14")
+    print("Completed artifacts 11–14.")

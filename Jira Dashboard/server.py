@@ -911,8 +911,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         # Helper: load keychain LLM token (aud = LLM gateway, upn = personal account)
         # This is the token that grants access to the LLM gateway.
         def _llm_token_from_keychain() -> str:
-            if _keychain.get("token"):
-                return _keychain["token"]
+            # Always re-read from keychain so a VS Code re-login is picked up immediately.
             try:
                 result = subprocess.run(
                     ["security", "find-generic-password", "-s", "lilly-code", "-w"],
@@ -925,7 +924,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                   "email": _email_from_jwt(token)})
                 return token
             except Exception:
-                return ""
+                return _keychain.get("token", "")
 
         session = _sessions.get(cookies.get("session", ""))
         if session and session.get("access_token"):
@@ -939,27 +938,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             })
             return
 
-        if _keychain:
-            self._json(200, {**_keychain, "llm_key": _keychain.get("token", ""), "llm_url": LLM_URL})
-            return
-        try:
-            result = subprocess.run(
-                ["security", "find-generic-password", "-s", "lilly-code", "-w"],
-                capture_output=True, text=True, check=True,
-            )
-            data       = json.loads(result.stdout.strip())
-            token      = data.get("access_token", "")
-            expires_at = data.get("expires_at", "")
-            email_addr = _email_from_jwt(token)
-            _keychain.update({"token": token, "expires_at": expires_at, "email": email_addr})
+        # Always re-read from keychain so a VS Code re-login is picked up immediately.
+        token = _llm_token_from_keychain()
+        if token:
             self._json(200, {**_keychain, "llm_key": token, "llm_url": LLM_URL})
-        except subprocess.CalledProcessError:
-            if SSO_CONFIGURED:
-                self._json(401, {"error": "Not authenticated", "login_url": "/api/login"})
-            else:
-                self._error(401, "Not authenticated — run: lilly-code login")
-        except Exception as e:
-            self._error(500, str(e))
+            return
+        if SSO_CONFIGURED:
+            self._json(401, {"error": "Not authenticated", "login_url": "/api/login"})
+        else:
+            self._error(401, "Not authenticated — run: lilly-code login")
 
     # ── Schedule CRUD ─────────────────────────────────────────────────────────
 

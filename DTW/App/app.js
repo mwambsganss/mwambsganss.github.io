@@ -167,18 +167,46 @@ function renderSessionPicker(sessions) {
     const date = s.created_at ? s.created_at.slice(0, 10) : "";
     const card = document.createElement("div");
     card.className = "session-pick-card";
-    card.onclick   = () => enterSessionAsFacilitator(s.session_id);
     card.innerHTML = `
-      <div class="session-pick-main">
+      <div class="session-pick-main" style="cursor:pointer;" onclick="enterSessionAsFacilitator('${escHtml(s.session_id)}')">
         <div class="session-pick-name">${escHtml(s.session_name)}</div>
         <div class="session-pick-meta">${escHtml(progress)} &nbsp;·&nbsp; ${escHtml(date)}</div>
       </div>
       <div class="session-pick-right">
         <span class="session-pick-code">${escHtml(s.room_code)}</span>
         <span class="session-pick-participants">${s.participant_count} participant${s.participant_count !== 1 ? "s" : ""}</span>
+        <button class="btn-session-del" onclick="deleteSession(event,'${escHtml(s.session_id)}')" title="Delete session">🗑</button>
       </div>`;
     list.appendChild(card);
   });
+}
+
+async function createTestSession() {
+  showLoading("Creating test session…");
+  try {
+    const resp = await fetch("/api/sessions/test", { method: "POST" });
+    const data = await resp.json();
+    if (!resp.ok) throw new Error(data.error || "Failed");
+    showToast(`Test session created — room ${data.room_code}`);
+    await showSessionPicker();
+  } catch (e) {
+    showToast(e.message, true);
+    hideLoading();
+  }
+}
+
+async function deleteSession(event, sessionId) {
+  event.stopPropagation();
+  if (!confirm("Delete this session and all its artifacts? This cannot be undone.")) return;
+  try {
+    const resp = await fetch(`/api/sessions/${sessionId}`, { method: "DELETE" });
+    const data = await resp.json();
+    if (!resp.ok) throw new Error(data.error || "Failed");
+    showToast("Session deleted.");
+    await showSessionPicker();
+  } catch (e) {
+    showToast(e.message, true);
+  }
 }
 
 async function enterSessionAsFacilitator(sessionId) {
@@ -323,6 +351,7 @@ async function createSession() {
 function enterFacilitatorDashboard() {
   showView("facilitator");
   connectSocket(true);
+  refreshArtifacts();
 }
 
 function goHome() {
@@ -348,6 +377,7 @@ function joinSession() {
   const name = state.displayName || document.getElementById("join-display-name").value.trim();
   if (!name) { showToast("Enter your display name.", true); return; }
   state.displayName = name;
+  state.displayRole = document.getElementById("join-role")?.value.trim() || "";
 
   showLoading("Joining…");
   fetch(`/api/sessions/${code}`)
@@ -380,6 +410,7 @@ function connectSocket(isFacilitator) {
       socket.emit("join_session", {
         session_id:   state.sessionId,
         display_name: state.displayName,
+        role:         state.displayRole || "",
       });
     }
   });
@@ -426,8 +457,10 @@ function connectSocket(isFacilitator) {
     if (state.isFacilitator) {
       showSummaryModal(data);
       hideLoading();
+      refreshArtifacts();
     } else {
       showParticipantSummary(data.summary_text);
+      refreshArtifacts();  // show new artifact in participant panel
     }
   });
 
@@ -437,7 +470,7 @@ function connectSocket(isFacilitator) {
     if (state.sessionData) {
       if (!state.sessionData.participants) state.sessionData.participants = [];
       if (!state.sessionData.participants.find(p => p.name === data.name)) {
-        state.sessionData.participants.push({ name: data.name });
+        state.sessionData.participants.push({ name: data.name, role: data.role || "" });
       }
       updateParticipantDisplay();
     }
@@ -480,6 +513,9 @@ function renderFacilitatorDashboard(s) {
 
   // Control button states
   updateNavButtons(s);
+
+  // Load any existing artifacts
+  refreshArtifacts();
 }
 
 function renderFacilitatorExerciseList(s) {
@@ -489,12 +525,34 @@ function renderFacilitatorExerciseList(s) {
   list.innerHTML = s.exercise_order.map((exId, i) => {
     const ex  = state.exercises.find(e => e.id === exId) || { name: exId, phase: 1 };
     const cls = i === idx ? "active" : (i < idx ? "completed" : "");
-    return `<div class="ex-list-item ${cls}" onclick="void(0)">
+    const hasSummary = !!(s.exercises[exId] && s.exercises[exId].summary);
+    return `<div class="ex-list-item ${cls}" onclick="facilitatorGoTo(${i})" title="Jump to this exercise">
       <span class="ex-list-num">${i + 1}</span>
       <span class="ex-list-name">${escHtml(ex.name)}</span>
+      ${hasSummary ? '<span class="ex-list-summary-dot" title="Summary generated">✦</span>' : ""}
       <span class="phase-badge" data-phase="${ex.phase}" style="font-size:9px;padding:1px 7px;">${ex.phase}</span>
     </div>`;
   }).join("");
+}
+
+async function facilitatorGoTo(index) {
+  if (!state.sessionId) return;
+  if (state.sessionData && state.sessionData.current_exercise_index === index) return;
+  showLoading("Switching exercise…");
+  try {
+    const resp = await fetch(`/api/sessions/${state.sessionId}/goto`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ index }),
+    });
+    const data = await resp.json();
+    if (!resp.ok) throw new Error(data.error || "Failed");
+    if (state.sessionData) state.sessionData.current_exercise_index = data.current_exercise_index;
+  } catch (e) {
+    showToast(e.message, true);
+  } finally {
+    hideLoading();
+  }
 }
 
 function updateParticipantDisplay() {
@@ -508,8 +566,7 @@ function updateParticipantDisplay() {
   if (list) {
     list.innerHTML = participants.map(p => `
       <div class="participant-chip">
-        <div class="participant-avatar-sm">${getInitials(p.name)}</div>
-        ${escHtml(p.name)}
+        <span class="participant-name">${escHtml(p.name)}</span>${p.role ? `<span class="participant-role">${escHtml(p.role)}</span>` : ""}
       </div>`).join("");
   }
 }
@@ -553,6 +610,9 @@ function renderParticipantView(s) {
   // If there's already a summary for this exercise, show it
   const summary = (s.exercises[exId] || {}).summary;
   if (summary) showParticipantSummary(summary);
+
+  // Load any existing artifacts
+  refreshArtifacts();
 }
 
 function updateParticipantExercise(ex) {
@@ -807,6 +867,90 @@ function toggleExercisePanel() {
 function exportSession() {
   if (!state.sessionId) return;
   window.open(`/api/sessions/${state.sessionId}/export`, "_blank");
+}
+
+function exportChatLog() {
+  if (!state.sessionId) return;
+  window.open(`/api/sessions/${state.sessionId}/export-chat`, "_blank");
+}
+
+// ── Artifacts ───────────────────────────────────────────────────────────────────
+async function refreshArtifacts() {
+  if (!state.sessionId) return;
+  try {
+    const resp = await fetch(`/api/sessions/${state.sessionId}/artifacts`);
+    if (!resp.ok) return;
+    const artifacts = await resp.json();
+    renderArtifacts(artifacts);
+    renderParticipantArtifacts(artifacts);
+  } catch (_) {}
+}
+
+function renderParticipantArtifacts(artifacts) {
+  const container = document.getElementById("par-artifacts");
+  const list = document.getElementById("par-artifact-list");
+  if (!container || !list) return;
+  if (!artifacts.length) {
+    container.style.display = "none";
+    return;
+  }
+  container.style.display = "block";
+  const byLabel = {};
+  artifacts.forEach(a => {
+    if (!byLabel[a.label]) byLabel[a.label] = [];
+    byLabel[a.label].push(a);
+  });
+  list.innerHTML = Object.entries(byLabel).map(([label, files]) => {
+    const links = files.map(f =>
+      `<a href="${escHtml(f.url)}" download style="color:var(--blue);text-decoration:none;font-size:11px;font-weight:600;">${f.type}</a>`
+    ).join(" · ");
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);">
+      <span style="font-size:12px;color:var(--text2);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escHtml(label)}</span>
+      <span style="flex-shrink:0;margin-left:8px;">${links}</span>
+    </div>`;
+  }).join("");
+}
+
+function renderArtifacts(artifacts) {
+  const el = document.getElementById("fac-artifact-list");
+  if (!el) return;
+  if (!artifacts.length) {
+    el.innerHTML = '<span style="color:var(--text3);">No summaries yet.</span>';
+    return;
+  }
+  // Group by label (exercise name)
+  const byLabel = {};
+  artifacts.forEach(a => {
+    if (!byLabel[a.label]) byLabel[a.label] = [];
+    byLabel[a.label].push(a);
+  });
+  const rows = Object.entries(byLabel).map(([label, files]) => {
+    const links = files.map(f =>
+      `<a href="${escHtml(f.url)}" download style="color:var(--blue);text-decoration:none;font-size:11px;font-weight:600;">${f.type}</a>`
+    ).join(" · ");
+    // Use first file's filename for the delete action (deletes all files for that label)
+    const delButtons = files.map(f =>
+      `<button class="btn-artifact-del" onclick="deleteArtifact('${escHtml(f.filename)}')" title="Delete ${f.type}">✕</button>`
+    ).join("");
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);gap:6px;">
+      <span style="font-size:12px;color:var(--text2);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escHtml(label)}">${escHtml(label)}</span>
+      <span style="flex-shrink:0;display:flex;align-items:center;gap:4px;">${links}${delButtons}</span>
+    </div>`;
+  }).join("");
+  el.innerHTML = rows;
+}
+
+async function deleteArtifact(filename) {
+  if (!state.sessionId) return;
+  try {
+    const resp = await fetch(`/api/sessions/${state.sessionId}/artifacts/${encodeURIComponent(filename)}`, {
+      method: "DELETE",
+    });
+    if (!resp.ok) { const d = await resp.json(); throw new Error(d.error || "Failed"); }
+    refreshArtifacts();
+  } catch (e) {
+    showToast(e.message, true);
+  }
 }
 
 // ── Edit exercises modal ────────────────────────────────────────────────────────

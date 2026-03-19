@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Design Thinking Workshop Artifacts Generator - Part 3
-Assumptions, Big Ideas, Prioritization, To-Be Map
+Design Thinking Workshop Artifacts Generator — Parts 7–10
+Assumptions Grid, Big Ideas, Prioritization Grid, To-Be Process Map
 """
 
 from pptx import Presentation
@@ -9,532 +9,585 @@ from pptx.util import Inches, Pt
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
-import random
 
-# Color definitions
-LILLY_RED = RGBColor(227, 24, 55)
-LILLY_BLUE = RGBColor(0, 122, 194)
-LILLY_GRAY = RGBColor(88, 89, 91)
-YELLOW = RGBColor(255, 242, 117)
-PINK = RGBColor(255, 182, 193)
-ORANGE = RGBColor(255, 160, 122)
-GREEN = RGBColor(152, 251, 152)
-BLUE = RGBColor(173, 216, 230)
-TEAL = RGBColor(64, 224, 208)
-RED = RGBColor(255, 105, 97)
-GRAY = RGBColor(211, 211, 211)
-KRAFT_BG = RGBColor(222, 184, 135)
-WHITE_BG = RGBColor(255, 255, 255)
+RED     = RGBColor(0xD5, 0x2B, 0x1E)
+BLUE    = RGBColor(0x00, 0x63, 0xBE)
+GREEN   = RGBColor(0x00, 0x7A, 0x33)
+PURPLE  = RGBColor(0x6D, 0x20, 0x77)
+ORANGE  = RGBColor(0xE8, 0x77, 0x22)
+TEAL    = RGBColor(0x00, 0xA3, 0xE0)
+WHITE      = RGBColor(0xFF, 0xFF, 0xFF)
+NEAR_BLACK = RGBColor(0x1A, 0x1A, 0x1A)
+DARK_GRAY  = RGBColor(0x58, 0x58, 0x58)
+LIGHT_GRAY = RGBColor(0xF2, 0xF2, 0xF2)
+MID_GRAY   = RGBColor(0xC8, 0xC8, 0xC8)
 
-def add_background(slide, prs, color):
-    background = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, prs.slide_width, prs.slide_height)
-    slide.shapes._spTree.remove(background._element)
-    slide.shapes._spTree.insert(2, background._element)
-    background.fill.solid()
-    background.fill.fore_color.rgb = color
-    background.line.fill.background()
+SLIDE_W      = Inches(13.33)
+SLIDE_H      = Inches(7.50)
+HEADER_H     = Inches(0.75)
+DIVIDER_H    = Inches(0.04)
+LEFT_MARGIN  = Inches(0.5)
+ACCENT_W     = Inches(0.06)
+CARD_PADDING = Inches(0.12)
 
-def add_sticky_note(slide, left, top, width, height, text, color, rotation=0):
-    note = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, left, top, width, height)
-    note.fill.solid()
-    note.fill.fore_color.rgb = color
-    note.line.color.rgb = RGBColor(180, 180, 180)
-    note.line.width = Pt(1)
-    if rotation != 0:
-        note.rotation = rotation
-    text_frame = note.text_frame
-    text_frame.text = text
-    text_frame.word_wrap = True
-    text_frame.margin_left = Inches(0.1)
-    text_frame.margin_right = Inches(0.1)
-    text_frame.margin_top = Inches(0.1)
-    text_frame.margin_bottom = Inches(0.1)
-    for paragraph in text_frame.paragraphs:
-        paragraph.font.size = Pt(10)
-        paragraph.font.name = "Comic Sans MS"
-        paragraph.font.color.rgb = RGBColor(0, 0, 0)
-    return note
+
+def new_prs():
+    prs = Presentation()
+    prs.slide_width  = SLIDE_W
+    prs.slide_height = SLIDE_H
+    return prs
+
+
+def blank_slide(prs):
+    return prs.slides.add_slide(prs.slide_layouts[6])
+
+
+def add_header(slide, prs, title, subtitle=""):
+    bar = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, 0, 0, prs.slide_width, HEADER_H)
+    bar.fill.solid()
+    bar.fill.fore_color.rgb = RED
+    bar.line.fill.background()
+    tb = slide.shapes.add_textbox(LEFT_MARGIN, Inches(0.12),
+                                  prs.slide_width - Inches(1), Inches(0.55))
+    tf = tb.text_frame
+    tf.text = title
+    p = tf.paragraphs[0]
+    p.font.name = "Arial"
+    p.font.size = Pt(28)
+    p.font.bold = True
+    p.font.color.rgb = WHITE
+    div = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, 0, HEADER_H, prs.slide_width, DIVIDER_H)
+    div.fill.solid()
+    div.fill.fore_color.rgb = MID_GRAY
+    div.line.fill.background()
+    if subtitle:
+        stb = slide.shapes.add_textbox(
+            LEFT_MARGIN, HEADER_H + DIVIDER_H + Inches(0.06),
+            prs.slide_width - Inches(1), Inches(0.32))
+        stf = stb.text_frame
+        stf.text = subtitle
+        sp = stf.paragraphs[0]
+        sp.font.name   = "Calibri"
+        sp.font.size   = Pt(11)
+        sp.font.italic = True
+        sp.font.color.rgb = DARK_GRAY
+
+
+def add_card(slide, left, top, width, height, text, accent_color,
+             title=None, font_size=Pt(10), bg_color=None):
+    bg = bg_color or WHITE
+    card = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, left, top, width, height)
+    card.fill.solid()
+    card.fill.fore_color.rgb = bg
+    card.line.color.rgb = MID_GRAY
+    card.line.width = Pt(0.5)
+    accent = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, left, top, ACCENT_W, height)
+    accent.fill.solid()
+    accent.fill.fore_color.rgb = accent_color
+    accent.line.fill.background()
+    text_left  = left + ACCENT_W + CARD_PADDING
+    text_width = width - ACCENT_W - CARD_PADDING - Inches(0.08)
+    tb = slide.shapes.add_textbox(
+        text_left, top + Inches(0.06), text_width, height - Inches(0.12))
+    tf = tb.text_frame
+    tf.word_wrap = True
+    if title:
+        p0 = tf.paragraphs[0]
+        p0.text = title
+        p0.font.name  = "Arial"
+        p0.font.size  = Pt(9)
+        p0.font.bold  = True
+        p0.font.color.rgb = NEAR_BLACK
+        p1 = tf.add_paragraph()
+        p1.text = text
+        p1.font.name  = "Calibri"
+        p1.font.size  = font_size
+        p1.font.color.rgb = DARK_GRAY
+    else:
+        p0 = tf.paragraphs[0]
+        p0.text = text
+        p0.font.name  = "Calibri"
+        p0.font.size  = font_size
+        p0.font.color.rgb = NEAR_BLACK
+
+
+def add_section_label(slide, left, top, width, text, color=None, size=Pt(10)):
+    tb = slide.shapes.add_textbox(left, top, width, Inches(0.28))
+    tf = tb.text_frame
+    tf.text = text
+    p = tf.paragraphs[0]
+    p.font.name  = "Arial"
+    p.font.size  = size
+    p.font.bold  = True
+    p.font.color.rgb = color or NEAR_BLACK
+
+
+def content_top(has_subtitle=False):
+    extra = Inches(0.38) if has_subtitle else Inches(0.14)
+    return HEADER_H + DIVIDER_H + extra
+
+
+def add_axis_label(slide, left, top, width, height, text, color=NEAR_BLACK, size=Pt(9)):
+    tb = slide.shapes.add_textbox(left, top, width, height)
+    tf = tb.text_frame
+    tf.text = text
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    p.font.name  = "Arial"
+    p.font.size  = size
+    p.font.bold  = True
+    p.font.color.rgb = color
+
+
+# ── Artifact 7: Assumptions & Questions Grid ────────────────────────────────
 
 def create_assumptions_grid():
-    """OUTPUT 7: Assumptions and Questions 2x2 Grid"""
-    prs = Presentation()
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    """OUTPUT 7: Assumptions & Questions 2×2 Grid (Risk × Certainty)."""
+    prs = new_prs()
+    slide = blank_slide(prs)
+    add_header(slide, prs, "Assumptions & Questions",
+               subtitle="Certainty (x-axis)  ·  Risk (y-axis)")
 
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_background(slide, prs, KRAFT_BG)
+    ct = content_top(has_subtitle=True)
 
-    # Title
-    title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.3), Inches(8), Inches(0.5))
-    title_frame = title_box.text_frame
-    title_frame.text = "Assumptions & Questions"
-    title_frame.paragraphs[0].font.size = Pt(40)
-    title_frame.paragraphs[0].font.bold = True
+    # Grid dimensions
+    axis_label_w = Inches(0.80)
+    axis_label_h = Inches(0.30)
+    grid_left    = LEFT_MARGIN + axis_label_w + Inches(0.1)
+    grid_top     = ct
+    grid_w       = SLIDE_W - grid_left - Inches(0.4)
+    grid_h       = SLIDE_H - ct - Inches(0.5)
+    half_w       = grid_w / 2
+    half_h       = grid_h / 2
 
-    # Draw 2x2 grid
-    grid_left = 2
-    grid_top = 1.5
-    grid_width = 12
-    grid_height = 6.5
+    # Quadrant backgrounds
+    quad_styles = [
+        # (col, row, fill_color, label, label_color)
+        (0, 0, RGBColor(0xFF, 0xED, 0xED), "HIGH RISK / CERTAIN\nTest & Validate",    RED),
+        (1, 0, RGBColor(0xFF, 0xE8, 0xE0), "HIGH RISK / UNCERTAIN\nPriority to Resolve", RED),
+        (0, 1, RGBColor(0xED, 0xF4, 0xED), "LOW RISK / CERTAIN\nMonitor",              GREEN),
+        (1, 1, RGBColor(0xE8, 0xF0, 0xFB), "LOW RISK / UNCERTAIN\nExplore",            BLUE),
+    ]
+    for col, row, fill, label, lc in quad_styles:
+        qx = grid_left + col * half_w
+        qy = grid_top  + row * half_h
+        qbox = slide.shapes.add_shape(
+            MSO_SHAPE.RECTANGLE, qx, qy, half_w, half_h)
+        qbox.fill.solid()
+        qbox.fill.fore_color.rgb = fill
+        qbox.line.color.rgb = MID_GRAY
+        qbox.line.width = Pt(0.5)
+        # Quadrant label (top-left of quadrant)
+        ltb = slide.shapes.add_textbox(
+            qx + Inches(0.1), qy + Inches(0.06), half_w - Inches(0.2), Inches(0.42))
+        ltf = ltb.text_frame
+        ltf.text = label
+        lp = ltf.paragraphs[0]
+        lp.font.name  = "Arial"
+        lp.font.size  = Pt(8)
+        lp.font.bold  = True
+        lp.font.color.rgb = lc
+        for extra_p in ltf.paragraphs[1:]:
+            extra_p.font.name  = "Arial"
+            extra_p.font.size  = Pt(8)
+            extra_p.font.color.rgb = DARK_GRAY
 
-    # Vertical axis
-    v_axis = slide.shapes.add_connector(2, Inches(grid_left), Inches(grid_top), Inches(grid_left), Inches(grid_top + grid_height))
-    v_axis.line.width = Pt(3)
-    v_axis.line.color.rgb = RGBColor(0, 0, 0)
+    # Axis dividers
+    v_div = slide.shapes.add_connector(
+        2, grid_left + half_w, grid_top, grid_left + half_w, grid_top + grid_h)
+    v_div.line.width = Pt(2)
+    v_div.line.color.rgb = MID_GRAY
 
-    # Horizontal axis
-    h_axis = slide.shapes.add_connector(1, Inches(grid_left), Inches(grid_top + grid_height/2), Inches(grid_left + grid_width), Inches(grid_top + grid_height/2))
-    h_axis.line.width = Pt(3)
-    h_axis.line.color.rgb = RGBColor(0, 0, 0)
+    h_div = slide.shapes.add_connector(
+        1, grid_left, grid_top + half_h, grid_left + grid_w, grid_top + half_h)
+    h_div.line.width = Pt(2)
+    h_div.line.color.rgb = MID_GRAY
 
     # Axis labels
-    # Vertical: HIGH RISK (top) to LOW RISK (bottom)
-    high_risk_label = slide.shapes.add_textbox(Inches(0.5), Inches(grid_top), Inches(1.3), Inches(0.4))
-    high_risk_label.text_frame.text = "HIGH\nRISK"
-    high_risk_label.text_frame.paragraphs[0].font.size = Pt(12)
-    high_risk_label.text_frame.paragraphs[0].font.bold = True
-    high_risk_label.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
+    # Y-axis: HIGH RISK (top) / LOW RISK (bottom)
+    add_axis_label(slide, LEFT_MARGIN, grid_top,
+                   axis_label_w, Inches(0.30), "HIGH RISK", RED)
+    add_axis_label(slide, LEFT_MARGIN, grid_top + half_h,
+                   axis_label_w, Inches(0.30), "LOW RISK", GREEN)
+    # X-axis: CERTAIN (left) / UNCERTAIN (right)
+    add_axis_label(slide, grid_left, grid_top + grid_h + Inches(0.04),
+                   half_w, axis_label_h, "CERTAIN", DARK_GRAY)
+    add_axis_label(slide, grid_left + half_w, grid_top + grid_h + Inches(0.04),
+                   half_w, axis_label_h, "UNCERTAIN", RED)
 
-    low_risk_label = slide.shapes.add_textbox(Inches(0.5), Inches(grid_top + grid_height - 0.5), Inches(1.3), Inches(0.4))
-    low_risk_label.text_frame.text = "LOW\nRISK"
-    low_risk_label.text_frame.paragraphs[0].font.size = Pt(12)
-    low_risk_label.text_frame.paragraphs[0].font.bold = True
-    low_risk_label.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
-
-    # Horizontal: CERTAIN (left) to UNCERTAIN (right)
-    certain_label = slide.shapes.add_textbox(Inches(grid_left), Inches(grid_top + grid_height + 0.2), Inches(2), Inches(0.4))
-    certain_label.text_frame.text = "CERTAIN"
-    certain_label.text_frame.paragraphs[0].font.size = Pt(12)
-    certain_label.text_frame.paragraphs[0].font.bold = True
-    certain_label.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
-
-    uncertain_label = slide.shapes.add_textbox(Inches(grid_left + grid_width - 2), Inches(grid_top + grid_height + 0.2), Inches(2), Inches(0.4))
-    uncertain_label.text_frame.text = "UNCERTAIN"
-    uncertain_label.text_frame.paragraphs[0].font.size = Pt(12)
-    uncertain_label.text_frame.paragraphs[0].font.bold = True
-    uncertain_label.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
-
-    # Assumptions and questions from transcript
+    # Items: (text, col, row, color)
     items = [
-        {
-            "text": "I assume other roles know what the other role is doing in the process",
-            "risk": "high", "certainty": "uncertain", "color": RED
-        },
-        {
-            "text": "Do teams know who to ask to accomplish a certain task?",
-            "risk": "high", "certainty": "uncertain", "color": RED
-        },
-        {
-            "text": "Are there better tools we should be using to communicate?",
-            "risk": "high", "certainty": "uncertain", "color": RED
-        },
-        {
-            "text": "My assumption is that everyone is notified when to check off or sign off. Assumes high trust",
-            "risk": "high", "certainty": "uncertain", "color": RED
-        },
-        {
-            "text": "High uncertainty when banner rotations are not talked through month in advance. Creates high risk if we are not able to create and QA in time",
-            "risk": "high", "certainty": "uncertain", "color": RED
-        },
-        {
-            "text": "Assumption: Clear Communication & Role Ownership is muddy - High Risk, Uncertain right now",
-            "risk": "high", "certainty": "uncertain", "color": RED
-        },
-        {
-            "text": "Question: Can we add an additional level of QA at Lilly before banners go to agency?",
-            "risk": "low", "certainty": "uncertain", "color": BLUE
-        },
-        {
-            "text": "Creative teams have direct line of sight into the approval process to anticipate creative grid updates/asset delivery",
-            "risk": "low", "certainty": "uncertain", "color": BLUE
-        }
+        ("I assume other roles know what everyone else is doing in the process",                               1, 0, RED),
+        ("Do teams know who to ask to accomplish a specific task?",                                            1, 0, RED),
+        ("Are there better tools we should be using to communicate?",                                         1, 0, RED),
+        ("Everyone is notified when to check off or sign off — high trust assumed",                           1, 0, RED),
+        ("High uncertainty when banner rotations are not discussed a month in advance",                        1, 0, RED),
+        ("Clear Communication & Role Ownership is muddy — high risk right now",                               1, 0, RED),
+        ("Can we add an additional level of Lilly QA before banners go to agency?",                           1, 1, BLUE),
+        ("Creative teams have direct line of sight into approval process to anticipate grid updates",          1, 1, BLUE),
     ]
 
-    # Plot items
-    for item in items:
-        if item["risk"] == "high" and item["certainty"] == "uncertain":
-            x = grid_left + grid_width * 0.7 + random.uniform(-0.5, 0.5)
-            y = grid_top + 0.3 + random.uniform(-0.2, 0.2)
-        elif item["risk"] == "low" and item["certainty"] == "uncertain":
-            x = grid_left + grid_width * 0.7 + random.uniform(-0.5, 0.5)
-            y = grid_top + grid_height - 1 + random.uniform(-0.2, 0.2)
-        elif item["risk"] == "high" and item["certainty"] == "certain":
-            x = grid_left + 0.5 + random.uniform(-0.2, 0.2)
-            y = grid_top + 0.3 + random.uniform(-0.2, 0.2)
-        else:  # low risk, certain
-            x = grid_left + 0.5 + random.uniform(-0.2, 0.2)
-            y = grid_top + grid_height - 1 + random.uniform(-0.2, 0.2)
+    card_h   = Inches(0.52)
+    card_gap = Inches(0.05)
+    quad_counts = {}  # track next y per quadrant
 
-        add_sticky_note(slide, Inches(x), Inches(y), Inches(2.5), Inches(0.8), item["text"], item["color"], random.randint(-3, 3))
+    for text, col, row, color in items:
+        key = (col, row)
+        n   = quad_counts.get(key, 0)
+        qx  = grid_left + col * half_w
+        qy  = grid_top  + row * half_h
+        card_x = qx + Inches(0.1)
+        card_y = qy + Inches(0.50) + n * (card_h + card_gap)
+        card_w = half_w - Inches(0.2)
+        if card_y + card_h > qy + half_h - Inches(0.05):
+            continue
+        add_card(slide, card_x, card_y, card_w, card_h, text, color,
+                 font_size=Pt(8.5))
+        quad_counts[key] = n + 1
 
-    # Highlight upper-right quadrant
-    highlight = slide.shapes.add_shape(
-        MSO_SHAPE.RECTANGLE,
-        Inches(grid_left + grid_width/2), Inches(grid_top),
-        Inches(grid_width/2), Inches(grid_height/2)
-    )
-    highlight.fill.background()
-    highlight.line.color.rgb = LILLY_RED
-    highlight.line.width = Pt(4)
+    out = '/Users/V5X8512/Downloads/07_assumptions.pptx'
+    prs.save(out)
+    print(f"✓ Generated: {out}")
 
-    prs.save('/Users/V5X8512/Downloads/07_assumptions.pptx')
-    print("✓ Generated: 07_assumptions.pptx")
+
+# ── Artifact 8: Big Idea Vignettes ───────────────────────────────────────────
 
 def create_big_ideas():
-    """OUTPUT 8: Big Idea Vignettes"""
-    prs = Presentation()
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    """OUTPUT 8: Big Idea Vignettes — grouped by theme cluster."""
+    prs = new_prs()
+    slide = blank_slide(prs)
+    add_header(slide, prs, "Big Ideas",
+               subtitle="Clustered themes from ideation — ranked by group energy")
 
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_background(slide, prs, KRAFT_BG)
+    ct = content_top(has_subtitle=True)
 
-    # Title
-    title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.3), Inches(8), Inches(0.6))
-    title_frame = title_box.text_frame
-    title_frame.text = "BIG IDEAS"
-    title_frame.paragraphs[0].font.size = Pt(48)
-    title_frame.paragraphs[0].font.bold = True
-    title_frame.paragraphs[0].font.color.rgb = LILLY_RED
-
-    # Big ideas from transcript
-    ideas = [
+    clusters = [
         {
-            "cluster": "ROLE CLARITY & PROCESS",
-            "items": [
-                {"headline": "Standardization", "description": "Standardization across lines of business and business units. HCP/Consumer function very differently based on different org structures"},
-                {"headline": "Role Clarity", "description": "Role clarity among everyone involved in the process and expectations of that role"},
-                {"headline": "Clear Ownership", "description": "Clear ownership of Creative Grid process within Lilly (lots of pushing to different people)"},
-                {"headline": "Defined Process", "description": "Develop clear process to set expectations on what happens when within the tactic approval lifecycle"}
-            ]
+            "theme": "ROLE CLARITY & PROCESS",
+            "color": RED,
+            "ideas": [
+                ("Standardization",    "Standardize process across lines of business and business units"),
+                ("Role Clarity",       "Define role clarity for everyone involved and expectations of that role"),
+                ("Clear Ownership",    "Assign clear ownership of Creative Grid process within Lilly"),
+                ("Defined Process",    "Develop clear end-to-end process with expectations at each lifecycle stage"),
+            ],
         },
         {
-            "cluster": "COMMUNICATION & VISIBILITY",
-            "items": [
-                {"headline": "Visibility", "description": "ADCO/MCO: Visibility on the hand offs, so we can jump in and help/assist to keep/manage to the speed"},
-                {"headline": "More Pings", "description": "More pings/teams posts. Posting to a Teams Channel and tagging marketer/CMI when handoffs are ready"},
-                {"headline": "Better Notifications", "description": "Improve Notification & Handoff Clarity. Automatic notifications when a step is completed. A visible owner field for each stage"},
-                {"headline": "Rotation Clarity", "description": "Clear Asset Rotation Communication. Make currently live banner rotations more clear on creative grid"}
-            ]
+            "theme": "COMMUNICATION & VISIBILITY",
+            "color": BLUE,
+            "ideas": [
+                ("Visibility",         "ADCO/MCO visibility on handoffs so they can jump in and manage speed"),
+                ("More Pings",         "Post to Teams Channel tagging marketer/CMI when handoffs are ready"),
+                ("Better Notifications", "Automatic notification when a step completes; visible owner field per stage"),
+                ("Rotation Clarity",   "Make currently live banner rotations clear on the creative grid"),
+            ],
         },
         {
-            "cluster": "SYSTEMS & AUTOMATION",
-            "items": [
-                {"headline": "System Alignment", "description": "Better systems in place that talk to each other. Ie: notifying the right people when an asset is ready to go"},
-                {"headline": "Automate Grid", "description": "Automate the Creative Grid or Build a better UI/UX. Auto-population of repeated fields, more drop-down menus, auto-notifications"},
-                {"headline": "Workfront Tasks", "description": "Tasks in Adobe Workfront. Trafficking tasks implemented with POCs assigned to the tasks"},
-                {"headline": "Metadata Automation", "description": "A solution that collects all needed metadata for creative campaign and compiles into creative trafficking form"}
-            ]
+            "theme": "SYSTEMS & AUTOMATION",
+            "color": GREEN,
+            "ideas": [
+                ("System Alignment",   "Better systems that notify the right people when an asset is ready"),
+                ("Automate Grid",      "Auto-populate repeated fields, add drop-downs, enable auto-notifications"),
+                ("Workfront Tasks",    "Implement trafficking tasks in Adobe Workfront with assigned POCs"),
+                ("Metadata Automation","Collect all metadata for creative campaign and compile into trafficking form"),
+            ],
         },
         {
-            "cluster": "SPEED & QUALITY",
-            "items": [
-                {"headline": "Fast Track", "description": "Build a Fast Track Path for High-Urgency Messages. Pre-approved templates, pre-aligned messaging buckets, shortened review path"},
-                {"headline": "QA Improvements", "description": "Revamp QA process before sent to agency (missing black borders, image not fully clickable)"},
-                {"headline": "Timeline Standards", "description": "Establishing Clear, End-to-End DTC Production Timeframes. Consistency in approval process timing"},
-                {"headline": "Marketer Cheat Sheet", "description": "A marketer cheat sheet. What steps MUST I check off every time to ensure fastest hand off?"}
-            ]
+            "theme": "SPEED & QUALITY",
+            "color": ORANGE,
+            "ideas": [
+                ("Fast Track",         "Build a fast-track path for high-urgency messages with pre-approved templates"),
+                ("QA Improvements",    "Revamp QA process before assets sent to agency"),
+                ("Timeline Standards", "Establish clear end-to-end DTC production timeframes with consistent approval timing"),
+                ("Marketer Cheat Sheet", "A marketer cheat sheet: what steps must I complete every time?"),
+            ],
         },
-        {
-            "cluster": "TRACKING & VISIBILITY",
-            "items": [
-                {"headline": "High Level Map", "description": "High level creative map. Need to see big picture of what we are launching when and WHY"},
-                {"headline": "Status Tracker", "description": "A status tracker (Not Started → In Progress → Ready → Launched)"},
-                {"headline": "Quarterly Matrix", "description": "Each marketer creates and owns a quarterly rotation matrix and aligns with the creative grid"}
-            ]
-        }
     ]
 
-    y_offset = 1.2
-    for cluster in ideas:
-        # Cluster label
-        cluster_label = slide.shapes.add_textbox(Inches(0.5), Inches(y_offset), Inches(14), Inches(0.4))
-        cluster_label.text_frame.text = cluster["cluster"]
-        cluster_label.text_frame.paragraphs[0].font.size = Pt(18)
-        cluster_label.text_frame.paragraphs[0].font.bold = True
-        cluster_label.text_frame.paragraphs[0].font.color.rgb = LILLY_BLUE
+    n_clusters  = len(clusters)
+    n_ideas     = max(len(c["ideas"]) for c in clusters)
+    col_gap     = Inches(0.10)
+    row_gap     = Inches(0.08)
+    usable_w    = SLIDE_W - Inches(1.0)
+    col_w       = (usable_w - col_gap * (n_ideas - 1)) / n_ideas
+    usable_h    = SLIDE_H - ct - Inches(0.1)
+    label_h     = Inches(0.28)
+    card_h      = (usable_h / n_clusters) - label_h - row_gap
 
-        y_offset += 0.5
+    for ri, cluster in enumerate(clusters):
+        row_top = ct + ri * (label_h + card_h + row_gap)
+        # Cluster label spanning full width
+        add_section_label(slide, LEFT_MARGIN, row_top,
+                          usable_w, cluster["theme"], cluster["color"], size=Pt(11))
+        for ci, (headline, desc) in enumerate(cluster["ideas"]):
+            cx = LEFT_MARGIN + ci * (col_w + col_gap)
+            add_card(slide, cx, row_top + label_h, col_w, card_h,
+                     desc, cluster["color"],
+                     title=headline, font_size=Pt(8.5))
 
-        # Place vignettes
-        x_offset = 0.5
-        for i, idea in enumerate(cluster["items"][:4]):
-            # Left note: headline + description
-            add_sticky_note(
-                slide,
-                Inches(x_offset), Inches(y_offset),
-                Inches(3.2), Inches(0.9),
-                f"{idea['headline']}\n{idea['description']}",
-                YELLOW, random.randint(-2, 2)
-            )
+    out = '/Users/V5X8512/Downloads/08_big_ideas.pptx'
+    prs.save(out)
+    print(f"✓ Generated: {out}")
 
-            x_offset += 3.5
 
-            if (i + 1) % 4 == 0:
-                x_offset = 0.5
-                y_offset += 1.1
-
-        if x_offset != 0.5:
-            y_offset += 1.2
-
-    prs.save('/Users/V5X8512/Downloads/08_big_ideas.pptx')
-    print("✓ Generated: 08_big_ideas.pptx")
+# ── Artifact 9: Prioritization Grid ─────────────────────────────────────────
 
 def create_prioritization_grid():
-    """OUTPUT 9: Prioritization Grid 2x2"""
-    prs = Presentation()
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    """OUTPUT 9: Prioritization Grid 2×2 (Importance × Feasibility)."""
+    prs = new_prs()
+    slide = blank_slide(prs)
+    add_header(slide, prs, "Prioritization Grid",
+               subtitle="Importance to user (y-axis)  ·  Ease / feasibility (x-axis)")
 
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_background(slide, prs, WHITE_BG)
+    ct = content_top(has_subtitle=True)
 
-    # Title
-    title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.3), Inches(8), Inches(0.5))
-    title_frame = title_box.text_frame
-    title_frame.text = "Prioritization Grid"
-    title_frame.paragraphs[0].font.size = Pt(40)
-    title_frame.paragraphs[0].font.bold = True
+    axis_label_w = Inches(0.85)
+    axis_label_h = Inches(0.30)
+    grid_left    = LEFT_MARGIN + axis_label_w + Inches(0.1)
+    grid_top     = ct
+    grid_w       = SLIDE_W - grid_left - Inches(0.4)
+    grid_h       = SLIDE_H - ct - Inches(0.45)
+    half_w       = grid_w / 2
+    half_h       = grid_h / 2
 
-    # Draw 2x2 grid
-    grid_left = 2
-    grid_top = 1.5
-    grid_width = 12
-    grid_height = 6.5
+    quad_styles = [
+        (0, 0, RGBColor(0xE8, 0xF0, 0xFB), "HIGH IMPORTANCE / DIFFICULT\nBIG BETS",     BLUE),
+        (1, 0, RGBColor(0xED, 0xF4, 0xED), "HIGH IMPORTANCE / EASY\nNO-BRAINERS ★",    GREEN),
+        (0, 1, RGBColor(0xF5, 0xF5, 0xF5), "LOW IMPORTANCE / DIFFICULT\nUNWISE",        DARK_GRAY),
+        (1, 1, RGBColor(0xF0, 0xF6, 0xFF), "LOW IMPORTANCE / EASY\nUTILITIES",          TEAL),
+    ]
+    for col, row, fill, label, lc in quad_styles:
+        qx = grid_left + col * half_w
+        qy = grid_top  + row * half_h
+        qbox = slide.shapes.add_shape(
+            MSO_SHAPE.RECTANGLE, qx, qy, half_w, half_h)
+        qbox.fill.solid()
+        qbox.fill.fore_color.rgb = fill
+        qbox.line.color.rgb = MID_GRAY
+        qbox.line.width = Pt(0.5)
+        ltb = slide.shapes.add_textbox(
+            qx + Inches(0.1), qy + Inches(0.06), half_w - Inches(0.2), Inches(0.42))
+        ltf = ltb.text_frame
+        ltf.text = label
+        lp = ltf.paragraphs[0]
+        lp.font.name  = "Arial"
+        lp.font.size  = Pt(8.5)
+        lp.font.bold  = True
+        lp.font.color.rgb = lc
+        for extra_p in ltf.paragraphs[1:]:
+            extra_p.font.name  = "Arial"
+            extra_p.font.size  = Pt(8.5)
+            extra_p.font.bold  = True
+            extra_p.font.color.rgb = lc
 
-    # Draw axes
-    v_axis = slide.shapes.add_connector(2, Inches(grid_left), Inches(grid_top), Inches(grid_left), Inches(grid_top + grid_height))
-    v_axis.line.width = Pt(3)
-    v_axis.line.color.rgb = RGBColor(0, 0, 0)
+    v_div = slide.shapes.add_connector(
+        2, grid_left + half_w, grid_top, grid_left + half_w, grid_top + grid_h)
+    v_div.line.width = Pt(2)
+    v_div.line.color.rgb = MID_GRAY
+    h_div = slide.shapes.add_connector(
+        1, grid_left, grid_top + half_h, grid_left + grid_w, grid_top + half_h)
+    h_div.line.width = Pt(2)
+    h_div.line.color.rgb = MID_GRAY
 
-    h_axis = slide.shapes.add_connector(1, Inches(grid_left), Inches(grid_top + grid_height/2), Inches(grid_left + grid_width), Inches(grid_top + grid_height/2))
-    h_axis.line.width = Pt(3)
-    h_axis.line.color.rgb = RGBColor(0, 0, 0)
+    add_axis_label(slide, LEFT_MARGIN, grid_top,
+                   axis_label_w, Inches(0.30), "HIGH", NEAR_BLACK)
+    add_axis_label(slide, LEFT_MARGIN, grid_top + half_h,
+                   axis_label_w, Inches(0.30), "LOW", DARK_GRAY)
+    add_axis_label(slide, grid_left, grid_top + grid_h + Inches(0.04),
+                   half_w, axis_label_h, "DIFFICULT / EXPENSIVE", DARK_GRAY)
+    add_axis_label(slide, grid_left + half_w, grid_top + grid_h + Inches(0.04),
+                   half_w, axis_label_h, "EASY / CHEAP", GREEN)
 
-    # Axis labels
-    # Vertical: IMPORTANCE TO USER
-    importance_high = slide.shapes.add_textbox(Inches(0.3), Inches(grid_top), Inches(1.5), Inches(0.5))
-    importance_high.text_frame.text = "HIGH\nIMPORTANCE"
-    importance_high.text_frame.paragraphs[0].font.size = Pt(10)
-    importance_high.text_frame.paragraphs[0].font.bold = True
-    importance_high.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
-
-    importance_low = slide.shapes.add_textbox(Inches(0.3), Inches(grid_top + grid_height - 0.5), Inches(1.5), Inches(0.5))
-    importance_low.text_frame.text = "LOW\nIMPORTANCE"
-    importance_low.text_frame.paragraphs[0].font.size = Pt(10)
-    importance_low.text_frame.paragraphs[0].font.bold = True
-    importance_low.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
-
-    # Horizontal: FEASIBILITY FOR US
-    difficult = slide.shapes.add_textbox(Inches(grid_left), Inches(grid_top + grid_height + 0.2), Inches(2.5), Inches(0.4))
-    difficult.text_frame.text = "DIFFICULT/EXPENSIVE"
-    difficult.text_frame.paragraphs[0].font.size = Pt(10)
-    difficult.text_frame.paragraphs[0].font.bold = True
-
-    easy = slide.shapes.add_textbox(Inches(grid_left + grid_width - 2.5), Inches(grid_top + grid_height + 0.2), Inches(2.5), Inches(0.4))
-    easy.text_frame.text = "EASY/CHEAP"
-    easy.text_frame.paragraphs[0].font.size = Pt(10)
-    easy.text_frame.paragraphs[0].font.bold = True
-    easy.text_frame.paragraphs[0].alignment = PP_ALIGN.RIGHT
-
-    # Quadrant labels
-    # Upper-right: NO-BRAINERS
-    no_brainers = slide.shapes.add_textbox(Inches(grid_left + grid_width * 0.65), Inches(grid_top + 0.3), Inches(3), Inches(0.5))
-    no_brainers.text_frame.text = "NO-BRAINERS"
-    no_brainers.text_frame.paragraphs[0].font.size = Pt(20)
-    no_brainers.text_frame.paragraphs[0].font.bold = True
-    no_brainers.text_frame.paragraphs[0].font.color.rgb = RGBColor(0, 100, 0)
-
-    # Upper-left: BIG BETS
-    big_bets = slide.shapes.add_textbox(Inches(grid_left + 0.3), Inches(grid_top + 0.3), Inches(3), Inches(0.5))
-    big_bets.text_frame.text = "BIG BETS"
-    big_bets.text_frame.paragraphs[0].font.size = Pt(20)
-    big_bets.text_frame.paragraphs[0].font.bold = True
-    big_bets.text_frame.paragraphs[0].font.color.rgb = LILLY_BLUE
-
-    # Lower-right: UTILITIES
-    utilities = slide.shapes.add_textbox(Inches(grid_left + grid_width * 0.65), Inches(grid_top + grid_height - 0.8), Inches(3), Inches(0.5))
-    utilities.text_frame.text = "UTILITIES"
-    utilities.text_frame.paragraphs[0].font.size = Pt(20)
-    utilities.text_frame.paragraphs[0].font.bold = True
-    utilities.text_frame.paragraphs[0].font.color.rgb = RGBColor(0, 0, 139)
-
-    # Lower-left: UNWISE
-    unwise = slide.shapes.add_textbox(Inches(grid_left + 0.3), Inches(grid_top + grid_height - 0.8), Inches(3), Inches(0.5))
-    unwise.text_frame.text = "UNWISE"
-    unwise.text_frame.paragraphs[0].font.size = Pt(20)
-    unwise.text_frame.paragraphs[0].font.bold = True
-    unwise.text_frame.paragraphs[0].font.color.rgb = RGBColor(128, 128, 128)
-
-    # Plot ideas
+    # Items: (text, col, row, color)
     ideas_to_plot = [
-        {"idea": "⭐ Automate Grid Notifications", "quadrant": "no-brainers", "color": GREEN},
-        {"idea": "⭐ Teams Channel Pings", "quadrant": "no-brainers", "color": GREEN},
-        {"idea": "Role Clarity Documentation", "quadrant": "no-brainers", "color": GREEN},
-        {"idea": "Marketer Cheat Sheet", "quadrant": "no-brainers", "color": GREEN},
-        {"idea": "Status Tracker", "quadrant": "no-brainers", "color": GREEN},
-        {"idea": "Quarterly Rotation Matrix", "quadrant": "no-brainers", "color": GREEN},
-        {"idea": "⭐ Metadata Automation", "quadrant": "big-bets", "color": YELLOW},
-        {"idea": "Workfront Implementation", "quadrant": "big-bets", "color": YELLOW},
-        {"idea": "Complete Grid Redesign", "quadrant": "big-bets", "color": YELLOW},
-        {"idea": "Standardization Across BUs", "quadrant": "big-bets", "color": YELLOW},
-        {"idea": "Additional QA Layer", "quadrant": "utilities", "color": BLUE},
-        {"idea": "High-Level Creative Map", "quadrant": "utilities", "color": BLUE}
+        ("Automate Grid Notifications",     1, 0, GREEN),
+        ("Teams Channel Pings",             1, 0, GREEN),
+        ("Role Clarity Documentation (RACI)", 1, 0, GREEN),
+        ("Marketer Cheat Sheet",            1, 0, GREEN),
+        ("Status Tracker",                  1, 0, GREEN),
+        ("Quarterly Rotation Matrix",       1, 0, GREEN),
+        ("Metadata Auto-Population",        0, 0, BLUE),
+        ("Workfront Implementation",        0, 0, BLUE),
+        ("Complete Grid Redesign",          0, 0, BLUE),
+        ("Cross-BU Standardization",        0, 0, BLUE),
+        ("Additional QA Layer",             1, 1, TEAL),
+        ("High-Level Creative Map",         1, 1, TEAL),
     ]
 
-    for item in ideas_to_plot:
-        if item["quadrant"] == "no-brainers":
-            x = grid_left + grid_width * 0.65 + random.uniform(0, 1.5)
-            y = grid_top + 0.8 + random.uniform(0, 1.5)
-        elif item["quadrant"] == "big-bets":
-            x = grid_left + 0.3 + random.uniform(0, 1.5)
-            y = grid_top + 0.8 + random.uniform(0, 1.5)
-        elif item["quadrant"] == "utilities":
-            x = grid_left + grid_width * 0.65 + random.uniform(0, 1.5)
-            y = grid_top + grid_height - 2 + random.uniform(0, 1)
-        else:  # unwise
-            x = grid_left + 0.3 + random.uniform(0, 1.5)
-            y = grid_top + grid_height - 2 + random.uniform(0, 1)
+    card_h   = Inches(0.48)
+    card_gap = Inches(0.05)
+    quad_counts = {}
 
-        add_sticky_note(slide, Inches(x), Inches(y), Inches(2.2), Inches(0.6), item["idea"], item["color"], random.randint(-3, 3))
+    for text, col, row, color in ideas_to_plot:
+        key = (col, row)
+        n   = quad_counts.get(key, 0)
+        qx  = grid_left + col * half_w
+        qy  = grid_top  + row * half_h
+        cx  = qx + Inches(0.1)
+        cy  = qy + Inches(0.52) + n * (card_h + card_gap)
+        cw  = half_w - Inches(0.2)
+        if cy + card_h > qy + half_h - Inches(0.04):
+            continue
+        add_card(slide, cx, cy, cw, card_h, text, color, font_size=Pt(9))
+        quad_counts[key] = n + 1
 
-    prs.save('/Users/V5X8512/Downloads/09_prioritization_grid.pptx')
-    print("✓ Generated: 09_prioritization_grid.pptx")
+    out = '/Users/V5X8512/Downloads/09_prioritization_grid.pptx'
+    prs.save(out)
+    print(f"✓ Generated: {out}")
+
+
+def add_axis_label(slide, left, top, width, height, text, color=NEAR_BLACK, size=Pt(9)):
+    tb = slide.shapes.add_textbox(left, top, width, height)
+    tf = tb.text_frame
+    tf.text = text
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    p.font.name  = "Arial"
+    p.font.size  = size
+    p.font.bold  = True
+    p.font.color.rgb = color
+
+
+# ── Artifact 10: To-Be Process Map ──────────────────────────────────────────
 
 def create_tobe_process_map():
-    """OUTPUT 10: To-Be Process Map"""
-    prs = Presentation()
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    """OUTPUT 10: To-Be Scenario Map — same swimlane layout as As-Is."""
+    prs = new_prs()
+    slide = blank_slide(prs)
+    add_header(slide, prs, "To-Be Scenario Map",
+               subtitle="Banner Display Trafficking & Handoff Process — Future State")
 
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_background(slide, prs, WHITE_BG)
+    ct = content_top(has_subtitle=True)
 
-    # Title
-    title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.2), Inches(12), Inches(0.5))
-    title_frame = title_box.text_frame
-    title_frame.text = "To-Be Scenario Map: Banner Display Trafficking Process"
-    title_frame.paragraphs[0].font.size = Pt(32)
-    title_frame.paragraphs[0].font.bold = True
-
-    # Process phases - future state
-    phases = ["Planning & Workflow", "Creative & Production", "Review & Approval", "Trafficking & Activation", "Confirmation"]
-
-    row_labels = ["PHASES", "DOING", "THINKING", "FEELING"]
-    row_heights = [0.8, 2, 2, 2]
-
-    y_offset = 1
-
-    # Draw row label column
-    current_y = y_offset
-    for i, label in enumerate(row_labels):
-        label_box = slide.shapes.add_shape(
-            MSO_SHAPE.RECTANGLE,
-            Inches(0.5), Inches(current_y),
-            Inches(1.5), Inches(row_heights[i])
-        )
-        label_box.fill.solid()
-        if i == 0:
-            label_box.fill.fore_color.rgb = LILLY_GRAY
-        else:
-            label_box.fill.fore_color.rgb = RGBColor(240, 240, 240)
-        label_box.line.color.rgb = RGBColor(100, 100, 100)
-
-        label_text = label_box.text_frame
-        label_text.text = label
-        label_text.vertical_anchor = MSO_ANCHOR.MIDDLE
-        label_text.paragraphs[0].alignment = PP_ALIGN.CENTER
-        label_text.paragraphs[0].font.size = Pt(14)
-        label_text.paragraphs[0].font.bold = True
-        if i == 0:
-            label_text.paragraphs[0].font.color.rgb = RGBColor(255, 255, 255)
-
-        current_y += row_heights[i]
-
-    # Draw phase columns
-    col_width = 2.5
-    current_x = 2.2
-
-    for phase in phases:
-        phase_box = slide.shapes.add_shape(
-            MSO_SHAPE.RECTANGLE,
-            Inches(current_x), Inches(y_offset),
-            Inches(col_width), Inches(0.8)
-        )
-        phase_box.fill.solid()
-        phase_box.fill.fore_color.rgb = TEAL
-        phase_box.line.color.rgb = RGBColor(100, 100, 100)
-
-        phase_text = phase_box.text_frame
-        phase_text.text = phase
-        phase_text.vertical_anchor = MSO_ANCHOR.MIDDLE
-        phase_text.paragraphs[0].alignment = PP_ALIGN.CENTER
-        phase_text.paragraphs[0].font.size = Pt(11)
-        phase_text.paragraphs[0].font.bold = True
-        phase_text.word_wrap = True
-
-        current_x += col_width
-
-    # DOING row - future state
-    doing_items = [
-        "Quarterly matrix created\n✓ Roles defined\nBacklog aligned",
-        "⭐ Auto-populated templates\nAsset build\nMetadata captured",
-        "Streamlined approval\nEditor → Owner → AFD",
-        "✓ Auto-notification\n⭐ Grid pre-filled\nAgency receives assets",
-        "✓ Confirmation sent\nMarketer notified\nBanner live"
+    phases = [
+        "Planning &\nWorkflow",
+        "Creative &\nProduction",
+        "Review &\nApproval",
+        "Trafficking &\nActivation",
+        "Confirmation",
     ]
+    rows        = ["DOING", "THINKING", "FEELING"]
+    row_colors  = [GREEN, TEAL, BLUE]
 
-    current_x = 2.2
-    for item in doing_items:
-        add_sticky_note(slide, Inches(current_x + 0.1), Inches(y_offset + 1), Inches(col_width - 0.2), Inches(1.8), item, GREEN, random.randint(-1, 1))
-        current_x += col_width
+    label_col_w = Inches(1.1)
+    avail_w     = SLIDE_W - LEFT_MARGIN - label_col_w - Inches(0.5)
+    col_w       = avail_w / len(phases)
+    phase_h     = Inches(0.52)
+    avail_row_h = SLIDE_H - ct - phase_h - Inches(0.12)
+    row_h       = avail_row_h / len(rows)
+    table_left  = LEFT_MARGIN + label_col_w
 
-    # THINKING row - future state
-    thinking_items = [
-        "Clear visibility on rotation plan",
-        "Templates standardized across BUs",
-        "Faster approval process",
-        "I know exactly who to contact",
-        "Process complete, confident it's live"
-    ]
+    # Phase headers (teal — future state)
+    for ci, phase in enumerate(phases):
+        px = table_left + ci * col_w
+        ph_box = slide.shapes.add_shape(
+            MSO_SHAPE.RECTANGLE, px, ct, col_w - Inches(0.04), phase_h)
+        ph_box.fill.solid()
+        ph_box.fill.fore_color.rgb = TEAL
+        ph_box.line.fill.background()
+        ptf = ph_box.text_frame
+        ptf.text = phase
+        ptf.vertical_anchor = MSO_ANCHOR.MIDDLE
+        ptf.word_wrap = True
+        pp = ptf.paragraphs[0]
+        pp.alignment = PP_ALIGN.CENTER
+        pp.font.name  = "Arial"
+        pp.font.size  = Pt(9)
+        pp.font.bold  = True
+        pp.font.color.rgb = WHITE
+        for ep in ptf.paragraphs[1:]:
+            ep.alignment = PP_ALIGN.CENTER
+            ep.font.name  = "Arial"
+            ep.font.size  = Pt(9)
+            ep.font.bold  = True
+            ep.font.color.rgb = WHITE
 
-    current_x = 2.2
-    for item in thinking_items:
-        add_sticky_note(slide, Inches(current_x + 0.1), Inches(y_offset + 3), Inches(col_width - 0.2), Inches(1.8), item, BLUE, random.randint(-1, 1))
-        current_x += col_width
+    # Row labels
+    for ri, (row_label, rc) in enumerate(zip(rows, row_colors)):
+        ry = ct + phase_h + ri * row_h
+        rl_box = slide.shapes.add_shape(
+            MSO_SHAPE.RECTANGLE, LEFT_MARGIN, ry, label_col_w - Inches(0.04), row_h - Inches(0.04))
+        rl_box.fill.solid()
+        rl_box.fill.fore_color.rgb = LIGHT_GRAY
+        rl_box.line.color.rgb = MID_GRAY
+        rl_box.line.width = Pt(0.5)
+        acc = slide.shapes.add_shape(
+            MSO_SHAPE.RECTANGLE, LEFT_MARGIN, ry, ACCENT_W, row_h - Inches(0.04))
+        acc.fill.solid()
+        acc.fill.fore_color.rgb = rc
+        acc.line.fill.background()
+        rltb = slide.shapes.add_textbox(
+            LEFT_MARGIN + ACCENT_W + Inches(0.06), ry + Inches(0.08),
+            label_col_w - ACCENT_W - Inches(0.1), row_h - Inches(0.16))
+        rltf = rltb.text_frame
+        rltf.text = row_label
+        rlp = rltf.paragraphs[0]
+        rlp.font.name  = "Arial"
+        rlp.font.size  = Pt(9)
+        rlp.font.bold  = True
+        rlp.font.color.rgb = rc
 
-    # FEELING row - future state
-    feeling_items = [
-        "Prepared and aligned",
-        "Confident and efficient",
-        "Clear expectations",
-        "✓ In control\n✓ Communicated well",
-        "Accomplished and confident"
-    ]
+    cell_data = {
+        "DOING": [
+            "Quarterly matrix created\nRoles defined\nBacklog aligned",
+            "Auto-populated templates\nAsset build\nMetadata captured automatically",
+            "Streamlined approval\nEditor → Owner → AFD",
+            "Auto-notification sent\nGrid pre-filled\nAgency receives complete assets",
+            "Confirmation sent to marketer\nBanner live + tracked",
+        ],
+        "THINKING": [
+            "Clear visibility on rotation plan",
+            "Templates standardized across all BUs",
+            "Faster approval process with defined path",
+            "I know exactly who to contact — no guessing",
+            "Process complete, confident it's live",
+        ],
+        "FEELING": [
+            "Prepared and aligned from the start",
+            "Confident and efficient",
+            "Clear expectations throughout",
+            "In control — communicated well",
+            "Accomplished and confident",
+        ],
+    }
 
-    current_x = 2.2
-    for item in feeling_items:
-        add_sticky_note(slide, Inches(current_x + 0.1), Inches(y_offset + 5), Inches(col_width - 0.2), Inches(1.8), item, YELLOW, random.randint(-1, 1))
-        current_x += col_width
+    for ri, (row_label, rc) in enumerate(zip(rows, row_colors)):
+        ry = ct + phase_h + ri * row_h
+        for ci, text in enumerate(cell_data[row_label]):
+            cx = table_left + ci * col_w
+            add_card(slide, cx + Inches(0.02), ry + Inches(0.02),
+                     col_w - Inches(0.06), row_h - Inches(0.06),
+                     text, rc, font_size=Pt(8))
 
     # Legend
-    legend_box = slide.shapes.add_textbox(Inches(0.5), Inches(8), Inches(5), Inches(0.8))
-    legend_frame = legend_box.text_frame
-    legend_frame.text = "✓ = Resolved Pain Point    ⭐ = New Capability/Automation"
-    legend_frame.paragraphs[0].font.size = Pt(11)
-    legend_frame.paragraphs[0].font.color.rgb = RGBColor(0, 100, 0)
+    leg = slide.shapes.add_textbox(
+        SLIDE_W - Inches(3.8), SLIDE_H - Inches(0.32),
+        Inches(3.6), Inches(0.25))
+    legtf = leg.text_frame
+    legtf.text = "Teal headers = future state indicator"
+    legp = legtf.paragraphs[0]
+    legp.font.name   = "Calibri"
+    legp.font.size   = Pt(8)
+    legp.font.italic = True
+    legp.font.color.rgb = TEAL
 
-    prs.save('/Users/V5X8512/Downloads/10_tobe_map.pptx')
-    print("✓ Generated: 10_tobe_map.pptx")
+    out = '/Users/V5X8512/Downloads/10_tobe_map.pptx'
+    prs.save(out)
+    print(f"✓ Generated: {out}")
+
+
+# ── Entry point ──────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    print("Generating Artifacts 7-10...")
+    print("Generating Design Thinking Workshop Artifacts 7–10...")
     print("=" * 60)
-
     create_assumptions_grid()
     create_big_ideas()
     create_prioritization_grid()
     create_tobe_process_map()
-
     print("=" * 60)
-    print("Completed artifacts 7-10")
+    print("Completed artifacts 7–10.")
