@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dtw-app
+  namespace: dtw-app-dev
+spec:
+  selector:
+    app: dtw-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5001

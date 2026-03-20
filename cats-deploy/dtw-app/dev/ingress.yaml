@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dtw-app
+  namespace: dtw-app-dev
+  annotations:
+    # Bouncer: require AD group membership to access
+    lilly.com/security_groups: |
+      [{
+        "paths": ["/*"],
+        "groups": ["lrl_cats_access_non_rids"]
+      }]
+    # Pass the authenticated user's info as request headers to the app
+    lilly.com/user_info_headers: |
+      {
+        "X-User-Email": "email",
+        "X-User-Name": "name"
+      }
+    lilly.com/secure_headers: |
+      {
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      }
+spec:
+  rules:
+    - host: dtw-app-d.apps.lrl.lilly.com   # dev authenticated route
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dtw-app
+                port:
+                  number: 80

@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dtw-app
+  namespace: dtw-app-dev
+  annotations:
+    app.lilly.com/flux.automated: "true"
+    # Flux watches ECR for new sha-* tags and auto-deploys
+    app.lilly.com/flux.simple.dtw-app-dev: "408787358807;dtw-app;glob:sha-*"
+    wave.pusher.com/update-on-config-change: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dtw-app
+  template:
+    metadata:
+      labels:
+        app: dtw-app
+    spec:
+      containers:
+        - name: dtw-app
+          # {"$imagepolicy": "dtw-app-dev:dtw-app-dev"}
+          image: 408787358807.dkr.ecr.us-east-2.amazonaws.com/dtw-app:sha-latest
+          ports:
+            - containerPort: 5001
+          env:
+            - name: PORT
+              value: "5001"
+            - name: AWS_SECRET_NAME
+              value: "dtw-app-tea-s3"
+            - name: AWS_REGION
+              value: "us-east-2"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5001
+            initialDelaySeconds: 20
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5001
+            initialDelaySeconds: 15
+            periodSeconds: 10

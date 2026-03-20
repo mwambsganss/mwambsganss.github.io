@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jira-dashboard-dev
+  labels:
+    cost-center: "dx-researchit"   # TODO: replace with your actual Lilly cost center
+  annotations:
+    app.lrl.lilly.com/compute: "serverless"          # Fargate only
+    app.lilly.com/argo.automated: "true"
+    app.lilly.com/argo.config: |
+      [{
+        "group": "lrl_cats_access_non_rids",
+        "permissions": ["get", "sync", "action"]
+      }]

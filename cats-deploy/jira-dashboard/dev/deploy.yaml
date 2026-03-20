@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jira-dashboard
+  namespace: jira-dashboard-dev
+  annotations:
+    app.lilly.com/flux.automated: "true"
+    # Flux watches ECR for new sha-* tags and auto-deploys
+    app.lilly.com/flux.simple.jira-dashboard-dev: "408787358807;jira-dashboard;glob:sha-*"
+    wave.pusher.com/update-on-config-change: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jira-dashboard
+  template:
+    metadata:
+      labels:
+        app: jira-dashboard
+    spec:
+      containers:
+        - name: jira-dashboard
+          # {"$imagepolicy": "jira-dashboard-dev:jira-dashboard-dev"}
+          image: 408787358807.dkr.ecr.us-east-2.amazonaws.com/jira-dashboard:sha-latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
+            - name: AWS_SECRET_NAME
+              value: "jira-dashboard-app-tea-s3"
+            - name: AWS_REGION
+              value: "us-east-2"
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
