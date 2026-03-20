@@ -1,0 +1,52 @@
+{
+  "url": "https://cats.lilly.com/guide/Makefile",
+  "title": "Makefile | CATS",
+  "description": "A Makefile is a file used by the make utility, a standard build automation tool available on Unix/Linux systems and environments that can emulate Unix toolchains. The purpose of a Makefile is to define a set of tasks to be executed. These tasks can include compiling source code into binary executables, cleaning up temporary files, installing software to system directories, and more. It essentially allows developers to automate the repetitive aspects of the build process.",
+  "h1": [
+    "Makefile"
+  ],
+  "h2": [
+    "Makefile Template​",
+    "Template Breakdown​"
+  ],
+  "h3": [
+    "Preamble and Setup​",
+    "Targets and Phony Targets​",
+    "CATS DEV Cluster Development​",
+    "Helper Targets​",
+    "Overriding Pattern Rule​"
+  ],
+  "text_content": "Makefile | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nOverview\nNamespace\nDeployment\nService\nIngress\nIngress Patterns\nCompute and Workload Scheduling\nScaling\nStorage\nCronJob\nJobs\nRate Limit\nExternal Secrets\nHelmRelease\nExternal Integrations\nGraph User Info\nMakefile\nVelero Backups\nRDS Database Restore\nNamespace Decommission\nS3 Lifecycle Tagging\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nK8s Configuration\nMakefile\nOn this page\nMakefile\nA Makefile is a file used by the make utility, a standard build automation tool available on Unix/Linux systems and environments that can emulate Unix toolchains. The purpose of a Makefile is to define a set of tasks to be executed. These tasks can include compiling source code into binary executables, cleaning up temporary files, installing software to system directories, and more. It essentially allows developers to automate the repetitive aspects of the build process.\nThe structure of a Makefile includes rules, dependencies, and actions:\nRules: These indicate when and how to remake certain files, which are the targets of the rule. A rule specifies the dependencies of the target and the commands to execute when the target needs to be updated.\nDependencies: These are files that the target depends on; if any dependency is newer than the target, the commands associated with that target will be executed.\nActions: These are the commands that make executes in order to update the target file. Actions are usually shell commands.\nMakefile Template\n​\nHere's a an example of what a Makefile might look like:\n# =======================================\n# Makefile for YOUR-APP-NAME\n# =======================================\n# Shell to use for running scripts\nSHELL := /bin/bash\n# Detect operating system\nOSFLAG :=\nifeq ($(OS),Windows_NT)\n$(error Please use Windows Subsystem for Linux)\nelse\nUNAME_S := $(shell uname -s)\nifeq ($(UNAME_S),Linux)\nOSFLAG += LINUX\nMAKEFLAGS += -j$(shell nproc)\nendif\nifeq ($(UNAME_S),Darwin)\nOSFLAG += DARWIN\nendif\nendif\n# Default values for variables\nDOCKER_TAG ?= latest\nIMAGE_NAME ?= your_app_name\nECR_REPOSITORY ?= 123456789012.dkr.ecr.us-east-2.amazonaws.com/$(IMAGE_NAME)\n# =======================================\n# Setup and Development Targets\n# =======================================\n.PHONY: setup ci_setup ci_unit_tests setup_test test dev clean refresh_dev\nsetup: ## Setup the project environment\n@echo Setting up the project...\n# CI/CD Targets\nci_setup: ## Setup CI environment\n$(MAKE) build\nci_unit_tests: test ## Run unit tests in CI\n# Testing Targets\nsetup_test: setup ## Prepare environment for testing\n@echo Setting up test environment...\ntest: setup_test ## Run tests locally\nnpm run test\n# Local Development Targets\ndev: setup ## Prepare local development environment\nnpm run dev\nclean: ## Clean the local development environment\n@echo Cleaning up...\nrefresh_dev: clean dev ## Refresh the local development environment\n# =======================================\n# Docker Operations\n# =======================================\n.PHONY: build up down aws_login cats_dev_ecr_login cats_dev_ecr_tag cats_dev_ecr_push cats_dev_ecr_build_and_push\nbuild: ## Build Docker image\ndocker build -t $(IMAGE_NAME):$(DOCKER_TAG) .\nup: ## Start Docker containers\ndocker-compose up -d\ndown: ## Stop Docker containers\ndocker-compose down\n# =======================================\n# CATS DEV Cluster Development\n# =======================================\naws_login: ## Log in to AWS\nAWS_CONFIG_FILE=.aws/config AWS_PROFILE=default aws sso login --no-browser\ncats_dev_ecr_login: ## Log in to ECR\naws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $(ECR_REPOSITORY)\ncats_dev_ecr_tag: ## Tag Docker image for ECR\ndocker tag $(IMAGE_NAME):$(DOCKER_TAG) $(ECR_REPOSITORY):$(DOCKER_TAG)\ncats_dev_ecr_push: cats_dev_ecr_tag ## Push Docker image to ECR\ndocker push $(ECR_REPOSITORY):$(DOCKER_TAG)\ncats_dev_ecr_build_and_push: build cats_dev_ecr_push ## Build and push Docker image to ECR\n# =======================================\n# Helper Targets\n# =======================================\n.PHONY: help\nhelp: ## Display this help message\n@awk 'BEGIN {FS = \":.*##\"; printf \"\\nUsage:\\n  make \\033[36m<target>\\033[0m\\n\"} /^[a-zA-Z_-]+:.*?##/ { printf \"  \\033[36m%-30s\\033[0m %s\\n\", $$1, $$2 }' $(MAKEFILE_LIST)\n# Allow overriding of targets\n%: %-default\n@true\nTemplate Breakdown\n​\nThis Makefile is structured to facilitate various development, testing, CI/CD, and Docker operations for an application. It's divided into several sections, each with a specific focus. Here's a breakdown:\nPreamble and Setup\n​\nShell Specification\n​\nSHELL := /bin/bash\nsets the default shell for executing commands to Bash. This ensures that Bash-specific syntax and utilities can be used reliably.\nOperating System Detection\n​\nThis block checks the operating system where the Makefile is running. It sets an\nOSFLAG\nvariable based on the OS detected (\nLINUX\nor\nDARWIN\nfor macOS). If Windows is detected, it errors out, suggesting the use of Windows Subsystem for Linux (WSL) instead. This section is crucial for ensuring that the Makefile behaves correctly across different environments.\nDefault Variables\n​\nSets default values for\nDOCKER_TAG\n,\nIMAGE_NAME\n, and\nECR_REPOSITORY\nusing the\n?=\noperator. This allows these variables to be overridden externally without modifying the Makefile.\nTargets and Phony Targets\n​\n.PHONY\n​\nThis special target lists other targets that are not associated with files. It ensures that the listed targets are always executed even if files with those names exist.\nSetup and Development Targets\n​\nsetup\n: Initializes the project environment.\nci_setup\n,\nci_unit_tests\n: Define Continuous Integration (CI) setup and testing procedures.\nsetup_test\n,\ntest\n: Prepare for and run tests locally.\ndev\n,\nclean\n,\nrefresh_dev\n: Targets for managing local development environments.\nDocker Operations\n​\nbuild\n,\nup\n,\ndown\n: Commands for building Docker images and managing container state.\nCATS DEV Cluster Development\n​\nAWS and ECR Login\n​\nTargets for authenticating with AWS and the Elastic Container Registry (ECR), necessary for pushing Docker images to AWS ECR.\naws_login\n: Logs in to AWS using the specified profile.\ncats_dev_ecr_login\n: Logs in to AWS ECR to enable pushing Docker images.\ncats_dev_ecr_tag\n,\ncats_dev_ecr_push\n,\ncats_dev_ecr_build_and_push\n: Manage tagging and pushing Docker images to ECR.\nHelper Targets\n​\nA self-documenting feature that parses the Makefile and displays a help message detailing available targets and their descriptions. It uses awk to extract comments following the\n##\nmarker. This target makes it easier for users to understand and use the Makefile without digging through its contents manually.\nOverriding Pattern Rule\n​\n%: %-default\n​\nThis rule allows for dynamic target names and is a placeholder for future extensions. It doesn't do anything by default (\n@true\nis a no-operation command), but it sets up a convention where targets can have\n-default\nversions that can be overridden.\nEdit this page\nPrevious\nGraph User Info\nNext\nVelero Backups\nMakefile Template\nTemplate Breakdown\nPreamble and Setup\nTargets and Phony Targets\nCATS DEV Cluster Development\nHelper Targets\nOverriding Pattern Rule\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:06:28.989995",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Makefile",
+        "description": "A Makefile is a file used by the make utility, a standard build automation tool available on Unix/Linux systems and environments that can emulate Unix toolchains. The purpose of a Makefile is to define a set of tasks to be executed. These tasks can include compiling source code into binary executables, cleaning up temporary files, installing software to system directories, and more. It essentially allows developers to automate the repetitive aspects of the build process.",
+        "links": [
+          "/",
+          "#makefile-template",
+          "#template-breakdown",
+          "#preamble-and-setup",
+          "#shell-specification",
+          "#operating-system-detection",
+          "#default-variables",
+          "#targets-and-phony-targets",
+          "#phony",
+          "#setup-and-development-targets",
+          "#docker-operations",
+          "#cats-dev-cluster-development",
+          "#aws-and-ecr-login",
+          "#helper-targets",
+          "#overriding-pattern-rule",
+          "#--default",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Makefile.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

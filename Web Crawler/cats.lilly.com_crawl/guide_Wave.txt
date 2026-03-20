@@ -1,0 +1,96 @@
+Title: **Wave : Auto Deployment Tool** | CATS
+URL: https://cats.lilly.com/guide/Wave
+Description: Enable auto deploy of app on secret change
+
+**Wave : Auto Deployment Tool** | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Overview
+Argo
+Backstage
+Bouncer
+Crossplane
+Flux
+Wave
+Kafka
+Karpenter
+PGadmin
+Reloader
+Restful SDK
+Self Service Toolkit
+Send Emails
+Smarter Device Manager
+Temporal
+Architecture
+Support
+Admin
+System Services
+Wave
+Wave : Auto Deployment Tool
+Enable auto deploy of app on secret change
+By default, K8s does not re-deploy the pods in a deployment if a secret referenced in an environment variable or mounted in a container changes.
+Wave
+is a controller that handles this update process.  It has been deployed in this cluster & can be used by apps.
+To enable Wave's syncing process for your app, add the below annotation to your deployment config:
+apiVersion
+:
+apps/v1
+kind
+:
+Deployment
+metadata
+:
+annotations
+:
+wave.pusher.com/update-on-config-change
+:
+"true"
+Edit this page
+Previous
+Flux
+Next
+Kafka
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Wave : Auto Deployment Tool
+Description: Enable auto deploy of app on secret change
+Links: /, https://github.com/wave-k8s/wave, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Wave.md

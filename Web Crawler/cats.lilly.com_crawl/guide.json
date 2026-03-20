@@ -1,0 +1,38 @@
+{
+  "url": "https://cats.lilly.com/guide/",
+  "title": "Introduction | CATS",
+  "description": "Welcome to the Cloud Applications and Technology as a Service (CATS) platform documentation. CATS serves as a pivotal tool for accelerating the development and migration of web applications to the cloud. Spearheaded by the SPE Tech and Platform team, CATS is built using Open Source and AWS services that are designed to make your job as a developer as easy as possible. This platform is tailored to modernize operational workflows, reduce costs, and significantly diminish deployment timelines.",
+  "h1": [
+    "Introduction"
+  ],
+  "h2": [
+    "Why CATS?​",
+    "CATS Components​"
+  ],
+  "h3": [
+    "Major Components at a Glance​"
+  ],
+  "text_content": "Introduction | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nWhat Is CATS?\nIntroduction\nOn this page\nIntroduction\nWelcome to the\nCloud Applications and Technology as a Service (CATS)\nplatform documentation. CATS serves as a pivotal tool for accelerating the development and migration of web applications to the cloud. Spearheaded by the SPE Tech and Platform team, CATS is built using Open Source and AWS services that are designed to make your job as a developer as easy as possible. This platform is tailored to modernize operational workflows, reduce costs, and significantly diminish deployment timelines.\nWant to get to know more about the CATS Platform? Ask\nCats Agent\nor\nCatsBot\n!\nWhy CATS?\n​\nCATS integrates a GitOps CI/CD methodology to create a seamless operational pipeline from development to production. It is not just a platform but a strategic ally in your cloud-native journey. Here are some of the key features that CATS brings to your development lifecycle:\nAzure AD Single Sign-On\n: CATS streamlines your authentication process by offering seamless access management across your applications through integration with Azure Active Directory. This ensures a frictionless sign-on experience, enhancing productivity and security.\nActive Directory Authorization\n: With CATS, you gain simple and fine-tuned control over user permissions, ensuring secure and appropriate access to resources. Our platform enables precise management of access rights, bolstering your security posture.\nOpinionated Automation\n: Transform your deployment cycles from weeks to hours with CATS's highly opinionated automation strategies. Our platform automates your workflows, allowing for swift and efficient application deployment.\nCentralized Operations\n: Monitor and manage all operational aspects from a single vantage point with CATS. Our centralized operations dashboard ensures peak performance, providing visibility into your entire infrastructure.\nRobust Security\n: CATS is committed to safeguarding your applications with multi-level vulnerability scanning and robust security protocols. Our comprehensive security measures protect your infrastructure from evolving threats.\nAuto DNS Provisioning\n: Enjoy automated DNS setup with CATS for all deployed solutions. Our platform automatically provisions DNS, simplifying domain management and enhancing your application's accessibility.\nManaged Certificates\n: CATS automatically provides and manages certificates for all deployed solutions, ensuring secure connections and data integrity without the manual hassle.\nIntegrated S3\n: Application teams can leverage AWS S3 buckets for storage out of the box with CATS. Our integrated S3 solution offers scalable and secure storage options, easily accessible to your applications.\nIntegrated RDS\n: Utilize Amazon RDS instances seamlessly with CATS. Our integrated RDS feature allows application teams to deploy relational databases efficiently, supporting scalable and reliable data management.\nEDB Native integration\n: CATS offers native integration with EnterpriseDB, providing advanced database capabilities and optimizations for your applications. Leverage this integration for high-performance database solutions.\nRED Data Ready\n: CATS is fully qualified to host applications handling red data, ensuring compliance and security for sensitive information.\nGxP Qualified\n: CATS has been qualified as GxP compliant, with related quality documentation readily available in our Quality Docs. Trust in our platform to meet your compliance needs effectively.\nCATS Components\n​\nCATS is an opinionated platform with a complex architecture, designed with components that aims to streamline your development and deployment workflows. At the heart of the platform are key components essential for hosting applications and overseeing authentication and permissions management. Below is a detailed diagram illustrating the CATS architecture and how each component work with one another.\nMajor Components at a Glance\n​\nEKS\n: Orchestrates the deployment and scaling of containerized applications within our Kubernetes cluster.\nEC2/Fargate\n: Provides the flexible compute resources needed to power your applications.\nGitHub Repository\n: A secure repository for your source code, integrated into the CI/CD pipeline.\nAzure Active Directory\n: Manages user authentication, ensuring secure access to the platform.\nBouncer\n: Handles nuanced authorization processes to keep your operations smooth and secure.\nAmazon ECR\n: Stores and manages container images, facilitating continuous deployment within the Kubernetes ecosystem.\nFor a deeper dive into each component and how they interlace to empower your cloud applications, continue to the respective sections of our documentation.\nEdit this page\nNext\nPlatform Overview\nWhy CATS?\nCATS Components\nMajor Components at a Glance\nLilly SPE Research Technology and Platforms",
+  "links_found": 6,
+  "depth": 0,
+  "crawled_at": "2026-03-20T14:56:30.865668",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Introduction",
+        "description": "Welcome to theCloud Applications and Technology as a Service (CATS)platform documentation. CATS serves as a pivotal tool for accelerating the development and migration of web applications to the cloud. Spearheaded by the SPE Tech and Platform team, CATS is built using Open Source and AWS services that are designed to make your job as a developer as easy as possible. This platform is tailored to modernize operational workflows, reduce costs, and significantly diminish deployment timelines.",
+        "links": [
+          "/",
+          "https://chat.lilly.com/cortex/chat/spe-platforms-model",
+          "https://chat.lilly.com/cortex/chat/catsbot",
+          "#why-cats",
+          "#cats-components",
+          "#major-components-at-a-glance",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/index.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

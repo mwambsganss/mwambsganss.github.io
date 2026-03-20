@@ -1,0 +1,37 @@
+{
+  "url": "https://cats.lilly.com/guide/SLAreports",
+  "title": "SLA Reports | CATS",
+  "description": "Below are detailed uptime metrics for each CATS environment, including outage dates and times, the core functionalities impacted, and additional relevant information.",
+  "h1": [
+    "SLA Reports"
+  ],
+  "h2": [
+    "Uptime Metrics 2025​",
+    "Monthly Production Report​",
+    "Quarterly QA Report​",
+    "Quarterly DEV Report​"
+  ],
+  "h3": [],
+  "text_content": "SLA Reports | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nImportant Announcement\nRelease Notes 2025\nRelease Notes 2024\nSLA Reports\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nNews\nSLA Reports\nOn this page\nSLA Reports\nBelow are detailed uptime metrics for each CATS environment, including outage dates and times, the core functionalities impacted, and additional relevant information.\nUptime Metrics 2025\n​\nTotal PRD Downtime: 10 Min\nPRD Uptime Percentage: 99.999%\nMonthly Production Report\n​\nMonth\nDate\nOutage Time\nPriority LVL\nSNOW ID\nCore Functionality Impacted\nOutage Details\nJanuary\n22\n9:52 AM EST - 10:02 AM EST\nP1\nN/A\nExternal Auth Route\nWe experienced a temporary issue with the CATS platform related to all external authentication routes today from 9:52 AM EST to 10:02 AM EST. This issue occurred due to the Bouncer External Authentication Service being unintentionally deleted and replaced during a sync operation we executed in the Argo Dashboard. We initially believed this action would be a “graceful restart” with no downtime. However, we have now learned that the sync and replace process deletes the existing component before recreating it, leading to a brief service disruption. Upon identifying the problem, we manually recreated the Bouncer service to restore functionality as quickly as possible. To prevent a recurrence, we are implementing measures to disable the “replace” option during syncs to ensure uninterrupted service.\nJanuary\n----\n-----\n-----\n----\n----\n-----\nQuarterly QA Report\n​\nQuarter\nDate\nOutage Time\nPriority LVL\nSNOW ID\nCore Functionality Impacted\nOutage Details\nOne\n-----\n-----\n-----\n-----\n-----\n----\nTwo\n-----\n-----\n-----\n-----\n-----\n----\nThree\n-----\n-----\n-----\n-----\n-----\n----\nFour\n-----\n-----\n-----\n-----\n-----\n----\nQuarterly DEV Report\n​\nQuarter\nDate\nOutage Time\nPriority LVL\nSNOW ID\nCore Functionality Impacted\nOutage Details\nOne\n-----\n-----\n-----\n-----\n-----\n----\nTwo\n-----\n-----\n-----\n-----\n-----\n----\nThree\n-----\n-----\n-----\n-----\n-----\n----\nFour\n-----\n-----\n-----\n-----\n-----\n----\nEdit this page\nPrevious\nRelease Notes 2024\nNext\nPrerequisites\nUptime Metrics 2025\nMonthly Production Report\nQuarterly QA Report\nQuarterly DEV Report\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 3,
+  "crawled_at": "2026-03-20T15:01:02.608907",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "SLA Reports",
+        "description": "Below are detailed uptime metrics for each CATS environment, including outage dates and times, the core functionalities impacted, and additional relevant information.",
+        "links": [
+          "/",
+          "#uptime-metrics-2025",
+          "#monthly-production-report",
+          "#quarterly-qa-report",
+          "#quarterly-dev-report",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/SLAreports.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

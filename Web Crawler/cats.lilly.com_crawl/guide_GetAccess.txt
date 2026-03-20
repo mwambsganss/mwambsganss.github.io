@@ -1,0 +1,191 @@
+Title: **Get Access** | CATS
+URL: https://cats.lilly.com/guide/GetAccess
+Description: To start deploying on the CATS Platform you will need to be added to a few different groups. We have convienently automated this proccess via the Developer FRONTDOOR! All you need to do is click the buttons to be automatically added to each group.
+
+**Get Access** | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+Prerequisites
+Get Access
+Deployment Overview
+Working With the Repo
+Containerization and Dockerfiles
+CODEOWNERS
+Deploying SaaS Solution
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+Jump Start
+Get Access
+On this page
+Get Access
+To start deploying on the CATS Platform you will need to be added to a few different groups. We have convienently automated this proccess via the Developer
+FRONTDOOR
+! All you need to do is click the buttons to be automatically added to each group.
+1. Github Group
+​
+Group Name
+: LRL_light_k8s_infra_write
+Location
+:
+Github
+Description
+: This is a Github group that provides users access to the repositories where deployment resources are defined. Once you are in this group you can see and work with the github repositories associated with the CATS Platform.
+Request Access
+- Follow the steps below to gain access
+Have a Github account that is a member of the Eli Lilly Github Organization. Follow
+these steps
+if that is not completed.
+Navigate to the
+FRONTDOOR
+and click the desginated button on the CATS Page to get added to the group.
+If you have a Github Account you will be automatically added to the group. If you do not have a Github account the automation will fail, send you an email with instructions on how to set up a Github account and have your account added to the Eli Lilly Github Organization. You will be instructed to try again once you have successfully set up your Github account.
+2. Dashboards Group
+​
+Group Name
+: lrl_cats_access_non_rids
+Location
+:
+AD Group Manager
+Description
+: This is an AD group that provides users access to various dashboards related to the CATS Platform.
+Request Access
+- Navigate to the
+FRONTDOOR
+and click the desginated button on the CATS Page to get added to the group.
+3. AWS Console and Cluster Access Group (CA Account)
+​
+Group Name
+: aws_light_devs
+Location
+:
+AD Group Manager
+Description
+: This is an AD group that requires you to have a CA account in order to gain access. Once you are a member of this group it will allow you to access the AWS Accounts where CATS is deployed and use many features in the AWS Console.
+Request Access
+- Follow the steps below to gain access
+Get a
+CA Account
+Navigate to the
+FRONTDOOR
+and click the desginated button on the CATS Page to get added to the group.
+If you have a CA Account you will be automatically added to the group. If you do not have a CA account the automation will fail, send you an email with instructions on how to get a CA account, and tell you to try again.
+4. Mailing List
+​
+Group Name
+: cats_mailing_list
+Location
+:
+AD Group Manager
+Description
+: When a member of this group the user will recieve communications related to the CATS Platform. Communications include notifications of downtimes, platform changes, release notes, etc.
+Request Access
+- Navigate to the
+FRONTDOOR
+and click the desginated button on the CATS Page to get added to the group.
+Sign In with CA Account
+​
+Many users struggle to sign in with their CA Account for the first time. The following workflow will help users sign in to the AWS Console but the same process is used to sign into any other service with the CA Account.
+have a CA account. You CA account will be structured like this:
+C233778-CA@llynet.com
+. You should replace your number and the ending will always be
+-CA@llynet.com
+.
+When opening the AWS console it is important that you do not navigate to the portal when you are already logged in with your normal profile. This happens to many users. It is important that you open a private browser where you are not logged in with any accounts and then navigate to the
+AWS Portal
+. When you get to the portal it will ask you to sign in. Be sure to sign in with your CA account. something like
+C233778-CA@llynet.com
+.
+The system will then ask you for your password. To get your password you need to go to a different browser and log into
+CyberArk
+with your normal account. Once you are logged in and have your password you use it to log into the AWS Portal. To find your password select which account you want to see the password for then click the show button. Copy your password and then paste it into the prompt in the private window to proceed.
+If you are in the aws_light_devs group you should see a landing page that looks like this:
+select which AWS account you want to login with and then select the role "aws_light_devs"
+You should be in the console and ready to go! To understand which AWS Accounts map to the various CATS Deployment Repos please take a look at this table:
+Cluster
+App Deployment Repo
+AWS Account Name
+AWS Account ID
+VPC Access
+Production Cluster
+infra_apps
+prod-igw-dx-researchit-light
+283234040926
+vpc-03bee17f69c9802b9
+QA Cluster
+infra_apps_qa
+qa-igw-dx-researchit-light
+474366589702
+vpc-058757a9c034d181c
+Development Cluster
+infra_apps_test
+dev-igw-dx-researchit-light
+408787358807
+vpc-069388414a9f87f40
+Sandbox Cluster
+infra_apps_sbx
+dev-igw-dx-lrl-researchit-light-sbx
+891377229906
+vpc-069388414a9f87f40
+Can't Login ?
+​
+Login troubleshooting tips found here!!
+If you login and see this screen and you are sure you are in the aws_light_devs group, this means you are logged in with your normal account. You may even see 0 accounts available to you.
+Here is a
+ServiceNow Article
+that may help you get properly logged in with the correct account as many users face this issue, especially on windows machines.
+Edit this page
+Previous
+Prerequisites
+Next
+Deployment Overview
+1. Github Group
+2. Dashboards Group
+3. AWS Console and Cluster Access Group (CA Account)
+4. Mailing List
+Sign In with CA Account
+Can't Login ?
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Get Access
+Description: To start deploying on the CATS Platform you will need to be added to a few different groups. We have convienently automated this proccess via the DeveloperFRONTDOOR! All you need to do is click the buttons to be automatically added to each group.
+Links: /, https://dev.lilly.com/docs/platforms-and-tools/cats/, #1-github-group, https://github.com/orgs/EliLillyCo/teams/lrl_light_k8s_infra_write, https://dev.lilly.com/docs/platforms-and-tools/github/, https://dev.lilly.com/docs/platforms-and-tools/cats/#onboarding-and-offboarding, #2-dashboards-group, https://idmportal.rf.lilly.com/IdentityManagement/default.aspx, https://dev.lilly.com/docs/platforms-and-tools/cats/#onboarding-and-offboarding, #3-aws-console-and-cluster-access-group-ca-account, https://idmportal.rf.lilly.com/IdentityManagement/default.aspx, https://elilillyco.stackenterprise.co/articles/481, https://dev.lilly.com/docs/platforms-and-tools/cats/#onboarding-and-offboarding, #4-mailing-list, https://idmportal.rf.lilly.com/IdentityManagement/default.aspx, https://dev.lilly.com/docs/platforms-and-tools/cats/#cats-mailing-list, #sign-in-with-ca-account, https://lilly-aws-login.awsapps.com/start/#/?tab=accounts, https://pvwa.lilly.com/PasswordVault/auth/saml/, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_sbx, #cant-login-, https://lilly.service-now.com/now/nav/ui/classic/params/target/kb_view.do%3Fsysparm_article%3DKB2052257, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/GetAccess.md

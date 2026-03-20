@@ -1,0 +1,2883 @@
+Title: Ingress | CATS
+URL: https://cats.lilly.com/guide/Ingress
+Description: An API object that manages external access to the services in a cluster, typically HTTP.
+
+Ingress | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Overview
+Namespace
+Deployment
+Service
+Ingress
+Ingress Patterns
+Compute and Workload Scheduling
+Scaling
+Storage
+CronJob
+Jobs
+Rate Limit
+External Secrets
+HelmRelease
+External Integrations
+Graph User Info
+Makefile
+Velero Backups
+RDS Database Restore
+Namespace Decommission
+S3 Lifecycle Tagging
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+K8s Configuration
+Ingress
+On this page
+Ingress
+An API object that manages external access to the services in a cluster, typically HTTP.
+Ingress may provide load balancing, SSL termination and name-based virtual hosting.
+Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
+Here is a simple example where an Ingress sends all its traffic to one Service:
+An Ingress may be configured to give Services externally-reachable URLs, load balance traffic, terminate SSL / TLS, and offer name-based virtual hosting. An Ingress controller is responsible for fulfilling the Ingress, usually with a load balancer, though it may also configure your edge router or additional frontends to help handle the traffic.
+An Ingress does not expose arbitrary ports or protocols. Exposing services other than HTTP and HTTPS to the internet typically uses a service of type Service.Type=NodePort or Service.Type=LoadBalancer.
+Overview
+​
+There are three types of ingress routes available on the CATS Platform
+apps.lrl.lilly.com
+- This is a
+browser based route
+that allows a user to be on or off the lilly network and requires the user to authenticate upon accessing.
+apps-internal.lrl.lilly.com
+- This is a
+browser based route
+that requires a user to be on the lilly network but does not force the user to authenticate.
+apps-api.lrl.lilly.com
+- This is a
+programmatic / script based route
+. If you are accessing an endpoint in CATS via a script, you will need to target this route. This route is not set up for browser based access. If you access an endpoint on this route via your browser, you will get an "invalid token" response.
+CATS Ingress Template
+​
+# Define an Ingress
+apiVersion
+:
+networking.k8s.io/v1
+kind
+:
+Ingress
+metadata
+:
+name
+:
+<ingress
+-
+name
+>
+namespace
+:
+<namespace
+-
+name
+>
+spec
+:
+rules
+:
+-
+host
+:
+<ingress
+-
+host
+>
+http
+:
+paths
+:
+-
+path
+:
+/
+pathType
+:
+Prefix
+backend
+:
+service
+:
+name
+:
+<service
+-
+name
+>
+port
+:
+number
+:
+<service
+-
+port
+>
+You need to replace the placeholder values with your desired configurations. Here's an explanation of the placeholders:
+Placeholder
+Description
+<namespace-name>
+The namespace where your ingress will be created.
+<ingress-name>
+The name of your ingress resource.
+<ingress-host>
+The host/domain associated with your ingress (e.g.,
+example.com
+).
+<service-name>
+The name of the service to which the ingress routes traffic.
+<service-port>
+The service port to which the ingress routes traffic.
+Ingress Routes in CATS
+​
+CATS Supports three different ingress routes:
+Authenticated route :
+*.apps.lrl.lilly.com
+Unauthenticated route :
+*.apps-internal.lrl.lilly.com
+Script Based Access route :
+*.apps-api.lrl.lilly.com
+Authenticated Route
+​
+For more details see Authorization section below
+Unauthenticated Route
+​
+For more details see Authorization section below
+Script Based Access Route
+​
+If users want to access data from apps hosted in CATS from a Notebook / script environment / CLI, there is a built-in way of securely providing this access.
+How to add a API access endpoint?
+​
+In addition to the regular apps.lrl.lilly.com domain which is intended for browser based app access, CATS has a apps-api.lrl.lilly.com domain.
+This domain is designed to allow programmatic access & is available only on the Lilly Network.  All the authorization "lilly groups" headers available in the main domain are available in this domain.
+To configure your app, add an Ingress resource with a apps-api.lrl.lilly.com domain.
+apiVersion
+:
+extensions/v1beta1
+kind
+:
+Ingress
+metadata
+:
+name
+:
+example
+-
+app
+namespace
+:
+example
+annotations
+:
+lilly.com/security_groups
+:
+|
+[
+{
+"Route": "/",
+"ADGroups": [ "ad_group1", "ad_group2" ]
+}
+]
+spec
+:
+rules
+:
+-
+host
+:
+example
+-
+app.apps
+-
+api.lrl.lilly.com
+http
+:
+paths
+:
+-
+path
+:
+'/'
+backend
+:
+serviceName
+:
+example
+-
+backend
+-
+service
+servicePort
+:
+80
+How to access your API endpoint?
+​
+You can access these API endpoints using one of the client libraries.  See supported languages below.
+R
+Python
+Routing and Middleware
+​
+Ingress naming conventions
+​
+For every environment (dev, qa, prd) you can have separate DNS names (
+xxx.apps.lrl.lilly.com
+). It is recommended to distinguish the environments by modifying the DNS names with appropriate suffixes (dev: -d, qa: -q, prd: NOTHING). So for an application
+xxx
+you will get
+xxx-d.apps.lrl.lilly.com
+in dev and
+xxx.apps.lrl.lilly.com
+in production.
+Custom Routing Middleware
+​
+If some specific request manipulation is required, use
+middlewares
+. Please note how the middleware is referenced -
+{middleware-namespace}-{middleware-name}@{traefik-configuration-provider}
+. You can always check the
+dashboard
+for any potential issues.
+Example Middleware that adds custom headers
+apiVersion
+:
+traefik.containo.us/v1alpha1
+kind
+:
+Middleware
+metadata
+:
+name
+:
+pgadmin
+-
+header
+namespace
+:
+indigo
+-
+dev
+spec
+:
+headers
+:
+customRequestHeaders
+:
+x-forwarded-proto
+:
+"https"
+x-forwarded-port
+:
+"443"
+---
+apiVersion
+:
+extensions/v1
+kind
+:
+Ingress
+metadata
+:
+name
+:
+indigo
+-
+pgadmin
+namespace
+:
+indigo
+-
+dev
+annotations
+:
+traefik.ingress.kubernetes.io/router.middlewares
+:
+indigo
+-
+dev
+-
+pgadmin
+-
+header@kubernetescrd
+spec
+:
+rules
+:
+-
+host
+:
+indigo
+-
+pgadmin
+-
+d.apps.lrl.lilly.com
+http
+:
+paths
+:
+-
+path
+:
+'/'
+pathType
+:
+Prefix
+backend
+:
+service
+name
+:
+indigo
+-
+pgadmin
+port
+:
+number
+:
+80
+Default Middleware Available
+​
+Compression (applies gzip compression to your route)
+​
+Example definition
+apiVersion
+:
+extensions/v1
+kind
+:
+Ingress
+metadata
+:
+name
+:
+indigo
+-
+pgadmin
+namespace
+:
+indigo
+-
+dev
+annotations
+:
+traefik.ingress.kubernetes.io/router.middlewares
+:
+[
+if you have other custom middleware
+,
+they can go here
+]
+,
+ingress
+-
+entry
+-
+compression@kubernetescrd
+spec
+:
+rules
+:
+-
+host
+:
+indigo
+-
+pgadmin
+-
+d.apps.lrl.lilly.com
+http
+:
+paths
+:
+-
+path
+:
+'/'
+pathType
+:
+Prefix
+backend
+:
+service
+:
+name
+:
+indigo
+-
+pgadmin
+port
+:
+number
+:
+80
+Rate Limit Middleware
+​
+If you would like to implement rate limiting you can do so via a middleware.
+Steps to add rate limit:
+Create custom rate limit middleware Kubernetes resource. Full Instructions
+HERE
+. Simple template to get started:
+apiVersion
+:
+traefik.io/v1alpha1
+kind
+:
+Middleware
+metadata
+:
+name
+:
+ratelimit
+-
+middleware
+namespace
+:
+your
+-
+namespace
+-
+name
+spec
+:
+rateLimit
+:
+average
+:
+100
+burst
+:
+200
+Attach your new rate limit middleware resource to your ingress via the following annotation. Be sure to update the name of your middleware to match the name defined in your middleware resource created in step 1.
+annotations
+:
+traefik.ingress.kubernetes.io/router.middlewares
+:
+ratelimit
+-
+middleware
+Redirect Middleware
+​
+If you would like to implement a traffic redirection from one host to another, you can do so via a middleware.
+Steps to add traffic host redirect:
+Create a
+Middleware
+using the following template to get started:
+apiVersion
+:
+traefik.containo.us/v1alpha1
+kind
+:
+Middleware
+metadata
+:
+name
+:
+userfacing
+-
+base
+-
+redirect
+namespace
+:
+<your
+-
+namespace
+>
+spec
+:
+redirectRegex
+:
+regex
+:
+.*
+# a regex pattern that matches the host(s) that you want to redirect
+replacement
+:
+https
+:
+//kubecost.apps.lrl.lilly.com
+# the new host that you want to redirect to
+Attach your new redirect middleware resource to your ingress via the following annotation. Be sure to update the name of your middleware to match the name defined in your middleware resource created in step 1.
+annotations
+:
+traefik.ingress.kubernetes.io/router.middlewares
+:
+kubecost
+-
+userfacing
+-
+base
+-
+redirect@kubernetescrd
+Authorization
+​
+All route authentication and authorization is enabled via the
+Bouncer
+system service. Bouncer provides annotations that you add to your Ingress resources to configure security, authentication, and user information headers.
+Built-in Endpoints
+Bouncer also exposes default endpoints for user info, group lookups, and token retrieval on all authenticated routes. See
+Bouncer Default Endpoints
+for details.
+Bouncer Annotations Quick Reference
+​
+The following table provides a quick reference of all available Bouncer annotations. Click on any annotation for detailed usage.
+Annotation
+Purpose
+Required
+lilly.com/security_groups
+Define authorization rules (AD groups, Azure apps, AWS roles)
+Yes (for authenticated routes)
+lilly.com/user_info_headers
+Pass user attributes to your application via headers
+No
+lilly.com/oauth_token_headers
+Configure OAuth tokens passed to your application
+No
+lilly.com/secure_headers
+Configure security headers (CSP, Referrer-Policy, X-Frame-Options)
+No
+lilly.com/lilly_user_summary_info_header_enable
+Enable base64-encoded user info header
+No
+lilly.com/on_unauthorized_page
+Custom unauthorized page URL
+No
+lilly.com/sign_in_feature_enable
+Trigger Microsoft authentication redirect
+No
+lilly.com/security_groups
+​
+Purpose:
+Define authorization rules to control who can access your application routes.
+Value:
+JSON array of security group rules.
+How it works:
+Rules use
+deny-first logic
+— access is denied unless a matching rule grants it
+Rules are evaluated from
+longest route to shortest route
+The
+first matching rule
+determines access
+Most apps should include a baseline
+/.*
+route rule
+Rule Options
+​
+Field
+Type
+Description
+Route
+string
+(Required)
+Path prefix regex pattern (
+RE2 syntax
+)
+Method
+string
+HTTP method filter (e.g.,
+GET
+,
+POST
+). If omitted, all methods allowed
+ADGroups
+string[]
+AD group names — allows if user is member of any listed group
+AllowAllUsers
+bool
+Allow all AD users (overrides
+ADGroups
+)
+DenyADGroups
+string[]
+AD groups to deny —
+overrides
+ADGroups
+and
+AllowAllUsers
+AzureClientIDs
+string[]
+Azure App Registration Client IDs for app-to-app auth
+AllowAllApps
+bool
+Allow all Azure apps in EliLillyCo tenant (overrides
+AzureClientIDs
+)
+AWSRoles
+string[]
+AWS Role ARNs to allow
+AWSAccountIds
+string[]
+AWS Account IDs to allow
+Example
+​
+annotations
+:
+lilly.com/security_groups
+:
+|
+[
+{
+"Route": "/admin/.*",
+"ADGroups": ["app_admins"],
+"Method": "POST"
+},
+{
+"Route": "/api/.*",
+"AzureClientIDs": ["88888888-4444-4444-4444-121212121212"],
+"AWSRoles": ["arn:aws:iam::123456:role/my_role"]
+},
+{
+"Route": "/",
+"ADGroups": ["app_users", "app_viewers"]
+}
+]
+caution
+Group name matching is
+CASE SENSITIVE
+.
+lilly.com/user_info_headers
+​
+Purpose:
+Pass authenticated user attributes to your application as HTTP headers.
+Value:
+JSON array of attribute-to-header mappings.
+Requires:
+lilly.com/security_groups
+must be defined.
+Available Attributes
+​
+Attribute
+Example Value
+Description
+name
+John Doe
+User's display name
+email
+user@lilly.com
+User's email address
+groups
+group1,group2,group3
+Comma-separated security groups
+extendedgroups
+group1,group2,group3@lilly.com
+Includes non-security-enabled groups (use only if needed)
+department
+Software Engineering
+User's department
+id
+a123456
+User's system ID (onPremisesSamAccountName)
+upn
+user@lilly.com
+User Principal Name from Azure
+basic-auth
+Basic <base64>
+Pre-validated basic auth header for legacy apps
+org-tree
+{...}
+JSON org hierarchy with managers
+Example
+​
+annotations
+:
+lilly.com/user_info_headers
+:
+|
+[
+{"attribute": "name", "header": "X-USER-NAME"},
+{"attribute": "email", "header": "X-USER-EMAIL"},
+{"attribute": "groups", "header": "X-USER-GROUPS"},
+{"attribute": "id", "header": "X-USER-ID"}
+]
+Filtering Groups
+​
+Use the optional
+filter
+field with a regex pattern to filter list attributes:
+annotations
+:
+lilly.com/user_info_headers
+:
+|
+[
+{"attribute": "groups", "header": "X-USER-GROUPS", "filter": "^app_.*"}
+]
+lilly.com/oauth_token_headers
+​
+Purpose:
+Configure OAuth tokens to be passed to your application.
+Value:
+JSON object mapping header names to scope lists.
+Default:
+{"Lilly-Authorization": "user.read openid profile email GroupMember.Read.All Group.Read.All User.Read User.Read.All"}
+Special scope:
+Use
+self
+to get the current platform auth token for calling other system services.
+note
+These headers are only set for Azure AD authenticated users, not AWS or other auth methods.
+Example: Custom scopes
+​
+annotations
+:
+lilly.com/oauth_token_headers
+:
+'{"Lilly-Authorization": "user.read openid profile email"}'
+Example: Disable OAuth headers (for AWS auth)
+​
+annotations
+:
+lilly.com/oauth_token_headers
+:
+'{}'
+lilly.com/secure_headers
+​
+Purpose:
+Configure security response headers (CSP, Referrer-Policy, X-Frame-Options) on a per-Ingress basis.
+Value:
+JSON object with security header configuration.
+Default Security Headers
+​
+Bouncer automatically applies these headers to all requests:
+Header
+Default Value
+Configurable
+X-XSS-Protection
+1; mode=block
+No
+X-Content-Type-Options
+nosniff
+No
+X-Frame-Options
+SAMEORIGIN
+Yes (requires cyber approval)
+Content-Security-Policy
+Not set
+Yes (opt-in)
+Referrer-Policy
+Not set
+Yes (opt-in)
+Configurable Fields
+​
+Field
+Type
+Default
+Description
+content_security_policy
+string
+""
+(not set)
+CSP header value
+csp_report_only
+bool
+false
+Use
+Content-Security-Policy-Report-Only
+instead
+referrer_policy
+string
+""
+(not set)
+Referrer-Policy header value
+x_frame_options
+string
+"SAMEORIGIN"
+X-Frame-Options value.
+Requires cyber approval to override.
+How it works:
+Only specified fields override defaults
+Empty string
+""
+preserves upstream headers (header won't be set by Bouncer)
+Invalid values are ignored (Bouncer logs a warning)
+Examples
+​
+Basic CSP for external CDN:
+annotations
+:
+lilly.com/secure_headers
+:
+'
+{
+"content_security_policy"
+:
+"default-src ''self'' https://cdn.example.com"
+}
+'
+Test CSP in report-only mode:
+annotations
+:
+lilly.com/secure_headers
+:
+'
+{
+"content_security_policy"
+:
+"default-src ''self''"
+,
+"csp_report_only"
+:
+true
+}
+'
+Multiple headers with multiline YAML:
+annotations
+:
+lilly.com/secure_headers
+:
+|
+{
+"content_security_policy": "default-src 'self'; script-src 'self' https://trusted.cdn.com",
+"referrer_policy": "no-referrer"
+}
+Override X-Frame-Options (requires cyber approval):
+annotations
+:
+# SECURITY NOTICE: Requires cyber security team approval
+lilly.com/secure_headers
+:
+'{"x_frame_options": "DENY"}'
+CSP Syntax in YAML
+Escape single quotes using double single quotes:
+''self''
+not
+'self'
+warning
+Always test CSP changes in report-only mode first (
+"csp_report_only": true
+) to avoid breaking your application.
+Troubleshooting Secure Headers
+​
+Issue
+Solution
+DAST scanners report duplicate headers
+Ensure annotation is properly formatted JSON
+Application breaks after adding CSP
+Use
+"csp_report_only": true
+first; check browser console for violations
+Inline scripts blocked
+Refactor to external scripts (recommended) or add
+'unsafe-inline'
+(not recommended)
+lilly.com/lilly_user_summary_info_header_enable
+​
+Purpose:
+Enable a base64-encoded
+Lilly-User
+header containing basic user info.
+Value:
+"true"
+to enable.
+Header Content (base64 decoded)
+​
+{
+"onPremisesSamAccountName"
+:
+"testuser"
+,
+"givenName"
+:
+"firstname"
+,
+"surname"
+:
+"lastname"
+,
+"mail"
+:
+"email@lilly.com"
+,
+"department"
+:
+"testdepartment"
+,
+"jobTitle"
+:
+"testjob"
+}
+Example
+​
+annotations
+:
+lilly.com/lilly_user_summary_info_header_enable
+:
+"true"
+lilly.com/on_unauthorized_page
+​
+Purpose:
+Specify a custom page to display when a user is unauthorized.
+Value:
+URL to fetch and return to unauthorized users.
+Example
+​
+annotations
+:
+lilly.com/on_unauthorized_page
+:
+"https://my-app.apps.lrl.lilly.com/unauthorized.html"
+lilly.com/sign_in_feature_enable
+​
+Purpose:
+Trigger Microsoft authentication redirect for unauthenticated users.
+Value:
+"true"
+to enable.
+How it works:
+When enabled, unauthenticated users are redirected to Microsoft login. After successful authentication, they return to your application with the authorization header set.
+Example
+​
+annotations
+:
+lilly.com/sign_in_feature_enable
+:
+"true"
+Authenticated Route Example
+​
+Complete example with multiple Bouncer annotations:
+apiVersion
+:
+networking.k8s.io/v1
+kind
+:
+Ingress
+metadata
+:
+name
+:
+example
+-
+app
+namespace
+:
+example
+annotations
+:
+lilly.com/security_groups
+:
+|
+[
+{
+"Route": "/",
+"ADGroups": [ "ad_group1", "ad_group2" ]
+}
+]
+lilly.com/user_info_headers
+:
+|
+[
+{"attribute": "name", "header": "X-USER-NAME"},
+{"attribute": "email", "header": "X-USER-EMAIL"},
+{"attribute": "groups", "header": "X-USER-GROUPS"}
+]
+lilly.com/secure_headers
+:
+'
+{
+"content_security_policy"
+:
+"default-src ''self''"
+}
+'
+spec
+:
+rules
+:
+-
+host
+:
+example
+-
+app.apps.lrl.lilly.com
+http
+:
+paths
+:
+-
+path
+:
+'/'
+pathType
+:
+Prefix
+backend
+:
+service
+:
+name
+:
+example
+-
+backend
+-
+service
+port
+:
+number
+:
+80
+Authentication Patterns
+​
+There are five different authentication patterns available for developers implementing an authenticated route:
+Standard Web Pattern
+- Browser-based SSO for web applications
+Azure APIM and Entra ID
+- Azure API Management integration
+Client Credentials
+- App-to-app authentication
+On Behalf of User (API)
+- Delegated API access
+AWS STS
+- AWS role-based authentication
+No Authentication
+​
+(accessible only on Lilly Network)
+To skip authentication altogether, use the annotation below (
+kubernetes.io/ingress.class: ingress-noauth
+) on your Ingress. The DNS name is now
+apps-internal
+as opposed to just
+apps
+.
+apiVersion
+:
+networking.k8s.io/v1
+kind
+:
+Ingress
+metadata
+:
+name
+:
+example
+namespace
+:
+example
+annotations
+:
+kubernetes.io/ingress.class
+:
+ingress
+-
+noauth
+spec
+:
+rules
+:
+-
+host
+:
+<app name
+>
+.apps
+-
+internal.lrl.lilly.com
+http
+:
+paths
+:
+-
+path
+:
+/
+pathType
+:
+Prefix
+backend
+:
+service
+name
+:
+<service name
+>
+port
+:
+number
+:
+5601
+Authentication with AWS Roles Ingress Routes
+​
+In some cases, users may want to leverage Bouncer's authorization of ingress routes for AWS Roles. In this case, no OAuth headers should be requested for the ingress. An example of this is available to test against in the CATS DEV cluster for the
+admin-testing-<main|hybrid|onprem>
+echo services (
+main example
+,
+hybrid example
+,
+onprem example
+). An example ingress is provided below:
+apiVersion
+:
+networking.k8s.io/v1
+kind
+:
+Ingress
+metadata
+:
+name
+:
+example
+namespace
+:
+example
+-
+ns
+annotations
+:
+lilly.com/security_groups
+:
+'[{"Route": "/.*", "Method": "GET", "AWSRoles": ["arn:aws:sts::408787358807:role/AWSReservedSSO_aws_light_devs_be5dfdb952b1974e"], "AWSAccountIds": ["408787358807"]}]'
+lilly.com/oauth_token_headers
+:
+'{}'
+spec
+:
+rules
+:
+-
+host
+:
+example.apps
+-
+api
+-
+d.lrl.lilly.com
+http
+:
+paths
+:
+-
+path
+:
+'/'
+pathType
+:
+Prefix
+backend
+:
+service
+:
+name
+:
+example
+-
+svc
+port
+:
+number
+:
+80
+In order to call such an endpoint, developers will need to implement AWS STS signing for requests sent to the endpoint. To do this, a set of signed headers must first be obtained from STS and then applied to the request submitted to the CATS-hosted endpoint. Example implementations are provided below for the CATS DEV
+admin-testing-main
+namespaced echo service. Developers with access to
+aws_light_devs
+can use this endpoint for testing. If obtaining credentials via the
+aws sso login --sso-session lilly --no-browser
+method, environment variables can be stashed to the current shell via:
+Example
+$HOME/.aws/config
+:
+[profile light-d-sso]
+output = json
+region = us-east-2
+sso_session = lilly
+sso_account_id = 408787358807
+sso_role_name = aws_light_devs
+[sso-session lilly]
+sso_start_url = https://lilly-aws-login.awsapps.com/start/
+sso_region = us-east-2
+sso_registration_scopes = sso:account:access
+Example command to export AWS environment variables:
+eval "$(aws configure export-credentials --profile light-d-sso --format env)"
+Python example using
+LightClient
+library:
+import
+json
+import
+requests
+from
+light_client
+import
+LIGHTClient
+#DEV | QA | PROD Clusters
+# PROD: LRL_Light_k8s_infra_apps
+# QA: LRL_light_k8s_infra_apps_qa
+# DEV: LRL_light_k8s_infra_apps_test
+client
+=
+LIGHTClient
+(
+env
+=
+"DEV"
+)
+url
+=
+"https://admin-testing-main-aws.apps-api-d.lrl.lilly.com/echo'"
+headers
+=
+{
+"Content-Type"
+:
+"application/json"
+}
+try
+:
+response
+=
+client
+.
+get
+(
+url
+=
+url
+,
+headers
+=
+headers
+,
+timeout
+=
+10
+)
+except
+requests
+.
+exceptions
+.
+ConnectTimeout
+as
+e
+:
+response
+=
+requests
+.
+Response
+(
+)
+response
+.
+_content
+=
+e
+response
+.
+status_code
+=
+503
+if
+response
+.
+status_code
+!=
+200
+:
+print
+(
+response
+.
+status_code
+)
+print
+(
+response
+.
+json
+(
+)
+)
+else
+:
+print
+(
+response
+.
+status_code
+)
+print
+(
+response
+.
+json
+(
+)
+)
+Javascript example using
+aws-sdk-v3
+:
+const
+{
+HttpRequest
+}
+=
+require
+(
+'@aws-sdk/protocol-http'
+)
+;
+const
+{
+SignatureV4
+}
+=
+require
+(
+'@aws-sdk/signature-v4'
+)
+;
+const
+{
+Sha256
+}
+=
+require
+(
+'@aws-crypto/sha256-universal'
+)
+;
+const
+{
+fromEnv
+}
+=
+require
+(
+'@aws-sdk/credential-provider-env'
+)
+;
+const
+{
+fromNodeProviderChain
+}
+=
+require
+(
+'@aws-sdk/credential-providers'
+)
+;
+// const credentialProvider = fromNodeProviderChain({
+//   //...any input of fromEnv(), fromSSO(), fromTokenFile(), fromIni(),
+//   // fromProcess(), fromInstanceMetadata(), fromContainerMetadata()
+//   // Optional. Custom STS client configurations overriding the default ones.
+//   clientConfig: { region: 'us-east-2' },
+// });
+const
+credentialProvider
+=
+fromEnv
+(
+{
+accessKeyId
+:
+process
+.
+env
+.
+AWS_ACCESS_KEY_ID
+,
+secretAccessKey
+:
+process
+.
+env
+.
+AWS_SECRET_ACCESS_KEY
+,
+sessionToken
+:
+process
+.
+env
+.
+AWS_SESSION_TOKEN
+}
+)
+;
+var
+sts_request
+=
+new
+HttpRequest
+(
+{
+hostname
+:
+"sts.amazonaws.com/"
+,
+protocol
+:
+"https:"
+,
+body
+:
+"Action=GetCallerIdentity&Version=2011-06-15"
+,
+headers
+:
+{
+'Content-Type'
+:
+'application/x-www-form-urlencoded; charset=utf-8'
+,
+'Host'
+:
+'sts.amazonaws.com'
+,
+}
+,
+method
+:
+'POST'
+,
+}
+)
+;
+let
+credentials
+=
+credentialProvider
+(
+)
+;
+credentials
+.
+then
+(
+(
+cred
+)
+=>
+{
+var
+signer
+=
+new
+SignatureV4
+(
+{
+credentials
+:
+cred
+,
+region
+:
+'us-east-1'
+,
+sha256
+:
+Sha256
+,
+service
+:
+'sts'
+}
+)
+;
+signer
+.
+sign
+(
+sts_request
+,
+{
+unsignableHeaders
+:
+new
+Set
+(
+[
+'x-amz-content-sha256'
+]
+)
+}
+)
+.
+then
+(
+(
+signed_sts_request
+)
+=>
+{
+var
+headers
+=
+{
+...
+signed_sts_request
+.
+headers
+,
+'User-Agent'
+:
+'javascript client example with aws-sdk-js-v3'
+,
+}
+delete
+headers
+[
+'Host'
+]
+;
+console
+.
+log
+(
+headers
+)
+fetch
+(
+'https://admin-testing-main-aws.apps-api-d.lrl.lilly.com/echo'
+,
+{
+headers
+:
+headers
+}
+)
+.
+then
+(
+response
+=>
+{
+if
+(
+!
+response
+.
+ok
+)
+{
+throw
+new
+Error
+(
+'CATS response was not ok'
+)
+;
+}
+return
+response
+.
+json
+(
+)
+;
+}
+)
+.
+then
+(
+data
+=>
+{
+console
+.
+log
+(
+'Data:'
+,
+data
+)
+;
+}
+)
+.
+catch
+(
+error
+=>
+{
+console
+.
+error
+(
+'Fetch error:'
+,
+error
+)
+;
+}
+)
+;
+}
+)
+;
+}
+,
+(
+err
+)
+=>
+{
+console
+.
+error
+(
+err
+)
+;
+}
+)
+;
+Javascript example using the
+aws4
+library:
+const
+AWS
+=
+require
+(
+'aws-sdk'
+)
+;
+const
+aws4
+=
+require
+(
+'aws4'
+)
+;
+class
+LightClient
+{
+constructor
+(
+)
+{
+this
+.
+headers
+=
+this
+.
+getSession
+(
+)
+;
+}
+/**
+*
+@name
+- getSession
+*
+@description
+- get temporary session from STS
+*/
+async
+getSession
+(
+)
+{
+AWS
+.
+config
+.
+update
+(
+{
+region
+:
+'us-east-2'
+}
+)
+;
+const
+credentials
+=
+new
+AWS
+.
+EnvironmentCredentials
+(
+'AWS'
+)
+;
+await
+credentials
+.
+getPromise
+(
+)
+;
+const
+requestData
+=
+{
+host
+:
+'sts.amazonaws.com'
+,
+path
+:
+'/'
+,
+service
+:
+'sts'
+,
+method
+:
+'POST'
+,
+headers
+:
+{
+'Content-Type'
+:
+'application/x-www-form-urlencoded; charset=utf-8'
+,
+}
+,
+body
+:
+'Action=GetCallerIdentity&Version=2011-06-15'
+,
+}
+;
+const
+signedRequest
+=
+aws4
+.
+sign
+(
+requestData
+,
+{
+accessKeyId
+:
+credentials
+.
+accessKeyId
+,
+sessionToken
+:
+credentials
+.
+sessionToken
+,
+secretAccessKey
+:
+credentials
+.
+secretAccessKey
+,
+}
+)
+;
+return
+Promise
+.
+resolve
+(
+signedRequest
+.
+headers
+)
+;
+}
+}
+async
+function
+buildHeader
+(
+)
+{
+try
+{
+const
+ll
+=
+new
+LightClient
+(
+)
+;
+const
+authHeaders
+=
+await
+ll
+.
+getSession
+(
+)
+;
+return
+{
+'User-Agent'
+:
+'javascript client example'
+,
+'X-Amz-Security-Token'
+:
+authHeaders
+[
+'X-Amz-Security-Token'
+]
+,
+'X-Amz-Date'
+:
+authHeaders
+[
+'X-Amz-Date'
+]
+,
+Authorization
+:
+authHeaders
+.
+Authorization
+,
+}
+;
+}
+catch
+(
+error
+)
+{
+console
+.
+log
+(
+'Error in buildHeader'
+)
+;
+console
+.
+log
+(
+error
+)
+;
+}
+}
+buildHeader
+(
+)
+.
+then
+(
+headers
+=>
+{
+console
+.
+log
+(
+headers
+)
+fetch
+(
+'https://admin-testing-main-aws.apps-api-d.lrl.lilly.com/echo'
+,
+{
+headers
+:
+headers
+}
+)
+.
+then
+(
+response
+=>
+{
+if
+(
+!
+response
+.
+ok
+)
+{
+throw
+new
+Error
+(
+'Network response was not ok'
+)
+;
+}
+return
+response
+.
+json
+(
+)
+;
+// Parse the response body as JSON
+}
+)
+.
+then
+(
+data
+=>
+{
+console
+.
+log
+(
+'Data:'
+,
+data
+)
+;
+}
+)
+.
+catch
+(
+error
+=>
+{
+console
+.
+error
+(
+'Fetch error:'
+,
+error
+)
+;
+}
+)
+;
+}
+)
+;
+Privileged accounts
+​
+If you need to protect your service with a privileged account access, you need to use your
+-CA
+accounts. Create an AD group with
+-CA
+account members only (e.g.
+Indigo_infrastructure
+).
+Request to have this group added to
+GAT_Private_Groups
+, otherwise neither Bouncer, nor the user of MS Graph API will be able to see your group membership (
+-CA accounts
+' membership is protected, hence it is not visible by default). See RITM2885602 for details.
+When accessing the protected service use a different browser to the one you use regularly (e.g. FireFox) to avoid any clashes (anonymous mode might work too) and as your email / User Principal Name (UPN) enter
+systemid-CA@llynet.com
+(e.g.
+xh01053-CA@llynet.com
+).
+Routing across multiple application (CORS avoidance)
+​
+By default each host name defined in Ingress resources can only be used once per namespace (i.e. application). Validation of the PR will fail should one namespace want to use a host name that is being used in a different namespace.
+If one application (i.e. namespace) needs to expose its api to a web UI of another (i.e. to avoid CORS issues in a browser), it needs to allow the use of its host name in a different namespace.
+This is performed in
+app_integrations.yml.config
+file in the namespace that is permitting the use of the host name.
+E.g. Indigo wants to use GeneKB's API. Two things need to happen:
+Indigo needs to allow GeneKB to use one of Indigo's hostnames:
+dev/indigo-dev/app_integrations.yml.config
+genekb-dev
+:
+ingress
+:
+reference
+:
+allowed
+host
+:
+indigo
+-
+d.apps.lrl.lilly.com
+GeneKB (
+genekb-dev
+) can now expose its service on Indigo's host (
+indigo-d.apps.lrl.lilly.com
+). Do note the use of middleware.
+Authentication needs to be set separately to any existing Ingresses
+See
+GeneKB example
+Streamlit App Routes
+​
+When application teams are deploying a streamlit application on the CATs Platform there is a manual step required involving some additional configuration in route53 involving a CNAME record entry.
+Streamlit Config Instructions
+​
+Modify the annotations field in the Ingress metadata to include traefik.ingress.kubernetes.io/router.middlewares for making socket connections and lilly.com/user_info_headers for security as shown below:
+apiVersion
+:
+networking.k8s.io/v1
+kind
+:
+Ingress
+metadata
+:
+name
+:
+<project
+-
+name
+>
+namespace
+:
+<namespace
+>
+annotations
+:
+traefik.ingress.kubernetes.io/router.middlewares
+:
+ingress
+-
+entry
+-
+compression@kubernetescrd
+lilly.com/user_info_headers
+:
+'[{"attribute": "name", "header": "X-USER-NAME"}, {"attribute": "email", "header": "X-USER-EMAIL"}, {"attribute": "groups", "header": "X-USER-GROUPS"}, {"attribute": "department", "header": "X-USER-DEPARTMENT"}, {"attribute": "id", "header": "X-USER-ID"}]'
+Ensure to configure livenessProbe and readinessProbe for maintaining a stable socket connection. The resource allocations can be adjusted based on your application's requirements.
+Port can be according to your deployment configuration.
+spec
+:
+containers
+:
+-
+image
+:
+<image
+-
+name
+>
+name
+:
+<application
+-
+name
+>
+resources
+:
+limits
+:
+memory
+:
+"2Gi"
+cpu
+:
+"4.0"
+requests
+:
+memory
+:
+"2Gi"
+cpu
+:
+"4.0"
+ports
+:
+-
+containerPort
+:
+8080
+livenessProbe
+:
+tcpSocket
+:
+port
+:
+8080
+initialDelaySeconds
+:
+10
+periodSeconds
+:
+20
+readinessProbe
+:
+tcpSocket
+:
+port
+:
+8080
+initialDelaySeconds
+:
+10
+periodSeconds
+:
+20
+The Dockerfile commands below are used to prepare a Streamlit application for a production-ready solution.
+Ensure to replace app.py with the correct path to your Streamlit application file
+.
+Port can be according to your deployment configuration.
+RUN mkdir -p ~/.streamlit && echo "[browser]\ngatherUsageStats = false" > ~/.streamlit/config.toml
+# Run app.py when the container launches
+CMD ["python", "-m", "streamlit", "run", "--server.enableCORS", "true", "--server.enableXsrfProtection", "true", "--server.address", "0.0.0.0", "--server.port", "8080", "app.py"]
+Please refer the below section to understand how to enable the WebSocket connection for your ingress.
+Enable WebSocket Connections
+​
+To enable the WebSocket connection in applications, Ingresses need to be annoataed. Please look at the below template which can be used to enable the WebSocket connection for your ingress.
+WebSocket Connection Ingress Template:
+​
+apiVersion
+:
+networking.k8s.io/v1
+kind
+:
+Ingress
+metadata
+:
+name
+:
+<ingress
+-
+name
+>
+namespace
+:
+<namespace
+>
+annotations
+:
+app.lilly.com/ack-recordset.websocket.standard
+:
+"<Ingress hosts to be enabled, separated by commas (', ')>"
+spec
+:
+rules
+:
+-
+host
+:
+<ingress
+-
+host
+-
+1
+>
+http
+:
+paths
+:
+-
+path
+:
+/
+pathType
+:
+Prefix
+backend
+:
+service
+:
+name
+:
+<service
+-
+name
+>
+port
+:
+number
+:
+<service
+-
+port
+>
+-
+host
+:
+<ingress
+-
+host
+-
+2
+>
+http
+:
+paths
+:
+-
+path
+:
+/
+pathType
+:
+Prefix
+backend
+:
+service
+:
+name
+:
+<service
+-
+name
+>
+port
+:
+number
+:
+<service
+-
+port
+>
+You need to replace the placeholder values with your desired configurations. Below is an explanation of each placeholder:
+Placeholder
+Description
+<ingress-host>
+The host or domain name associated with your ingress (e.g.,
+example.apps.lrl.lilly.com
+).
+<service-name>
+The name of the Kubernetes service to which the ingress routes traffic.
+<service-port>
+The port number of the Kubernetes service to which the ingress routes traffic.
+<namespace>
+The namespace where the ingress resource will be created.
+<ingress-name>
+The name of the ingress resource.
+Ensure that all placeholder values are replaced with the appropriate configurations before deploying the YAML file.
+Find below an example of how to enable the WebSocket connection for your ingress.
+​
+apiVersion
+:
+networking.k8s.io/v1
+kind
+:
+Ingress
+metadata
+:
+name
+:
+test
+-
+ingress
+namespace
+:
+admin
+-
+testing
+-
+dev
+annotations
+:
+app.lilly.com/ack-recordset.websocket.standard
+:
+"ack-one.sbx.cats.lilly.com, ack-two.sbx.cats.lilly.com"
+spec
+:
+rules
+:
+-
+host
+:
+ack
+-
+one.sbx.cats.lilly.com
+http
+:
+paths
+:
+-
+path
+:
+/hello
+pathType
+:
+Prefix
+backend
+:
+service
+:
+name
+:
+test
+-
+pod
+port
+:
+number
+:
+80
+-
+host
+:
+ack
+-
+two.sbx.cats.lilly.com
+http
+:
+paths
+:
+-
+path
+:
+/
+pathType
+:
+Prefix
+backend
+:
+service
+:
+name
+:
+test
+-
+pod
+port
+:
+number
+:
+5000
+Find Below the set of
+Hosted Zone Patterns
+. Currently these patterns are supported to be taken off the App Runner route and directly onto loadbalancer to allow web socket connections for the hosted applications. These are separated based on clusters DEV, QA, PROD.
+PROD
+​
+Hosted Zone
+*.bu.lilly.com
+*.gs.lilly.com
+*.lrl.lilly.com
+*.apps.lrl.lilly.com
+*.mq.lilly.com
+QA
+​
+Hosted Zone
+*.qa.bu.lilly.com
+*.apps-q.lrl.lilly.com
+DEV
+​
+Hosted Zone
+*.dev.bu.lilly.com
+*.apps-d.lrl.lilly.com
+*.dev.mq.lilly.com
+*.dev.dc.lilly.com
+Validations / Restrictions
+​
+The WebSocket connection is only supported for the Hosted Zone Patterns listed above. Any URL defined from the pattern outside of the above mentioned patterns will not be supported for WebSocket connection.
+The urls defined in the annotaion
+app.lilly.com/ack-recordset.websocket.standard
+should be the part of the list of Hosts defined in the Ingress spec.
+Note
+-
+1
+Please contact CATS Team if you want your Hosted Zone Pattern listed above and enable the WebSocket Connection for the applications.
+2
+WebSocket Ingress is supported only on the Lilly internal network.
+Customizing URLs
+​
+You do have the ability to customize your solutions URL if deployed on CATS. We have many options available out of the box that should fit your use case. The patterns provided are outlined below. If the team you are developing an application for does not roll up through one of our provided patterns we are open to adding more patterns. Reach out to the CATS team to explain your proposed use case. Use cases must be reusable patterns and not domains for individual solutions.
+Out-Of-The-Box Options
+​
+The effort to expand the available patterns is currently on going. This section displays our current offerings.
+As you know, there are three routes in the CATS cluster. Authenticated Route, Internal Route, API route. When it comes to customizing the url you want to use for each of these routes you can use the below tables to configure your URL. We have prioritized getting the Authenticated Routes (Apps) routes prioritized and into production so that application teams have access to patterns that are more suitable for the end users.
+If you need to use an
+Internal Route
+or
+API Route
+you will need to continue using the lrl pattern until the new routes are available.
+CURRENT OFFERINGS
+Description
+Domain Available
+Lilly Research Laboratories
+lrl.lilly.com
+Global Services
+gs.lilly.com
+Information Security
+is.lilly.com
+Business Unit
+bu.lilly.com
+Manufacturing and Quality
+mq.lilly.com
+Digital Core
+dc.lilly.com
+Digital Health
+dh.lilly.com
+CATS Platform
+cats.lilly.com
+Cortex Initiative Backend
+cortex.lilly.com
+Cortex Initiative Frontend
+chat.lilly.com
+Lilly Research Laboratories Services
+​
+top domain
+Route
+DEV
+QA
+PROD
+lrl.lilly.com
+Authenticated
+*.apps-d.lrl.lilly.com
+*.apps-q.lrl.lilly.com
+*.apps.lrl.lilly.com
+lrl.lilly.com
+Un-Authenticated
+*.apps-internal-d.lrl.lilly.com
+*.apps-internal-q.lrl.lilly.com
+*.apps-internal.lrl.lilly.com
+lrl.lilly.com
+API Route
+*.apps-api-d.lrl.lilly.com
+*.apps-api-q.lrl.lilly.com
+*.apps-api.lrl.lilly.com
+Global Services
+​
+top domain
+Route
+DEV
+QA
+PROD
+gs.lilly.com
+Authenticated
+*.dev.gs.lilly.com
+*.qa.gs.lilly.com
+*.gs.lilly.com
+Information Security
+​
+top domain
+Route
+DEV
+QA
+PROD
+is.lilly.com
+Authenticated
+*.dev.is.lilly.com
+*.qa.is.lilly.com
+*.is.lilly.com
+Business Units
+​
+top domain
+Route
+DEV
+QA
+PROD
+bu.lilly.com
+Authenticated
+*.dev.bu.lilly.com
+*.qa.bu.lilly.com
+*.bu.lilly.com
+Manufacturing and Quality
+​
+top domain
+Route
+DEV
+QA
+PROD
+mq.lilly.com
+Authenticated
+*.dev.mq.lilly.com
+*.qa.mq.lilly.com
+*.mq.lilly.com
+Digital Core
+​
+top domain
+Route
+DEV
+QA
+PROD
+dc.lilly.com
+Authenticated
+*.dev.dc.lilly.com
+*.qa.dc.lilly.com
+*.dc.lilly.com
+Digital Health
+​
+top domain
+Route
+DEV
+QA
+PROD
+dh.lilly.com
+Authenticated
+*.dev.dh.lilly.com
+*.qa.dh.lilly.com
+*.dh.lilly.com
+CATS Platform Services
+​
+top domain
+Route
+DEV
+QA
+PROD
+cats.lilly.com
+Authenticated
+*.dev.cats.lilly.com
+*.qa.cats.lilly.com
+*.cats.lilly.com
+Cortex Platform's Backend Routes
+​
+top domain
+Route
+DEV
+QA
+PROD
+cortex.lilly.com
+Authenticated
+*.dev.cortex.lilly.com
+*.qa.cortex.lilly.com
+*.cortex.lilly.com
+Cortex Platform's Frontend Routes
+​
+top domain
+Route
+DEV
+QA
+PROD
+chat.lilly.com
+Authenticated
+*.dev.chat.lilly.com
+*.qa.chat.lilly.com
+*.chat.lilly.com
+FUTURE OFFERINGS
+The following information relates to development effort that is currently in progress. Once completed we will make an announcement in cats club and update our docs.
+Some of the below patterns are live in their respective environments but the tables below outline all the patterns that will be available once this effort is completed. Please see the section above for the patterns that are currently available.
+When configuring your host within your ingress resource you simply need to follow our provided patterns. See some examples below for an explanation on how customizing urls works.
+Lilly Research Laboratories
+​
+top domain
+Route
+DEV
+QA
+PROD
+lrl.lilly.com
+Authenticated
+*.dev.lrl.lilly.com
+*.qa.lrl.lilly.com
+*.lrl.lilly.com
+lrl.lilly.com
+Un-Authenticated
+*.internal-d.lrl.lilly.com
+*.internal-q.lrl.lilly.com
+*.internal.lrl.lilly.com
+lrl.lilly.com
+API Route
+*.api-d.lrl.lilly.com
+*.api-q.lrl.lilly.com
+*.api.lrl.lilly.com
+Global Services
+​
+top domain
+Route
+DEV
+QA
+PROD
+gs.lilly.com
+Authenticated
+*.dev.gs.lilly.com
+*.qa.gs.lilly.com
+*.gs.lilly.com
+gs.lilly.com
+Un-Authenticated
+*.internal-d.gs.lilly.com
+*.internal-q.gs.lilly.com
+*.internal.gs.lilly.com
+gs.lilly.com
+API Route
+*.api-d.gs.lilly.com
+*.api-q.gs.lilly.com
+*.api.gs.lilly.com
+Information Security
+​
+top domain
+Route
+DEV
+QA
+PROD
+is.lilly.com
+Authenticated
+*.dev.is.lilly.com
+*.qa.is.lilly.com
+*.is.lilly.com
+is.lilly.com
+Un-Authenticated
+*.internal-d.is.lilly.com
+*.internal-q.is.lilly.com
+*.internal.is.lilly.com
+is.lilly.com
+API Route
+*.api-d.is.lilly.com
+*.api-q.is.lilly.com
+*.api.is.lilly.com
+Business Units
+​
+top domain
+Route
+DEV
+QA
+PROD
+bu.lilly.com
+Authenticated
+*.dev.bu.lilly.com
+*.qa.bu.lilly.com
+*.bu.lilly.com
+bu.lilly.com
+Un-Authenticated
+*.internal-d.bu.lilly.com
+*.internal-q.bu.lilly.com
+*.internal.bu.lilly.com
+bu.lilly.com
+API Route
+*.api-d.bu.lilly.com
+*.api-q.bu.lilly.com
+*.api.bu.lilly.com
+Manufacturing and Quality
+​
+top domain
+Route
+DEV
+QA
+PROD
+mq.lilly.com
+Authenticated
+*.dev.mq.lilly.com
+*.qa.mq.lilly.com
+*.mq.lilly.com
+mq.lilly.com
+Un-Authenticated
+*.internal-d.mq.lilly.com
+*.internal-q.mq.lilly.com
+*.internal.mq.lilly.com
+mq.lilly.com
+API Route
+*.api-d.mq.lilly.com
+*.api-q.mq.lilly.com
+*.api.mq.lilly.com
+Digital Core
+​
+top domain
+Route
+DEV
+QA
+PROD
+dc.lilly.com
+Authenticated
+*.dev.dc.lilly.com
+*.qa.dc.lilly.com
+*.dc.lilly.com
+dc.lilly.com
+Un-Authenticated
+*.internal-d.dc.lilly.com
+*.internal-q.dc.lilly.com
+*.internal.dc.lilly.com
+dc.lilly.com
+API Route
+*.api-d.dc.lilly.com
+*.api-q.dc.lilly.com
+*.api.dc.lilly.com
+Digital Health
+​
+top domain
+Route
+DEV
+QA
+PROD
+dh.lilly.com
+Authenticated
+*.dev.dh.lilly.com
+*.qa.dh.lilly.com
+*.dh.lilly.com
+dh.lilly.com
+Un-Authenticated
+*.internal-d.dh.lilly.com
+*.internal-q.dh.lilly.com
+*.internal.dh.lilly.com
+dh.lilly.com
+API Route
+*.api-d.dh.lilly.com
+*.api-q.dh.lilly.com
+*.api.dh.lilly.com
+CATS Platform Services
+​
+top domain
+Route
+DEV
+QA
+PROD
+cats.lilly.com
+Authenticated
+*.dev.cats.lilly.com
+*.qa.cats.lilly.com
+*.cats.lilly.com
+cats.lilly.com
+Un-Authenticated
+*.internal-d.cats.lilly.com
+*.internal-q.cats.lilly.com
+*.internal.cats.lilly.com
+cats.lilly.com
+API Route
+*.api-d.cats.lilly.com
+*.api-q.cats.lilly.com
+*.api.cats.lilly.com
+Cortex Platform's Backend Routes
+​
+top domain
+Route
+DEV
+QA
+PROD
+cortex.lilly.com
+Authenticated
+*.dev.cortex.lilly.com
+*.qa.cortex.lilly.com
+*.cortex.lilly.com
+cortex.lilly.com
+Un-Authenticated
+*.internal-d.cortex.lilly.com
+*.internal-q.cortex.lilly.com
+*.internal.cortex.lilly.com
+cortex.lilly.com
+API Route
+*.api-d.cortex.lilly.com
+*.api-q.cortex.lilly.com
+*.api.cortex.lilly.com
+cortex.lilly.com
+API Route
+api.dev.cortex.lilly.com
+api.qa.cortex.lilly.com
+api.cortex.lilly.com
+Cortex Platform's Frontend Routes
+​
+top domain
+Route
+DEV
+QA
+PROD
+chat.lilly.com
+Authenticated
+*.dev.chat.lilly.com
+*.qa.chat.lilly.com
+*.chat.lilly.com
+chat.lilly.com
+Un-Authenticated
+*.internal-d.chat.lilly.com
+*.internal-q.chat.lilly.com
+*.internal.chat.lilly.com
+chat.lilly.com
+API Route
+*.api-d.chat.lilly.com
+*.api-q.chat.lilly.com
+*.api.chat.lilly.com
+VaHub
+​
+top domain
+Route
+DEV
+QA
+PROD
+apps.vahub.lilly.com
+Authenticated
+*.dev.apps.vahub.lilly.com
+*.qa.apps.vahub.lilly.com
+*.apps.vahub.lilly.com
+apps.vahub.lilly.com
+Un-Authenticated
+*.internal-d.apps.vahub.lilly.com
+*.internal-q.apps.vahub.lilly.com
+*.internal.apps.vahub.lilly.com
+apps.vahub.lilly.com
+API Route
+*.api-d.apps.vahub.lilly.com
+*.api-q.apps.vahub.lilly.com
+*.api.apps.vahub.lilly.com
+Request New Custom Domain
+​
+If the team you are developing an application for does not roll up through one of our provided patterns we are open to adding more patterns. Reach out to the CATS team to explain your proposed use case. Use cases must be reusable patterns and not domains for individual solutions.
+Reach out to a member of the CATS platform team with the domain you would like created. He will then create a new Route53 Hosted-Zone and provide you with four nameservers.
+The Requestor will submit this service request,
+Telecom DDI - Global Zones and Delegated Zones
+, utilizing the nameservers provided by the platform team.
+Once completed and approved please let the Platform Team know and we will do some backend work to enable the new domain!
+Edit this page
+Previous
+Service
+Next
+Ingress Patterns
+Overview
+CATS Ingress Template
+Ingress Routes in CATS
+Authenticated Route
+Unauthenticated Route
+Script Based Access Route
+Routing and Middleware
+Ingress naming conventions
+Custom Routing Middleware
+Default Middleware Available
+Compression (applies gzip compression to your route)
+Rate Limit Middleware
+Redirect Middleware
+Authorization
+Bouncer Annotations Quick Reference
+lilly.com/security_groups
+lilly.com/user_info_headers
+lilly.com/oauth_token_headers
+lilly.com/secure_headers
+lilly.com/lilly_user_summary_info_header_enable
+lilly.com/on_unauthorized_page
+lilly.com/sign_in_feature_enable
+Authenticated Route Example
+Authentication Patterns
+No Authentication
+Authentication with AWS Roles Ingress Routes
+Privileged accounts
+Routing across multiple application (CORS avoidance)
+Streamlit App Routes
+Enable WebSocket Connections
+WebSocket Connection Ingress Template:
+Validations / Restrictions
+Customizing URLs
+Out-Of-The-Box Options
+Request New Custom Domain
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Ingress
+Description: An API object that manages external access to the services in a cluster, typically HTTP.
+Links: /, #overview, #cats-ingress-template, #ingress-routes-in-cats, #authenticated-route, #unauthenticated-route, #script-based-access-route, #how-to-add-a-api-access-endpoint, #how-to-access-your-api-endpoint, https://client-r.apps.lrl.lilly.com/, https://client-python.apps.lrl.lilly.com/, #routing-and-middleware, #ingress-naming-conventions, #custom-routing-middleware, https://doc.traefik.io/traefik/middlewares/overview/, https://traefik-dashboard.apps.lrl.lilly.com/dashboard/#/, #default-middleware-available, #compression-applies-gzip-compression-to-your-route, #rate-limit-middleware, /guide/RateLimit, #redirect-middleware, #authorization, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer, /guide/Bouncer#default-endpoints, #bouncer-annotations-quick-reference, #lillycomsecurity_groups, #lillycomuser_info_headers, #lillycomoauth_token_headers, #lillycomsecure_headers, #lillycomlilly_user_summary_info_header_enable, #lillycoomon_unauthorized_page, #lillycomsign_in_feature_enable, #lillycomsecurity_groups, #rule-options, https://github.com/google/re2/wiki/Syntax, #example, #lillycomuser_info_headers, #available-attributes, #example-1, #filtering-groups, #lillycomoauth_token_headers, #example-custom-scopes, #example-disable-oauth-headers-for-aws-auth, #lillycomsecure_headers, #default-security-headers, #configurable-fields, #examples, #troubleshooting-secure-headers, #lillycomlilly_user_summary_info_header_enable, #header-content-base64-decoded, #example-2, #lillycomon_unauthorized_page, #example-3, #lillycomsign_in_feature_enable, #example-4, #authenticated-route-example, #authentication-patterns, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---standard-web-pattern-on-behalf-of-user, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---azure-apim, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---client-credentials, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---on-behalf-of-user-api, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---aws-sts, #no-authentication, #authentication-with-aws-roles-ingress-routes, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test/blob/9c59212e05c7044c7a0df4819da931fd1e87efc8/projects/dev/admin-testing-main-dev/echo.yaml#L105-L126, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test/blob/9c59212e05c7044c7a0df4819da931fd1e87efc8/projects/dev/admin-testing-hybrid-dev/echo.yaml#L115-L136, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test/blob/9c59212e05c7044c7a0df4819da931fd1e87efc8/projects/dev/admin-testing-onprem-dev/echo.yaml#L106-L127, #privileged-accounts, https://elilillyco.stackenterprise.co/articles/481, #routing-across-multiple-application-cors-avoidance, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/tree/main/projects/dev/genekb-dev/indigo-integration.yml, #streamlit-app-routes, #streamlit-config-instructions, #enable-websocket-connections, #websocket-connection-ingress-template, #find-below-an-example-of-how-to-enable-the-websocket-connection-for-your-ingress, #prod, #qa, #dev, #validations--restrictions, #customizing-urls, #out-of-the-box-options, #lilly-research-laboratories-services, #global-services, #information-security, #business-units, #manufacturing-and-quality, #digital-core, #digital-health, #cats-platform-services, #cortex-platforms-backend-routes, #cortex-platforms-frontend-routes, #lilly-research-laboratories, #global-services-1, #information-security-1, #business-units-1, #manufacturing-and-quality-1, #digital-core-1, #digital-health-1, #cats-platform-services-1, #cortex-platforms-backend-routes-1, #cortex-platforms-frontend-routes-1, #vahub, #request-new-custom-domain, https://lilly.service-now.com/ess/view_content_search.do?v=1&uri=com.glideapp.servicecatalog_cat_item_view.do%3Fv%3D1%26sysparm_id%3Dd010f3f20fcf790028ed6509b1050e52%26sysparm_link_parent%3Dc0aafa126f431500fe289be44b3ee409%26sysparm_catalog%3De0d08b13c3330100c8b837659bba8fb4&sysparm_document_key=sc_cat_item,d010f3f20fcf790028ed6509b1050e52, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Ingress.md

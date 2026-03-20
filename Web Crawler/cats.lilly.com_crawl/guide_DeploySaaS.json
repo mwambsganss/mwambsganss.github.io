@@ -1,0 +1,28 @@
+{
+  "url": "https://cats.lilly.com/guide/DeploySaaS",
+  "title": "Deploying SaaS Solution | CATS",
+  "description": "If you want to deploy a SaaS solution on CATS, kindly reach out to a community member who has already worked through this process to discuss their experience deploying SaaS solutions on CATS. They will provide details surrounding the process and how the process worked.",
+  "h1": [
+    "Deploying SaaS Solution"
+  ],
+  "h2": [],
+  "h3": [],
+  "text_content": "Deploying SaaS Solution | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nPrerequisites\nGet Access\nDeployment Overview\nWorking With the Repo\nContainerization and Dockerfiles\nCODEOWNERS\nDeploying SaaS Solution\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nJump Start\nDeploying SaaS Solution\nDeploying SaaS Solution\nIf you want to deploy a SaaS solution on CATS, kindly reach out to a community member who has already worked through this process to discuss their experience deploying SaaS solutions on CATS. They will provide details surrounding the process and how the process worked.\nTODO: Further Define process and document here\nSaaS Solutions Deployed\nContact\nDescription\nBioTuring\nAbhi Malatpure\nDeployed Via HelmChart\n... The BioTuring BBrowserX is a state-of-the-art data visualization and analysis tool that provides researchers with a streamlined, user-friendly Graphical User Interface (GUI) platform for analyzing single-cell datasets. Its built-in GPU acceleration gives BBrowserX the power to scale up to millions of cells.\nLiveDesign SaaS Projects?\nNathan Morin\nDetails Coming Soon!\nEdit this page\nPrevious\nCODEOWNERS\nNext\nOverview\nLilly SPE Research Technology and Platforms",
+  "links_found": 1,
+  "depth": 3,
+  "crawled_at": "2026-03-20T15:00:28.987361",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Deploying SaaS Solution",
+        "description": "If you want to deploy a SaaS solution on CATS, kindly reach out to a community member who has already worked through this process to discuss their experience deploying SaaS solutions on CATS. They will provide details surrounding the process and how the process worked.",
+        "links": [
+          "/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/DeploySaaS.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

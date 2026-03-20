@@ -1,0 +1,877 @@
+Title: Cluster Self-Service Toolkit | CATS
+URL: https://cats.lilly.com/guide/ClusterSelfServiceToolkit
+Description: The Cluster Self-Service Toolkit is a powerful platform feature that provides application teams with a comprehensive set of pre-configured assets for securely managing resources external to their Kubernetes clusters. This toolkit is automatically deployed when a namespace with hybrid compute type (annotation app.lrl.lilly.com/compute: hybrid) is created, enabling teams to interact with external resources without requiring direct access to those systems.
+
+Cluster Self-Service Toolkit | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Overview
+Argo
+Backstage
+Bouncer
+Crossplane
+Flux
+Wave
+Kafka
+Karpenter
+PGadmin
+Reloader
+Restful SDK
+Self Service Toolkit
+Send Emails
+Smarter Device Manager
+Temporal
+Architecture
+Support
+Admin
+System Services
+Self Service Toolkit
+On this page
+Cluster Self-Service Toolkit
+The Cluster Self-Service Toolkit is a powerful platform feature that provides application teams with a comprehensive set of pre-configured assets for securely managing resources external to their Kubernetes clusters. This toolkit is automatically deployed when a namespace with
+hybrid
+compute type (annotation
+app.lrl.lilly.com/compute: hybrid
+) is created, enabling teams to interact with external resources without requiring direct access to those systems.
+Overview
+​
+The Self-Service Toolkit follows a security-first approach, creating a controlled environment where application teams can interact with their external resources. All resources in this toolkit have the
+managed--
+prefix, indicating that they are created, owned, and managed by the CATS platform. These resources cannot be modified through ArgoCD as they fall under platform management.
+Recent Changes
+As of March 2025, the toolkit has been streamlined to focus on providing the core credential infrastructure (ServiceAccount, IAM Role/Policy, and SecretStore) without automatically deploying an AWS CLI pod. Teams that need interactive AWS CLI access can now
+deploy their own AWS CLI pod
+using the pre-configured service account. This change provides more flexibility and reduces resource overhead.
+Features at a Glance
+​
+The Cluster Self-Service Toolkit includes the following key features:
+Feature
+Description
+Activation
+Service Account
+Kubernetes ServiceAccount with AWS IAM role annotations for IRSA
+Automatic
+IAM Roles & Policies
+Namespace-scoped permissions for AWS resource access
+Automatic
+External Secrets Integration
+Pre-configured SecretStore for AWS Secrets Manager integration
+Automatic
+Bouncer Logs Analysis
+Athena query access through Grafana for application traffic analysis
+On-request
+Architecture & Implementation
+​
+Each component of the Self-Service Toolkit is designed to work together to provide a secure and efficient experience for application teams, following core security and platform engineering principles:
+Security Boundaries
+​
+The toolkit implements strict security boundaries, ensuring that each namespace can only perform operations on external resources that follow the naming convention
+cats/<namespace-name>/*
+. This namespace-based isolation ensures that:
+Resource Isolation
+: All resources are isolated to their specific namespace
+Least Privilege
+: IAM policies grant only the minimum necessary permissions
+Audit Trail
+: All operations performed are logged for accountability and compliance
+Managed Infrastructure
+: Resources are platform-controlled to ensure security and consistency
+Automatically Provisioned Resources
+​
+When you create a namespace with the
+app.lrl.lilly.com/compute: hybrid
+annotation, the following resources are automatically created via Kyverno policies:
+Resource
+Name
+Purpose
+ServiceAccount
+managed--self-service-sa
+Kubernetes ServiceAccount with IRSA configuration for AWS authentication
+IAM Policy
+managed--self-service-iam-policy
+AWS IAM policy defining namespace-scoped permissions
+IAM Role
+managed--self-service-iam-role
+AWS IAM role with trust relationship for EKS IRSA
+SecretStore
+managed--self-service-secretstore
+External Secrets Operator store for AWS Secrets Manager
+These resources work together to provide a complete infrastructure for securely accessing AWS services from your Kubernetes workloads.
+Supporting Resources
+​
+The toolkit also configures several supporting resources:
+Network Policies
+: Ensuring proper network isolation and security
+IRSA Configuration
+: Service account annotations linking Kubernetes and AWS IAM identities
+Cross-Account Support
+: Ability to access AWS resources in different accounts when configured
+info
+If you are interested in the detailed architecture of this feature, check out our platform designs documentation for the toolkit
+here
+.
+Best Practices
+​
+Use the managed service account
+: Reference
+managed--self-service-sa
+in your pod specifications to leverage AWS IRSA authentication
+Follow naming conventions
+: All AWS resources must follow the pattern
+cats/<namespace-name>/<resource-name>
+Do not modify managed resources
+: Resources with the
+managed--
+prefix are platform-controlled and should not be modified through ArgoCD
+Leverage External Secrets
+: Use the pre-configured SecretStore for secrets management instead of mounting AWS credentials
+Principle of least privilege
+: The IAM policies are scoped to your namespace - request additional permissions through the platform team if needed
+Reference the
+External Secrets documentation
+for best practices on secrets management
+Toolkit Features
+​
+Service Account
+​
+The toolkit automatically creates a Kubernetes ServiceAccount named
+managed--self-service-sa
+with AWS IAM Role for Service Account (IRSA) configuration. This service account:
+Is annotated with the appropriate IAM role ARN for AWS authentication
+Enables pods in your namespace to assume the IAM role and access AWS resources
+Works seamlessly with External Secrets Operator and other AWS SDK integrations
+Follows the principle of least privilege with namespace-scoped permissions
+Using the Service Account
+​
+To use AWS credentials in your pods, reference the service account in your deployment specification:
+apiVersion
+:
+apps/v1
+kind
+:
+Deployment
+metadata
+:
+name
+:
+my
+-
+app
+namespace
+:
+my
+-
+namespace
+spec
+:
+replicas
+:
+1
+selector
+:
+matchLabels
+:
+app
+:
+my
+-
+app
+template
+:
+metadata
+:
+labels
+:
+app
+:
+my
+-
+app
+spec
+:
+serviceAccountName
+:
+managed
+-
+-
+self
+-
+service
+-
+sa
+containers
+:
+-
+name
+:
+app
+image
+:
+my
+-
+app
+:
+latest
+env
+:
+-
+name
+:
+AWS_REGION
+value
+:
+us
+-
+east
+-
+2
+resources
+:
+requests
+:
+cpu
+:
+100m
+memory
+:
+128Mi
+limits
+:
+cpu
+:
+500m
+memory
+:
+512Mi
+When using the managed service account, AWS SDKs and CLI tools will automatically discover and use the IAM role credentials through IRSA.
+Example: Using AWS SDK in Python
+​
+import
+boto3
+# AWS SDK automatically uses IRSA credentials from the service account
+secrets_client
+=
+boto3
+.
+client
+(
+'secretsmanager'
+,
+region_name
+=
+'us-east-2'
+)
+# List secrets in your namespace
+response
+=
+secrets_client
+.
+list_secrets
+(
+Filters
+=
+[
+{
+'Key'
+:
+'name'
+,
+'Values'
+:
+[
+'cats/my-namespace/'
+]
+}
+]
+)
+for
+secret
+in
+response
+[
+'SecretList'
+]
+:
+print
+(
+f"Secret:
+{
+secret
+[
+'Name'
+]
+}
+"
+)
+Example: Using AWS SDK in Node.js
+​
+const
+{
+SecretsManagerClient
+,
+ListSecretsCommand
+}
+=
+require
+(
+"@aws-sdk/client-secrets-manager"
+)
+;
+// AWS SDK automatically uses IRSA credentials from the service account
+const
+client
+=
+new
+SecretsManagerClient
+(
+{
+region
+:
+"us-east-2"
+}
+)
+;
+async
+function
+listSecrets
+(
+)
+{
+const
+command
+=
+new
+ListSecretsCommand
+(
+{
+Filters
+:
+[
+{
+Key
+:
+"name"
+,
+Values
+:
+[
+"cats/my-namespace/"
+]
+}
+]
+}
+)
+;
+const
+response
+=
+await
+client
+.
+send
+(
+command
+)
+;
+response
+.
+SecretList
+.
+forEach
+(
+secret
+=>
+{
+console
+.
+log
+(
+`
+Secret:
+${
+secret
+.
+Name
+}
+`
+)
+;
+}
+)
+;
+}
+listSecrets
+(
+)
+;
+Deploying Your Own AWS CLI Pod
+​
+If you need interactive AWS CLI access for testing or administrative tasks, you can deploy your own AWS CLI pod using the managed service account. This gives you flexibility to customize the container image, resource limits, and other settings.
+Example AWS CLI Deployment
+​
+Create a file named
+aws-cli-deployment.yaml
+in your application repository:
+apiVersion
+:
+apps/v1
+kind
+:
+Deployment
+metadata
+:
+name
+:
+aws
+-
+cli
+namespace
+:
+my
+-
+namespace
+spec
+:
+replicas
+:
+1
+selector
+:
+matchLabels
+:
+app
+:
+aws
+-
+cli
+template
+:
+metadata
+:
+labels
+:
+app
+:
+aws
+-
+cli
+spec
+:
+serviceAccountName
+:
+managed
+-
+-
+self
+-
+service
+-
+sa
+containers
+:
+-
+name
+:
+aws
+-
+cli
+image
+:
+amazon/aws
+-
+cli
+:
+latest
+command
+:
+[
+"/bin/sh"
+,
+"-c"
+,
+"while true; do sleep 3600; done"
+]
+env
+:
+-
+name
+:
+AWS_REGION
+value
+:
+us
+-
+east
+-
+2
+resources
+:
+requests
+:
+cpu
+:
+50m
+memory
+:
+64Mi
+limits
+:
+cpu
+:
+100m
+memory
+:
+128Mi
+Accessing the AWS CLI Pod
+​
+Deploy the AWS CLI pod through your normal deployment process (ArgoCD, kubectl, etc.)
+Navigate to your application in ArgoCD
+Locate the
+aws-cli
+deployment in your resources
+Use the "Terminal" option to exec into the pod
+Run standard AWS CLI commands to manage your resources
+Managing Secrets in AWS Secrets Manager
+​
+# List your secrets (filtered to your namespace)
+aws secretsmanager list-secrets --filters Key=name,Values=cats/my-namespace
+# Create a new secret
+aws secretsmanager create-secret \
+--name cats/my-namespace/my-new-secret \
+--secret-string '{"username":"admin","password":"REDACTED-PASSWORD"}'
+# Update a secret value
+aws secretsmanager update-secret \
+--secret-id cats/my-namespace/my-existing-secret \
+--secret-string '{"username":"admin","password":"REDACTED-PASSWORD"}'
+# Retrieve a secret value
+aws secretsmanager get-secret-value \
+--secret-id cats/my-namespace/my-existing-secret
+# Delete a secret
+aws secretsmanager delete-secret \
+--secret-id cats/my-namespace/my-existing-secret \
+--recovery-window-in-days 7
+IAM Roles and Policies
+​
+The toolkit automatically provisions IAM roles and policies scoped to your namespace. These roles:
+Allow access to AWS resources with the
+cats/<namespace-name>
+prefix
+Follow least privilege principles to ensure security
+Support cross-account interactions when needed
+Enable AWS CLI operations and SDK access from any pod using the managed service account
+Are automatically integrated via IRSA (IAM Roles for Service Accounts)
+These IAM resources are fully managed by the platform and will be automatically updated if policy requirements change.
+Default Permissions
+​
+The default IAM policy provides access to:
+AWS Secrets Manager
+: Full access to secrets with the
+cats/<namespace-name>/*
+prefix
+AWS Systems Manager Parameter Store
+: Read/write access to parameters with the
+cats/<namespace-name>/*
+prefix
+S3
+: Access to buckets following the namespace naming convention
+Other AWS Services
+: Additional permissions as configured by the platform team
+If you need additional AWS permissions beyond the default policy, please submit a
+Feature Request
+with details about:
+The AWS service you need to access
+The specific actions/permissions required
+The resource naming pattern you'll use
+Your business justification for the access
+External Secrets Integration
+​
+The toolkit includes a preconfigured SecretStore named
+managed--self-service-secretstore
+that facilitates integration with AWS Secrets Manager. This enables:
+Automatic synchronization of secrets from AWS to Kubernetes
+Secure management of sensitive information
+Cross-account secret access when needed
+Integration with the managed service account for authentication
+Using External Secrets
+​
+Create an
+ExternalSecret
+resource to sync secrets from AWS Secrets Manager:
+apiVersion
+:
+external
+-
+secrets.io/v1beta1
+kind
+:
+ExternalSecret
+metadata
+:
+name
+:
+my
+-
+app
+-
+secret
+namespace
+:
+my
+-
+namespace
+spec
+:
+refreshInterval
+:
+1h
+secretStoreRef
+:
+name
+:
+managed
+-
+-
+self
+-
+service
+-
+secretstore
+kind
+:
+SecretStore
+target
+:
+name
+:
+my
+-
+app
+-
+secret
+creationPolicy
+:
+Owner
+data
+:
+-
+secretKey
+:
+username
+remoteRef
+:
+key
+:
+cats/my
+-
+namespace/my
+-
+app
+-
+credentials
+property
+:
+username
+-
+secretKey
+:
+password
+remoteRef
+:
+key
+:
+cats/my
+-
+namespace/my
+-
+app
+-
+credentials
+property
+:
+password
+This will create a Kubernetes Secret named
+my-app-secret
+with the data from AWS Secrets Manager, automatically refreshed every hour.
+For more information about using external secrets with this toolkit, please refer to the
+External Secrets documentation
+.
+Bouncer Logs Analysis via Athena
+​
+The toolkit also provides application teams with the capability to analyze their application traffic through Bouncer logs using AWS Athena queries in Grafana. This feature enables teams to:
+Understand their application's traffic patterns and user activity
+Monitor and analyze API usage metrics
+Track active user counts and session information
+Generate custom visualizations based on application traffic data
+How to Access Bouncer Log Analysis
+​
+Unlike other features in the toolkit, Bouncer logs analysis requires additional setup by the platform team:
+Submit a
+Feature Request
+to enable Bouncer logs analysis for your application
+The platform team will create a dedicated Grafana organization for your team
+AWS Athena datasource will be installed and configured with appropriate permissions
+Your team will have access to this datasource in the newly created Grafana organization via the RBAC scheme configured
+Example Athena Queries
+​
+Once your Grafana organization is set up with Athena integration, you can use queries like:
+-- Get all bouncer logs for the test-dev namespace
+SELECT
+*
+FROM
+namespace_test_dev
+-- Get daily active user count for your application in the llm-qa namespace
+SELECT
+count
+(
+DISTINCT
+user
+)
+AS
+daily_active_users
+FROM
+namespace_llm_qa
+;
+Migration Guide
+​
+If your namespace was created before March 2025 and you were using the automatically deployed
+managed--self-service-cli-deployment
+:
+The existing CLI deployment will be removed
+as part of the platform upgrade
+Your service account, IAM roles, and SecretStore remain unchanged
+- no action needed for these resources
+If you need AWS CLI access
+, deploy your own AWS CLI pod following the
+example above
+Update your application pods
+to use
+serviceAccountName: managed--self-service-sa
+if they need direct AWS access
+External Secrets will continue to work
+without any changes
+The migration is designed to be non-disruptive for most workloads, as the core credential infrastructure remains the same.
+Future Extensions
+​
+The Cluster Self-Service Toolkit is designed to be extensible, allowing for additional tools and capabilities to be added to the asset packet as platform needs evolve. Future additions may include:
+Database management tools
+Advanced logging and monitoring capabilities
+Additional cloud resource provisioning options
+Custom resource management utilities
+If you would like to suggest additional tools or features for the Self-Service Toolkit, please follow the standard
+Feature Request
+process.
+Troubleshooting
+​
+If you encounter issues with the Self-Service Toolkit:
+Verify namespace annotation
+: Ensure your namespace has the correct
+app.lrl.lilly.com/compute: hybrid
+annotation
+Check managed resources
+: Confirm that all
+managed--self-service-*
+resources exist in your namespace
+Validate service account
+: Verify the service account has the correct IAM role annotation
+Follow naming conventions
+: Ensure your AWS resources follow the
+cats/<namespace-name>/*
+pattern
+Check permissions
+: Verify you have the appropriate permissions in ArgoCD for your application
+Contact platform team
+: If toolkit resources were not properly deployed, submit a support ticket
+Common Issues
+​
+AWS SDK Not Finding Credentials
+​
+If your application reports "Unable to locate credentials":
+Verify your pod is using
+serviceAccountName: managed--self-service-sa
+Check that the service account has the
+eks.amazonaws.com/role-arn
+annotation
+Ensure your pod's AWS SDK is configured for IRSA (most modern SDKs support this automatically)
+Verify the AWS region is set correctly (either via environment variable or SDK configuration)
+Access Denied Errors
+​
+If you receive "Access Denied" errors from AWS:
+Verify your resource names follow the
+cats/<namespace-name>/*
+pattern
+Check that you're using the correct AWS region (us-east-2)
+Confirm the IAM policy includes permissions for the service you're trying to access
+If you need additional permissions, submit a
+Feature Request
+Support
+​
+For questions or issues related to the Cluster Self-Service Toolkit, please submit a support ticket following the standard
+support process
+.
+Edit this page
+Previous
+Restful SDK
+Next
+Send Emails
+Overview
+Features at a Glance
+Architecture & Implementation
+Security Boundaries
+Automatically Provisioned Resources
+Supporting Resources
+Best Practices
+Toolkit Features
+Service Account
+Deploying Your Own AWS CLI Pod
+IAM Roles and Policies
+External Secrets Integration
+Bouncer Logs Analysis via Athena
+Migration Guide
+Future Extensions
+Troubleshooting
+Common Issues
+Support
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Cluster Self-Service Toolkit
+Description: The Cluster Self-Service Toolkit is a powerful platform feature that provides application teams with a comprehensive set of pre-configured assets for securely managing resources external to their Kubernetes clusters. This toolkit is automatically deployed when a namespace withhybridcompute type (annotationapp.lrl.lilly.com/compute: hybrid) is created, enabling teams to interact with external resources without requiring direct access to those systems.
+Links: /, #overview, #deploying-your-own-aws-cli-pod, #features-at-a-glance, #service-account, #iam-roles-and-policies, #working-with-external-secrets, #bouncer-logs-analysis-via-athena, #architecture--implementation, #security-boundaries, #automatically-provisioned-resources, #supporting-resources, https://github.com/EliLillyCo/docs/blob/main/platform-design-documentation/self_service_toolkit.md#architectural-design, #best-practices, /guide/ExternalSecrets, #toolkit-features, #service-account, #using-the-service-account, #example-using-aws-sdk-in-python, #example-using-aws-sdk-in-nodejs, #deploying-your-own-aws-cli-pod, #example-aws-cli-deployment, #accessing-the-aws-cli-pod, #managing-secrets-in-aws-secrets-manager, #iam-roles-and-policies, #default-permissions, /support/FeatureRequest, #working-with-external-secrets, #using-external-secrets, /guide/ExternalSecrets, #bouncer-logs-analysis-via-athena, #how-to-access-bouncer-log-analysis, /support/FeatureRequest, #example-athena-queries, #migration-guide, #deploying-your-own-aws-cli-pod, #future-extensions, /support/FeatureRequest, #troubleshooting, #common-issues, #aws-sdk-not-finding-credentials, #access-denied-errors, /support/FeatureRequest, #support, /support/TicketTemplate, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ClusterSelfServiceToolkit.md

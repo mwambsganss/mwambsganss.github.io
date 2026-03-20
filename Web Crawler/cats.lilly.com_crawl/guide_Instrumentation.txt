@@ -1,0 +1,843 @@
+Title: Instrumentation | CATS
+URL: https://cats.lilly.com/guide/Instrumentation
+Description: Instrumentation is the process of adding monitoring capabilities to your applications to collect metrics, traces, logs, and frontend performance data. Our observability stack leverages Alloy, an open-source collection framework, to receive and process telemetry data from your applications. This guide covers how to instrument your applications to send data to the CATS observability platform.
+
+Instrumentation | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+Overview
+Instrumentation
+Grafana
+Jaeger
+Loki
+Opencost
+Prometheus
+System Services
+Architecture
+Support
+Admin
+Observability
+Instrumentation
+On this page
+Instrumentation
+Instrumentation is the process of adding monitoring capabilities to your applications to collect metrics, traces, logs, and frontend performance data. Our observability stack leverages
+Alloy
+, an open-source collection framework, to receive and process telemetry data from your applications. This guide covers how to instrument your applications to send data to the CATS observability platform.
+Overview
+​
+The CATS platform uses
+Alloy
+as a centralized data collection and relay service that supports multiple telemetry protocols:
+Prometheus Metrics
+: Remote write protocol on port 9999
+OpenTelemetry (OTEL)
+: Both gRPC and HTTP endpoints for traces and metrics
+Faro
+: Frontend monitoring and browser analytics
+Loki
+: Structured logging aggregation
+Available Endpoints
+​
+Alloy is deployed as a service in your cluster and exposes the following ports:
+Protocol
+Port
+Type
+Purpose
+Prometheus Remote Write
+9999
+TCP
+Send Prometheus metrics
+OTEL gRPC
+4317
+TCP
+OpenTelemetry traces & metrics (gRPC)
+OTEL HTTP
+4318
+TCP
+OpenTelemetry traces & metrics (HTTP)
+Faro Receiver
+12347
+TCP
+Frontend monitoring data
+Service Details
+​
+The Alloy service is configured with the following settings:
+service
+:
+enabled
+:
+true
+type
+:
+ClusterIP
+ports
+:
+-
+name
+:
+"remote-write"
+port
+:
+9999
+targetPort
+:
+9999
+protocol
+:
+"TCP"
+-
+name
+:
+"otlp-grpc"
+port
+:
+4317
+targetPort
+:
+4317
+protocol
+:
+"TCP"
+-
+name
+:
+"otlp-http"
+port
+:
+4318
+targetPort
+:
+4318
+protocol
+:
+"TCP"
+-
+name
+:
+"faro-receiver"
+port
+:
+12347
+targetPort
+:
+12347
+protocol
+:
+"TCP"
+The service is accessible at
+grafana-alloy.monitoring:PORT
+from within the cluster.
+Metrics Collection
+​
+Prometheus Remote Write
+​
+If your application exports Prometheus metrics, you can send them to Alloy using the remote write protocol:
+# Example Prometheus remote write configuration
+global
+:
+remote_write
+:
+-
+url
+:
+http
+:
+//grafana
+-
+alloy.monitoring
+:
+9999/api/v1/write
+write_relabel_configs
+:
+-
+source_labels
+:
+[
+__name__
+]
+regex
+:
+'your_app_.*'
+action
+:
+keep
+The collected metrics are automatically labeled with:
+cluster_name
+: The cluster name and environment
+region
+: AWS region
+OpenTelemetry Metrics
+​
+Send metrics via the OTEL SDK using either gRPC or HTTP:
+gRPC Endpoint:
+http://grafana-alloy.monitoring:4317
+HTTP Endpoint:
+http://grafana-alloy.monitoring:4318
+Distributed Tracing
+​
+OpenTelemetry Traces
+​
+Your applications can send distributed traces using the OpenTelemetry SDK. Traces are collected via OTEL receivers and forwarded to Jaeger for visualization.
+Python Example:
+from
+opentelemetry
+import
+trace
+from
+opentelemetry
+.
+exporter
+.
+otlp
+.
+proto
+.
+grpc
+.
+trace_exporter
+import
+OTLPSpanExporter
+from
+opentelemetry
+.
+sdk
+.
+trace
+import
+TracerProvider
+from
+opentelemetry
+.
+sdk
+.
+trace
+.
+export
+import
+BatchSpanProcessor
+# Configure OTEL exporter
+otlp_exporter
+=
+OTLPSpanExporter
+(
+endpoint
+=
+"grafana-alloy.monitoring:4317"
+,
+insecure
+=
+True
+)
+trace_provider
+=
+TracerProvider
+(
+)
+trace_provider
+.
+add_span_processor
+(
+BatchSpanProcessor
+(
+otlp_exporter
+)
+)
+trace
+.
+set_tracer_provider
+(
+trace_provider
+)
+# Create a tracer
+tracer
+=
+trace
+.
+get_tracer
+(
+__name__
+)
+# Instrument your code
+with
+tracer
+.
+start_as_current_span
+(
+"my-operation"
+)
+:
+# Your application logic
+pass
+Node.js/TypeScript Example:
+import
+{
+NodeTracerProvider
+}
+from
+'@opentelemetry/node'
+;
+import
+{
+OTLPTraceExporter
+}
+from
+'@opentelemetry/exporter-trace-otlp-grpc'
+;
+import
+{
+BatchSpanProcessor
+}
+from
+'@opentelemetry/sdk-trace-node'
+;
+const
+exporter
+=
+new
+OTLPTraceExporter
+(
+{
+url
+:
+'http://alloy.monitoring:4317'
+,
+credentials
+:
+grpc
+.
+credentials
+.
+createInsecure
+(
+)
+,
+}
+)
+;
+const
+tracerProvider
+=
+new
+NodeTracerProvider
+(
+)
+;
+tracerProvider
+.
+addSpanProcessor
+(
+new
+BatchSpanProcessor
+(
+exporter
+)
+)
+;
+Go Example:
+import
+(
+"go.opentelemetry.io/exporter/otlp/otlptrace/otlptracegrpc"
+"go.opentelemetry.io/sdk/trace"
+)
+exporter
+,
+err
+:=
+otlptracegrpc
+.
+New
+(
+context
+.
+Background
+(
+)
+,
+otlptracegrpc
+.
+WithEndpoint
+(
+"grafana-alloy.monitoring:4317"
+)
+,
+otlptracegrpc
+.
+WithInsecure
+(
+)
+,
+)
+tp
+:=
+trace
+.
+NewTracerProvider
+(
+trace
+.
+WithBatcher
+(
+exporter
+)
+,
+)
+Traces are automatically routed to Jaeger at
+jaeger-deployment-collector.logging
+for visualization in Grafana.
+Frontend Monitoring with Faro
+​
+Faro SDK Overview
+​
+Faro is Grafana's frontend monitoring solution that collects browser performance data, errors, and user interactions. The Faro receiver is exposed on port 12347.
+Faro SDK Installation
+​
+JavaScript/TypeScript:
+npm install @grafana/faro-web-sdk
+Faro SDK Configuration
+​
+Initialize the Faro SDK in your application's entry point:
+import
+{
+initializeFaro
+}
+from
+'@grafana/faro-web-sdk'
+;
+initializeFaro
+(
+{
+url
+:
+'http://grafana-alloy.monitoring:12347'
+,
+app
+:
+{
+name
+:
+'my-application'
+,
+// Your app name
+version
+:
+'1.0.0'
+,
+environment
+:
+'production'
+,
+// or 'staging', 'development'
+}
+,
+sessionTracking
+:
+{
+enabled
+:
+true
+,
+}
+,
+errorTracking
+:
+{
+enabled
+:
+true
+,
+}
+,
+}
+)
+;
+Frontend Performance Metrics
+​
+Faro automatically collects:
+Page Performance
+: Largest contentful paint (LCP), First input delay (FID), Cumulative layout shift (CLS)
+Web Vitals
+: Core web vitals metrics
+Errors
+: JavaScript errors, unhandled promise rejections, and console errors
+User Interactions
+: Click events, navigation timing
+Session Information
+: User sessions, page views, session duration
+Frontend Logs
+​
+Frontend logs are collected and labeled with:
+cluster_name
+: Your cluster environment
+region
+: AWS region
+source
+: Set to "faro" for easy filtering
+Access frontend logs in Grafana's Loki dashboard and filter by
+source="faro"
+.
+OpenTelemetry Instrumentation CRD
+​
+For Kubernetes-native applications, you can use the OpenTelemetry Instrumentation Custom Resource Definition (CRD) to automatically inject instrumentation into your pods.
+Instrumentation CRD Example
+​
+apiVersion
+:
+opentelemetry.io/v1alpha1
+kind
+:
+Instrumentation
+metadata
+:
+name
+:
+my
+-
+app
+-
+instrumentation
+namespace
+:
+my
+-
+namespace
+spec
+:
+exporter
+:
+otlp
+:
+endpoint
+:
+http
+:
+//grafana
+-
+alloy.monitoring
+:
+4317
+propagators
+:
+-
+jaeger
+-
+b3
+sampler
+:
+type
+:
+parentbased_traceidratio
+param
+:
+samplingPercentage
+:
+100
+Applying Instrumentation to Pods
+​
+Annotate your pod or deployment to enable automatic instrumentation:
+apiVersion
+:
+apps/v1
+kind
+:
+Deployment
+metadata
+:
+name
+:
+my
+-
+app
+namespace
+:
+my
+-
+namespace
+spec
+:
+template
+:
+metadata
+:
+annotations
+:
+instrumentation.opentelemetry.io/inject-java
+:
+"true"
+instrumentation.opentelemetry.io/inject-python
+:
+"true"
+instrumentation.opentelemetry.io/inject-nodejs
+:
+"true"
+instrumentation.opentelemetry.io/inject-go
+:
+"true"
+spec
+:
+containers
+:
+-
+name
+:
+my
+-
+app
+image
+:
+my
+-
+app
+:
+latest
+Supported languages for auto-instrumentation:
+Java
+:
+instrumentation.opentelemetry.io/inject-java
+Python
+:
+instrumentation.opentelemetry.io/inject-python
+Node.js
+:
+instrumentation.opentelemetry.io/inject-nodejs
+Go
+:
+instrumentation.opentelemetry.io/inject-go
+DotNet
+:
+instrumentation.opentelemetry.io/inject-dotnet
+Alloy Configuration Details
+​
+The Alloy service is configured with the following components:
+Logging
+​
+Alloy's internal logs are configured at ERROR level and sent to Loki with appropriate labels:
+instance
+: Hostname
+job
+: integrations/self
+cluster_name
+: Your cluster name
+region
+: AWS region
+account_name
+: AWS account name
+Prometheus Metrics Pipeline
+​
+Receiver
+: Accepts Prometheus remote write on port 9999
+Relabeling
+: Adds cluster name and region labels
+Remote Write
+: Forwards to Prometheus at
+prometheus.monitoring:9090
+OTEL Pipeline
+​
+Receiver
+: OTLP receiver listening on gRPC (4317) and HTTP (4318)
+Processor
+: Batch processor for efficient delivery
+Exporters
+:
+Prometheus exporter for metrics
+Jaeger exporter for traces (at
+jaeger-deployment-collector.logging
+)
+Faro Pipeline
+​
+Receiver
+: Faro receiver on port 12347
+CORS
+: Configured to accept requests from all origins (
+*
+)
+Routing
+:
+Logs forwarded to Loki with
+source="faro"
+label
+Traces forwarded to batch processor and then to Jaeger
+Log Processing
+​
+Alloy processes container logs from Kubernetes:
+File Source
+: Reads container logs from
+/var/log/containers/*.log
+Metadata Extraction
+: Extracts namespace, pod, and container names from filenames
+Tenancy
+: Logs are organized by namespace tenant
+Cleanup
+: Logs older than 1 hour are dropped to control cardinality
+Destination
+: Loki gateway at
+loki-loki-distributed-gateway.monitoring
+Verification
+​
+Verify Metrics
+​
+Check if your metrics are being received:
+# From your pod
+curl -X POST http://grafana-alloy.monitoring:9999/api/v1/write \
+-H "Content-Type: application/x-protobuf" \
+-d "your-metrics-data"
+# Or check Prometheus
+# https://metrics.apps.lrl.lilly.com
+# Query for your metric: your_app_metric_name
+Verify Traces
+​
+Check if traces are being received:
+Navigate to Grafana's Jaeger integration
+Search for your application service
+Verify traces appear in the trace search interface
+Verify Frontend Data
+​
+In Grafana:
+Navigate to Explore
+Select Loki datasource
+Filter by
+source="faro"
+and your app name
+Verify frontend logs and performance data
+Troubleshooting
+​
+Metrics Not Appearing
+​
+Verify the endpoint URL:
+http://grafana-alloy.monitoring:9999
+Check network connectivity between your pod and Alloy service
+Ensure labels are correctly formatted
+Check Alloy logs:
+kubectl logs -n monitoring -l app.kubernetes.io/name=alloy -f
+Traces Not Appearing
+​
+Verify the OTEL endpoint:
+http://grafana-alloy.monitoring:4317
+(gRPC) or
+http://grafana-alloy.monitoring:4318
+(HTTP)
+Check that your SDK is configured with the correct endpoint
+Verify traces are being generated (check SDK logs)
+Check Alloy logs for export errors
+Frontend Data Not Appearing
+​
+Verify Faro SDK is initialized correctly
+Check browser console for errors
+Verify the Faro endpoint:
+http://grafana-alloy.monitoring:12347
+Check CORS settings if using cross-origin requests
+Ensure
+sessionTracking
+and
+errorTracking
+are enabled
+High Cardinality Issues
+​
+Review your labeling strategy
+Avoid using unbounded values (user IDs, request IDs) as labels
+Use sampling to reduce trace volume
+Adjust cardinality limits in Prometheus and Loki
+Best Practices
+​
+Use Sampling
+: Don't trace 100% of requests in production; use head-based or tail-based sampling
+Meaningful Labels
+: Use labels that represent business dimensions, not technical cardinality explosions
+Structured Logging
+: Use structured logging frameworks and include relevant context
+Performance
+: Use batch processors to group telemetry data efficiently
+Security
+: Never include sensitive data (passwords, tokens, PII) in telemetry
+Monitoring
+: Monitor your instrumentation overhead and adjust accordingly
+Additional Resources
+​
+Grafana Alloy Documentation
+OpenTelemetry Documentation
+Faro Documentation
+Jaeger Tracing
+Prometheus Metrics
+Loki Logging
+Grafana Dashboards
+Edit this page
+Previous
+Overview
+Next
+Grafana
+Overview
+Available Endpoints
+Service Details
+Metrics Collection
+Prometheus Remote Write
+OpenTelemetry Metrics
+Distributed Tracing
+OpenTelemetry Traces
+Frontend Monitoring with Faro
+Faro SDK Overview
+Faro SDK Installation
+Faro SDK Configuration
+Frontend Performance Metrics
+Frontend Logs
+OpenTelemetry Instrumentation CRD
+Instrumentation CRD Example
+Applying Instrumentation to Pods
+Alloy Configuration Details
+Logging
+Prometheus Metrics Pipeline
+OTEL Pipeline
+Faro Pipeline
+Log Processing
+Verification
+Verify Metrics
+Verify Traces
+Verify Frontend Data
+Troubleshooting
+Metrics Not Appearing
+Traces Not Appearing
+Frontend Data Not Appearing
+High Cardinality Issues
+Best Practices
+Additional Resources
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Instrumentation
+Description: Instrumentation is the process of adding monitoring capabilities to your applications to collect metrics, traces, logs, and frontend performance data. Our observability stack leveragesAlloy, an open-source collection framework, to receive and process telemetry data from your applications. This guide covers how to instrument your applications to send data to the CATS observability platform.
+Links: /, #overview, #available-endpoints, #service-details, #metrics-collection, #prometheus-remote-write, #opentelemetry-metrics, #distributed-tracing, #opentelemetry-traces, #frontend-monitoring-with-faro, #faro-sdk-overview, #faro-sdk-installation, #faro-sdk-configuration, #frontend-performance-metrics, #frontend-logs, #opentelemetry-instrumentation-crd, #instrumentation-crd-example, #applying-instrumentation-to-pods, #alloy-configuration-details, #logging, #prometheus-metrics-pipeline, #otel-pipeline, #faro-pipeline, #log-processing, #verification, #verify-metrics, #verify-traces, #verify-frontend-data, #troubleshooting, #metrics-not-appearing, #traces-not-appearing, #frontend-data-not-appearing, #high-cardinality-issues, #best-practices, #additional-resources, https://grafana.com/docs/alloy/latest/, https://opentelemetry.io/docs/, https://grafana.com/docs/grafana-cloud/monitor-applications/faro/, /guide/Jaeger, /guide/Prometheus, /guide/Loki, /guide/Grafana, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Instrumentation.md

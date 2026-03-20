@@ -1,0 +1,81 @@
+Title: Deploying SaaS Solution | CATS
+URL: https://cats.lilly.com/guide/DeploySaaS
+Description: If you want to deploy a SaaS solution on CATS, kindly reach out to a community member who has already worked through this process to discuss their experience deploying SaaS solutions on CATS. They will provide details surrounding the process and how the process worked.
+
+Deploying SaaS Solution | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+Prerequisites
+Get Access
+Deployment Overview
+Working With the Repo
+Containerization and Dockerfiles
+CODEOWNERS
+Deploying SaaS Solution
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+Jump Start
+Deploying SaaS Solution
+Deploying SaaS Solution
+If you want to deploy a SaaS solution on CATS, kindly reach out to a community member who has already worked through this process to discuss their experience deploying SaaS solutions on CATS. They will provide details surrounding the process and how the process worked.
+TODO: Further Define process and document here
+SaaS Solutions Deployed
+Contact
+Description
+BioTuring
+Abhi Malatpure
+Deployed Via HelmChart
+... The BioTuring BBrowserX is a state-of-the-art data visualization and analysis tool that provides researchers with a streamlined, user-friendly Graphical User Interface (GUI) platform for analyzing single-cell datasets. Its built-in GPU acceleration gives BBrowserX the power to scale up to millions of cells.
+LiveDesign SaaS Projects?
+Nathan Morin
+Details Coming Soon!
+Edit this page
+Previous
+CODEOWNERS
+Next
+Overview
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Deploying SaaS Solution
+Description: If you want to deploy a SaaS solution on CATS, kindly reach out to a community member who has already worked through this process to discuss their experience deploying SaaS solutions on CATS. They will provide details surrounding the process and how the process worked.
+Links: /, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/DeploySaaS.md

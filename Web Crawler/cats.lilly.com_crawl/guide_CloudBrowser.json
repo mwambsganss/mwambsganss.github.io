@@ -1,0 +1,42 @@
+{
+  "url": "https://cats.lilly.com/guide/CloudBrowser",
+  "title": "**CloudBrowser : S3 UI Tool** | CATS",
+  "description": "Interact with AWS S3 buckets effortlessly using CloudBrowser, a graphical interface that streamlines storage management.",
+  "h1": [
+    "CloudBrowser : S3 UI Tool"
+  ],
+  "h2": [
+    "Configuration​",
+    "References​"
+  ],
+  "h3": [
+    "lilly.com/cloud-browser-auth​",
+    "CORS Configuration​"
+  ],
+  "text_content": "**CloudBrowser : S3 UI Tool** | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nOverview\nAWS Bedrock\nECR Credential Service\nRDS Database\nS3 Cloud Browser\nAWS Secrets Manager\nAWS VPC\nCross Account AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nUsing AWS Services\nS3 Cloud Browser\nOn this page\nCloudBrowser : S3 UI Tool\nInteract with AWS S3 buckets effortlessly using CloudBrowser, a graphical interface that streamlines storage management.\nProduction Environment Dashboard\nQA Environment Dashboard\nDev Environment Dashboard\nConfiguration\n​\nLilly Cloud Browser is configured by annotations on Kubernetes namespaces.  The available annotations are listed below.\nlilly.com/cloud-browser-auth\n​\nThis allows setting s3 auth roles for s3 resources associated with the associated namespace.\nThe value for this annotation is a JSON object in string format.  The simplest  config allows setting a list of users providing read only access to the default S3 path for this namespace.  This default bucket / S3 prefix path will be\ns3://lly-light-prod/<namespace name>/\nannotations\n:\nlilly.com/cloud-browser-auth\n:\n'{\"authConfigs\": [{ \"users\": [\"A123456\", \"B7891011\"]}]}'\nExpanding on this, you can also specify an access group(s) rather than individual users:\nannotations\n:\nlilly.com/cloud-browser-auth\n:\n'{\"authConfigs\": [{ \"groups\": [\"group1\", \"group2\"]}]}'\nYou can also allow\n[read, write, readwrite, delete, all]\naccess by setting these values:\nannotations\n:\nlilly.com/cloud-browser-auth\n:\n'{\"authConfigs\": [{ \"groups\": [\"group1\", \"group2\"], \"permission\": \"readwrite\"}]}'\nYou can set a non default prefix by:\nannotations\n:\nlilly.com/cloud-browser-auth\n:\n'{\"authConfigs\": [{ \"groups\": [\"group1\", \"group2\"], \"permission\": \"readwrite\", \"prefix\": \"customprefix\"}]}'\nCORS Configuration\n​\nTo enable access from the cloud-browser frontend to an s3 bucket, CROSS ORIGIN RESOURCE SHARING (CORS) configuration needs to be set at the bucket level.\nClick on the bucket, and navigate to\npermissions\n.\nUnder permissions, find\nCross-origin resource sharing\n.\nClick\nedit\n, paste the following configuration block and save.\n[\n{\n\"AllowedHeaders\"\n:\n[\n\"*\"\n]\n,\n\"AllowedMethods\"\n:\n[\n\"HEAD\"\n,\n\"GET\"\n,\n\"POST\"\n,\n\"PUT\"\n,\n\"DELETE\"\n]\n,\n\"AllowedOrigins\"\n:\n[\n\"https://cloud-browser.apps.lrl.lilly.com\"\n]\n,\n\"ExposeHeaders\"\n:\n[\n\"ETag\"\n,\n\"x-amz-meta-custom-header\"\n,\n\"x-amz-server-side-encryption\"\n,\n\"x-amz-request-id\"\n,\n\"x-amz-id-2\"\n,\n\"date\"\n]\n,\n\"MaxAgeSeconds\"\n:\n3000\n}\n]\nReferences\n​\nPlease navigate to the cloud-browser repository for more information:\nlrl-cloud-browser\n.\nEdit this page\nPrevious\nRDS Database\nNext\nAWS Secrets Manager\nConfiguration\nlilly.com/cloud-browser-auth\nCORS Configuration\nReferences\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 3,
+  "crawled_at": "2026-03-20T14:59:01.842118",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "CloudBrowser : S3 UI Tool",
+        "description": "Interact with AWS S3 buckets effortlessly using CloudBrowser, a graphical interface that streamlines storage management.",
+        "links": [
+          "/",
+          "https://cloud-browser.apps.lrl.lilly.com/",
+          "https://cloud-browser.apps-q.lrl.lilly.com/",
+          "https://cloud-browser.apps-d.lrl.lilly.com/",
+          "#configuration",
+          "#lillycomcloud-browser-auth",
+          "#cors-configuration",
+          "#references",
+          "https://github.com/EliLillyCo/lrl-cloud-browser",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/CloudBrowser.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

@@ -1,0 +1,64 @@
+{
+  "url": "https://cats.lilly.com/guide/CATSAgent",
+  "title": "**CATS Platform Agent** | CATS",
+  "description": "CATS Platform Agent is your advanced assistant for platform operations, seamlessly integrating documentation insights with real-time Kubernetes cluster intelligence. Building on the foundation of CATSbot, it goes beyond static knowledge retrieval by offering dynamic, context-aware diagnostics and actionable insights with operational capabilities. With its ability to connect directly to platform clusters, CATS Agent empowers users to access live resource data, troubleshoot issues, and optimize deployments with precision.",
+  "h1": [
+    "CATS Platform Agent"
+  ],
+  "h2": [
+    "Overview​",
+    "Key Features​",
+    "Accessing CATS Agent​",
+    "Using CATS Agent​",
+    "Security and Permissions​",
+    "Available Tools​"
+  ],
+  "h3": [
+    "Real-Time Cluster Information​",
+    "Context-Aware Assistance​",
+    "Interactive Operations​",
+    "In Chat-In-The-Box​",
+    "Querying Cluster Resources​",
+    "Diagnosing Issues​",
+    "Combining Documentation with Real-Time Data​",
+    "Knowledge Base Querier​",
+    "Kubernetes Resource Explorer​",
+    "Namespace Explorer​"
+  ],
+  "text_content": "**CATS Platform Agent** | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nWhat Is CATS?\nCATS Platform Agent\nOn this page\nCATS Platform Agent\nCATS Platform Agent is your advanced assistant for platform operations, seamlessly integrating documentation insights with real-time Kubernetes cluster intelligence. Building on the foundation of CATSbot, it goes beyond static knowledge retrieval by offering dynamic, context-aware diagnostics and actionable insights with operational capabilities. With its ability to connect directly to platform clusters, CATS Agent empowers users to access live resource data, troubleshoot issues, and optimize deployments with precision.\nOverview\n​\nCATS Agent combines the knowledge base of CATSbot with real-time cluster connectivity, allowing users to:\nQuery actual cluster resources and states\nDiagnose deployment issues with real-time data\nReceive personalized recommendations based on your specific infrastructure\nKey Features\n​\nReal-Time Cluster Information\n​\nView configuration, state, and health metrics of your Kubernetes resources\nGet detailed logs and events for troubleshooting\nMonitor resource utilization and performance metrics\nContext-Aware Assistance\n​\nCombines documentation knowledge with your actual cluster state\nProvides personalized recommendations based on your specific infrastructure\nSuggests optimizations and best practices for your deployments\nInteractive Operations\n​\nExecute controlled kubectl commands directly from the chat interface\nExplore namespaces and resources across your clusters\nAccessing CATS Agent\n​\nIn Chat-In-The-Box\n​\nCLICK HERE\nto access CATS Agent through Chat-In-The-Box.\ninfo\nCATS Agent requires the same access provisioning as CATSbot via the\nlrl_cats_access_non_rids\nAD Group. See the\nGet Access\nsection for details on joining this group.\nUsing CATS Agent\n​\nCATS Agent provides a range of capabilities through its specialized tools:\nQuerying Cluster Resources\n​\nGet real-time information about any resource in your cluster:\nShow me all pods in <your-namespace> namespace that are not running\nGet details about the ingress configuration for <your-application> in <your-namespace> namespace\nList all deployments in the <your-namespace> namespace and their current status\nDiagnosing Issues\n​\nTroubleshoot deployment and configuration problems with context-aware assistance:\nMy application in namespace <your-namespace> is returning 503 errors. What could be wrong?\nThe persistent volume claim for my database isn't binding. Help me diagnose the issue.\nCheck why my deployment pods in the <your-namespace> namespace are crashing and suggest a fix\nCombining Documentation with Real-Time Data\n​\nGet comprehensive answers that merge platform knowledge with current cluster state:\nWhat's the best way to scale my stateful application in the <your-namespace> namespace given my current resource utilization?\nExplain how ingress works in CATS and check if my current configuration on the <ingress-name> ingress follows best practices\nSecurity and Permissions\n​\nCATS Agent operates with strict security controls:\nAll operations require authentication using your organizational credentials.\nAccess is limited to read-only and non-destructive actions on cluster resources.\nEvery action is logged to ensure auditability and compliance with organizational policies.\nAvailable Tools\n​\nCATS Agent provides these specialized tools:\nKnowledge Base Querier\n​\nRetrieves documentation and best practices for CATS platform\nProvides general guidance on Kubernetes concepts and patterns\nAnswers questions about platform features and capabilities\nKubernetes Resource Explorer\n​\nExecutes read-only kubectl commands to fetch real-time information\nSupports\nget\n,\ndescribe\n,\nlist\nand\nlogs\noperations\nRequires namespace specification for proper resource scoping\nNamespace Explorer\n​\nShows available namespaces in your clusters\nFilters results based on your access permissions\nProvides usage statistics and resource allocation\nEdit this page\nPrevious\nGitHub Teams\nNext\nCATSbot Virtual Assistant\nOverview\nKey Features\nReal-Time Cluster Information\nContext-Aware Assistance\nInteractive Operations\nAccessing CATS Agent\nIn Chat-In-The-Box\nUsing CATS Agent\nQuerying Cluster Resources\nDiagnosing Issues\nCombining Documentation with Real-Time Data\nSecurity and Permissions\nAvailable Tools\nKnowledge Base Querier\nKubernetes Resource Explorer\nNamespace Explorer\nLilly SPE Research Technology and Platforms",
+  "links_found": 1,
+  "depth": 1,
+  "crawled_at": "2026-03-20T14:57:24.828671",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "CATS Platform Agent",
+        "description": "CATS Platform Agent is your advanced assistant for platform operations, seamlessly integrating documentation insights with real-time Kubernetes cluster intelligence. Building on the foundation of CATSbot, it goes beyond static knowledge retrieval by offering dynamic, context-aware diagnostics and actionable insights with operational capabilities. With its ability to connect directly to platform clusters, CATS Agent empowers users to access live resource data, troubleshoot issues, and optimize deployments with precision.",
+        "links": [
+          "/",
+          "#overview",
+          "#key-features",
+          "#real-time-cluster-information",
+          "#context-aware-assistance",
+          "#interactive-operations",
+          "#accessing-cats-agent",
+          "#in-chat-in-the-box",
+          "https://chat.lilly.com/cortex/chat/spe-platforms-model",
+          "/guide/GetAccess#2-dashboards-group",
+          "#using-cats-agent",
+          "#querying-cluster-resources",
+          "#diagnosing-issues",
+          "#combining-documentation-with-real-time-data",
+          "#security-and-permissions",
+          "#available-tools",
+          "#knowledge-base-querier",
+          "#kubernetes-resource-explorer",
+          "#namespace-explorer",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/CATSAgent.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

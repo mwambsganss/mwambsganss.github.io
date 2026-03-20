@@ -1,0 +1,122 @@
+Title: Intoduction To Dashboards | CATS
+URL: https://cats.lilly.com/guide/DashboardOverview
+Description: - Ingress Dashboard (Traefik): Simplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.
+
+Intoduction To Dashboards | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Overview
+Argo Deployment Dashboard
+Metrics Dashboard
+Ingress Dashboard
+Opencost Dashboard
+Kubecost Dashboard (Deprecated)
+Kubernetes Dashboard (Deprecated)
+Logging Dashboard (Deprecated)
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+Dashboard Offerings
+Overview
+On this page
+Intoduction To Dashboards
+Ingress Dashboard (Traefik)
+: Simplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.
+Production Environment Dashboard
+QA Environment Dashboard
+Dev Environment Dashboard
+Deployment Dashboard (Automated CI/CD via Argo )
+: Embrace the principles of GitOps for continuous integration and deployment, automating your pipeline for increased efficiency and reliability.
+Production Environment Dashboard
+QA Environment Dashboard
+Dev Environment Dashboard
+Grafana Observability Dashboards (Prometheus/Loki/Jaeger)
+: Monitor your application's health and performance with detailed metrics visualized through Grafana, powered by Prometheus's robust monitoring capabilities.
+Production Environment Dashboard
+Qa Environment Dashboard
+Dev Environment Dashboard
+Tracing Dashboard (Jaeger)
+: Monitor your applications requests through microservice architectures. Find bottlenecks in your applications requests by comparing tracing information.
+Production Environment Dashboard
+Qa Environment Dashboard
+Dev Environment Dashboard
+Cost Monitoring (Kubecost)
+: Keep your cloud expenses in check with detailed insights into your Kubernetes costs, helping you optimize resource allocation and spending.
+Dev Environment Dashboard
+Qa Environment Dashboard
+Production Environment Dashboard
+Kubernetes Dashboard
+: Gain insights and manage your Kubernetes resources with an intuitive, web-based user interface. This is the most important dashboard for the average user. Please try accessing one of the links below,
+if you do not have access
+to the dashboard you can request access via the
+Developer Front Door
+. After being added to the group it will take around 24 hours for the changes to be reflected on your end.
+Production Environment Dashboard
+QA Environment Dashboard
+Dev Environment Dashboard
+Table of Contents
+​
+Dashboard Offering
+Description
+Overview
+General overview of the dashboard offerings available on the CATS platform, including monitoring and management tools.
+Argo Deployment Dashboard
+Provides a visual interface for tracking and managing Argo CD deployments, offering insight into the deployment status and health.
+Metrics Dashboard
+Grafana. Monitors application health and performance through Prometheus-powered metrics visualized in Grafana.
+Cost Monitoring Dashboard
+Kubecost. Provides detailed insights into Kubernetes costs to help optimize resource allocation and manage spending effectively.
+Ingress Dashboard
+Traefik. Versatile Ingress controller with a user-friendly dashboard for managing external access to applications.
+Kubernetes Dashboard (Depricated)
+The old web-based interface for real-time insights and management of Kubernetes resources and workloads. Please use Argo instead of this dashboard.
+Edit this page
+Previous
+S3 Lifecycle Tagging
+Next
+Argo Deployment Dashboard
+Table of Contents
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Intoduction To Dashboards
+Description: Ingress Dashboard (Traefik): Simplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.
+Links: /, https://traefik-dashboard.apps.lrl.lilly.com/dashboard/#/, https://traefik-dashboard.apps-q.lrl.lilly.com/dashboard/#/, https://traefik-dashboard.apps-d.lrl.lilly.com/dashboard/#/, https://argocd.apps.lrl.lilly.com/, https://argocd.apps-q.lrl.lilly.com/, https://argocd.apps-d.lrl.lilly.com/, https://metrics.apps.lrl.lilly.com, https://metrics.apps-q.lrl.lilly.com, https://metrics.apps-d.lrl.lilly.com, https://tracing.apps.lrl.lilly.com, https://tracing.apps-q.lrl.lilly.com, https://tracing.apps-d.lrl.lilly.com, https://kubecost.apps-d.lrl.lilly.com/allocations, https://kubecost.apps-q.lrl.lilly.com/allocations, https://kubecost.apps.lrl.lilly.com/allocations, https://dev.lilly.com/docs/platforms-and-tools/cats/, https://k8s-dashboard.apps.lrl.lilly.com/, https://k8s-dashboard.apps-q.lrl.lilly.com/, https://k8s-dashboard.apps-d.lrl.lilly.com/, #table-of-contents, /guide/DashboardOverview, /guide/DeploymentDashboard, /guide/Grafana, /guide/Kubecost, /guide/IngressDashboard, /guide/KubernetesDashboard, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/DashboardOverview.md

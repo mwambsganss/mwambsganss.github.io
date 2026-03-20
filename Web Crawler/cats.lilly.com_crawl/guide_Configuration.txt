@@ -1,0 +1,114 @@
+Title: Configuration Overview | CATS
+URL: https://cats.lilly.com/guide/Configuration
+Description: The configuration section is all about helping our users configure their deployment resources appropriately for their projects. See the below table of contents for a quick look at the sections available as well as what information is in each section:
+
+Configuration Overview | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Overview
+Namespace
+Deployment
+Service
+Ingress
+Ingress Patterns
+Compute and Workload Scheduling
+Scaling
+Storage
+CronJob
+Jobs
+Rate Limit
+External Secrets
+HelmRelease
+External Integrations
+Graph User Info
+Makefile
+Velero Backups
+RDS Database Restore
+Namespace Decommission
+S3 Lifecycle Tagging
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+K8s Configuration
+Overview
+Configuration Overview
+The configuration section is all about helping our users configure their deployment resources appropriately for their projects. See the below table of contents for a quick look at the sections available as well as what information is in each section:
+Section
+Description
+Namespace
+Discuss what is a namespace as well as the labels and annotations used to configure a namespace correctly. IAM permissions and Cluster Security Groups are handled via namespace configuration.
+Deployment
+Discuss what a deployment is and how to configure a deployment resource for your specific solution.
+Service
+Discuss what is a Service is and how it maps to an ingress.
+Ingress
+Discuss what is an Ingress is, how to configure an ingress for your solution, and Routing, Authorization and Authentication within the cluster.
+Compute and Workload Scheduling
+Covers the two types of compute supported: Fargate and AWS EC2 instances, including how to configure namespaces for each.
+Scaling
+Discusses horizontal scaling for pod replicas related to deployments or stateful sets.
+Storage
+Discusses the options available for storing data such as S3, EFS, or EBS.
+Cron Job
+Explains CronJobs in Kubernetes for scheduling jobs.
+Jobs
+Describes how Jobs manage Pods to completion, including an example Job configuration.
+Rate Limit
+Describes how to control the Number of Requests Going to a Service
+External Secrets
+Introduces the concept of managing secrets externally, not directly within Kubernetes.
+Helm Release
+Describes creating Helm release resources for managing applications or services on Kubernetes.
+Graph User Info
+Explains how to access graph-based user information via a built-in integration in CATS.
+Makefile
+Discuss what a makefile is and why it is important. Template provided
+Edit this page
+Previous
+Deploying SaaS Solution
+Next
+Namespace
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Configuration Overview
+Description: The configuration section is all about helping our users configure their deployment resources appropriately for their projects. See the below table of contents for a quick look at the sections available as well as what information is in each section:
+Links: /, /guide/Namespace, /guide/Deployment, /guide/Service, /guide/Ingress, /guide/ComputeAndWorkloadScheduling, /guide/Scaling, /guide/Storage, /guide/CronJob, /guide/Jobs, /guide/RateLimit, /guide/ExternalSecrets, /guide/HelmRelease, /guide/GraphUserInfo, /guide/Makefile, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Configuration.md

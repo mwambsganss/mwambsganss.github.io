@@ -1,0 +1,151 @@
+Title: Namespace Deletion Process for GitOps Environment | CATS
+URL: https://cats.lilly.com/guide/Namespace_decomission
+Description: Overview
+
+Namespace Deletion Process for GitOps Environment | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Overview
+Namespace
+Deployment
+Service
+Ingress
+Ingress Patterns
+Compute and Workload Scheduling
+Scaling
+Storage
+CronJob
+Jobs
+Rate Limit
+External Secrets
+HelmRelease
+External Integrations
+Graph User Info
+Makefile
+Velero Backups
+RDS Database Restore
+Namespace Decommission
+S3 Lifecycle Tagging
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+K8s Configuration
+Namespace Decommission
+On this page
+Namespace Deletion Process for GitOps Environment
+Overview
+​
+Deleting a namespace in our GitOps setup isn't just "delete files and redeploy." There are data, dependencies, and cleanup considerations that need to be handled properly.
+Pre-Deletion Checklist
+​
+Data Impact
+​
+Check for persistent volumes that contain important data
+Identify any databases or stateful services
+Review secrets that might need to be preserved elsewhere
+External Dependencies
+​
+AWS resources created by the namespace (other aws resources)
+Services in other namespaces that depend on this one
+External integrations, APIs, or webhooks
+DNS entries and ingress routes
+Backup Requirements
+​
+Export any data that needs to be preserved
+Document manual configurations not stored in Git
+Save connection strings, certificates, or other critical info
+Deletion Steps
+​
+1. Remove GitOps files from the repository
+​
+Delete the entire namespace directory from the repo
+Commit and push the changes
+2. Wait for ArgoCD/Flux to sync
+​
+Monitor the sync process in ArgoCD UI
+Most resources should delete automatically
+3. Handle stuck resources (if needed)
+​
+Some resources might get stuck due to finalizers
+Persistent volumes might need manual cleanup
+External secrets or webhooks could block deletion
+4. Clean up external resources
+​
+Remove AWS IAM policies and roles if namespace-specific
+Clean up DNS entries if needed
+Remove monitoring alerts and dashboards
+Update any external service configurations
+Common Gotchas
+​
+Persistent volumes don't always delete with the namespace
+External secrets can cause hanging finalizers
+Admission controllers can block namespace deletion
+Rollback Plan
+​
+If something goes wrong, we can restore by:
+Reverting the Git commit
+Letting GitOps recreate the resources
+Restoring data from backups if needed
+note
+This process assumes the namespace is fully managed through GitOps. Manual kubectl changes or external resource creation outside of Git would need additional cleanup steps.
+Edit this page
+Previous
+RDS Database Restore
+Next
+S3 Lifecycle Tagging
+Overview
+Pre-Deletion Checklist
+Data Impact
+External Dependencies
+Backup Requirements
+Deletion Steps
+1. Remove GitOps files from the repository
+2. Wait for ArgoCD/Flux to sync
+3. Handle stuck resources (if needed)
+4. Clean up external resources
+Common Gotchas
+Rollback Plan
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Namespace Deletion Process for GitOps Environment
+Description: Deleting a namespace in our GitOps setup isn't just "delete files and redeploy." There are data, dependencies, and cleanup considerations that need to be handled properly.
+Links: /, #overview, #pre-deletion-checklist, #data-impact, #external-dependencies, #backup-requirements, #deletion-steps, #1-remove-gitops-files-from-the-repository, #2-wait-for-argocdflux-to-sync, #3-handle-stuck-resources-if-needed, #4-clean-up-external-resources, #common-gotchas, #rollback-plan, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Namespace_decomission.md

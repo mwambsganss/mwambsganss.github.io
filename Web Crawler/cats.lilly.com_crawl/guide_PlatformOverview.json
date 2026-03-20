@@ -1,0 +1,84 @@
+{
+  "url": "https://cats.lilly.com/guide/PlatformOverview",
+  "title": "Platform Overview | CATS",
+  "description": "To help you embark on your journey with CATS, we offer three separate clusters to application teams:",
+  "h1": [
+    "Platform Overview"
+  ],
+  "h2": [
+    "Environments​",
+    "Basic System Services Available​"
+  ],
+  "h3": [
+    "Development Cluster for Beginners​",
+    "QA Cluster for Testing​",
+    "Production Cluster for Official Deployment​",
+    "Cross AWS Account Connections​"
+  ],
+  "text_content": "Platform Overview | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nWhat Is CATS?\nPlatform Overview\nOn this page\nPlatform Overview\nTo help you embark on your journey with CATS, we offer three separate clusters to application teams:\nEnvironments\n​\nSBX Environment:\nSBX Cluster\nDevelopment Environment:\nDEV Cluster\nQA Environment:\nQA Cluster\nProduction Environment:\nPRD Cluster\nThe CATS Platform is composed of four Kubernetes clusters, each designed for a specific use case. We recommend that application teams deploy their solutions in the Production Cluster, which offers high stability. Within this cluster, solutions can be organized using folder and namespace suffixes (e.g., namespace-dev, namespace-qa, namespace-prd) for efficient management.\nPlease note\n: The Development (DEV) Cluster does not come with any stability guarantees. Despite our efforts to stabilize it through the introduction of the Sandbox (SBX) Cluster, the DEV Cluster remains prone to occasional disruptions. The SBX Cluster is exclusively for the CATS Platform Team to carry out platform development, and as a result, it may experience instability due to ongoing work. Platform components are initially developed and tested in the SBX Cluster to reduce the frequency of cluster-breaking changes in the DEV Cluster, though such incidents may still occur.\nBoth the DEV and SBX Clusters are subject to periodic wipes, downtime, and unforeseen issues. Only the CATS Platform Team should be working in the SBX Cluster.\nFor most use cases, especially when your application does not require a VPCE (Virtual Private Cloud Endpoint), deploying in the Production Cluster is strongly encouraged due to its higher stability. Please refer to the table below to select the most suitable cluster for your application.\nReview the below table to better understand how each application deployment repo maps to a different amazon account on a different VPC. Many users run into VPC issues so please ensure you are developing your solution in the correct environment. See our\ndocumentation on AWS VPCs\nfor further detailis on which VPC you may be working with.\nDifferent Cluster Details:\nCluster\nApp Deployment Repo\nAWS Account Name\nAWS Account ID\nVPC Access\nProduction Cluster\ninfra_apps\nprod-igw-dx-researchit-light\n283234040926\nvpc-0ea80082460c43671 // vpce-03bee17f69c9802b9\nQA Cluster\ninfra_apps_qa\nqa-igw-dx-researchit-light\n474366589702\nvpc-0d4e782cbe86eb07c // vpce-058757a9c034d181c\nDevelopment Cluster\ninfra_apps_test\ndev-igw-dx-researchit-light\n408787358807\nvpc-06a3d8f2cdafb8a6e // vpce-069388414a9f87f40\nSandbox Cluster\ninfra_apps_sbx\ndev-igw-dx-lrl-researchit-light-sbx\n891377229906\nvpc-06a3d8f2cdafb8a6e // vpce-069388414a9f87f40\nDevelopment Cluster for Beginners\n​\nFor those who are new to CATS and eager to experiment, our\ndevelopment cluster\nis the perfect spot to unleash your creativity as it gives you full flexibility and admin access to the cluster. Get your hands dirty without any fear of breaking things:\nExplore and Experiment\n: Visit the\nApps Test Repo\nto start playing around in a safe, isolated environment.\n⚠️\nIMPORTANT\n: The playground cluster is inherently unstable and is not intended for production use. Any work you do here may be lost at any time, so be sure to\nback up your data locally\nbefore deploying. This ensures that you won't lose your work during any unexpected incidents.\nQA Cluster for Testing\n​\nIf you're already acquainted with the basics and ready for quality assurance testing, the\nGitHub Repo\nis your gateway:\nApps Test QA Repo\nDeploy with Confidence\n: The QA cluster is an exact copy of the production cluster where you can accurately test your solution without being in the production environment.\nWhen the CATS platform team schedules platform upgrades, we request our users use the QA cluster to test their solutions against our changes to ensure stability. We provide a\nTWO DAY\nQA testing window for all updates.\nProduction Cluster for Official Deployment\n​\nIf you're already acquainted with the basics and ready for the real action, the official\nGitHub Repo\nis your gateway:\nApps Repo\nDeploy with Confidence\n: This is our production cluster so feel confident that it is a secure and stable environment for your solution.\nBy setting up these three environments, we aim to provide a seamless and accommodating development experience, regardless of your expertise level with CATS.\nCross AWS Account Connections\n​\nWhen planning a connection between two AWS accounts the first thing that should be verified is if the accounts are on the same VPC. Below you can find a table that outlines the deployment repo your solution is deployed in on the CATS platform and which AWS account that deployment maps too along with the VPC the AWS account is on.\nSee our\ndocumentation on AWS VPCs\nfor further detailis on which VPC you may be working with.\nCluster\nApp Deployment Repo\nAWS Account Name\nAWS Account ID\nVPC Access\nProduction Cluster\ninfra_apps\nprod-igw-dx-researchit-light\n283234040926\nvpc-03bee17f69c9802b9\nQA Cluster\ninfra_apps_qa\nqa-igw-dx-researchit-light\n474366589702\nvpc-058757a9c034d181c\nDevelopment Cluster\ninfra_apps_test\ndev-igw-dx-researchit-light\n408787358807\nvpc-069388414a9f87f40\nSandbox Cluster\ninfra_apps_sbx\ndev-igw-dx-lrl-researchit-light-sbx\n891377229906\nvpc-069388414a9f87f40\nIf the AWS Account housing your AWS Resources is NOT on the same VPC as the AWS account where your solution is deployed,\nthen you CANNOT communicate between those two accounts\n.\nThere are two solutions if this happens to you.\nCreate a new AWS account that is on one of the thee VPCs that one of the CATS Clusters is on.\nRe-Deploy your solution to one of the CATS AWS Accounts that has a VPC that maps to your non CATS AWS Account.\nIn Summary:\nAWS Dev account can only connect to other AWS Dev accounts on the VPC\n069388414a9f87f40\n.\nAWS QA account can only connect to other AWS QA accounts on the VPC\n058757a9c034d181c\n.\nAWS Prod account can only connect to other AWS Prod accounts on the VPC\n03bee17f69c9802b9\n.\nBasic System Services Available\n​\nCATS is equipped with a comprehensive suite of services designed to empower our application teams, providing a rich, out-of-the-box experience that facilitates development, deployment, and monitoring. Here's what you can expect:\nCATS Agent\n: The CATS Agent enhances platform operations by combining documentation insights with real-time Kubernetes intelligence. It uses live resource data in the cluster to perform context-aware diagnostics and provide actionable insights, enabling users to troubleshoot and optimize deployments efficiently within the platform.\nCATS Agent can be found\nHERE\nCATSbot Virtual Assistant\n: The CATSbot is an intelligent chat bot designed to assist users in understanding and utilizing the CATS Platform.\nCATSbot can be found\nHERE\nKubernetes Dashboard\n: Gain insights and manage your Kubernetes resources with an intuitive, web-based user interface. This is the most important dashboard for the average user. Please try accessing one of the links below,\nif you do not have access\nto the dashboard you can request access via the\nDeveloper Front Door\n. After being added to the group it will take around 24 hours for the changes to be reflected on your end.\nProduction Environment Dashboard\nQA Environment Dashboard\nDev Environment Dashboard\nIngress Dashboard (Traefik)\n: Simplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.\nProduction Environment Dashboard\nQA Environment Dashboard\nDev Environment Dashboard\nGitOps (Automated CI/CD via Argo )\n: Embrace the principles of GitOps for continuous integration and deployment, automating your pipeline for increased efficiency and reliability.\nProduction Environment Dashboard\nQA Environment Dashboard\nDev Environment Dashboard\nMetrics Dashboard (Grafana/Prometheus)\n: Monitor your application's health and performance with detailed metrics visualized through Grafana, powered by Prometheus's robust monitoring capabilities.\nProduction Environment Dashboard\nQa Environment Dashboard\nDev Environment Dashboard\nCost Monitoring (Kubecost)\n: Keep your cloud expenses in check with detailed insights into your Kubernetes costs, helping you optimize resource allocation and spending.\nDev Environment Dashboard\nQa Environment Dashboard\nProduction Environment Dashboard\nS3 UI Tool (CloudBrowser)\n: Interact with AWS S3 buckets effortlessly using CloudBrowser, a graphical interface that streamlines storage management.\nProduction Environment Dashboard\nQA Environment Dashboard\nDev Environment Dashboard\nAuto Resource Deployer (Crossplane)\n: Automate the deployment of cloud resources across multiple providers with Crossplane, simplifying cloud-native application management.\nAdditional Documentation on Crossplane:\nHERE\nAuthentication Service (Bouncer)\n: Secure your applications with Bouncer, providing robust authentication services to safeguard access.\nBouncer Repository Source Code located:\nHERE\nRestful SDK\n:\nPython Light Client Service\n: Integrate your Python applications seamlessly with our platform using the lightweight client SDK.\nLibrary is located\nHERE\nR Light Client Service\n: Leverage the R language for statistical computing and graphics with our easy-to-use client SDK.\nLibrary is located\nHERE\nEach service is designed to enhance your productivity and streamline your operations, ensuring you have the tools you need to succeed. Embrace the full potential of CATS and transform your application development and deployment processes.\nEdit this page\nPrevious\nIntroduction\nNext\nShared Responsibility Model\nEnvironments\nDevelopment Cluster for Beginners\nQA Cluster for Testing\nProduction Cluster for Official Deployment\nCross AWS Account Connections\nBasic System Services Available\nLilly SPE Research Technology and Platforms",
+  "links_found": 1,
+  "depth": 1,
+  "crawled_at": "2026-03-20T14:56:41.626829",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Platform Overview",
+        "description": "To help you embark on your journey with CATS, we offer three separate clusters to application teams:",
+        "links": [
+          "/",
+          "#environments",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_sbx",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "/guide/AwsVpc",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_sbx",
+          "#development-cluster-for-beginners",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "#qa-cluster-for-testing",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "#production-cluster-for-official-deployment",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "#cross-aws-account-connections",
+          "/guide/AwsVpc",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_sbx",
+          "#basic-system-services-available",
+          "https://chat.lilly.com/cortex/chat/spe-platforms-model",
+          "https://chat.lilly.com/cortex/chat/catsbot",
+          "https://dev.lilly.com/docs/platforms-and-tools/cats/",
+          "https://k8s-dashboard.apps.lrl.lilly.com/",
+          "https://k8s-dashboard.apps-q.lrl.lilly.com/",
+          "https://k8s-dashboard.apps-d.lrl.lilly.com/",
+          "https://traefik-dashboard.apps.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard.apps-q.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard.apps-d.lrl.lilly.com/dashboard/#/",
+          "https://argocd.apps.lrl.lilly.com/",
+          "https://argocd.apps-q.lrl.lilly.com/",
+          "https://argocd.apps-d.lrl.lilly.com/",
+          "https://metrics.apps.lrl.lilly.com/dashboards",
+          "https://metrics.apps-q.lrl.lilly.com/dashboards",
+          "https://metrics.apps-d.lrl.lilly.com/d/2LaqbJ0Zk/k8s-app-team-cost-and-resource-overview?orgId=1&refresh=5m",
+          "https://kubecost.apps-d.lrl.lilly.com/allocations",
+          "https://kubecost.apps-q.lrl.lilly.com/allocations",
+          "https://kubecost.apps.lrl.lilly.com/allocations",
+          "https://cloud-browser.apps.lrl.lilly.com/",
+          "https://cloud-browser.apps-q.lrl.lilly.com/",
+          "https://cloud-browser.apps-d.lrl.lilly.com/",
+          "https://www.crossplane.io/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer",
+          "https://client-python.apps.lrl.lilly.com/",
+          "https://client-r.apps.lrl.lilly.com/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/PlatformOverview.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

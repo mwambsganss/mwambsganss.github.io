@@ -1,0 +1,48 @@
+{
+  "url": "https://cats.lilly.com/guide/GitHubTeams",
+  "title": "**GitHub Teams for CATS** | CATS",
+  "description": "Role-based access to CATS team code in GitHub is managed through GitHub Teams.",
+  "h1": [
+    "GitHub Teams for CATS"
+  ],
+  "h2": [
+    "GitHub Teams for CATS​"
+  ],
+  "h3": [
+    "Deprecated/Redundant Teams​",
+    "Coming Soon​"
+  ],
+  "text_content": "**GitHub Teams for CATS** | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nWhat Is CATS?\nGitHub Teams\nOn this page\nGitHub Teams for CATS\nRole-based access to CATS team code in GitHub is managed through\nGitHub Teams\n.\nLeast-privileged access should be granted to users based on business need in the following hierarchy.\nThe following is the apparent hierarchy of CATS teams. Note that these are currently not consistently implemented as of April 23, 2025. Please verify team access before assigning roles.\nGitHub Teams for CATS\n​\nTeam\nPurpose\nGitHub_Read_Only\nAll people within the Eli Lilly Organization. Read-only access.\nlrl_light_infra_admin\nAdmin access to LIGHT Infra GitHub Repos.\nLRL_light_k8s_infra_write\nWrite access to LIGHT Infra GitHub Repos.\nlrl_light_infra_approvers\nMaintainer access to LIGHT Infra Repos.\nlight_apps\nDeploying applications to the LIGHT platform.\nDeprecated/Redundant Teams\n​\n⚠️\nDeprecated Teams\n: These teams are no longer in use and should not be assigned to new members.\nTeam\nPurpose\nLRL_light_k8s_infra_read\nRead access to LIGHT Infra GitHub Repos.\nComing Soon\n​\nThese are the Hangar teams. These teams will soon merge their processes with CATS.\nTeam\nPurpose\nhangar-read\n'Read' access for spe-platform-engineering teams.\nhangar-temporal-devs\nDevelopers for the Temporal platform on Hangar.\nhangar-write\n'Write' access for spe-platform-engineering teams.\nhangar-admin\n'Admin' access for spe-platform-engineering teams.\nhangar-maintain\n'Maintain' access for spe-platform-engineering teams.\nEdit this page\nPrevious\nGitHub repositories\nNext\nCATS Platform Agent\nGitHub Teams for CATS\nDeprecated/Redundant Teams\nComing Soon\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 1,
+  "crawled_at": "2026-03-20T14:57:14.016862",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "GitHub Teams for CATS",
+        "description": "Role-based access to CATS team code in GitHub is managed throughGitHub Teams.",
+        "links": [
+          "/",
+          "https://github.com/orgs/EliLillyCo/teams",
+          "#github-teams-for-cats-1",
+          "https://github.com/orgs/EliLillyCo/teams/github_read_only",
+          "https://github.com/orgs/EliLillyCo/teams/lrl_light_infra_admin",
+          "https://github.com/orgs/EliLillyCo/teams/lrl_light_k8s_infra_write",
+          "https://github.com/orgs/EliLillyCo/teams/lrl_light_infra_approvers",
+          "https://github.com/orgs/EliLillyCo/teams/light_apps",
+          "#deprecatedredundant-teams",
+          "https://github.com/orgs/EliLillyCo/teams/lrl_light_k8s_infra_read",
+          "#coming-soon",
+          "https://github.com/orgs/EliLillyCo/teams/hangar-read",
+          "https://github.com/orgs/EliLillyCo/teams/hangar-temporal-devs",
+          "https://github.com/orgs/EliLillyCo/teams/hangar-write",
+          "https://github.com/orgs/EliLillyCo/teams/hangar-admin",
+          "https://github.com/orgs/EliLillyCo/teams/hangar-maintain",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/GitHubTeams.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

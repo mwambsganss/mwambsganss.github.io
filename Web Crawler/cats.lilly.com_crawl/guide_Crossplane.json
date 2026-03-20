@@ -1,0 +1,32 @@
+{
+  "url": "https://cats.lilly.com/guide/Crossplane",
+  "title": "Crossplane | CATS",
+  "description": "Crossplane",
+  "h1": [
+    "Crossplane"
+  ],
+  "h2": [
+    "Crossplane : Auto Resource Deployer:​"
+  ],
+  "h3": [],
+  "text_content": "Crossplane | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nOverview\nArgo\nBackstage\nBouncer\nCrossplane\nFlux\nWave\nKafka\nKarpenter\nPGadmin\nReloader\nRestful SDK\nSelf Service Toolkit\nSend Emails\nSmarter Device Manager\nTemporal\nArchitecture\nSupport\nAdmin\nSystem Services\nCrossplane\nOn this page\nCrossplane\nCrossplane : Auto Resource Deployer\n:\n​\nAutomate the deployment of cloud resources across multiple providers with Crossplane, simplifying cloud-native application management.\nAdditional Documentation on Crossplane:\nHERE\nEdit this page\nPrevious\nBouncer\nNext\nFlux\nCrossplane : Auto Resource Deployer\n:\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:08:39.596011",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Crossplane",
+        "description": "Automate the deployment of cloud resources across multiple providers with Crossplane, simplifying cloud-native application management.",
+        "links": [
+          "/",
+          "#crossplane--auto-resource-deployer",
+          "https://www.crossplane.io/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Crossplane.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

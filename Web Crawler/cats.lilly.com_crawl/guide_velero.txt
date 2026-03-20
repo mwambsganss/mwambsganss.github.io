@@ -1,0 +1,662 @@
+Title: Velero Kubernetes Backup System - Deployment & Usage Guide | CATS
+URL: https://cats.lilly.com/guide/velero
+Description: Overview
+
+Velero Kubernetes Backup System - Deployment & Usage Guide | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Overview
+Namespace
+Deployment
+Service
+Ingress
+Ingress Patterns
+Compute and Workload Scheduling
+Scaling
+Storage
+CronJob
+Jobs
+Rate Limit
+External Secrets
+HelmRelease
+External Integrations
+Graph User Info
+Makefile
+Velero Backups
+RDS Database Restore
+Namespace Decommission
+S3 Lifecycle Tagging
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+K8s Configuration
+Velero Backups
+On this page
+Velero Kubernetes Backup System - Deployment & Usage Guide
+Overview
+​
+Velero is a backup solution for Kubernetes that enables you to back up and restore cluster resources, persistent volumes, and perform disaster recovery. This document provides an overview of the infrastructure code used to deploy and configure Velero, as well as common commands for managing backups.
+Key Files and Components
+​
+1.
+LRL_light_k8s_infra/aws/lib/services/velero.ts
+​
+This is the main TypeScript file responsible for deploying Velero to the Kubernetes cluster. It includes:
+Namespace
+: Creates a namespace called
+backup
+for all Velero resources
+ServiceAccount Creation
+: Defines a Kubernetes ServiceAccount named
+velero
+in the
+backup
+namespace
+IAM Role Setup
+: Creates an AWS IAM Role with the necessary permissions to access S3 for storing backups and manage EBS snapshots
+ArgoCD Application Configuration
+: Defines the ArgoCD Application that deploys and manages the Velero Helm chart
+Default Backup Schedule
+: Configures a daily backup schedule running at 1:00 AM
+2.
+LRL_light_k8s_infra/aws/config/accountDetails.ts
+​
+Contains environment-specific configuration for Velero, including:
+S3 Bucket Names
+: Defines the S3 buckets for each environment where backups are stored:
+sbx: "lly-velero-backups-sbx-dev"
+dev: "lly-light-velero-backups-dev"
+qa: "lly-light-velero-backups-qa"
+prd: "lly-light-velero-backups-prd"
+3. IAM Role with Permissions
+​
+Creates an AWS IAM Role with policies to:
+Manage EBS snapshots and volumes:
+ec2:DescribeVolumes
+ec2:DescribeSnapshots
+ec2:CreateTags
+ec2:CreateVolume
+ec2:CreateSnapshot
+ec2:DeleteSnapshot
+Access the S3 bucket for storing backups:
+s3:AbortMultipartUpload
+s3:GetObject
+s3:DeleteObject
+s3:PutObject
+s3:ListMultipartUploadParts
+s3:ListBucket
+Plus a separate statement with broader
+s3:*
+permissions
+4. Kubernetes Resources Created
+​
+When deployed, the following Kubernetes resources are created:
+Namespace
+:
+backup
+ServiceAccount
+:
+velero
+in the
+backup
+namespace
+IAM Role
+:
+velero-s3-backup-role
+with necessary permissions
+BackupStorageLocation
+: Defines where backups are stored in S3
+VolumeSnapshotLocation
+: Defines where volume snapshots are stored (AWS)
+Schedule
+: Daily backup schedule at 1:00 AM
+Deployment
+: Velero server
+DaemonSet
+: Velero node-agent for handling volume snapshots
+5. Configuration Settings
+​
+Notable configuration values:
+Backup TTL
+: 240 hours (10 days)
+Operation Timeout
+: 4 hours
+Default Storage Location
+: AWS S3
+Schedule
+: Daily at 1:00 AM
+Excluded Namespaces
+: kube-system, velero
+AWS Region
+: us-east-2
+Resource Requests/Limits
+:
+Requests: 750m CPU, 256Mi memory
+Limits: 2000m CPU, 1024Mi memory
+Node Selector
+:
+kubernetes.io/os
+: linux
+app.lilly.com/compute
+: node
+app.lilly.com/system-service
+: true
+AWS Resources Used
+​
+S3 Bucket
+: Environment-specific buckets for storing backup data
+IAM Roles
+:
+IAM Role for service account (IRSA)
+AWS permissions for S3 access and EBS snapshots
+EBS Snapshots
+: For persistent volume backups
+Installation Process
+​
+Prerequisite
+: Ensure you have:
+Access to the AWS account
+Kubectl access to the Kubernetes cluster
+The appropriate S3 bucket created in AWS
+Proper IAM permissions
+Deployment Method
+:
+Velero is deployed through ArgoCD as defined in the
+velero.ts
+file
+The code creates:
+AWS IAM role with appropriate permissions
+Kubernetes service account linked to the IAM role
+ArgoCD application that deploys the Velero Helm chart
+Verification
+:
+CATS Support can verify the installation with:
+kubectl get pods -n backup
+Check the status of the Velero deployment:
+kubectl get deployment -n backup velero
+Verify the backup schedule:
+kubectl get schedule -n backup
+Creating Backups and Restores via GitOps
+​
+Important
+: End users do not have direct kubectl or Velero CLI access. All backup and restore operations must be performed using GitOps through manifest files in the repository.
+Creating Backups
+​
+To create a backup for your application, you need to add a Velero Backup manifest to the
+projects-managed-assets
+directory structure:
+1. Directory Structure
+​
+Create your backup configuration in:
+projects-managed-assets/{environment}/{your-app}-backups/
+Example
+:
+projects-managed-assets/qa/livedesign-qa-backups/
+2. Backup Manifest Example
+​
+# File: projects-managed-assets/qa/myapp-qa-backups/velero-backup.yaml
+apiVersion
+:
+velero.io/v1
+kind
+:
+Backup
+metadata
+:
+name
+:
+qa
+-
+myapp
+-
+pvc
+-
+backup
+namespace
+:
+backup
+# Must be 'backup' namespace
+spec
+:
+# Target namespace to backup
+includedNamespaces
+:
+-
+myapp
+-
+qa
+# Target specific PVCs using label selectors
+labelSelector
+:
+matchLabels
+:
+app.kubernetes.io/instance
+:
+myapp
+# Adjust to match your PVC labels
+# Backup configuration
+snapshotVolumes
+:
+true
+defaultVolumesToFsBackup
+:
+false
+snapshotMoveData
+:
+false
+csiSnapshotTimeout
+:
+10m
+volumeSnapshotLocations
+:
+-
+aws
+# Retention policy
+ttl
+:
+240h0m0s
+# 10 days
+# Storage location
+storageLocation
+:
+aws
+3. Identifying Your PVC Labels
+​
+Before creating a backup, identify the labels on your PVCs that should be backed up. Common label patterns:
+app.kubernetes.io/instance: {app-name}
+app.kubernetes.io/name: {component-name}
+app: {app-name}
+Ask CATS Support
+to help identify the correct labels for your PVCs using:
+kubectl get pvc -n {your-namespace} --show-labels
+4. Deployment Process
+​
+Create
+the directory structure and backup manifest
+Commit
+your changes to the repository
+Push
+to your branch and create a pull request
+ArgoCD
+will automatically deploy the backup resource
+Velero
+will process the backup and create snapshots
+5. Verification
+​
+Ask CATS Support to verify your backup was created successfully:
+kubectl get backup.velero.io -n backup
+kubectl describe backup.velero.io {your-backup-name} -n backup
+Creating Restores
+​
+Similar to backups, restores are created via manifest files:
+1. Restore Manifest Example
+​
+# File: projects-managed-assets/qa/myapp-qa-backups/velero-restore.yaml
+apiVersion
+:
+velero.io/v1
+kind
+:
+Restore
+metadata
+:
+name
+:
+qa
+-
+myapp
+-
+restore
+-
+20250619
+namespace
+:
+backup
+spec
+:
+# Source backup to restore from
+backupName
+:
+qa
+-
+myapp
+-
+pvc
+-
+backup
+# Optional: restore to different namespace
+# namespaceMapping:
+#   myapp-qa: myapp-qa-restored
+# Optional: include only specific resources
+# includedResources:
+# - persistentvolumeclaims
+# - persistentvolumes
+# Optional: exclude specific resources
+# excludedResources:
+# - events
+2. Restore Process
+​
+Create
+the restore manifest in the same directory as your backup
+Commit and push
+the changes
+Monitor
+the restore progress with CATS Support
+Verify
+restored resources are functioning correctly
+Backup Schedules
+​
+For regular automated backups, create a Schedule resource:
+# File: projects-managed-assets/qa/myapp-qa-backups/velero-schedule.yaml
+apiVersion
+:
+velero.io/v1
+kind
+:
+Schedule
+metadata
+:
+name
+:
+qa
+-
+myapp
+-
+daily
+-
+backup
+namespace
+:
+backup
+spec
+:
+# Cron schedule (daily at 2 AM)
+schedule
+:
+"0 2 * * *"
+template
+:
+includedNamespaces
+:
+-
+myapp
+-
+qa
+labelSelector
+:
+matchLabels
+:
+app.kubernetes.io/instance
+:
+myapp
+snapshotVolumes
+:
+true
+storageLocation
+:
+aws
+ttl
+:
+240h0m0s
+Directory Structure Examples
+​
+Single Application Backup
+​
+projects-managed-assets/
+qa/
+myapp-qa-backups/
+velero-backup.yaml
+velero-schedule.yaml
+Application with Multiple Backups
+​
+projects-managed-assets/
+qa/
+myapp-qa-backups/
+database-backup.yaml
+files-backup.yaml
+daily-schedule.yaml
+weekly-schedule.yaml
+Working Example
+​
+See the complete working example at:
+Repository
+:
+LRL_light_k8s_infra_apps_qa
+Path
+:
+projects-managed-assets/qa/livedesign-qa-backups/
+Files
+:
+velero-backup.yaml
+- Manual backup configuration
+VELERO-BACKUP-GUIDE.md
+- Implementation guide
+Important Notes
+​
+Namespace Requirement
+: All Velero resources (Backup, Restore, Schedule) must be created in the
+backup
+namespace
+GitOps Only
+: Users cannot run Velero CLI commands - all operations via manifest files
+CATS Support
+: Contact CATS Support for verification, troubleshooting, and manual operations
+Label Selectors
+: Critical to get the right label selectors to target your PVCs correctly
+Testing
+: Always test restore procedures in non-production environments first
+CATS Support Commands (Reference Only)
+​
+The following commands are available to CATS Support team members with cluster access:
+Backup Operations (CATS Support Only)
+​
+# Check backup status
+velero backup describe <backup-name> --namespace backup
+# View backup logs
+velero backup logs <backup-name> --namespace backup
+# List all backups
+velero backup get --namespace backup
+# Manual backup creation (if needed)
+velero backup create <backup-name> --include-namespaces=<namespace> --snapshot-volumes --namespace backup
+Restore Operations (CATS Support Only)
+​
+# Check restore status
+velero restore describe <restore-name> --namespace backup
+# View restore logs
+velero restore logs <restore-name> --namespace backup
+# List all restores
+velero restore get --namespace backup
+# Manual restore creation (if needed)
+velero restore create --from-backup=<backup-name> --namespace backup
+Schedule Management (CATS Support Only)
+​
+# List backup schedules
+velero schedule get --namespace backup
+# View schedule details
+velero schedule describe <schedule-name> --namespace backup
+# Delete a schedule (if needed)
+velero schedule delete <schedule-name> --namespace backup
+Storage Location Management (CATS Support Only)
+​
+# View backup storage locations
+velero backup-location get --namespace backup
+# Check backup storage location status
+velero backup-location describe aws --namespace backup
+System Status (CATS Support Only)
+​
+# Check Velero server status
+kubectl get deployment -n backup velero
+# Check Velero server logs
+kubectl logs deployment/velero -n backup
+# Check Velero client version
+velero version
+# Verify backup resources
+kubectl get backup.velero.io -n backup
+kubectl get restore.velero.io -n backup
+kubectl get schedule.velero.io -n backup
+Best Practices
+​
+Use GitOps Approach
+: Always create backups and restores via manifest files in
+projects-managed-assets
+Label Selectors
+: Carefully choose label selectors to target the correct PVCs
+Test Restores
+: Periodically test the restore process in non-production environments
+Descriptive Names
+: Use clear, descriptive names for backup and restore resources
+Environment Separation
+: Keep environment-specific backups in their respective directories
+Documentation
+: Document your backup strategy and recovery procedures
+Retention Policy
+: Adjust the backup TTL based on your requirements (default: 10 days)
+Monitor via CATS Support
+: Work with CATS Support to monitor backup job success/failure
+PVC Labels
+: Ensure your application's PVCs have consistent, meaningful labels
+Disaster Recovery Plan
+: Document the complete restore procedure for disaster recovery scenarios
+Troubleshooting
+​
+For End Users
+​
+Backup Not Created
+:
+Verify your manifest is in the correct directory:
+projects-managed-assets/{env}/{app}-backups/
+Ensure the backup namespace is set to
+backup
+Check that your label selectors match your PVCs
+Contact CATS Support to verify ArgoCD deployment status
+Restore Not Working
+:
+Verify the source backup name exists and is completed
+Check namespace mappings if restoring to different namespace
+Ensure target namespace exists or will be created
+Contact CATS Support for restore verification
+Label Selector Issues
+:
+Ask CATS Support to help identify correct PVC labels:
+kubectl get pvc -n {namespace} --show-labels
+Common patterns:
+app.kubernetes.io/instance
+,
+app.kubernetes.io/name
+,
+app
+Test with a small subset of resources first
+For CATS Support
+​
+Failed Backups
+:
+Check the backup logs:
+velero backup logs <backup-name> --namespace backup
+Verify IAM permissions for the Velero service account
+Check S3 bucket accessibility
+Verify label selectors match actual PVC labels
+Failed Restores
+:
+Check the restore logs:
+velero restore logs <restore-name> --namespace backup
+Verify that the backup exists and is in a completed state
+Check for namespace conflicts or resource validation errors
+Verify target namespace exists or can be created
+Storage Issues
+:
+Verify the backup storage location is accessible:
+velero backup-location describe aws --namespace backup
+Check the S3 bucket permissions and accessibility
+Ensure the bucket exists in the correct AWS region (us-east-2)
+Verify IAM role has proper S3 permissions
+Volume Snapshot Issues
+:
+Verify that the EBS snapshots are being created in AWS console
+Check the VolumeSnapshotLocation configuration
+Ensure the IAM role has the necessary EC2 snapshot permissions
+Check for EFS volumes (cannot be snapshotted via CSI)
+ArgoCD Deployment Issues
+:
+Check ArgoCD application sync status:
+kubectl get application system-services.qa.projects-managed-assets -n argocd
+Verify manifest syntax and structure
+Check for validation errors in ArgoCD UI or logs
+Edit this page
+Previous
+Makefile
+Next
+RDS Database Restore
+Overview
+Key Files and Components
+1.
+LRL_light_k8s_infra/aws/lib/services/velero.ts
+2.
+LRL_light_k8s_infra/aws/config/accountDetails.ts
+3. IAM Role with Permissions
+4. Kubernetes Resources Created
+5. Configuration Settings
+AWS Resources Used
+Installation Process
+Creating Backups and Restores via GitOps
+Creating Backups
+Creating Restores
+Backup Schedules
+Directory Structure Examples
+Single Application Backup
+Application with Multiple Backups
+Working Example
+Important Notes
+CATS Support Commands (Reference Only)
+Backup Operations (CATS Support Only)
+Restore Operations (CATS Support Only)
+Schedule Management (CATS Support Only)
+Storage Location Management (CATS Support Only)
+System Status (CATS Support Only)
+Best Practices
+Troubleshooting
+For End Users
+For CATS Support
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Velero Kubernetes Backup System - Deployment & Usage Guide
+Description: Velero is a backup solution for Kubernetes that enables you to back up and restore cluster resources, persistent volumes, and perform disaster recovery. This document provides an overview of the infrastructure code used to deploy and configure Velero, as well as common commands for managing backups.
+Links: /, #overview, #key-files-and-components, #1-lrl_light_k8s_infraawslibservicesvelerots, #2-lrl_light_k8s_infraawsconfigaccountdetailsts, #3-iam-role-with-permissions, #4-kubernetes-resources-created, #5-configuration-settings, #aws-resources-used, #installation-process, #creating-backups-and-restores-via-gitops, #creating-backups, #1-directory-structure, #2-backup-manifest-example, #3-identifying-your-pvc-labels, #4-deployment-process, #5-verification, #creating-restores, #1-restore-manifest-example, #2-restore-process, #backup-schedules, #directory-structure-examples, #single-application-backup, #application-with-multiple-backups, #working-example, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa, #important-notes, #cats-support-commands-reference-only, #backup-operations-cats-support-only, #restore-operations-cats-support-only, #schedule-management-cats-support-only, #storage-location-management-cats-support-only, #system-status-cats-support-only, #best-practices, #troubleshooting, #for-end-users, #for-cats-support, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/velero.md

@@ -1,0 +1,37 @@
+{
+  "url": "https://cats.lilly.com/guide/Loki",
+  "title": "Loki | CATS",
+  "description": "Loki is an open-source, log aggregation system developed by Grafana Labs, specifically designed for storing and querying logs. It's part of the observability toolchain and is often used alongside [Prometheus (for metrics) and Grafana (for visualization)]. Loki is highly optimized for Kubernetes environments and aims to be a cost-effective and scalable solution for log management.",
+  "h1": [
+    "Loki"
+  ],
+  "h2": [
+    "Visualize Logs with Loki on Metrics Dashboard​",
+    "How to use Loki in CATS​",
+    "Official Loki Documentation​"
+  ],
+  "h3": [],
+  "text_content": "Loki | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nOverview\nInstrumentation\nGrafana\nJaeger\nLoki\nOpencost\nPrometheus\nSystem Services\nArchitecture\nSupport\nAdmin\nObservability\nLoki\nOn this page\nLoki\nLoki is an open-source, log aggregation system developed by Grafana Labs, specifically designed for storing and querying logs. It's part of the observability toolchain and is often used alongside [Prometheus (for metrics) and Grafana (for visualization)]. Loki is highly optimized for Kubernetes environments and aims to be a cost-effective and scalable solution for log management.\nKey Features of Loki:\nLog Aggregation: Loki collects logs from various sources, including Kubernetes pods, servers, and applications, and stores them in a central location. This makes it easy to search and analyze logs across multiple systems.\nKubernetes-Native: Loki is designed with Kubernetes in mind. It integrates well with Kubernetes clusters, typically using Promtail (a lightweight log collector) to collect logs from pods and push them to Loki.\nScalability: Loki is designed to scale horizontally. It is efficient in how it stores and indexes logs, focusing on low-cost operations by indexing only metadata such as labels (Kubernetes pod names, namespaces, etc.), rather than the full text of the logs.\nIntegration with Grafana: One of Loki's strongest features is its seamless integration with Grafana. Grafana allows users to visualize, explore, and create dashboards for their logs, making it easy to correlate logs with metrics and traces from other sources like Prometheus.\nEfficient Storage: Unlike traditional log management systems that index the entire contents of logs, Loki uses label-based indexing. This reduces the storage footprint and lowers the costs of operating a log management solution, making it ideal for teams that need large-scale log aggregation without the high operational overhead.\nVisualize Logs with Loki on Metrics Dashboard\n​\nLoki integrates seamlessly with Grafana, providing powerful log analysis capabilities. With Grafana’s intuitive interface, users can easily visualize, search, and correlate logs with metrics and traces. This makes Loki a central part of your observability stack, providing insights that go beyond metrics and traces alone.\nUnified Log Exploration:\nIn Grafana, users can query logs from Loki in real-time using a simple, yet flexible query language. The integration allows you to search logs by labels, such as Kubernetes pod names, namespaces, and other metadata. You can visualize these logs alongside performance metrics from Prometheus and trace data from Jaeger.\nCorrelating Metrics, Logs, and Traces:\nOne of the key benefits of Loki in Grafana is the ability to correlate logs with metrics (from Prometheus) and traces (from Jaeger). For example, if a metric indicates high CPU usage or errors, you can drill down directly into the related logs to pinpoint the cause. Similarly, if traces show an issue in request flow, you can view the corresponding logs for more detailed context.\nCustom Dashboards:\nWith Grafana, you can create custom dashboards that combine logs, metrics, and traces in one view, offering a complete picture of system health and behavior. These dashboards can be tailored to your application's specific needs, making it easier to detect, debug, and resolve issues faster.\nAlerting and Notifications:\nYou can configure alerts based on specific log patterns or log levels (e.g., errors or warnings). Grafana’s alerting system allows for notifications via email, Slack, or other communication channels, so teams can proactively respond to issues before they escalate.\nLoki's integration with Grafana makes it a key tool in monitoring and troubleshooting your applications, ensuring that logs are not only stored efficiently but also easily accessible and actionable.\nHow to use Loki in CATS\n​\nAs there is no user interface for Loki, the only way to query Loki for logs is through Grafana. Please see the\nGrafana\ndocumentation for utilizing the tool.\nOfficial Loki Documentation\n​\nFor additional information about Loki, see the\nOfficial Documentation\n.\nEdit this page\nPrevious\nJaeger\nNext\nOpencost\nVisualize Logs with Loki on Metrics Dashboard\nHow to use Loki in CATS\nOfficial Loki Documentation\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:04:29.030212",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Loki",
+        "description": "Loki is an open-source, log aggregation system developed by Grafana Labs, specifically designed for storing and querying logs. It's part of the observability toolchain and is often used alongside [Prometheus (for metrics) and Grafana (for visualization)]. Loki is highly optimized for Kubernetes environments and aims to be a cost-effective and scalable solution for log management.",
+        "links": [
+          "/",
+          "#visualize-logs-with-loki-on-metrics-dashboard",
+          "#how-to-use-loki-in-cats",
+          "/guide/Grafana",
+          "#official-loki-documentation",
+          "https://grafana.com/docs/loki/latest/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Loki.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

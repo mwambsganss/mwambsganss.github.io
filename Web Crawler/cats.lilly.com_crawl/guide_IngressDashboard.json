@@ -1,0 +1,41 @@
+{
+  "url": "https://cats.lilly.com/guide/IngressDashboard",
+  "title": "**Traefik : Ingress Dashboard** | CATS",
+  "description": "Simplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.",
+  "h1": [
+    "Traefik : Ingress Dashboard"
+  ],
+  "h2": [],
+  "h3": [
+    "Traefik in Production Environment​",
+    "Traefik in QA Environment​",
+    "Traefik in DEV Environment​"
+  ],
+  "text_content": "**Traefik : Ingress Dashboard** | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nOverview\nArgo Deployment Dashboard\nMetrics Dashboard\nIngress Dashboard\nOpencost Dashboard\nKubecost Dashboard (Deprecated)\nKubernetes Dashboard (Deprecated)\nLogging Dashboard (Deprecated)\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nDashboard Offerings\nIngress Dashboard\nOn this page\nTraefik : Ingress Dashboard\nSimplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.\nTraefik in Production Environment\n​\nTo troubleshoot both the apps and apps-api ingress routes use\nTraefik dashboard - PRD\nThe No-Authentication traefik controller is separate and has its own dashboard. To troubleshoot the apps-internal ingress route use\nNo-Auth Traefik Dashboard - PRD\nTraefik in QA Environment\n​\nTo troubleshoot both the apps and apps-api ingress routes use\nTraefik dashboard - QA\nThe No-Authentication traefik controller is separate and has its own dashboard. To troubleshoot the apps-internal ingress route use\nNo-Auth Traefik Dashboard - QA\nTraefik in DEV Environment\n​\nTo troubleshoot both the apps and apps-api ingress routes use\nTraefik dashboard - DEV\nThe No-Authentication traefik controller is separate and has its own dashboard. To troubleshoot the apps-internal ingress route use\nNo-Auth Traefik Dashboard - DEV\nEdit this page\nPrevious\nMetrics Dashboard\nNext\nOpencost Dashboard\nTraefik in Production Environment\nTraefik in QA Environment\nTraefik in DEV Environment\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:03:45.917279",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Traefik : Ingress Dashboard",
+        "description": "Simplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.",
+        "links": [
+          "/",
+          "#traefik-in-production-environment",
+          "https://traefik-dashboard.apps.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard-noauth.apps.lrl.lilly.com/dashboard/#/",
+          "#traefik-in-qa-environment",
+          "https://traefik-dashboard.apps-q.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard-noauth.apps-q.lrl.lilly.com/dashboard/#/",
+          "#traefik-in-dev-environment",
+          "https://traefik-dashboard.apps-d.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard-noauth.apps-d.lrl.lilly.com/dashboard/#/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/IngressDashboard.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

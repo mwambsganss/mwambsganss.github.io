@@ -1,0 +1,67 @@
+{
+  "url": "https://cats.lilly.com/guide/Ingress_patterns",
+  "title": "Ingress Patterns and Visualization | CATS",
+  "description": "In Kubernetes environments, understanding ingress traffic routing patterns can be challenging. This guide introduces visualization tools and common patterns to help you better understand how ingress resources direct traffic to your services.",
+  "h1": [
+    "Ingress Patterns and Visualization"
+  ],
+  "h2": [
+    "Ingress Diagram Tool​",
+    "Common Ingress Patterns​",
+    "Visualizing Ingress Flow​",
+    "Reading Diagram Elements​",
+    "API Usage​",
+    "Troubleshooting Ingress Configurations​"
+  ],
+  "h3": [
+    "Accessing the Tool​",
+    "Example Use Cases​",
+    "1. Simple Path Routing Pattern​",
+    "2. Host-Based Routing Pattern​",
+    "3. Path-Based Routing Pattern​",
+    "4. Fanout (Multiple Services) Pattern​",
+    "5. Default Backend Pattern​",
+    "Diagram Color Legend​",
+    "Summary Endpoints​",
+    "Diagram Endpoints​"
+  ],
+  "text_content": "Ingress Patterns and Visualization | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nOverview\nNamespace\nDeployment\nService\nIngress\nIngress Patterns\nCompute and Workload Scheduling\nScaling\nStorage\nCronJob\nJobs\nRate Limit\nExternal Secrets\nHelmRelease\nExternal Integrations\nGraph User Info\nMakefile\nVelero Backups\nRDS Database Restore\nNamespace Decommission\nS3 Lifecycle Tagging\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nK8s Configuration\nIngress Patterns\nOn this page\nIngress Patterns and Visualization\nIn Kubernetes environments, understanding ingress traffic routing patterns can be challenging. This guide introduces visualization tools and common patterns to help you better understand how ingress resources direct traffic to your services.\nIngress Diagram Tool\n​\nThe Kubernetes Ingress Diagrams tool provides comprehensive visualization of ingress resources, services, and endpoints in your Kubernetes clusters. It automatically identifies AWS Application Load Balancer (ALB) configurations when present, clearly showing how external traffic flows through your cluster's network architecture.\nAccessing the Tool\n​\nThe ingress diagram visualization tool is deployed and accessible at:\nhttps://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com\nExample Use Cases\n​\nView traffic routing for a specific namespace with endpoints:\nhttps://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams?namespace=llm-dev&endpoints=true\nView all ingresses with a specific host pattern:\nhttps://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams?host=.*apps-d.lrl.lilly.com&endpoints=true\nView specific namespaces with endpoint details:\nhttps://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams?namespace=aads-legal-intakes-dev&endpoints=true\nCommon Ingress Patterns\n​\nThe system identifies five main ingress pattern types:\n1. Simple Path Routing Pattern\n​\nRoutes all traffic to a single service\nHas a single hostname and path\nThe simplest form of ingress configuration\nUsed when an application is served by a single backend service\nExample:\nAn ingress with one host (like app.example.com) and one path (/) pointing to a single service\napiVersion\n:\nnetworking.k8s.io/v1\nkind\n:\nIngress\nmetadata\n:\nname\n:\nsimple\n-\npath\n-\ningress\nspec\n:\nrules\n:\n-\nhost\n:\napp.example.com\nhttp\n:\npaths\n:\n-\npath\n:\n/\npathType\n:\nPrefix\nbackend\n:\nservice\n:\nname\n:\nmy\n-\nservice\nport\n:\nnumber\n:\n80\n2. Host-Based Routing Pattern\n​\nRoutes traffic based on the hostname in the request\nMultiple hostnames route to different services\nAllows hosting multiple applications on the same infrastructure using different domain names\nDetected when an ingress has more than one host rule\nExample:\nDifferent hosts like app1.example.com and app2.example.com routing to different backend services\napiVersion\n:\nnetworking.k8s.io/v1\nkind\n:\nIngress\nmetadata\n:\nname\n:\nhost\n-\nbased\n-\ningress\nspec\n:\nrules\n:\n-\nhost\n:\napi.example.com\nhttp\n:\npaths\n:\n-\npath\n:\n/\npathType\n:\nPrefix\nbackend\n:\nservice\n:\nname\n:\napi\n-\nservice\nport\n:\nnumber\n:\n80\n-\nhost\n:\nweb.example.com\nhttp\n:\npaths\n:\n-\npath\n:\n/\npathType\n:\nPrefix\nbackend\n:\nservice\n:\nname\n:\nweb\n-\nservice\nport\n:\nnumber\n:\n80\n3. Path-Based Routing Pattern\n​\nRoutes traffic based on the URL path\nDifferent paths route to different services under the same hostname\nAllows exposing multiple services under the same hostname\nDetected when an ingress has multiple paths but only one host\nExample:\nexample.com/api goes to an API service while example.com/app goes to a frontend service\napiVersion\n:\nnetworking.k8s.io/v1\nkind\n:\nIngress\nmetadata\n:\nname\n:\npath\n-\nbased\n-\ningress\nspec\n:\nrules\n:\n-\nhost\n:\nmyapp.example.com\nhttp\n:\npaths\n:\n-\npath\n:\n/api\npathType\n:\nPrefix\nbackend\n:\nservice\n:\nname\n:\napi\n-\nservice\nport\n:\nnumber\n:\n80\n-\npath\n:\n/app\npathType\n:\nPrefix\nbackend\n:\nservice\n:\nname\n:\nfrontend\n-\nservice\nport\n:\nnumber\n:\n80\n4. Fanout (Multiple Services) Pattern\n​\nAlso known as path-based fan-out\nRoutes different URL paths to different services\nCreates a unified API gateway from multiple microservices\nDetected when there are multiple backend services in a single ingress\nExample:\nRouting /api/users to a user service, /api/products to a product service, etc.\napiVersion\n:\nnetworking.k8s.io/v1\nkind\n:\nIngress\nmetadata\n:\nname\n:\nfanout\n-\ningress\nspec\n:\nrules\n:\n-\nhost\n:\napi.example.com\nhttp\n:\npaths\n:\n-\npath\n:\n/api/users\npathType\n:\nPrefix\nbackend\n:\nservice\n:\nname\n:\nuser\n-\nservice\nport\n:\nnumber\n:\n80\n-\npath\n:\n/api/products\npathType\n:\nPrefix\nbackend\n:\nservice\n:\nname\n:\nproduct\n-\nservice\nport\n:\nnumber\n:\n80\n-\npath\n:\n/api/orders\npathType\n:\nPrefix\nbackend\n:\nservice\n:\nname\n:\norder\n-\nservice\nport\n:\nnumber\n:\n80\n5. Default Backend Pattern\n​\nUses a default backend with no specific routing rules\nUsed for catch-all services or fallback endpoints\nDetected when an ingress has no rules defined\nProvides a consistent experience for unmatched requests\nExample:\nA generic 404 page or a service that handles all unmatched requests\napiVersion\n:\nnetworking.k8s.io/v1\nkind\n:\nIngress\nmetadata\n:\nname\n:\ndefault\n-\nbackend\n-\ningress\nspec\n:\ndefaultBackend\n:\nservice\n:\nname\n:\ndefault\n-\nservice\nport\n:\nnumber\n:\n80\nnumber: 80\nhost: web.example.com\nhttp:\npaths:\npath: /\npathType: Prefix\nbackend:\nservice:\nname: web-service\nport:\nnumber: 80\n### 4. TLS/SSL Termination\nAdding TLS certificate for secure connections:\n```yaml\napiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\nname: tls-ingress\nspec:\ntls:\n- hosts:\n- secure.example.com\nsecretName: tls-secret\nrules:\n- host: secure.example.com\nhttp:\npaths:\n- path: /\npathType: Prefix\nbackend:\nservice:\nname: secure-service\nport:\nnumber: 80\nVisualizing Ingress Flow\n​\nThe following diagram shows a typical traffic flow through Kubernetes ingress:\nReading Diagram Elements\n​\nWhen using the Hangar Ingress Diagram Tool, you'll see these components:\nExternal Clients\n: Shown at the top, representing external traffic sources\nHostnames/Domains\n: The domain names configured in your ingress resources\nALB/Ingress Controllers\n: Shows AWS Application Load Balancers and ingress controllers\nServices\n: Kubernetes services that receive traffic from ingress rules\nEndpoints\n: When enabled (\nendpoints=true\n), shows the actual pods behind each service\nDiagram Color Legend\n​\nBlue Boxes\n: External components (clients, hostnames)\nGreen Boxes\n: Kubernetes ingress resources\nYellow Boxes\n: Kubernetes services\nPurple Boxes\n: Kubernetes pods/endpoints\nArrows\n: Traffic flow direction with path/port information\nAPI Usage\n​\nFor more complex scenarios, you can interact with the Ingress Diagram Tool's API:\nSummary Endpoints\n​\n# Summary of all ingress resources\nhttps://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/summary\n# Summary filtered by namespace\nhttps://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/summary?namespace=your-namespace\n# Summary with endpoints data\nhttps://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/summary?endpoints=true\nDiagram Endpoints\n​\n# Mermaid diagrams for all ingress resources\nhttps://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams\n# Diagrams in Markdown format (instead of HTML)\nhttps://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams?format=md\n# Diagrams with limited pods displayed (default is all)\nhttps://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams?max_pods=3\nTroubleshooting Ingress Configurations\n​\nWhen troubleshooting ingress issues:\nVerify your ingress resource is correctly defined\nCheck that referenced services exist in the correct namespace\nConfirm that service selectors match your pod labels\nValidate that port mappings are consistent through the chain\nUse the Ingress Diagram Tool to visualize the current configuration\nCheck Ingress Controller logs if traffic isn't flowing as expected\nFor more information, contact the Hangar Team or visit\nthe project repository\n.\nEdit this page\nPrevious\nIngress\nNext\nCompute and Workload Scheduling\nIngress Diagram Tool\nAccessing the Tool\nExample Use Cases\nCommon Ingress Patterns\n1. Simple Path Routing Pattern\n2. Host-Based Routing Pattern\n3. Path-Based Routing Pattern\n4. Fanout (Multiple Services) Pattern\n5. Default Backend Pattern\nVisualizing Ingress Flow\nReading Diagram Elements\nDiagram Color Legend\nAPI Usage\nSummary Endpoints\nDiagram Endpoints\nTroubleshooting Ingress Configurations\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:04:50.658709",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Ingress Patterns and Visualization",
+        "description": "In Kubernetes environments, understanding ingress traffic routing patterns can be challenging. This guide introduces visualization tools and common patterns to help you better understand how ingress resources direct traffic to your services.",
+        "links": [
+          "/",
+          "#ingress-diagram-tool",
+          "#accessing-the-tool",
+          "https://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com",
+          "#example-use-cases",
+          "https://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams?namespace=llm-dev&endpoints=true",
+          "https://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams?host=.*apps-d.lrl.lilly.com&endpoints=true",
+          "https://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams?namespace=aads-legal-intakes-dev&endpoints=true",
+          "#common-ingress-patterns",
+          "#1-simple-path-routing-pattern",
+          "#2-host-based-routing-pattern",
+          "#3-path-based-routing-pattern",
+          "#4-fanout-multiple-services-pattern",
+          "#5-default-backend-pattern",
+          "#visualizing-ingress-flow",
+          "#reading-diagram-elements",
+          "#diagram-color-legend",
+          "#api-usage",
+          "#summary-endpoints",
+          "#diagram-endpoints",
+          "#troubleshooting-ingress-configurations",
+          "https://github.com/EliLillyCo/hangar-k8s-ingress-diagrams",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Ingress_patterns.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

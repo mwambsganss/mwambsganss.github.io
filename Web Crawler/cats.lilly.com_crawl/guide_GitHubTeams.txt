@@ -1,0 +1,109 @@
+Title: **GitHub Teams for CATS** | CATS
+URL: https://cats.lilly.com/guide/GitHubTeams
+Description: Role-based access to CATS team code in GitHub is managed through GitHub Teams.
+
+**GitHub Teams for CATS** | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+What Is CATS?
+GitHub Teams
+On this page
+GitHub Teams for CATS
+Role-based access to CATS team code in GitHub is managed through
+GitHub Teams
+.
+Least-privileged access should be granted to users based on business need in the following hierarchy.
+The following is the apparent hierarchy of CATS teams. Note that these are currently not consistently implemented as of April 23, 2025. Please verify team access before assigning roles.
+GitHub Teams for CATS
+​
+Team
+Purpose
+GitHub_Read_Only
+All people within the Eli Lilly Organization. Read-only access.
+lrl_light_infra_admin
+Admin access to LIGHT Infra GitHub Repos.
+LRL_light_k8s_infra_write
+Write access to LIGHT Infra GitHub Repos.
+lrl_light_infra_approvers
+Maintainer access to LIGHT Infra Repos.
+light_apps
+Deploying applications to the LIGHT platform.
+Deprecated/Redundant Teams
+​
+⚠️
+Deprecated Teams
+: These teams are no longer in use and should not be assigned to new members.
+Team
+Purpose
+LRL_light_k8s_infra_read
+Read access to LIGHT Infra GitHub Repos.
+Coming Soon
+​
+These are the Hangar teams. These teams will soon merge their processes with CATS.
+Team
+Purpose
+hangar-read
+'Read' access for spe-platform-engineering teams.
+hangar-temporal-devs
+Developers for the Temporal platform on Hangar.
+hangar-write
+'Write' access for spe-platform-engineering teams.
+hangar-admin
+'Admin' access for spe-platform-engineering teams.
+hangar-maintain
+'Maintain' access for spe-platform-engineering teams.
+Edit this page
+Previous
+GitHub repositories
+Next
+CATS Platform Agent
+GitHub Teams for CATS
+Deprecated/Redundant Teams
+Coming Soon
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: GitHub Teams for CATS
+Description: Role-based access to CATS team code in GitHub is managed throughGitHub Teams.
+Links: /, https://github.com/orgs/EliLillyCo/teams, #github-teams-for-cats-1, https://github.com/orgs/EliLillyCo/teams/github_read_only, https://github.com/orgs/EliLillyCo/teams/lrl_light_infra_admin, https://github.com/orgs/EliLillyCo/teams/lrl_light_k8s_infra_write, https://github.com/orgs/EliLillyCo/teams/lrl_light_infra_approvers, https://github.com/orgs/EliLillyCo/teams/light_apps, #deprecatedredundant-teams, https://github.com/orgs/EliLillyCo/teams/lrl_light_k8s_infra_read, #coming-soon, https://github.com/orgs/EliLillyCo/teams/hangar-read, https://github.com/orgs/EliLillyCo/teams/hangar-temporal-devs, https://github.com/orgs/EliLillyCo/teams/hangar-write, https://github.com/orgs/EliLillyCo/teams/hangar-admin, https://github.com/orgs/EliLillyCo/teams/hangar-maintain, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/GitHubTeams.md

@@ -1,0 +1,575 @@
+Title: RDS Database Restore Procedures | CATS
+URL: https://cats.lilly.com/guide/RDS_Restore
+Description: Overview
+
+RDS Database Restore Procedures | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Overview
+Namespace
+Deployment
+Service
+Ingress
+Ingress Patterns
+Compute and Workload Scheduling
+Scaling
+Storage
+CronJob
+Jobs
+Rate Limit
+External Secrets
+HelmRelease
+External Integrations
+Graph User Info
+Makefile
+Velero Backups
+RDS Database Restore
+Namespace Decommission
+S3 Lifecycle Tagging
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+K8s Configuration
+RDS Database Restore
+On this page
+RDS Database Restore Procedures
+Overview
+​
+This guide provides step-by-step procedures for restoring an RDS database from snapshot using Crossplane and GitOps workflow. The process creates a new RDS instance from a snapshot while keeping the original database running, then switches the application to the new database via infrastructure PRs.
+Tested Process
+Successfully tested on October 24, 2025 with medi-author-db-dev restore
+Key Points
+​
+Original database remains untouched throughout
+New database created with timestamped name
+Credentials copied from original (snapshots preserve passwords)
+Application switched via PR to update secret reference
+Original database deleted only after validation
+Roles and Responsibilities
+​
+CATS Platform Team
+​
+Creates RDS instance from snapshot in AWS
+Copies credentials between secrets
+Deletes old RDS instance after validation
+Application Team
+​
+Creates PR to add new RDS instance to Crossplane
+Creates PR to switch application to new database
+Validates application functionality
+Creates PR to remove old RDS instance from Crossplane
+Prerequisites
+​
+Access to AWS Console/CLI (CATS)
+Access to application Git repository (App Team)
+kubectl access to cluster (CATS)
+Maintenance window coordinated with App Team
+Step 1: Create Snapshot (CATS)
+​
+Create a fresh snapshot before starting the restore process.
+# Set variables
+DB_INSTANCE_ID="your-db-instance-name"
+SNAPSHOT_ID="${DB_INSTANCE_ID}-pre-restore-$(date +%Y%m%d-%H%M%S)"
+AWS_PROFILE="your-aws-profile"
+AWS_REGION="us-east-2"
+# Create snapshot
+aws rds create-db-snapshot \
+--db-instance-identifier $DB_INSTANCE_ID \
+--db-snapshot-identifier $SNAPSHOT_ID \
+--profile $AWS_PROFILE \
+--region $AWS_REGION \
+--no-cli-pager
+# Wait for completion (5-10 minutes)
+aws rds wait db-snapshot-completed \
+--db-snapshot-identifier $SNAPSHOT_ID \
+--profile $AWS_PROFILE \
+--region $AWS_REGION
+# Verify
+aws rds describe-db-snapshots \
+--db-snapshot-identifier $SNAPSHOT_ID \
+--profile $AWS_PROFILE \
+--region $AWS_REGION \
+--query 'DBSnapshots[0].[DBSnapshotIdentifier,Status]' \
+--output table
+Step 2: Restore RDS Instance in AWS (CATS)
+​
+Create a new RDS instance from the snapshot using AWS CLI.
+# Set variables
+RESTORED_DB_ID="${DB_INSTANCE_ID}-restored-$(date +%Y%m%d-%H%M%S)"
+# Get original database configuration
+aws rds describe-db-instances \
+--db-instance-identifier $DB_INSTANCE_ID \
+--profile $AWS_PROFILE \
+--region $AWS_REGION \
+--query 'DBInstances[0].[DBInstanceClass,AllocatedStorage,DBSubnetGroup.DBSubnetGroupName,VpcSecurityGroups[0].VpcSecurityGroupId]' \
+--output table
+# Restore from snapshot (adjust parameters as needed)
+aws rds restore-db-instance-from-db-snapshot \
+--db-instance-identifier $RESTORED_DB_ID \
+--db-snapshot-identifier $SNAPSHOT_ID \
+--db-instance-class db.t3.small \
+--db-subnet-group-name light-rds-subnet-group \
+--vpc-security-group-ids sg-0fc1ecf123aa058f0 \
+--no-multi-az \
+--engine postgres \
+--no-auto-minor-version-upgrade \
+--no-deletion-protection \
+--profile $AWS_PROFILE \
+--region $AWS_REGION \
+--no-cli-pager
+# Wait for restore (10-15 minutes)
+aws rds wait db-instance-available \
+--db-instance-identifier $RESTORED_DB_ID \
+--profile $AWS_PROFILE \
+--region $AWS_REGION
+# Get endpoint
+aws rds describe-db-instances \
+--db-instance-identifier $RESTORED_DB_ID \
+--profile $AWS_PROFILE \
+--region $AWS_REGION \
+--query 'DBInstances[0].[DBInstanceIdentifier,DBInstanceStatus,Endpoint.Address]' \
+--output table
+Save the Instance ID
+Save the restored DB instance ID - you'll need it for the next step.
+Step 3: Add Restored Database to Crossplane (App Team)
+​
+Create a PR to add the new RDS instance to Crossplane management.
+Create file:
+your-app-manifests/rds-instance-restored.yaml
+apiVersion
+:
+database.aws.crossplane.io/v1beta1
+kind
+:
+RDSInstance
+metadata
+:
+name
+:
+your
+-
+db
+-
+name
+-
+restored
+namespace
+:
+your
+-
+namespace
+annotations
+:
+crossplane.io/external-name
+:
+<RESTORED_DB_ID from Step 2
+>
+spec
+:
+providerConfigRef
+:
+name
+:
+"default"
+forProvider
+:
+dbInstanceClass
+:
+db.t3.small
+allocatedStorage
+:
+20
+region
+:
+us
+-
+east
+-
+2
+dbName
+:
+your
+-
+database
+-
+name
+engine
+:
+postgres
+engineVersion
+:
+"17.2"
+skipFinalSnapshotBeforeDeletion
+:
+true
+autoMinorVersionUpgrade
+:
+false
+storageEncrypted
+:
+true
+deletionProtection
+:
+false
+dbSubnetGroupName
+:
+light
+-
+rds
+-
+subnet
+-
+group
+vpcSecurityGroupIds
+:
+-
+sg
+-
+0fc1ecf123aa058f0
+masterUsername
+:
+postgres
+writeConnectionSecretToRef
+:
+namespace
+:
+your
+-
+namespace
+name
+:
+your
+-
+db
+-
+credentials
+-
+restored
+Create PR, get approval, merge.
+Wait for ArgoCD sync
+(or manually sync if needed).
+Verify Crossplane adoption:
+kubectl get rdsinstance your-db-name-restored -n your-namespace
+# Should show READY=True, SYNCED=True
+Important
+At this point, the secret will only have
+endpoint
+and
+port
+. Username and password are missing.
+Step 4: Copy Credentials to New Secret (CATS)
+​
+Crossplane adoption creates an incomplete secret. Copy credentials from the original secret.
+# Set variables
+NAMESPACE="your-namespace"
+ORIGINAL_SECRET="your-db-credentials"
+RESTORED_SECRET="your-db-credentials-restored"
+# Extract password from original secret
+CURRENT_PASSWORD=REDACTED-PASSWORD get secret $ORIGINAL_SECRET -n $NAMESPACE -o jsonpath='{.data.password}' | base64 -d)
+# Add username and password to restored secret
+kubectl get secret $RESTORED_SECRET -n $NAMESPACE -o json | \
+jq --arg username "$(echo -n 'postgres' | base64)" \
+--arg password "$(echo -n "$CURRENT_PASSWORD" | base64)" \
+'.data.username = $username | .data.password = REDACTED-PASSWORD' | \
+kubectl apply -f -
+# Verify all 4 fields are present
+kubectl get secret $RESTORED_SECRET -n $NAMESPACE -o jsonpath='{.data}' | jq -r 'keys'
+# Should show: ["endpoint", "password", "port", "username"]
+Step 5: Switch Application to Restored Database (App Team)
+​
+Create a PR to update the application deployment to use the new secret.
+Update deployment manifest
+to change secret references:
+# Before
+env
+:
+-
+name
+:
+POSTGRES_HOST
+valueFrom
+:
+secretKeyRef
+:
+name
+:
+your
+-
+db
+-
+credentials
+key
+:
+endpoint
+# After
+env
+:
+-
+name
+:
+POSTGRES_HOST
+valueFrom
+:
+secretKeyRef
+:
+name
+:
+your
+-
+db
+-
+credentials
+-
+restored
+key
+:
+endpoint
+Update all environment variables that reference the database secret.
+Create PR, get approval, merge.
+Wait for ArgoCD sync
+- this will restart the application pods with the new database connection.
+Step 6: Validate Application (App Team)
+​
+Verify the application is working correctly with the restored database.
+# Check pod status
+kubectl get pods -n your-namespace -l app=your-app
+# Check logs for database connectivity
+kubectl logs -n your-namespace deployment/your-app -f
+# Test application endpoints
+curl -k https://your-app.example.com/health
+Validation Checklist
+​
+Application pods are running
+No database connection errors in logs
+Application health endpoint responds
+Can access application UI
+Data is present and correct
+Key functionality works as expected
+Monitoring Period
+Monitor for 24-48 hours before proceeding to cleanup.
+Step 7: Remove Original Database from Crossplane (App Team)
+​
+After validation, create a PR to remove the original RDS instance from Crossplane.
+Delete the original RDSInstance manifest file
+from your Git repository.
+Create PR, get approval, merge.
+Wait for ArgoCD sync
+- this will remove the Crossplane resource but NOT delete the AWS RDS instance (due to deletion protection).
+Step 8: Delete Original RDS Instance in AWS (CATS)
+​
+After Crossplane resource is removed, manually delete the RDS instance in AWS.
+# Create final snapshot before deletion
+FINAL_SNAPSHOT_ID="${DB_INSTANCE_ID}-final-before-deletion-$(date +%Y%m%d-%H%M%S)"
+aws rds create-db-snapshot \
+--db-instance-identifier $DB_INSTANCE_ID \
+--db-snapshot-identifier $FINAL_SNAPSHOT_ID \
+--profile $AWS_PROFILE \
+--region $AWS_REGION \
+--no-cli-pager
+# Wait for snapshot completion
+aws rds wait db-snapshot-completed \
+--db-snapshot-identifier $FINAL_SNAPSHOT_ID \
+--profile $AWS_PROFILE \
+--region $AWS_REGION
+# Delete the RDS instance
+aws rds delete-db-instance \
+--db-instance-identifier $DB_INSTANCE_ID \
+--skip-final-snapshot \
+--profile $AWS_PROFILE \
+--region $AWS_REGION \
+--no-cli-pager
+# Verify deletion
+aws rds describe-db-instances \
+--db-instance-identifier $DB_INSTANCE_ID \
+--profile $AWS_PROFILE \
+--region $AWS_REGION \
+--no-cli-pager 2>&1 || echo "Database deleted successfully"
+Rollback Procedure
+​
+If issues are discovered during validation, rollback to the original database.
+App Team - Create PR to revert secret reference:
+Update deployment manifest to point back to original secret:
+env
+:
+-
+name
+:
+POSTGRES_HOST
+valueFrom
+:
+secretKeyRef
+:
+name
+:
+your
+-
+db
+-
+credentials
+# Back to original
+key
+:
+endpoint
+Create PR, get approval, merge.
+Wait for ArgoCD sync
+- application will reconnect to original database.
+Important Notes
+​
+Deletion Protection
+​
+For production databases, enable deletion protection in the RDSInstance manifest
+Set
+deletionProtection: true
+in the Crossplane spec
+This prevents accidental deletion via Crossplane
+Manual AWS CLI deletion still possible (requires explicit flag)
+ArgoCD Management
+​
+All Crossplane resources are managed by ArgoCD
+Changes must be made via Git PR, not
+kubectl apply
+ArgoCD will sync and overwrite manual kubectl changes
+Use ArgoCD UI to manually sync if needed
+Password Behavior
+​
+Snapshots preserve the master password
+Restored database has same password as original
+Crossplane adoption does NOT populate credentials in secret
+CATS must manually copy credentials from original secret
+Password rotation can be done separately if needed
+Timing
+​
+Snapshot creation: 5-10 minutes
+RDS restore: 10-15 minutes
+Crossplane adoption: 2-3 minutes
+Total downtime: ~0 (application stays on original DB until switched)
+Cleanup
+​
+Keep original database for 24-48 hours after validation
+Keep snapshots for disaster recovery
+Clean up old snapshots per retention policy
+Troubleshooting
+​
+Secret Missing Credentials
+​
+Symptom:
+Secret only has
+endpoint
+and
+port
+Solution:
+Run Step 4 to copy credentials from original secret
+ArgoCD Not Syncing
+​
+Symptom:
+Changes not applied after PR merge
+Solution:
+Manually sync in ArgoCD UI or wait for next sync cycle
+Application Can't Connect
+​
+Symptom:
+Connection errors in application logs
+Solution:
+Verify secret has all 4 fields (endpoint, password, port, username)
+Verify deployment references correct secret name
+Check RDS security groups allow pod network access
+Crossplane Adoption Fails
+​
+Symptom:
+RDSInstance shows READY=False
+Solution:
+Verify
+crossplane.io/external-name
+matches AWS instance ID exactly
+Check Crossplane provider logs for errors
+Verify AWS credentials and permissions
+Lessons Learned
+​
+Based on the medi-author-db-dev restore test:
+Crossplane adoption creates incomplete secret (only endpoint/port)
+ArgoCD resets deletion protection if set via AWS CLI
+Password must be manually copied from original secret
+Process worked smoothly with PR-based workflow
+Document Version:
+1.0
+Last Updated:
+October 27, 2025
+Maintained By:
+CATS Platform Team
+Edit this page
+Previous
+Velero Backups
+Next
+Namespace Decommission
+Overview
+Key Points
+Roles and Responsibilities
+CATS Platform Team
+Application Team
+Prerequisites
+Step 1: Create Snapshot (CATS)
+Step 2: Restore RDS Instance in AWS (CATS)
+Step 3: Add Restored Database to Crossplane (App Team)
+Step 4: Copy Credentials to New Secret (CATS)
+Step 5: Switch Application to Restored Database (App Team)
+Step 6: Validate Application (App Team)
+Validation Checklist
+Step 7: Remove Original Database from Crossplane (App Team)
+Step 8: Delete Original RDS Instance in AWS (CATS)
+Rollback Procedure
+Important Notes
+Deletion Protection
+ArgoCD Management
+Password Behavior
+Timing
+Cleanup
+Troubleshooting
+Secret Missing Credentials
+ArgoCD Not Syncing
+Application Can't Connect
+Crossplane Adoption Fails
+Lessons Learned
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: RDS Database Restore Procedures
+Description: This guide provides step-by-step procedures for restoring an RDS database from snapshot using Crossplane and GitOps workflow. The process creates a new RDS instance from a snapshot while keeping the original database running, then switches the application to the new database via infrastructure PRs.
+Links: /, #overview, #key-points, #roles-and-responsibilities, #cats-platform-team, #application-team, #prerequisites, #step-1-create-snapshot-cats, #step-2-restore-rds-instance-in-aws-cats, #step-3-add-restored-database-to-crossplane-app-team, #step-4-copy-credentials-to-new-secret-cats, #step-5-switch-application-to-restored-database-app-team, #step-6-validate-application-app-team, #validation-checklist, #step-7-remove-original-database-from-crossplane-app-team, #step-8-delete-original-rds-instance-in-aws-cats, #rollback-procedure, #important-notes, #deletion-protection, #argocd-management, #password-behavior, #timing, #cleanup, #troubleshooting, #secret-missing-credentials, #argocd-not-syncing, #application-cant-connect, #crossplane-adoption-fails, #lessons-learned, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/RDS_Restore.md

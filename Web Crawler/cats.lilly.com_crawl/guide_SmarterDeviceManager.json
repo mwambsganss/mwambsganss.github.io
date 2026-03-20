@@ -1,0 +1,41 @@
+{
+  "url": "https://cats.lilly.com/guide/SmarterDeviceManager",
+  "title": "Smarter Device Manager | CATS",
+  "description": "Overview",
+  "h1": [
+    "Smarter Device Manager"
+  ],
+  "h2": [
+    "Overview​",
+    "Usage​"
+  ],
+  "h3": [
+    "Configuring Devices with a ConfigMap​",
+    "Requesting Devices in a Pod Deployment​"
+  ],
+  "text_content": "Smarter Device Manager | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nOverview\nArgo\nBackstage\nBouncer\nCrossplane\nFlux\nWave\nKafka\nKarpenter\nPGadmin\nReloader\nRestful SDK\nSelf Service Toolkit\nSend Emails\nSmarter Device Manager\nTemporal\nArchitecture\nSupport\nAdmin\nSystem Services\nSmarter Device Manager\nOn this page\nSmarter Device Manager\nOverview\n​\nSmarter Device Manager runs as a\nDaemonSet\nwithin the cluster, exposing hardware devices (linux device drivers) to your pods. It uses a\nConfigMap\nto define the devices it should manage and then allows pods to request these devices. To learn more about Smarter Device Manager, please refer to this\nrepository\nor\narticle\n. Here's how to set it up for Filesystem in Userspace (FUSE) as an example.\nUsage\n​\nConfiguring Devices with a ConfigMap\n​\nThe list of devices that are available to pods are managed by the CATS core team through a\nConfigMap\nin the kube-system\nNamespace\n(view the list\nhere\n). If you would like to access any other additional devices, please contact the CATS team and we have them added to our list.\nRequesting Devices in a Pod Deployment\n​\nTo request access to these devices for your pods, you'll need to modify the pod's deployment configuration. Here's how to request the FUSE device in a\nDeployment\nby adding the device in your resource’s limits and request:\napiVersion\n:\napps/v1\nkind\n:\nDeployment\nmetadata\n:\nname\n:\necho\n-\nserver\n-\nreflector\nnamespace\n:\nadmin\n-\ntesting\n-\nsmarter\n-\ndevice\n-\nmanager\n-\ndev\nlabels\n:\napp\n:\necho\n-\nserver\n-\nreflector\nspec\n:\nreplicas\n:\n1\nselector\n:\nmatchLabels\n:\napp\n:\necho\n-\nserver\n-\nreflector\ntemplate\n:\nmetadata\n:\nlabels\n:\napp\n:\necho\n-\nserver\n-\nreflector\nspec\n:\ncontainers\n:\n-\nname\n:\necho\n-\nserver\n-\nreflector\nimage\n:\n283234040926.dkr.ecr.us\n-\neast\n-\n2.amazonaws.com/lrl_light_k8s_infra_echo\n:\ndev\n-\nsha\n-\na34f51d\ncommand\n:\n[\n\"uvicorn\"\n]\nargs\n:\n[\n\"app.main:app\"\n,\n\"--reload\"\n,\n\"--host\"\n,\n\"0.0.0.0\"\n,\n\"--port\"\n,\n\"8080\"\n,\n\"--proxy-headers\"\n,\n\"--root-path\"\n,\n\"/\"\n]\nresources\n:\nlimits\n:\nmemory\n:\n\"2Gi\"\ncpu\n:\n\"1\"\nsmarter-devices/fuse\n:\n1\n# Limit 1 FUSE device to be accessed at a time\nrequests\n:\nmemory\n:\n\"2Gi\"\ncpu\n:\n\"1\"\nsmarter-devices/fuse\n:\n1\n# Request 1 FUSE device to be accessed\nports\n:\n-\ncontainerPort\n:\n8080\nOnce the\nDeployment\nis up in the cluster, your pods should be able to access the specific devices as requested.\nEdit this page\nPrevious\nSend Emails\nNext\nTemporal\nOverview\nUsage\nConfiguring Devices with a ConfigMap\nRequesting Devices in a Pod Deployment\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:10:05.894962",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Smarter Device Manager",
+        "description": "Smarter Device Manager runs as aDaemonSetwithin the cluster, exposing hardware devices (linux device drivers) to your pods. It uses aConfigMapto define the devices it should manage and then allows pods to request these devices. To learn more about Smarter Device Manager, please refer to thisrepositoryorarticle. Here's how to set it up for Filesystem in Userspace (FUSE) as an example.",
+        "links": [
+          "/",
+          "#overview",
+          "https://github.com/smarter-project/smarter-device-manager",
+          "https://community.arm.com/arm-research/b/articles/posts/a-smarter-device-manager-for-kubernetes-on-the-edge",
+          "#usage",
+          "#configuring-devices-with-a-configmap",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/blob/6a7dac8855c282d844dbb9b94b50b601e629d467/aws/lib/stacks/k8s/smarter-device-manager.ts#L16",
+          "#requesting-devices-in-a-pod-deployment",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/SmarterDeviceManager.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

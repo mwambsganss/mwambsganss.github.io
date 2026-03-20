@@ -1,0 +1,114 @@
+Title: **Prerequisites** | CATS
+URL: https://cats.lilly.com/guide/Prerequisites
+Description: The following prerequisites will need to be configured to get started.
+
+**Prerequisites** | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+Prerequisites
+Get Access
+Deployment Overview
+Working With the Repo
+Containerization and Dockerfiles
+CODEOWNERS
+Deploying SaaS Solution
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+Jump Start
+Prerequisites
+On this page
+Prerequisites
+The following prerequisites will need to be configured to get started.
+Repository Access
+​
+First of all, you will need write access to the repository you are working with, so you can add your app's Kubernetes config.  You can request access in GitHub
+here
+.
+Before you can have your application deployed, we will need to create a image repository for your GitHub repository. We have automated this process so all you need to do is add the team
+light_apps
+to your GitHub repository with
+admin
+privileges.
+Navigate to the Settings tab of your GitHub repository
+Click on the Collaborators and teams button under Access section
+Click on the Add teams button and search for "light_apps" and be sure to select Admin as the role.
+Click the button on the bottom of the pop-up "Add EliLillyCo/light_apps to this repository"
+If all went well you should see your Manage Access settings option look similar to this
+The next step is to wait for our credential service to run and create an ECR repository for your GitHub repository and send the login credentials to your GitHub repository's secrets.
+Note:
+Our credential service runs every two hours, so you may not get your Light ECR credentials immediately.
+Expedited Credentials Option
+​
+If you need immediate access to credentials, you can use our on-demand workflow to provision credentials for your repository right away:
+Navigate to
+Load Credentials into GitHub Repository Secrets
+Follow the instructions to trigger the on-demand credential generation process
+Wait approximately 1 minute for the process to complete
+To check if you have received your ECR credentials, navigate to the Security section in the Settings tab of your GitHub repository and go to Actions under Secrets and variables. You should see 3 secrets created with the names
+LIGHT_DOCKER_REPOSITORY_URL
+,
+LIGHT_DOCKER_TOKEN
+, and
+LIGHT_DOCKER_USER
+.
+Once you see those three secrets you are all set to start publishing your docker images to that ECR repository.
+Automated Security Scanning
+​
+Not only does the credential service send out Tokens for you to access your new ECR repository which is setup with image scanning, but it also turns on GitHub's vulnerability scanning and alerting for your repository automatically.
+You can see that your repository will have these settings automatically turned on so that you can be alerted for any vulnerabilities in your codebase that GitHub might find. For more information please visit
+GitHub Security
+to learn more.
+Note:
+GitHub repository owners will receive email notifications when GitHub has detected a vulnerability in your repository. Typically they will also create a pull request for you automatically to update your dependencies to the latest version where the bug has been fixed.
+Edit this page
+Previous
+SLA Reports
+Next
+Get Access
+Repository Access
+Automated Security Scanning
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Prerequisites
+Description: The following prerequisites will need to be configured to get started.
+Links: /, #repository-access, https://github.com/orgs/EliLillyCo/teams/lrl_light_k8s_infra_write, #expedited-credentials-option, https://cats.lilly.com/guide/DeploymentOverview#load-credentials-into-github-repository-secrets, #automated-security-scanning, https://github.com/features/security, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Prerequisites.md

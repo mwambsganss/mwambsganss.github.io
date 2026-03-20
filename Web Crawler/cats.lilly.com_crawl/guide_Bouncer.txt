@@ -1,0 +1,525 @@
+Title: **Bouncer : Authentication Service**: | CATS
+URL: https://cats.lilly.com/guide/Bouncer
+Description: Secure your applications with Bouncer, providing robust authentication services to safeguard access.
+
+**Bouncer : Authentication Service**: | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Overview
+Argo
+Backstage
+Bouncer
+Crossplane
+Flux
+Wave
+Kafka
+Karpenter
+PGadmin
+Reloader
+Restful SDK
+Self Service Toolkit
+Send Emails
+Smarter Device Manager
+Temporal
+Architecture
+Support
+Admin
+System Services
+Bouncer
+On this page
+Bouncer : Authentication Service
+:
+Secure your applications with Bouncer, providing robust authentication services to safeguard access.
+Bouncer is authorization service that uses Microsoft Graph & K8s to provide easy authorization for microservice applications. All documentation around bouncer and how it works is located within the bouncer repository itself.
+Bouncer Repository Source Code located:
+HERE
+Authenticated Patterns
+​
+There are five different authentication patterns available for developers implementing an authenticated route. All route authentication is enabled via the
+Bouncer
+system service. Head on over to the
+Bouncer
+repository for more information on these different authentication patterns.
+Standard Web Pattern
+Azure APIM and Entra ID
+Client Credentials
+On Behalf of User (API)
+AWS STS
+Using Bouncer with Entra ID and Azure APIM
+​
+Application teams can use bouncer to pass Entra ID tokens. Please see full instructions and documentation on how to implement this pattern by navigating to the
+README.md
+on the bouncer repository.
+Default Endpoints
+​
+Bouncer exposes these endpoints on
+all hosts
+proxied through the service. These are available at the
+/_apps_system
+path prefix on your application's domain.
+Quick Reference
+​
+Endpoint
+Method
+Description
+/_apps_system/session/user
+GET
+Current user info and groups
+/_apps_system/session/groups
+GET
+Current user's AD groups
+/_apps_system/session/token
+GET
+Microsoft Graph OAuth token
+/_apps_system/session/profile-photo
+GET
+Current user's profile photo
+/_apps_system/session/clear
+POST
+Clear user info cache
+/_apps_system/lookup/user/:upn
+GET
+Lookup any user by UPN or system ID
+/_apps_system/lookup/users/:name_search
+GET
+Search users by name
+/_apps_system/lookup/group/:name
+GET
+Get members of a group
+Session Endpoints
+​
+These endpoints return information about the
+currently authenticated user
+.
+GET
+/_apps_system/session/user
+​
+Returns demographics and group membership for the current user.
+Response:
+{
+"demographics"
+:
+{
+"onPremisesSamAccountName"
+:
+"C123456"
+,
+"onPremisesDomainName"
+:
+"AM.LILLY.COM"
+,
+"givenName"
+:
+"Light"
+,
+"surname"
+:
+"Apps"
+,
+"mail"
+:
+"light_apps@lilly.com"
+,
+"department"
+:
+"RIDS Technology Platforms"
+,
+"jobTitle"
+:
+"Information Technology-Business"
+,
+"officeLocation"
+:
+"MC/58/02"
+}
+,
+"groups"
+:
+[
+"SPE_Research_Global_Cherba"
+,
+"US_IT_ALL"
+,
+"global_research_it_all"
+,
+"research_admins"
+]
+}
+GET
+/_apps_system/session/groups
+​
+Returns only the list of AD groups the current user belongs to.
+Response:
+[
+"group1"
+,
+"group2"
+,
+"group3"
+]
+GET
+/_apps_system/session/token
+​
+Returns the raw Microsoft Graph OAuth token for the current user.
+Response:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Use Case
+Use this token to make calls to Microsoft Graph API or other services that accept Azure AD tokens on behalf of the user.
+GET
+/_apps_system/session/profile-photo
+​
+Returns the current user's profile photo as an image.
+Request Header:
+Accept: image/jpeg
+Response:
+Binary image data with appropriate content type.
+POST
+/_apps_system/session/clear
+​
+Clears the cached user information for the current user. Useful when group membership has changed and you need to refresh.
+Response:
+200 OK
+on successful cache clear.
+Lookup Endpoints
+​
+These endpoints allow you to look up information about
+other users and groups
+.
+GET
+/_apps_system/lookup/user/:upn
+​
+Returns user information for a specific user by UPN (email) or system ID.
+Example:
+GET /_apps_system/lookup/user/c123456
+or
+GET /_apps_system/lookup/user/user@lilly.com
+Response:
+{
+"demographics"
+:
+{
+"onPremisesSamAccountName"
+:
+"C123456"
+,
+"onPremisesDomainName"
+:
+"AM.LILLY.COM"
+,
+"givenName"
+:
+"Light"
+,
+"surname"
+:
+"Apps"
+,
+"mail"
+:
+"light_apps@lilly.com"
+,
+"department"
+:
+"RIDS Technology Platforms"
+,
+"jobTitle"
+:
+"Information Technology-Business"
+,
+"officeLocation"
+:
+"MC/58/02"
+}
+,
+"groups"
+:
+[
+"SPE_Research_Global_Cherba"
+,
+"US_IT_ALL"
+]
+}
+GET
+/_apps_system/lookup/users/:name_search
+​
+Searches for users by display name. Returns a list of potential matches.
+Example:
+GET /_apps_system/lookup/users/John%20Doe
+Response:
+{
+"value"
+:
+[
+{
+"onPremisesSamAccountName"
+:
+"C12345"
+,
+"givenName"
+:
+"John"
+,
+"surname"
+:
+"Doe"
+,
+"mail"
+:
+"john.doe@lilly.com"
+,
+"department"
+:
+"Research IT"
+,
+"jobTitle"
+:
+"Developer"
+,
+"displayName"
+:
+"John Doe"
+}
+,
+{
+"mail"
+:
+"john.doe.external@partner.com"
+,
+"displayName"
+:
+"John Doe (External)"
+}
+]
+}
+GET
+/_apps_system/lookup/group/:name
+​
+Returns the members of a specified AD group.
+Example:
+GET /_apps_system/lookup/group/research_admins
+Response:
+{
+"users"
+:
+[
+{
+"givenName"
+:
+"Emily"
+,
+"mail"
+:
+"emily@lilly.com"
+,
+"department"
+:
+"Finance"
+,
+"jobTitle"
+:
+"Budget Analyst"
+,
+"officeLocation"
+:
+"97/2302"
+}
+,
+{
+"givenName"
+:
+"Enrico"
+,
+"mail"
+:
+"enrico@lilly.com"
+,
+"department"
+:
+"Legal"
+,
+"jobTitle"
+:
+"Attorney"
+,
+"officeLocation"
+:
+"14/1102"
+}
+]
+}
+Usage Examples
+​
+JavaScript (Fetch API)
+​
+// Get current user info
+const
+response
+=
+await
+fetch
+(
+'https://your-app.apps.lrl.lilly.com/_apps_system/session/user'
+,
+{
+credentials
+:
+'include'
+// Include cookies for authentication
+}
+)
+;
+const
+userData
+=
+await
+response
+.
+json
+(
+)
+;
+console
+.
+log
+(
+userData
+.
+demographics
+.
+mail
+)
+;
+Python (requests)
+​
+import
+requests
+# Get current user's groups
+response
+=
+requests
+.
+get
+(
+'https://your-app.apps.lrl.lilly.com/_apps_system/session/groups'
+,
+cookies
+=
+session_cookies
+# Pass authenticated session cookies
+)
+groups
+=
+response
+.
+json
+(
+)
+print
+(
+f"User belongs to
+{
+len
+(
+groups
+)
+}
+groups"
+)
+cURL
+​
+# Lookup a user by system ID
+curl -H "Authorization: Bearer $TOKEN" \
+"https://your-app.apps.lrl.lilly.com/_apps_system/lookup/user/c123456"
+Bouncer Logs
+​
+Logs from bouncer are stored in AWS CloudWatch and can be referenced and searched. See below details for the logs location and query instructions.
+Logs Location
+​
+Some users may want to query the Bouncer Service's logs during troubleshooting. To find the logs you will require having a
+CA account
+.
+Log into the Cluster you want to get the logs from. Dev / QA / PRD
+Navigate to the S3 service page
+Go to Buckets
+Go to the correct bucket that has the
+bouncer-access-logs
+prefix. In Dev Cluster the bucket is
+lly-light-access-logs-dev
+Navigate to the
+bouncer-access-logs
+prefix.
+Navigate to the year you are targeting
+Navigate to the month in that year you are targeting
+Navigate to the day in that month you are targeting
+If you want to get meaningful information from these logs you will need to run Athena queries against them.
+Query Against Bouncer Logs
+​
+Note: For Extensive Documentation on how to use Amazon Athena you can go here:
+https://docs.aws.amazon.com/athena/latest/ug/getting-started.html
+To execute queries against the bouncer logs you will need to navigate to the AWS Service "Amazon Athena"
+Once there you will see the Query Editor
+Before you run your first query, you need to set up a query result location in Amazon S3.
+For Data Source you will select
+AwsDataCatalog
+For database you will select
+cats_access_logs
+Now you can write your Query via SQL
+Edit this page
+Previous
+Backstage
+Next
+Crossplane
+Authenticated Patterns
+Using Bouncer with Entra ID and Azure APIM
+Default Endpoints
+Quick Reference
+Session Endpoints
+Lookup Endpoints
+Usage Examples
+Bouncer Logs
+Logs Location
+Query Against Bouncer Logs
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Bouncer : Authentication Service:
+Description: Secure your applications with Bouncer, providing robust authentication services to safeguard access.
+Links: /, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer, #authenticated-patterns, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---standard-web-pattern-on-behalf-of-user, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---azure-apim, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---client-credentials, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---on-behalf-of-user-api, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---aws-sts, #using-bouncer-with-entra-id-and-azure-apim, https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#azure-ad-setup, #default-endpoints, #quick-reference, #get-_apps_systemsessionuser, #get-_apps_systemsessiongroups, #get-_apps_systemsessiontoken, #get-_apps_systemsessionprofile-photo, #post-_apps_systemsessionclear, #get-_apps_systemlookupuserupn, #get-_apps_systemlookupusersname_search, #get-_apps_systemlookupgroupname, #session-endpoints, #get-_apps_systemsessionuser, #get-_apps_systemsessiongroups, #get-_apps_systemsessiontoken, #get-_apps_systemsessionprofile-photo, #post-_apps_systemsessionclear, #lookup-endpoints, #get-_apps_systemlookupuserupn, #get-_apps_systemlookupusersname_search, #get-_apps_systemlookupgroupname, #usage-examples, #javascript-fetch-api, #python-requests, #curl, #bouncer-logs, #logs-location, https://elilillyco.stackenterprise.co/articles/481, #query-against-bouncer-logs, https://docs.aws.amazon.com/athena/latest/ug/getting-started.html, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Bouncer.md

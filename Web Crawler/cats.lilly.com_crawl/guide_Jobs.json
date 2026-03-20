@@ -1,0 +1,32 @@
+{
+  "url": "https://cats.lilly.com/guide/Jobs",
+  "title": "Jobs | CATS",
+  "description": "A Job creates one or more Pods and will continue to retry execution of the Pods until a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions. When a specified number of successful completions is reached, the task (ie, Job) is complete. Deleting a Job will clean up the Pods it created. Suspending a Job will delete its active Pods until the Job is resumed again.",
+  "h1": [
+    "Jobs"
+  ],
+  "h2": [
+    "Example Job​"
+  ],
+  "h3": [],
+  "text_content": "Jobs | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nOverview\nNamespace\nDeployment\nService\nIngress\nIngress Patterns\nCompute and Workload Scheduling\nScaling\nStorage\nCronJob\nJobs\nRate Limit\nExternal Secrets\nHelmRelease\nExternal Integrations\nGraph User Info\nMakefile\nVelero Backups\nRDS Database Restore\nNamespace Decommission\nS3 Lifecycle Tagging\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nK8s Configuration\nJobs\nOn this page\nJobs\nA Job creates one or more Pods and will continue to retry execution of the Pods until a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions. When a specified number of successful completions is reached, the task (ie, Job) is complete. Deleting a Job will clean up the Pods it created. Suspending a Job will delete its active Pods until the Job is resumed again.\nA simple case is to create one Job object in order to reliably run one Pod to completion. The Job object will start a new Pod if the first Pod fails or is deleted (for example due to a node hardware failure or a node reboot).\nYou can also use a Job to run multiple Pods in parallel.\nIf you want to run a Job (either a single task, or several in parallel) on a schedule, see CronJob.\nExample Job\n​\nHere is an example Job config. It computes π to 2000 places and prints it out. It takes around 10s to complete.\napiVersion\n:\nbatch/v1\nkind\n:\nJob\nmetadata\n:\nname\n:\npi\nspec\n:\ntemplate\n:\nspec\n:\ncontainers\n:\n-\nname\n:\npi\nimage\n:\nperl\n:\n5.34.0\ncommand\n:\n[\n\"perl\"\n,\n\"-Mbignum=bpi\"\n,\n\"-wle\"\n,\n\"print bpi(2000)\"\n]\nrestartPolicy\n:\nNever\nbackoffLimit\n:\n4\nTo Run this Job you could either use a CronJob or Kubectl.\nSearch the\ninfra_apps repo\nfor examples to see how our current users are utilizing and defining Jobs resources.\nNote:\nA spec of ttlSecondsAfterFinished of 14400s (4 Hours) is added to every job generated in the cluster. This will result in cleanup of jobs and pods 4 hours post completion.\nEdit this page\nPrevious\nCronJob\nNext\nRate Limit\nExample Job\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:05:33.674645",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Jobs",
+        "description": "A Job creates one or more Pods and will continue to retry execution of the Pods until a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions. When a specified number of successful completions is reached, the task (ie, Job) is complete. Deleting a Job will clean up the Pods it created. Suspending a Job will delete its active Pods until the Job is resumed again.",
+        "links": [
+          "/",
+          "#example-job",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Jobs.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

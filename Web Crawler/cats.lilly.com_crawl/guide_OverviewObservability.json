@@ -1,0 +1,43 @@
+{
+  "url": "https://cats.lilly.com/guide/OverviewObservability",
+  "title": "Overview | CATS",
+  "description": "Observability is the practice of gaining insight into the internal state of systems by collecting and analyzing external outputs, such as logs, metrics, and traces. It allows teams to monitor the health, performance, and reliability of their applications and infrastructure in real time. By implementing strong observability practices, organizations can proactively detect issues, understand system behavior, and respond to problems before they impact users. In modern cloud-native environments, where systems are often distributed and complex, observability is crucial for ensuring operational visibility, optimizing performance, and maintaining reliability at scale.",
+  "h1": [
+    "Overview"
+  ],
+  "h2": [
+    "Disclaimer​",
+    "Table Of Contents​"
+  ],
+  "h3": [],
+  "text_content": "Overview | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nOverview\nInstrumentation\nGrafana\nJaeger\nLoki\nOpencost\nPrometheus\nSystem Services\nArchitecture\nSupport\nAdmin\nObservability\nOverview\nOn this page\nOverview\nObservability is the practice of gaining insight into the internal state of systems by collecting and analyzing external outputs, such as logs, metrics, and traces. It allows teams to monitor the health, performance, and reliability of their applications and infrastructure in real time. By implementing strong observability practices, organizations can proactively detect issues, understand system behavior, and respond to problems before they impact users. In modern cloud-native environments, where systems are often distributed and complex, observability is crucial for ensuring operational visibility, optimizing performance, and maintaining reliability at scale.\nMetrics (\nPrometheus\n): Prometheus collects and stores time-series metrics (e.g., CPU, memory usage). Metrics provide numerical insight into system health and performance.\nLogs (\nLoki\n): Logs provide detailed records of events occurring within applications and infrastructure, which help debug specific issues or trace problems through system interactions.\nVisualization (\nGrafana\n): Grafana is used to visualize logs, metrics, and traces together in a unified dashboard, helping teams to quickly analyze system behavior and diagnose issues.\nTraces (\nJaeger\n): Traces capture the lifecycle of requests as they move through different services and systems, helping to identify bottlenecks in distributed systems.\nDisclaimer\n​\nThe CATS Team provides a robust platform with system-level services designed to be generic and usable by all customers. While we strive to ensure these services meet a wide range of needs, certain customizations and feature extensions fall outside the scope of our responsibilities. Please review the following guidelines to understand the boundaries of our support:\nPlatform Team Responsibilities:\nThe CATS Team ensures that services like Grafana are set up in a way that is broadly usable for all teams.\nCore platform functionality and documentation are maintained to support the most common use cases.\nApplication Team Responsibilities:\nCustomizations beyond the provided platform capabilities, such as adding new data sources in Grafana, are the responsibility of the application development teams.\nIf your team wishes to extend platform features, you are expected to take ownership of the implementation and troubleshooting of those changes.\nFeature Requests:\nIf you identify a platform feature that would benefit all customers,\nSubmit A Feature Request\n. These requests will be added to our backlog and prioritized with other planned work.\nContinuous Documentation Improvements:\nWe value collaboration to enhance our documentation. If you encounter gaps while using the platform, we encourage you to work with us to address them.\nAs you resolve challenges specific to your customizations, please propose improvements to the documentation to help future users.\nOut of Scope:\nContinuous support for customizations or extended use cases that go beyond the default platform capabilities is not within the scope of the CATS Team.\nTeams are expected to independently research and implement such changes if desired.\nTable Of Contents\n​\nObservability\nDescription\nGrafana\nPowerful visualization tool for monitoring system performance using customizable dashboards and metrics.\nJaeger\nTraces capture the lifecycle of requests as they move through different services and systems.\nLoki\nLog aggregation system that integrates seamlessly with Grafana, allowing for efficient log analysis and search.\nPrometheus\nMetrics monitoring and alerting toolkit that integrates with Grafana for real-time insights into system performance.\nNote: Our observability components are closely linked to our\nDashboard Offerings\n.\nEdit this page\nPrevious\nCross Account AWS Services\nNext\nInstrumentation\nDisclaimer\nTable Of Contents\nLilly SPE Research Technology and Platforms",
+  "links_found": 3,
+  "depth": 4,
+  "crawled_at": "2026-03-20T15:01:45.922127",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Overview",
+        "description": "Observability is the practice of gaining insight into the internal state of systems by collecting and analyzing external outputs, such as logs, metrics, and traces. It allows teams to monitor the health, performance, and reliability of their applications and infrastructure in real time. By implementing strong observability practices, organizations can proactively detect issues, understand system behavior, and respond to problems before they impact users. In modern cloud-native environments, where systems are often distributed and complex, observability is crucial for ensuring operational visibility, optimizing performance, and maintaining reliability at scale.",
+        "links": [
+          "/",
+          "/guide/Prometheus",
+          "/guide/Loki",
+          "/guide/Grafana",
+          "/guide/Jaeger",
+          "#disclaimer",
+          "/support/FeatureRequest",
+          "#table-of-contents",
+          "/guide/Grafana",
+          "/guide/Jaeger",
+          "/guide/Loki",
+          "/guide/Prometheus",
+          "/guide/DashboardOverview",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/OverviewObservability.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

@@ -1,0 +1,34 @@
+{
+  "url": "https://cats.lilly.com/guide/Emails",
+  "title": "Send Emails | CATS",
+  "description": "CATS has a built-in email server that allows sending email from `-no-reply@apps.lrl.lilly.com`.",
+  "h1": [
+    "Send Emails"
+  ],
+  "h2": [
+    "EXTERNAL tags​",
+    "Send from Custom URL​"
+  ],
+  "h3": [],
+  "text_content": "Send Emails | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nOverview\nArgo\nBackstage\nBouncer\nCrossplane\nFlux\nWave\nKafka\nKarpenter\nPGadmin\nReloader\nRestful SDK\nSelf Service Toolkit\nSend Emails\nSmarter Device Manager\nTemporal\nArchitecture\nSupport\nAdmin\nSystem Services\nSend Emails\nOn this page\nSend Emails\nCATS has a built-in email server that allows sending email from\n<app-name>-no-reply@apps.lrl.lilly.com\n.\nYou can use this server with the below connection info:\nserver:\nsmtp.messaging.svc\nport:\n1025\nNo authentication is required as long as your app is running in the CATS K8s cluster.\nNote: \"smtp.messaging.svc:1025\" is a non-ssl (non secure) service\nensure you have added\nemail_secure = FALSE\nto your code. The service is running within the cluster (communication outside the cluster is encrypted).\nEXTERNAL tags\n​\nSteps have already been taken to remove the [EXTERNAL] tag from the subject line of the email. However, by default, emails will still have\nEXTERNAL EMAIL: Use caution before replying, clicking links, and opening attachments.\nprepended to the body of the email.\nTo remove this tag, you will need to submit a ticket through the ServiceNow portal. The proper ticket is:\nMiscellaneous Email Requests\n. There are two options to choose from for this use case, depending on the desired outcome. The options are:\nEmail Service\nDescription\nRequest External Tag exemption\nCompletely remove the tag from the email\nRequest Lilly Agent Tag for Sender\nChange EXTERNAL EMAIL to LILLY AGENT EMAIL\nThe Lilly Agent tag is typically used by vendors or partners, such as Jira or AMEX, who are approved to send emails from non-Lilly domains. Most of the requests will be for the first option, but the second option is available, if needed.\nYou will need to provide the full sender email address from which you want the tag removed. If approved, the message will be removed from the email or modified. Please expect a series of follow-up emails regarding your use case.\nSend from Custom URL\n​\nTODO: coming soon\nEdit this page\nPrevious\nSelf Service Toolkit\nNext\nSmarter Device Manager\nEXTERNAL tags\nSend from Custom URL\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:09:55.102722",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Send Emails",
+        "description": "CATS has a built-in email server that allows sending email from<app-name>-no-reply@apps.lrl.lilly.com.",
+        "links": [
+          "/",
+          "#external-tags",
+          "https://lilly.service-now.com/ec?id=sc_cat_item&table=sc_cat_item&sys_id=0b3f2cb61b983990e5388511604bcb10",
+          "#send-from-custom-url",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Emails.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

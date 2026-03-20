@@ -1,0 +1,29 @@
+{
+  "url": "https://cats.lilly.com/guide/Wave",
+  "title": "**Wave : Auto Deployment Tool** | CATS",
+  "description": "Enable auto deploy of app on secret change",
+  "h1": [
+    "Wave : Auto Deployment Tool"
+  ],
+  "h2": [],
+  "h3": [],
+  "text_content": "**Wave : Auto Deployment Tool** | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nOverview\nArgo\nBackstage\nBouncer\nCrossplane\nFlux\nWave\nKafka\nKarpenter\nPGadmin\nReloader\nRestful SDK\nSelf Service Toolkit\nSend Emails\nSmarter Device Manager\nTemporal\nArchitecture\nSupport\nAdmin\nSystem Services\nWave\nWave : Auto Deployment Tool\nEnable auto deploy of app on secret change\nBy default, K8s does not re-deploy the pods in a deployment if a secret referenced in an environment variable or mounted in a container changes.\nWave\nis a controller that handles this update process.  It has been deployed in this cluster & can be used by apps.\nTo enable Wave's syncing process for your app, add the below annotation to your deployment config:\napiVersion\n:\napps/v1\nkind\n:\nDeployment\nmetadata\n:\nannotations\n:\nwave.pusher.com/update-on-config-change\n:\n\"true\"\nEdit this page\nPrevious\nFlux\nNext\nKafka\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:08:50.243508",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Wave : Auto Deployment Tool",
+        "description": "Enable auto deploy of app on secret change",
+        "links": [
+          "/",
+          "https://github.com/wave-k8s/wave",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Wave.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

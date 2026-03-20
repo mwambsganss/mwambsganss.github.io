@@ -1,0 +1,50 @@
+{
+  "url": "https://cats.lilly.com/guide/ImportantAnnouncement",
+  "title": "🚨 Important Announcement: IAM Policy Update Affecting App Authentication | CATS",
+  "description": "Date Posted: June 13, 2025",
+  "h1": [
+    "🚨 Important Announcement: IAM Policy Update Affecting App Authentication"
+  ],
+  "h2": [
+    "Overview​",
+    "🔧 Immediate Action Required​",
+    "📊 Impact Summary​",
+    "🆘 Need Help?​"
+  ],
+  "h3": [
+    "Bypass Steps​",
+    "Affected Systems​",
+    "Expected Resolution​"
+  ],
+  "text_content": "🚨 Important Announcement: IAM Policy Update Affecting App Authentication | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nImportant Announcement\nRelease Notes 2025\nRelease Notes 2024\nSLA Reports\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nNews\nImportant Announcement\nOn this page\n🚨 Important Announcement: IAM Policy Update Affecting App Authentication\nDate Posted:\nJune 13, 2025\nStatus:\nActive Issue - Bypass Available\nImpact:\nAll application teams using device code flow authentication\nOverview\n​\nA recent conditional IAM policy change is currently\nblocking all authentication to app registration via device code flow as well as all connections to users outside of the Lilly network\n.\nWhile we are working towards implementing a global resolution to this issue, immediate bypass steps are available below.\n🔧 Immediate Action Required\n​\nTo ensure your applications continue functioning properly, please have your team members follow this process to bypass the CA policy:\nBypass Steps\n​\nGo to the\nMicrosoft MyAccess Portal\nNavigate to\nAccess Packages\nNavigate to the\nActive\ntab\nOpen the access package:\nIsland Browser Policy Opt-Out\nClick\nContinue\nProvide an explanation in the\n\"What problem(s) did you face with using Island?\"\nfield\nLeave\n\"Request for a specific period\"\nset to\n\"No\"\nThe\nbusiness justification\nfield can be left blank\nPress the\nSubmit request\nbutton\n📊 Impact Summary\n​\nAffected Systems\n​\nAll applications using device code flow authentication\nApplications requiring external user connections\nAny app registration processes\nExpected Resolution\n​\nWe are actively working on a platform-wide solution to resolve this authentication issue permanently. This bypass process is a temporary measure to keep your applications operational while we implement the global fix.\n🆘 Need Help?\n​\nIf you encounter issues with the bypass process or need additional support:\n(Lilly Flow)\nCATS Club\n(Lilly Flow)\nAsk a Question\n(Jira)\nProject Board\n(Jira)\nMake a Triage Request\n(SNOW)\nReport an Issue\nCATS Docs\nLast Updated:\nJune 13, 2025\nNext Update:\nWe will provide updates as we progress toward the permanent solution\nCATS Platform Team\n🐈\nEdit this page\nPrevious\nCATSbot Virtual Assistant\nNext\nRelease Notes 2025\nOverview\n🔧 Immediate Action Required\nBypass Steps\n📊 Impact Summary\nAffected Systems\nExpected Resolution\n🆘 Need Help?\nLilly SPE Research Technology and Platforms",
+  "links_found": 3,
+  "depth": 2,
+  "crawled_at": "2026-03-20T14:58:07.869723",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "🚨 Important Announcement: IAM Policy Update Affecting App Authentication",
+        "description": "Date Posted:June 13, 2025Status:Active Issue - Bypass AvailableImpact:All application teams using device code flow authentication",
+        "links": [
+          "/",
+          "#overview",
+          "#-immediate-action-required",
+          "#bypass-steps",
+          "#-impact-summary",
+          "#affected-systems",
+          "#expected-resolution",
+          "#-need-help",
+          "https://cats-club-link",
+          "https://ask-question-link",
+          "https://jira-board-link",
+          "https://triage-request-link",
+          "https://snow-issue-link",
+          "https://cats-docs-link",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ImportantAnnouncement.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

@@ -1,0 +1,455 @@
+Title: Release Notes 2025 | CATS
+URL: https://cats.lilly.com/guide/ReleaseNotes2025
+Description: 4.6.2 - Temporal Enhancements, and Production Stability
+
+Release Notes 2025 | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Important Announcement
+Release Notes 2025
+Release Notes 2024
+SLA Reports
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+News
+Release Notes 2025
+On this page
+Release Notes 2025
+4.6.2 - Temporal Enhancements, and Production Stability
+​
+Released June 13th, 2025
+Github Release Notes
+🚀 New and Upcoming Enhancements
+​
+Temporal Service Enhancements
+Enabled cross-namespace access by default for improved service connectivity.
+Added security group rules allowing pod connections to Temporal service on port 7233.
+Enhanced workflow orchestration capabilities across namespace boundaries.
+📊 Production Stability and Performance
+​
+Bouncer Service Enhancements
+Enhanced access logs S3 compactor functionality for improved log management.
+Optimized log processing and storage efficiency.
+🔄 Backup and Disaster Recovery
+​
+Velero Production Enhancements
+Replaced inline JSON policy definitions with
+JSON.stringify
+for improved readability and maintainability.
+Adjusted memory resource requests and limits for optimal backup performance.
+Updated
+nodeSelector
+and
+tolerations
+to align with Karpenter-managed node pools.
+Increased CPU/memory maximums for container full backup operations.
+Applied IAM policy hotfixes for enhanced security and functionality.
+🔐 Policy and Security Management
+​
+Kyverno Policy Production Refinements
+Disabled
+mutateExistingOnPolicyUpdate
+to prevent retroactive policy mutations in production.
+Removed unused IAM role assumptions and redundant context definitions.
+Streamlined mutation logic for improved policy configuration management.
+IAM Role Management
+Resolved IAM role name duplication issues for cleaner resource management.
+Enhanced security through proper role isolation and naming conventions.
+🛠 Production Release Management
+​
+Release Asset Promotion
+Successfully promoted release assets from development through QA to production.
+Enhanced deployment pipeline reliability and consistency across environments.
+Bouncer Environment Variable Optimization
+Simplified logPrefixValue determination logic by removing cronJob parameter dependency.
+Improved service configuration maintainability.
+🔎 Issue References
+​
+[CATS-1866], [CATS-1870], [INC13528294]
+🌐 Impact Summary
+​
+Namespaces Affected
+ingress-entry, velero, temporal
+Key Configuration Changes
+LLM domain routing and API configurations
+Enhanced Velero backup policies for production workloads
+Improved Temporal service networking rules
+Refined Kyverno policy configurations for production stability
+Production Improvements
+Enhanced backup operation resource allocation
+Improved cross-namespace service connectivity
+Streamlined release asset promotion processes
+4.6.1 - Infrastructure Scaling and Self-Service Foundation
+​
+Released May 15th, 2025 :::
+Github Release Notes
+🚀 New and Upcoming Enhancements
+​
+Cluster Self-Service Toolkit (Development Phase)
+Initial implementation of cluster self-service capabilities in development environment.
+Foundation for organization policy management and cluster governance tools.
+Integrated Bouncer logs with Athena query and Grafana visualization for enhanced monitoring.
+Velero Backup Service Integration
+Added Velero backup and restore capabilities to the platform.
+Enhanced disaster recovery options for cluster workloads and configurations.
+📊 Infrastructure Scaling and Performance
+​
+LiveDesign Karpenter Optimizations
+Updated LiveDesign Karpenter nodes to larger instance types for improved performance.
+Increased node limit to 3,000 to support scaling requirements.
+Removed memory limitations to allow for better resource allocation flexibility.
+Expanded LiveDesign non-critical node pool capacity from 80 to 240 nodes.
+Karpenter Configuration Fixes
+Resolved instanceCPU value type error for improved stability and reliability.
+KEDA Scaling and Tuning
+Enhanced KEDA autoscaling configurations for better workload management.
+Improved scaling responsiveness and resource utilization.
+🔐 Policy and Governance
+​
+ArgoCD ClusterPolicy Enhancements
+Tuned ArgoCD ClusterPolicy configurations for improved application management.
+Enhanced policy-driven resource generation and management capabilities.
+Fixed UpdateRequest queue issues with ArgoCD Application generation rules.
+Bouncer Service Improvements
+Increased Bouncer replica count for better availability and load distribution.
+Enhanced service resilience and performance under load.
+Organization Policy Tuning
+Refined organization-level policies for better cluster governance.
+Improved compliance and security policy enforcement.
+🛠 Developer Experience
+​
+Environment-Specific Configurations
+Staged
+spe.lilly.com
+for all clusters except production environments.
+Enhanced development and testing capabilities with proper environment isolation.
+Namespace Partition Features
+Fixed namespace partition feature flag environment variable naming.
+Improved namespace management and isolation capabilities.
+Release Asset Management
+Streamlined release asset promotion process across environments.
+Enhanced deployment pipeline reliability for self-hosted runners.
+🔎 Issue References
+​
+[CATS-1544], [CATS-1615], [CATS-1814], [CATS-1835], [CATS-1837], [CATS-1848]
+🌐 Impact Summary
+​
+Namespaces Affected
+karpenter-system, argocd, bouncer, velero, keda-system
+Key Configuration Changes
+Significantly enhanced Karpenter node pool scaling capabilities
+Introduction of Velero backup service
+Improved ArgoCD policy management
+Enhanced autoscaling configurations
+Performance Improvements
+3,750% increase in LiveDesign node pool capacity (80 to 3,000 nodes)
+200% increase in non-critical node pool capacity (80 to 240 nodes)
+Removed memory allocation constraints for better resource utilization
+4.4.1 - Cost management, ExternalSecrets, and Scheduling
+​
+Released April 21st :::
+Github Release Notes
+🚀 New and Upcoming Enhancements
+​
+AI Cluster Agents
+Enables querying of live production cluster state using CATS cluster agents.
+Admission Webhook Controller
+Introduces feature toggles in preparation for Kyverno-generated Flux resources.
+ArgoCD
+Upgraded to version 2.14.7.
+Supports fine-grained roles and enables publishing managed resources to Application pages.
+Cert-Manager
+Deployed ClusterIssuer to support system-wide service certificate management.
+Credential Services
+Rolled out a new workflow running on self-hosted runners (in-cluster) for on-demand credential generation.
+📅 Documentation and architecture will be published on April 21.
+Kafka
+Initial assets staged for a platform-wide Kafka service.
+Kyverno
+ArgoCD generators now offer finer-grained control over policy-driven resources.
+📈 Observability Enhancements
+​
+OpenTelemetry
+Initial release of the OpenTelemetry operator for dynamic observability routing.
+Prometheus Blackbox Exporter
+Launched to monitor system service health with cluster service scraping.
+Grafana
+New dashboards for Blackbox Exporter.
+Introduced "Hangar" dashboards for utilization and cost metrics.
+OpenCost
+Bugfixes implemented for Infrastructure as Code IAM roles.
+🔐 Secrets Management
+​
+External Secrets Operator v2
+Now leverages ClusterIssuer for improved namespace independence and certificate management.
+⚙️ Workload Scheduling
+​
+Karpenter
+Increased vCPU limits for default NodePools.
+Minimum node size set to 47 vCPUs.
+Baseline ephemeral storage set to 500Gi.
+New "compute" node type added to support compute-heavy workloads.
+🛠 Self-Hosted Runners
+​
+Prepped for upcoming changes supporting the new credential services workflow.
+🔎 Issue References
+​
+[CATS-138], [CATS-1571], [CATS-1629], [CATS-1631], [CATS-1632], [CATS-1633], [CATS-1638], [CATS-1639], [CATS-1669], [CATS-1718], [CATS-1719], [CATS-1722], [CATS-1723], [CATS-1744], [CATS-1777]
+🌐 Impact Summary
+​
+New CRDs
+instrumentations.opentelemetry.io/v1alpha1
+opentelemetrycollectors.opentelemetry.io/v1alpha1
+opentelemetrycollectors.opentelemetry.io/v1beta1
+Namespaces Affected
+argocd, credential-services, external-secrets, k8s-manager, kafka, kyverno, kube-system, kubecost, logging, self-hosted-runners
+4.3.1 - Temporal, Prometheus Upgrade, Kyverno, Kubecost
+​
+Released March 10th :::
+Github Release Notes
+Temporal Server
+​
+Build & Deploy Temporal Workflows: Teams can now build and deploy their Temporal workflows on our platform. More information can be found in the CATS documentation.
+New TemporalNamespace CustomResource: Implements dedicated namespaces for improved workflow isolation.
+Complete Workflow Orchestration: Offers enhanced management and visibility across all workflows.
+Prometheus Upgrade
+​
+Prometheus version has been upgraded to v2.55.1 for improved monitoring and performance.
+Spot vs On-Demand Kyverno Mutation Policy
+​
+This mutation policy automatically handles Spot vs. OnDemand node requests, enhancing our resource allocation and cost management.
+Kubecost Changes
+​
+We have officially discontinued the Kubecost Enterprise license and removed the data federation component as it is not supported in the free-tier plan.
+note
+The Kubecost dashboard is no longer federating data across multiple clusters. Each cluster now has its own standalone Kubecost instance, so please be sure to monitor the instance specific to the cluster(s) that host your application.
+4.2.2 - Devops, Argocd Improvements, and Kyverno
+​
+Released February 24th :::
+Github Release Notes
+Kyverno:
+​
+More Stable Generation of ArgoCD Applications:
+We have improved the stability of ArgoCD applications by utilizing Kyverno resource generators instead of custom controllers. This change ensures a more reliable and consistent application deployment process.
+Cluster Cleanup with Kyverno Policies:
+We have deployed new Kyverno policies to clean up old pods and job pods. This automated cleanup process helps maintain a tidy and efficient cluster environment, reducing resource wastage and potential conflicts.
+ArgoCD:
+​
+Exposing ArgoCD Scrape Metrics:
+We have exposed ArgoCD scrape metrics to monitor application health. This allows for better visibility and monitoring of the health and performance of your applications.
+ArgoCD Application AutoSync:
+By default, ArgoCD application autosync is turned off to improve the speed of our ArgoCD server. This change helps in reducing the load and improving the overall performance of the server.
+ACTION REQUIRED application teams will need to manage the sync settings on their own applications. Please see the cats documentation for configuration an admin argocd role to manage applications.
+https://cats.lilly.com/guide/Namespace
+Grafana:
+​
+Grafana Plugins Persistence:
+Grafana plugins will now be persisted on restart via in-cluster volumes. This enhancement ensures that all your custom plugins remain intact and functional even after a system restart, providing a seamless monitoring experience.
+Security Enhancements:
+​
+Hardened System Service Image Security:
+To enhance the security of our system services, we are now using JFrog Proxy for all images. This measure ensures that all images are scanned and verified, reducing the risk of vulnerabilities and ensuring a more secure platform.
+4.2.1 - Kyverno Adoption and Hotfixes
+​
+Released February 10th :::
+Github Release Notes
+Hotfix:
+Read Access for QA/PRD kubectl. Fixed read access issues for
+kubectl
+in QA and production clusters.
+Hotfix:
+AWS ALB Idle Timeout. Fixed a "504 Gateway Timeout" issue by adjusting the AWS ALB idle timeout to 10 minutes across all clusters (dev, qa, prod). The idle timeout has been restored to 10 minutes, preventing 504 errors.
+Enabled H100 for Cortex.
+Kyverno Adoption:
+ArgoCD CR Generation. Replaced the ArgoCD handler in the admission webhook controller with Kyverno for better policy management and stability. New Kyverno ClusterPolicy validates namespace annotations and generates ArgoCD CRs.
+Security Update:
+ELB Security Policy. Updated the ELB security policy to
+ELBSecurityPolicy-TLS13-1-2-Res-2021-06
+to strengthen encryption and align with security requirements.
+MD3 Model Scale Out. Scaled out the MD3 model as part of ongoing performance improvements.
+Automatic Cleanup of Stale PRs. Automatic closure of pull requests that have been inactive for 30 days. The action will automatically close stale PRs and add appropriate labels. Runs every day at 5:00 PM EST.
+Grafana Plugin Persistence Issue. Resolved an issue where Grafana plugins were not persisting after a production restart.
+Prometheus Upgrade. Upgraded Prometheus to support new metrics features, enhancing monitoring capabilities. Improved ArgoCD metrics scraping.
+Admission Webhook Controller Replacement. Replaced the admission webhook controller for ArgoCD application generation with Kyverno. Kyverno policies now handle the generation of ArgoCD applications, deprecating the admission webhook controller.
+AWS Load Balancer Idle Timeout Fix. Restored the idle timeout to 10 minutes for all clusters, preventing 504 errors for long-running requests.
+Argocd CR Permissions for Kyverno Controller. Added the necessary permissions for the Kyverno service account to manipulate ArgoCD resources. Policies implemented by Kyverno service account.
+4.1.2 - SLA Go-Live and General Enhancements
+​
+Released January 31st :::
+Github Release Notes
+Service Level Agreements Go-Live
+The SLA section of the documentation site now features a dedicated page designed to provide clear and accurate information about SLA Exclusions, Review and Revisions, and Monitoring and Reporting. A new "SLA Reports" section has been added under the News category to enhance transparency and accessibility. These updates ensure that users have a comprehensive understanding of SLA processes and reporting, reinforcing the commitment to maintaining high service standards.
+Fix Grafana Alert Links with Port Issues
+Grafana alert links and generated dashboard links were appending a port (e.g.,
+<url>:3000
+), causing broken URLs. To resolve this, the
+grafana.ini
+root_url was updated to use absolute URLs corresponding to the environment ingress.
+EFS Throughput Mode Change in CATS Dev Cluster
+The EFS throughput mode in the CATS dev cluster was updated from "Bursting" to "Enhanced" to improve performance for workloads in the
+livedesign
+namespace that were experiencing timeouts.
+Update RDS Instance Documentation
+The RDS documentation was updated to recommend using PostgreSQL 15.0 as the preferred version, with a note explaining that PostgreSQL 16.0 is available but should be avoided when using PGadmin.
+Optimize ArgoCD Sync Parallelism
+To address long ArgoCD sync times, configuration changes were made to increase sync parallelism, significantly reducing the time required for these operations.
+Reinstate Missing Grafana Data Sources
+The Azure Monitor datasource in the Main Grafana organization was missing, affecting monitoring functionality. This was resolved by reinstating the datasource and exposing the decryption secret.
+Improve Concurrency for Release Mergebacks
+GitHub Actions runners were being cancelled during mergebacks due to insufficiently unique concurrency pools. A unique string combining
+head_ref
+and
+base_ref
+was added to ensure pools are uniquely associated and prevent cancellations.
+Support Section on Docsite Reworked.
+The Support section has been significantly improved to enhance usability and organization, including a complete rework of the "Standard Support Offering" page, a reorganized sidebar for better navigation, and the addition of a table of contents for streamlined access to key topics. The "Ticket Template" page was renamed "Submit a Ticket" and linked to the updated ServiceNow request form, with a new "Submit a Ticket" button added for quick access. Admin-related documentation has been moved to a new Admin section to improve content organization, and a new Feature Request page was introduced to guide users in submitting and tracking feature requests. Additional UI enhancements, such as the "Catsbot" button and a "Submit a Support Ticket" button at the top of the site, improve functionality, while the "GitHub" button was split into three separate buttons for each environment to clarify deployment differences. These updates align with the latest Docusaurus version for consistency, and shortcuts were added to the makefile to streamline formatting fixes with Prettier and simplify the validation process.
+4.1.1 - Fargate Restructure / Observability Enhancement
+​
+Released January 19th :::
+Github Release Notes
+Fargate Profile Restructuring and Workload Restarts:
+We have restructured the Fargate profiles in the cluster, which will cause some serverless (Fargate) workloads to restart.
+Impact:
+Brief interruptions in applications may occur during the process.
+Action Required:
+No action is needed.
+Grafana Upgrade & Configuration Changes (PLG):
+We are upgrading Grafana in production. Since Grafana currently lacks persistent storage, all configurations stored in memory will be cleared as we transition to a new persistent storage solution.
+Action Required:
+Export and save any custom dashboards or settings in production
+BEFORE THE UPGRADE.
+Action Required:
+Re-import your dashboards and settings into the newly persistent Grafana setup
+after the upgrade.
+Observability Tools: Jaeger & Loki
+We are enhancing the observability stack to improve monitoring and debugging capabilities.
+Jaeger (Distributed Tracing):
+View and analyze distributed traces for your services at
+Jaeger UI
+.
+Understand service call patterns and pinpoint performance bottlenecks.
+Loki (Logs):
+Query structured Loki logs directly through Grafana.
+Use Grafana-Loki integration to search and filter logs centrally for streamlined troubleshooting.
+View System Service Infrastructure via ArgoCD
+We've improved visibility into system service infrastructure resources via ArgoCD.
+Capabilities:
+View infrastructure resources for system services.
+Identify the status and health of key platform services.
+Benefits:
+Better understanding of service dependencies.
+Faster troubleshooting of platform-related issues.
+Introducing New Domain Patterns
+We are rolling out new domain patterns for applications:
+bu.lilly.com
+cats.lilly.com
+chat.lilly.com
+cortex.lilly.com
+dh.lilly.com
+gs.lilly.com
+is.lilly.com
+lrl.lilly.com
+mq.lilly.com
+Recommended Ingress Host Patterns
+<my-app>.dev.<domain>
+for
+development
+<my-app>.qa.<domain>
+for
+QA
+<my-app>.<domain>
+for
+production
+The existing/legacy domains (
+apps.lrl.lilly.com
+,
+apps-internal.lrl.lilly.com
+,
+apps-api.lrl.lilly.com
+) will remain supported.
+Edit this page
+Previous
+Important Announcement
+Next
+Release Notes 2024
+4.6.2 - Temporal Enhancements, and Production Stability
+🚀 New and Upcoming Enhancements
+📊 Production Stability and Performance
+🔄 Backup and Disaster Recovery
+🔐 Policy and Security Management
+🛠 Production Release Management
+🔎 Issue References
+🌐 Impact Summary
+4.6.1 - Infrastructure Scaling and Self-Service Foundation
+🚀 New and Upcoming Enhancements
+📊 Infrastructure Scaling and Performance
+🔐 Policy and Governance
+🛠 Developer Experience
+🔎 Issue References
+🌐 Impact Summary
+4.4.1 - Cost management, ExternalSecrets, and Scheduling
+🚀 New and Upcoming Enhancements
+📈 Observability Enhancements
+🔐 Secrets Management
+⚙️ Workload Scheduling
+🛠 Self-Hosted Runners
+🔎 Issue References
+🌐 Impact Summary
+4.3.1 - Temporal, Prometheus Upgrade, Kyverno, Kubecost
+Temporal Server
+Prometheus Upgrade
+Spot vs On-Demand Kyverno Mutation Policy
+Kubecost Changes
+4.2.2 - Devops, Argocd Improvements, and Kyverno
+Kyverno:
+ArgoCD:
+Grafana:
+Security Enhancements:
+4.2.1 - Kyverno Adoption and Hotfixes
+4.1.2 - SLA Go-Live and General Enhancements
+4.1.1 - Fargate Restructure / Observability Enhancement
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Release Notes 2025
+Description: Released June 13th, 2025Github Release Notes
+Links: /, #462---temporal-enhancements-and-production-stability, https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.6.2, #-new-and-upcoming-enhancements, #-production-stability-and-performance, #-backup-and-disaster-recovery, #-policy-and-security-management, #-production-release-management, #-issue-references, #-impact-summary, #461---infrastructure-scaling-and-self-service-foundation, https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.6.1, #-new-and-upcoming-enhancements-1, #-infrastructure-scaling-and-performance, #-policy-and-governance, #-developer-experience, #-issue-references-1, #-impact-summary-1, #441---cost-management-externalsecrets-and-scheduling, https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.4.1, #-new-and-upcoming-enhancements-2, #-observability-enhancements, #-secrets-management, #️-workload-scheduling, #-self-hosted-runners, #-issue-references-2, #-impact-summary-2, #431---temporal-prometheus-upgrade-kyverno-kubecost, https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.3.1, #temporal-server, #prometheus-upgrade, #spot-vs-on-demand-kyverno-mutation-policy, #kubecost-changes, #422---devops-argocd-improvements-and-kyverno, https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.2.2, #kyverno, #argocd, https://cats.lilly.com/guide/Namespace, #grafana, #security-enhancements, #421---kyverno-adoption-and-hotfixes, https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.2.1, #412---sla-go-live-and-general-enhancements, https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.1.2, #411---fargate-restructure--observability-enhancement, https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.1.1, https://tracing.apps-d.lrl.lilly.com/search, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ReleaseNotes2025.md

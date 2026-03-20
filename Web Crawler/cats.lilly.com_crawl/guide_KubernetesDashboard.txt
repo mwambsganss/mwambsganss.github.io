@@ -1,0 +1,84 @@
+Title: **Kubernetes Dashboard** | CATS
+URL: https://cats.lilly.com/guide/KubernetesDashboard
+Description: This dashboard has been deprecated and is no longer maintained on CATS in an effort to enhance deployment experience and introduce GitOps solution. Please look at ArgoCD Dashboard for the preferred Deployment dashbord on CATS.
+
+**Kubernetes Dashboard** | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Overview
+Argo Deployment Dashboard
+Metrics Dashboard
+Ingress Dashboard
+Opencost Dashboard
+Kubecost Dashboard (Deprecated)
+Kubernetes Dashboard (Deprecated)
+Logging Dashboard (Deprecated)
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+Dashboard Offerings
+Kubernetes Dashboard (Deprecated)
+Kubernetes Dashboard
+warning
+This dashboard has been deprecated and is no longer maintained on CATS in an effort to enhance deployment experience and introduce GitOps solution. Please look at
+ArgoCD Dashboard
+for the preferred Deployment dashbord on CATS.
+The Kubernetes Dashboard provides users with a read-only interface to view and monitor the resources in the Kubernetes cluster. Users can review logs, inspect the status of workloads (like pods, services, and deployments), and track resource usage (CPU, memory, etc.). However, due to the read-only permissions, customers cannot make changes, deploy applications, or take any actions that affect the cluster from this site. This setup is ideal for gaining quick visibility into the system while maintaining strict control over operations.
+Click
+Skip
+on the login page to proceed.
+Kubernetes Dashboard : PRD
+Kubernetes Dashboard : QA
+Kubernetes Dashboard : DEV
+Note:
+This dashboard provides simmilar features to the Argo Deployment Dashboard. When using the argo dashboard there are additional features such as syncing your resources and overall enhanced visability into the state of your resources and how they map to eachother.
+Check it out!
+Edit this page
+Previous
+Kubecost Dashboard (Deprecated)
+Next
+Logging Dashboard (Deprecated)
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Kubernetes Dashboard
+Description: This dashboard has been deprecated and is no longer maintained on CATS in an effort to enhance deployment experience and introduce GitOps solution. Please look atArgoCD Dashboardfor the preferred Deployment dashbord on CATS.
+Links: /, /guide/DeploymentDashboard, https://k8s-dashboard.apps.lrl.lilly.com/, https://k8s-dashboard.apps-q.lrl.lilly.com/, https://k8s-dashboard.apps-d.lrl.lilly.com/, /guide/DeploymentDashboard, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/KubernetesDashboard.md

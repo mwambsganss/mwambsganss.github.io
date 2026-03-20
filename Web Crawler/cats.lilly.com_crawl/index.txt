@@ -1,0 +1,33 @@
+Title: CATS
+URL: https://cats.lilly.com/
+Description: A comprehensive guide to get started with CATS, making it easy for developers.
+
+CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+CATS
+A comprehensive guide to get started with CATS, making it easy for developers.
+Get Started →
+Opinionated cloud hosting
+Supercharge Research cloud web application development and migration
+Reduce operational cost
+Built using Open Source & AWS Services combined with GitOps CI/CD methodology
+Security as a Service
+Authentication, authorization, vulnerability scanning, and production scanning
+Lilly SPE Research Technology and Platforms

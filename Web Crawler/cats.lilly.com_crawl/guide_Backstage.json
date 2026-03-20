@@ -1,0 +1,44 @@
+{
+  "url": "https://cats.lilly.com/guide/Backstage",
+  "title": "Lilly Backstage | CATS",
+  "description": "Backstage is a developer portal Lilly is utilizing to catalog software assets for re-use, speed up software development with accelerators, and more. Click Here to learn more.",
+  "h1": [
+    "Lilly Backstage"
+  ],
+  "h2": [
+    "Useful Links​",
+    "Deploying to CATS after using Backstage accelerators​",
+    "Coming Soon​",
+    "Questions and Support​"
+  ],
+  "h3": [],
+  "text_content": "Lilly Backstage | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nOverview\nArgo\nBackstage\nBouncer\nCrossplane\nFlux\nWave\nKafka\nKarpenter\nPGadmin\nReloader\nRestful SDK\nSelf Service Toolkit\nSend Emails\nSmarter Device Manager\nTemporal\nArchitecture\nSupport\nAdmin\nSystem Services\nBackstage\nOn this page\nLilly Backstage\nBackstage is a developer portal Lilly is utilizing to catalog software assets for re-use, speed up software development with accelerators, and more.\nClick Here\nto learn more.\nUseful Links\n​\nResource\nDescription\nHome Page\nHomepage for the Lilly Backstage Website. Click\nGetting Started\nin the sidenav bar!\nContributing to the Catalog\nCatalog your existing APIs, Components (Libraries, Services, Websites), Resources, Accelerators so others can discover and re-use your code.\nBrowse the Catalog\nBrowse what's currently available in the Catalog\nAccelerators\nStart a new API, Website, or other software project from templated code.\nDeploying to CATS after using Backstage accelerators\n​\nMany users begin developing their applications by using an accelerator from Lilly Backstage. This is a great way for application teams to get up and running locally within minutes. Backstage accelerators are compatible with the CATS Platform.\nThe deployment process when deploying templates from backstage is the same as if you are deploying a custom application. you will need to follow the instructions laid out in\nDeployment Overview\n.\nComing Soon\n​\nCurrently the CATS and Backstage teams are in talks to auto-provision CATS resources when using an Accelerator in Backstage. This will make getting started in CATS easier and more automated. Stay tuned!\nQuestions and Support\n​\nLilly Backstage has an\nemail distribution list\nfor any questions or concerns.\nEdit this page\nPrevious\nArgo\nNext\nBouncer\nUseful Links\nDeploying to CATS after using Backstage accelerators\nComing Soon\nQuestions and Support\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:08:17.355679",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Lilly Backstage",
+        "description": "Backstage is a developer portal Lilly is utilizing to catalog software assets for re-use, speed up software development with accelerators, and more.Click Hereto learn more.",
+        "links": [
+          "/",
+          "https://backstage.apps.lrl.lilly.com/docs/default/component/backstage/",
+          "#useful-links",
+          "https://backstage.apps.lrl.lilly.com/",
+          "https://backstage.apps.lrl.lilly.com/docs/default/component/backstage/how-to-integrate/",
+          "https://backstage.apps.lrl.lilly.com/catalog",
+          "https://backstage.apps.lrl.lilly.com/create",
+          "#deploying-to-cats-after-using-backstage-accelerators",
+          "/guide/DeploymentOverview",
+          "#coming-soon",
+          "#questions-and-support",
+          "mailto:backstage_svc@lists.lilly.com",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Backstage.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

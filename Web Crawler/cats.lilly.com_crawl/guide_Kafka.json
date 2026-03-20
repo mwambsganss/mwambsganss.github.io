@@ -1,0 +1,45 @@
+{
+  "url": "https://cats.lilly.com/guide/Kafka",
+  "title": "Kafka | CATS",
+  "description": "Overview",
+  "h1": [
+    "Kafka"
+  ],
+  "h2": [
+    "Overview​",
+    "Kafka Configuration in Kubernetes​"
+  ],
+  "h3": [
+    "Basic Kafka Configuration​",
+    "Kafka Security​",
+    "Example​",
+    "Summary​"
+  ],
+  "text_content": "Kafka | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nOverview\nArgo\nBackstage\nBouncer\nCrossplane\nFlux\nWave\nKafka\nKarpenter\nPGadmin\nReloader\nRestful SDK\nSelf Service Toolkit\nSend Emails\nSmarter Device Manager\nTemporal\nArchitecture\nSupport\nAdmin\nSystem Services\nKafka\nOn this page\nKafka\nOverview\n​\nApache Kafka is a powerful distributed streaming platform that facilitates high-throughput, fault-tolerant messaging systems. Deployed as a system service in a Kubernetes cluster, Kafka can significantly enhance data processing and integration capabilities, serving as the backbone for event-driven architectures. Within Kubernetes, Kafka can be used to reliably process and distribute a vast stream of data across various services and applications, ensuring real-time data flow and enabling microservices to communicate efficiently through publish-subscribe messaging patterns. This setup is particularly useful for building scalable, resilient applications that require real-time data processing, analytics, and monitoring in a distributed environment. By leveraging Kafka within Kubernetes, organizations can achieve more dynamic, loosely coupled architectures that can easily scale to meet demand.\nKafka Configuration in Kubernetes\n​\nBasic Kafka Configuration\n​\nConfigure Kafka producers and consumers within your applications. Details such as bootstrap servers, topic names, and security settings are specified in your application's configurations.\nKafka Security\n​\nKafka supports SSL and SASL for security. Configure these in your Kafka brokers and clients. Use Kubernetes Secrets to store sensitive information like SSL keystrokes and SASL credentials.\nExample\n​\nConfigMap for Kafka Configuration:\n​\napiVersion\n:\nv1\nkind\n:\nConfigMap\nmetadata\n:\nname\n:\nkafka\n-\nconfig\ndata\n:\nserver.properties\n:\n|\n# Kafka configuration\nbroker.id=0\nlisteners=PLAINTEXT://:9092\nlog.dirs=/var/lib/kafka/data\nnum.partitions=1\nzookeeper.connect=zookeeper:2181\nThis ConfigMap contains the server.properties file used by Kafka brokers. The properties include the broker ID, listener configurations, log directory, number of partitions, and the Zookeeper connection string. Modify these properties according to your specific requirements.\nStatefulSet for Kafka Brokers:\n​\napiVersion\n:\napps/v1\nkind\n:\nStatefulSet\nmetadata\n:\nname\n:\nkafka\nspec\n:\nserviceName\n:\n\"kafka\"\nreplicas\n:\n3\nselector\n:\nmatchLabels\n:\napp\n:\nkafka\ntemplate\n:\nmetadata\n:\nlabels\n:\napp\n:\nkafka\nspec\n:\ncontainers\n:\n-\nname\n:\nkafka\nimage\n:\nbitnami/kafka\n:\nlatest\nports\n:\n-\ncontainerPort\n:\n9092\nvolumeMounts\n:\n-\nname\n:\nkafka\n-\nconfig\nmountPath\n:\n/opt/bitnami/kafka/config/server.properties\nsubPath\n:\nserver.properties\n-\nname\n:\ndata\nmountPath\n:\n/var/lib/kafka/data\nvolumes\n:\n-\nname\n:\nkafka\n-\nconfig\nconfigMap\n:\nname\n:\nkafka\n-\nconfig\nvolumeClaimTemplates\n:\n-\nmetadata\n:\nname\n:\ndata\nspec\n:\naccessModes\n:\n[\n\"ReadWriteOnce\"\n]\nresources\n:\nrequests\n:\nstorage\n:\n10Gi\nThis StatefulSet defines a Kafka cluster with 3 replicas. It mounts the\nkafka-config\nConfigMap to configure each broker. The\nvolumeClaimTemplates\nsection ensures that each broker pod has persistent storage attached to it. Update the replicas, storage requests, and other specifications as necessary for your environment.\nService for Kafka Broker Discovery:\n​\napiVersion\n:\nv1\nkind\n:\nService\nmetadata\n:\nname\n:\nkafka\nspec\n:\nports\n:\n-\nport\n:\n9092\nclusterIP\n:\nNone\nselector\n:\napp\n:\nkafka\nThis headless service facilitates the discovery of Kafka brokers within the cluster. By setting\nclusterIP: None\n, Kubernetes allows each pod to have its own unique IP address, which is crucial for the stable identification of each broker across restarts.\nSummary\n​\nConfigMap (kafka-config)\n: Stores the Kafka server configurations. It's mounted into the Kafka brokers to configure them on startup.\nStatefulSet (kafka)\n: Manages the Kafka broker pods. It uses persistent storage to ensure that data is not lost between pod restarts. The configuration is applied from the mounted\nConfigMap\n.\nService (kafka)\n: A headless service that provides a stable network identity for the brokers. This allows Kafka clients and other brokers to communicate with each member of the\nStatefulSet\nusing a consistent DNS name.\nEdit this page\nPrevious\nWave\nNext\nKarpenter\nOverview\nKafka Configuration in Kubernetes\nBasic Kafka Configuration\nKafka Security\nExample\nSummary\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:09:01.042258",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Kafka",
+        "description": "Apache Kafka is a powerful distributed streaming platform that facilitates high-throughput, fault-tolerant messaging systems. Deployed as a system service in a Kubernetes cluster, Kafka can significantly enhance data processing and integration capabilities, serving as the backbone for event-driven architectures. Within Kubernetes, Kafka can be used to reliably process and distribute a vast stream of data across various services and applications, ensuring real-time data flow and enabling microservices to communicate efficiently through publish-subscribe messaging patterns. This setup is particularly useful for building scalable, resilient applications that require real-time data processing, analytics, and monitoring in a distributed environment. By leveraging Kafka within Kubernetes, organizations can achieve more dynamic, loosely coupled architectures that can easily scale to meet demand.",
+        "links": [
+          "/",
+          "#overview",
+          "#kafka-configuration-in-kubernetes",
+          "#basic-kafka-configuration",
+          "#kafka-security",
+          "#example",
+          "#configmap-for-kafka-configuration",
+          "#statefulset-for-kafka-brokers",
+          "#service-for-kafka-broker-discovery",
+          "#summary",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Kafka.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

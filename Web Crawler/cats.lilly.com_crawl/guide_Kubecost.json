@@ -1,0 +1,52 @@
+{
+  "url": "https://cats.lilly.com/guide/Kubecost",
+  "title": "Kubecost : Cost Monitoring Dashboard | CATS",
+  "description": "This service has been deprecated in CATS due to license discontinuation. Please look at Opencost for more information about cost observability on CATS.",
+  "h1": [
+    "Kubecost : Cost Monitoring Dashboard"
+  ],
+  "h2": [
+    "Kubecost Version 2​",
+    "Navigating the Kubecost Dashboard​",
+    "API Directory​"
+  ],
+  "h3": [
+    "Federation ETL​",
+    "Cloud Cost Billing Integration​",
+    "Customizable Dashboard​",
+    "Cost Center Breakdown​",
+    "Reporting​",
+    "Cloud Cost Explorer Dashboard​"
+  ],
+  "text_content": "Kubecost : Cost Monitoring Dashboard | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nOverview\nArgo Deployment Dashboard\nMetrics Dashboard\nIngress Dashboard\nOpencost Dashboard\nKubecost Dashboard (Deprecated)\nKubernetes Dashboard (Deprecated)\nLogging Dashboard (Deprecated)\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nDashboard Offerings\nKubecost Dashboard (Deprecated)\nOn this page\nKubecost : Cost Monitoring Dashboard\nwarning\nThis service has been deprecated in CATS due to license discontinuation. Please look at\nOpencost\nfor more information about cost observability on CATS.\nKubecost is a comprehensive cost monitoring tool designed for Kubernetes environments. It provides detailed insights into your cloud spending, allowing you to track and optimize resource usage across your clusters. Whether you're managing costs for development, testing, or production environments, Kubecost helps you understand where your resources are being allocated and how to make the most out of your budget. Kubecost also provides recommendations on optimizing your resource efficiency and utilization through various ways (i.e. rightsizing container resource request, managing abandoned workloads, managed orphaned resources, etc.).\nKubecost Version 2\n​\nTo enhance the stability of our Kubecost instance across all three clusters and provide a unified, single-pane-of-glass view of cost spending for application and business planning teams, we have introduced the following features in Version 2:\nFederation ETL\n​\nThis feature consolidates cost data from all three clusters—DEV, QA, and PROD—into the PROD cluster. This enables a comprehensive view of costs across all environments within a single Kubecost dashboard. The dashboard is highly customizable, allowing users to filter cost allocations by individual clusters or across multiple clusters simultaneously using single or multi-aggregation capabilities. Detailed instructions on how to navigate and customize the dashboard are provided below.\nCloud Cost Billing Integration\n​\nThis feature incorporates AWS Cost and Usage Report (CUR) data directly into our Kubecost instance. By reconciling Kubecost’s calculated metrics with AWS billing data, this integration significantly improves the accuracy of cost reporting. Additionally, it provides application teams with visibility into other AWS resources used within their applications that are not accounted for in the native Kubernetes resource allocation costs. This feature delivers a detailed and accurate cost breakdown for each application or cost center within the cluster.\nTo view the PROD Kubecost instance, which consists of cost allocation data across all three clusters (DEV, QA, and PROD), you can access the dashboard here:\nKubecost Dashboard\nNavigating the Kubecost Dashboard\n​\nWhen you first access the Kubecost dashboard, you'll be presented with the\nOverview\ndashboard. This view provides a high-level analysis of costs across all three clusters (DEV, QA, and PROD), with aggregated data displayed by default. To drill down into costs specific to each cluster, follow these steps:\nAccess Allocations\n:\nNavigate to\nMonitor\n>\nAllocations\nfrom the main dashboard menu.\nFilter by Cluster\n:\nIn the\nCluster\nfilter, select the desired cluster (\nLight-Infra-dev\n,\nLight-Infra-qa\n, or\nLight-Infra-prd\n) to isolate costs for that specific environment.\nCustomizable Dashboard\n​\nThe\nAllocations\ndashboard within Kubecost is highly customizable, enabling you to perform detailed analyses of cluster spending. You can break down costs by various Kubernetes objects such as\nNamespace\n,\nPod\n, and\nDeployment\n. Kubecost supports advanced filtering and aggregation options, allowing for more complex analyses as needed.\nTo further refine your view:\nUse the\nFilter\noption to target specific clusters or Kubernetes objects. For example, setting\nCluster\nto\nLight-Infra-prd\nand\nNamespace\nto\nkubecost\nwill show cost data specifically for the kubecost namespace in the PROD cluster.\nAdjust the\nWindow\nto change the time period for cost analysis (e.g., daily, monthly).\nUse\nAggregation\noptions to group data by different dimensions, such as\nNamespace\nor\nCost Center\n.\nExplore the\nEdit\nfeature to tailor the dashboard to your specific needs, creating a view that best represents your application's cost usage.\nNote: The highlighted blocks represent costs that have not been reconciled with the AWS CUR data. The reconciliation process typically takes up to 48 hours to complete, so if you want to view the reconciled cost for a specific day, come back to the dashboard two days after for more accurate cost breakdown.\nCost Center Breakdown\n​\nA feature that is configured specifically in CATS is the ability to break down cluster costs by\nCost Center\n. To view this, aggregate the cost allocation data by\ncost-center\nlabel. Ensure that your namespace has a\ncost-center\nlabel with a valid Cost Center depending on your organization within Lilly, allowing Kubecost to accurately aggregate resources to your specified cost center.\nReporting\n​\nKubecost allows for the creation, saving, and scheduling of cost reports as CSV or PDF files, which can be sent to external email recipients. Simply save your dashboard configurations under a preferred name, then navigate to\nReports\nin the left panel. Locate your report under the list, click on the\n...\nunder Actions, and select\nSchedule Report\nto set up email recipients and report format type at your chosen interval.\nCloud Cost Explorer Dashboard\n​\nThe Cloud Cost Explorer dashboard in Kubecost provides detailed insights into your entire cloud infrastructure spending, including non-Kubernetes resources such as databases, storage, and networking services. This tool allows you to access and analyze Cloud Costs:\nNavigate to\nMonitor\n>\nCloud Cost\nto view a summary of our AWS cloud costs across all three clusters in separate\nAWS Accounts\n, broken down by service (e.g., EC2, S3) and time period. Use\nfilters\nto refine the data by\nAccount ID\n,\nService\n, or\nTag\n.\nThe dashboard integrates with AWS Cost and Usage Report (CUR) data, providing a complete picture of both Kubernetes and non-Kubernetes costs. This ensures accurate chargeback and showback reporting by linking costs to specific departments or projects using AWS tags.\nAPI Directory\n​\nKubecost's API directory offers extensive functionalities to optimize resource allocation and reduce costs. Visit their\nAPI directory\nfor more information. For instance, the\nrequestSizingV2\nendpoint under the\nSavings API\ncan recommend CPU and Memory allocations for your containers, based on their usage over a specified period and target utilizations.\nHere is an example of getting the right sizing resource recommendation for containers within the\nKubecost\nnamespace per container specs.\nKUBECOST_ADDRESS='http://kubecost.apps.lrl.lilly.com/model'\ncurl -G \\\n-d 'algorithmCPU=max' \\\n-d 'algorithmRAM=max' \\\n-d 'targetCPUUtilization=0.7' \\\n-d 'targetRAMUtilization=0.7' \\\n-d 'window=3d' \\\n--data-urlencode 'filter=namespace:\"kubecost\"' \\\n${KUBECOST_ADDRESS}/savings/requestSizingV2\nor\nOr simply paste this URL into your browser:\nhttps://kubecost.apps.lrl.lilly.com/model/savings/requestSizingV2?algorithmCPU=max&algorithmRAM=max&targetCPUUtilization=0.7&targetRAMUtilization=0.7&window=3d&filter=namespace:%22kubecost%22\nThis guide aims to streamline your Kubecost experience, ensuring effective management and optimization of your Kubernetes resources.\nEdit this page\nPrevious\nOpencost Dashboard\nNext\nKubernetes Dashboard (Deprecated)\nKubecost Version 2\nFederation ETL\nCloud Cost Billing Integration\nNavigating the Kubecost Dashboard\nCustomizable Dashboard\nCost Center Breakdown\nReporting\nCloud Cost Explorer Dashboard\nAPI Directory\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:04:07.564635",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Kubecost : Cost Monitoring Dashboard",
+        "description": "This service has been deprecated in CATS due to license discontinuation. Please look atOpencostfor more information about cost observability on CATS.",
+        "links": [
+          "/",
+          "/guide/Opencost",
+          "#kubecost-version-2",
+          "#federation-etl",
+          "#cloud-cost-billing-integration",
+          "https://kubecost.apps.lrl.lilly.com",
+          "#navigating-the-kubecost-dashboard",
+          "#customizable-dashboard",
+          "#cost-center-breakdown",
+          "#reporting",
+          "#cloud-cost-explorer-dashboard",
+          "#api-directory",
+          "https://docs.kubecost.com/apis/apis-overview",
+          "https://docs.kubecost.com/apis/apis-overview/api-request-right-sizing-v2",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Kubecost.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

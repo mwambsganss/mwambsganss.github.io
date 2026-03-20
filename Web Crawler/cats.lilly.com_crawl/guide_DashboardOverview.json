@@ -1,0 +1,56 @@
+{
+  "url": "https://cats.lilly.com/guide/DashboardOverview",
+  "title": "Intoduction To Dashboards | CATS",
+  "description": "- Ingress Dashboard (Traefik): Simplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.",
+  "h1": [
+    "Intoduction To Dashboards"
+  ],
+  "h2": [
+    "Table of Contents​"
+  ],
+  "h3": [],
+  "text_content": "Intoduction To Dashboards | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nOverview\nArgo Deployment Dashboard\nMetrics Dashboard\nIngress Dashboard\nOpencost Dashboard\nKubecost Dashboard (Deprecated)\nKubernetes Dashboard (Deprecated)\nLogging Dashboard (Deprecated)\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nDashboard Offerings\nOverview\nOn this page\nIntoduction To Dashboards\nIngress Dashboard (Traefik)\n: Simplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.\nProduction Environment Dashboard\nQA Environment Dashboard\nDev Environment Dashboard\nDeployment Dashboard (Automated CI/CD via Argo )\n: Embrace the principles of GitOps for continuous integration and deployment, automating your pipeline for increased efficiency and reliability.\nProduction Environment Dashboard\nQA Environment Dashboard\nDev Environment Dashboard\nGrafana Observability Dashboards (Prometheus/Loki/Jaeger)\n: Monitor your application's health and performance with detailed metrics visualized through Grafana, powered by Prometheus's robust monitoring capabilities.\nProduction Environment Dashboard\nQa Environment Dashboard\nDev Environment Dashboard\nTracing Dashboard (Jaeger)\n: Monitor your applications requests through microservice architectures. Find bottlenecks in your applications requests by comparing tracing information.\nProduction Environment Dashboard\nQa Environment Dashboard\nDev Environment Dashboard\nCost Monitoring (Kubecost)\n: Keep your cloud expenses in check with detailed insights into your Kubernetes costs, helping you optimize resource allocation and spending.\nDev Environment Dashboard\nQa Environment Dashboard\nProduction Environment Dashboard\nKubernetes Dashboard\n: Gain insights and manage your Kubernetes resources with an intuitive, web-based user interface. This is the most important dashboard for the average user. Please try accessing one of the links below,\nif you do not have access\nto the dashboard you can request access via the\nDeveloper Front Door\n. After being added to the group it will take around 24 hours for the changes to be reflected on your end.\nProduction Environment Dashboard\nQA Environment Dashboard\nDev Environment Dashboard\nTable of Contents\n​\nDashboard Offering\nDescription\nOverview\nGeneral overview of the dashboard offerings available on the CATS platform, including monitoring and management tools.\nArgo Deployment Dashboard\nProvides a visual interface for tracking and managing Argo CD deployments, offering insight into the deployment status and health.\nMetrics Dashboard\nGrafana. Monitors application health and performance through Prometheus-powered metrics visualized in Grafana.\nCost Monitoring Dashboard\nKubecost. Provides detailed insights into Kubernetes costs to help optimize resource allocation and manage spending effectively.\nIngress Dashboard\nTraefik. Versatile Ingress controller with a user-friendly dashboard for managing external access to applications.\nKubernetes Dashboard (Depricated)\nThe old web-based interface for real-time insights and management of Kubernetes resources and workloads. Please use Argo instead of this dashboard.\nEdit this page\nPrevious\nS3 Lifecycle Tagging\nNext\nArgo Deployment Dashboard\nTable of Contents\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:03:24.264087",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Intoduction To Dashboards",
+        "description": "Ingress Dashboard (Traefik): Simplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.",
+        "links": [
+          "/",
+          "https://traefik-dashboard.apps.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard.apps-q.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard.apps-d.lrl.lilly.com/dashboard/#/",
+          "https://argocd.apps.lrl.lilly.com/",
+          "https://argocd.apps-q.lrl.lilly.com/",
+          "https://argocd.apps-d.lrl.lilly.com/",
+          "https://metrics.apps.lrl.lilly.com",
+          "https://metrics.apps-q.lrl.lilly.com",
+          "https://metrics.apps-d.lrl.lilly.com",
+          "https://tracing.apps.lrl.lilly.com",
+          "https://tracing.apps-q.lrl.lilly.com",
+          "https://tracing.apps-d.lrl.lilly.com",
+          "https://kubecost.apps-d.lrl.lilly.com/allocations",
+          "https://kubecost.apps-q.lrl.lilly.com/allocations",
+          "https://kubecost.apps.lrl.lilly.com/allocations",
+          "https://dev.lilly.com/docs/platforms-and-tools/cats/",
+          "https://k8s-dashboard.apps.lrl.lilly.com/",
+          "https://k8s-dashboard.apps-q.lrl.lilly.com/",
+          "https://k8s-dashboard.apps-d.lrl.lilly.com/",
+          "#table-of-contents",
+          "/guide/DashboardOverview",
+          "/guide/DeploymentDashboard",
+          "/guide/Grafana",
+          "/guide/Kubecost",
+          "/guide/IngressDashboard",
+          "/guide/KubernetesDashboard",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/DashboardOverview.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

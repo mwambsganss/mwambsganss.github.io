@@ -1,0 +1,170 @@
+Web Crawl Report (with Pagination)
+================================================================================
+
+Root URL: https://cats.lilly.com/guide/
+Base Domain: cats.lilly.com
+Crawled: 2026-03-20 15:10:17
+
+Summary
+--------------------------------------------------------------------------------
+Total URLs: 77
+Pages: 77
+Failed: 0
+Paginated Items: 78
+
+Pages
+--------------------------------------------------------------------------------
+https://cats.lilly.com/guide/
+  └─ 1 paginated items
+https://cats.lilly.com/guide/AWSresourceOverview
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Argo
+  └─ 1 paginated items
+https://cats.lilly.com/guide/AwsVpc
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Backstage
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Bedrock
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Bouncer
+  └─ 1 paginated items
+https://cats.lilly.com/guide/CATSAgent
+  └─ 1 paginated items
+https://cats.lilly.com/guide/CATSbot
+  └─ 1 paginated items
+https://cats.lilly.com/guide/CloudBrowser
+  └─ 1 paginated items
+https://cats.lilly.com/guide/ClusterSelfServiceToolkit
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Codeowners
+  └─ 1 paginated items
+https://cats.lilly.com/guide/ComputeAndWorkloadScheduling
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Configuration
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Containerization
+  └─ 1 paginated items
+https://cats.lilly.com/guide/CronJob
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Crossplane
+  └─ 1 paginated items
+https://cats.lilly.com/guide/DashboardOverview
+  └─ 1 paginated items
+https://cats.lilly.com/guide/DeploySaaS
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Deployment
+  └─ 1 paginated items
+https://cats.lilly.com/guide/DeploymentDashboard
+  └─ 1 paginated items
+https://cats.lilly.com/guide/DeploymentOverview
+  └─ 2 paginated items
+https://cats.lilly.com/guide/ECRCredentialService
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Emails
+  └─ 1 paginated items
+https://cats.lilly.com/guide/ExternalIntegrations
+  └─ 1 paginated items
+https://cats.lilly.com/guide/ExternalResourceConnection
+  └─ 1 paginated items
+https://cats.lilly.com/guide/ExternalSecrets
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Flux
+  └─ 1 paginated items
+https://cats.lilly.com/guide/GetAccess
+  └─ 1 paginated items
+https://cats.lilly.com/guide/GitHubRepos
+  └─ 1 paginated items
+https://cats.lilly.com/guide/GitHubTeams
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Grafana
+  └─ 1 paginated items
+https://cats.lilly.com/guide/GraphUserInfo
+  └─ 1 paginated items
+https://cats.lilly.com/guide/HelmRelease
+  └─ 1 paginated items
+https://cats.lilly.com/guide/ImportantAnnouncement
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Ingress
+  └─ 1 paginated items
+https://cats.lilly.com/guide/IngressDashboard
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Ingress_patterns
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Instrumentation
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Jaeger
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Jobs
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Kafka
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Karpenter
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Kubecost
+  └─ 1 paginated items
+https://cats.lilly.com/guide/KubernetesDashboard
+  └─ 1 paginated items
+https://cats.lilly.com/guide/LoggingDashboard
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Loki
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Makefile
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Namespace
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Namespace/
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Namespace_decomission
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Opencost
+  └─ 1 paginated items
+https://cats.lilly.com/guide/OverviewObservability
+  └─ 1 paginated items
+https://cats.lilly.com/guide/PGAdmin
+  └─ 1 paginated items
+https://cats.lilly.com/guide/PlatformOverview
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Prerequisites
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Prometheus
+  └─ 1 paginated items
+https://cats.lilly.com/guide/RDSDatabase
+  └─ 1 paginated items
+https://cats.lilly.com/guide/RDS_Restore
+  └─ 1 paginated items
+https://cats.lilly.com/guide/RateLimit
+  └─ 1 paginated items
+https://cats.lilly.com/guide/ReleaseNotes
+  └─ 1 paginated items
+https://cats.lilly.com/guide/ReleaseNotes2025
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Reloader
+  └─ 1 paginated items
+https://cats.lilly.com/guide/RestfulSDK
+  └─ 1 paginated items
+https://cats.lilly.com/guide/S3_Lifecycle_Tagging
+  └─ 1 paginated items
+https://cats.lilly.com/guide/SLAreports
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Scaling
+  └─ 1 paginated items
+https://cats.lilly.com/guide/SecretsManager
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Service
+  └─ 1 paginated items
+https://cats.lilly.com/guide/SharedResponsibilityModel
+  └─ 1 paginated items
+https://cats.lilly.com/guide/SmarterDeviceManager
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Storage
+  └─ 1 paginated items
+https://cats.lilly.com/guide/SystemServices
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Temporal
+  └─ 1 paginated items
+https://cats.lilly.com/guide/Wave
+  └─ 1 paginated items
+https://cats.lilly.com/guide/WorkingWithAppRepo
+  └─ 1 paginated items
+https://cats.lilly.com/guide/velero
+  └─ 1 paginated items

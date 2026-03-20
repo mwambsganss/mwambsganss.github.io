@@ -1,0 +1,43 @@
+{
+  "url": "https://cats.lilly.com/guide/ExternalIntegrations",
+  "title": "External Integrations | CATS",
+  "description": "Integrating with External AWS Accounts is possible. See our examples below.",
+  "h1": [
+    "External Integrations"
+  ],
+  "h2": [
+    "Research Data & EDB API (DWS)​",
+    "Legacy Heroku Pattern​",
+    "Cross AWS Account Resource connections​"
+  ],
+  "h3": [],
+  "text_content": "External Integrations | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nOverview\nNamespace\nDeployment\nService\nIngress\nIngress Patterns\nCompute and Workload Scheduling\nScaling\nStorage\nCronJob\nJobs\nRate Limit\nExternal Secrets\nHelmRelease\nExternal Integrations\nGraph User Info\nMakefile\nVelero Backups\nRDS Database Restore\nNamespace Decommission\nS3 Lifecycle Tagging\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nK8s Configuration\nExternal Integrations\nOn this page\nExternal Integrations\nIntegrating with External AWS Accounts is possible. See our examples below.\nResearch Data & EDB API (DWS)\n​\nResearch Data & EDB APIs can always be accessed from app backends by passing the\nLilly-Authorization\nheader provided by CATS with every request to the Research Data & EDB APIs in the\nAuthorization\nheader.\nIf your app has no backend or you would rather call these APIs directly from the frontend, CATS has a direct integration with these APIs.\nEach app has a reserved path\n_apps_system\nwhich is used for system APIs.\nWithin this reserved path is the Research Data & EDB API integration\nhttps://<YOUR APP HOST>/_apps_system/researchdata/prd/<API PATH>\nE.g.\nhttps://indigo-d.apps.lrl.lilly.com/_apps_system/researchdata/prd/chembl/v3.0/version\nThe request will be proxied to\nhttps://api.data.lrl.lilly.com/chembl/v3.0/version\nwith the current users credentials.\nThis is achieved by Bouncer service:\nhttps://github.com/EliLillyCo/LRL_light_k8s_infra_bouncer/blob/main/routes/researchData.js\nLegacy Heroku Pattern\n​\nCATS runs within the VPC of an AWS DX account and is therefore an endpoint on Lilly's private network. See the below table to understand how each CATS Cluster maps to an AWS Account and how each AWS Account maps to a VPC.\nCluster\nApp Deployment Repo\nAWS Account Name\nAWS Account ID\nVPC Access\nProduction Cluster\ninfra_apps\nprod-igw-dx-researchit-light\n283234040926\nvpc-03bee17f69c9802b9\nQA Cluster\ninfra_apps_qa\nqa-igw-dx-researchit-light\n474366589702\nvpc-058757a9c034d181c\nDevelopment Cluster\ninfra_apps_test\ndev-igw-dx-researchit-light\n408787358807\nvpc-069388414a9f87f40\nHeroku is external to Lilly and therefore can't reach CATS.\nWhen deploying routes on the apps-api route in cats (example: aads-edb-fapi-qa.apps-api-q.lrl.lilly.com) this route is an RFC 1918 10.x private IP that isn't routable on the public Internet.\nYou can have a public-Internet facing endpoint published for your API in\nEnterprise Data's Azure API Management service\n, allowing your app to reach your APIs with Cybersecurity-approved controls for the public Internet via the Lilly private network bridge.\nCross AWS Account Resource connections\n​\nSee documentation\nhere\non connecting to AWS resources that are housed in a non-CATS AWS account.\nEdit this page\nPrevious\nHelmRelease\nNext\nGraph User Info\nResearch Data & EDB API (DWS)\nLegacy Heroku Pattern\nCross AWS Account Resource connections\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:06:06.850461",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "External Integrations",
+        "description": "Integrating with External AWS Accounts is possible. See our examples below.",
+        "links": [
+          "/",
+          "#research-data--edb-api-dws",
+          "https://indigo-d.apps.lrl.lilly.com/_apps_system/researchdata/prd/chembl/v3.0/version",
+          "https://api.data.lrl.lilly.com/chembl/v3.0/version",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_bouncer/blob/main/routes/researchData.js",
+          "#legacy-heroku-pattern",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://collab.lilly.com/sites/ApiManagement",
+          "#cross-aws-account-resource-connections",
+          "/guide/ExternalResourceConnection",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ExternalIntegrations.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

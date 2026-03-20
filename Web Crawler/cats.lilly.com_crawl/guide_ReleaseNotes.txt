@@ -1,0 +1,104 @@
+Title: Release Notes | CATS
+URL: https://cats.lilly.com/guide/ReleaseNotes
+Description: Here you can find all of the release notes for the CATS Platform. This section will be updated with new notes once they are available.
+
+Release Notes | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Important Announcement
+Release Notes 2025
+Release Notes 2024
+SLA Reports
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+News
+Release Notes 2024
+On this page
+Release Notes
+Here you can find all of the release notes for the CATS Platform. This section will be updated with new notes once they are available.
+Find our full collection of
+Release notes in PDF format
+if you would like to follow our convienet links to documentation or JIRA Issues for more context.
+CATS 3.11 - DocSite V2 and Stability Fixes
+​
+CATS 3.10 - Stability Fixes and Obervability Enhancements
+​
+CATS 3.9 - FrontDoor Onboarding and CoreDNS Upgrade
+​
+CATS 3.8 - K8s 1.27 and Grafana Enhancement (Entra ID)
+​
+CATS 3.7 - Grafana Alerts
+​
+CATS 3.6 - WAFv2 / SBX Cluster
+​
+CATS 3.5 - Argo CD
+​
+CATS 3.4 - K8s 1.25 / Flux V2
+​
+CATS 3.3 - K8s 1.24 / Cats DocSite
+​
+CATS 3.2 - AppRunner Upgrade
+​
+CATS 3.1 - Security Groups
+​
+Edit this page
+Previous
+Release Notes 2025
+Next
+SLA Reports
+CATS 3.11 - DocSite V2 and Stability Fixes
+CATS 3.10 - Stability Fixes and Obervability Enhancements
+CATS 3.9 - FrontDoor Onboarding and CoreDNS Upgrade
+CATS 3.8 - K8s 1.27 and Grafana Enhancement (Entra ID)
+CATS 3.7 - Grafana Alerts
+CATS 3.6 - WAFv2 / SBX Cluster
+CATS 3.5 - Argo CD
+CATS 3.4 - K8s 1.25 / Flux V2
+CATS 3.3 - K8s 1.24 / Cats DocSite
+CATS 3.2 - AppRunner Upgrade
+CATS 3.1 - Security Groups
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Release Notes
+Description: Here you can find all of the release notes for the CATS Platform. This section will be updated with new notes once they are available.
+Links: /, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/storage, #cats-311---docsite-v2-and-stability-fixes, #cats-310---stability-fixes-and-obervability-enhancements, #cats-39---frontdoor-onboarding-and-coredns-upgrade, #cats-38---k8s-127-and-grafana-enhancement-entra-id, #cats-37---grafana-alerts, #cats-36---wafv2--sbx-cluster, #cats-35---argo-cd, #cats-34---k8s-125--flux-v2, #cats-33---k8s-124--cats-docsite, #cats-32---apprunner-upgrade, #cats-31---security-groups, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ReleaseNotes.md

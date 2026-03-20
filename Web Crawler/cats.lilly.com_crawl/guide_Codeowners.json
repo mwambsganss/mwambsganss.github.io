@@ -1,0 +1,34 @@
+{
+  "url": "https://cats.lilly.com/guide/Codeowners",
+  "title": "CODEOWNERS | CATS",
+  "description": "Official GitHub CODEOWNERS Documentation",
+  "h1": [
+    "CODEOWNERS"
+  ],
+  "h2": [
+    "Using CODEOWNERS with CATS​"
+  ],
+  "h3": [],
+  "text_content": "CODEOWNERS | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nPrerequisites\nGet Access\nDeployment Overview\nWorking With the Repo\nContainerization and Dockerfiles\nCODEOWNERS\nDeploying SaaS Solution\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nJump Start\nCODEOWNERS\nOn this page\nCODEOWNERS\nOfficial GitHub CODEOWNERS Documentation\nYou can use a CODEOWNERS file to define individuals or teams that are responsible for code in a repository.\nThe people you choose as code owners must have write permissions for the repository. When the code owner is a team, that team must be visible and it must have write permissions, even if all the individual members of the team already have write permissions directly, through organization membership, or through another team membership.\nCode owners are automatically requested for review when someone opens a pull request that modifies code that they own. Code owners are not automatically requested to review draft pull requests.\nUsing CODEOWNERS with CATS\n​\nIn the Infra_Apps repository, the\ndev\nfolder is open for anyone to approve pull requests, unless editing restricted files. First time additions to the\nqa\nand\nprd\nfolders by default require an approval by an administrator of this GitHub repository.  This qa/prd approval can be delegated for individual app directories to an app Github team that has approval to merge changes to an individual app(s)\nCode Owners\n.\nLocation of\nCODEOWNERS\nfile in infra_apps repo.\nCODEOWNERS File Example:\n# Global Code Owners (changes must be approved by this group)\n* @EliLillyCo/lrl_light_infra_approvers\nprojects/prd/   @EliLillyCo/lrl_light_infra_approvers\nprojects/qa/   @EliLillyCo/lrl_light_infra_approvers\nprojects/dev/   @EliLillyCo/lrl_light_k8s_infra_write\nprojects/system_services/   @EliLillyCo/lrl_light_infra_approvers\n.github/   @EliLillyCo/lrl_light_infra_approvers\nCODEOWNERS @EliLillyCo/lrl_light_infra_approvers\n# Backstage specific\n/projects/dev/backstage\n-\ndev/ @EliLillyCo/gis\n-\neip\n-\nbackstagepilot\n-\nadmin\n/projects/qa/backstage\n-\nqa/ @EliLillyCo/gis\n-\neip\n-\nbackstagepilot\n-\nadmin\n/projects/prd/backstage\n-\nprd/ @EliLillyCo/gis\n-\neip\n-\nbackstagepilot\n-\nadmin\nIn the above code block you can see that approvals on specific files and locations are locked down. Only the groups designated can approve changes on the designated locations or file. From here you can see which files and locations require approvals from lrl_light_infra_approvers (CATS Platform Team).\nHow To Update CODEOWNERS\n:\nEnsure you have a github group that can be used for approvals on your namespaces code.\nDraft a change to the CODEOWNERS file that follows the provided pattern. Replace\n<your-namespace>\nwith the namespace you have defined. Replace\n<your-group-name>\nwith the name of the group you want to delegate your approvals to.\n# Your Project Name\n/projects/dev/<your\n-\nnamespace\n>\n-\ndev/ @EliLillyCo/<your\n-\ngroup\n-\nname\n>\n/projects/qa/<your\n-\nnamespace\n>\n-\nqa/ @EliLillyCo/<your\n-\ngroup\n-\nname\n>\n/projects/prd/<your\n-\nnamespace\n>\n-\nprd/ @EliLillyCo/<your\n-\ngroup\n-\nname\n>\nRaise a Pull Request. The lrl_light_infra_approvers group will be automatically assigned as approvers on your PR. There will be an error on your PR that says your file is not valid. Ignore this error as someone in the lrl_light_infra_approvers group will add the group you specified in\n<your-group-name>\nto the repository with \"write\" access.\nAfter both the approval is granted and the designated group is added with write access the error will go away and you will be free to merge the PR.\nEdit this page\nPrevious\nContainerization and Dockerfiles\nNext\nDeploying SaaS Solution\nUsing CODEOWNERS with CATS\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 3,
+  "crawled_at": "2026-03-20T15:00:18.174651",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "CODEOWNERS",
+        "description": "Official GitHub CODEOWNERS Documentation",
+        "links": [
+          "/",
+          "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners",
+          "#using-codeowners-with-cats",
+          "https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/main/CODEOWNERS",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Codeowners.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

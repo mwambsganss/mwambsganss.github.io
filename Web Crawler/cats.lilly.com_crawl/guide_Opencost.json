@@ -1,0 +1,42 @@
+{
+  "url": "https://cats.lilly.com/guide/Opencost",
+  "title": "Opencost : Cost Monitoring Dashboard | CATS",
+  "description": "Opencost is a cost monitoring tool for workloads running in a Kubernetes cluster. It provides insights into workload spending in your project namespace, allowing you to track and optimize resource usage across your clusters. Whether you're managing costs for development, testing, or production environments, Opencost helps you understand where your resources are being allocated and how to make the most out of your budget. Opencost also provides cost data and metrics associated with cloud compute resources, giving you a more fine-grained breakdown of application cost running in the cloud.",
+  "h1": [
+    "Opencost : Cost Monitoring Dashboard"
+  ],
+  "h2": [
+    "Navigating the Opencost Dashboard​"
+  ],
+  "h3": [
+    "Cloud Cost Integration​",
+    "Grafana dashboard for Cost Observability​"
+  ],
+  "text_content": "Opencost : Cost Monitoring Dashboard | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nOverview\nArgo Deployment Dashboard\nMetrics Dashboard\nIngress Dashboard\nOpencost Dashboard\nKubecost Dashboard (Deprecated)\nKubernetes Dashboard (Deprecated)\nLogging Dashboard (Deprecated)\nUsing AWS Services\nObservability\nOverview\nInstrumentation\nGrafana\nJaeger\nLoki\nOpencost\nPrometheus\nSystem Services\nArchitecture\nSupport\nAdmin\nDashboard Offerings\nOpencost Dashboard\nOn this page\nOpencost : Cost Monitoring Dashboard\nOpencost is a cost monitoring tool for workloads running in a Kubernetes cluster. It provides insights into workload spending in your project namespace, allowing you to track and optimize resource usage across your clusters. Whether you're managing costs for development, testing, or production environments, Opencost helps you understand where your resources are being allocated and how to make the most out of your budget. Opencost also provides cost data and metrics associated with cloud compute resources, giving you a more fine-grained breakdown of application cost running in the cloud.\nCloud Cost Integration\n​\nThis feature incorporates AWS Cost and Usage Report (CUR) data directly into the Opencost instances. By reconciling Opencost’s calculated metrics with AWS billing data, this integration significantly improves the accuracy of cost reporting. Additionally, it provides application teams with visibility into other AWS resources used within their applications that are not accounted for in the native Kubernetes resource allocation costs. This feature delivers a detailed and accurate cost breakdown for each application or cost center within the cluster.\nNavigating the Opencost Dashboard\n​\nThe Opencost dashboard for each cluster can be accessed as follows:\nDev\nQa\nProd\nThe main dashboard displayed by Opencost on initial page load is the \"\nCost Allocations\n\" dashboard. This dashboard provides a high-level cost showback of workload compute and storage resources across the cluster broken down by\nNamespaces\nby default. You can customize the date range, aggregation concept, resolution type, and currency via the dropdown panels at the top of the dashboard.\nTo understand more about the cloud cost spending of your resources, select the \"\nCloud Costs\n\" dashboard from the left navigation bar. This dashboard provides a cost breakdown of cloud resources that have been integrated into the cluster to support different types of workloads and use cases.\nnote\nThe AWS CUR data integration and ingestion process typically takes up to 48 hours to complete. If you want to view the reconciled cost for a specific day, come back to the dashboard two days after for more accurate cost breakdown.\nGrafana dashboard for Cost Observability\n​\nDue to several limitations of the default Opencost dashboard, we have integrated and customized some Grafana dashboards that provide a more detailed breakdown of your workload costs within the cluster. We highly recommend application teams to use Grafana as the preferred dashboarding solution for observing their project workload spending as we build out more robust and comprehensive cost observability dashboards as a platform service.\nTo access the different cost overview dashboards that we have imported on Grafana, you can check them out here:\nDev\nQa\nProd\nEdit this page\nPrevious\nIngress Dashboard\nNext\nKubecost Dashboard (Deprecated)\nCloud Cost Integration\nNavigating the Opencost Dashboard\nGrafana dashboard for Cost Observability\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:03:56.574299",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Opencost : Cost Monitoring Dashboard",
+        "description": "Opencost is a cost monitoring tool for workloads running in a Kubernetes cluster. It provides insights into workload spending in your project namespace, allowing you to track and optimize resource usage across your clusters. Whether you're managing costs for development, testing, or production environments, Opencost helps you understand where your resources are being allocated and how to make the most out of your budget. Opencost also provides cost data and metrics associated with cloud compute resources, giving you a more fine-grained breakdown of application cost running in the cloud.",
+        "links": [
+          "/",
+          "#cloud-cost-integration",
+          "#navigating-the-opencost-dashboard",
+          "https://opencost.dev.cats.lilly.com",
+          "https://opencost.qa.cats.lilly.com",
+          "https://opencost.cats.lilly.com",
+          "#grafana-dashboard-for-cost-observability",
+          "https://metrics.apps-d.lrl.lilly.com/dashboards/f/fefnvrbucbtvkd/",
+          "https://metrics.apps-q.lrl.lilly.com/dashboards/f/fefuifcjpnev4f/",
+          "https://metrics.apps.lrl.lilly.com/dashboards/f/aefuj14rbxblsf/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Opencost.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

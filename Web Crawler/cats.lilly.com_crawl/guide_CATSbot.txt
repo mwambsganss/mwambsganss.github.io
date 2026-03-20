@@ -1,0 +1,98 @@
+Title: **CATSbot Virtual Assistant** | CATS
+URL: https://cats.lilly.com/guide/CATSbot
+Description: Struggling with deployment hiccups on the CATS Platform? Say hello to CATS Agent – your on-demand, real-time assistant! 🛠️ Whether you're tackling tricky troubleshooting or configuring your deployments, CATS Agent is here to take your productivity to the next level! 🌟
+
+**CATSbot Virtual Assistant** | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+What Is CATS?
+CATSbot Virtual Assistant
+On this page
+CATSbot Virtual Assistant
+Meet Your New Deployment Ally: CATS Agent!
+Struggling with deployment hiccups on the CATS Platform? Say hello to
+CATS Agent
+– your on-demand, real-time assistant! 🛠️ Whether you're tackling tricky troubleshooting or configuring your deployments, CATS Agent is here to take your productivity to the next level! 🌟
+CatsBot is your reliable App Deployment Assistant, designed to answer all questions about the CATS Platform. With CatsBot, you can troubleshoot deployments, and effortlessly create Kubernetes resources like namespaces, deployments, ingresses, services, and more++
+Using CATSbot in Chat-In-The-Box
+​
+CLICK HERE
+to try out CATSbot!
+info
+CATSBot access is provisioned via the same AD Group that provides access to the CATS Platform's Dashboard offerings, lrl_cats_access_non_rids. See the
+Get Access
+section for more details on how to join this group.
+You can also use Chat-In-A-Box to create your own chat bots. Controling what model you want to use, what information you want your bot trained on, and permissions to the bot! Feel free to try it out!
+Using CATSbot in Teams
+​
+Now you can use CATSbot in teams via the Eli Labs For Teams applications
+Setup
+​
+When in a chat click the plus button at the bottom where you draft a message
+Click, "get more apps"
+A new window should pop up, now click the blue "Get More Apps" button
+Now search for "ELI LABS for Teams" and click the "Add" button.
+Now you can either open it directly or choose a chat location to place the app. We suggest selecting a group chat the includes all the members of the project you are working on.
+Initiating the Bot
+​
+To begin chatting with CATSbot using the "ELI LABS for Teams" application, you first need to initiate the chat by mentioning the application in the Teams chat where it has been added. For example, type something like
+"@ELI LABS for Teams, tell me about CATS"
+. This action will add the application to the chat group and prompt you to select a model. Find the CATSbot model, star it to mark it as a favorite for easy access, and then click the chat bubble icon to start interacting with it. Once you’ve favorited the model and confirmed the name, you’re ready to begin chatting.
+To ask questions, simply tag the application again (e.g., @ELI LABS for Teams) and type your query. This allows you and your peers to chat with CATSbot in Teams group chats while working.
+Example:
+Edit this page
+Previous
+CATS Platform Agent
+Next
+Important Announcement
+Using CATSbot in Chat-In-The-Box
+Using CATSbot in Teams
+Setup
+Initiating the Bot
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: CATSbot Virtual Assistant
+Description: Struggling with deployment hiccups on the CATS Platform? Say hello toCATS Agent– your on-demand, real-time assistant! 🛠️ Whether you're tackling tricky troubleshooting or configuring your deployments, CATS Agent is here to take your productivity to the next level! 🌟
+Links: /, /guide/CATSAgent, #using-catsbot-in-chat-in-the-box, https://chat.lilly.com/cortex/dashboard, /guide/GetAccess#2-dashboards-group, #using-catsbot-in-teams, #setup, #initiating-the-bot, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/CATSbot.md

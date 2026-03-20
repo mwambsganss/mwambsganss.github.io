@@ -1,0 +1,108 @@
+Title: AWS Services and Resource Overview | CATS
+URL: https://cats.lilly.com/guide/AWSresourceOverview
+Description: The CATS Platform allows users to leverage a wide range of AWS services to support their deployments. You have three options for integrating AWS services with your CATS deployments:
+
+AWS Services and Resource Overview | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Overview
+AWS Bedrock
+ECR Credential Service
+RDS Database
+S3 Cloud Browser
+AWS Secrets Manager
+AWS VPC
+Cross Account AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+Using AWS Services
+Overview
+On this page
+AWS Services and Resource Overview
+The CATS Platform allows users to leverage a wide range of AWS services to support their deployments. You have three options for integrating AWS services with your CATS deployments:
+Utilize Services in the CATS AWS Account
+Access the services already available in the CATS-managed AWS account.
+Stand Up a new AWS account seperate from other solutions
+Stand up your own AWS account, provision resources there, and establish cross-account communication with CATS to integrate these services into your deployments.
+Connect to Existing AWS Accounts
+If you already have resources in a separate AWS account, you can connect and use them within CATS by configuring cross-account communication.
+The resources/services available to be used in the CATS AWS Accounts are:
+Bedrock
+ECR
+RDS
+S3 storage via Cloud Browser
+Secrets Manager
+If you wish to use a service not listed above, you’ll need to configure a cross-account connection to link your resources with the CATS platform. For detailed guidance on how to set this up, refer to our cross-account configuration instructions
+here
+.
+Table of Contents
+​
+AWS Service
+Description
+Overview
+General overview of how to utilize AWS services with the CATS platform, including options for resource integration.
+AWS Bedrock
+Fully managed service to integrate high-performance foundation models from top AI companies for generative AI applications.
+AWS ECR Credential Service
+Automates the provisioning of ECR repositories and refreshes credentials to enable seamless integration with GitHub.
+AWS RDS Databases
+Managed relational databases, including PostgreSQL, for use within your CATS deployment, ensuring reliable and scalable storage.
+AWS S3 Cloud Browser
+Provides a user-friendly interface for managing AWS S3 buckets, simplifying storage interactions.
+AWS Secrets Manager
+Securely stores, manages, and retrieves secrets such as API keys and database credentials, with integration into Kubernetes via External Secrets.
+AWS VPC
+Virtual Private Cloud for managing secure networking and isolation of resources in the AWS cloud, tailored for CATS deployments.
+Cross Account AWS Connections
+Guide on establishing secure cross-account connections to link AWS resources outside the CATS AWS account to your deployment.
+Edit this page
+Previous
+Logging Dashboard (Deprecated)
+Next
+AWS Bedrock
+Table of Contents
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: AWS Services and Resource Overview
+Description: The CATS Platform allows users to leverage a wide range of AWS services to support their deployments. You have three options for integrating AWS services with your CATS deployments:
+Links: /, /guide/ExternalResourceConnection, #table-of-contents, /guide/AWSresourceOverview, /guide/Bedrock, /guide/ECRCredentialService, /guide/RDSDatabase, /guide/CloudBrowser, /guide/SecretsManager, /guide/AwsVpc, /guide/ExternalResourceConnection, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/AWSresourceOverview.md

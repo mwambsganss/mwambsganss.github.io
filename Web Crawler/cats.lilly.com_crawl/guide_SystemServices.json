@@ -1,0 +1,46 @@
+{
+  "url": "https://cats.lilly.com/guide/SystemServices",
+  "title": "System Service Overview | CATS",
+  "description": "CATS is equipped with a comprehensive suite of services designed to empower our application teams, providing a rich, out-of-the-box experience that facilitates development, deployment, and monitoring.",
+  "h1": [
+    "System Service Overview"
+  ],
+  "h2": [
+    "Requesting New Services​"
+  ],
+  "h3": [],
+  "text_content": "System Service Overview | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nOverview\nArgo\nBackstage\nBouncer\nCrossplane\nFlux\nWave\nKafka\nKarpenter\nPGadmin\nReloader\nRestful SDK\nSelf Service Toolkit\nSend Emails\nSmarter Device Manager\nTemporal\nArchitecture\nSupport\nAdmin\nSystem Services\nOverview\nOn this page\nSystem Service Overview\nCATS is equipped with a comprehensive suite of services designed to empower our application teams, providing a rich, out-of-the-box experience that facilitates development, deployment, and monitoring.\nEach service is designed to enhance your productivity and streamline your operations, ensuring you have the tools you need to succeed. Embrace the full potential of CATS and transform your application development and deployment processes.\nUse the below table for a quick look at what Services we have available and the purpose of each service.\nSystem Service\nDescription\nArgo\nAuto Deployment Tool. Declarative, GitOps continuous delivery tool for Kubernetes, automating application deployments.\nBackstage\nA developer portal Lilly is utilizing to catalog software assets for re-use, speed up software development with accelerators, and more.\nBouncer\nAuthentication Service. Provides robust authentication services to secure application access.\nCrossplane\nAuto Resource Deployer. Automates the deployment of cloud resources across multiple providers, simplifying cloud-native application management.\nSelf Service Toolkit\nA toolkit that provides easy self-service access and management capabilities for external resources within the cluster\nFlux\nAuto Deployment Tool. Automates deployment to Kubernetes, monitoring Git repositories for changes and applying them.\nGithub Repositories\nLists all GitHub repositories associated with the platform.\nKafka\nA powerful distributed streaming platform that facilitates high-throughput, fault-tolerant messaging systems.\nKarpenter\nA Kubernetes-native node autoscaler that provisions nodes based on workload demands, optimizing cluster efficiency.\nPGadmin\nA web-based administration tool for managing PostgreSQL databases deployed on the platform.\nReloader\nA Kubernetes operator that automatically updates pods when changes are made to their\nConfigMaps\nand\nSecrets\n.\nRestful SDK\nProvides lightweight SDKs for integrating Python and R applications with the platform.\nSmarter Device Manager\nRuns as a\nDaemonSet\nwithin the cluster, exposing hardware devices (Linux device drivers) to your pods.\nSend Emails\nEnables applications to send emails using configured SMTP services, integrated with your deployments.\nWave\nAuto Deployment Tool. Enables automatic deployment of apps on secret changes, with a controller to handle updates.\nRequesting New Services\n​\nWe invite you to communicate any requests for system-level services not currently available within our cluster to the CATS Platform Team. To ensure effective prioritization and allocation of our resources, we kindly request the submission of a comprehensive business case alongside endorsements from multiple application teams for each request. This collaborative approach allows us to confirm the broader utility and ensures our efforts are aligned with supporting the collective needs of our users, rather than focusing on singular application teams.\nOur goal is to maximize the impact of our work by catering to the requirements that benefit a wide array of teams. We appreciate your understanding and cooperation in providing the necessary details for your requests.\nEdit this page\nPrevious\nPrometheus\nNext\nArgo\nRequesting New Services\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:08:06.611800",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "System Service Overview",
+        "description": "CATS is equipped with a comprehensive suite of services designed to empower our application teams, providing a rich, out-of-the-box experience that facilitates development, deployment, and monitoring.",
+        "links": [
+          "/",
+          "/guide/Argo",
+          "/guide/Backstage",
+          "/guide/Bouncer",
+          "/guide/Crossplane",
+          "/guide/ClusterSelfServiceToolkit",
+          "/guide/Flux",
+          "/guide/GitHubRepos",
+          "/guide/Kafka",
+          "/guide/Karpenter",
+          "/guide/PGAdmin",
+          "/guide/Reloader",
+          "/guide/RestfulSDK",
+          "/guide/SmarterDeviceManager",
+          "/guide/Emails",
+          "/guide/Wave",
+          "#requesting-new-services",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/SystemServices.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

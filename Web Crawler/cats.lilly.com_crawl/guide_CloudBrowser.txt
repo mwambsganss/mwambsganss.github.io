@@ -1,0 +1,178 @@
+Title: **CloudBrowser : S3 UI Tool** | CATS
+URL: https://cats.lilly.com/guide/CloudBrowser
+Description: Interact with AWS S3 buckets effortlessly using CloudBrowser, a graphical interface that streamlines storage management.
+
+**CloudBrowser : S3 UI Tool** | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Overview
+AWS Bedrock
+ECR Credential Service
+RDS Database
+S3 Cloud Browser
+AWS Secrets Manager
+AWS VPC
+Cross Account AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+Using AWS Services
+S3 Cloud Browser
+On this page
+CloudBrowser : S3 UI Tool
+Interact with AWS S3 buckets effortlessly using CloudBrowser, a graphical interface that streamlines storage management.
+Production Environment Dashboard
+QA Environment Dashboard
+Dev Environment Dashboard
+Configuration
+​
+Lilly Cloud Browser is configured by annotations on Kubernetes namespaces.  The available annotations are listed below.
+lilly.com/cloud-browser-auth
+​
+This allows setting s3 auth roles for s3 resources associated with the associated namespace.
+The value for this annotation is a JSON object in string format.  The simplest  config allows setting a list of users providing read only access to the default S3 path for this namespace.  This default bucket / S3 prefix path will be
+s3://lly-light-prod/<namespace name>/
+annotations
+:
+lilly.com/cloud-browser-auth
+:
+'{"authConfigs": [{ "users": ["A123456", "B7891011"]}]}'
+Expanding on this, you can also specify an access group(s) rather than individual users:
+annotations
+:
+lilly.com/cloud-browser-auth
+:
+'{"authConfigs": [{ "groups": ["group1", "group2"]}]}'
+You can also allow
+[read, write, readwrite, delete, all]
+access by setting these values:
+annotations
+:
+lilly.com/cloud-browser-auth
+:
+'{"authConfigs": [{ "groups": ["group1", "group2"], "permission": "readwrite"}]}'
+You can set a non default prefix by:
+annotations
+:
+lilly.com/cloud-browser-auth
+:
+'{"authConfigs": [{ "groups": ["group1", "group2"], "permission": "readwrite", "prefix": "customprefix"}]}'
+CORS Configuration
+​
+To enable access from the cloud-browser frontend to an s3 bucket, CROSS ORIGIN RESOURCE SHARING (CORS) configuration needs to be set at the bucket level.
+Click on the bucket, and navigate to
+permissions
+.
+Under permissions, find
+Cross-origin resource sharing
+.
+Click
+edit
+, paste the following configuration block and save.
+[
+{
+"AllowedHeaders"
+:
+[
+"*"
+]
+,
+"AllowedMethods"
+:
+[
+"HEAD"
+,
+"GET"
+,
+"POST"
+,
+"PUT"
+,
+"DELETE"
+]
+,
+"AllowedOrigins"
+:
+[
+"https://cloud-browser.apps.lrl.lilly.com"
+]
+,
+"ExposeHeaders"
+:
+[
+"ETag"
+,
+"x-amz-meta-custom-header"
+,
+"x-amz-server-side-encryption"
+,
+"x-amz-request-id"
+,
+"x-amz-id-2"
+,
+"date"
+]
+,
+"MaxAgeSeconds"
+:
+3000
+}
+]
+References
+​
+Please navigate to the cloud-browser repository for more information:
+lrl-cloud-browser
+.
+Edit this page
+Previous
+RDS Database
+Next
+AWS Secrets Manager
+Configuration
+lilly.com/cloud-browser-auth
+CORS Configuration
+References
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: CloudBrowser : S3 UI Tool
+Description: Interact with AWS S3 buckets effortlessly using CloudBrowser, a graphical interface that streamlines storage management.
+Links: /, https://cloud-browser.apps.lrl.lilly.com/, https://cloud-browser.apps-q.lrl.lilly.com/, https://cloud-browser.apps-d.lrl.lilly.com/, #configuration, #lillycomcloud-browser-auth, #cors-configuration, #references, https://github.com/EliLillyCo/lrl-cloud-browser, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/CloudBrowser.md

@@ -96,10 +96,11 @@ def get_domain_name(url):
     return domain, clean_domain
 
 
-def handle_pagination_and_tabs(page, url, base_content):
+def handle_pagination_and_tabs(page, url, base_content, base_domain):
     """
     Handle pagination, tabs, and dynamic content on a page
-    Returns aggregated content from all pagination states
+    Returns aggregated content from all pagination states.
+    Never follows links that leave base_domain.
     """
     all_items = []
     unique_content = set()
@@ -142,7 +143,7 @@ def handle_pagination_and_tabs(page, url, base_content):
                 time.sleep(2)  # Wait for content to load
 
                 # Handle pagination within this tab
-                pagination_content = handle_pagination_controls(page)
+                pagination_content = handle_pagination_controls(page, base_domain)
                 for content in pagination_content:
                     content_str = str(content)
                     if content_str not in unique_content:
@@ -157,7 +158,7 @@ def handle_pagination_and_tabs(page, url, base_content):
                 continue
     else:
         # No tabs, just handle pagination
-        pagination_content = handle_pagination_controls(page)
+        pagination_content = handle_pagination_controls(page, base_domain)
         for content in pagination_content:
             all_items.append({
                 'tab': 'default',
@@ -167,14 +168,16 @@ def handle_pagination_and_tabs(page, url, base_content):
     return all_items
 
 
-def handle_pagination_controls(page):
+def handle_pagination_controls(page, base_domain):
     """
     Handle pagination controls (Next button, Load More, etc.)
-    Returns list of content from all pages
+    Returns list of content from all pages.
+    Never follows pagination that navigates away from base_domain.
     """
     all_content = []
     max_pages = 100  # Safety limit for pagination (increased for large agent lists)
     page_count = 0
+    original_url = page.url
 
     # Pagination button selectors (common patterns)
     next_selectors = [
@@ -204,6 +207,7 @@ def handle_pagination_controls(page):
 
         # Try to find and click next button
         next_clicked = False
+        url_before_click = page.url
         for selector in next_selectors:
             try:
                 next_button = page.locator(selector).first
@@ -211,6 +215,16 @@ def handle_pagination_controls(page):
                     print(f"    ➡️  Clicking pagination: {selector}")
                     next_button.click()
                     time.sleep(2)  # Wait for content to load
+
+                    url_after_click = page.url
+
+                    # If URL changed (path or domain), this is navigation not pagination — go back
+                    if url_after_click != url_before_click:
+                        print(f"    ⚠️  URL changed after click ({url_after_click}) — this is navigation, not pagination. Skipping.")
+                        page.goto(url_before_click, wait_until="domcontentloaded", timeout=30000)
+                        time.sleep(2)
+                        break
+
                     next_clicked = True
                     break
             except:
@@ -291,6 +305,7 @@ max_pages = int(sys.argv[2]) if len(sys.argv) > 2 else 100
 max_depth = int(sys.argv[3]) if len(sys.argv) > 3 else 4  # Default max depth 4
 
 display_domain, folder_domain = get_domain_name(target_url)
+root_path_prefix = urlparse(target_url).path  # e.g. /guide/
 output_dir = f'{folder_domain}_crawl'
 os.makedirs(output_dir, exist_ok=True)
 
@@ -320,6 +335,7 @@ time.sleep(3)
 
 # Tracking
 visited_urls = set()
+queued_urls = {target_url}  # Track queued URLs to prevent re-queuing at different depths
 to_visit = [(target_url, 0)]
 sitemap = {}
 url_categories = {'pages': set(), 'subsites': set(), 'resources': set(), 'external': set()}
@@ -327,9 +343,12 @@ failed_urls = {}
 pagination_data = {}  # Store paginated content
 
 def is_same_site(url, base_domain):
-    """Check if URL belongs to same site"""
+    """Check if URL belongs to the root URL subtree (domain + path prefix)"""
     parsed = urlparse(url)
-    return base_domain in parsed.netloc
+    if base_domain not in parsed.netloc:
+        return False
+    # Also enforce path prefix so we stay within the root URL's subtree
+    return parsed.path.startswith(root_path_prefix)
 
 def save_page_content(url, content, html, pagination_items=None):
     """Save page content to files"""
@@ -390,8 +409,8 @@ with sync_playwright() as p:
     try:
         print("\n✅ Launching browser...")
 
-        # Launch browser
         browser = None
+        context = None
         try:
             browser = p.chromium.launch(headless=False, channel="msedge")
             print("✅ Using Microsoft Edge")
@@ -407,6 +426,7 @@ with sync_playwright() as p:
         page = context.new_page()
 
         print("✅ Browser opened!")
+        page.bring_to_front()
         print(f"Navigating to {target_url}...")
 
         # Navigate to site
@@ -426,40 +446,16 @@ with sync_playwright() as p:
         print("\nScript is watching for login completion...")
         print("="*80)
 
-        # Wait for login
-        print("\n⏳ Waiting for login...")
-        timeout_seconds = 300
-        start_time = time.time()
-        check_interval = 3
-
-        while True:
-            try:
-                page.wait_for_load_state("networkidle", timeout=5000)
-                time.sleep(1)
-
-                current_title = page.title()
-                current_url = page.url
-
-                login_indicators = ["sign in", "log in", "login", "authenticate", "authorization"]
-                has_login = any(ind in current_title.lower() for ind in login_indicators)
-                has_login_url = any(ind in current_url.lower() for ind in ["login", "signin", "auth", "sso"])
-
-                if not has_login and not has_login_url:
-                    print(f"\n✅ Login detected! (Page: '{current_title}')")
-                    break
-            except:
-                pass
-
-            if time.time() - start_time > timeout_seconds:
-                print("\n⏱️  Timeout waiting for login")
-                browser.close()
-                sys.exit(1)
-
-            time.sleep(check_interval)
-
-            elapsed = int(time.time() - start_time)
-            if elapsed % 15 == 0 and elapsed > 0:
-                print(f"  Still waiting... ({elapsed}s)")
+        # Wait for login — block until browser actually lands on the target domain (not just in a query param)
+        print("\n⏳ Waiting for login (up to 15 minutes)...")
+        print("  Complete authentication in the browser window that just opened.")
+        try:
+            page.wait_for_url(f"https://{urlparse(target_url).netloc}/**", timeout=900000)
+            print(f"\n✅ Login detected! (URL: '{page.url}')")
+        except Exception as e:
+            print(f"\n⏱️  Timeout waiting for login: {e}")
+            browser.close()
+            sys.exit(1)
 
         print("Waiting for page to stabilize...")
         time.sleep(3)
@@ -520,7 +516,7 @@ with sync_playwright() as p:
                     description = desc_tag.get('content', '')
 
                 # Handle pagination and tabs
-                pagination_items = handle_pagination_and_tabs(page, url, html_content)
+                pagination_items = handle_pagination_and_tabs(page, url, html_content, display_domain)
 
                 # Get final page state after pagination
                 html_content = page.content()
@@ -536,10 +532,10 @@ with sync_playwright() as p:
                     if is_same_site(full_url, display_domain):
                         # Remove fragments
                         full_url = full_url.split('#')[0]
-                        if full_url and full_url not in visited_urls:
+                        if full_url and full_url not in visited_urls and full_url not in queued_urls:
                             links_found.append(full_url)
-                            if (full_url, depth + 1) not in to_visit:
-                                to_visit.append((full_url, depth + 1))
+                            queued_urls.add(full_url)
+                            to_visit.append((full_url, depth + 1))
 
                 # Extract text content
                 for script in soup(['script', 'style']):

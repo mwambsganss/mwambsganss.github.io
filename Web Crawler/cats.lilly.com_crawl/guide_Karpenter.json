@@ -1,0 +1,53 @@
+{
+  "url": "https://cats.lilly.com/guide/Karpenter",
+  "title": "Karpenter | CATS",
+  "description": "Overview",
+  "h1": [
+    "Karpenter"
+  ],
+  "h2": [
+    "Overview​",
+    "Resources​",
+    "Using Karpenter With CATS​"
+  ],
+  "h3": [
+    "Ec2NodeClass​",
+    "NodePool​",
+    "Scheduling​",
+    "Self-guided Workshop​"
+  ],
+  "text_content": "Karpenter | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nOverview\nArgo\nBackstage\nBouncer\nCrossplane\nFlux\nWave\nKafka\nKarpenter\nPGadmin\nReloader\nRestful SDK\nSelf Service Toolkit\nSend Emails\nSmarter Device Manager\nTemporal\nArchitecture\nSupport\nAdmin\nSystem Services\nKarpenter\nOn this page\nKarpenter\nOverview\n​\nKarpenter is an open-source Kubernetes cluster autoscaler designed to automatically adjust cluster capacity based on the workload's needs. It dynamically provisions and scales nodes by considering pod specifications and optimizing for cost, performance, and scheduling efficiency. Unlike traditional Kubernetes autoscalers, Karpenter directly integrates with the cloud provider (in our case AWS) to provision the right instance types and sizes, ensuring that workloads are placed on appropriately scaled infrastructure without manual intervention. This helps improve resource utilization, lower costs, and reduce latency in scaling operations.\nCLICK HERE\nto see the official Karpenter Documentation.\nResources\n​\nEc2NodeClass\n​\nNode Classes enable configuration of AWS specific settings. Each NodePool must reference an EC2NodeClass using spec.template.spec.nodeClassRef. Multiple NodePools may point to the same EC2NodeClass. This resource will always be managed by the CATS Platform team as it is analagous to EC2 Launch Templates, which control setting related to node security, allowed AMI images, and networking.\nNodePool\n​\nNodePools set constraints on the nodes that can be created by Karpenter and the pods that can run on those nodes. A NodePool can be set to do things like:\nDefine taints to limit the pods that can run on nodes Karpenter creates\nDefine any startup taints to inform Karpenter that it should taint the node initially, but that the taint is temporary.\nLimit node creation to certain zones, instance types, and computer architectures\nSet defaults for node expiration\nDefault NodePools\n​\nA set of default NodePool resources is made available to all application teams of the CATS platform. These NodePools always select Bottlerocket-enabled Ec2NodeClasses to provide enhanced security for scheduled workloads. Two sets of NodePools are configured, one for general-purpose workloads and another for accelerated (GPU-enabled) workloads. A list of the available configurations is maintained in our\nsystem-services repository here\n. NodePools prefixed with\nsystem-service\nidentify the defaults.\nCustom NodePools\n​\nCustom NodePools may be enabled for application teams using our\ninfrastructure as code Karpenter manifest generator\n. These requests are handled by the platform team on behalf of application teams. Requests for custom NodePools may be sent to\nCATS_Support@lilly.com\n. In order to best understand your needs, the minimum amount of information is required:\nlimit of total vCPU\nlimit of total memory (in Gi)\nlimit of total GPUs\nsuggested instance families (\nsee this AWS document for reference\n)\nextra node taints\nextra node labels for selectors to leverage\nWherever possible, we recommend leveraging the default NodePools as this provides a more efficient utilization of provisioned cluster resources.\nThe platform team may help to make recommendations based on additional constraints and security requirements.\nUsing Karpenter With CATS\n​\nScheduling\n​\nSee\nCompute and Workload Scheduling\nfor information on how to use AWS Karpenter nodes.\nSelf-guided Workshop\n​\nTo get started with Karpenter on the CATS platform, we recommend first completing the self-guided workshop provided by the platform team. This workshop is designed to help new application developers gain a comprehensive understanding of Karpenter and how to leverage it effectively for various use cases. The workshop includes a GitHub repository that you will clone locally and work through. Detailed instructions are available in the README.md file within the repository, guiding you through the process step by step. Completion of this workshop will equip you with the necessary knowledge to successfully utilize Karpenter on the CATS platform.\nCLICK HERE\nto navigate to the CATS Karpenter Workshop.\nEdit this page\nPrevious\nKafka\nNext\nPGadmin\nOverview\nResources\nEc2NodeClass\nNodePool\nUsing Karpenter With CATS\nScheduling\nSelf-guided Workshop\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:07:55.812214",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Karpenter",
+        "description": "Karpenter is an open-source Kubernetes cluster autoscaler designed to automatically adjust cluster capacity based on the workload's needs. It dynamically provisions and scales nodes by considering pod specifications and optimizing for cost, performance, and scheduling efficiency. Unlike traditional Kubernetes autoscalers, Karpenter directly integrates with the cloud provider (in our case AWS) to provision the right instance types and sizes, ensuring that workloads are placed on appropriately scaled infrastructure without manual intervention. This helps improve resource utilization, lower costs, and reduce latency in scaling operations.",
+        "links": [
+          "/",
+          "#overview",
+          "https://karpenter.sh/docs/",
+          "#resources",
+          "#ec2nodeclass",
+          "#nodepool",
+          "#default-nodepools",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_system_services/tree/main/kube-system/karpenter/NodePool",
+          "#custom-nodepools",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/blob/main/aws/lib/stacks/manifests-karpenter.ts",
+          "mailto:CATS_Support@lilly.com",
+          "https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html",
+          "#using-karpenter-with-cats",
+          "#scheduling",
+          "/guide/ComputeAndWorkloadScheduling",
+          "#self-guided-workshop",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_examples/tree/main/karpenter/workshop",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Karpenter.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

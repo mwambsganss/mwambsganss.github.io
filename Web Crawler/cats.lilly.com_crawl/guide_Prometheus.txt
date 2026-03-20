@@ -1,0 +1,88 @@
+Title: Prometheus | CATS
+URL: https://cats.lilly.com/guide/Prometheus
+Description: Prometheus is a powerful open-source monitoring and alerting toolkit designed for recording real-time metrics in a time-series database. Our implementation of Prometheus serves as the backbone of our Grafana dashboard visualization tool. Prometheus is continuously scraping metrics from various sources, including applications, infrastructure components, and Kubernetes clusters. This enables teams to gain deep insights into system performance, resource utilization, and overall health. Prometheus’s robust querying capabilities allow users to create custom metrics visualizations and set alerts based on key performance indicators (KPIs). With its efficient data collection and storage model, Prometheus ensures that our users have access to the critical information needed for proactive monitoring and optimization of their applications on the CATS platform.
+
+Prometheus | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+Overview
+Instrumentation
+Grafana
+Jaeger
+Loki
+Opencost
+Prometheus
+System Services
+Architecture
+Support
+Admin
+Observability
+Prometheus
+On this page
+Prometheus
+Prometheus is a powerful open-source monitoring and alerting toolkit designed for recording real-time metrics in a time-series database. Our implementation of Prometheus serves as the backbone of our
+Grafana
+dashboard visualization tool. Prometheus is continuously scraping metrics from various sources, including applications, infrastructure components, and Kubernetes clusters. This enables teams to gain deep insights into system performance, resource utilization, and overall health. Prometheus’s robust querying capabilities allow users to create custom metrics visualizations and set alerts based on key performance indicators (KPIs). With its efficient data collection and storage model, Prometheus ensures that our users have access to the critical information needed for proactive monitoring and optimization of their applications on the CATS platform.
+How to use Prometheus in CATS
+​
+As there is no user interface for Prometheus, the only way to query Prometheus for metrics is through Grafana. Please see the
+Grafana
+documentation for utilizing the tool.
+For information on creating custom Prometheus instances, scraping external services, or advanced configurations, see the comprehensive
+Prometheus Support Documentation
+.
+Official Documentation
+​
+For more information please review the official
+Prometheus Documentation
+on their website.
+Edit this page
+Previous
+Opencost
+Next
+Overview
+How to use Prometheus in CATS
+Official Documentation
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Prometheus
+Description: Prometheus is a powerful open-source monitoring and alerting toolkit designed for recording real-time metrics in a time-series database. Our implementation of Prometheus serves as the backbone of ourGrafanadashboard visualization tool. Prometheus is continuously scraping metrics from various sources, including applications, infrastructure components, and Kubernetes clusters. This enables teams to gain deep insights into system performance, resource utilization, and overall health. Prometheus’s robust querying capabilities allow users to create custom metrics visualizations and set alerts based on key performance indicators (KPIs). With its efficient data collection and storage model, Prometheus ensures that our users have access to the critical information needed for proactive monitoring and optimization of their applications on the CATS platform.
+Links: /, /guide/Grafana, #how-to-use-prometheus-in-cats, /guide/Grafana, /support/Prometheus, #official-documentation, https://prometheus.io/docs/introduction/overview/, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Prometheus.md

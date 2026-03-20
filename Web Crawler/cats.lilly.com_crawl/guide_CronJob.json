@@ -1,0 +1,28 @@
+{
+  "url": "https://cats.lilly.com/guide/CronJob",
+  "title": "Cron Job | CATS",
+  "description": "A CronJob creates Jobs on a repeating schedule.",
+  "h1": [
+    "Cron Job"
+  ],
+  "h2": [],
+  "h3": [],
+  "text_content": "Cron Job | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nOverview\nNamespace\nDeployment\nService\nIngress\nIngress Patterns\nCompute and Workload Scheduling\nScaling\nStorage\nCronJob\nJobs\nRate Limit\nExternal Secrets\nHelmRelease\nExternal Integrations\nGraph User Info\nMakefile\nVelero Backups\nRDS Database Restore\nNamespace Decommission\nS3 Lifecycle Tagging\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nK8s Configuration\nCronJob\nCron Job\nA CronJob creates Jobs on a repeating schedule.\nCronJob is meant for performing regular scheduled actions such as backups, report generation, and so on. One CronJob object is like one line of a crontab (cron table) file on a Unix system. It runs a Job periodically on a given schedule, written in Cron format.\nCronJobs have limitations and idiosyncrasies. For example, in certain circumstances, a single CronJob can create multiple concurrent Jobs. See the limitations below.\nWhen the control plane creates new Jobs and (indirectly) Pods for a CronJob, the .metadata.name of the CronJob is part of the basis for naming those Pods. The name of a CronJob must be a valid DNS subdomain value, but this can produce unexpected results for the Pod hostnames. For best compatibility, the name should follow the more restrictive rules for a DNS label. Even when the name is a DNS subdomain, the name must be no longer than 52 characters. This is because the CronJob controller will automatically append 11 characters to the name you provide and there is a constraint that the length of a Job name is no more than 63 characters.\ntemplate:\napiVersion\n:\nbatch/v1\nkind\n:\nCronJob\nmetadata\n:\nname\n:\nhello\nspec\n:\nschedule\n:\n\"* * * * *\"\njobTemplate\n:\nspec\n:\ntemplate\n:\nspec\n:\ncontainers\n:\n-\nname\n:\nhello\nimage\n:\nbusybox\n:\n1.28\nimagePullPolicy\n:\nIfNotPresent\ncommand\n:\n-\n/bin/sh\n-\n-\nc\n-\ndate; echo Hello from the Kubernetes cluster\nrestartPolicy\n:\nOnFailure\nNote:\nA spec of ttlSecondsAfterFinished of 14400s (4 Hours) is added to every job generated in the cluster. This will result in cleanup of jobs and pods 4 hours post completion.\nEdit this page\nPrevious\nStorage\nNext\nJobs\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:05:22.876776",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Cron Job",
+        "description": "A CronJob creates Jobs on a repeating schedule.",
+        "links": [
+          "/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/CronJob.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

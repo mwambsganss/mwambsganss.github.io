@@ -1,0 +1,2437 @@
+{
+  "https://cats.lilly.com/guide/": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Introduction",
+        "description": "Welcome to theCloud Applications and Technology as a Service (CATS)platform documentation. CATS serves as a pivotal tool for accelerating the development and migration of web applications to the cloud. Spearheaded by the SPE Tech and Platform team, CATS is built using Open Source and AWS services that are designed to make your job as a developer as easy as possible. This platform is tailored to modernize operational workflows, reduce costs, and significantly diminish deployment timelines.",
+        "links": [
+          "/",
+          "https://chat.lilly.com/cortex/chat/spe-platforms-model",
+          "https://chat.lilly.com/cortex/chat/catsbot",
+          "#why-cats",
+          "#cats-components",
+          "#major-components-at-a-glance",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/index.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/PlatformOverview": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Platform Overview",
+        "description": "To help you embark on your journey with CATS, we offer three separate clusters to application teams:",
+        "links": [
+          "/",
+          "#environments",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_sbx",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "/guide/AwsVpc",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_sbx",
+          "#development-cluster-for-beginners",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "#qa-cluster-for-testing",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "#production-cluster-for-official-deployment",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "#cross-aws-account-connections",
+          "/guide/AwsVpc",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_sbx",
+          "#basic-system-services-available",
+          "https://chat.lilly.com/cortex/chat/spe-platforms-model",
+          "https://chat.lilly.com/cortex/chat/catsbot",
+          "https://dev.lilly.com/docs/platforms-and-tools/cats/",
+          "https://k8s-dashboard.apps.lrl.lilly.com/",
+          "https://k8s-dashboard.apps-q.lrl.lilly.com/",
+          "https://k8s-dashboard.apps-d.lrl.lilly.com/",
+          "https://traefik-dashboard.apps.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard.apps-q.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard.apps-d.lrl.lilly.com/dashboard/#/",
+          "https://argocd.apps.lrl.lilly.com/",
+          "https://argocd.apps-q.lrl.lilly.com/",
+          "https://argocd.apps-d.lrl.lilly.com/",
+          "https://metrics.apps.lrl.lilly.com/dashboards",
+          "https://metrics.apps-q.lrl.lilly.com/dashboards",
+          "https://metrics.apps-d.lrl.lilly.com/d/2LaqbJ0Zk/k8s-app-team-cost-and-resource-overview?orgId=1&refresh=5m",
+          "https://kubecost.apps-d.lrl.lilly.com/allocations",
+          "https://kubecost.apps-q.lrl.lilly.com/allocations",
+          "https://kubecost.apps.lrl.lilly.com/allocations",
+          "https://cloud-browser.apps.lrl.lilly.com/",
+          "https://cloud-browser.apps-q.lrl.lilly.com/",
+          "https://cloud-browser.apps-d.lrl.lilly.com/",
+          "https://www.crossplane.io/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer",
+          "https://client-python.apps.lrl.lilly.com/",
+          "https://client-r.apps.lrl.lilly.com/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/PlatformOverview.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/SharedResponsibilityModel": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Shared Responsibility Model",
+        "description": "A shared responsibility model is a framework that defines and distinguishes the responsibilities between different parties involved in managing and operating a system, platform, or service. This model helps clarify what each party is responsible for, ensuring that all aspects of the system are covered without overlap or confusion.",
+        "links": [
+          "/",
+          "#working-agreement",
+          "#platform-team-responsibilities",
+          "#application-team-responsibilities",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/SharedResponsibilityModel.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/GitHubRepos": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "GitHub",
+        "description": "The source code for CATS is spanned across multiple GitHub repositories. Check out the list of repositorieshere.",
+        "links": [
+          "/",
+          "https://github.com/orgs/EliLillyCo/teams/lrl_light_k8s_infra_write/repositories",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/blob/main/docs/guide/GitHubTeams.md",
+          "#application-deployment-repos",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "#platform-infrastructure-repos",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_CATSbot",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_app_client_python",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_app_client_r",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_validator",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_bouncer",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_credential_service",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_echo",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_healthcheck",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_manager",
+          "https://github.com/EliLillyCo/spe-platforms-agent",
+          "https://github.com/EliLillyCo/LRL_cats_argocd_test",
+          "https://github.com/EliLillyCo/LRL_eks_cert_manager",
+          "https://github.com/EliLillyCo/LRL_light_aws-smtp-relay",
+          "https://github.com/EliLillyCo/LRL_light_livedesign",
+          "https://github.com/EliLillyCo/LRL_light_omics_docs",
+          "https://github.com/EliLillyCo/LRL_light_security",
+          "https://github.com/EliLillyCo/LRL_light_traefik-forward-auth",
+          "https://github.com/EliLillyCo/aws-efs-csi-pv-provisioner",
+          "https://github.com/EliLillyCo/aws-fsx-ontap-configs",
+          "https://github.com/EliLillyCo/crossplane",
+          "https://github.com/EliLillyCo/crossplane-contrib_provider-aws",
+          "https://github.com/EliLillyCo/eks-charts",
+          "https://github.com/EliLillyCo/flux",
+          "https://github.com/EliLillyCo/fluxcd-community_helm-charts",
+          "https://github.com/EliLillyCo/fluxcd_flux2",
+          "https://github.com/EliLillyCo/fluxcd_helm-controller",
+          "https://github.com/EliLillyCo/fluxcd_image-automation-controller",
+          "https://github.com/EliLillyCo/fluxcd_image-reflector-controller",
+          "https://github.com/EliLillyCo/fluxcd_notification-controller",
+          "https://github.com/EliLillyCo/grafana-helm-charts",
+          "https://github.com/EliLillyCo/kedacore-charts",
+          "https://github.com/EliLillyCo/lrl-aws-tools",
+          "https://github.com/EliLillyCo/lrl-cloud-browser",
+          "https://github.com/EliLillyCo/lrl-cloud-browser-1",
+          "https://github.com/EliLillyCo/lrl-cloud-patterns",
+          "https://github.com/EliLillyCo/lrl-cluwe-cli-api-solutions",
+          "https://github.com/EliLillyCo/lrl-pgadmin",
+          "https://github.com/EliLillyCo/prometheus-community-helm-charts",
+          "https://github.com/FairwindsOps/gemini",
+          "https://github.com/EliLillyCo/rds_database_creation",
+          "https://github.com/EliLillyCo/elastic_cloud-on-k8s",
+          "https://github.com/EliLillyCo/cert-manager_cert-manager",
+          "https://github.com/EliLillyCo/grafana_mimir?tab=readme-ov-file",
+          "https://github.com/EliLillyCo/jaeger_helm-charts",
+          "https://github.com/EliLillyCo/grafana-helm-charts/commits/main/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/GitHubRepos.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/GitHubTeams": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "GitHub Teams for CATS",
+        "description": "Role-based access to CATS team code in GitHub is managed throughGitHub Teams.",
+        "links": [
+          "/",
+          "https://github.com/orgs/EliLillyCo/teams",
+          "#github-teams-for-cats-1",
+          "https://github.com/orgs/EliLillyCo/teams/github_read_only",
+          "https://github.com/orgs/EliLillyCo/teams/lrl_light_infra_admin",
+          "https://github.com/orgs/EliLillyCo/teams/lrl_light_k8s_infra_write",
+          "https://github.com/orgs/EliLillyCo/teams/lrl_light_infra_approvers",
+          "https://github.com/orgs/EliLillyCo/teams/light_apps",
+          "#deprecatedredundant-teams",
+          "https://github.com/orgs/EliLillyCo/teams/lrl_light_k8s_infra_read",
+          "#coming-soon",
+          "https://github.com/orgs/EliLillyCo/teams/hangar-read",
+          "https://github.com/orgs/EliLillyCo/teams/hangar-temporal-devs",
+          "https://github.com/orgs/EliLillyCo/teams/hangar-write",
+          "https://github.com/orgs/EliLillyCo/teams/hangar-admin",
+          "https://github.com/orgs/EliLillyCo/teams/hangar-maintain",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/GitHubTeams.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/CATSAgent": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "CATS Platform Agent",
+        "description": "CATS Platform Agent is your advanced assistant for platform operations, seamlessly integrating documentation insights with real-time Kubernetes cluster intelligence. Building on the foundation of CATSbot, it goes beyond static knowledge retrieval by offering dynamic, context-aware diagnostics and actionable insights with operational capabilities. With its ability to connect directly to platform clusters, CATS Agent empowers users to access live resource data, troubleshoot issues, and optimize deployments with precision.",
+        "links": [
+          "/",
+          "#overview",
+          "#key-features",
+          "#real-time-cluster-information",
+          "#context-aware-assistance",
+          "#interactive-operations",
+          "#accessing-cats-agent",
+          "#in-chat-in-the-box",
+          "https://chat.lilly.com/cortex/chat/spe-platforms-model",
+          "/guide/GetAccess#2-dashboards-group",
+          "#using-cats-agent",
+          "#querying-cluster-resources",
+          "#diagnosing-issues",
+          "#combining-documentation-with-real-time-data",
+          "#security-and-permissions",
+          "#available-tools",
+          "#knowledge-base-querier",
+          "#kubernetes-resource-explorer",
+          "#namespace-explorer",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/CATSAgent.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/CATSbot": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "CATSbot Virtual Assistant",
+        "description": "Struggling with deployment hiccups on the CATS Platform? Say hello toCATS Agent– your on-demand, real-time assistant! 🛠️ Whether you're tackling tricky troubleshooting or configuring your deployments, CATS Agent is here to take your productivity to the next level! 🌟",
+        "links": [
+          "/",
+          "/guide/CATSAgent",
+          "#using-catsbot-in-chat-in-the-box",
+          "https://chat.lilly.com/cortex/dashboard",
+          "/guide/GetAccess#2-dashboards-group",
+          "#using-catsbot-in-teams",
+          "#setup",
+          "#initiating-the-bot",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/CATSbot.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/AwsVpc": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "AWS VPC",
+        "description": "Below you can find all of the AWS VPC Endpoint details for Lilly Developers.",
+        "links": [
+          "/",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-click-any-vpc-type-from-the-table-below-to-access-the-n.virginia-vpc-endpoints",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-click-any-vpc-type-from-the-table-below-to-access-the-ohio-vpc-endpoints",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-click-any-vpc-type-from-the-table-below-to-access-the-california-vpc-endpoints",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-click-any-vpc-type-from-the-table-below-to-access-the-oregon-vpc-endpoints",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-click-any-vpc-type-from-the-table-below-to-access-the-tokyo-vpc-endpoints",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-click-any-vpc-type-from-the-table-below-to-access-the-london-vpc-endpoints",
+          "#what-are-aws-vpc-endpoints",
+          "https://docs.aws.amazon.com/whitepapers/latest/aws-privatelink/what-are-vpc-endpoints.html",
+          "#how-to-request-aws-service-vpc-endpoint",
+          "https://lilly.service-now.com/",
+          "#click-any-vpc-type-from-the-table-below-to-access-the-nvirginia-vpc-endpoints",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-n.virginia-dev-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-n.virginia-dev-nodx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-n.virginia-qa-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-n.virginia-qa-nodx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-n.virginia-prod-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-n.virginia-prod-nodx",
+          "#nvirginia-dev-dx",
+          "#nvirginia-dev-nodx",
+          "#nvirginia-qa-dx",
+          "#nvirginia-qa-nodx",
+          "#nvirginia-prod-dx",
+          "#nvirginia-prod-nodx",
+          "#click-any-vpc-type-from-the-table-below-to-access-the-ohio-vpc-endpoints",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-ohio-dev-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-ohio-dev-nodx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-ohio-qa-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-ohio-qa-nodx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-ohio-prod-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-ohio-prod-nodx",
+          "#ohio-dev-dx",
+          "#ohio-dev-nodx",
+          "#ohio-qa-dx",
+          "#ohio-qa-nodx",
+          "#ohio-prod-dx",
+          "#ohio-prod-nodx",
+          "#click-any-vpc-type-from-the-table-below-to-access-the-california-vpc-endpoints",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-california-dev-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-california-dev-nodx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-california-qa-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-california-qa-nodx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-california-prod-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-california-prod-nodx",
+          "#california-dev-dx",
+          "#california-dev-nodx",
+          "#california-qa-dx",
+          "#california-qa-nodx",
+          "#california-prod-dx",
+          "#california-prod-nodx",
+          "#click-any-vpc-type-from-the-table-below-to-access-the-oregon-vpc-endpoints",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-oregon-dev-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-oregon-dev-nodx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-oregon-qa-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-oregon-qa-nodx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-oregon-prod-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-oregon-prod-nodx",
+          "#oregon-dev-dx",
+          "#oregon-dev-nodx",
+          "#oregon-qa-dx",
+          "#oregon-qa-nodx",
+          "#oregon-prod-dx",
+          "#oregon-prod-nodx",
+          "#click-any-vpc-type-from-the-table-below-to-access-the-tokyo-vpc-endpoints",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-tokyo-dev-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-tokyo-dev-nodx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-tokyo-qa-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-tokyo-qa-nodx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-tokyo-prod-dx",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-tokyo-prod-nodx",
+          "#tokyo-dev-dx",
+          "#tokyo-dev-nodx",
+          "#tokyo-qa-dx",
+          "#tokyo-qa-nodx",
+          "#tokyo-prod-dx",
+          "#tokyo-prod-nodx",
+          "#click-any-vpc-type-from-the-table-below-to-access-the-london-vpc-endpoints",
+          "https://elilillyco.stackenterprise.co/articles/1045#heading-london-dev-dx",
+          "#london-dev-dx",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/AwsVpc.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/GetAccess": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Get Access",
+        "description": "To start deploying on the CATS Platform you will need to be added to a few different groups. We have convienently automated this proccess via the DeveloperFRONTDOOR! All you need to do is click the buttons to be automatically added to each group.",
+        "links": [
+          "/",
+          "https://dev.lilly.com/docs/platforms-and-tools/cats/",
+          "#1-github-group",
+          "https://github.com/orgs/EliLillyCo/teams/lrl_light_k8s_infra_write",
+          "https://dev.lilly.com/docs/platforms-and-tools/github/",
+          "https://dev.lilly.com/docs/platforms-and-tools/cats/#onboarding-and-offboarding",
+          "#2-dashboards-group",
+          "https://idmportal.rf.lilly.com/IdentityManagement/default.aspx",
+          "https://dev.lilly.com/docs/platforms-and-tools/cats/#onboarding-and-offboarding",
+          "#3-aws-console-and-cluster-access-group-ca-account",
+          "https://idmportal.rf.lilly.com/IdentityManagement/default.aspx",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "https://dev.lilly.com/docs/platforms-and-tools/cats/#onboarding-and-offboarding",
+          "#4-mailing-list",
+          "https://idmportal.rf.lilly.com/IdentityManagement/default.aspx",
+          "https://dev.lilly.com/docs/platforms-and-tools/cats/#cats-mailing-list",
+          "#sign-in-with-ca-account",
+          "https://lilly-aws-login.awsapps.com/start/#/?tab=accounts",
+          "https://pvwa.lilly.com/PasswordVault/auth/saml/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_sbx",
+          "#cant-login-",
+          "https://lilly.service-now.com/now/nav/ui/classic/params/target/kb_view.do%3Fsysparm_article%3DKB2052257",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/GetAccess.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/ImportantAnnouncement": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "🚨 Important Announcement: IAM Policy Update Affecting App Authentication",
+        "description": "Date Posted:June 13, 2025Status:Active Issue - Bypass AvailableImpact:All application teams using device code flow authentication",
+        "links": [
+          "/",
+          "#overview",
+          "#-immediate-action-required",
+          "#bypass-steps",
+          "#-impact-summary",
+          "#affected-systems",
+          "#expected-resolution",
+          "#-need-help",
+          "https://cats-club-link",
+          "https://ask-question-link",
+          "https://jira-board-link",
+          "https://triage-request-link",
+          "https://snow-issue-link",
+          "https://cats-docs-link",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ImportantAnnouncement.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/AWSresourceOverview": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "AWS Services and Resource Overview",
+        "description": "The CATS Platform allows users to leverage a wide range of AWS services to support their deployments. You have three options for integrating AWS services with your CATS deployments:",
+        "links": [
+          "/",
+          "/guide/ExternalResourceConnection",
+          "#table-of-contents",
+          "/guide/AWSresourceOverview",
+          "/guide/Bedrock",
+          "/guide/ECRCredentialService",
+          "/guide/RDSDatabase",
+          "/guide/CloudBrowser",
+          "/guide/SecretsManager",
+          "/guide/AwsVpc",
+          "/guide/ExternalResourceConnection",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/AWSresourceOverview.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Bedrock": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "AWS Bedrock Overview",
+        "description": "Amazon Bedrock is a fully managed service that streamlines the integration and utilization of high-performing foundation models (FMs) from top AI companies, including Amazon, for building generative AI applications. This service offers a unified API through which users can access a wide selection of foundation models to best fit their specific needs. Additionally, Amazon Bedrock provides a comprehensive set of capabilities necessary for developing generative AI applications with a focus on security, privacy, and the principles of responsible AI, making it a versatile tool for businesses and developers aiming to harness the power of AI in their operations​.",
+        "links": [
+          "/",
+          "https://ai.lilly.com/assets/pdfs/Guidelines_for_Responsible_Use_of_AI.pdf",
+          "https://collab.lilly.com/sites/GenerativeAI/SitePages/Contact-Us.aspx?ref=cortex.lilly.com",
+          "#models-available",
+          "#bedrock-models-are-available-in-the-following-cats-aws-accounts",
+          "#bedrock-models-are-only-available-in-the-following-regions",
+          "#us-east-n-virginia-models-available-in-production-account-283234040926",
+          "#to-see-the-models-available-in-other-regions-and-environments",
+          "https://lilly-aws-login.awsapps.com/start/#/?tab=accounts",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "https://dev.lilly.com/docs/platforms-and-tools/cats/",
+          "#getting-started",
+          "#add-bedrock-policy-to-namespace",
+          "#namespace-policy-template",
+          "#permissions-granted-in-policy-explained",
+          "#calling-bedrock-via-api",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Bedrock.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/ECRCredentialService": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "ECR Credential Service : Provision Github Repo with Action Credentials and Cross Account Registries",
+        "description": "CronJob that runs on all github repos provided with access by Light-Automation, refresh ECR credentials in the Github Actions secret store and optionally create ECR repos with cross-account access.",
+        "links": [
+          "/",
+          "#configuration",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ECRCredentialService.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/RDSDatabase": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "RDS Databases",
+        "description": "Amazon Relational Database Service (RDS) is a managed database service provided by Amazon Web Services (AWS) that simplifies the setup, operation, and scaling of a relational database in the cloud. It supports several database engines, including PostgreSQL, MySQL, MariaDB, Oracle, and Microsoft SQL Server, allowing users to choose the one that best fits their needs. RDS handles routine database tasks such as provisioning, patching, backup, recovery, and scaling, enabling developers to focus on their applications rather than on database management.",
+        "links": [
+          "/",
+          "https://instances.vantage.sh/rds/",
+          "#recommended-postgresql-engine-version",
+          "#note-",
+          "#why-17x",
+          "https://docs.aws.amazon.com/AmazonRDS/latest/PostgreSQLReleaseNotes/postgresql-release-calendar.html",
+          "#application-access-to-rds-instance",
+          "#devqa-config-example",
+          "#prd-config-example",
+          "https://k8s-dashboard.apps.lrl.lilly.com/#/customresourcedefinition/rdsinstances.database.aws.crossplane.io?namespace=_all",
+          "#onprem-access-mobius--bi-tool",
+          "#cross-account-rds-connection",
+          "#step-1",
+          "#step-2",
+          "#step-3",
+          "#step-4",
+          "#step-5",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/RDSDatabase.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/CloudBrowser": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "CloudBrowser : S3 UI Tool",
+        "description": "Interact with AWS S3 buckets effortlessly using CloudBrowser, a graphical interface that streamlines storage management.",
+        "links": [
+          "/",
+          "https://cloud-browser.apps.lrl.lilly.com/",
+          "https://cloud-browser.apps-q.lrl.lilly.com/",
+          "https://cloud-browser.apps-d.lrl.lilly.com/",
+          "#configuration",
+          "#lillycomcloud-browser-auth",
+          "#cors-configuration",
+          "#references",
+          "https://github.com/EliLillyCo/lrl-cloud-browser",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/CloudBrowser.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/SecretsManager": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "AWS Secrets Manager",
+        "description": "AWS Secrets Manager is a fully managed service that helps you securely store, manage, and retrieve sensitive information like database credentials, API keys, and other secrets. It allows you to control access to secrets using fine-grained permissions and integrates with AWS Identity and Access Management (IAM) for secure access.",
+        "links": [
+          "/",
+          "#using-secrets-manager-with-cats",
+          "/guide/ExternalSecrets",
+          "#amazon-documentation",
+          "https://docs.aws.amazon.com/secretsmanager/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/SecretsManager.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/ExternalResourceConnection": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Connecting To AWS Resources in Non-CATS AWS Accounts",
+        "description": "Many application teams want to take advantage of AWS Services like Lambda, Glue, Redshift, Aurora Databases, Sagemaker and so on. App Teams are free to use AWS resource like these if they are set up in a stand alone AWS account. Users can get an AWS Account to hold these resources and then connect them with their deployments in the CATS Cluster. In this section we outline some patterns for connecting to different types of AWS Resources that are held in AWS Accounts External to the CATS Platform.",
+        "links": [
+          "/",
+          "#common-considerations-for-all-services",
+          "#general-cross-account-iam-role-and-trust-policy-setup",
+          "/guide/Namespace/#custom-permission",
+          "#glue",
+          "#sagemaker",
+          "#aurora-database",
+          "#lambda",
+          "#redshift",
+          "#rds-database",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ExternalResourceConnection.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Prerequisites": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Prerequisites",
+        "description": "The following prerequisites will need to be configured to get started.",
+        "links": [
+          "/",
+          "#repository-access",
+          "https://github.com/orgs/EliLillyCo/teams/lrl_light_k8s_infra_write",
+          "#expedited-credentials-option",
+          "https://cats.lilly.com/guide/DeploymentOverview#load-credentials-into-github-repository-secrets",
+          "#automated-security-scanning",
+          "https://github.com/features/security",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Prerequisites.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/DeploymentOverview": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Deployment Overview",
+        "description": "NOTE: If you are trying to deploy and have not completed the necessaryprerequisitesplease do so before proceeding!",
+        "links": [
+          "/",
+          "/guide/Prerequisites",
+          "https://chat.lilly.com/cortex/chat/spe-platforms-model",
+          "https://chat.lilly.com/cortex/chat/catsbot",
+          "https://mydrive.lilly.com/personal/thomas_cole_e_lilly_com/_layouts/15/stream.aspx?id=%2Fpersonal%2Fthomas%5Fcole%5Fe%5Flilly%5Fcom%2FDocuments%2FBackup%20Files%2FRecordings%2FCATS%20Club%2D20240605%5F101339%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E36f311f1%2D62f7%2D4142%2Db833%2Dc5e7ca9d804b",
+          "#build-your-solution",
+          "#containerization",
+          "#github-actions",
+          "#load-credentials-into-github-repository-secrets",
+          "#template-to-load-credentials",
+          "#workflow-overview",
+          "#workflow-triggers",
+          "#job-load-credentials",
+          "#job-configuration",
+          "#build-and-push-docker-image",
+          "#template-using-build-push-actionv4",
+          "#workflow-overview-1",
+          "#workflow-triggers-1",
+          "#additional-trigger-options",
+          "#job-structure",
+          "#job-environment-variables",
+          "#workflow-steps",
+          "/guide/Prerequisites",
+          "#sha-tag-overview",
+          "#sha-tags",
+          "#environment-sha-tags",
+          "#pull-request-pr-tags",
+          "#branch-tags",
+          "#sha-tag-pattern-breakdown",
+          "#references",
+          "https://docs.github.com/en/actions",
+          "https://github.com/docker/build-push-action?tab%253Dreadme-ov-file#inputs",
+          "#kubernetes",
+          "https://kubernetes.io/docs/home/",
+          "#creating-your-kubernetes-namespace-file",
+          "#1-labels-explained",
+          "#2-annotations-explained",
+          "/guide/ComputeAndWorkloadScheduling",
+          "/guide/CloudBrowser",
+          "/guide/Namespace#sg-rule-interface-template",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/main/docs/security_group_controller.svg",
+          "/guide/Argo",
+          "/guide/Flux",
+          "https://idmportal.rf.lilly.com/IdentityManagement/default.aspx",
+          "/guide/Argo",
+          "/guide/Argo#argo-dashboard",
+          "#creating-your-kubernetes-deployment-file",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/tree/main/projects/dev/light-app-poc-dev/example-next-js",
+          "#container-image-explanation",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/5a408520d8c2225b65a067f5d3ffb1da52675b3b/projects/dev/abarp-dev/deploy.yml#L20",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/main/validation/allowed_images.yaml",
+          "#note-on-globpattern",
+          "#annotations-explanation",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "#ingress-route-information",
+          "/guide/Ingress#out-of-the-box-options",
+          "#resource-name-configuration",
+          "/guide/Deployment",
+          "#dashboards",
+          "/guide/DeploymentDashboard",
+          "#continuous-deployment",
+          "https://guides.github.com/introduction/flow/",
+          "#codeowners",
+          "/guide/Codeowners",
+          "#developing-more-complex-kubernetes-infrastructure",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "https://github.com/EliLillyCo/lrl-cloud-patterns/wiki/Lilly-AWS-Accounts#aws-cli-httpsgithubcomelilillycolilly_aws_auth",
+          "https://github.com/EliLillyCo/lrl-cloud-patterns/wiki/Lilly-AWS-Accounts#accessing-the-light-account-for-infra-development",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/DeploymentOverview.md"
+        ]
+      }
+    },
+    {
+      "tab": "default",
+      "content": {
+        "title": "Deployment Overview",
+        "description": "NOTE: If you are trying to deploy and have not completed the necessaryprerequisitesplease do so before proceeding!",
+        "links": [
+          "/",
+          "/guide/Prerequisites",
+          "https://chat.lilly.com/cortex/chat/spe-platforms-model",
+          "https://chat.lilly.com/cortex/chat/catsbot",
+          "https://mydrive.lilly.com/personal/thomas_cole_e_lilly_com/_layouts/15/stream.aspx?id=%2Fpersonal%2Fthomas%5Fcole%5Fe%5Flilly%5Fcom%2FDocuments%2FBackup%20Files%2FRecordings%2FCATS%20Club%2D20240605%5F101339%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E36f311f1%2D62f7%2D4142%2Db833%2Dc5e7ca9d804b",
+          "#build-your-solution",
+          "#containerization",
+          "#github-actions",
+          "#load-credentials-into-github-repository-secrets",
+          "#template-to-load-credentials",
+          "#workflow-overview",
+          "#workflow-triggers",
+          "#job-load-credentials",
+          "#job-configuration",
+          "#build-and-push-docker-image",
+          "#template-using-build-push-actionv4",
+          "#workflow-overview-1",
+          "#workflow-triggers-1",
+          "#additional-trigger-options",
+          "#job-structure",
+          "#job-environment-variables",
+          "#workflow-steps",
+          "/guide/Prerequisites",
+          "#sha-tag-overview",
+          "#sha-tags",
+          "#environment-sha-tags",
+          "#pull-request-pr-tags",
+          "#branch-tags",
+          "#sha-tag-pattern-breakdown",
+          "#references",
+          "https://docs.github.com/en/actions",
+          "https://github.com/docker/build-push-action?tab%253Dreadme-ov-file#inputs",
+          "#kubernetes",
+          "https://kubernetes.io/docs/home/",
+          "#creating-your-kubernetes-namespace-file",
+          "#1-labels-explained",
+          "#2-annotations-explained",
+          "/guide/ComputeAndWorkloadScheduling",
+          "/guide/CloudBrowser",
+          "/guide/Namespace#sg-rule-interface-template",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/main/docs/security_group_controller.svg",
+          "/guide/Argo",
+          "/guide/Flux",
+          "https://idmportal.rf.lilly.com/IdentityManagement/default.aspx",
+          "/guide/Argo",
+          "/guide/Argo#argo-dashboard",
+          "#creating-your-kubernetes-deployment-file",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/tree/main/projects/dev/light-app-poc-dev/example-next-js",
+          "#container-image-explanation",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/5a408520d8c2225b65a067f5d3ffb1da52675b3b/projects/dev/abarp-dev/deploy.yml#L20",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/main/validation/allowed_images.yaml",
+          "#note-on-globpattern",
+          "#annotations-explanation",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "#ingress-route-information",
+          "/guide/Ingress#out-of-the-box-options",
+          "#resource-name-configuration",
+          "/guide/Deployment",
+          "#dashboards",
+          "/guide/DeploymentDashboard",
+          "#continuous-deployment",
+          "https://guides.github.com/introduction/flow/",
+          "#codeowners",
+          "/guide/Codeowners",
+          "#developing-more-complex-kubernetes-infrastructure",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "https://github.com/EliLillyCo/lrl-cloud-patterns/wiki/Lilly-AWS-Accounts#aws-cli-httpsgithubcomelilillycolilly_aws_auth",
+          "https://github.com/EliLillyCo/lrl-cloud-patterns/wiki/Lilly-AWS-Accounts#accessing-the-light-account-for-infra-development",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/DeploymentOverview.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/WorkingWithAppRepo": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Working with the Deployment Repositories",
+        "description": "Here are some of the basic guidelines for how application teams should work with the Apps Deployment Repos to get their solutions deployed. This section includes details around where you should put your files and who will need to approve those files.",
+        "links": [
+          "/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_sbx",
+          "#set-up-project-workspace",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/tree/main/projects/dev",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/tree/main/projects/qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/tree/main/projects/prd",
+          "#merging-to-main",
+          "/guide/Codeowners",
+          "#using-codespaces",
+          "#merge-queue-process",
+          "#protected-branch-naming-convention",
+          "#best-practices-for-pull-requests",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/WorkingWithAppRepo.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Containerization": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Containerization and Dockerfiles",
+        "description": "Containerization is a lightweight, efficient form of virtualization. It allows you to package your application and its dependencies into a 'container' that can run consistently across any environment. This process eliminates the \"it works on my machine\" problem by providing a clear separation between your application and the underlying system. Containers are portable, easy to deploy, and less resource-intensive compared to traditional virtual machines.",
+        "links": [
+          "/",
+          "#building-from-artifactory",
+          "#dockerfile-for-logging-into-artifactory-via-secrets",
+          "#dockerfile-template-explained",
+          "#workflow-file-change",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Containerization.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Codeowners": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "CODEOWNERS",
+        "description": "Official GitHub CODEOWNERS Documentation",
+        "links": [
+          "/",
+          "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners",
+          "#using-codeowners-with-cats",
+          "https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/main/CODEOWNERS",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Codeowners.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/DeploySaaS": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Deploying SaaS Solution",
+        "description": "If you want to deploy a SaaS solution on CATS, kindly reach out to a community member who has already worked through this process to discuss their experience deploying SaaS solutions on CATS. They will provide details surrounding the process and how the process worked.",
+        "links": [
+          "/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/DeploySaaS.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/ReleaseNotes2025": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Release Notes 2025",
+        "description": "Released June 13th, 2025Github Release Notes",
+        "links": [
+          "/",
+          "#462---temporal-enhancements-and-production-stability",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.6.2",
+          "#-new-and-upcoming-enhancements",
+          "#-production-stability-and-performance",
+          "#-backup-and-disaster-recovery",
+          "#-policy-and-security-management",
+          "#-production-release-management",
+          "#-issue-references",
+          "#-impact-summary",
+          "#461---infrastructure-scaling-and-self-service-foundation",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.6.1",
+          "#-new-and-upcoming-enhancements-1",
+          "#-infrastructure-scaling-and-performance",
+          "#-policy-and-governance",
+          "#-developer-experience",
+          "#-issue-references-1",
+          "#-impact-summary-1",
+          "#441---cost-management-externalsecrets-and-scheduling",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.4.1",
+          "#-new-and-upcoming-enhancements-2",
+          "#-observability-enhancements",
+          "#-secrets-management",
+          "#️-workload-scheduling",
+          "#-self-hosted-runners",
+          "#-issue-references-2",
+          "#-impact-summary-2",
+          "#431---temporal-prometheus-upgrade-kyverno-kubecost",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.3.1",
+          "#temporal-server",
+          "#prometheus-upgrade",
+          "#spot-vs-on-demand-kyverno-mutation-policy",
+          "#kubecost-changes",
+          "#422---devops-argocd-improvements-and-kyverno",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.2.2",
+          "#kyverno",
+          "#argocd",
+          "https://cats.lilly.com/guide/Namespace",
+          "#grafana",
+          "#security-enhancements",
+          "#421---kyverno-adoption-and-hotfixes",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.2.1",
+          "#412---sla-go-live-and-general-enhancements",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.1.2",
+          "#411---fargate-restructure--observability-enhancement",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/releases/tag/v4.1.1",
+          "https://tracing.apps-d.lrl.lilly.com/search",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ReleaseNotes2025.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/ReleaseNotes": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Release Notes",
+        "description": "Here you can find all of the release notes for the CATS Platform. This section will be updated with new notes once they are available.",
+        "links": [
+          "/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/storage",
+          "#cats-311---docsite-v2-and-stability-fixes",
+          "#cats-310---stability-fixes-and-obervability-enhancements",
+          "#cats-39---frontdoor-onboarding-and-coredns-upgrade",
+          "#cats-38---k8s-127-and-grafana-enhancement-entra-id",
+          "#cats-37---grafana-alerts",
+          "#cats-36---wafv2--sbx-cluster",
+          "#cats-35---argo-cd",
+          "#cats-34---k8s-125--flux-v2",
+          "#cats-33---k8s-124--cats-docsite",
+          "#cats-32---apprunner-upgrade",
+          "#cats-31---security-groups",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ReleaseNotes.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/SLAreports": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "SLA Reports",
+        "description": "Below are detailed uptime metrics for each CATS environment, including outage dates and times, the core functionalities impacted, and additional relevant information.",
+        "links": [
+          "/",
+          "#uptime-metrics-2025",
+          "#monthly-production-report",
+          "#quarterly-qa-report",
+          "#quarterly-dev-report",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/SLAreports.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/LoggingDashboard": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Logging Dashboards",
+        "description": "This page has been deprecated. Please useGrafanawith theLokidata source for the preferred logging solution on CATS.",
+        "links": [
+          "/",
+          "/guide/Grafana",
+          "/guide/Loki",
+          "#loki-dashboard",
+          "/guide/Grafana",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/LoggingDashboard.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/ExternalSecrets": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "External Secrets",
+        "description": "External Secrets V2 is now available on CATS with enhanced security and higher customizability. More instructions on setting up external secrets with the V2 operator coming soonhere.",
+        "links": [
+          "/",
+          "/guide/ExternalSecrets#external-secrets-v2",
+          "#aws-secrets-manager",
+          "#using-aws-secrets-manager",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "#create-aws-secret",
+          "https://github.com/EliLillyCo/lrl-cloud-patterns/tree/main/aws/secretsmanager",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "#create-k8s-secret",
+          "https://github.com/external-secrets/kubernetes-external-secrets",
+          "#referencing-secret-in-an-external-aws-account",
+          "#external-secrets-v2",
+          "#use-cases-and-patterns",
+          "#setting-up-external-secrets-with-v2-operator",
+          "#custom-external-secret-templates-and-configuration",
+          "https://external-secrets.io/latest/guides/templating/",
+          "#push-kubernetes-secret-to-aws-secrets-manager",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ExternalSecrets.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Namespace/": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Namespace",
+        "description": "In Kubernetes, namespaces provides a mechanism for isolating groups of resources within a single cluster. Names of resources need to be unique within a namespace, but not across namespaces. Namespace-based scoping is applicable only for namespaced objects (e.g. Deployments, Services, etc.) and not for cluster-wide objects (e.g. StorageClass, Nodes, PersistentVolumes, etc.).",
+        "links": [
+          "/",
+          "#cats-namespace-template",
+          "#labels-and-annotations",
+          "#1-labels-explained",
+          "#2-annotations-explained",
+          "/guide/ComputeAndWorkloadScheduling",
+          "/guide/CloudBrowser",
+          "/guide/Namespace#security-group-rule",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/main/docs/security_group_controller.svg",
+          "https://idmportal.rf.lilly.com/IdentityManagement/default.aspx",
+          "/guide/Argo",
+          "/guide/Argo#argo-dashboard",
+          "#security-group-rule",
+          "#default-sg-main-policy",
+          "#sg-onprem-policy",
+          "#sg-rule-interface-template",
+          "#basic-sg-rule-interface-template",
+          "#iam-permissions-for-your-app",
+          "#general",
+          "#s3-policy",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_manager/blob/12120fb0c2ff509e832dab2a0705240fcb6f0749/Namespace/index.js#L65-L77",
+          "#custom-permission",
+          "#research-data-cross-account-roles",
+          "https://github.com/EliLillyCo/LRL_research_data_security/blob/main/data_domain_definitions/data_domains_prd.json",
+          "https://github.com/orgs/EliLillyCo/teams/lrl-resdata-security-approvers/members",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Namespace.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/OverviewObservability": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Overview",
+        "description": "Observability is the practice of gaining insight into the internal state of systems by collecting and analyzing external outputs, such as logs, metrics, and traces. It allows teams to monitor the health, performance, and reliability of their applications and infrastructure in real time. By implementing strong observability practices, organizations can proactively detect issues, understand system behavior, and respond to problems before they impact users. In modern cloud-native environments, where systems are often distributed and complex, observability is crucial for ensuring operational visibility, optimizing performance, and maintaining reliability at scale.",
+        "links": [
+          "/",
+          "/guide/Prometheus",
+          "/guide/Loki",
+          "/guide/Grafana",
+          "/guide/Jaeger",
+          "#disclaimer",
+          "/support/FeatureRequest",
+          "#table-of-contents",
+          "/guide/Grafana",
+          "/guide/Jaeger",
+          "/guide/Loki",
+          "/guide/Prometheus",
+          "/guide/DashboardOverview",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/OverviewObservability.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/ComputeAndWorkloadScheduling": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Compute and Workload Scheduling",
+        "description": "There are three types of provisioned nodes supported by the platform:",
+        "links": [
+          "/",
+          "#services-that-schedule-workloads",
+          "#fargate-planned-for-obsolescence-in-2025",
+          "https://docs.aws.amazon.com/eks/latest/userguide/fargate-pod-configuration.html",
+          "#ec2-autoscaling-groups-and-managed-eks-nodegroups",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/blob/main/aws/lib/stacks/eks-fargate.ts",
+          "#aws-karpenter",
+          "/guide/Karpenter",
+          "#node-networking-configurations",
+          "#on-premise-network-connected-nodes",
+          "/guide/Namespace#2-annotations-explained",
+          "/guide/Namespace#security-group-rule",
+          "#configuration-options",
+          "#configure-workload-scheduling-via-namespace-annotation",
+          "#affinities-selectors-tolerations-and-topologies-oh-my",
+          "https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/",
+          "https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/",
+          "#examples",
+          "#karpenter",
+          "#deployment-scheduled-on-general-purpose-node",
+          "#deployment-scheduled-on-accelerated-gpu-enabled-node",
+          "#namespace-configuration",
+          "#fargate-only-namespace-serverless-namespace",
+          "#ec2-or-fargate-namespace-hybrid-namespace",
+          "#scheduling-workloads",
+          "#deployment-scheduled-on-fargate-in-serverless-namespace",
+          "#deployment-scheduled-on-fargate-in-hybrid-namespace",
+          "#deployment-scheduled-on-default-ec2-in-hybrid-namespace",
+          "#deployment-scheduled-on-default-on-premise-connected-ec2-in-hybrid-namespace",
+          "#deployment-scheduled-on-custom-dedicated-ec2-instance",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ComputeAndWorkloadScheduling.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Namespace": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Namespace",
+        "description": "In Kubernetes, namespaces provides a mechanism for isolating groups of resources within a single cluster. Names of resources need to be unique within a namespace, but not across namespaces. Namespace-based scoping is applicable only for namespaced objects (e.g. Deployments, Services, etc.) and not for cluster-wide objects (e.g. StorageClass, Nodes, PersistentVolumes, etc.).",
+        "links": [
+          "/",
+          "#cats-namespace-template",
+          "#labels-and-annotations",
+          "#1-labels-explained",
+          "#2-annotations-explained",
+          "/guide/ComputeAndWorkloadScheduling",
+          "/guide/CloudBrowser",
+          "/guide/Namespace#security-group-rule",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/main/docs/security_group_controller.svg",
+          "https://idmportal.rf.lilly.com/IdentityManagement/default.aspx",
+          "/guide/Argo",
+          "/guide/Argo#argo-dashboard",
+          "#security-group-rule",
+          "#default-sg-main-policy",
+          "#sg-onprem-policy",
+          "#sg-rule-interface-template",
+          "#basic-sg-rule-interface-template",
+          "#iam-permissions-for-your-app",
+          "#general",
+          "#s3-policy",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_manager/blob/12120fb0c2ff509e832dab2a0705240fcb6f0749/Namespace/index.js#L65-L77",
+          "#custom-permission",
+          "#research-data-cross-account-roles",
+          "https://github.com/EliLillyCo/LRL_research_data_security/blob/main/data_domain_definitions/data_domains_prd.json",
+          "https://github.com/orgs/EliLillyCo/teams/lrl-resdata-security-approvers/members",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Namespace.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Argo": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Argo : Declarative GitOps Tool",
+        "description": "Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. It automates the deployment of applications to various environments by using Git repositories as the source of truth for defining the desired application state. Argo CD follows the GitOps principles, where updates to applications are made by changing the code in Git, and the tool automatically applies these changes to the target environment, ensuring that the live state in the cluster always matches the version-controlled configuration.",
+        "links": [
+          "/",
+          "#using-argo-in-cats",
+          "#enabling-argo-for-your-application",
+          "/guide/Namespace#2-annotations-explained",
+          "#permissions-by-role",
+          "#custom-role",
+          "#argo-dashboard",
+          "https://argocd.apps-d.lrl.lilly.com/",
+          "https://argocd.apps-q.lrl.lilly.com/",
+          "https://argocd.apps.lrl.lilly.com/",
+          "#views-available",
+          "#tree-view",
+          "#pod-view",
+          "#network-view",
+          "#list-view",
+          "#sidebar",
+          "#refresh-resources",
+          "#sync-resources",
+          "#auto-sync",
+          "#verify-auto-sync-status",
+          "#enabledisable-auto-sync",
+          "#how-to-enable-auto-sync",
+          "#how-to-disable-auto-sync",
+          "#auto-sync-privileges",
+          "#auto-sync-options",
+          "#prune-resources",
+          "#self-heal",
+          "#get-logs",
+          "#get-events",
+          "#restart-resource",
+          "#exec-into-pod",
+          "#delete-resource",
+          "#argo-concepts",
+          "#project-top-level-element",
+          "https://argo-cd.readthedocs.io/en/stable/user-guide/projects/",
+          "#application-belongs-to-one-project",
+          "https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#applications",
+          "#rbac-configuration",
+          "https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/#policy-csv-composition",
+          "https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/#rbac-resources-and-actions",
+          "https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/#rbac-resources-and-actions",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Argo.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Flux": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Flux : Auto Deployment Tool",
+        "description": "Flux V2 is an open source second iteration of the Flux gitops toolkit. The service provides a full gitops suite but we have relegated most of the GitHub repository syncing toArgoCD. Specifically we utilize two specific aspects of Flux V2 namely the image repository and the image reflector to create custom resource definitions to enable automatic image rollout based on diffs in the AWS ECR.",
+        "links": [
+          "/",
+          "https://argocd.apps.lrl.lilly.com/",
+          "https://github.com/EliLillyCo/fluxcd-community_helm-charts",
+          "https://github.com/EliLillyCo/fluxcd_image-reflector-controller/tree/main",
+          "#simple-flux-annotation",
+          "https://lilly-aws-login.awsapps.com/",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "#custom-flux-annotation",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Flux.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Ingress": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Ingress",
+        "description": "An API object that manages external access to the services in a cluster, typically HTTP.",
+        "links": [
+          "/",
+          "#overview",
+          "#cats-ingress-template",
+          "#ingress-routes-in-cats",
+          "#authenticated-route",
+          "#unauthenticated-route",
+          "#script-based-access-route",
+          "#how-to-add-a-api-access-endpoint",
+          "#how-to-access-your-api-endpoint",
+          "https://client-r.apps.lrl.lilly.com/",
+          "https://client-python.apps.lrl.lilly.com/",
+          "#routing-and-middleware",
+          "#ingress-naming-conventions",
+          "#custom-routing-middleware",
+          "https://doc.traefik.io/traefik/middlewares/overview/",
+          "https://traefik-dashboard.apps.lrl.lilly.com/dashboard/#/",
+          "#default-middleware-available",
+          "#compression-applies-gzip-compression-to-your-route",
+          "#rate-limit-middleware",
+          "/guide/RateLimit",
+          "#redirect-middleware",
+          "#authorization",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer",
+          "/guide/Bouncer#default-endpoints",
+          "#bouncer-annotations-quick-reference",
+          "#lillycomsecurity_groups",
+          "#lillycomuser_info_headers",
+          "#lillycomoauth_token_headers",
+          "#lillycomsecure_headers",
+          "#lillycomlilly_user_summary_info_header_enable",
+          "#lillycoomon_unauthorized_page",
+          "#lillycomsign_in_feature_enable",
+          "#lillycomsecurity_groups",
+          "#rule-options",
+          "https://github.com/google/re2/wiki/Syntax",
+          "#example",
+          "#lillycomuser_info_headers",
+          "#available-attributes",
+          "#example-1",
+          "#filtering-groups",
+          "#lillycomoauth_token_headers",
+          "#example-custom-scopes",
+          "#example-disable-oauth-headers-for-aws-auth",
+          "#lillycomsecure_headers",
+          "#default-security-headers",
+          "#configurable-fields",
+          "#examples",
+          "#troubleshooting-secure-headers",
+          "#lillycomlilly_user_summary_info_header_enable",
+          "#header-content-base64-decoded",
+          "#example-2",
+          "#lillycomon_unauthorized_page",
+          "#example-3",
+          "#lillycomsign_in_feature_enable",
+          "#example-4",
+          "#authenticated-route-example",
+          "#authentication-patterns",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---standard-web-pattern-on-behalf-of-user",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---azure-apim",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---client-credentials",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---on-behalf-of-user-api",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---aws-sts",
+          "#no-authentication",
+          "#authentication-with-aws-roles-ingress-routes",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test/blob/9c59212e05c7044c7a0df4819da931fd1e87efc8/projects/dev/admin-testing-main-dev/echo.yaml#L105-L126",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test/blob/9c59212e05c7044c7a0df4819da931fd1e87efc8/projects/dev/admin-testing-hybrid-dev/echo.yaml#L115-L136",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test/blob/9c59212e05c7044c7a0df4819da931fd1e87efc8/projects/dev/admin-testing-onprem-dev/echo.yaml#L106-L127",
+          "#privileged-accounts",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "#routing-across-multiple-application-cors-avoidance",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/tree/main/projects/dev/genekb-dev/indigo-integration.yml",
+          "#streamlit-app-routes",
+          "#streamlit-config-instructions",
+          "#enable-websocket-connections",
+          "#websocket-connection-ingress-template",
+          "#find-below-an-example-of-how-to-enable-the-websocket-connection-for-your-ingress",
+          "#prod",
+          "#qa",
+          "#dev",
+          "#validations--restrictions",
+          "#customizing-urls",
+          "#out-of-the-box-options",
+          "#lilly-research-laboratories-services",
+          "#global-services",
+          "#information-security",
+          "#business-units",
+          "#manufacturing-and-quality",
+          "#digital-core",
+          "#digital-health",
+          "#cats-platform-services",
+          "#cortex-platforms-backend-routes",
+          "#cortex-platforms-frontend-routes",
+          "#lilly-research-laboratories",
+          "#global-services-1",
+          "#information-security-1",
+          "#business-units-1",
+          "#manufacturing-and-quality-1",
+          "#digital-core-1",
+          "#digital-health-1",
+          "#cats-platform-services-1",
+          "#cortex-platforms-backend-routes-1",
+          "#cortex-platforms-frontend-routes-1",
+          "#vahub",
+          "#request-new-custom-domain",
+          "https://lilly.service-now.com/ess/view_content_search.do?v=1&uri=com.glideapp.servicecatalog_cat_item_view.do%3Fv%3D1%26sysparm_id%3Dd010f3f20fcf790028ed6509b1050e52%26sysparm_link_parent%3Dc0aafa126f431500fe289be44b3ee409%26sysparm_catalog%3De0d08b13c3330100c8b837659bba8fb4&sysparm_document_key=sc_cat_item,d010f3f20fcf790028ed6509b1050e52",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Ingress.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Deployment": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Deployment",
+        "description": "A Deployment provides declarative updates for Pods and ReplicaSets.",
+        "links": [
+          "/",
+          "#cats-deployment-template",
+          "#find-your-container-image-name",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/main/validation/allowed_images.yaml",
+          "#annotations-explanation",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "#resource-name-configuration",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/tree/main/examples",
+          "#continuous-deployment",
+          "https://guides.github.com/introduction/flow/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Deployment.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/DeploymentDashboard": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Argo Deployment Dashboard",
+        "description": "The Argo CD dashboard provides a comprehensive and user-friendly web interface that allows users to manage and monitor their applications' deployment process in Kubernetes clusters efficiently.",
+        "links": [
+          "/",
+          "https://argocd.apps-d.lrl.lilly.com/",
+          "https://argocd.apps-q.lrl.lilly.com/",
+          "https://argocd.apps.lrl.lilly.com/",
+          "#views-available",
+          "#tree-view",
+          "#pod-view",
+          "#network-view",
+          "#list-view",
+          "#sidebar",
+          "#refresh-resources",
+          "#sync-resources",
+          "#get-logs",
+          "#get-events",
+          "#restart-resource",
+          "#exec-into-pod",
+          "#delete-resource",
+          "#more-info",
+          "/guide/Argo",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/DeploymentDashboard.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Configuration": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Configuration Overview",
+        "description": "The configuration section is all about helping our users configure their deployment resources appropriately for their projects. See the below table of contents for a quick look at the sections available as well as what information is in each section:",
+        "links": [
+          "/",
+          "/guide/Namespace",
+          "/guide/Deployment",
+          "/guide/Service",
+          "/guide/Ingress",
+          "/guide/ComputeAndWorkloadScheduling",
+          "/guide/Scaling",
+          "/guide/Storage",
+          "/guide/CronJob",
+          "/guide/Jobs",
+          "/guide/RateLimit",
+          "/guide/ExternalSecrets",
+          "/guide/HelmRelease",
+          "/guide/GraphUserInfo",
+          "/guide/Makefile",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Configuration.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/DashboardOverview": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Intoduction To Dashboards",
+        "description": "Ingress Dashboard (Traefik): Simplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.",
+        "links": [
+          "/",
+          "https://traefik-dashboard.apps.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard.apps-q.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard.apps-d.lrl.lilly.com/dashboard/#/",
+          "https://argocd.apps.lrl.lilly.com/",
+          "https://argocd.apps-q.lrl.lilly.com/",
+          "https://argocd.apps-d.lrl.lilly.com/",
+          "https://metrics.apps.lrl.lilly.com",
+          "https://metrics.apps-q.lrl.lilly.com",
+          "https://metrics.apps-d.lrl.lilly.com",
+          "https://tracing.apps.lrl.lilly.com",
+          "https://tracing.apps-q.lrl.lilly.com",
+          "https://tracing.apps-d.lrl.lilly.com",
+          "https://kubecost.apps-d.lrl.lilly.com/allocations",
+          "https://kubecost.apps-q.lrl.lilly.com/allocations",
+          "https://kubecost.apps.lrl.lilly.com/allocations",
+          "https://dev.lilly.com/docs/platforms-and-tools/cats/",
+          "https://k8s-dashboard.apps.lrl.lilly.com/",
+          "https://k8s-dashboard.apps-q.lrl.lilly.com/",
+          "https://k8s-dashboard.apps-d.lrl.lilly.com/",
+          "#table-of-contents",
+          "/guide/DashboardOverview",
+          "/guide/DeploymentDashboard",
+          "/guide/Grafana",
+          "/guide/Kubecost",
+          "/guide/IngressDashboard",
+          "/guide/KubernetesDashboard",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/DashboardOverview.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Grafana": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Grafana",
+        "description": "Grafana is a leading open-source analytics and monitoring platform that provides users with powerful visualization capabilities for their metrics, logs, and traces. Integrated seamlessly with ourPrometheusmetrics scraper,Lokilogging querier, andJaegertracing tool, Grafana allows teams to create custom dashboards that present data in an intuitive and visually appealing manner. With its wide range of visualization options, including graphs, charts, and tables, users can easily track performance trends, identify anomalies, and gain actionable insights into their applications and infrastructure. Grafana also supports alerting functionalities, enabling teams to set up notifications based on specific conditions, ensuring timely responses to potential issues. As an essential component of our observability stack, Grafana empowers users to explore their data effectively and make informed decisions to enhance system reliability and performance.",
+        "links": [
+          "/",
+          "/guide/Prometheus",
+          "/guide/Loki",
+          "/guide/Jaeger",
+          "#use-grafana-in-cats",
+          "#prequisites",
+          "/guide/Karpenter",
+          "#cluster-overview",
+          "https://metrics.apps.lrl.lilly.com/?orgId=1",
+          "#namespaces-dashboard",
+          "#loki-tools-log-dashboard",
+          "#pod-stats-and-info-dashboard",
+          "#app-dashboard",
+          "#jaeger-tracing",
+          "/guide/Jaeger",
+          "#grafana-alerts",
+          "#alerts-template",
+          "#create-custom-dashboard",
+          "#grafana-organizations",
+          "#default-orgs",
+          "#request-org-creation",
+          "https://spe.lilly.com/support",
+          "#selecting-your-org",
+          "#managing-your-org",
+          "#how-to-create-a-dashboard",
+          "#grafana-api-and-service-account-tokens",
+          "#exploring-the-api",
+          "#why-use-your-own-organization-for-api-access",
+          "#request-org-creation",
+          "#creating-a-service-account-token",
+          "#using-service-account-tokens",
+          "#basic-api-request-structure",
+          "#common-api-examples",
+          "#best-practices-for-service-account-tokens",
+          "#api-documentation",
+          "https://grafana.com/docs/grafana/latest/fundamentals/api/",
+          "#official-documentation",
+          "https://grafana.com/docs/grafana/latest/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Grafana.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/IngressDashboard": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Traefik : Ingress Dashboard",
+        "description": "Simplify the management of external access to your services with a versatile Ingress controller, featuring a user-friendly dashboard for easy configuration.",
+        "links": [
+          "/",
+          "#traefik-in-production-environment",
+          "https://traefik-dashboard.apps.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard-noauth.apps.lrl.lilly.com/dashboard/#/",
+          "#traefik-in-qa-environment",
+          "https://traefik-dashboard.apps-q.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard-noauth.apps-q.lrl.lilly.com/dashboard/#/",
+          "#traefik-in-dev-environment",
+          "https://traefik-dashboard.apps-d.lrl.lilly.com/dashboard/#/",
+          "https://traefik-dashboard-noauth.apps-d.lrl.lilly.com/dashboard/#/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/IngressDashboard.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Opencost": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Opencost : Cost Monitoring Dashboard",
+        "description": "Opencost is a cost monitoring tool for workloads running in a Kubernetes cluster. It provides insights into workload spending in your project namespace, allowing you to track and optimize resource usage across your clusters. Whether you're managing costs for development, testing, or production environments, Opencost helps you understand where your resources are being allocated and how to make the most out of your budget. Opencost also provides cost data and metrics associated with cloud compute resources, giving you a more fine-grained breakdown of application cost running in the cloud.",
+        "links": [
+          "/",
+          "#cloud-cost-integration",
+          "#navigating-the-opencost-dashboard",
+          "https://opencost.dev.cats.lilly.com",
+          "https://opencost.qa.cats.lilly.com",
+          "https://opencost.cats.lilly.com",
+          "#grafana-dashboard-for-cost-observability",
+          "https://metrics.apps-d.lrl.lilly.com/dashboards/f/fefnvrbucbtvkd/",
+          "https://metrics.apps-q.lrl.lilly.com/dashboards/f/fefuifcjpnev4f/",
+          "https://metrics.apps.lrl.lilly.com/dashboards/f/aefuj14rbxblsf/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Opencost.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Kubecost": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Kubecost : Cost Monitoring Dashboard",
+        "description": "This service has been deprecated in CATS due to license discontinuation. Please look atOpencostfor more information about cost observability on CATS.",
+        "links": [
+          "/",
+          "/guide/Opencost",
+          "#kubecost-version-2",
+          "#federation-etl",
+          "#cloud-cost-billing-integration",
+          "https://kubecost.apps.lrl.lilly.com",
+          "#navigating-the-kubecost-dashboard",
+          "#customizable-dashboard",
+          "#cost-center-breakdown",
+          "#reporting",
+          "#cloud-cost-explorer-dashboard",
+          "#api-directory",
+          "https://docs.kubecost.com/apis/apis-overview",
+          "https://docs.kubecost.com/apis/apis-overview/api-request-right-sizing-v2",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Kubecost.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/KubernetesDashboard": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Kubernetes Dashboard",
+        "description": "This dashboard has been deprecated and is no longer maintained on CATS in an effort to enhance deployment experience and introduce GitOps solution. Please look atArgoCD Dashboardfor the preferred Deployment dashbord on CATS.",
+        "links": [
+          "/",
+          "/guide/DeploymentDashboard",
+          "https://k8s-dashboard.apps.lrl.lilly.com/",
+          "https://k8s-dashboard.apps-q.lrl.lilly.com/",
+          "https://k8s-dashboard.apps-d.lrl.lilly.com/",
+          "/guide/DeploymentDashboard",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/KubernetesDashboard.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Loki": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Loki",
+        "description": "Loki is an open-source, log aggregation system developed by Grafana Labs, specifically designed for storing and querying logs. It's part of the observability toolchain and is often used alongside [Prometheus (for metrics) and Grafana (for visualization)]. Loki is highly optimized for Kubernetes environments and aims to be a cost-effective and scalable solution for log management.",
+        "links": [
+          "/",
+          "#visualize-logs-with-loki-on-metrics-dashboard",
+          "#how-to-use-loki-in-cats",
+          "/guide/Grafana",
+          "#official-loki-documentation",
+          "https://grafana.com/docs/loki/latest/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Loki.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Service": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Service",
+        "description": "In Kubernetes, a Service is a method for exposing a network application that is running as one or more Pods in your cluster.",
+        "links": [
+          "/",
+          "#cats-service-template",
+          "#how-service-interacts-with-ingress",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Service.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Ingress_patterns": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Ingress Patterns and Visualization",
+        "description": "In Kubernetes environments, understanding ingress traffic routing patterns can be challenging. This guide introduces visualization tools and common patterns to help you better understand how ingress resources direct traffic to your services.",
+        "links": [
+          "/",
+          "#ingress-diagram-tool",
+          "#accessing-the-tool",
+          "https://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com",
+          "#example-use-cases",
+          "https://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams?namespace=llm-dev&endpoints=true",
+          "https://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams?host=.*apps-d.lrl.lilly.com&endpoints=true",
+          "https://hangar-ingress-diagram-generator.apps-d.lrl.lilly.com/api/ingress/diagrams?namespace=aads-legal-intakes-dev&endpoints=true",
+          "#common-ingress-patterns",
+          "#1-simple-path-routing-pattern",
+          "#2-host-based-routing-pattern",
+          "#3-path-based-routing-pattern",
+          "#4-fanout-multiple-services-pattern",
+          "#5-default-backend-pattern",
+          "#visualizing-ingress-flow",
+          "#reading-diagram-elements",
+          "#diagram-color-legend",
+          "#api-usage",
+          "#summary-endpoints",
+          "#diagram-endpoints",
+          "#troubleshooting-ingress-configurations",
+          "https://github.com/EliLillyCo/hangar-k8s-ingress-diagrams",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Ingress_patterns.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Scaling": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Scaling",
+        "description": "The documentation here is about Horizontal Scaling (scaling the number of pod replicas related to a specific deployment or stateful set).",
+        "links": [
+          "/",
+          "#horizontalpodscaler",
+          "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#algorithm-details",
+          "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/",
+          "#add-separate-node-groups",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/blob/1fb8f68fc19bea5e182a50842e77f6ed05c7dd61/aws/lib/stacks/eks-nodegroups.ts#L281-L302",
+          "#examples",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Scaling.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Storage": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Storage",
+        "description": "There are three main types of storage supported in CATS.  The first (and recommended) is S3 object storage.The second is EFS (NFS filesystem).The third us EBS (block storage).",
+        "links": [
+          "/",
+          "#s3",
+          "/guide/Namespace#iam-permissions-for-your-app",
+          "#efs",
+          "#ebs",
+          "#backuprestore-process",
+          "#ebs-1",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Storage.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/CronJob": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Cron Job",
+        "description": "A CronJob creates Jobs on a repeating schedule.",
+        "links": [
+          "/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/CronJob.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Jobs": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Jobs",
+        "description": "A Job creates one or more Pods and will continue to retry execution of the Pods until a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions. When a specified number of successful completions is reached, the task (ie, Job) is complete. Deleting a Job will clean up the Pods it created. Suspending a Job will delete its active Pods until the Job is resumed again.",
+        "links": [
+          "/",
+          "#example-job",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Jobs.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/RateLimit": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Rate Limit",
+        "description": "To Control the Number of Requests Going to a Service",
+        "links": [
+          "/",
+          "#configuration-template",
+          "#configuration-options",
+          "#advanced-rate-limit-configs",
+          "https://doc.traefik.io/traefik/middlewares/http/ratelimit/",
+          "#attach-rate-limit-middleware-to-ingress",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/RateLimit.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/HelmRelease": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Helm Release",
+        "description": "This documentation describes how to create a helm release Kubernetes resource.",
+        "links": [
+          "/",
+          "#what-is-a-helm-release",
+          "#configuration-template",
+          "#git-mirror",
+          "#deploying-via-helm-release-in-cats",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/HelmRelease.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/ExternalIntegrations": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "External Integrations",
+        "description": "Integrating with External AWS Accounts is possible. See our examples below.",
+        "links": [
+          "/",
+          "#research-data--edb-api-dws",
+          "https://indigo-d.apps.lrl.lilly.com/_apps_system/researchdata/prd/chembl/v3.0/version",
+          "https://api.data.lrl.lilly.com/chembl/v3.0/version",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_bouncer/blob/main/routes/researchData.js",
+          "#legacy-heroku-pattern",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://collab.lilly.com/sites/ApiManagement",
+          "#cross-aws-account-resource-connections",
+          "/guide/ExternalResourceConnection",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ExternalIntegrations.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/GraphUserInfo": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Graph User Info",
+        "description": "Graph User Info is information about a user that is stored and accessible through a Graph API, such as the Microsoft Graph API or any other graph-based data structure or service. Graph APIs are designed to provide a comprehensive and relational way to interact with a network of data, entities, and their interconnections, often used within platforms like social networks, directory services, and organizational data systems.",
+        "links": [
+          "/",
+          "#builtin-graph-user-info-integration",
+          "#user-info-headers",
+          "mailto:morin_nathan_a@lilly.com",
+          "#how-to-request-oauth-token",
+          "#example-of-ingressyml-for-frontend",
+          "#example-ingress-configuration-for-a-fastapi-backend-including-the-cats-app-auth-header-to-ensure-the-docs-page-functions-correctly",
+          "#retrieving-headers",
+          "#calling-cortex-api",
+          "#retrieving-headers",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/GraphUserInfo.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Makefile": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Makefile",
+        "description": "A Makefile is a file used by the make utility, a standard build automation tool available on Unix/Linux systems and environments that can emulate Unix toolchains. The purpose of a Makefile is to define a set of tasks to be executed. These tasks can include compiling source code into binary executables, cleaning up temporary files, installing software to system directories, and more. It essentially allows developers to automate the repetitive aspects of the build process.",
+        "links": [
+          "/",
+          "#makefile-template",
+          "#template-breakdown",
+          "#preamble-and-setup",
+          "#shell-specification",
+          "#operating-system-detection",
+          "#default-variables",
+          "#targets-and-phony-targets",
+          "#phony",
+          "#setup-and-development-targets",
+          "#docker-operations",
+          "#cats-dev-cluster-development",
+          "#aws-and-ecr-login",
+          "#helper-targets",
+          "#overriding-pattern-rule",
+          "#--default",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Makefile.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/velero": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Velero Kubernetes Backup System - Deployment & Usage Guide",
+        "description": "Velero is a backup solution for Kubernetes that enables you to back up and restore cluster resources, persistent volumes, and perform disaster recovery. This document provides an overview of the infrastructure code used to deploy and configure Velero, as well as common commands for managing backups.",
+        "links": [
+          "/",
+          "#overview",
+          "#key-files-and-components",
+          "#1-lrl_light_k8s_infraawslibservicesvelerots",
+          "#2-lrl_light_k8s_infraawsconfigaccountdetailsts",
+          "#3-iam-role-with-permissions",
+          "#4-kubernetes-resources-created",
+          "#5-configuration-settings",
+          "#aws-resources-used",
+          "#installation-process",
+          "#creating-backups-and-restores-via-gitops",
+          "#creating-backups",
+          "#1-directory-structure",
+          "#2-backup-manifest-example",
+          "#3-identifying-your-pvc-labels",
+          "#4-deployment-process",
+          "#5-verification",
+          "#creating-restores",
+          "#1-restore-manifest-example",
+          "#2-restore-process",
+          "#backup-schedules",
+          "#directory-structure-examples",
+          "#single-application-backup",
+          "#application-with-multiple-backups",
+          "#working-example",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "#important-notes",
+          "#cats-support-commands-reference-only",
+          "#backup-operations-cats-support-only",
+          "#restore-operations-cats-support-only",
+          "#schedule-management-cats-support-only",
+          "#storage-location-management-cats-support-only",
+          "#system-status-cats-support-only",
+          "#best-practices",
+          "#troubleshooting",
+          "#for-end-users",
+          "#for-cats-support",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/velero.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/RDS_Restore": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "RDS Database Restore Procedures",
+        "description": "This guide provides step-by-step procedures for restoring an RDS database from snapshot using Crossplane and GitOps workflow. The process creates a new RDS instance from a snapshot while keeping the original database running, then switches the application to the new database via infrastructure PRs.",
+        "links": [
+          "/",
+          "#overview",
+          "#key-points",
+          "#roles-and-responsibilities",
+          "#cats-platform-team",
+          "#application-team",
+          "#prerequisites",
+          "#step-1-create-snapshot-cats",
+          "#step-2-restore-rds-instance-in-aws-cats",
+          "#step-3-add-restored-database-to-crossplane-app-team",
+          "#step-4-copy-credentials-to-new-secret-cats",
+          "#step-5-switch-application-to-restored-database-app-team",
+          "#step-6-validate-application-app-team",
+          "#validation-checklist",
+          "#step-7-remove-original-database-from-crossplane-app-team",
+          "#step-8-delete-original-rds-instance-in-aws-cats",
+          "#rollback-procedure",
+          "#important-notes",
+          "#deletion-protection",
+          "#argocd-management",
+          "#password-behavior",
+          "#timing",
+          "#cleanup",
+          "#troubleshooting",
+          "#secret-missing-credentials",
+          "#argocd-not-syncing",
+          "#application-cant-connect",
+          "#crossplane-adoption-fails",
+          "#lessons-learned",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/RDS_Restore.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Namespace_decomission": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Namespace Deletion Process for GitOps Environment",
+        "description": "Deleting a namespace in our GitOps setup isn't just \"delete files and redeploy.\" There are data, dependencies, and cleanup considerations that need to be handled properly.",
+        "links": [
+          "/",
+          "#overview",
+          "#pre-deletion-checklist",
+          "#data-impact",
+          "#external-dependencies",
+          "#backup-requirements",
+          "#deletion-steps",
+          "#1-remove-gitops-files-from-the-repository",
+          "#2-wait-for-argocdflux-to-sync",
+          "#3-handle-stuck-resources-if-needed",
+          "#4-clean-up-external-resources",
+          "#common-gotchas",
+          "#rollback-plan",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Namespace_decomission.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/S3_Lifecycle_Tagging": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "S3 Lifecycle Management with Object Tagging",
+        "description": "Our S3 buckets are configured with automatic lifecycle rules that manage object expiration and storage transitions based on object tags. This system helps control storage costs and ensures temporary files are cleaned up automatically.",
+        "links": [
+          "/",
+          "#overview",
+          "#how-the-lifecycle-rules-were-created",
+          "#infrastructure-components",
+          "#adding-new-lifecycle-rules",
+          "#how-it-works",
+          "#available-lifecycle-rules",
+          "#automatic-expiration-tags",
+          "#default-behavior-no-tags",
+          "#tagging-examples",
+          "#aws-cli",
+          "#boto3-python",
+          "#best-practices",
+          "#choose-the-right-retention-period",
+          "#tag-consistently",
+          "#monitor-your-usage",
+          "#common-gotchas",
+          "#troubleshooting",
+          "#objects-not-expiring",
+          "#unexpected-deletions",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/S3_Lifecycle_Tagging.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Instrumentation": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Instrumentation",
+        "description": "Instrumentation is the process of adding monitoring capabilities to your applications to collect metrics, traces, logs, and frontend performance data. Our observability stack leveragesAlloy, an open-source collection framework, to receive and process telemetry data from your applications. This guide covers how to instrument your applications to send data to the CATS observability platform.",
+        "links": [
+          "/",
+          "#overview",
+          "#available-endpoints",
+          "#service-details",
+          "#metrics-collection",
+          "#prometheus-remote-write",
+          "#opentelemetry-metrics",
+          "#distributed-tracing",
+          "#opentelemetry-traces",
+          "#frontend-monitoring-with-faro",
+          "#faro-sdk-overview",
+          "#faro-sdk-installation",
+          "#faro-sdk-configuration",
+          "#frontend-performance-metrics",
+          "#frontend-logs",
+          "#opentelemetry-instrumentation-crd",
+          "#instrumentation-crd-example",
+          "#applying-instrumentation-to-pods",
+          "#alloy-configuration-details",
+          "#logging",
+          "#prometheus-metrics-pipeline",
+          "#otel-pipeline",
+          "#faro-pipeline",
+          "#log-processing",
+          "#verification",
+          "#verify-metrics",
+          "#verify-traces",
+          "#verify-frontend-data",
+          "#troubleshooting",
+          "#metrics-not-appearing",
+          "#traces-not-appearing",
+          "#frontend-data-not-appearing",
+          "#high-cardinality-issues",
+          "#best-practices",
+          "#additional-resources",
+          "https://grafana.com/docs/alloy/latest/",
+          "https://opentelemetry.io/docs/",
+          "https://grafana.com/docs/grafana-cloud/monitor-applications/faro/",
+          "/guide/Jaeger",
+          "/guide/Prometheus",
+          "/guide/Loki",
+          "/guide/Grafana",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Instrumentation.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Jaeger": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Jaeger",
+        "description": "Jaeger is an open-source, end-to-end distributed tracing system that helps monitor and troubleshoot transactions in microservices-based architectures. It was originally developed by Uber and is a part of the Cloud Native Computing Foundation (CNCF). Jaeger is used for tracking requests as they travel through different services in a distributed system, providing visibility into the system's performance and helping identify bottlenecks, latencies, or errors.",
+        "links": [
+          "/",
+          "#using-jaeger-with-cats",
+          "#1-select-a-service",
+          "#2-filter-by-tags-and-duration",
+          "#3-query-for-traces",
+          "#4-view-client-request",
+          "#5-view-forward-request",
+          "#6-compare-two-traces",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Jaeger.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Prometheus": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Prometheus",
+        "description": "Prometheus is a powerful open-source monitoring and alerting toolkit designed for recording real-time metrics in a time-series database. Our implementation of Prometheus serves as the backbone of ourGrafanadashboard visualization tool. Prometheus is continuously scraping metrics from various sources, including applications, infrastructure components, and Kubernetes clusters. This enables teams to gain deep insights into system performance, resource utilization, and overall health. Prometheus’s robust querying capabilities allow users to create custom metrics visualizations and set alerts based on key performance indicators (KPIs). With its efficient data collection and storage model, Prometheus ensures that our users have access to the critical information needed for proactive monitoring and optimization of their applications on the CATS platform.",
+        "links": [
+          "/",
+          "/guide/Grafana",
+          "#how-to-use-prometheus-in-cats",
+          "/guide/Grafana",
+          "/support/Prometheus",
+          "#official-documentation",
+          "https://prometheus.io/docs/introduction/overview/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Prometheus.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Karpenter": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Karpenter",
+        "description": "Karpenter is an open-source Kubernetes cluster autoscaler designed to automatically adjust cluster capacity based on the workload's needs. It dynamically provisions and scales nodes by considering pod specifications and optimizing for cost, performance, and scheduling efficiency. Unlike traditional Kubernetes autoscalers, Karpenter directly integrates with the cloud provider (in our case AWS) to provision the right instance types and sizes, ensuring that workloads are placed on appropriately scaled infrastructure without manual intervention. This helps improve resource utilization, lower costs, and reduce latency in scaling operations.",
+        "links": [
+          "/",
+          "#overview",
+          "https://karpenter.sh/docs/",
+          "#resources",
+          "#ec2nodeclass",
+          "#nodepool",
+          "#default-nodepools",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_system_services/tree/main/kube-system/karpenter/NodePool",
+          "#custom-nodepools",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/blob/main/aws/lib/stacks/manifests-karpenter.ts",
+          "mailto:CATS_Support@lilly.com",
+          "https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html",
+          "#using-karpenter-with-cats",
+          "#scheduling",
+          "/guide/ComputeAndWorkloadScheduling",
+          "#self-guided-workshop",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_examples/tree/main/karpenter/workshop",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Karpenter.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/SystemServices": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "System Service Overview",
+        "description": "CATS is equipped with a comprehensive suite of services designed to empower our application teams, providing a rich, out-of-the-box experience that facilitates development, deployment, and monitoring.",
+        "links": [
+          "/",
+          "/guide/Argo",
+          "/guide/Backstage",
+          "/guide/Bouncer",
+          "/guide/Crossplane",
+          "/guide/ClusterSelfServiceToolkit",
+          "/guide/Flux",
+          "/guide/GitHubRepos",
+          "/guide/Kafka",
+          "/guide/Karpenter",
+          "/guide/PGAdmin",
+          "/guide/Reloader",
+          "/guide/RestfulSDK",
+          "/guide/SmarterDeviceManager",
+          "/guide/Emails",
+          "/guide/Wave",
+          "#requesting-new-services",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/SystemServices.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Backstage": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Lilly Backstage",
+        "description": "Backstage is a developer portal Lilly is utilizing to catalog software assets for re-use, speed up software development with accelerators, and more.Click Hereto learn more.",
+        "links": [
+          "/",
+          "https://backstage.apps.lrl.lilly.com/docs/default/component/backstage/",
+          "#useful-links",
+          "https://backstage.apps.lrl.lilly.com/",
+          "https://backstage.apps.lrl.lilly.com/docs/default/component/backstage/how-to-integrate/",
+          "https://backstage.apps.lrl.lilly.com/catalog",
+          "https://backstage.apps.lrl.lilly.com/create",
+          "#deploying-to-cats-after-using-backstage-accelerators",
+          "/guide/DeploymentOverview",
+          "#coming-soon",
+          "#questions-and-support",
+          "mailto:backstage_svc@lists.lilly.com",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Backstage.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Bouncer": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Bouncer : Authentication Service:",
+        "description": "Secure your applications with Bouncer, providing robust authentication services to safeguard access.",
+        "links": [
+          "/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer",
+          "#authenticated-patterns",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---standard-web-pattern-on-behalf-of-user",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---azure-apim",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---client-credentials",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---on-behalf-of-user-api",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#diagram---aws-sts",
+          "#using-bouncer-with-entra-id-and-azure-apim",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_go_bouncer?tab=readme-ov-file#azure-ad-setup",
+          "#default-endpoints",
+          "#quick-reference",
+          "#get-_apps_systemsessionuser",
+          "#get-_apps_systemsessiongroups",
+          "#get-_apps_systemsessiontoken",
+          "#get-_apps_systemsessionprofile-photo",
+          "#post-_apps_systemsessionclear",
+          "#get-_apps_systemlookupuserupn",
+          "#get-_apps_systemlookupusersname_search",
+          "#get-_apps_systemlookupgroupname",
+          "#session-endpoints",
+          "#get-_apps_systemsessionuser",
+          "#get-_apps_systemsessiongroups",
+          "#get-_apps_systemsessiontoken",
+          "#get-_apps_systemsessionprofile-photo",
+          "#post-_apps_systemsessionclear",
+          "#lookup-endpoints",
+          "#get-_apps_systemlookupuserupn",
+          "#get-_apps_systemlookupusersname_search",
+          "#get-_apps_systemlookupgroupname",
+          "#usage-examples",
+          "#javascript-fetch-api",
+          "#python-requests",
+          "#curl",
+          "#bouncer-logs",
+          "#logs-location",
+          "https://elilillyco.stackenterprise.co/articles/481",
+          "#query-against-bouncer-logs",
+          "https://docs.aws.amazon.com/athena/latest/ug/getting-started.html",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Bouncer.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Crossplane": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Crossplane",
+        "description": "Automate the deployment of cloud resources across multiple providers with Crossplane, simplifying cloud-native application management.",
+        "links": [
+          "/",
+          "#crossplane--auto-resource-deployer",
+          "https://www.crossplane.io/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Crossplane.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Wave": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Wave : Auto Deployment Tool",
+        "description": "Enable auto deploy of app on secret change",
+        "links": [
+          "/",
+          "https://github.com/wave-k8s/wave",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Wave.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Kafka": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Kafka",
+        "description": "Apache Kafka is a powerful distributed streaming platform that facilitates high-throughput, fault-tolerant messaging systems. Deployed as a system service in a Kubernetes cluster, Kafka can significantly enhance data processing and integration capabilities, serving as the backbone for event-driven architectures. Within Kubernetes, Kafka can be used to reliably process and distribute a vast stream of data across various services and applications, ensuring real-time data flow and enabling microservices to communicate efficiently through publish-subscribe messaging patterns. This setup is particularly useful for building scalable, resilient applications that require real-time data processing, analytics, and monitoring in a distributed environment. By leveraging Kafka within Kubernetes, organizations can achieve more dynamic, loosely coupled architectures that can easily scale to meet demand.",
+        "links": [
+          "/",
+          "#overview",
+          "#kafka-configuration-in-kubernetes",
+          "#basic-kafka-configuration",
+          "#kafka-security",
+          "#example",
+          "#configmap-for-kafka-configuration",
+          "#statefulset-for-kafka-brokers",
+          "#service-for-kafka-broker-discovery",
+          "#summary",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Kafka.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/PGAdmin": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "PGAdmin",
+        "description": "pgAdmin is an open-source, web-based administration and development platform for PostgreSQL, the advanced open-source relational database system. It provides a graphical interface that allows database administrators and developers to interact with PostgreSQL databases through their browser. With pgAdmin, users can manage, maintain, and monitor PostgreSQL databases from anywhere, without the need for command-line tools.",
+        "links": [
+          "/",
+          "#option-1",
+          "http://pgadmin.apps.lrl.lilly.com/",
+          "#expectation",
+          "http://pgadmin.apps.lrl.lilly.com/",
+          "#get-ad-group-access-for-your-users",
+          "#configure-pgadminyml",
+          "#option-2",
+          "#replace-angle-brackets-and-variable-names-with-corresponding-values-in-the-template-below",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/blob/main/projects/dev/backstage-dev/pgadmin.yaml",
+          "#template",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/PGAdmin.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Reloader": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Reloader",
+        "description": "Reloader is a Kubernetes operator that automatically updates pods when changes are made to theirConfigMapsandSecrets. It watches for changes and performs rolling upgrades on dependent resources, automating the process of applying configuration changes. This ensures applications always run with the latest configurations without manual intervention.",
+        "links": [
+          "/",
+          "#overview",
+          "#reloader-configuration-in-kubernetes",
+          "#usage",
+          "#1-auto-reload-for-all-configmaps-and-secrets",
+          "#2-specific-configmap-or-secret-reload",
+          "#configuring-your-application-to-use-reloader",
+          "#using-configmaps-and-secrets-as-volumes",
+          "#using-configmaps-and-secrets-as-environment-variables",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Reloader.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/RestfulSDK": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Restful SDK",
+        "description": "The Light Client Library is a Python SDK that provides seamless authentication for CATS-hosted applications using Microsoft Authentication Library (MSAL) with support for multiple OAuth 2.0 flows. This library simplifies the authentication process by caching refresh tokens locally, reducing the need for frequent re-authentication to approximately every 30 days of inactivity. Access token refreshing is handled transparently, ensuring a smooth user experience for developers interacting with CATS services.",
+        "links": [
+          "/",
+          "#python",
+          "#light-client-library",
+          "#overview",
+          "#key-features",
+          "#getting-started",
+          "#prerequisites",
+          "#installation",
+          "#install-from-github",
+          "#install-from-hpc-artifactory",
+          "#basic-usage",
+          "#authentication-methods",
+          "#authorization-code-flow-default",
+          "#device-code-flow",
+          "#client-credentials-flow",
+          "#command-line-interface",
+          "#cli-usage",
+          "#authentication-method-examples",
+          "#token-debugging-features",
+          "#cli-examples",
+          "#list-available-s3-buckets",
+          "#list-available-s3-prefixes",
+          "#get-scoped-s3-credentials",
+          "#aws-integration",
+          "#s3-credential-provider-setup",
+          "#configure-aws-profile",
+          "#aws-authentication-for-cats-applications",
+          "#method-1-direct-aws-authentication",
+          "#method-2-environment-variable-configuration",
+          "https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html",
+          "#github-codespaces-support",
+          "#troubleshooting",
+          "#common-issues",
+          "#authentication-failures",
+          "#browser-not-opening-for-authorization-code-flow",
+          "#port-conflicts",
+          "#codespaces-issues",
+          "#token-expiration",
+          "#aws-integration-issues",
+          "#conditional-access-policy-errors",
+          "#debugging-token-issues",
+          "#related-documentation",
+          "/guide/ExternalIntegrations",
+          "/guide/AWSresourceOverview",
+          "#r",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "#installation-1",
+          "#on-lilly-network",
+          "#github",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/RestfulSDK.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/ClusterSelfServiceToolkit": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Cluster Self-Service Toolkit",
+        "description": "The Cluster Self-Service Toolkit is a powerful platform feature that provides application teams with a comprehensive set of pre-configured assets for securely managing resources external to their Kubernetes clusters. This toolkit is automatically deployed when a namespace withhybridcompute type (annotationapp.lrl.lilly.com/compute: hybrid) is created, enabling teams to interact with external resources without requiring direct access to those systems.",
+        "links": [
+          "/",
+          "#overview",
+          "#deploying-your-own-aws-cli-pod",
+          "#features-at-a-glance",
+          "#service-account",
+          "#iam-roles-and-policies",
+          "#working-with-external-secrets",
+          "#bouncer-logs-analysis-via-athena",
+          "#architecture--implementation",
+          "#security-boundaries",
+          "#automatically-provisioned-resources",
+          "#supporting-resources",
+          "https://github.com/EliLillyCo/docs/blob/main/platform-design-documentation/self_service_toolkit.md#architectural-design",
+          "#best-practices",
+          "/guide/ExternalSecrets",
+          "#toolkit-features",
+          "#service-account",
+          "#using-the-service-account",
+          "#example-using-aws-sdk-in-python",
+          "#example-using-aws-sdk-in-nodejs",
+          "#deploying-your-own-aws-cli-pod",
+          "#example-aws-cli-deployment",
+          "#accessing-the-aws-cli-pod",
+          "#managing-secrets-in-aws-secrets-manager",
+          "#iam-roles-and-policies",
+          "#default-permissions",
+          "/support/FeatureRequest",
+          "#working-with-external-secrets",
+          "#using-external-secrets",
+          "/guide/ExternalSecrets",
+          "#bouncer-logs-analysis-via-athena",
+          "#how-to-access-bouncer-log-analysis",
+          "/support/FeatureRequest",
+          "#example-athena-queries",
+          "#migration-guide",
+          "#deploying-your-own-aws-cli-pod",
+          "#future-extensions",
+          "/support/FeatureRequest",
+          "#troubleshooting",
+          "#common-issues",
+          "#aws-sdk-not-finding-credentials",
+          "#access-denied-errors",
+          "/support/FeatureRequest",
+          "#support",
+          "/support/TicketTemplate",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ClusterSelfServiceToolkit.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Emails": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Send Emails",
+        "description": "CATS has a built-in email server that allows sending email from<app-name>-no-reply@apps.lrl.lilly.com.",
+        "links": [
+          "/",
+          "#external-tags",
+          "https://lilly.service-now.com/ec?id=sc_cat_item&table=sc_cat_item&sys_id=0b3f2cb61b983990e5388511604bcb10",
+          "#send-from-custom-url",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Emails.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/SmarterDeviceManager": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Smarter Device Manager",
+        "description": "Smarter Device Manager runs as aDaemonSetwithin the cluster, exposing hardware devices (linux device drivers) to your pods. It uses aConfigMapto define the devices it should manage and then allows pods to request these devices. To learn more about Smarter Device Manager, please refer to thisrepositoryorarticle. Here's how to set it up for Filesystem in Userspace (FUSE) as an example.",
+        "links": [
+          "/",
+          "#overview",
+          "https://github.com/smarter-project/smarter-device-manager",
+          "https://community.arm.com/arm-research/b/articles/posts/a-smarter-device-manager-for-kubernetes-on-the-edge",
+          "#usage",
+          "#configuring-devices-with-a-configmap",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/blob/6a7dac8855c282d844dbb9b94b50b601e629d467/aws/lib/stacks/k8s/smarter-device-manager.ts#L16",
+          "#requesting-devices-in-a-pod-deployment",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/SmarterDeviceManager.md"
+        ]
+      }
+    }
+  ],
+  "https://cats.lilly.com/guide/Temporal": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Temporal",
+        "description": "Temporalprovides a way for applications to durably run background jobs including:",
+        "links": [
+          "/",
+          "http://temporal.dev.cats.lilly.com",
+          "http://temporal.qa.cats.lilly.com",
+          "http://temporal.cats.lilly.com",
+          "#overview",
+          "https://temporal.io/",
+          "#architecture",
+          "#alternatives",
+          "#support",
+          "https://spe.lilly.com/support",
+          "#support-scope",
+          "#incidents",
+          "https://spe.lilly.com/support",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Temporal.md"
+        ]
+      }
+    }
+  ]
+}

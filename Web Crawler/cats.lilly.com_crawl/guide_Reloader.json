@@ -1,0 +1,42 @@
+{
+  "url": "https://cats.lilly.com/guide/Reloader",
+  "title": "Reloader | CATS",
+  "description": "Overview",
+  "h1": [
+    "Reloader"
+  ],
+  "h2": [
+    "Overview​",
+    "Reloader Configuration in Kubernetes​"
+  ],
+  "h3": [
+    "Usage​",
+    "Configuring Your Application to Use Reloader​"
+  ],
+  "text_content": "Reloader | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nOverview\nArgo\nBackstage\nBouncer\nCrossplane\nFlux\nWave\nKafka\nKarpenter\nPGadmin\nReloader\nRestful SDK\nSelf Service Toolkit\nSend Emails\nSmarter Device Manager\nTemporal\nArchitecture\nSupport\nAdmin\nSystem Services\nReloader\nOn this page\nReloader\nOverview\n​\nReloader is a Kubernetes operator that automatically updates pods when changes are made to their\nConfigMaps\nand\nSecrets\n. It watches for changes and performs rolling upgrades on dependent resources, automating the process of applying configuration changes. This ensures applications always run with the latest configurations without manual intervention.\nReloader Configuration in Kubernetes\n​\nUsage\n​\nReloader supports several annotations to control its behavior, focusing on automatic reloading for all\nConfigMaps\nand\nSecrets\nor specific ones.\n1. Auto Reload for All ConfigMaps and Secrets\n​\nTo automatically reload a\nDeployment\n,\nStatefulSet\n, or\nDaemonSet\nwhen any\nConfigMap\nor\nSecret\nit depends on is updated, use:\nreloader.stakater.com/auto\n:\n\"true\"\nExample:\napiVersion\n:\napps/v1\nkind\n:\nDeployment\nmetadata\n:\nname\n:\nmy\n-\napplication\nannotations\n:\nreloader.stakater.com/auto\n:\n\"true\"\nspec\n:\n...\n2. Specific ConfigMap or Secret Reload\n​\nFor reloading only when specific\nConfigMaps\nor\nSecrets\nare updated:\nFor a specific ConfigMap:\nconfigmap.reloader.stakater.com/reload\n:\n\"my-configmap-name\"\nFor a specific Secret:\nsecret.reloader.stakater.com/reload\n:\n\"my-secret-name\"\nExample:\napiVersion\n:\napps/v1\nkind\n:\nDeployment\nmetadata\n:\nname\n:\nmy\n-\nspecific\n-\napp\nannotations\n:\nconfigmap.reloader.stakater.com/reload\n:\n\"my-configmap-name\"\nsecret.reloader.stakater.com/reload\n:\n\"my-secret-name\"\nspec\n:\n...\nConfiguring Your Application to Use Reloader\n​\nApplications should consume configurations from\nConfigMaps\nor\nSecrets\n, either mounted as volumes or exposed as environment variables.\nUsing ConfigMaps and Secrets as Volumes:\n​\nMount a ConfigMap as a volume:\napiVersion\n:\napps/v1\nkind\n:\nDeployment\nmetadata\n:\nname\n:\nmy\n-\napp\n-\nusing\n-\nvolume\nannotations\n:\nreloader.stakater.com/auto\n:\n\"true\"\nspec\n:\ntemplate\n:\nspec\n:\ncontainers\n:\n-\nname\n:\nmy\n-\napp\nimage\n:\nmy\n-\napp\n-\nimage\nvolumeMounts\n:\n-\nname\n:\nconfig\n-\nvolume\nmountPath\n:\n/etc/config\nvolumes\n:\n-\nname\n:\nconfig\n-\nvolume\nconfigMap\n:\nname\n:\nmy\n-\nconfigmap\n-\nname\nUsing ConfigMaps and Secrets as Environment Variables:\n​\nExpose ConfigMap or Secret data as environment variables\n:\napiVersion\n:\napps/v1\nkind\n:\nDeployment\nmetadata\n:\nname\n:\nmy\n-\napp\n-\nusing\n-\nenv\nannotations\n:\nreloader.stakater.com/auto\n:\n\"true\"\nspec\n:\ntemplate\n:\nspec\n:\ncontainers\n:\n-\nname\n:\nmy\n-\napp\nimage\n:\nmy\n-\napp\n-\nimage\nenvFrom\n:\n-\nconfigMapRef\n:\nname\n:\nmy\n-\nconfigmap\n-\nname\n-\nsecretRef\n:\nname\n:\nmy\n-\nsecret\n-\nname\nEdit this page\nPrevious\nPGadmin\nNext\nRestful SDK\nOverview\nReloader Configuration in Kubernetes\nUsage\nConfiguring Your Application to Use Reloader\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:09:22.768758",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Reloader",
+        "description": "Reloader is a Kubernetes operator that automatically updates pods when changes are made to theirConfigMapsandSecrets. It watches for changes and performs rolling upgrades on dependent resources, automating the process of applying configuration changes. This ensures applications always run with the latest configurations without manual intervention.",
+        "links": [
+          "/",
+          "#overview",
+          "#reloader-configuration-in-kubernetes",
+          "#usage",
+          "#1-auto-reload-for-all-configmaps-and-secrets",
+          "#2-specific-configmap-or-secret-reload",
+          "#configuring-your-application-to-use-reloader",
+          "#using-configmaps-and-secrets-as-volumes",
+          "#using-configmaps-and-secrets-as-environment-variables",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Reloader.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

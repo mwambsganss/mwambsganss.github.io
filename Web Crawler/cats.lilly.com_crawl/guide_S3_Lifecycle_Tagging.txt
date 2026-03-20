@@ -1,0 +1,341 @@
+Title: S3 Lifecycle Management with Object Tagging | CATS
+URL: https://cats.lilly.com/guide/S3_Lifecycle_Tagging
+Description: Overview
+
+S3 Lifecycle Management with Object Tagging | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Overview
+Namespace
+Deployment
+Service
+Ingress
+Ingress Patterns
+Compute and Workload Scheduling
+Scaling
+Storage
+CronJob
+Jobs
+Rate Limit
+External Secrets
+HelmRelease
+External Integrations
+Graph User Info
+Makefile
+Velero Backups
+RDS Database Restore
+Namespace Decommission
+S3 Lifecycle Tagging
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+K8s Configuration
+S3 Lifecycle Tagging
+On this page
+S3 Lifecycle Management with Object Tagging
+Overview
+​
+Our S3 buckets are configured with automatic lifecycle rules that manage object expiration and storage transitions based on object tags. This system helps control storage costs and ensures temporary files are cleaned up automatically.
+How the Lifecycle Rules Were Created
+​
+The S3 lifecycle rules are deployed using AWS Controllers for Kubernetes (ACK) through our infrastructure-as-code setup. The rules are defined in
+LRL_light_k8s_infra/aws/lib/services/ack_s3_bucket_with_lifecycle.ts
+and deployed via the EKS cluster configuration in
+eks-cluster.ts
+.
+Infrastructure Components
+​
+Rule Definition
+: The
+getStandardLifecycleRules()
+function in
+ack_s3_bucket_with_lifecycle.ts
+defines all lifecycle rules as hardcoded configurations
+Deployment
+: Rules are deployed as ACK S3 Bucket resources in the
+kube-system
+namespace with names like
+ack-s3-lifecycle-{env}-{index}
+Management
+: The system uses bucket adoption to manage existing S3 buckets without recreating them
+Adding New Lifecycle Rules
+​
+To add a new expiration rule:
+Update the rule definition
+in
+ack_s3_bucket_with_lifecycle.ts
+:
+{
+id
+:
+"expire-in-days-60"
+,
+status
+:
+"Enabled"
+,
+filter
+:
+{
+tag
+:
+{
+key
+:
+"hangar.lilly.com/ExpireInDays"
+,
+value
+:
+"60"
+,
+}
+,
+}
+,
+expiration
+:
+{
+days
+:
+60
+,
+}
+,
+}
+Deploy the changes
+through the normal CDK deployment process - the ACK controller will update the bucket lifecycle configuration
+Update this documentation
+to include the new tag value in the available rules table
+warning
+Lifecycle rule changes affect all objects in the bucket. Test new rules in sandbox environment first.
+How It Works
+​
+The lifecycle management system applies rules to objects based on their tags. When you upload files to S3, you can tag them to specify how long they should be retained before automatic deletion.
+Available Lifecycle Rules
+​
+Automatic Expiration Tags
+​
+Use the
+hangar.lilly.com/ExpireInDays
+tag to set automatic deletion:
+Tag Value
+Retention Period
+Use Case
+1
+1 day
+Temporary files, debug logs
+7
+7 days
+Short-term artifacts, test data
+30
+30 days
+Build artifacts, temporary backups
+Default Behavior (No Tags)
+​
+Objects without expiration tags will:
+Move to Intelligent Tiering immediately (cost optimization)
+Keep old versions for 35 days before deletion
+Never expire automatically
+Tagging Examples
+​
+AWS CLI
+​
+# Upload with 7-day expiration
+aws s3 cp myfile.txt s3://lly-light-dev/myfile.txt \
+--tagging "hangar.lilly.com/ExpireInDays=7"
+# Add tags to existing object
+aws s3api put-object-tagging \
+--bucket lly-light-dev \
+--key myfile.txt \
+--tagging 'TagSet=[{Key=hangar.lilly.com/ExpireInDays,Value=30}]'
+Boto3 (Python)
+​
+import
+boto3
+s3
+=
+boto3
+.
+client
+(
+'s3'
+)
+# Upload with tags
+s3
+.
+put_object
+(
+Bucket
+=
+'lly-light-dev'
+,
+Key
+=
+'myfile.txt'
+,
+Body
+=
+b'file content'
+,
+Tagging
+=
+'hangar.lilly.com/ExpireInDays=7'
+)
+# Add tags to existing object
+s3
+.
+put_object_tagging
+(
+Bucket
+=
+'lly-light-dev'
+,
+Key
+=
+'myfile.txt'
+,
+Tagging
+=
+{
+'TagSet'
+:
+[
+{
+'Key'
+:
+'hangar.lilly.com/ExpireInDays'
+,
+'Value'
+:
+'30'
+}
+]
+}
+)
+Best Practices
+​
+Choose the Right Retention Period
+​
+1 day
+: Debug logs, temporary processing files
+7 days
+: CI/CD artifacts, test outputs
+30 days
+: Build artifacts, temporary backups
+No tag
+: Permanent files, application data
+Tag Consistently
+​
+Always use the full tag key:
+hangar.lilly.com/ExpireInDays
+Use only the supported values:
+1
+,
+7
+, or
+30
+Tag objects at upload time when possible
+Monitor Your Usage
+​
+Review S3 storage metrics regularly
+Check for objects that should be tagged but aren't
+Verify lifecycle rules are working as expected
+Common Gotchas
+​
+Case sensitivity
+: Tag keys and values are case-sensitive
+Timing
+: Lifecycle rules run daily, not immediately
+Versioning
+: Old versions follow separate retention rules (35 days)
+Partial matches
+: Only exact tag values trigger rules
+Troubleshooting
+​
+Objects Not Expiring
+​
+Check the tag key is exactly
+hangar.lilly.com/ExpireInDays
+Verify the tag value is
+1
+,
+7
+, or
+30
+Remember lifecycle rules run once daily
+Check object creation date vs. expected expiration
+Unexpected Deletions
+​
+Review object tags before upload
+Check if objects were tagged accidentally
+Verify lifecycle rule configuration in AWS console
+note
+This lifecycle management only applies to the Light platform buckets. Objects in other S3 buckets may have different lifecycle policies or no automatic cleanup.
+Edit this page
+Previous
+Namespace Decommission
+Next
+Overview
+Overview
+How the Lifecycle Rules Were Created
+Infrastructure Components
+Adding New Lifecycle Rules
+How It Works
+Available Lifecycle Rules
+Automatic Expiration Tags
+Default Behavior (No Tags)
+Tagging Examples
+AWS CLI
+Boto3 (Python)
+Best Practices
+Choose the Right Retention Period
+Tag Consistently
+Monitor Your Usage
+Common Gotchas
+Troubleshooting
+Objects Not Expiring
+Unexpected Deletions
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: S3 Lifecycle Management with Object Tagging
+Description: Our S3 buckets are configured with automatic lifecycle rules that manage object expiration and storage transitions based on object tags. This system helps control storage costs and ensures temporary files are cleaned up automatically.
+Links: /, #overview, #how-the-lifecycle-rules-were-created, #infrastructure-components, #adding-new-lifecycle-rules, #how-it-works, #available-lifecycle-rules, #automatic-expiration-tags, #default-behavior-no-tags, #tagging-examples, #aws-cli, #boto3-python, #best-practices, #choose-the-right-retention-period, #tag-consistently, #monitor-your-usage, #common-gotchas, #troubleshooting, #objects-not-expiring, #unexpected-deletions, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/S3_Lifecycle_Tagging.md

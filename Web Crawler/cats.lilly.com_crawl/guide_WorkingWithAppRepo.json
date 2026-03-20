@@ -1,0 +1,50 @@
+{
+  "url": "https://cats.lilly.com/guide/WorkingWithAppRepo",
+  "title": "Working with the Deployment Repositories | CATS",
+  "description": "Here are some of the basic guidelines for how application teams should work with the Apps Deployment Repos to get their solutions deployed. This section includes details around where you should put your files and who will need to approve those files.",
+  "h1": [
+    "Working with the Deployment Repositories"
+  ],
+  "h2": [
+    "Set Up Project Workspace​",
+    "Merging to Main​",
+    "Using Codespaces​",
+    "Merge Queue Process​"
+  ],
+  "h3": [
+    "Protected Branch Naming Convention​",
+    "Best Practices for Pull Requests​"
+  ],
+  "text_content": "Working with the Deployment Repositories | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nPrerequisites\nGet Access\nDeployment Overview\nWorking With the Repo\nContainerization and Dockerfiles\nCODEOWNERS\nDeploying SaaS Solution\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nJump Start\nWorking With the Repo\nOn this page\nWorking with the Deployment Repositories\nHere are some of the basic guidelines for how application teams should work with the Apps Deployment Repos to get their solutions deployed. This section includes details around where you should put your files and who will need to approve those files.\nRemember there are three different Apps Deployment Repositories that correspond with three different Kubernetes Clusters and AWS Accounts!\nDifferent Cluster Details:\nCluster\nApp Deployment Repo\nAWS Account Name\nAWS Account ID\nVPCE Access\nProduction Cluster\ninfra_apps\nprod-igw-dx-researchit-light\n283234040926\nvpce-03bee17f69c9802b9\nQA Cluster\ninfra_apps_qa\nqa-igw-dx-researchit-light\n474366589702\nvpce-058757a9c034d181c\nDevelopment Cluster\ninfra_apps_test\ndev-igw-dx-researchit-light\n408787358807\nvpce-069388414a9f87f40\nSandbox Cluster\ninfra_apps_sbx\ndev-igw-dx-lrl-researchit-light-sbx\n891377229906\nvpce-069388414a9f87f40\nSet Up Project Workspace\n​\nRegardless of which environment you are working in you should see a /projects folder. Within this folder you will see a breakdown of /dev, /qa, and /prd. These folders handle applications that are segregated by their namespaces.\nTo set up a dev workspace in the Production Cluster's app deployment  repo navigate to\n/projects/dev\nand create a new folder.\nName the new folder\n<project-name>-dev\n. This is the location where you will do all of your development work.\nWhen you are ready to move on to QA you will create a new folder in the\n/projects/qa\nfolder named\n<project-name>-qa\n.\nWhen you are ready to move to production you will create a new folder in the\n/projects/prd\nfolder named\n<project-name>-prd\nNote\n: The name that you give your folder MUST match the name that you use as your namespace within the folder.\nMerging to Main\n​\nThe changes on your branch will not go live in the cluster until you have merged them to the\nmain\nbranch. In order to merge you changes into this branch you will need to raise a Pull Request. Pull Requests are required as we have validation that will run on your changes and protect you from merging in code that will result in a failed build. If your build fails you should go into the GitHub actions file and see what went wrong. There will be a message that will point you in the right direction and provide some details on how to fix your error.\nIf you are creating a new namespace or making changes to an existing namespace the\nlrl_light_infra_approvers\ngroup will need to approve your pull request. This group is made up of individuals on the CATS Platform team. Approvals from the group are not needed for any other files other than on namespace.yaml files. Pull request reviews are handled asynchronously and are monitored throughout the week. Please do not contact developers directly unless you have a validated Pull Request that has not been reviewed for 1 business day. The CATS team is transitioning this review process to our operations and support teams and this process is subject to change.\nWe highly suggest you update the CODEOWNERS file so that you can control the groups that are automatically selected and required for approvals on your namespace's files. Further details on the CODEOWNERS file can be found\nhere\n.\nNote: there are many people working in this repository on a daily basis so you need to update your base branch in order to get your changes to merge in.\nWatch your PR until it merges!\nUsing Codespaces\n​\nCATS makes it simple to use codespaces with the same docker images you use in CATS.\nYou will see three new environment variables in codespaces created from github repos onboarded to CATS as described in the readme:\nLIGHT_DOCKER_REPOSITORY_URL\nLIGHT_DOCKER_TOKEN\nLIGHT_DOCKER_USER\nYou can use these to login to docker with:\necho $LIGHT_DOCKER_TOKEN | docker login -u $LIGHT_DOCKER_USER $LIGHT_DOCKER_REPOSITORY_URL --password-stdin\nOnce logged in, you will have read only (pull) permissions on any CATS docker images.\nIf you want to auto login, you can add the following file to your github repo\n.devcontainer/devcontainer.json\n:\n{\n\"postCreateCommand\"\n:\n\"echo $LIGHT_DOCKER_TOKEN | docker login -u $LIGHT_DOCKER_USER $LIGHT_DOCKER_REPOSITORY_URL --password-stdin\"\n,\n}\nMerge Queue Process\n​\nThis repository uses GitHub's merge queues to manage pull request merges, which ensures:\nChanges are integrated in a fair, sequential manner\nAutomated validation runs on each change before merging\nConflicts are reduced by handling one merge at a time\nProtected Branch Naming Convention\n​\nWe maintain protected branches with the naming convention:\nautomation/<namespace-name>\nThese branches have special automation that handles auto-committed image updates from the Flux controllers. These updates manage image tag changes and are added to the merge queue to maintain fairness in processing.\nBest Practices for Pull Requests\n​\nCreate a new branch for your changes\nMake your changes and submit a pull request\nOnce approved, your PR will be added to the merge queue\nWait for the automated processes to complete before your changes are merged\nFor image updates, use the appropriate automation branch\nEdit this page\nPrevious\nDeployment Overview\nNext\nContainerization and Dockerfiles\nSet Up Project Workspace\nMerging to Main\nUsing Codespaces\nMerge Queue Process\nProtected Branch Naming Convention\nBest Practices for Pull Requests\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 3,
+  "crawled_at": "2026-03-20T14:59:56.312903",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Working with the Deployment Repositories",
+        "description": "Here are some of the basic guidelines for how application teams should work with the Apps Deployment Repos to get their solutions deployed. This section includes details around where you should put your files and who will need to approve those files.",
+        "links": [
+          "/",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_test",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_sbx",
+          "#set-up-project-workspace",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/tree/main/projects/dev",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/tree/main/projects/qa",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps/tree/main/projects/prd",
+          "#merging-to-main",
+          "/guide/Codeowners",
+          "#using-codespaces",
+          "#merge-queue-process",
+          "#protected-branch-naming-convention",
+          "#best-practices-for-pull-requests",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/WorkingWithAppRepo.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

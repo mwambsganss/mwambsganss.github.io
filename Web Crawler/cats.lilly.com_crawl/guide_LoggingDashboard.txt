@@ -1,0 +1,84 @@
+Title: Logging Dashboards | CATS
+URL: https://cats.lilly.com/guide/LoggingDashboard
+Description: This page has been deprecated. Please use Grafana with the Loki data source for the preferred logging solution on CATS.
+
+Logging Dashboards | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Overview
+Argo Deployment Dashboard
+Metrics Dashboard
+Ingress Dashboard
+Opencost Dashboard
+Kubecost Dashboard (Deprecated)
+Kubernetes Dashboard (Deprecated)
+Logging Dashboard (Deprecated)
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+Dashboard Offerings
+Logging Dashboard (Deprecated)
+On this page
+Logging Dashboards
+warning
+This page has been deprecated. Please use
+Grafana
+with the
+Loki
+data source for the preferred logging solution on CATS.
+Loki Dashboard
+​
+CATS uses Loki as the primary log aggregation system, which provides a modern and efficient log management solution optimized for Kubernetes environments. Loki takes a lightweight approach by indexing only metadata, such as labels, making it more cost-effective and scalable, especially for teams dealing with high volumes of logs.
+As there is no standalone user interface for Loki, the only way to query Loki for logs is through Grafana. Please see the
+Grafana
+documentation for utilizing the tool.
+Edit this page
+Previous
+Kubernetes Dashboard (Deprecated)
+Next
+Overview
+Loki Dashboard
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Logging Dashboards
+Description: This page has been deprecated. Please useGrafanawith theLokidata source for the preferred logging solution on CATS.
+Links: /, /guide/Grafana, /guide/Loki, #loki-dashboard, /guide/Grafana, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/LoggingDashboard.md

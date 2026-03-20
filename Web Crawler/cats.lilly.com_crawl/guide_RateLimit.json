@@ -1,0 +1,38 @@
+{
+  "url": "https://cats.lilly.com/guide/RateLimit",
+  "title": "Rate Limit | CATS",
+  "description": "To Control the Number of Requests Going to a Service",
+  "h1": [
+    "Rate Limit"
+  ],
+  "h2": [
+    "Configuration Template​",
+    "Configuration Options​",
+    "Advanced Rate Limit Configs​",
+    "Attach Rate Limit Middleware to Ingress​"
+  ],
+  "h3": [],
+  "text_content": "Rate Limit | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nOverview\nNamespace\nDeployment\nService\nIngress\nIngress Patterns\nCompute and Workload Scheduling\nScaling\nStorage\nCronJob\nJobs\nRate Limit\nExternal Secrets\nHelmRelease\nExternal Integrations\nGraph User Info\nMakefile\nVelero Backups\nRDS Database Restore\nNamespace Decommission\nS3 Lifecycle Tagging\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nK8s Configuration\nRate Limit\nOn this page\nRate Limit\nTo Control the Number of Requests Going to a Service\nThe RateLimit middleware ensures that services will receive a fair amount of requests, and allows one to define what fair is.\nIt is based on a token bucket implementation. In this analogy, the average parameter (defined below) is the rate at which the bucket refills, and the burst is the size (volume) of the bucket.\nConfiguration Template\n​\n# Here, an average of 100 requests per second is allowed.\n# In addition, a burst of 200 requests is allowed.\napiVersion\n:\ntraefik.io/v1alpha1\nkind\n:\nMiddleware\nmetadata\n:\nname\n:\nratelimit\n-\nmiddleware\n-\nname\nnamespace\n:\nyour\n-\nnamespace\n-\nname\nspec\n:\nrateLimit\n:\naverage\n:\n100\nburst\n:\n200\nConfiguration Options\n​\nAverage\naverage\nis the maximum rate, by default in requests per second, allowed from a given source.\nIt defaults to 0, which means no rate limiting.\nThe rate is actually defined by dividing average by period. So for a rate below 1 req/s, one needs to define a period larger than a second.\n# 100 reqs/s\napiVersion\n:\ntraefik.io/v1alpha1\nkind\n:\nMiddleware\nmetadata\n:\nname\n:\nratelimit\n-\nmiddleware\n-\nname\nnamespace\n:\nyour\n-\nnamespace\n-\nname\nspec\n:\nrateLimit\n:\naverage\n:\n100\nPeriod\nperiod\n, in combination with\naverage\n, defines the actual maximum rate, such as:\nr = average / period\n# 6 reqs/minute\napiVersion\n:\ntraefik.io/v1alpha1\nkind\n:\nMiddleware\nmetadata\n:\nname\n:\nratelimit\n-\nmiddleware\n-\nname\nnamespace\n:\nyour\n-\nnamespace\n-\nname\nspec\n:\nrateLimit\n:\nperiod\n:\n1m\naverage\n:\n6\nBurst\nburst\nis the maximum number of requests allowed to go through in the same arbitrarily small period of time.\nIt defaults to\n1\n.\napiVersion\n:\ntraefik.io/v1alpha1\nkind\n:\nMiddleware\nmetadata\n:\nname\n:\nratelimit\n-\nmiddleware\n-\nname\nnamespace\n:\nyour\n-\nnamespace\n-\nname\nspec\n:\nrateLimit\n:\nburst\n:\n100\nAdvanced Rate Limit Configs\n​\nFor more advanced rate limit configuration options please navigate to the full documentation here:\nhttps://doc.traefik.io/traefik/middlewares/http/ratelimit/\nAttach Rate Limit Middleware to Ingress\n​\nAttach your new rate limit middleware resource to your ingress via the following annotation. Be sure to update the name of your middleware to match the name defined in your middleware resource created in step 1.\nannotations\n:\ntraefik.ingress.kubernetes.io/router.middlewares\n:\nratelimit\n-\nmiddleware\n-\nname\nEdit this page\nPrevious\nJobs\nNext\nExternal Secrets\nConfiguration Template\nConfiguration Options\nAdvanced Rate Limit Configs\nAttach Rate Limit Middleware to Ingress\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:05:44.658279",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Rate Limit",
+        "description": "To Control the Number of Requests Going to a Service",
+        "links": [
+          "/",
+          "#configuration-template",
+          "#configuration-options",
+          "#advanced-rate-limit-configs",
+          "https://doc.traefik.io/traefik/middlewares/http/ratelimit/",
+          "#attach-rate-limit-middleware-to-ingress",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/RateLimit.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

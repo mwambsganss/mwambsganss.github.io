@@ -1,0 +1,44 @@
+{
+  "url": "https://cats.lilly.com/guide/Jaeger",
+  "title": "Jaeger | CATS",
+  "description": "Jaeger is an open-source, end-to-end distributed tracing system that helps monitor and troubleshoot transactions in microservices-based architectures. It was originally developed by Uber and is a part of the Cloud Native Computing Foundation (CNCF). Jaeger is used for tracking requests as they travel through different services in a distributed system, providing visibility into the system's performance and helping identify bottlenecks, latencies, or errors.",
+  "h1": [
+    "Jaeger"
+  ],
+  "h2": [
+    "Using Jaeger with CATS​"
+  ],
+  "h3": [
+    "1. Select a Service​",
+    "2. Filter by Tags and Duration​",
+    "3. Query for Traces​",
+    "4. View Client Request​",
+    "5. View Forward Request​",
+    "6. Compare Two Traces​"
+  ],
+  "text_content": "Jaeger | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nDashboard Offerings\nUsing AWS Services\nObservability\nOverview\nInstrumentation\nGrafana\nJaeger\nLoki\nOpencost\nPrometheus\nSystem Services\nArchitecture\nSupport\nAdmin\nObservability\nJaeger\nOn this page\nJaeger\nJaeger is an open-source, end-to-end distributed tracing system that helps monitor and troubleshoot transactions in microservices-based architectures. It was originally developed by Uber and is a part of the Cloud Native Computing Foundation (CNCF). Jaeger is used for tracking requests as they travel through different services in a distributed system, providing visibility into the system's performance and helping identify bottlenecks, latencies, or errors.\nKey features of Jaeger include:\nDistributed Context Propagation: Follows requests as they traverse different services.\nPerformance Monitoring: Tracks response times, latency, and the duration of individual operations.\nRoot Cause Analysis: Helps identify which component of the system is causing performance issues.\nService Dependency Analysis: Visualizes the flow and dependencies between services.\nError Detection: Identifies failed or problematic operations across the services.\nUsing Jaeger with CATS\n​\nThis guide will walk you through using Jaeger to trace and analyze your application's performance. We will cover selecting a service, filtering by tags and duration, querying for traces, viewing client and forward requests, and comparing two traces.\n1. Select a Service\n​\nStart by selecting the service you want to trace from the Jaeger UI. This will correspond to the type of ingress you have for your application.\n2. Filter by Tags and Duration\n​\nUse the filter options to narrow down the traces by specific tags and duration of said traces.\n3. Query for Traces\n​\nExecute the query to retrieve the traces that match your criteria.\n4. View Client Request\n​\nSelect a trace to view the client request details.\n5. View Forward Request\n​\nFollow the trace to view the forward request details.\n6. Compare Two Traces\n​\nSelect two traces for comparison to analyze differences in performance and behavior.\nEdit this page\nPrevious\nGrafana\nNext\nLoki\nUsing Jaeger with CATS\n1. Select a Service\n2. Filter by Tags and Duration\n3. Query for Traces\n4. View Client Request\n5. View Forward Request\n6. Compare Two Traces\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:07:34.335149",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Jaeger",
+        "description": "Jaeger is an open-source, end-to-end distributed tracing system that helps monitor and troubleshoot transactions in microservices-based architectures. It was originally developed by Uber and is a part of the Cloud Native Computing Foundation (CNCF). Jaeger is used for tracking requests as they travel through different services in a distributed system, providing visibility into the system's performance and helping identify bottlenecks, latencies, or errors.",
+        "links": [
+          "/",
+          "#using-jaeger-with-cats",
+          "#1-select-a-service",
+          "#2-filter-by-tags-and-duration",
+          "#3-query-for-traces",
+          "#4-view-client-request",
+          "#5-view-forward-request",
+          "#6-compare-two-traces",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Jaeger.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

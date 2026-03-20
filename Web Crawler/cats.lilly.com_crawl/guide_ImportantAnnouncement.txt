@@ -1,0 +1,145 @@
+Title: 🚨 Important Announcement: IAM Policy Update Affecting App Authentication | CATS
+URL: https://cats.lilly.com/guide/ImportantAnnouncement
+Description: Date Posted: June 13, 2025
+
+🚨 Important Announcement: IAM Policy Update Affecting App Authentication | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Important Announcement
+Release Notes 2025
+Release Notes 2024
+SLA Reports
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Architecture
+Support
+Admin
+News
+Important Announcement
+On this page
+🚨 Important Announcement: IAM Policy Update Affecting App Authentication
+Date Posted:
+June 13, 2025
+Status:
+Active Issue - Bypass Available
+Impact:
+All application teams using device code flow authentication
+Overview
+​
+A recent conditional IAM policy change is currently
+blocking all authentication to app registration via device code flow as well as all connections to users outside of the Lilly network
+.
+While we are working towards implementing a global resolution to this issue, immediate bypass steps are available below.
+🔧 Immediate Action Required
+​
+To ensure your applications continue functioning properly, please have your team members follow this process to bypass the CA policy:
+Bypass Steps
+​
+Go to the
+Microsoft MyAccess Portal
+Navigate to
+Access Packages
+Navigate to the
+Active
+tab
+Open the access package:
+Island Browser Policy Opt-Out
+Click
+Continue
+Provide an explanation in the
+"What problem(s) did you face with using Island?"
+field
+Leave
+"Request for a specific period"
+set to
+"No"
+The
+business justification
+field can be left blank
+Press the
+Submit request
+button
+📊 Impact Summary
+​
+Affected Systems
+​
+All applications using device code flow authentication
+Applications requiring external user connections
+Any app registration processes
+Expected Resolution
+​
+We are actively working on a platform-wide solution to resolve this authentication issue permanently. This bypass process is a temporary measure to keep your applications operational while we implement the global fix.
+🆘 Need Help?
+​
+If you encounter issues with the bypass process or need additional support:
+(Lilly Flow)
+CATS Club
+(Lilly Flow)
+Ask a Question
+(Jira)
+Project Board
+(Jira)
+Make a Triage Request
+(SNOW)
+Report an Issue
+CATS Docs
+Last Updated:
+June 13, 2025
+Next Update:
+We will provide updates as we progress toward the permanent solution
+CATS Platform Team
+🐈
+Edit this page
+Previous
+CATSbot Virtual Assistant
+Next
+Release Notes 2025
+Overview
+🔧 Immediate Action Required
+Bypass Steps
+📊 Impact Summary
+Affected Systems
+Expected Resolution
+🆘 Need Help?
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: 🚨 Important Announcement: IAM Policy Update Affecting App Authentication
+Description: Date Posted:June 13, 2025Status:Active Issue - Bypass AvailableImpact:All application teams using device code flow authentication
+Links: /, #overview, #-immediate-action-required, #bypass-steps, #-impact-summary, #affected-systems, #expected-resolution, #-need-help, https://cats-club-link, https://ask-question-link, https://jira-board-link, https://triage-request-link, https://snow-issue-link, https://cats-docs-link, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/ImportantAnnouncement.md

@@ -1,0 +1,39 @@
+{
+  "url": "https://cats.lilly.com/guide/Scaling",
+  "title": "Scaling | CATS",
+  "description": "The documentation here is about Horizontal Scaling (scaling the number of pod replicas related to a specific deployment or stateful set).",
+  "h1": [
+    "Scaling"
+  ],
+  "h2": [
+    "HorizontalPodScaler​",
+    "Add separate node groups​"
+  ],
+  "h3": [
+    "Examples​"
+  ],
+  "text_content": "Scaling | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nOverview\nNamespace\nDeployment\nService\nIngress\nIngress Patterns\nCompute and Workload Scheduling\nScaling\nStorage\nCronJob\nJobs\nRate Limit\nExternal Secrets\nHelmRelease\nExternal Integrations\nGraph User Info\nMakefile\nVelero Backups\nRDS Database Restore\nNamespace Decommission\nS3 Lifecycle Tagging\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nK8s Configuration\nScaling\nOn this page\nScaling\nThe documentation here is about Horizontal Scaling (scaling the number of pod replicas related to a specific deployment or stateful set).\nHorizontalPodScaler\n​\nThis autoscaler scales out your application when average CPU usage if more than 50% of the CPU requests, and scale in when CPU usage is below.\n\"The HorizontalPodAutoscaler controller operates on the ratio between desired metric value and current metric value\", see\nthe scaling algorithm\nfor more details.\napiVersion\n:\nautoscaling/v2\nkind\n:\nHorizontalPodAutoscaler\nmetadata\n:\nname\n:\nyour\n-\napp\nnamespace\n:\nyour\n-\napp\n-\nnamespace\n-\ndev\nspec\n:\nscaleTargetRef\n:\napiVersion\n:\napps/v1\nkind\n:\nDeployment\nname\n:\nyour\n-\napp\nminReplicas\n:\n2\nmaxReplicas\n:\n6\nmetrics\n:\n-\ntype\n:\nResource\nresource\n:\nname\n:\ncpu\ntarget\n:\ntype\n:\nUtilization\naverageUtilization\n:\n50\nA walkthrough of HorizontalPodAutoscaler is available here:\nhttps://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/\nAdd separate node groups\n​\nApplications might have special compute need (usage of SPOT instances, GPU, or specific EC2 instance types), those can be added as customized node groups here:\nhttps://github.com/EliLillyCo/LRL_light_k8s_infra/blob/1fb8f68fc19bea5e182a50842e77f6ed05c7dd61/aws/lib/stacks/eks-nodegroups.ts#L281-L302\nNote: Work with the CATS Platform team to get these changes included in the infra stack.\nExamples\n​\nA node group of dedicated instances (maximum of 5 c6i.xlarge2 on-demand instances):\naddASG\n(\nthis\n,\n\"dev\"\n,\n{\ninstanceType\n:\nec2\n.\nInstanceType\n.\nof\n(\nec2\n.\nInstanceClass\n.\nC6I\n,\nec2\n.\nInstanceSize\n.\nXLARGE2\n)\n}\n,\n{\navailable\n:\n0\n,\nrootVolSize\n:\n50\n}\n,\n{\n\"app\"\n:\n\"your-app:NoExecute\"\n}\n,\n{\n\"app\"\n:\n\"your-app\"\n,\n\"node.kubernetes.io/compute.capacity\"\n:\n\"ON_DEMAND\"\n}\n,\n\"_your_app\"\n,\navailabilityZone\n,\nundefined\n,\nfalse\n,\n5\n)\n// dedicated on-demand instances for your app\nA node group of Spot instances (cheaper but can be interrupted, maximum of  5 c6i.xlarge2 Spot instances):\naddASG\n(\nthis\n,\n\"dev\"\n,\n{\ninstanceType\n:\nec2\n.\nInstanceType\n.\nof\n(\nec2\n.\nInstanceClass\n.\nC6I\n,\nec2\n.\nInstanceSize\n.\nXLARGE2\n)\n}\n,\n{\navailable\n:\n0\n,\nrootVolSize\n:\n50\n}\n,\n{\n\"app\"\n:\n\"your-app:NoExecute\"\n}\n,\n{\n\"app\"\n:\n\"your-app\"\n,\n\"node.kubernetes.io/compute.capacity\"\n:\n\"SPOT\"\n}\n,\n\"_your_app\"\n,\navailabilityZone\n,\n2\n,\nfalse\n,\n5\n)\n// dedicated Spot instances for your app\nTo use the dedicated instances, you need to modify your nodeSelctor and tolerations field of your deployment pod template. An example using the above dedicated on-demand EC2 instances:\napiVersion\n:\napps/v1\nkind\n:\nDeployment\nmetadata\n:\nname\n:\nyour\n-\napp\nnamespace\n:\nyour\n-\napp\n-\nnamespace\n-\ndev\nannotations\n:\napp.lilly.com/flux.automated\n:\n\"true\"\napp.lilly.com/flux.simple.<policy-name>\n:\n\"<aws-account-number>;<your-repo-name-in-ecr>;glob:<tag-pattern>\"\n# Example: app.lilly.com/flux.simple.docs-policy: \"283234040926;lrl_light_k8s_infra_apps_catsdocs;glob:sha-.*\"\nwave.pusher.com/update-on-config-change\n:\n\"true\"\nspec\n:\nselector\n:\nmatchLabels\n:\napp.kubernetes.io/name\n:\nyour\n-\napp\ntemplate\n:\nmetadata\n:\nlabels\n:\napp.kubernetes.io/name\n:\nyour\n-\napp\nspec\n:\ncontainers\n:\n-\nimage\n:\n283234040926.dkr.ecr.us\n-\neast\n-\n2.amazonaws.com/lrl_new_app\n:\nsha\n-\na431842\n# {\"$imagepolicy\": \"<namespace-name>:<policy-name>\"}\nname\n:\nyour\n-\napp\nresources\n:\nlimits\n:\ncpu\n:\n3\nmemory\n:\n40G\nrequests\n:\ncpu\n:\n3\nmemory\n:\n40G\nports\n:\n-\ncontainerPort\n:\n3838\n# Use node selector to specify the run environment (dev/qa/prd)\nnodeSelector\n:\nnode.kubernetes.io/compute.capacity\n:\nON_DEMAND\napp.lrl.lilly.com/env\n:\ndev\ntolerations\n:\n-\nkey\n:\napp\nvalue\n:\nyour\n-\napp\neffect\n:\nNoExecute\n-\nkey\n:\ndedicated\nvalue\n:\n\"ec2\"\neffect\n:\nNoExecute\nEdit this page\nPrevious\nCompute and Workload Scheduling\nNext\nStorage\nHorizontalPodScaler\nAdd separate node groups\nExamples\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 5,
+  "crawled_at": "2026-03-20T15:05:01.316451",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Scaling",
+        "description": "The documentation here is about Horizontal Scaling (scaling the number of pod replicas related to a specific deployment or stateful set).",
+        "links": [
+          "/",
+          "#horizontalpodscaler",
+          "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#algorithm-details",
+          "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/",
+          "#add-separate-node-groups",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra/blob/1fb8f68fc19bea5e182a50842e77f6ed05c7dd61/aws/lib/stacks/eks-nodegroups.ts#L281-L302",
+          "#examples",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Scaling.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}

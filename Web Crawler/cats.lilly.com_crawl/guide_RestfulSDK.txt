@@ -1,0 +1,506 @@
+Title: **Restful SDK** | CATS
+URL: https://cats.lilly.com/guide/RestfulSDK
+Description: Python
+
+**Restful SDK** | CATS
+Skip to main content
+🚀
+Coming Soon: Hangar!
+We are merging Lilly Kubed and CATS into a single, streamlined platform:
+Hangar
+. Stay tuned for updates!
+CATS Docs
+Guide
+CATS Agent
+CATSbot
+Submit A Ticket
+Stack Overflow
+PRD env
+QA env
+DEV env
+Search
+⌘
+K
+What Is CATS?
+Introduction
+Platform Overview
+Shared Responsibility Model
+GitHub repositories
+GitHub Teams
+CATS Platform Agent
+CATSbot Virtual Assistant
+News
+Jump Start
+K8s Configuration
+Dashboard Offerings
+Using AWS Services
+Observability
+System Services
+Overview
+Argo
+Backstage
+Bouncer
+Crossplane
+Flux
+Wave
+Kafka
+Karpenter
+PGadmin
+Reloader
+Restful SDK
+Self Service Toolkit
+Send Emails
+Smarter Device Manager
+Temporal
+Architecture
+Support
+Admin
+System Services
+Restful SDK
+On this page
+Restful SDK
+Python
+​
+Light Client Library
+​
+Overview
+​
+The Light Client Library is a Python SDK that provides seamless authentication for CATS-hosted applications using Microsoft Authentication Library (MSAL) with support for multiple OAuth 2.0 flows. This library simplifies the authentication process by caching refresh tokens locally, reducing the need for frequent re-authentication to approximately every 30 days of inactivity. Access token refreshing is handled transparently, ensuring a smooth user experience for developers interacting with CATS services.
+Key Features
+​
+MSAL Azure AD Authentication
+: Secure authentication using Microsoft Authentication Library with support for multiple OAuth 2.0 flows
+Authorization Code Flow
+: Default authentication method compliant with Lilly's Island Browser Policy and Conditional Access Policies
+Device Code Flow
+: Available for remote environments with verbose logging support
+Client Credentials Flow
+: Service-to-service authentication using client ID and secret
+Token Caching
+: Local refresh token caching for reduced authentication frequency
+Transparent Token Refresh
+: Automatic access token renewal without user intervention
+HTTP Client Integration
+: Standard HTTP methods similar to the requests library
+Command Line Interface
+: CLI tools for token management and AWS integration
+AWS Integration
+: Support for AWS authentication and S3 credential management
+GitHub Codespaces Support
+: Automatic detection and configuration for Codespaces environments
+Getting Started
+​
+Prerequisites
+​
+Before using the Light Client Library, ensure you have:
+Python 3.7 or higher installed
+Access to the target CATS environment
+Valid Azure AD credentials
+For authorization code flow: Available ports 31410-31415 for OAuth callback server
+Installation
+​
+The Light Client Library can be installed from two sources:
+Install From GitHub
+​
+pip install git+https://github.com/EliLillyCo/LRL_light_k8s_infra_app_client_python.git
+Install From HPC Artifactory
+​
+pip install light-client -i https://artifactory.am.lilly.com/artifactory/api/pypi/lrl-pypi/simple
+Basic Usage
+​
+The Light Client provides a simple interface that mirrors the standard Python requests library:
+from
+light_client
+import
+LIGHTClient
+# Initialize the client (uses authorization code flow by default)
+client
+=
+LIGHTClient
+(
+)
+# The client supports standard HTTP methods (GET, POST, PUT, DELETE, etc.)
+# and accepts the same parameters as the requests library
+response
+=
+client
+.
+get
+(
+"https://test.apps.lrl.lilly.com/"
+)
+# On first use, follow the authentication prompt in your browser
+# Subsequent requests will use cached tokens automatically
+# The response is a standard requests Response object
+# NOTE: The above URL is an example and will return a 404 response
+Authentication Methods
+​
+The Light Client supports three authentication flows to accommodate different use cases:
+Authorization Code Flow (Default)
+​
+The default authentication method opens a browser window for interactive login. This method is compliant with Lilly's Island Browser Policy and Conditional Access Policies. It requires ports
+31410
+-
+31415
+to be available for the OAuth callback server.
+from
+light_client
+import
+LIGHTClient
+# Uses authorization code flow by default
+client
+=
+LIGHTClient
+(
+)
+response
+=
+client
+.
+get
+(
+"https://test.apps.lrl.lilly.com/"
+)
+GitHub Codespaces Support
+: The authorization code flow automatically detects GitHub Codespaces environments and configures the OAuth callback URL appropriately. No additional configuration is required.
+Device Code Flow
+​
+For environments where browser access is limited or unavailable, device code flow displays a code for authentication on another device:
+from
+light_client
+import
+LIGHTClient
+# Device code flow must be specified via CLI or environment configuration
+# See CLI documentation for usage
+Note
+: Device code flow may be restricted by Conditional Access Policies in certain environments. If you experience authentication issues, use the default authorization code flow.
+Client Credentials Flow
+​
+For automated scenarios or service-to-service authentication, use client credentials with environment variables:
+import
+os
+from
+light_client
+import
+LIGHTClient
+# Set environment variables
+os
+.
+environ
+[
+'CLIENT_ID'
+]
+=
+'your-client-id'
+os
+.
+environ
+[
+'CLIENT_SECRET'
+]
+=
+'your-client-secret'
+# Client credentials flow must be specified via CLI or environment configuration
+# See CLI documentation for usage
+Important
+: Client credentials authentication does not provide user-level access information. Ensure this approach meets your application's quality and security requirements before implementation.
+Command Line Interface
+​
+The Light Client includes a powerful CLI tool called
+light_auth
+for token management and AWS integration.
+CLI Usage
+​
+light_auth --help
+usage: light_auth [-h] [-e {DEV,QA,PRD}] [-H] [option]
+Prints authentication token for light hosted applications
+positional arguments:
+option
+refresh-login   clear cache and reinitialize authentication to ensure fresh login (forces interactive auth)
+token           get token (default)
+namespaces      returns list of namespaces allowed based on scoped s3-credentials
+buckets         returns list of buckets allowed based on scoped s3-credentials
+prefixes        returns list of prefixes allowed based on scoped s3-credentials
+creds           return access tokens that allow scoped access to s3. Can also pass {bucket, namespace in that order} get more specificly scoped credentials. This can be used in an AWS profile as a credential provider
+setup           setup AWS profile in ~/.aws/config to use light_auth as a credential provider
+options:
+-h, --help            show this help message and exit
+-e {DEV,QA,PRD}, --env {DEV,QA,PRD}
+authentication environment (default=PRD)
+-H, --header          return the full header
+-p [PROFILE], --profile [PROFILE], --profile_name [PROFILE]
+supply a profile name to create a named profile
+-b [BUCKET], --bucket [BUCKET]
+supply an s3 bucket name
+-n [NAMESPACE], --namespace [NAMESPACE]
+supply a kubernetes namespace name
+-P [PREFIX], --prefix [PREFIX]
+supply an s3 key prefix
+-s [SERVICE], --service [SERVICE]
+supply an AWS service (currently only S3 is supported)
+--auth-method {auth-code,device-code,client-credentials}
+authentication method to use (default=auth-code)
+-v, --verbose         enable verbose output during authentication
+--show-all            show all available token parts for debugging (content depends on token source - cache vs fresh)
+--no-cache            force fresh authentication by clearing cache first
+Authentication Method Examples
+​
+# Default auth-code flow (opens browser, requires ports 31410-31415)
+light_auth token
+# Device code flow with verbose output to see the code
+light_auth --auth-method device-code -v token
+# Client credentials flow (requires environment variables)
+CLIENT_ID=your-client-id CLIENT_SECRET=your-client-secret light_auth --auth-method client-credentials token
+Token Debugging Features
+​
+For advanced token debugging, troubleshooting authentication issues, and inspecting token contents, the CLI provides several debugging flags:
+# Show cached token information
+light_auth token --show-all
+# Show all tokens from fresh authentication
+light_auth token --show-all --no-cache
+# Reset authentication completely
+light_auth refresh-login
+For comprehensive debugging documentation, see the CLI Debugging Guide.
+CLI Examples
+​
+List Available S3 Buckets
+​
+$ light_auth buckets | jq
+{
+"buckets": [
+"lly-light-prod"
+]
+}
+List Available S3 Prefixes
+​
+$ light_auth prefixes --bucket lly-light-prod | jq
+{
+"prefixes": [
+"",
+"uat-folder/readonly/",
+"uat-folder/writeonly/",
+"uat-folder/readwrite/",
+"uat-folder/deleteonly/"
+]
+}
+Get Scoped S3 Credentials
+​
+$ light_auth creds --bucket lly-light-prod --prefix uat-folder/readonly | jq
+{
+"AccessKeyId": "ASIAUD4QQPRPPKIIUMOV",
+"SecretAccessKey": "<redacted>",
+"SessionToken": "<redacted>",
+"Expiration": "2023-11-13T22:20:11+00:00",
+"Version": 1
+}
+AWS Integration
+​
+S3 Credential Provider Setup
+​
+The Light Client can serve as an AWS credential provider, allowing you to use standard AWS CLI commands without repeated authentication. The login period matches the standard Light Client token lifecycle.
+Configure AWS Profile
+​
+Add the following configuration to your
+~/.aws/config
+file:
+[profile myprofile]
+credential_process = light_auth setup -n my_namespace -p myprofile
+This setup enables you to use AWS CLI commands with automatic credential management:
+# Use the configured profile with AWS CLI
+aws s3 ls --profile myprofile
+Note
+: If authentication fails, refresh your cached tokens by running:
+light_auth refresh-login
+AWS Authentication for CATS Applications
+​
+When calling CATS-hosted applications from AWS environments and you want to use AWS authentication instead of Azure AD, the Light Client provides helper functions to fetch the required authentication headers.
+Method 1: Direct AWS Authentication
+​
+from
+light_client
+import
+LIGHTClient
+,
+AUTH_METHOD_AWS
+# Initialize client with AWS authentication method
+client
+=
+LIGHTClient
+(
+auth_method
+=
+AUTH_METHOD_AWS
+)
+# The client will fetch AWS credentials and use them to authenticate
+# CATS requests using the default boto3 credential chain
+response
+=
+client
+.
+get
+(
+"https://test.apps.lrl.lilly.com/"
+)
+Method 2: Environment Variable Configuration
+​
+Alternatively, you can set an environment variable to specify the authentication method:
+export LIGHT_CLIENT_AUTH_PROVIDER=AUTH_METHOD_AWS
+from
+light_client
+import
+LIGHTClient
+# Client will automatically use AWS authentication based on environment variable
+client
+=
+LIGHTClient
+(
+)
+response
+=
+client
+.
+get
+(
+"https://test.apps.lrl.lilly.com/"
+)
+Both methods utilize the
+default boto3 credential chain
+for obtaining AWS credentials.
+GitHub Codespaces Support
+​
+The authorization code flow automatically detects and supports GitHub Codespaces environments:
+Local Development
+: Uses
+http://127.0.0.1:{port}/
+for OAuth callbacks
+GitHub Codespaces
+: Uses
+https://{codespace_name}-{port}.{domain}/
+for OAuth callbacks
+The Codespace callback URL is constructed using:
+CODESPACE_NAME
+environment variable (provided by GitHub)
+GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
+environment variable (defaults to
+app.github.dev
+)
+Selected port from range 31410-31415
+No additional configuration is required - the client automatically detects the Codespace environment and handles URL construction.
+Troubleshooting
+​
+Common Issues
+​
+Authentication Failures
+​
+Run
+light_auth refresh-login
+to clear cached tokens and re-authenticate
+Verify your Azure AD credentials are valid
+Check that you have access to the target CATS environment
+If using device code flow in an environment with Island Browser Policy restrictions, switch to authorization code flow (default) using
+--auth-method auth-code
+Browser Not Opening for Authorization Code Flow
+​
+Ensure ports 31410-31415 are available for the OAuth callback server
+Check that you're not running in a headless or remote environment
+Consider using device code flow with
+--auth-method device-code -v
+if browser access is unavailable
+Port Conflicts
+​
+Authorization code flow requires ports 31410-31415 to be available
+If these ports are in use, free them or use device code flow as an alternative
+Codespaces Issues
+​
+Ensure port forwarding is enabled for OAuth callback ports (31410-31415)
+Verify that
+CODESPACE_NAME
+and
+GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
+environment variables are set correctly
+Token Expiration
+​
+Cached tokens are automatically refreshed, but if issues persist, use
+light_auth refresh-login
+Ensure your system clock is synchronized
+AWS Integration Issues
+​
+Verify your AWS credentials are properly configured
+Check that the boto3 credential chain is correctly set up
+Ensure you have the necessary permissions for the target AWS resources
+If authentication fails, run
+light_auth refresh-login
+to refresh cached tokens
+Conditional Access Policy Errors
+​
+The authorization code flow (default) is compliant with Lilly's Conditional Access Policies
+Device code flow may be restricted by policy in certain environments
+Contact the CATS team if you require device code flow for your use case
+Debugging Token Issues
+​
+For detailed debugging of authentication tokens and flows:
+# Check current cached token status
+light_auth token --show-all
+# Force fresh authentication to compare
+light_auth token --show-all --no-cache
+# Test different authentication methods
+light_auth token --show-all --no-cache --auth-method device-code
+# Reset authentication completely if issues persist
+light_auth refresh-login
+For comprehensive debugging documentation, see the CLI Debugging Guide.
+Related Documentation
+​
+External Integrations
+- Integrating with external services
+AWS Resource Overview
+- Using AWS services with CATS
+R
+​
+R-based client libraries for interacting with Kubernetes apps in the Light infra.
+Client Library for Applications Hosted on
+LIGHT Platform (Lilly LRL LIGHT)
+Installation
+​
+On Lilly Network
+​
+install.packages("LIGHTClient", repos = c("https://artifactory.am.lilly.com/artifactory/lrl-cran/"))
+GitHub
+​
+devtools::install_github("EliLillyCo/LRL_light_k8s_infra_app_client_r", auth_token="<github personal access token>", ref="main")
+Edit this page
+Previous
+Reloader
+Next
+Self Service Toolkit
+Python
+Light Client Library
+Getting Started
+Authentication Methods
+Command Line Interface
+CLI Usage
+Authentication Method Examples
+Token Debugging Features
+CLI Examples
+AWS Integration
+S3 Credential Provider Setup
+AWS Authentication for CATS Applications
+GitHub Codespaces Support
+Troubleshooting
+Common Issues
+Debugging Token Issues
+Related Documentation
+R
+Installation
+Lilly SPE Research Technology and Platforms
+
+
+================================================================================
+PAGINATED ITEMS (1 total)
+================================================================================
+
+
+--- Item 1 ---
+Tab: default
+Title: Restful SDK
+Description: The Light Client Library is a Python SDK that provides seamless authentication for CATS-hosted applications using Microsoft Authentication Library (MSAL) with support for multiple OAuth 2.0 flows. This library simplifies the authentication process by caching refresh tokens locally, reducing the need for frequent re-authentication to approximately every 30 days of inactivity. Access token refreshing is handled transparently, ensuring a smooth user experience for developers interacting with CATS services.
+Links: /, #python, #light-client-library, #overview, #key-features, #getting-started, #prerequisites, #installation, #install-from-github, #install-from-hpc-artifactory, #basic-usage, #authentication-methods, #authorization-code-flow-default, #device-code-flow, #client-credentials-flow, #command-line-interface, #cli-usage, #authentication-method-examples, #token-debugging-features, #cli-examples, #list-available-s3-buckets, #list-available-s3-prefixes, #get-scoped-s3-credentials, #aws-integration, #s3-credential-provider-setup, #configure-aws-profile, #aws-authentication-for-cats-applications, #method-1-direct-aws-authentication, #method-2-environment-variable-configuration, https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html, #github-codespaces-support, #troubleshooting, #common-issues, #authentication-failures, #browser-not-opening-for-authorization-code-flow, #port-conflicts, #codespaces-issues, #token-expiration, #aws-integration-issues, #conditional-access-policy-errors, #debugging-token-issues, #related-documentation, /guide/ExternalIntegrations, /guide/AWSresourceOverview, #r, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps, #installation-1, #on-lilly-network, #github, https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/RestfulSDK.md

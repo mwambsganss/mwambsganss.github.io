@@ -1,0 +1,42 @@
+{
+  "url": "https://cats.lilly.com/guide/Configuration",
+  "title": "Configuration Overview | CATS",
+  "description": "The configuration section is all about helping our users configure their deployment resources appropriately for their projects. See the below table of contents for a quick look at the sections available as well as what information is in each section:",
+  "h1": [
+    "Configuration Overview"
+  ],
+  "h2": [],
+  "h3": [],
+  "text_content": "Configuration Overview | CATS\nSkip to main content\n🚀\nComing Soon: Hangar!\nWe are merging Lilly Kubed and CATS into a single, streamlined platform:\nHangar\n. Stay tuned for updates!\nCATS Docs\nGuide\nCATS Agent\nCATSbot\nSubmit A Ticket\nStack Overflow\nPRD env\nQA env\nDEV env\nSearch\n⌘\nK\nWhat Is CATS?\nIntroduction\nPlatform Overview\nShared Responsibility Model\nGitHub repositories\nGitHub Teams\nCATS Platform Agent\nCATSbot Virtual Assistant\nNews\nJump Start\nK8s Configuration\nOverview\nNamespace\nDeployment\nService\nIngress\nIngress Patterns\nCompute and Workload Scheduling\nScaling\nStorage\nCronJob\nJobs\nRate Limit\nExternal Secrets\nHelmRelease\nExternal Integrations\nGraph User Info\nMakefile\nVelero Backups\nRDS Database Restore\nNamespace Decommission\nS3 Lifecycle Tagging\nDashboard Offerings\nUsing AWS Services\nObservability\nSystem Services\nArchitecture\nSupport\nAdmin\nK8s Configuration\nOverview\nConfiguration Overview\nThe configuration section is all about helping our users configure their deployment resources appropriately for their projects. See the below table of contents for a quick look at the sections available as well as what information is in each section:\nSection\nDescription\nNamespace\nDiscuss what is a namespace as well as the labels and annotations used to configure a namespace correctly. IAM permissions and Cluster Security Groups are handled via namespace configuration.\nDeployment\nDiscuss what a deployment is and how to configure a deployment resource for your specific solution.\nService\nDiscuss what is a Service is and how it maps to an ingress.\nIngress\nDiscuss what is an Ingress is, how to configure an ingress for your solution, and Routing, Authorization and Authentication within the cluster.\nCompute and Workload Scheduling\nCovers the two types of compute supported: Fargate and AWS EC2 instances, including how to configure namespaces for each.\nScaling\nDiscusses horizontal scaling for pod replicas related to deployments or stateful sets.\nStorage\nDiscusses the options available for storing data such as S3, EFS, or EBS.\nCron Job\nExplains CronJobs in Kubernetes for scheduling jobs.\nJobs\nDescribes how Jobs manage Pods to completion, including an example Job configuration.\nRate Limit\nDescribes how to control the Number of Requests Going to a Service\nExternal Secrets\nIntroduces the concept of managing secrets externally, not directly within Kubernetes.\nHelm Release\nDescribes creating Helm release resources for managing applications or services on Kubernetes.\nGraph User Info\nExplains how to access graph-based user information via a built-in integration in CATS.\nMakefile\nDiscuss what a makefile is and why it is important. Template provided\nEdit this page\nPrevious\nDeploying SaaS Solution\nNext\nNamespace\nLilly SPE Research Technology and Platforms",
+  "links_found": 0,
+  "depth": 4,
+  "crawled_at": "2026-03-20T15:03:13.349921",
+  "pagination_items": [
+    {
+      "tab": "default",
+      "content": {
+        "title": "Configuration Overview",
+        "description": "The configuration section is all about helping our users configure their deployment resources appropriately for their projects. See the below table of contents for a quick look at the sections available as well as what information is in each section:",
+        "links": [
+          "/",
+          "/guide/Namespace",
+          "/guide/Deployment",
+          "/guide/Service",
+          "/guide/Ingress",
+          "/guide/ComputeAndWorkloadScheduling",
+          "/guide/Scaling",
+          "/guide/Storage",
+          "/guide/CronJob",
+          "/guide/Jobs",
+          "/guide/RateLimit",
+          "/guide/ExternalSecrets",
+          "/guide/HelmRelease",
+          "/guide/GraphUserInfo",
+          "/guide/Makefile",
+          "https://github.com/EliLillyCo/LRL_light_k8s_infra_apps_docs/tree/main/docs/guide/Configuration.md"
+        ]
+      }
+    }
+  ],
+  "pagination_count": 1
+}
