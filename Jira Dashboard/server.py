@@ -31,6 +31,21 @@ load_aws_secrets(
     os.environ.get("AWS_SECRET_NAME", "jira-dashboard-app-tea-s3"),
     os.environ.get("AWS_REGION", "us-east-2"),
 )
+# Alias secret field names to match llm_gateway.py conventions
+# LLM_GATEWAY_URL: use explicit secret value if set, otherwise correct intranet URL
+if not os.getenv("LLM_GATEWAY_URL"):
+    os.environ["LLM_GATEWAY_URL"] = "https://gateway-intranet.apim.lilly.com/llm-gateway"
+os.environ.setdefault("LLM_GATEWAY_KEY", os.getenv("LLM_KEY", ""))
+os.environ.setdefault("LLM_TOKEN_SCOPE", "api://llm-gateway.lilly.com/.default")
+_llm_tenant = os.getenv("LLM_TENANT_ID", "")
+if _llm_tenant:
+    os.environ.setdefault(
+        "LLM_TOKEN_URL",
+        f"https://login.microsoftonline.com/{_llm_tenant}/oauth2/v2.0/token",
+    )
+# Import llm_gateway from this directory (same pattern as ops-report-automation)
+_sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from llm_gateway import call_llm, LLMError
 import http.server
 import json
 import logging
@@ -81,54 +96,56 @@ SMTP_RELAY_HOST = os.getenv("SMTP_RELAY_HOST", "smtp-z1-nomx.lilly.com")
 SMTP_RELAY_PORT = int(os.getenv("SMTP_RELAY_PORT", "25"))
 
 # ── LLM Gateway config ────────────────────────────────────────────────────────
-# Option A: static key (LLM_KEY) – used as-is.
-# Option B: OAuth2 client credentials (LLM_CLIENT_ID + LLM_CLIENT_SECRET + LLM_TENANT_ID)
-#   – server fetches and caches an Azure AD JWT automatically.
-LLM_KEY           = os.getenv("LLM_KEY", "")
-LLM_URL           = os.getenv("LLM_URL", "https://lilly-code-server.api.gateway.llm.lilly.com")
-LLM_CLIENT_ID     = os.getenv("LLM_CLIENT_ID", "").strip()
-LLM_CLIENT_SECRET = os.getenv("LLM_CLIENT_SECRET", "").strip()
-LLM_TENANT_ID     = os.getenv("LLM_TENANT_ID", "").strip()
-# Scope for Lilly LLM Gateway client-credentials flow (Azure Cognitive Services)
-LLM_SCOPE         = os.getenv("LLM_SCOPE", "https://cognitiveservices.azure.com/.default")
+# Auth handled by llm_gateway.py (OAuth2 Bearer + X-LLM-Gateway-Key via AWS Secrets).
+# Env vars set at startup: LLM_GATEWAY_URL, LLM_GATEWAY_KEY, LLM_TOKEN_URL,
+#                          LLM_CLIENT_ID, LLM_CLIENT_SECRET
+LLM_URL = os.getenv("LLM_GATEWAY_URL", "https://gateway-intranet.apim.lilly.com/llm-gateway")
 
-_llm_token_cache: dict = {"token": "", "expires_at": 0.0}
+def _resolve_best_model() -> str:
+    """Query /v1/models with full OAuth2 auth, return the best available model."""
+    _PREFERRED = [
+        "claude-3.7-sonnet-20250219-v1",
+        "claude-3.5-sonnet-20241022-v2",
+        "claude-3.5-sonnet-20240620-v1",
+        "claude-3.5-haiku-20241022-v1",
+        "claude-haiku-4.5-20251001",
+        "claude-3-haiku-20240307-v1",
+    ]
+    try:
+        import ssl, urllib.request, json as _json
+        from llm_gateway import _get_token, _ssl_ctx
+        client_id     = os.getenv("LLM_CLIENT_ID", "")
+        client_secret = os.getenv("LLM_CLIENT_SECRET", "")
+        token_url     = os.getenv("LLM_TOKEN_URL", "")
+        scope         = os.getenv("LLM_TOKEN_SCOPE", "api://llm-gateway.lilly.com/.default")
+        apim_key      = os.getenv("LLM_GATEWAY_KEY", "")
+        headers = {"Accept": "application/json"}
+        if client_id and client_secret and token_url:
+            bearer = _get_token(token_url, client_id, client_secret, scope)
+            headers["Authorization"] = f"Bearer {bearer}"
+            if apim_key:
+                headers["X-LLM-Gateway-Key"] = apim_key
+        elif apim_key:
+            headers["Authorization"] = f"Bearer {apim_key}"
+        else:
+            return "claude-3.7-sonnet-20250219-v1"
+        req = urllib.request.Request(LLM_URL.rstrip("/") + "/v1/models", headers=headers)
+        with urllib.request.urlopen(req, context=_ssl_ctx(), timeout=10) as resp:
+            data = _json.loads(resp.read())
+        available = {m["id"] for m in data.get("data", []) if "id" in m}
+        if not available:
+            available = {m.get("id") or m for m in data.get("models", [])}
+        for m in _PREFERRED:
+            if m in available:
+                logging.getLogger(__name__).info("LLM model resolved: %s", m)
+                return m
+    except Exception as e:
+        logging.getLogger(__name__).warning("Could not resolve LLM models: %s", e)
+    return "claude-3.7-sonnet-20250219-v1"  # safe fallback
 
-def _get_llm_bearer() -> str:
-    """Return a valid bearer token for the LLM gateway.
-
-    Priority:
-    1. OAuth2 client-credentials token (if CLIENT_ID/SECRET/TENANT are set)
-    2. Static LLM_KEY from .env
-    """
-    import time
-    if LLM_CLIENT_ID and LLM_CLIENT_SECRET and LLM_TENANT_ID:
-        now = time.time()
-        if _llm_token_cache["token"] and now < _llm_token_cache["expires_at"] - 60:
-            return _llm_token_cache["token"]
-        token_url = (
-            f"https://login.microsoftonline.com/{LLM_TENANT_ID}/oauth2/v2.0/token"
-        )
-        payload = urllib.parse.urlencode({
-            "grant_type":    "client_credentials",
-            "client_id":     LLM_CLIENT_ID,
-            "client_secret": LLM_CLIENT_SECRET,
-            "scope":         LLM_SCOPE,
-        }).encode()
-        req = urllib.request.Request(
-            token_url, data=payload,
-            headers={"Content-Type": "application/x-www-form-urlencoded"},
-        )
-        try:
-            with urllib.request.urlopen(req, context=_ssl_ctx_internal()) as resp:
-                td = json.loads(resp.read())
-            _llm_token_cache["token"]      = td["access_token"]
-            _llm_token_cache["expires_at"] = now + td.get("expires_in", 3600)
-            print(f"[LLM] OAuth2 token fetched, expires in {td.get('expires_in', 3600)}s")
-            return _llm_token_cache["token"]
-        except Exception as exc:
-            print(f"[LLM] OAuth2 token fetch failed: {exc} — falling back to LLM_KEY")
-    return LLM_KEY
+# Resolve and lock in the best available model once at startup
+if not os.getenv("LLM_MODEL"):
+    os.environ["LLM_MODEL"] = _resolve_best_model()
 
 # ── Credential encryption config ──────────────────────────────────────────────
 # Set SECRET_KEY in .env to encrypt jiraToken and llmKey at rest in schedule files.
@@ -595,22 +612,7 @@ def run_schedule(schedule: dict) -> str:
 
     # ── Call LLM ─────────────────────────────────────────────────────
     try:
-        req = urllib.request.Request(
-            llm_url + "/v1/messages",
-            data=json.dumps({
-                "model": llm_model, "max_tokens": 1024,
-                "messages": [{"role": "user", "content": prompt}],
-            }).encode(),
-            headers={
-                "Authorization": f"Bearer {llm_key}",
-                "Content-Type": "application/json",
-                "anthropic-version": "2023-06-01",
-            },
-            method="POST",
-        )
-        with urllib.request.urlopen(req, context=ctx) as resp:
-            llm_data     = json.loads(resp.read())
-        summary_text = llm_data.get("content", [{}])[0].get("text", "")
+        summary_text = call_llm(prompt=prompt, max_tokens=1024)
     except Exception as e:
         summary_text = f"[LLM summary unavailable: {e}]"
         log.warning("LLM call failed for schedule '%s': %s", schedule.get("name"), e)
@@ -907,45 +909,36 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 k, v = part.strip().split("=", 1)
                 cookies[k.strip()] = v.strip()
 
-        # Helper: load keychain LLM token (aud = LLM gateway, upn = personal account)
-        # This is the token that grants access to the LLM gateway.
-        def _llm_token_from_keychain() -> str:
-            # Always re-read from keychain so a VS Code re-login is picked up immediately.
-            try:
-                result = subprocess.run(
-                    ["security", "find-generic-password", "-s", "lilly-code", "-w"],
-                    capture_output=True, text=True, check=True,
-                )
-                data  = json.loads(result.stdout.strip())
-                token = data.get("access_token", "")
-                expires_at = data.get("expires_at", "")
-                _keychain.update({"token": token, "expires_at": expires_at,
-                                  "email": _email_from_jwt(token)})
-                return token
-            except Exception:
-                return _keychain.get("token", "")
-
+        # LLM calls go through /api/llm-proxy (server-side via llm_gateway.py).
+        # Return llm_url so the frontend knows where to point, but no key needed.
         session = _sessions.get(cookies.get("session", ""))
         if session and session.get("access_token"):
-            llm_tok = _llm_token_from_keychain() or session["access_token"]
             self._json(200, {
-                "token":      session["access_token"],
-                "expires_at": session["expires_at"],
-                "email":      session["email"],
-                "llm_key":    llm_tok,
-                "llm_url":    LLM_URL,
+                "token":          session["access_token"],
+                "expires_at":     session["expires_at"],
+                "email":          session["email"],
+                "llm_key":        "proxy",
+                "llm_url":        "/api/llm-proxy",
+                "llm_key_source": "server",
             })
             return
 
-        # Always re-read from keychain so a VS Code re-login is picked up immediately.
-        token = _llm_token_from_keychain()
-        if token:
-            self._json(200, {**_keychain, "llm_key": token, "llm_url": LLM_URL})
+        # No SSO session — still expose the proxy endpoint
+        if os.getenv("LLM_GATEWAY_URL"):
+            self._json(200, {
+                "token":          "",
+                "expires_at":     "",
+                "email":          "",
+                "llm_key":        "proxy",
+                "llm_url":        "/api/llm-proxy",
+                "llm_key_source": "server",
+            })
             return
+
         if SSO_CONFIGURED:
             self._json(401, {"error": "Not authenticated", "login_url": "/api/login"})
         else:
-            self._error(401, "Not authenticated — run: lilly-code login")
+            self._error(401, "Not authenticated — set LLM credentials in AWS Secrets")
 
     # ── Schedule CRUD ─────────────────────────────────────────────────────────
 
@@ -1069,10 +1062,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def _serve_llm_models(self):
         qs     = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
         token  = qs.get("token", [None])[0] or ""
-        url    = qs.get("url", ["https://lilly-code-server.api.gateway.llm.lilly.com"])[0]
-        # Prefer server-side LLM_KEY over client-supplied token
-        auth_token = _get_llm_bearer() or token
-        target = (LLM_URL if (LLM_KEY or LLM_CLIENT_ID) else url).rstrip("/") + "/v1/models"
+        target = LLM_URL.rstrip("/") + "/v1/models"
+        auth_token = os.getenv("LLM_GATEWAY_KEY", "") or token
         req    = urllib.request.Request(
             target,
             headers={"Authorization": f"Bearer {auth_token}", "Accept": "application/json"},
@@ -1107,24 +1098,29 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self._error(500, str(e))
 
     def _proxy_llm(self):
-        length      = int(self.headers.get("Content-Length", 0))
-        body        = json.loads(self.rfile.read(length))
-        target_url  = body.get("url", "")
-        req_headers = body.get("headers", {})
-        # Pass the client's Authorization header through as-is.
-        # The frontend stores the user's SSO token (personal Azure AD token),
-        # which the LLM gateway accepts for users in the required groups.
-        req_body    = json.dumps(body.get("body", {})).encode()
-        req         = urllib.request.Request(
-            target_url, data=req_body, headers=req_headers, method="POST"
+        length = int(self.headers.get("Content-Length", 0))
+        body   = json.loads(self.rfile.read(length))
+
+        req_body   = body.get("body", body)  # support both wrapped and direct format
+        messages   = req_body.get("messages", [])
+        max_tokens = req_body.get("max_tokens", 1024)
+        system     = req_body.get("system", None)
+
+        # Build prompt from messages (concatenate user turns)
+        prompt = "\n\n".join(
+            m.get("content", "") for m in messages if m.get("role") == "user"
         )
-        ctx = self._ssl_ctx()
+        if not prompt:
+            self._error(400, "No user message content found")
+            return
+
         try:
-            with urllib.request.urlopen(req, context=ctx) as resp:
-                data = resp.read()
-            self._raw(200, data)
-        except urllib.error.HTTPError as e:
-            self._error(e.code, e.read().decode()[:500])
+            # Always use the server-configured default model — ignore any model sent by the client
+            text = call_llm(prompt=prompt, max_tokens=max_tokens, system=system)
+            # Return Anthropic-compatible format so frontend doesn't need changes
+            self._json(200, {"content": [{"type": "text", "text": text}]})
+        except LLMError as e:
+            self._error(500, str(e))
         except Exception as e:
             self._error(500, str(e))
 

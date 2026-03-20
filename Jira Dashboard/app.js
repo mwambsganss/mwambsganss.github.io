@@ -59,7 +59,7 @@ function loadSavedConfig() {
   safeSet("cfgProjects",   localStorage.getItem(LS.PROJECTS)    || "EAA,ASO,KILO");
   safeSet("cfgClaudeUrl",  localStorage.getItem(LS.CLAUDE_URL)  || "https://lilly-code-server.api.gateway.llm.lilly.com");
   safeSet("cfgClaudeKey",  localStorage.getItem(LS.CLAUDE_KEY)  || "");
-  safeSet("cfgClaudeModel",localStorage.getItem(LS.CLAUDE_MODEL)|| "claude-sonnet-4-6");
+  safeSet("cfgClaudeModel",localStorage.getItem(LS.CLAUDE_MODEL)|| "claude-3.7-sonnet-20250219-v1");
 }
 
 function safeSet(id, val) {
@@ -770,7 +770,7 @@ async function generateSummary() {
 
   const apiUrl   = (localStorage.getItem(LS.CLAUDE_URL) || "").replace(/\/$/, "");
   const apiKey   = localStorage.getItem(LS.CLAUDE_KEY) || "";
-  const model    = localStorage.getItem(LS.CLAUDE_MODEL) || "claude-sonnet-4-6";
+  const model    = localStorage.getItem(LS.CLAUDE_MODEL) || "claude-3.7-sonnet-20250219-v1";
 
   const body = document.getElementById("summaryBody");
   body.innerHTML = `<p class="summary-placeholder">⏳ Generating summary…</p>`;
@@ -836,14 +836,11 @@ Keep it crisp and executive-ready. Use bullet points under each heading.`;
     let summaryText;
 
     if (apiUrl && apiKey) {
-      // Call Claude via Lilly LLM Gateway
-      const resp = await fetch(`${apiUrl}/v1/messages`, {
+      // Route through server-side proxy — auth handled by llm_gateway.py (AWS Secrets)
+      const proxyUrl = apiUrl.startsWith("/api/") ? apiUrl : "/api/llm-proxy";
+      const resp = await fetch(proxyUrl, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`,
-          "anthropic-version": "2023-06-01"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: model,
           max_tokens: 1024,

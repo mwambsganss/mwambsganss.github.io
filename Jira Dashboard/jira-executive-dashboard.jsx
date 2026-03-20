@@ -393,6 +393,7 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
   const [projectsError, setProjectsError]         = useState(null);
   const [llmUrl,   setLlmUrl]     = useState(initialSettings.llmUrl    || "https://lilly-code-server.api.gateway.llm.lilly.com");
   const [llmKey,   setLlmKey]     = useState(initialSettings.llmKey    || "");
+  const [llmKeyServerManaged]     = useState(localStorage.getItem("jiraDash_claudeKeySource") === "server");
   const [llmModel, setLlmModel]   = useState(initialSettings.llmModel  || "claude-sonnet-4-20250514");
   const [availableModels, setAvailableModels] = useState([]);
   const [modelsLoading, setModelsLoading]     = useState(false);
@@ -674,50 +675,6 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
             </div>
           </section>
 
-          {/* ── LLM GATEWAY ── */}
-          <section>
-            <div style={{ fontSize: 13, fontWeight: 700, color: "#1A1A1A", marginBottom: 14, paddingBottom: 8, borderBottom: "2px solid #C8102E", display: "flex", alignItems: "center", gap: 8 }}>
-              🤖 LLM Gateway — AI Executive Summary
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              <div>
-                <LabelEl>LLM Gateway Base URL</LabelEl>
-                <InputEl value={llmUrl} onChange={setLlmUrl} placeholder="https://lilly-code-server.api.gateway.llm.lilly.com" />
-                <div style={{ fontSize: 10, color: "#6B6B6B", marginTop: 3 }}>Your Lilly LLM Gateway endpoint (no trailing slash)</div>
-              </div>
-
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-                <div>
-                  <LabelEl>API Key / Bearer Token</LabelEl>
-                  <InputEl value={llmKey} onChange={setLlmKey} placeholder="sk-..." type="password" />
-                  <div style={{ fontSize: 10, color: "#6B6B6B", marginTop: 3 }}>Obtained from Lilly Code or the LLM Gateway team</div>
-                </div>
-                <div>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <LabelEl>Model Name</LabelEl>
-                    <button onClick={() => fetchModels()} disabled={modelsLoading} style={{ fontSize: 10, color: "#C8102E", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
-                      {modelsLoading ? "Loading…" : "↺ Refresh"}
-                    </button>
-                  </div>
-                  {availableModels.length > 0 ? (
-                    <select
-                      value={llmModel}
-                      onChange={e => setLlmModel(e.target.value)}
-                      style={{ width: "100%", padding: "7px 10px", border: "1px solid #D1D5DB", borderRadius: 4, fontSize: 13, background: "#fff", color: "#1A1A1A" }}
-                    >
-                      {availableModels.map(m => <option key={m} value={m}>{m}</option>)}
-                    </select>
-                  ) : (
-                    <InputEl value={llmModel} onChange={setLlmModel} placeholder="claude-sonnet-4-20250514" />
-                  )}
-                  <div style={{ fontSize: 10, color: modelsError ? "#C8102E" : "#6B6B6B", marginTop: 3 }}>
-                    {modelsLoading ? "Loading available models…" : modelsError ? `Could not load models: ${modelsError}` : availableModels.length > 0 ? `${availableModels.length} models available` : "Enter manually or check LLM Gateway URL/token above"}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
 
           {/* ── SCHEDULED EMAILS ── */}
           <SchedulesSection
@@ -727,7 +684,7 @@ function SettingsModal({ onClose, onSave, initialSettings, hasData }) {
 
           {/* Security note */}
           <div style={{ fontSize: 11, color: "#6B6B6B", background: "#FAFAFA", border: "1px solid #E8E8E8", borderRadius: 3, padding: "10px 14px", lineHeight: 1.6 }}>
-            🔒 <strong>Security note:</strong> All credentials are held only in browser memory for this session. They are never sent anywhere except directly to the Jira and LLM Gateway APIs you configure above.
+            🔒 <strong>Security note:</strong> All credentials are held only in browser memory for this session. They are never sent anywhere except directly to the Jira API you configure above.
           </div>
 
           {/* Actions */}

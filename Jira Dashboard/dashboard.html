@@ -28,7 +28,7 @@
           if (data.login_url) { window.location.href = data.login_url; return; }
           return;
         }
-        const { token, expires_at, email, llm_key, llm_url } = data;
+        const { token, expires_at, email, llm_key, llm_url, llm_key_source } = data;
         // SSO token (returned as llm_key from server) is the user's personal Azure AD token.
         // The LLM gateway accepts it because the user's account has the required group access.
         // Always refresh on page load so an expired token gets replaced.
@@ -37,6 +37,12 @@
           if (llm_url) localStorage.setItem("jiraDash_claudeUrl", llm_url);
           if (!localStorage.getItem("jiraDash_claudeModel"))
             localStorage.setItem("jiraDash_claudeModel", "sonnet-latest");
+          // Track whether the key came from server-managed credentials (AWS Secrets)
+          if (llm_key_source === "server") {
+            localStorage.setItem("jiraDash_claudeKeySource", "server");
+          } else {
+            localStorage.removeItem("jiraDash_claudeKeySource");
+          }
         } else if (token) {
           // Fallback: use SSO token directly if llm_key wasn't returned
           localStorage.setItem("jiraDash_claudeKey", token);
