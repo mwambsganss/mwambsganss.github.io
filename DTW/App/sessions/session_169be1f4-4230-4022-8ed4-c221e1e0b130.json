@@ -1,0 +1,698 @@
+{
+  "session_id": "169be1f4-4230-4022-8ed4-c221e1e0b130",
+  "session_name": "⚗ Test Session — Synthetic Data",
+  "room_code": "169BE1",
+  "created_at": "2026-03-18T17:22:08Z",
+  "exercise_order": [
+    "intros_outcomes",
+    "persona_cards",
+    "executive_summary",
+    "hopes_fears",
+    "stakeholder_map",
+    "empathy_maps",
+    "asis_process_map",
+    "needs_statements",
+    "assumptions_grid",
+    "big_idea_vignettes",
+    "prioritization_grid",
+    "tobe_process_map",
+    "experience_roadmap",
+    "hills_objectives",
+    "gantt_roadmap",
+    "resource_plan",
+    "feedback_grid",
+    "playback_deck"
+  ],
+  "current_exercise_index": 1,
+  "status": "active",
+  "participants": [
+    {
+      "name": "Sarah Chen",
+      "role": "Digital Marketing Manager",
+      "joined_at": "2026-03-18T17:22:08Z"
+    },
+    {
+      "name": "Marcus Rodriguez",
+      "role": "Campaign Operations Lead",
+      "joined_at": "2026-03-18T17:22:08Z"
+    },
+    {
+      "name": "Priya Nair",
+      "role": "Marketing Analytics Analyst",
+      "joined_at": "2026-03-18T17:22:08Z"
+    },
+    {
+      "name": "James Okafor",
+      "role": "Brand Strategy Director",
+      "joined_at": "2026-03-18T17:22:08Z"
+    },
+    {
+      "name": "Lily Thompson",
+      "role": "Content & Creative Specialist",
+      "joined_at": "2026-03-18T17:22:08Z"
+    }
+  ],
+  "exercises": {
+    "intros_outcomes": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "completed"
+    },
+    "persona_cards": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "The Campaign Manager: juggles 15+ campaigns, no single place to check status, constantly chasing updates via Slack.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "The Trafficking Specialist: receives briefs at the last minute, unclear specs, spends 40% of time on rework.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "The Analytics Lead: waits until campaign end to pull data because mid-flight reporting is unreliable.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "The Creative Producer: told 'urgent' so often the word has lost meaning; unclear which feedback is final.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "The Brand Director: wants a dashboard but gets a PowerPoint; has to manually reconcile numbers before every Monday review.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": "# Persona Cards — Campaign Operations Workshop\n**Exercise:** Persona Mapping | **Phase:** Understanding\n**Date:** March 18, 2026 | **Facilitated via:** IBM Enterprise Design Thinking\n\n---\n\n## Persona: Campaign Manager\n\n- **Goals:**\n  - Maintain real-time visibility across all active campaigns without relying on manual check-ins\n  - Reduce time spent chasing status updates through informal channels like Slack\n  - Serve as a reliable, informed point of coordination across campaign stakeholders\n\n- **Pain Points:**\n  - No single source of truth for campaign status — oversight requires constant, reactive outreach\n  - Communication overhead is unsustainable at scale; managing 15+ campaigns amplifies every gap in tooling or process\n\n- **Representative Quote:**\n  > *\"Constantly chasing updates via Slack.\"* — Sarah Chen\n\n---\n\n## Persona: Trafficking Specialist\n\n- **Goals:**\n  - Receive complete, accurate briefs with sufficient lead time to execute without errors\n  - Spend the majority of working time on value-add trafficking work, not corrections\n  - Operate from clearly defined, stable specifications\n\n- **Pain Points:**\n  - Briefs consistently arrive at the last minute, compressing execution timelines and increasing error risk\n  - Unclear or incomplete specs drive an estimated 40% of working time into rework — a measurable productivity loss\n\n- **Representative Quote:**\n  > *\"Receives briefs at the last minute, unclear specs, spends 40% of time on rework.\"* — Marcus Rodriguez\n\n---\n\n## Persona: Analytics Lead\n\n- **Goals:**\n  - Access reliable, timely data to support in-flight campaign optimization — not just post-campaign reporting\n  - Build confidence in data integrity so insights can be acted on immediately\n  - Shift from a reactive reporting posture to a proactive, advisory role\n\n- **Pain Points:**\n  - Mid-flight reporting is unreliable, forcing a full wait until campaign end before any meaningful data pull\n  - Inability to course-correct during a live campaign represents a direct loss of optimization opportunity and business value\n\n- **Representative Quote:**\n  > *\"Waits until campaign end to pull data because mid-flight reporting is unreliable.\"* — Priya Nair\n\n---\n\n## Persona: Creative Producer\n\n- **Goals:**\n  - Operate with a clear, enforced prioritization system that distinguishes genuine urgency from routine requests\n  - Receive consolidated, unambiguous feedback so creative work can be finalized without repeated revision cycles\n  - Protect creative quality by working against realistic, stable timelines\n\n- **Pain Points:**\n  - The word \"urgent\" has been used so frequently and indiscriminately that it carries no signal value — all work feels equally high-priority\n  - Absence of a defined feedback finalization process means it is never clear which round of input is the last, driving unnecessary revision loops\n\n- **Representative Quote:**\n  > *\"Told 'urgent' so often the word has lost meaning; unclear which feedback is final.\"* — James Okafor\n\n---\n\n## Persona: Brand Director\n\n- **Goals:**\n  - Access a live, reliable performance dashboard that eliminates the need for manual data preparation before leadership reviews\n  - Enter every Monday review with numbers that are pre-reconciled, credible, and ready to present\n  - Hold vendors and internal teams accountable to a single, consistent view of campaign performance\n\n- **Pain Points:**\n  - Receives static PowerPoint decks instead of dynamic, queryable reporting — creating a one-way, snapshot view of performance\n  - Must manually reconcile figures before every executive review, consuming senior leadership bandwidth on low-value data hygiene work\n\n- **Representative Quote:**\n  > *\"Wants a dashboard but gets a PowerPoint; has to manually reconcile numbers before every Monday review.\"* — Lily Thompson\n\n---\n\n## Common Threads Across Personas\n\n- **Absence of a single source of truth** cuts across every role: Campaign Managers chase status in Slack, Analytics Leads distrust mid-flight data, and Brand Directors manually reconcile figures — all symptoms of the same underlying data and visibility gap\n- **Reactive, last-minute workflows** affect both upstream and downstream roles: Trafficking Specialists absorb the cost of late briefs; Creative Producers absorb the cost of undefined urgency and unfinalized feedback\n- **High-value time lost to low-value work** is a consistent theme — 40% rework for Trafficking, manual number reconciliation for the Brand Director, and delayed insights for the Analytics Lead all represent measurable productivity and opportunity costs\n- **Communication fragmentation** forces informal channels (Slack, PowerPoint hand-offs) to substitute for structured process — a workaround that scales poorly and erodes trust across the team\n- **No shared definition of priority or finality** — \"urgent\" means nothing, feedback rounds have no designated end point, and reporting has no agreed cadence — suggesting a systemic gap in workflow governance that affects every persona represented in this room\n\n---\n\n*Synthesized from live participant input. All content grounded in transcript dated 2026-03-18. No assumptions or invented content introduced.*",
+      "summary_generated_at": "2026-03-18T17:24:02Z",
+      "status": "active"
+    },
+    "executive_summary": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Core finding: Campaign trafficking delays stem from three root causes — incomplete briefs, fragmented status visibility, and disconnected analytics setup.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Key insight: All personas experience the same process, but from completely different vantage points — alignment was missing, not intent.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Priority 1: Standardized brief template — immediate, zero cost, eliminates 30% of rework.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Priority 2: Live status tracker — 3-month build, eliminates Slack chasing, gives Brand Directors real-time visibility.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Priority 3: Analytics auto-notification at launch — 6-month integration, enables same-day reporting.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        },
+        {
+          "sender": "Sarah Chen",
+          "text": "Call to action: Approve brief template this week; allocate Q2 budget for status tracker development.",
+          "timestamp": "2026-03-18T10:05:00Z",
+          "role": "Digital Marketing Manager"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "completed"
+    },
+    "hopes_fears": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Hope: We finally agree on a single source of truth for campaign status. Fear: We'll talk a lot but leave without clear owners.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Hope: Identify the 2-3 changes that will have the biggest impact. Fear: Politics get in the way of honest conversation.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Hope: Data quality improves so we can actually trust our reporting. Fear: Any solutions will be too complex to adopt.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Hope: Leadership backs the changes we recommend. Fear: We scope too broadly and try to fix everything at once.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Hope: Creative and ops teams build empathy for each other's constraints. Fear: We don't have enough time to go deep.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "stakeholder_map": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Core owners: Campaign Managers and Trafficking Specialists — they touch every step.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Decision makers: Brand Directors approve final creative and control budget reallocation.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Impacted: Paid Media buyers feel the ripple effect when trafficking is delayed — their optimization windows shrink.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Enablers: Marketing Ops owns the trafficking platform but isn't looped in until things break.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Key friction: Brand and Ops rarely meet — decisions get made in siloes then conflict at handoff.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "completed"
+    },
+    "empathy_maps": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Campaign Manager SAYS: 'I have no idea where things stand until something breaks.' FEELS: anxious, always reactive.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Trafficking Specialist SAYS: 'I get briefs with missing fields constantly.' DOES: creates unofficial checklists to compensate.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Analytics Lead THINKS: 'If the data were clean we could optimize mid-flight.' FEELS: frustrated by manual reconciliation.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Creative Producer DOES: sends assets to Slack AND email AND the platform because they don't trust any single channel.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Brand Director THINKS: 'Why can't I see real-time campaign status?' SAYS: 'I need a simpler dashboard.' FEELS: out of the loop.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "asis_process_map": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Phase 1 — Brief: Campaign Manager creates brief in Word doc, emails to Creative and Trafficking separately. No version control.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Phase 2 — Creative: Designer picks up brief; average 2.1 rounds of revision due to unclear specs. No structured feedback tool.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Phase 3 — Trafficking: Specialist manually enters specs into platform. 30% error rate requires re-entry.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Phase 4 — QA: QA team reviews against original brief — but brief has often changed by this point.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Phase 5 — Launch: Campaign goes live but Analytics isn't notified; reporting setup is delayed by 2–3 days.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        },
+        {
+          "sender": "Sarah Chen",
+          "text": "Key pain: Handoff between Creative and Trafficking has no formal step — files are shared via email attachment.",
+          "timestamp": "2026-03-18T10:05:00Z",
+          "role": "Digital Marketing Manager"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "needs_statements": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Campaign Managers need a way to see real-time trafficking status so they can proactively manage client expectations.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Trafficking Specialists need a way to receive complete, validated briefs so they can reduce re-work.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Analytics team needs a way to access campaign parameters at launch so they can configure tracking without delay.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Creative team needs a way to receive consolidated, final feedback so they can deliver approved assets on first submission.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Brand Directors need a way to monitor campaign health in one view so they can intervene before issues escalate.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "assumptions_grid": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "High confidence / High risk: Traffickers are the main source of delays. If wrong, solving trafficking won't move the needle.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "High confidence / Low risk: Teams want a unified brief format. Low risk to test — just try it.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Low confidence / High risk: A new platform will solve the coordination problem. Could be expensive and fail.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Low confidence / Low risk: Teams will adopt a new status dashboard without training. Worth piloting cheaply.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Key question: Does leadership actually have time to participate in process redesign, or will this stall?",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "big_idea_vignettes": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Idea 1: A single campaign workspace — brief, creative, trafficking, and reporting all in one tool. No more email handoffs.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Idea 2: An AI-powered brief validator that flags incomplete or ambiguous fields before the brief is submitted.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Idea 3: Auto-notify Analytics the moment a campaign goes live, with all parameters pre-populated.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Idea 4: A weekly 15-minute cross-functional sync replacing 40+ status Slack messages. Structured agenda, rotating owner.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Idea 5: Dashboard for Brand Directors — live campaign health score, auto-updated, no manual PowerPoint needed.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "prioritization_grid": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "High importance / High feasibility: Standardized brief template — do this first, costs nothing, high impact.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "High importance / Low feasibility: Unified campaign platform — high value but requires 12-month procurement.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Low importance / High feasibility: Auto-email status updates — easy win but not the core problem.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Low importance / Low feasibility: AI brief validator — interesting but complex and unproven; revisit in 6 months.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Team consensus: Start with brief template + cross-functional sync. Quick wins before platform change.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "tobe_process_map": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Phase 1 — Brief: Standardized brief form with required fields; auto-validated before submission to Creative.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Phase 2 — Creative: Feedback consolidated in single platform; Creative receives one clear revision round.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Phase 3 — Trafficking: Specs auto-populated from approved brief; manual entry eliminated for standard fields.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Phase 4 — QA: QA checks against the live brief version (not the original email); discrepancies flagged automatically.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Phase 5 — Launch: Analytics auto-notified at launch with all parameters; same-day reporting setup.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "experience_roadmap": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Near-term (0–3 months): 'Our users can submit complete briefs using a shared template.' Launch brief standard + training.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Mid-term (3–9 months): 'Our users can see campaign status in one place without asking.' Build lightweight status tracker.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Long-term (9–18 months): 'Our users can access real-time performance data from day one of launch.' Integrate trafficking + analytics.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "hills_objectives": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Hill 1: Campaign Managers can see trafficking status in real time without sending a single Slack message.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Hill 2: Trafficking Specialists receive zero incomplete briefs by end of Q3.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Hill 3: Analytics is configured and live within 4 hours of campaign launch — not 2 days.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Deliverables: Brief template (immediate), status tracker pilot (Q2), analytics integration spec (Q3).",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Quantified value: 30% reduction in rework, 2-day reduction in time-to-launch, 100% same-day analytics.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "gantt_roadmap": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Month 1–2: Design and pilot standardized brief template with 2 campaign managers.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Month 2–3: Roll out brief template org-wide; establish weekly cross-functional sync cadence.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Month 3–6: Build and test lightweight status tracker; integrate with existing trafficking platform.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Month 6–9: Analytics auto-notification pilot; measure time-to-reporting improvement.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Month 9–12: Evaluate unified platform options; RFP if KPIs are met.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "resource_plan": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Owner: Marcus Rodriguez (Campaign Ops Lead) — accountable for brief template and status tracker.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Support: Priya Nair (Analytics) — defines tracking requirements and validates reporting improvements.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "Exec sponsor: James Okafor (Brand Strategy Director) — approves budget, removes blockers.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "External: May need 1 FTE contractor for platform integration in months 3–9.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Budget estimate: $0 for process changes; $50–80K for status tracker; $200–400K for platform evaluation.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "feedback_grid": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "Worked well: The empathy map exercise — teams genuinely understood each other's pain for the first time.",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "Change: The assumptions grid felt rushed; would benefit from a longer timebox.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "New idea: Record a short video summary of the day and share with stakeholders who couldn't attend.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "Questions: How do we keep momentum after today? Who owns follow-through on the brief template?",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Overall: High energy, honest conversation, clear next steps — best DTW we've run.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "playback_deck": {
+      "messages": [
+        {
+          "sender": "Sarah Chen",
+          "text": "We started today asking: why does it take so long to get a campaign live?",
+          "timestamp": "2026-03-18T10:00:00Z",
+          "role": "Digital Marketing Manager"
+        },
+        {
+          "sender": "Marcus Rodriguez",
+          "text": "We mapped the as-is process and found 5 key friction points — all caused by information gaps, not effort gaps.",
+          "timestamp": "2026-03-18T10:01:00Z",
+          "role": "Campaign Operations Lead"
+        },
+        {
+          "sender": "Priya Nair",
+          "text": "We defined what our users need: complete briefs, visible status, same-day analytics.",
+          "timestamp": "2026-03-18T10:02:00Z",
+          "role": "Marketing Analytics Analyst"
+        },
+        {
+          "sender": "James Okafor",
+          "text": "We prioritized three hills: no Slack chasing, zero incomplete briefs, analytics live in 4 hours.",
+          "timestamp": "2026-03-18T10:03:00Z",
+          "role": "Brand Strategy Director"
+        },
+        {
+          "sender": "Lily Thompson",
+          "text": "Our roadmap: brief template now, status tracker in Q2, analytics integration in H2.",
+          "timestamp": "2026-03-18T10:04:00Z",
+          "role": "Content & Creative Specialist"
+        },
+        {
+          "sender": "Sarah Chen",
+          "text": "Next step: James approves brief template standard by Friday. Marcus leads rollout in 30 days.",
+          "timestamp": "2026-03-18T10:05:00Z",
+          "role": "Digital Marketing Manager"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    }
+  }
+}

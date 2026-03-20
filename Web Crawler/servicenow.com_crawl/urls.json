@@ -1,0 +1,22 @@
+{
+  "root_url": "https://www.servicenow.com/docs/r/xanadu/intelligent-experiences/ai-products.html",
+  "base_domain": "www.servicenow.com",
+  "crawled_at": "2026-03-17T09:15:56.696779",
+  "summary": {
+    "total_urls": 1,
+    "pages": 0,
+    "subsites": 0,
+    "resources": 0,
+    "external": 0,
+    "failed": 1
+  },
+  "urls": {
+    "pages": [],
+    "subsites": [],
+    "resources": [],
+    "external": []
+  },
+  "failed": {
+    "https://www.servicenow.com/docs/r/xanadu/intelligent-experiences/ai-products.html": "HTTPSConnectionPool(host='www.servicenow.com', port=443): Max retries exceeded with url: /docs/r/xanadu/intelligent-experiences/ai-products.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1081)')))"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "session_id": "5415fed1-c1c4-48d2-8256-9ac93dc67e19",
+  "session_name": "Test Session 1",
+  "passcode": "test123",
+  "room_code": "5415FE",
+  "created_at": "2026-03-16T15:01:05Z",
+  "exercise_order": [
+    "hopes_fears",
+    "persona_cards",
+    "stakeholder_map",
+    "empathy_maps",
+    "asis_process_map",
+    "needs_statements",
+    "assumptions_grid",
+    "big_idea_vignettes",
+    "prioritization_grid",
+    "tobe_process_map",
+    "experience_roadmap",
+    "hills_objectives",
+    "gantt_roadmap",
+    "resource_plan",
+    "feedback_grid",
+    "executive_summary",
+    "playback_deck"
+  ],
+  "current_exercise_index": 1,
+  "status": "active",
+  "participants": [
+    {
+      "name": "Matt Wambsganss",
+      "joined_at": "2026-03-16T20:16:24Z"
+    }
+  ],
+  "exercises": {
+    "hopes_fears": {
+      "messages": [
+        {
+          "sender": "Facilitator",
+          "timestamp": "2026-03-16T15:01:41Z",
+          "text": "Hello. THis is a test message.",
+          "exercise_id": "hopes_fears"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "completed"
+    },
+    "persona_cards": {
+      "messages": [
+        {
+          "sender": "Facilitator",
+          "timestamp": "2026-03-16T18:56:29Z",
+          "text": "**Greg A Johnson** · *2026-03-12T17:40:09.877Z*  \nmy names is Greg Johnson,   leader of Private Cloud/Hosting/ InfraOPs .  With Lilly for 26 years.     Enjoy home theater build and home autoamtion.   I have server rack(s) at home with multiple AI agents managing my house.  I wanting to help us define our strategy, direction,  and vision for next 3 years  for our org to help me guide my teams\n\n---\n\n**Chris Lesniewski** · *2026-03-12T17:40:23.483Z*  \nChris Lesniewski, Cloud & Connectivity AVP\n\n---\n\n**David A. Fleming** · *2026-03-12T17:40:27.243Z*  \nDavid Fleming  \n  \nAiOps leader\n\n---\n\n**Mark Pearce** · *2026-03-12T17:40:32.639Z*  \nMark Pearce - Senior Director, Enterprise Connectivity\n\n---\n\n**Todd A Walters** · *2026-03-12T17:40:33.453Z*  \nmy name is Todd Walters - Enterprise Cloud Infrastructure Architect\n\n---\n\n**Michelle Leah Carr** · *2026-03-12T17:40:34.057Z*  \nmy name is Michelle Carr, Infrastructure Business Manager\n\n---\n\n**Karl M Mayer** · *2026-03-12T17:40:37.003Z*  \nKarl Mayer, Digital Core Lead Architect - also Enterprise Business Architecture team member\n\n---\n\n**Jonathan A Klinginsmith** · *2026-03-12T17:40:48.634Z*  \nJon Klinginsmith, leader of Public Cloud and High Performance Computing\n\n---\n\n**Greg S Graf** · *2026-03-12T17:41:10.860Z*  \nGreg Graf - Automation Lead Architect\n\n---\n\n**Shweta Choudhary** · *2026-03-12T17:41:14.702Z*  \nShweta Choudhary-Director, Cloud & Connectivity\n\n---\n\n**Mary Jane Turnmire** · *2026-03-12T17:41:34.187Z*  \nMary Jane Turnmire. leader of US campus strategy and intern program\n\n---\n\n**David A. Fleming** · *2026-03-12T17:42:09.419Z*  \norganized around agentic use cases and start to build the backlog\n\n---\n\n**Mark Pearce** · *2026-03-12T17:42:19.378Z*  \nI would love to have the opportunity to hear ideas from other teams, to share ideas, to find common items my team can collaborate with other teams on, to find ideas that go across multiple teams\n\n---\n\n**Mary Jane Turnmire** · *2026-03-12T17:42:19.878Z*  \nI would love to see how I can apply to the tools that we have that manage the campus program - including the intern program\n\n---\n\n**Jonathan A Klinginsmith** · *2026-03-12T17:42:30.979Z*  \nLooking to openly discuss impactful ideas to leverage Automation and AI toward our Agentic Enterprise goals\n\n---\n\n**Chris Lesniewski** · *2026-03-12T17:42:44.150Z*  \nI would like to get a list of Agentic ideas with some context or categorization around them so that we can determine an approach for pursuing those opportunities.\n\n---\n\n**Todd A Walters** · *2026-03-12T17:43:10.079Z*  \nI am interested find out where we are all at and what we are all thinking about the agentic enterprise and how we embrace and enable it\n\n---\n\n**Karl M Mayer** · *2026-03-12T17:44:11.529Z*  \nI want to explore and discover the boundary between what Tech@Lilly demands of Cloud and what Cloud must own internally.\n\n---\n\n**Michelle Leah Carr** · *2026-03-12T17:44:12.409Z*  \nI would like the opportunity to discuss process improvement options for financial activities of the team.\n\n---\n\n**Shweta Choudhary** · *2026-03-12T17:44:41.477Z*  \nIdeate on possibilities of Agentic Enterprise scope for C &C and put together a roadmap",
+          "exercise_id": "persona_cards"
+        }
+      ],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "active"
+    },
+    "stakeholder_map": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "empathy_maps": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "asis_process_map": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "needs_statements": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "assumptions_grid": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "big_idea_vignettes": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "prioritization_grid": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "tobe_process_map": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "experience_roadmap": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "hills_objectives": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "gantt_roadmap": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "resource_plan": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "feedback_grid": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "executive_summary": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    },
+    "playback_deck": {
+      "messages": [],
+      "summary": null,
+      "summary_generated_at": null,
+      "status": "pending"
+    }
+  }
+}

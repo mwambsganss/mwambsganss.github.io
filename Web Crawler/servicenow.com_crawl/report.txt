@@ -1,0 +1,30 @@
+Web Crawl Report
+================================================================================
+
+Root URL: https://www.servicenow.com/docs/r/xanadu/intelligent-experiences/ai-products.html
+Base Domain: www.servicenow.com
+Crawled: 2026-03-17 09:15:56
+
+Summary
+--------------------------------------------------------------------------------
+Total URLs Crawled: 1
+Pages: 0
+Subsites: 0
+Resources: 0
+External Links: 0
+Failed: 1
+
+Pages
+--------------------------------------------------------------------------------
+
+Subsites
+--------------------------------------------------------------------------------
+
+Resources
+--------------------------------------------------------------------------------
+
+Failed URLs
+--------------------------------------------------------------------------------
+https://www.servicenow.com/docs/r/xanadu/intelligent-experiences/ai-products.html
+  Error: HTTPSConnectionPool(host='www.servicenow.com', port=443): Max retries exceeded with url: /docs/r/xanadu/intelligent-experiences/ai-products.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1081)')))
+
