@@ -32,19 +32,58 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-# ── Load .env (no third-party library needed) ──────────────────────────────────
-_env_path = os.path.join(os.path.dirname(__file__), ".env")
-if os.path.exists(_env_path):
-    with open(_env_path) as _f:
-        for _line in _f:
-            _line = _line.strip()
-            if _line and not _line.startswith("#") and "=" in _line:
-                _k, _v = _line.split("=", 1)
-                os.environ.setdefault(_k.strip(), _v.strip())
+# ── S3 storage config vars ─────────────────────────────────────────────────────
+# NOTE: actual values read from os.environ AFTER secrets_loader runs below
+_S3_CLIENT = None  # initialised lazily on first use
 
 import eventlet
 import eventlet.tpool
+# Fix Python 3.14 + eventlet SSL recursion: after monkey_patch, ssl.SSLContext
+# property setters call super() which recurses infinitely due to MRO changes.
+# Patch 1: Fix the original SSLContext BEFORE monkey_patch (used by botocore).
+# Patch 2: After monkey_patch, fix GreenSSLContext AND update sslsocket_class so
+#           botocore's old SSLContext uses the green SSLSocket (no class mismatch).
+import _ssl as _c_ssl
+import ssl as _ssl_mod
+_SSL_ATTRS = ("options", "verify_mode", "verify_flags", "check_hostname",
+              "minimum_version", "maximum_version")
+for _attr in _SSL_ATTRS:
+    _desc = getattr(_c_ssl._SSLContext, _attr, None)
+    if _desc:
+        setattr(_ssl_mod.SSLContext, _attr, property(
+            lambda self, d=_desc: d.__get__(self),
+            lambda self, v, d=_desc: d.__set__(self, v),
+        ))
 eventlet.monkey_patch()
+try:
+    import ssl as _ssl_green
+    import eventlet.green.ssl as _eg_ssl
+    for _attr in _SSL_ATTRS:
+        _desc = getattr(_c_ssl._SSLContext, _attr, None)
+        if _desc and _attr in _eg_ssl.SSLContext.__dict__:
+            setattr(_eg_ssl.SSLContext, _attr, property(
+                lambda self, d=_desc: d.__get__(self),
+                lambda self, v, d=_desc: d.__set__(self, v),
+            ))
+    # Make botocore's old SSLContext use GreenSSLSocket to avoid class mismatch
+    _ssl_mod.SSLContext.sslsocket_class = _ssl_green.SSLSocket
+except Exception:
+    pass
+
+# ── Load secrets from AWS Secrets Manager ─────────────────────────────────────
+# (imported AFTER SSL fix so botocore uses patched SSL)
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+from secrets_loader import load_aws_secrets
+load_aws_secrets(
+    os.environ.get("AWS_SECRET_NAME", "dtw-app-tea-s3"),
+    os.environ.get("AWS_REGION", "us-east-2"),
+)
+
+# ── S3 storage (optional — falls back to local filesystem when not configured) ──
+S3_BUCKET  = os.environ.get("S3_BUCKET", "")           # e.g. "lilly-dtw-sessions"
+S3_REGION  = os.environ.get("S3_REGION", "us-east-1")
+S3_PREFIX  = os.environ.get("S3_PREFIX", "dtw")        # key prefix inside bucket
 
 from flask import Flask, jsonify, request, send_from_directory, Response
 from flask_socketio import SocketIO, emit, join_room
@@ -56,14 +95,6 @@ SESSIONS_DIR = BASE_DIR / "sessions"
 SESSIONS_DIR.mkdir(exist_ok=True)
 ARTIFACTS_DIR = BASE_DIR / "artifacts"
 ARTIFACTS_DIR.mkdir(exist_ok=True)
-
-# ── S3 storage (optional — falls back to local filesystem when not configured) ──
-S3_BUCKET  = os.environ.get("S3_BUCKET", "")           # e.g. "lilly-dtw-sessions"
-S3_REGION  = os.environ.get("S3_REGION", "us-east-1")
-S3_PREFIX  = os.environ.get("S3_PREFIX", "dtw")        # key prefix inside bucket
-# Credentials are picked up automatically from:
-#   AWS_ACCESS_KEY_ID + AWS_SECRET_ACCESS_KEY env vars, ~/.aws/credentials, or IAM role
-_S3_CLIENT = None  # initialised lazily on first use
 
 
 def _s3():
@@ -114,7 +145,10 @@ def _s3_session_key(session_id: str) -> str:
 def load_session(session_id: str) -> dict | None:
     if _s3_enabled():
         try:
-            obj = _s3().get_object(Bucket=S3_BUCKET, Key=_s3_session_key(session_id))
+            key = _s3_session_key(session_id)
+            obj = eventlet.tpool.execute(
+                lambda: _s3().get_object(Bucket=S3_BUCKET, Key=key)
+            )
             return json.loads(obj["Body"].read().decode("utf-8"))
         except Exception:
             return None
@@ -128,11 +162,14 @@ def load_session(session_id: str) -> dict | None:
 def save_session(session: dict) -> None:
     body = json.dumps(session, indent=2, ensure_ascii=False).encode("utf-8")
     if _s3_enabled():
-        _s3().put_object(
-            Bucket=S3_BUCKET,
-            Key=_s3_session_key(session["session_id"]),
-            Body=body,
-            ContentType="application/json",
+        key = _s3_session_key(session["session_id"])
+        eventlet.tpool.execute(
+            lambda: _s3().put_object(
+                Bucket=S3_BUCKET,
+                Key=key,
+                Body=body,
+                ContentType="application/json",
+            )
         )
         return
     p = session_path(session["session_id"])
@@ -145,17 +182,22 @@ def _rebuild_room_code_map() -> None:
     """Rebuild in-memory room_code→session_id map from storage at startup."""
     if _s3_enabled():
         try:
-            paginator = _s3().get_paginator("list_objects_v2")
-            prefix = f"{S3_PREFIX}/sessions/"
-            for page in paginator.paginate(Bucket=S3_BUCKET, Prefix=prefix):
-                for obj in page.get("Contents", []):
-                    try:
-                        raw = _s3().get_object(Bucket=S3_BUCKET, Key=obj["Key"])
-                        s = json.loads(raw["Body"].read().decode("utf-8"))
-                        rc = s.get("room_code") or room_code_from_id(s["session_id"])
-                        _room_code_map[rc] = s["session_id"]
-                    except Exception:
-                        pass
+            def _fetch():
+                results = {}
+                paginator = _s3().get_paginator("list_objects_v2")
+                prefix = f"{S3_PREFIX}/sessions/"
+                for page in paginator.paginate(Bucket=S3_BUCKET, Prefix=prefix):
+                    for obj in page.get("Contents", []):
+                        try:
+                            raw = _s3().get_object(Bucket=S3_BUCKET, Key=obj["Key"])
+                            s = json.loads(raw["Body"].read().decode("utf-8"))
+                            rc = s.get("room_code") or room_code_from_id(s["session_id"])
+                            results[rc] = s["session_id"]
+                        except Exception:
+                            pass
+                return results
+            entries = eventlet.tpool.execute(_fetch)
+            _room_code_map.update(entries)
         except Exception as exc:
             log.warning("Could not rebuild room code map from S3: %s", exc)
         return
@@ -168,8 +210,7 @@ def _rebuild_room_code_map() -> None:
         except Exception:
             pass
 
-
-_rebuild_room_code_map()
+# _rebuild_room_code_map() is called after the eventlet hub starts (see __main__ block)
 
 
 def load_exercises() -> list[dict]:
@@ -1096,29 +1137,32 @@ def list_sessions():
     sessions = []
     if _s3_enabled():
         try:
-            paginator = _s3().get_paginator("list_objects_v2")
-            prefix = f"{S3_PREFIX}/sessions/"
-            objs = []
-            for page in paginator.paginate(Bucket=S3_BUCKET, Prefix=prefix):
-                objs.extend(page.get("Contents", []))
-            # Sort by LastModified descending
-            objs.sort(key=lambda o: o["LastModified"], reverse=True)
-            for obj in objs:
-                try:
-                    raw = _s3().get_object(Bucket=S3_BUCKET, Key=obj["Key"])
-                    s = json.loads(raw["Body"].read().decode("utf-8"))
-                    sessions.append({
-                        "session_id": s["session_id"],
-                        "session_name": s["session_name"],
-                        "room_code": s["room_code"],
-                        "created_at": s["created_at"],
-                        "status": s["status"],
-                        "participant_count": len(s.get("participants", [])),
-                        "exercise_count": len(s.get("exercise_order", [])),
-                        "current_exercise_index": s.get("current_exercise_index", 0),
-                    })
-                except Exception:
-                    pass
+            def _list():
+                results = []
+                paginator = _s3().get_paginator("list_objects_v2")
+                prefix = f"{S3_PREFIX}/sessions/"
+                objs = []
+                for page in paginator.paginate(Bucket=S3_BUCKET, Prefix=prefix):
+                    objs.extend(page.get("Contents", []))
+                objs.sort(key=lambda o: o["LastModified"], reverse=True)
+                for obj in objs:
+                    try:
+                        raw = _s3().get_object(Bucket=S3_BUCKET, Key=obj["Key"])
+                        s = json.loads(raw["Body"].read().decode("utf-8"))
+                        results.append({
+                            "session_id": s["session_id"],
+                            "session_name": s["session_name"],
+                            "room_code": s["room_code"],
+                            "created_at": s["created_at"],
+                            "status": s["status"],
+                            "participant_count": len(s.get("participants", [])),
+                            "exercise_count": len(s.get("exercise_order", [])),
+                            "current_exercise_index": s.get("current_exercise_index", 0),
+                        })
+                    except Exception:
+                        pass
+                return results
+            sessions = eventlet.tpool.execute(_list)
         except Exception as exc:
             log.error("list_sessions S3 error: %s", exc)
     else:
@@ -1166,16 +1210,20 @@ def delete_session(session_id):
     if _s3_enabled():
         # Delete session JSON
         try:
-            _s3().delete_object(Bucket=S3_BUCKET, Key=_s3_session_key(session_id))
+            key = _s3_session_key(session_id)
+            eventlet.tpool.execute(lambda: _s3().delete_object(Bucket=S3_BUCKET, Key=key))
         except Exception as exc:
             log.error("S3 delete session error: %s", exc)
         # Delete all artifacts for this session
         try:
-            paginator = _s3().get_paginator("list_objects_v2")
-            for page in paginator.paginate(Bucket=S3_BUCKET, Prefix=f"{S3_PREFIX}/artifacts/{session_id}_"):
-                keys = [{"Key": o["Key"]} for o in page.get("Contents", [])]
-                if keys:
-                    _s3().delete_objects(Bucket=S3_BUCKET, Delete={"Objects": keys})
+            prefix = f"{S3_PREFIX}/artifacts/{session_id}_"
+            def _delete_artifacts():
+                paginator = _s3().get_paginator("list_objects_v2")
+                for page in paginator.paginate(Bucket=S3_BUCKET, Prefix=prefix):
+                    keys = [{"Key": o["Key"]} for o in page.get("Contents", [])]
+                    if keys:
+                        _s3().delete_objects(Bucket=S3_BUCKET, Delete={"Objects": keys})
+            eventlet.tpool.execute(_delete_artifacts)
         except Exception as exc:
             log.error("S3 delete artifacts error: %s", exc)
     else:
@@ -1351,10 +1399,11 @@ def _generate_docx(session: dict, ex_id: str, ex_meta: dict, summary_text: str) 
         doc.save(buf)
         buf.seek(0)
         key = f"{S3_PREFIX}/artifacts/{filename}"
-        _s3().put_object(
-            Bucket=S3_BUCKET, Key=key, Body=buf.read(),
+        body = buf.read()
+        eventlet.tpool.execute(lambda: _s3().put_object(
+            Bucket=S3_BUCKET, Key=key, Body=body,
             ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        )
+        ))
         log.info("Uploaded DOCX to S3: %s", key)
         return Path(filename)
     out_path = ARTIFACTS_DIR / filename
@@ -1867,10 +1916,11 @@ def _generate_pptx(session: dict, ex_id: str, ex_meta: dict, summary_text: str) 
         prs.save(buf)
         buf.seek(0)
         key = f"{S3_PREFIX}/artifacts/{filename}"
-        _s3().put_object(
-            Bucket=S3_BUCKET, Key=key, Body=buf.read(),
+        body = buf.read()
+        eventlet.tpool.execute(lambda: _s3().put_object(
+            Bucket=S3_BUCKET, Key=key, Body=body,
             ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation",
-        )
+        ))
         log.info("Uploaded PPTX to S3: %s", key)
         return Path(filename)
     out_path = ARTIFACTS_DIR / filename
@@ -1952,21 +2002,25 @@ def list_artifacts(session_id):
     if _s3_enabled():
         s3_prefix = f"{S3_PREFIX}/artifacts/{session_id}_"
         try:
-            paginator = _s3().get_paginator("list_objects_v2")
-            for page in paginator.paginate(Bucket=S3_BUCKET, Prefix=s3_prefix):
-                for obj in page.get("Contents", []):
-                    fname = obj["Key"].split("/")[-1]
-                    ext   = fname.rsplit(".", 1)[-1].upper()
-                    stem  = fname.rsplit(".", 1)[0]
-                    slug  = stem[len(prefix_str) + 1:]
-                    label = slug.replace("_", " ").title()
-                    result.append({
-                        "filename": fname,
-                        "label":    label,
-                        "type":     ext,
-                        "size":     obj["Size"],
-                        "url":      f"/api/sessions/{session_id}/artifacts/{fname}",
-                    })
+            def _list_s3():
+                items = []
+                paginator = _s3().get_paginator("list_objects_v2")
+                for page in paginator.paginate(Bucket=S3_BUCKET, Prefix=s3_prefix):
+                    for obj in page.get("Contents", []):
+                        fname = obj["Key"].split("/")[-1]
+                        ext   = fname.rsplit(".", 1)[-1].upper()
+                        stem  = fname.rsplit(".", 1)[0]
+                        slug  = stem[len(prefix_str) + 1:]
+                        label = slug.replace("_", " ").title()
+                        items.append({
+                            "filename": fname,
+                            "label":    label,
+                            "type":     ext,
+                            "size":     obj["Size"],
+                            "url":      f"/api/sessions/{session_id}/artifacts/{fname}",
+                        })
+                return items
+            result = eventlet.tpool.execute(_list_s3)
         except Exception as exc:
             log.error("list_artifacts S3 error: %s", exc)
     else:
@@ -1997,7 +2051,7 @@ def download_artifact(session_id, filename):
     if _s3_enabled():
         key = f"{S3_PREFIX}/artifacts/{filename}"
         try:
-            obj  = _s3().get_object(Bucket=S3_BUCKET, Key=key)
+            obj  = eventlet.tpool.execute(lambda: _s3().get_object(Bucket=S3_BUCKET, Key=key))
             data = obj["Body"].read()
             ext  = filename.rsplit(".", 1)[-1].lower()
             ct   = {
@@ -2025,7 +2079,7 @@ def delete_artifact(session_id, filename):
     if _s3_enabled():
         key = f"{S3_PREFIX}/artifacts/{filename}"
         try:
-            _s3().delete_object(Bucket=S3_BUCKET, Key=key)
+            eventlet.tpool.execute(lambda: _s3().delete_object(Bucket=S3_BUCKET, Key=key))
             log.info("Deleted S3 artifact: %s", key)
             return jsonify({"deleted": filename})
         except Exception as exc:
@@ -2278,4 +2332,6 @@ if __name__ == "__main__":
         log.info("S3 not configured — using local filesystem (set S3_BUCKET in .env to enable)")
         log.info("Sessions directory: %s", SESSIONS_DIR)
     log.info("LLM Gateway configured: %s (model: %s) — keychain read deferred to first request", LLM_GATEWAY_URL, LLM_MODEL)
+    # Rebuild room code map after eventlet hub is running so tpool works
+    eventlet.spawn_after(1, _rebuild_room_code_map)
     socketio.run(app, host="0.0.0.0", port=PORT, debug=False)
